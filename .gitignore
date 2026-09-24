@@ -1,0 +1,14 @@
+# Godot editor/import cache and exported builds
+.godot/
+.export/
+
+# Android/Gradle output
+android/.gradle/
+android/build/
+*.apk
+*.aab
+*.keystore
+
+# Local operating system files
+.DS_Store
+Thumbs.db
