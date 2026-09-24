@@ -6,6 +6,8 @@ config_version=5
 [application]
 
 config/name="Emberfall: Ashen Veil"
+config/description="A landscape idle action RPG. Choose a class, descend into the Ashen Veil, and return to manage your loot."
+config/icon="res://assets/app_icon.png"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 

@@ -64,13 +64,13 @@ const MAX_TEMPER_RANK := 5
 
 var page := "camp"
 var character_class := "Vowkeeper"
-var player_gold := 18420
-var player_shards := 37
-var player_level := 12
+var player_gold := 600
+var player_shards := 0
+var player_level := 1
 var player_xp := 0
-var attribute_points := 5
+var attribute_points := 2
 var allocated_attributes := {"Strength": 0, "Dexterity": 0, "Intellect": 0, "Vitality": 0, "Spirit": 0}
-var floor_number := 4
+var floor_number := 1
 var last_run_floor := 0
 
 var equipment := {
@@ -210,7 +210,6 @@ func _build_header() -> Control:
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	bar.add_child(spacer)
 	bar.add_child(_resource_chip("◈", "%s GOLD" % _short_number(player_gold), GOLD))
-	bar.add_child(_resource_chip("✧", "%d SHARDS" % player_shards, Color("b99bd6")))
 	return bar
 
 func _build_title_row() -> Control:
@@ -314,13 +313,15 @@ func _build_camp(parent: VBoxContainer) -> void:
 	var spacer := Control.new()
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	heading.add_child(spacer)
-	var recommended := 620 + maxi(0, floor_number - 4) * 85
+	var recommended := 515 + maxi(0, mini(floor_number, 4) - 1) * 35 + maxi(0, floor_number - 4) * 85
 	heading.add_child(_label("RECOMMENDED  %d" % recommended, 9, Color("b2a392"), true))
 	stack.add_child(heading)
 	stack.add_child(_label(String(region.dungeon).to_upper(), 22, PALE, true))
 	stack.add_child(_label("%s Nyra will fight through five encounters and face %s for the region's relics." % [String(region.description), String(region.boss)], 13, MUTED))
 	stack.add_child(_map_route())
 	stack.add_child(_button("DESCEND TO FLOOR %02d   →" % floor_number, RED, 14, Callable(self, "_start_run")))
+	if floor_number == 1 and player_level == 1:
+		stack.add_child(_empty_note("FIRST DESCENT  •  Set your class and attribute points in the Armory. Equip or temper gear before each run; the dungeon fights automatically."))
 	var progress := _panel(PANEL, EDGE, 16)
 	parent.add_child(progress)
 	var progress_stack := VBoxContainer.new()
