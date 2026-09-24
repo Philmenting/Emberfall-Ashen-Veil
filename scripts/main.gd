@@ -156,7 +156,7 @@ func _build_ui() -> void:
 	for child in get_children():
 		if child != run_timer:
 			remove_child(child)
-			child.free()
+			child.queue_free()
 	var margins := MarginContainer.new()
 	margins.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	margins.size_flags_horizontal = Control.SIZE_EXPAND_FILL
