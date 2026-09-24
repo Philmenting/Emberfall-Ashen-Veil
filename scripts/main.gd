@@ -105,6 +105,7 @@ var run_succeeded := false
 var run_boss_defeated := false
 var run_events: Array[String] = []
 var current_enemy := ENEMIES[0]
+var run_visual_seconds := 0.0
 var run_timer: Timer
 
 func _ready() -> void:
@@ -173,32 +174,39 @@ func _build_ui() -> void:
 	margins.add_child(layout)
 	layout.add_child(_build_header())
 	layout.add_child(_build_title_row())
-	var body := HBoxContainer.new()
-	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	body.add_theme_constant_override("separation", 10)
-	layout.add_child(body)
-	body.add_child(_build_hero_rail())
-	var middle := VBoxContainer.new()
-	middle.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	middle.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	body.add_child(middle)
-	var scroll := ScrollContainer.new()
-	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	middle.add_child(scroll)
-	var content := VBoxContainer.new()
-	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	content.add_theme_constant_override("separation", 9)
-	scroll.add_child(content)
-	match page:
-		"camp": _build_camp(content)
-		"gear": _build_gear(content)
-		"map": _build_map(content)
-		"run": _build_run(content)
-		"loot": _build_loot(content)
-	body.add_child(_build_stats_rail())
-	layout.add_child(_build_navigation())
+	if page == "run":
+		var run_body := VBoxContainer.new()
+		run_body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		run_body.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		run_body.add_theme_constant_override("separation", 8)
+		layout.add_child(run_body)
+		_build_run(run_body)
+	else:
+		var body := HBoxContainer.new()
+		body.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		body.add_theme_constant_override("separation", 10)
+		layout.add_child(body)
+		body.add_child(_build_hero_rail())
+		var middle := VBoxContainer.new()
+		middle.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		middle.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		body.add_child(middle)
+		var scroll := ScrollContainer.new()
+		scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		middle.add_child(scroll)
+		var content := VBoxContainer.new()
+		content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		content.add_theme_constant_override("separation", 9)
+		scroll.add_child(content)
+		match page:
+			"camp": _build_camp(content)
+			"gear": _build_gear(content)
+			"map": _build_map(content)
+			"loot": _build_loot(content)
+		body.add_child(_build_stats_rail())
+		layout.add_child(_build_navigation())
 
 func _build_header() -> Control:
 	var bar := HBoxContainer.new()
@@ -405,65 +413,87 @@ func _build_map(parent: VBoxContainer) -> void:
 
 func _build_run(parent: VBoxContainer) -> void:
 	var region := _region_data()
-	var card := _panel(PANEL, Color("59433d"), 17)
-	parent.add_child(card)
-	var stack := VBoxContainer.new()
-	stack.add_theme_constant_override("separation", 7)
-	card.add_child(stack)
-	var title := HBoxContainer.new()
-	title.add_child(_label("ENCOUNTER %02d / %02d" % [mini(run_stage + 1, run_max_stages), run_max_stages], 10, GOLD, true))
-	var spacer := Control.new()
-	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	title.add_child(spacer)
-	title.add_child(_label("%s" % ("AUTO-FIGHTING" if run_active else "PAUSED"), 9, Color("d78b65"), true))
-	stack.add_child(title)
-	stack.add_child(_progress_bar(run_stage, run_max_stages, GOLD, 11))
+	var stage := Control.new()
+	stage.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	stage.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	stage.custom_minimum_size.y = 280
+	parent.add_child(stage)
 	var arena := BattleArt.new()
-	arena.custom_minimum_size = Vector2(0, 136)
-	arena.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	arena.name = "BattleArena"
+	arena.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	arena.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	arena.character_class = character_class
 	arena.enemy_name = current_enemy
 	arena.encounter = run_stage + 1
 	arena.region_index = _region_index(floor_number)
-	stack.add_child(arena)
-	var enemy_row := HBoxContainer.new()
-	enemy_row.add_theme_constant_override("separation", 10)
-	stack.add_child(enemy_row)
-	var sigil := _panel(Color("2b2326"), Color("735048"), 14)
-	sigil.custom_minimum_size = Vector2(66, 66)
-	sigil.add_child(_centered_label("☠", 32, Color("d08c68")))
-	enemy_row.add_child(sigil)
-	var enemy_info := VBoxContainer.new()
-	enemy_info.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	enemy_info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	enemy_info.add_child(_label(current_enemy, 17, PALE, true))
+	arena.elapsed = run_visual_seconds
+	arena.animation_enabled = run_active
+	stage.add_child(arena)
+	var hud_margins := MarginContainer.new()
+	hud_margins.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	hud_margins.add_theme_constant_override("margin_left", 17)
+	hud_margins.add_theme_constant_override("margin_right", 17)
+	hud_margins.add_theme_constant_override("margin_top", 13)
+	stage.add_child(hud_margins)
+	var top_hud := VBoxContainer.new()
+	top_hud.add_theme_constant_override("separation", 5)
+	hud_margins.add_child(top_hud)
+	var top_panel := _panel(Color(0.035, 0.041, 0.052, 0.80), Color("806247"), 12)
+	top_hud.add_child(top_panel)
+	var top_stack := VBoxContainer.new()
+	top_stack.add_theme_constant_override("separation", 5)
+	top_panel.add_child(top_stack)
+	var title := HBoxContainer.new()
+	title.add_child(_label("ENCOUNTER %02d / %02d" % [mini(run_stage + 1, run_max_stages), run_max_stages], 10, GOLD, true))
+	var title_spacer := Control.new()
+	title_spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	title.add_child(title_spacer)
+	title.add_child(_label("%s" % ("AUTO-FIGHTING" if run_active else "PAUSED"), 9, Color("eda66e") if run_active else MUTED, true))
+	top_stack.add_child(title)
+	top_stack.add_child(_progress_bar(run_stage, run_max_stages, GOLD, 8))
+	var hud_spacer := Control.new()
+	hud_spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	top_hud.add_child(hud_spacer)
 	var is_boss := current_enemy == String(region.boss)
-	var threat_label := "BOSS  •  THREAT %d" % int((620 + maxi(0, floor_number - 4) * 85) * 1.55) if is_boss else "ELITE  •  THREAT %d" % (620 + maxi(0, floor_number - 4) * 85)
-	enemy_info.add_child(_label(threat_label, 9, Color("e6a16c") if is_boss else Color("d48166"), true))
-	enemy_info.add_child(_label("%s deals %d ability damage." % [CLASS_DATA[character_class].ability, _combat_stats().ability_damage], 10, MUTED))
-	enemy_row.add_child(enemy_info)
-	stack.add_child(_label("ENEMY LIFE  %s / %s" % [_short_number(enemy_health), _short_number(enemy_max_health)], 9, Color("d48166"), true))
-	stack.add_child(_progress_bar(enemy_health, enemy_max_health, Color("a64d45"), 8))
+	var threat := int((620 + maxi(0, floor_number - 4) * 85) * (1.55 if is_boss else 1.0))
+	var combat_status := HBoxContainer.new()
+	combat_status.add_theme_constant_override("separation", 8)
+	parent.add_child(combat_status)
+	var enemy_panel := _panel(Color(0.045, 0.039, 0.045, 0.88), Color("784b3d"), 12)
+	enemy_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	combat_status.add_child(enemy_panel)
+	var enemy_info := VBoxContainer.new()
+	enemy_info.add_theme_constant_override("separation", 4)
+	enemy_panel.add_child(enemy_info)
+	enemy_info.add_child(_label(current_enemy.to_upper(), 12, PALE, true))
+	enemy_info.add_child(_label("%s  •  THREAT %d" % ["BOSS" if is_boss else "ELITE", threat], 8, Color("e6a16c"), true))
+	enemy_info.add_child(_label("LIFE  %s / %s" % [_short_number(enemy_health), _short_number(enemy_max_health)], 9, Color("d9b5a8"), true))
+	enemy_info.add_child(_progress_bar(enemy_health, enemy_max_health, Color("c55649"), 7))
 	var current_stats := _combat_stats()
-	stack.add_child(_label("VITALITY  %s / %s" % [_short_number(run_health), _short_number(int(current_stats.max_hp))], 9, MUTED, true))
-	stack.add_child(_progress_bar(run_health, int(current_stats.max_hp), GREEN, 8))
-	stack.add_child(_label("MANA  %d / %d" % [run_mana, int(_combat_stats().max_mana)], 9, Color("a58ed4"), true))
-	var log := _panel(PANEL, EDGE, 16)
-	parent.add_child(log)
-	var log_stack := VBoxContainer.new()
-	log_stack.add_theme_constant_override("separation", 5)
-	log.add_child(log_stack)
-	log_stack.add_child(_label("FIELD NOTES", 9, GOLD, true))
-	for event in run_events.slice(maxi(0, run_events.size() - 3), run_events.size()):
-		log_stack.add_child(_paragraph_label("›  " + event, 11, PALE))
-	if run_events.is_empty():
-		log_stack.add_child(_paragraph_label("Nyra crosses the threshold. The bells fall silent.", 11, PALE))
+	var hero_panel := _panel(Color(0.035, 0.049, 0.046, 0.88), Color("4f705d"), 12)
+	hero_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	combat_status.add_child(hero_panel)
+	var hero_info := VBoxContainer.new()
+	hero_info.add_theme_constant_override("separation", 4)
+	hero_panel.add_child(hero_info)
+	hero_info.add_child(_label("NYRA  •  %s" % character_class.to_upper(), 12, PALE, true))
+	hero_info.add_child(_label("VITALITY  %s / %s" % [_short_number(run_health), _short_number(int(current_stats.max_hp))], 9, GREEN, true))
+	hero_info.add_child(_progress_bar(run_health, int(current_stats.max_hp), GREEN, 7))
+	hero_info.add_child(_label("MANA  %d / %d" % [run_mana, int(current_stats.max_mana)], 9, Color("bca5df"), true))
 	var actions := HBoxContainer.new()
-	actions.add_theme_constant_override("separation", 7)
+	actions.add_theme_constant_override("separation", 8)
 	parent.add_child(actions)
-	var pause := _button("%s" % ("PAUSE" if run_active else "RESUME"), PANEL_LIGHT, 11, Callable(self, "_toggle_run_pause"))
+	var latest_event: String = String(run_events.back()) if not run_events.is_empty() else "Nyra enters the Hollow Spire."
+	var event_panel := _panel(Color(0.035, 0.041, 0.052, 0.86), Color("41434a"), 10)
+	event_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	event_panel.add_child(_paragraph_label("✦  " + latest_event, 10, PALE))
+	actions.add_child(event_panel)
+	var pause := _button("Ⅱ   %s" % ("PAUSE" if run_active else "RESUME"), PANEL_LIGHT, 11, Callable(self, "_toggle_run_pause"))
+	pause.custom_minimum_size = Vector2(130, 42)
 	actions.add_child(pause)
-	actions.add_child(_button("SKIP TO LOOT  »", RED, 11, Callable(self, "_skip_run")))
+	var skip := _button("SKIP TO LOOT   »", RED, 11, Callable(self, "_skip_run"))
+	skip.custom_minimum_size = Vector2(190, 42)
+	actions.add_child(skip)
 
 func _build_loot(parent: VBoxContainer) -> void:
 	var victory := _panel(Color("28261f"), Color("796746"), 17)
@@ -852,13 +882,14 @@ func _start_run() -> void:
 	page = "run"
 	run_active = true
 	run_stage = 0
+	run_visual_seconds = 0.0
 	var stats := _combat_stats()
 	run_health = int(stats.max_hp)
 	run_mana = int(stats.max_mana)
 	run_succeeded = false
 	run_boss_defeated = false
 	run_loot.clear()
-	run_events = ["Nyra enters the Hollow Spire."]
+	run_events = ["Nyra enters %s." % String(_region_data().dungeon)]
 	current_enemy = ENEMIES[randi() % ENEMIES.size()]
 	_prepare_enemy()
 	run_timer.start()
@@ -868,6 +899,7 @@ func _start_run() -> void:
 func _on_run_tick() -> void:
 	if not run_active:
 		return
+	run_visual_seconds += run_timer.wait_time
 	if _resolve_stage():
 		_save_progress()
 		_build_ui()
@@ -958,6 +990,9 @@ func _skip_run() -> void:
 		_complete_run()
 
 func _toggle_run_pause() -> void:
+	var arena := find_child("BattleArena", true, false)
+	if arena != null:
+		run_visual_seconds = float(arena.get("elapsed"))
 	if run_active:
 		run_timer.stop()
 		run_active = false
