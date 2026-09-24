@@ -159,12 +159,16 @@ func _build_ui() -> void:
 			child.free()
 	var margins := MarginContainer.new()
 	margins.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	margins.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	margins.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	margins.add_theme_constant_override("margin_left", 18)
 	margins.add_theme_constant_override("margin_right", 18)
 	margins.add_theme_constant_override("margin_top", 13)
 	margins.add_theme_constant_override("margin_bottom", 11)
 	add_child(margins)
 	var layout := VBoxContainer.new()
+	layout.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	layout.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	layout.add_theme_constant_override("separation", 5)
 	margins.add_child(layout)
 	layout.add_child(_build_header())
@@ -263,12 +267,16 @@ func _build_hero_rail() -> Control:
 	return rail
 
 func _build_stats_rail() -> Control:
-	var rail := VBoxContainer.new()
+	var rail := ScrollContainer.new()
 	rail.custom_minimum_size.x = 214
-	rail.add_theme_constant_override("separation", 7)
+	rail.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	var content := VBoxContainer.new()
+	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	content.add_theme_constant_override("separation", 7)
+	rail.add_child(content)
 	var stats := _combat_stats()
 	var card := _panel(PANEL, EDGE, 17)
-	rail.add_child(card)
+	content.add_child(card)
 	var stack := VBoxContainer.new()
 	stack.add_theme_constant_override("separation", 5)
 	card.add_child(stack)
@@ -288,7 +296,7 @@ func _build_stats_rail() -> Control:
 	stack.add_child(_label("LIFE  %d     MANA  %d" % [stats.max_hp, stats.max_mana], 10, PALE, true))
 	stack.add_child(_label("ARMOR  %d     CRIT  %.1f%%" % [stats.armor, stats.crit], 10, MUTED, true))
 	var skill := _panel(Color("252127"), Color("594b5d"), 16)
-	rail.add_child(skill)
+	content.add_child(skill)
 	var skill_stack := VBoxContainer.new()
 	skill_stack.add_theme_constant_override("separation", 4)
 	skill.add_child(skill_stack)
@@ -296,9 +304,9 @@ func _build_stats_rail() -> Control:
 	skill_stack.add_child(_label("CLASS ABILITY  •  RANK %d" % ability_rank, 9, Color("bea0db"), true))
 	skill_stack.add_child(_label(String(CLASS_DATA[character_class].ability), 14, PALE, true))
 	skill_stack.add_child(_label("%d damage  •  %d mana" % [stats.ability_damage, stats.mana_cost], 10, MUTED))
-	skill_stack.add_child(_label(String(CLASS_DATA[character_class].passive), 9, MUTED))
+	skill_stack.add_child(_paragraph_label(String(CLASS_DATA[character_class].passive), 9, MUTED))
 	skill_stack.add_child(_label("Next rank at %s %d" % [String(CLASS_DATA[character_class].primary), ability_rank * 15], 9, GOLD))
-	rail.add_child(_button("AFK FARM: %s" % ("ON" if farm_enabled else "OFF"), Color("31443a") if farm_enabled else PANEL_LIGHT, 9, Callable(self, "_toggle_farm")))
+	content.add_child(_button("AFK FARM: %s" % ("ON" if farm_enabled else "OFF"), Color("31443a") if farm_enabled else PANEL_LIGHT, 9, Callable(self, "_toggle_farm")))
 	return rail
 
 func _build_camp(parent: VBoxContainer) -> void:
@@ -317,7 +325,7 @@ func _build_camp(parent: VBoxContainer) -> void:
 	heading.add_child(_label("RECOMMENDED  %d" % recommended, 9, Color("b2a392"), true))
 	stack.add_child(heading)
 	stack.add_child(_label(String(region.dungeon).to_upper(), 22, PALE, true))
-	stack.add_child(_label("%s Nyra will fight through five encounters and face %s for the region's relics." % [String(region.description), String(region.boss)], 13, MUTED))
+	stack.add_child(_paragraph_label("%s Nyra will fight through five encounters and face %s for the region's relics." % [String(region.description), String(region.boss)], 13, MUTED))
 	stack.add_child(_map_route())
 	stack.add_child(_button("DESCEND TO FLOOR %02d   →" % floor_number, RED, 14, Callable(self, "_start_run")))
 	if floor_number == 1 and player_level == 1:
@@ -328,7 +336,7 @@ func _build_camp(parent: VBoxContainer) -> void:
 	progress_stack.add_theme_constant_override("separation", 4)
 	progress.add_child(progress_stack)
 	progress_stack.add_child(_label("RUN LOOP", 9, GOLD, true))
-	progress_stack.add_child(_label("~%d seconds per AFK expedition  •  24-hour limit  •  overflow loot auto-salvaged" % DUNGEON_RUN_SECONDS, 11, PALE))
+	progress_stack.add_child(_paragraph_label("~%d seconds per AFK expedition  •  24-hour limit  •  overflow loot auto-salvaged" % DUNGEON_RUN_SECONDS, 11, PALE))
 	if pending_idle_runs > 0 or pending_idle_ash > 0 or pending_idle_xp > 0:
 		var report := _panel(Color("19241f"), Color("405347"), 16)
 		parent.add_child(report)
@@ -336,7 +344,7 @@ func _build_camp(parent: VBoxContainer) -> void:
 		report_stack.add_theme_constant_override("separation", 5)
 		report.add_child(report_stack)
 		report_stack.add_child(_label("OFFLINE REPORT  •  READY TO CLAIM", 10, GREEN, true))
-		report_stack.add_child(_label("%d cleared  •  %d setbacks  •  %d relics kept  •  %d auto-salvaged" % [pending_idle_runs, pending_idle_fails, pending_idle_gear, pending_idle_salvaged], 11, PALE))
+		report_stack.add_child(_paragraph_label("%d cleared  •  %d setbacks  •  %d relics kept  •  %d auto-salvaged" % [pending_idle_runs, pending_idle_fails, pending_idle_gear, pending_idle_salvaged], 11, PALE))
 		report_stack.add_child(_label("+%d Gold  •  +%d XP" % [pending_idle_ash, pending_idle_xp], 12, GOLD, true))
 		report_stack.add_child(_button("CLAIM OFFLINE HAUL", Color("31443a"), 11, Callable(self, "_claim_idle_cache")))
 	else:
@@ -382,7 +390,7 @@ func _build_map(parent: VBoxContainer) -> void:
 	map_card.add_child(stack)
 	stack.add_child(_label(String(region.name).to_upper(), 10, GOLD, true))
 	stack.add_child(_label("%s  •  Floor %02d" % [String(region.dungeon), floor_number], 20, PALE, true))
-	stack.add_child(_label("%s Its guardian is %s. Nyra advances automatically while the expedition is active." % [String(region.description), String(region.boss)], 13, MUTED))
+	stack.add_child(_paragraph_label("%s Its guardian is %s. Nyra advances automatically while the expedition is active." % [String(region.description), String(region.boss)], 13, MUTED))
 	stack.add_child(_map_route())
 	var tier_start := int(floor(float(floor_number - 1) / 10.0)) * 10 + 1
 	stack.add_child(_label("Tier %d drops are available on floors %d–%d." % [_gear_tier(), tier_start, tier_start + 9], 11, PALE))
@@ -392,7 +400,7 @@ func _build_map(parent: VBoxContainer) -> void:
 	parent.add_child(notes)
 	var notes_stack := VBoxContainer.new()
 	notes_stack.add_child(_label("AFK FARMING", 10, GOLD, true))
-	notes_stack.add_child(_label("When you leave or background the app, the next launch simulates completed runs from elapsed time. Up to 24 hours are counted; overflow gear is salvaged into Gold.", 12, PALE))
+	notes_stack.add_child(_paragraph_label("When you leave or background the app, the next launch simulates completed runs from elapsed time. Up to 24 hours are counted; overflow gear is salvaged into Gold.", 12, PALE))
 	notes.add_child(notes_stack)
 
 func _build_run(parent: VBoxContainer) -> void:
@@ -447,9 +455,9 @@ func _build_run(parent: VBoxContainer) -> void:
 	log.add_child(log_stack)
 	log_stack.add_child(_label("FIELD NOTES", 9, GOLD, true))
 	for event in run_events.slice(maxi(0, run_events.size() - 3), run_events.size()):
-		log_stack.add_child(_label("›  " + event, 11, PALE))
+		log_stack.add_child(_paragraph_label("›  " + event, 11, PALE))
 	if run_events.is_empty():
-		log_stack.add_child(_label("Nyra crosses the threshold. The bells fall silent.", 11, PALE))
+		log_stack.add_child(_paragraph_label("Nyra crosses the threshold. The bells fall silent.", 11, PALE))
 	var actions := HBoxContainer.new()
 	actions.add_theme_constant_override("separation", 7)
 	parent.add_child(actions)
@@ -615,7 +623,7 @@ func _section_heading(heading: String, note: String) -> Control:
 
 func _empty_note(copy: String) -> Control:
 	var panel := _panel(Color(0.10, 0.105, 0.12, 0.9), Color("373941"), 12)
-	panel.add_child(_label(copy, 11, MUTED))
+	panel.add_child(_paragraph_label(copy, 11, MUTED))
 	return panel
 
 func _resource_chip(icon: String, value: String, color: Color) -> Control:
@@ -676,7 +684,13 @@ func _label(copy: String, font_size: int, color: Color, bold: bool = false) -> L
 	label.add_theme_color_override("font_color", color)
 	if bold:
 		label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.25))
+	label.autowrap_mode = TextServer.AUTOWRAP_OFF
+	return label
+
+func _paragraph_label(copy: String, font_size: int, color: Color, bold: bool = false) -> Label:
+	var label := _label(copy, font_size, color, bold)
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	return label
 
 func _centered_label(copy: String, font_size: int, color: Color, bold: bool = false) -> Label:
