@@ -24,6 +24,9 @@ func _ready() -> void:
 	if kind == "Arcanist": accent = Color("9170bd")
 	if kind == "Ranger": accent = Color("579b7f")
 	if hostile: accent = Color("943b30")
+	if kind=="hexer": accent = Color("8b61b0")
+	if kind=="bulwark": accent = Color("8d7954")
+	if kind=="elite": accent = Color("d15b2e")
 	materials.metal = _mat(Color("303c49") if not hostile else Color("30282b"), 0.72)
 	materials.edge = _mat(Color("adb7b7") if not hostile else Color("79685b"), 0.8)
 	materials.cloth = _mat(accent.darkened(0.55), 0.0)
@@ -70,7 +73,7 @@ func _ready() -> void:
 	weapon = Node3D.new()
 	weapon.position = Vector3(0,-0.54,0)
 	right_arm.add_child(weapon)
-	if kind == "Arcanist" and not hostile:
+	if (kind == "Arcanist" and not hostile) or kind=="hexer":
 		_cylinder(weapon,Vector3(0,0.37,0),0.036,0.025,1.8,materials.trim,8)
 		_sphere(weapon,Vector3(0,1.34,0),Vector3.ONE*0.13,materials.glow)
 		for side in [-1.0,1.0]:
@@ -89,11 +92,15 @@ func _ready() -> void:
 		blade.rotation.z = 0.015
 		_box(weapon,Vector3(0,0.67,-0.035),Vector3(0.027,0.85,0.012),materials.glow)
 		_cylinder(weapon,Vector3(0,1.31,0),0.085,0,0.18,materials.edge,4)
-		if not hostile:
+		if not hostile or kind in ["bulwark","elite","boss"]:
 			var shield := _sphere(left_arm,Vector3(-0.05,-0.37,-0.12),Vector3(0.29,0.39,0.10),materials.metal)
 			_box(shield,Vector3(0,0,-1.0),Vector3(0.16,1.5,0.10),materials.trim)
 	if boss: scale = Vector3.ONE * 1.65
-	elif hostile: scale = Vector3.ONE * 1.08
+	elif kind=="hexer":
+		scale = Vector3(0.82,1.10,0.82)
+		_cylinder(body,Vector3(0,0.57,0),0.40,0.25,0.85,materials.cloth,10)
+	elif kind=="bulwark" or kind=="elite": scale = Vector3(1.22,1.15,1.22)
+	elif hostile: scale = Vector3(0.87,0.96,0.87)
 
 func _mat(color: Color, metal: float, glow: bool = false) -> StandardMaterial3D:
 	var mat := StandardMaterial3D.new()

@@ -1,6 +1,7 @@
 extends Control
 ## Fullscreen 3D presentation. The game model remains the authority for all damage/rewards.
-signal combat_requested
+signal simulation_advanced(events: Array)
+var simulation: RefCounted
 signal state_changed(description: String)
 const DungeonWorld = preload("res://scripts/dungeon_world.gd")
 var character_class := "Vowkeeper"
@@ -30,7 +31,8 @@ func _ready() -> void:
 	world.character_class = character_class
 	world.region_index = region_index
 	world.active = animation_enabled
-	world.combat_requested.connect(func(): combat_requested.emit())
+	world.simulation = simulation
+	world.simulation_advanced.connect(func(events: Array): simulation_advanced.emit(events))
 	world.state_changed.connect(func(value: String): state_changed.emit(value))
 	viewport.add_child(world)
 	var atmosphere := ColorRect.new()
@@ -41,5 +43,3 @@ func _ready() -> void:
 	atmosphere.material = shading
 	add_child(atmosphere)
 
-func resolve_hit(damage: int, ratio: float, defeated: bool, next_stage: int, ability: bool) -> void:
-	world.resolve_hit(damage,ratio,defeated,next_stage,ability)

@@ -2,6 +2,7 @@ extends Control
 
 const HeroArt = preload("res://scripts/hero_art.gd")
 const BattleArt = preload("res://scripts/battle_art.gd")
+const Expedition = preload("res://scripts/expedition_simulation.gd")
 
 const BG_TOP := Color("201c20")
 const BG_BOTTOM := Color("090d12")
@@ -29,19 +30,19 @@ const CLASS_DATA := {
 		"primary": "Strength", "secondary": "Vitality", "ability": "Ember Oath",
 		"base": {"Strength": 18, "Dexterity": 8, "Intellect": 6, "Vitality": 16, "Spirit": 10},
 		"color": Color("d2ad70"), "tagline": "Front line • oathbound bruiser",
-		"passive": "Ember Oath restores 8% of max Life on cast."
+		"passive": "Cleave nearby foes; Ember Oath heals 8% Life and grants Guard for 2.8s. Cooldown: 5.5s."
 	},
 	"Arcanist": {
 		"primary": "Intellect", "secondary": "Spirit", "ability": "Veil Nova",
 		"base": {"Strength": 5, "Dexterity": 8, "Intellect": 20, "Vitality": 9, "Spirit": 17},
 		"color": Color("a58ed4"), "tagline": "Spellcaster • burst and mana",
-		"passive": "Veil Nova refunds 25% of its mana cost."
+		"passive": "Nova hits clustered foes, slows them and interrupts hexers. Refunds 25% mana. Cooldown: 6s."
 	},
 	"Ranger": {
 		"primary": "Dexterity", "secondary": "Vitality", "ability": "Cinder Volley",
 		"base": {"Strength": 9, "Dexterity": 19, "Intellect": 6, "Vitality": 11, "Spirit": 11},
 		"color": Color("83b596"), "tagline": "Ranged • precision and criticals",
-		"passive": "Volley gains 12% crit; criticals hit for 2.15×."
+		"passive": "Prioritizes hexers; retreats in close combat. Volley gains 12% crit and interrupts. Cooldown: 4.5s."
 	}
 }
 const GEAR_NAMES := {
@@ -57,7 +58,6 @@ const QUALITY_COLORS := {
 	"COMMON": Color("c2bcb0"), "UNCOMMON": Color("85b497"), "RARE": Color("81a9d9"),
 	"EPIC": Color("bb86d4"), "LEGENDARY": Color("e0a35d")
 }
-const DUNGEON_RUN_SECONDS := 72
 const MAX_OFFLINE_SECONDS := 24 * 60 * 60
 const MAX_BAG_SIZE := 20
 const MAX_TEMPER_RANK := 5
@@ -72,6 +72,12 @@ var attribute_points := 2
 var allocated_attributes := {"Strength": 0, "Dexterity": 0, "Intellect": 0, "Vitality": 0, "Spirit": 0}
 var floor_number := 1
 var last_run_floor := 0
+var run_floor := 1
+var farm_floor := 1
+var expedition_serial := 1
+var expedition: RefCounted
+var auto_repeat := false
+var last_combat_save := 0.0
 
 var equipment := {
 	"Weapon": {"name": "Pilgrim's Edge", "power": 54, "quality": "UNCOMMON", "tier": 1, "armor": 0, "stats": {"Strength": 4}, "sell": 62},
@@ -105,12 +111,8 @@ var run_succeeded := false
 var run_boss_defeated := false
 var run_events: Array[String] = []
 var current_enemy := ENEMIES[0]
-var run_visual_seconds := 0.0
-var run_timer: Timer
 var run_arena: Control
 var combat_hud: Dictionary = {}
-var last_hit_damage := 0
-var last_hit_ability := false
 var finish_pending := false
 var skipping_run := false
 var backgrounded_at := 0
@@ -119,11 +121,6 @@ func _ready() -> void:
 	randomize()
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_PASS
-	run_timer = Timer.new()
-	# A usual enemy takes about two combat beats, so a full run still averages close to one minute.
-	run_timer.wait_time = float(DUNGEON_RUN_SECONDS) / float(run_max_stages * 2)
-	run_timer.timeout.connect(_on_run_tick)
-	add_child(run_timer)
 	_load_progress()
 	for slot in GEAR_SLOTS:
 		equipment[slot]["slot"] = slot
@@ -156,14 +153,12 @@ func _notification(what: int) -> void:
 func _resume_from_background() -> void:
 	if backgrounded_at == 0: return
 	backgrounded_at = 0
-	var away := clampi(int(Time.get_unix_time_from_system())-last_saved_at,0,MAX_OFFLINE_SECONDS)
-	# A long absence uses the same offline report as a cold launch. A short
-	# interruption preserves the live 3D world and carries fractional AFK time.
-	if page == "run" and farm_enabled and idle_progress_seconds+away >= DUNGEON_RUN_SECONDS:
-		run_active = false
-		run_timer.stop()
-		page = "camp"
+	var reports_before := pending_idle_runs+pending_idle_fails
 	_accrue_offline_time()
+	if page=="run" and pending_idle_runs+pending_idle_fails>reports_before:
+		run_active = false
+		auto_repeat = false
+		page = "camp"
 	_save_progress()
 	if page == "run":
 		if is_instance_valid(run_arena): run_arena.animation_enabled = run_active
@@ -179,9 +174,8 @@ func _region_data(target_floor: int = -1) -> Dictionary:
 
 func _build_ui() -> void:
 	for child in get_children():
-		if child != run_timer:
-			remove_child(child)
-			child.queue_free()
+		remove_child(child)
+		child.queue_free()
 	if page == "run":
 		_build_run()
 		return
@@ -357,13 +351,28 @@ func _build_camp(parent: VBoxContainer) -> void:
 	stack.add_child(_button("DESCEND TO FLOOR %02d   →" % floor_number, RED, 14, Callable(self, "_start_run")))
 	if floor_number == 1 and player_level == 1:
 		stack.add_child(_empty_note("FIRST DESCENT  •  Set your class and attribute points in the Armory. Equip or temper gear before each run; the dungeon fights automatically."))
+	var farm_panel := _panel(Color("19241f"),Color("405347"),14)
+	parent.add_child(farm_panel)
+	var farm_stack := VBoxContainer.new()
+	farm_panel.add_child(farm_stack)
+	farm_stack.add_child(_label("FARM FLOOR %02d  •  ONLINE + OFFLINE" % farm_floor,12,GREEN,true))
+	farm_stack.add_child(_paragraph_label("Choose a cleared floor. Repeat runs collect gear automatically and stop after a defeat. Offline farming uses this same floor and combat rules.",10,MUTED))
+	var farm_actions := HBoxContainer.new()
+	farm_stack.add_child(farm_actions)
+	var previous := _button("−",PANEL_LIGHT,14,Callable(self,"_set_farm_floor").bind(-1))
+	previous.disabled = farm_floor<=1
+	farm_actions.add_child(previous)
+	farm_actions.add_child(_button("START AUTO FARM",Color("314b3c"),11,Callable(self,"_start_farming")))
+	var next := _button("+",PANEL_LIGHT,14,Callable(self,"_set_farm_floor").bind(1))
+	next.disabled = farm_floor>=maxi(1,floor_number-1)
+	farm_actions.add_child(next)
 	var progress := _panel(PANEL, EDGE, 16)
 	parent.add_child(progress)
 	var progress_stack := VBoxContainer.new()
 	progress_stack.add_theme_constant_override("separation", 4)
 	progress.add_child(progress_stack)
 	progress_stack.add_child(_label("RUN LOOP", 9, GOLD, true))
-	progress_stack.add_child(_paragraph_label("~%d seconds per AFK expedition  •  24-hour limit  •  overflow loot auto-salvaged" % DUNGEON_RUN_SECONDS, 11, PALE))
+	progress_stack.add_child(_paragraph_label("Run duration depends on combat  •  24-hour AFK limit  •  overflow loot auto-sold", 11, PALE))
 	if pending_idle_runs > 0 or pending_idle_ash > 0 or pending_idle_xp > 0:
 		var report := _panel(Color("19241f"), Color("405347"), 16)
 		parent.add_child(report)
@@ -427,7 +436,7 @@ func _build_map(parent: VBoxContainer) -> void:
 	parent.add_child(notes)
 	var notes_stack := VBoxContainer.new()
 	notes_stack.add_child(_label("AFK FARMING", 10, GOLD, true))
-	notes_stack.add_child(_paragraph_label("When you leave or background the app, the next launch simulates completed runs from elapsed time. Up to 24 hours are counted; overflow gear is salvaged into Gold.", 12, PALE))
+	notes_stack.add_child(_paragraph_label("When you leave or background the app, the next launch simulates runs on your chosen farm floor from elapsed time, using the same combat rules. Up to 24 hours are counted; overflow gear is sold for Gold.", 12, PALE))
 	notes.add_child(notes_stack)
 
 func _build_run() -> void:
@@ -436,9 +445,10 @@ func _build_run() -> void:
 	arena.name = "BattleArena"
 	arena.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	arena.character_class = character_class
-	arena.region_index = _region_index()
+	arena.region_index = _region_index(run_floor)
+	arena.simulation = expedition
 	arena.animation_enabled = run_active
-	arena.combat_requested.connect(_on_run_tick)
+	arena.simulation_advanced.connect(_on_combat_advanced)
 	arena.state_changed.connect(_on_dungeon_state_changed)
 	add_child(arena)
 	run_arena = arena
@@ -469,6 +479,8 @@ func _build_run() -> void:
 	hero_stack.add_child(combat_hud.mana)
 	combat_hud.life = _label("",9,MUTED)
 	hero_stack.add_child(combat_hud.life)
+	combat_hud.skill = _label("",9,GOLD)
+	hero_stack.add_child(combat_hud.skill)
 	var top_gap := Control.new()
 	top_gap.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	top.add_child(top_gap)
@@ -478,8 +490,8 @@ func _build_run() -> void:
 	top.add_child(objective_panel)
 	var objective := VBoxContainer.new()
 	objective_panel.add_child(objective)
-	objective.add_child(_label(String(_region_data().dungeon).to_upper(),13,GOLD,true))
-	objective.add_child(_label("FLOOR %02d  •  AUTOMATIC EXPEDITION" % floor_number,8,MUTED,true))
+	objective.add_child(_label(String(_region_data(run_floor).dungeon).to_upper(),13,GOLD,true))
+	objective.add_child(_label("FLOOR %02d  •  AUTOMATIC EXPEDITION" % run_floor,8,MUTED,true))
 	combat_hud.progress = _progress_bar(0,run_max_stages,GOLD,5)
 	objective.add_child(combat_hud.progress)
 	combat_hud.encounter = _label("",10,PALE,true)
@@ -507,6 +519,10 @@ func _build_run() -> void:
 	combat_hud.pause.custom_minimum_size = Vector2(112,48)
 	combat_hud.pause.size_flags_horizontal = Control.SIZE_SHRINK_END
 	bottom.add_child(combat_hud.pause)
+	combat_hud.repeat = _button("",Color("304638"),10,Callable(self,"_toggle_repeat"))
+	combat_hud.repeat.custom_minimum_size = Vector2(110,48)
+	combat_hud.repeat.size_flags_horizontal = Control.SIZE_SHRINK_END
+	bottom.add_child(combat_hud.repeat)
 	var skip := _button("SKIP TO LOOT  »",Color("713c32"),11,Callable(self,"_skip_run"))
 	skip.custom_minimum_size = Vector2(160,48)
 	skip.size_flags_horizontal = Control.SIZE_SHRINK_END
@@ -523,11 +539,13 @@ func _sync_combat_hud() -> void:
 	combat_hud.mana.value = run_mana
 	combat_hud.life.text = "%d LIFE   /   %d MANA" % [run_health,run_mana]
 	combat_hud.progress.value = run_stage
-	combat_hud.encounter.text = "ENCOUNTER %02d / %02d" % [mini(run_stage+1,run_max_stages),run_max_stages]
+	combat_hud.encounter.text = "PACK %02d / %02d  •  %d ALIVE" % [mini(run_stage+1,run_max_stages),run_max_stages,expedition.living().size()]
 	combat_hud.enemy.text = "%s  •  %d / %d" % [current_enemy,enemy_health,enemy_max_health]
 	combat_hud.enemy_hp.max_value = enemy_max_health
 	combat_hud.enemy_hp.value = enemy_health
 	combat_hud.pause.text = "Ⅱ  PAUSE" if run_active else "▶  RESUME"
+	combat_hud.repeat.text = "REPEAT: ON" if auto_repeat else "REPEAT: OFF"
+	combat_hud.skill.text = "%s  /  %s" % [String(CLASS_DATA[character_class].ability),"READY" if expedition.skill_cd<=0 else "%.1fs" % expedition.skill_cd]
 
 func _build_loot(parent: VBoxContainer) -> void:
 	var victory := _panel(Color("28261f"), Color("796746"), 17)
@@ -912,128 +930,83 @@ func _allocate_attribute(attribute: String) -> void:
 	_save_progress()
 	_build_ui()
 
-func _start_run() -> void:
+func _start_run(target_floor: int = -1) -> void:
 	page = "run"
+	run_floor = clampi(floor_number if target_floor<1 else target_floor,1,maxi(1,floor_number))
 	run_active = true
 	run_stage = 0
-	run_visual_seconds = 0.0
-	var stats := _combat_stats()
-	run_health = int(stats.max_hp)
-	run_mana = int(stats.max_mana)
 	run_succeeded = false
 	run_boss_defeated = false
 	run_loot.clear()
-	run_events = ["Nyra enters %s." % String(_region_data().dungeon)]
-	current_enemy = ENEMIES[randi() % ENEMIES.size()]
-	_prepare_enemy()
-	run_timer.stop() # Visible combat is driven by contact events from the 3D scene.
+	run_events = ["Nyra enters %s." % String(_region_data(run_floor).dungeon)]
+	expedition = _new_expedition(run_floor,expedition_serial)
+	expedition_serial += 1
+	_sync_model_state()
 	finish_pending = false
+	last_combat_save = 0.0
 	_save_progress()
 	_build_ui()
 
-func _on_run_tick() -> void:
-	if not run_active or page != "run" or finish_pending:
+func _new_expedition(target_floor: int, serial: int) -> RefCounted:
+	var simulation := Expedition.new()
+	simulation.setup(character_class,_combat_stats(),target_floor,String(_region_data(target_floor).boss),1979+serial*104729)
+	return simulation
+
+func _sync_model_state() -> void:
+	run_stage = mini(expedition.stage,run_max_stages)
+	run_health = expedition.hero_hp
+	run_mana = expedition.hero_mana
+	var target: Dictionary = expedition.enemy_by_id(expedition.target_id)
+	if target.is_empty() or target.hp<=0:
+		var alive: Array = expedition.living()
+		target = alive[0] if not alive.is_empty() else {}
+	current_enemy = String(target.get("name","Area cleared"))
+	enemy_health = int(target.get("hp",0))
+	enemy_max_health = int(target.get("max_hp",1))
+
+func _on_combat_advanced(updates: Array) -> void:
+	if page!="run" or finish_pending: return
+	_sync_model_state()
+	for event in updates:
+		if event.type=="hit":
+			run_events.append("%s hits for %d." % [event.name,event.damage])
+			if run_events.size()>8: run_events.pop_front()
+	if expedition.finished:
+		if expedition.won:
+			run_boss_defeated = true
+			_complete_run()
+		else: _fail_run()
 		return
-	var previous_stage := run_stage
-	var previous_max := enemy_max_health
-	var previous_health := enemy_health
-	_resolve_stage()
-	if is_instance_valid(run_arena):
-		var defeated := run_stage > previous_stage
-		var remaining := 0.0 if defeated else float(enemy_health)/float(maxi(1,previous_max))
-		run_arena.resolve_hit(mini(last_hit_damage,previous_health),remaining,defeated,run_stage,last_hit_ability)
-	_save_progress()
 	_sync_combat_hud()
-
-func _resolve_stage() -> bool:
-	var stats := _combat_stats()
-	var defeated_enemy := current_enemy
-	var boss_name := String(_region_data(floor_number).boss)
-	var boss_fight := defeated_enemy == boss_name
-	var cast_ability := run_mana >= int(stats.mana_cost)
-	var damage := int(stats.ability_damage) if cast_ability else int(stats.attack)
-	if cast_ability:
-		run_mana -= int(stats.mana_cost)
-	var crit_chance := float(stats.crit) + (12.0 if character_class == "Ranger" and cast_ability else 0.0)
-	var critical := randf() * 100.0 < crit_chance
-	if critical:
-		damage = int(float(damage) * (2.15 if character_class == "Ranger" else 1.7))
-	last_hit_damage = damage
-	last_hit_ability = cast_ability
-	enemy_health = maxi(0, enemy_health - damage)
-	var enemy_fell := enemy_health == 0
-	if not enemy_fell:
-		var incoming := randi_range(10, 15) + floor_number + maxi(0, floor_number - 4)
-		incoming -= clampi(int(stats.armor / 18.0), 1, 12) + int(stats.class_mitigation)
-		if boss_fight:
-			incoming = int(float(incoming) * 1.55) + 4
-			run_mana = maxi(0, run_mana - 7)
-		if randf() > _clear_chance(int(stats.power)):
-			incoming += 9
-			run_events.append("The %s lands a heavy blow." % defeated_enemy.to_lower())
-		incoming = maxi(1, incoming)
-		run_health = maxi(0, run_health - incoming)
-		run_events.append("%s hits Nyra for %d." % [defeated_enemy, incoming])
-	run_mana = mini(int(stats.max_mana), run_mana + int(stats.attributes.Spirit / 3))
-	if cast_ability and character_class == "Vowkeeper":
-		var heal_amount := maxi(1, int(float(stats.max_hp) * 0.08))
-		var restored := mini(heal_amount, int(stats.max_hp) - run_health)
-		run_health += restored
-		if restored > 0:
-			run_events.append("Ember Oath restores %d Life." % restored)
-	elif cast_ability and character_class == "Arcanist":
-		var restored_mana := int(stats.mana_cost / 4)
-		run_mana = mini(int(stats.max_mana), run_mana + restored_mana)
-		if restored_mana > 0:
-			run_events.append("Veil Nova returns %d mana." % restored_mana)
-	if run_health <= 0:
-		run_events.append("Nyra's ward breaks. She retreats with what she can carry.")
-		_fail_run()
-		return false
-	var action_name := String(CLASS_DATA[character_class].ability) if cast_ability else "Nyra"
-	var critical_note := " CRITICAL!" if critical else ""
-	run_events.append("%s hits %s for %d%s (%s / %s Life)." % [action_name, defeated_enemy, damage, critical_note, _short_number(enemy_health), _short_number(enemy_max_health)])
-	if run_events.size() > 8:
-		run_events.pop_front()
-	if not enemy_fell:
-		return true
-	run_events.append("%s falls." % defeated_enemy)
-	run_stage += 1
-	if run_stage >= run_max_stages:
-		run_boss_defeated = boss_fight
-		run_events.append("The Spire's heart breaks. Nyra gathers what remains.")
-		_complete_run()
-		return false
-	current_enemy = String(_region_data(floor_number).boss) if run_stage == run_max_stages - 1 else ENEMIES[randi() % ENEMIES.size()]
-	_prepare_enemy()
-	if current_enemy == String(_region_data(floor_number).boss):
-		run_events.append("%s arrives to defend the region." % current_enemy)
-	return true
-
-func _prepare_enemy() -> void:
-	var threat := 620 + maxi(0, floor_number - 4) * 85
-	var health_multiplier := 2.55 if current_enemy == String(_region_data(floor_number).boss) else 1.5
-	enemy_max_health = maxi(1, int(float(threat) * health_multiplier + floor_number * 35))
-	enemy_health = enemy_max_health
-
-func _clear_chance(power: int) -> float:
-	return _clear_chance_for_floor(power, floor_number)
-
-func _clear_chance_for_floor(power: int, target_floor: int) -> float:
-	var threat := 620 + maxi(0, target_floor - 4) * 85
-	return clampf(0.72 + float(power - threat) / 1100.0, 0.18, 0.985)
+	if expedition.elapsed-last_combat_save>=5.0:
+		last_combat_save = expedition.elapsed
+		_save_progress()
 
 func _skip_run() -> void:
-	if page != "run":
-		return
-	if finish_pending: return
+	if page!="run" or finish_pending: return
+	auto_repeat = false
 	skipping_run = true
-	while page == "run" and run_stage < run_max_stages:
-		if not _resolve_stage():
-			break
-	if page == "run":
+	expedition.simulate_to_end()
+	_sync_model_state()
+	if expedition.won:
+		run_boss_defeated = true
 		_complete_run()
+	else: _fail_run()
 	skipping_run = false
+
+func _toggle_repeat() -> void:
+	if finish_pending: return
+	auto_repeat = not auto_repeat
+	_sync_combat_hud()
+
+func _set_farm_floor(change: int) -> void:
+	farm_floor = clampi(farm_floor+change,1,maxi(1,floor_number-1))
+	_save_progress()
+	_build_ui()
+
+func _start_farming() -> void:
+	auto_repeat = true
+	_start_run(farm_floor)
 
 func _toggle_run_pause() -> void:
 	if finish_pending: return
@@ -1051,39 +1024,52 @@ func _toggle_farm() -> void:
 	_save_progress()
 	_build_ui()
 
+func _grant_expedition_rewards(success: bool, target_floor: int, offline: bool, seed_value: int) -> void:
+	var gold := 186+target_floor*4 if success else 55
+	var xp := 420+target_floor*8 if success else 100
+	if success:
+		var loot_rng := RandomNumberGenerator.new()
+		loot_rng.seed = seed_value+7919
+		var drop_count := 1 if loot_rng.randf()<0.68 else 2
+		for i in range(drop_count):
+			var item := _generate_item(true,target_floor,loot_rng)
+			if inventory.size()<MAX_BAG_SIZE:
+				inventory.append(item)
+				if offline: pending_idle_gear += 1
+				else: run_loot.append(item)
+			else:
+				gold += int(item.sell)
+				if offline: pending_idle_salvaged += 1
+		floor_number = maxi(floor_number,target_floor+1)
+	if offline:
+		pending_idle_ash += gold
+		pending_idle_xp += xp
+		if success: pending_idle_runs += 1
+		else: pending_idle_fails += 1
+	else:
+		player_gold += gold
+		_add_experience(xp)
+
 func _complete_run() -> void:
-	if page != "run":
-		return
+	if page!="run": return
 	run_active = false
-	run_timer.stop()
 	run_stage = run_max_stages
 	run_succeeded = true
-	var completed_floor := floor_number
-	last_run_floor = completed_floor
-	player_gold += 186 + completed_floor * 4
-	_add_experience(420 + completed_floor * 8)
+	last_run_floor = run_floor
 	run_loot.clear()
-	var drop_count := 1 if randf() < 0.68 else 2
-	for i in range(drop_count):
-		var item := _generate_item(run_boss_defeated, completed_floor)
-		if inventory.size() < MAX_BAG_SIZE:
-			inventory.append(item)
-			run_loot.append(item)
-		else:
-			player_gold += int(item.sell)
-	floor_number += 1
+	_grant_expedition_rewards(true,run_floor,false,expedition.run_seed)
 	page = "loot"
 	_save_progress()
 	_finish_run_presentation()
 
 func _fail_run() -> void:
+	if page!="run": return
 	run_active = false
-	run_timer.stop()
+	auto_repeat = false
 	run_succeeded = false
-	last_run_floor = floor_number
-	player_gold += 55
-	_add_experience(100)
+	last_run_floor = run_floor
 	run_loot.clear()
+	_grant_expedition_rewards(false,run_floor,false,expedition.run_seed)
 	page = "loot"
 	_save_progress()
 	_finish_run_presentation()
@@ -1099,12 +1085,17 @@ func _finish_run_presentation() -> void:
 	combat_hud.state.text = "DUNGEON CLEARED • COLLECTING LOOT" if run_succeeded else "EXPEDITION ENDED"
 	get_tree().create_timer(1.2).timeout.connect(func():
 		finish_pending = false
-		_build_ui()
+		if auto_repeat and run_succeeded:
+			_start_run(run_floor)
+		else: _build_ui()
 	)
 
-func _generate_item(boss_bonus: bool = false, target_floor: int = -1) -> Dictionary:
-	var slot: String = GEAR_SLOTS[randi() % GEAR_SLOTS.size()]
-	var roll := randf()
+func _generate_item(boss_bonus: bool = false, target_floor: int = -1, loot_rng: RandomNumberGenerator = null) -> Dictionary:
+	if loot_rng==null:
+		loot_rng = RandomNumberGenerator.new()
+		loot_rng.randomize()
+	var slot: String = GEAR_SLOTS[loot_rng.randi() % GEAR_SLOTS.size()]
+	var roll := loot_rng.randf()
 	var quality := "COMMON"
 	if roll > 0.992:
 		quality = "LEGENDARY"
@@ -1119,7 +1110,7 @@ func _generate_item(boss_bonus: bool = false, target_floor: int = -1) -> Diction
 	var quality_bonus: int = int({"COMMON": 0, "UNCOMMON": 5, "RARE": 12, "EPIC": 22, "LEGENDARY": 36}[quality])
 	var drop_floor := floor_number if target_floor < 1 else target_floor
 	var tier := _gear_tier_at_floor(drop_floor)
-	var power: int = tier * 18 + randi_range(7, 17) + quality_bonus
+	var power: int = tier * 18 + loot_rng.randi_range(7, 17) + quality_bonus
 	var armor := int(power * (0.82 if ["Helmet", "Chest", "Gloves", "Boots"].has(slot) else 0.0))
 	var stats := {}
 	var affixes := 1
@@ -1128,12 +1119,12 @@ func _generate_item(boss_bonus: bool = false, target_floor: int = -1) -> Diction
 	if quality == "LEGENDARY": affixes = 4
 	var candidates := ATTRIBUTES.duplicate()
 	for i in range(affixes):
-		var selected: String = candidates.pop_at(randi() % candidates.size())
-		stats[selected] = randi_range(1, 3 + tier + int(quality_bonus / 10))
+		var selected: String = candidates.pop_at(loot_rng.randi() % candidates.size())
+		stats[selected] = loot_rng.randi_range(1, 3 + tier + int(quality_bonus / 10))
 	if quality == "EPIC" or quality == "LEGENDARY":
-		stats["Crit"] = randi_range(1, 3 + tier)
-	var sell_value: int = 28 + tier * 12 + quality_bonus * 4 + randi_range(0, 16)
-	var item_name: String = GEAR_NAMES[slot][randi() % GEAR_NAMES[slot].size()]
+		stats["Crit"] = loot_rng.randi_range(1, 3 + tier)
+	var sell_value: int = 28 + tier * 12 + quality_bonus * 4 + loot_rng.randi_range(0, 16)
+	var item_name: String = GEAR_NAMES[slot][loot_rng.randi() % GEAR_NAMES[slot].size()]
 	return {"name": item_name, "slot": slot, "power": power, "quality": quality, "tier": tier, "armor": armor, "stats": stats, "sell": sell_value, "temper": 0, "status": ""}
 
 func _equip_item(item: Dictionary) -> void:
@@ -1207,43 +1198,37 @@ func _add_experience(amount: int) -> void:
 		player_level += 1
 		attribute_points += 2
 
-func _simulate_offline_runs(run_count: int) -> void:
-	for i in range(run_count):
-		var completed_floor := floor_number
-		var success_chance := clampf(_clear_chance_for_floor(_hero_power(), completed_floor) - 0.08, 0.18, 0.985)
-		if randf() <= success_chance:
-			pending_idle_runs += 1
-			pending_idle_ash += 186 + completed_floor * 4
-			pending_idle_xp += 420 + completed_floor * 8
-			if randf() < 0.48:
-				var item := _generate_item(true, completed_floor)
-				if inventory.size() < MAX_BAG_SIZE:
-					inventory.append(item)
-					pending_idle_gear += 1
-				else:
-					pending_idle_ash += int(item.sell)
-					pending_idle_salvaged += 1
-			floor_number += 1
-		else:
-			pending_idle_fails += 1
-			pending_idle_ash += 52 + completed_floor * 2
-			pending_idle_xp += 105 + completed_floor * 3
+func _simulate_offline_time(available_seconds: int) -> void:
+	var remaining := mini(available_seconds,MAX_OFFLINE_SECONDS)
+	# Combat has 64 reproducible critical-roll patterns. During one AFK batch,
+	# floor/class/equipment stay fixed, so each pattern is simulated exactly once.
+	# Loot keeps its unique run seed. This is a cache, never a success estimate.
+	var outcomes: Dictionary = {}
+	while remaining>=30:
+		var seed_value := 1979+expedition_serial*104729
+		var pattern := posmod(seed_value,Expedition.COMBAT_VARIANTS)
+		if not outcomes.has(pattern):
+			var simulation := _new_expedition(farm_floor,expedition_serial)
+			simulation.simulate_to_end()
+			outcomes[pattern] = {"duration":maxi(30,ceili(simulation.elapsed)),"won":simulation.won}
+		var outcome: Dictionary = outcomes[pattern]
+		if outcome.duration>remaining: break
+		remaining -= outcome.duration
+		expedition_serial += 1
+		_grant_expedition_rewards(outcome.won,farm_floor,true,seed_value)
+	idle_progress_seconds = remaining
 
 func _accrue_offline_time() -> void:
 	var now := int(Time.get_unix_time_from_system())
-	if last_saved_at <= 0:
+	if last_saved_at<=0:
 		last_saved_at = now
 		return
 	if not farm_enabled:
 		idle_progress_seconds = 0
 		last_saved_at = now
 		return
-	var elapsed := clampi(now - last_saved_at, 0, MAX_OFFLINE_SECONDS)
-	var total_seconds := idle_progress_seconds + elapsed
-	var completed_runs := floori(float(total_seconds) / float(DUNGEON_RUN_SECONDS))
-	idle_progress_seconds = total_seconds % DUNGEON_RUN_SECONDS
-	if completed_runs > 0:
-		_simulate_offline_runs(completed_runs)
+	var away := clampi(now-last_saved_at,0,MAX_OFFLINE_SECONDS)
+	_simulate_offline_time(mini(MAX_OFFLINE_SECONDS,idle_progress_seconds+away))
 	last_saved_at = now
 
 func _load_progress() -> void:
@@ -1282,7 +1267,9 @@ func _load_progress() -> void:
 	pending_idle_gear = int(save.get_value("idle", "gear", 0))
 	pending_idle_salvaged = int(save.get_value("idle", "salvaged", 0))
 	idle_progress_seconds = int(save.get_value("idle", "progress_seconds", 0))
-	idle_progress_seconds = idle_progress_seconds % DUNGEON_RUN_SECONDS
+	idle_progress_seconds = clampi(idle_progress_seconds,0,int(Expedition.MAX_DURATION))
+	farm_floor = clampi(int(save.get_value("idle","farm_floor",1)),1,maxi(1,floor_number-1))
+	expedition_serial = maxi(1,int(save.get_value("hero","expedition_serial",1)))
 	farm_enabled = bool(save.get_value("idle", "farm_enabled", farm_enabled))
 	last_saved_at = int(save.get_value("idle", "saved_at", Time.get_unix_time_from_system()))
 
@@ -1302,6 +1289,8 @@ func _normalize_item(item: Dictionary, default_slot: String) -> Dictionary:
 func _save_progress() -> void:
 	var save := ConfigFile.new()
 	save.set_value("hero", "class", character_class)
+	save.set_value("hero","expedition_serial",expedition_serial)
+	save.set_value("idle","farm_floor",farm_floor)
 	save.set_value("hero", "gold", player_gold)
 	save.set_value("hero", "shards", player_shards)
 	save.set_value("hero", "level", player_level)

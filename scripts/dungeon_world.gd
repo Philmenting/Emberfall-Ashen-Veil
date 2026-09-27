@@ -1,10 +1,14 @@
 extends Node3D
 ## A continuous, deterministic dungeon. Combat requests only occur in weapon range.
-signal combat_requested
+signal simulation_advanced(events: Array)
+var simulation: RefCounted
+var actor_by_id: Dictionary = {}
+var bars: Dictionary = {}
+var warnings: Dictionary = {}
+var last_stage := -1
+var target_ring: MeshInstance3D
 signal state_changed(description: String)
 const Actor = preload("res://scripts/dungeon_actor.gd")
-const CHECKPOINTS := [Vector3(0,0,-4),Vector3(3,0,-15),Vector3(0,0,-27),Vector3(-3,0,-39),Vector3(2,0,-50),Vector3(0,0,-63)]
-const CHAMBERS := ["THE BROKEN GATE", "WARDEN'S GALLERY", "THE ASH BRIDGE", "CHAPEL OF VOWS", "RELIQUARY", "THE INNER SANCTUM"]
 var character_class := "Vowkeeper"
 var region_index := 0
 var active := true
@@ -17,16 +21,11 @@ var index := 0
 var elapsed := 0.0
 var phase := "travel"
 var phase_time := 0.0
-var attack_clock := 0.0
-var impact_pending := false
-var health_ratio := 1.0
 var camera_target := Vector3.ZERO
 var materials: Dictionary = {}
 var floor_materials: Array[ShaderMaterial] = []
 var rng := RandomNumberGenerator.new()
-var next_index := 0
 var last_description := ""
-var enemy_bar: MeshInstance3D
 
 func _ready() -> void:
 	rng.seed = 7291 + region_index
@@ -38,15 +37,9 @@ func _ready() -> void:
 	hero.kind = character_class
 	hero.position = Vector3(0,0,5)
 	add_child(hero)
-	for i in range(CHECKPOINTS.size()):
-		var enemy := Actor.new()
-		enemy.hostile = true
-		enemy.boss = i == CHECKPOINTS.size()-1
-		enemy.kind = "Warden"
-		enemy.position = CHECKPOINTS[i]
-		enemy.rotation.y = PI
-		add_child(enemy)
-		enemies.append(enemy)
+	_ensure_wave(0)
+	_ensure_wave(1)
+	target_ring = _ring(Vector3.ZERO,0.65,materials.metal)
 	camera = Camera3D.new()
 	camera.projection = Camera3D.PROJECTION_PERSPECTIVE
 	camera.fov = 44.0
@@ -62,7 +55,6 @@ func _ready() -> void:
 	lantern.omni_range = 6.0
 	lantern.position = Vector3(0,2.8,0)
 	hero.add_child(lantern)
-	enemy_bar = _box(Vector3.ZERO,Vector3(1.1,0.045,0.075),materials.blood)
 
 func _build_materials() -> void:
 	materials.stone = _material(Color("444950"))
@@ -177,9 +169,9 @@ func _build_dungeon() -> void:
 		_pillar(Vector3(side*4.2,0,-66.0),true)
 		_box(Vector3(side*3.8,1.6,-67),Vector3(0.9,3.2,0.9),materials.dark)
 		_torch(Vector3(side*3.8,2.5,-66.8))
-	_box(Vector3(0,0.12,-63),Vector3(7.0,0.2,6.0),materials.dark)
-	_ring(Vector3(0,0.235,-63),2.7,materials.metal)
-	_ring(Vector3(0,0.24,-63),2.4,materials.blood)
+	_box(Vector3(0,0.005,-63),Vector3(7.0,0.02,6.0),materials.dark)
+	_ring(Vector3(0,0.035,-63),2.7,materials.metal)
+	_ring(Vector3(0,0.040,-63),2.4,materials.blood)
 	_box(Vector3(0,0.5,-67),Vector3(3.0,1.0,1.0),materials.stone)
 	# Faded carpet sections and scattered bones, clear of the walking centerline.
 	for z in [1.0,-11.0,-38.0,-49.0]:
@@ -312,61 +304,81 @@ func _ring(pos: Vector3,radius: float,mat: Material) -> MeshInstance3D:
 	add_child(node)
 	return node
 
+func _ensure_wave(wave_index: int) -> void:
+	if wave_index<0 or wave_index>=simulation.waves.size(): return
+	for enemy in simulation.waves[wave_index]:
+		if actor_by_id.has(enemy.id): continue
+		var actor := Actor.new()
+		actor.hostile = true
+		actor.boss = enemy.role=="boss"
+		actor.kind = enemy.role
+		actor.position = _point(enemy.pos)
+		actor.rotation.y = PI
+		add_child(actor)
+		actor_by_id[enemy.id] = actor
+		enemies.append(actor)
+		bars[enemy.id] = _box(actor.position+Vector3(0,2.5,0),Vector3(0.9,0.045,0.075),materials.blood)
+		bars[enemy.id].visible = false
+
+func _point(point: Vector2) -> Vector3:
+	return Vector3(point.x,0,point.y)
+
 func _process(delta: float) -> void:
-	if not active: return
+	if not active or simulation==null: return
 	elapsed += delta
-	phase_time += delta
 	_update_effects(delta)
-	for i in range(torches.size()):
-		torches[i].light_energy = 2.1+sin(elapsed*8.0+i*2.1)*0.15
-	var enemy: Node3D = enemies[index]
-	if phase == "travel":
-		var distance := 1.55 if character_class == "Vowkeeper" else 3.8
-		var destination: Vector3 = CHECKPOINTS[index] + Vector3(0,0,distance)
-		var direction: Vector3 = destination-hero.position
-		if direction.length()>0.08:
-			hero.position = hero.position.move_toward(destination,delta*2.55)
-			hero.rotation.y = lerp_angle(hero.rotation.y,atan2(-direction.x,-direction.z),minf(delta*9.0,1.0))
-			hero.animate(delta,true)
-			_set_description("AUTO • MOVING TO " + CHAMBERS[index])
+	var previous: Vector3 = hero.position
+	var updates: Array = simulation.advance(delta)
+	index = mini(simulation.stage,5)
+	phase = simulation.phase
+	if index!=last_stage:
+		_ensure_wave(index)
+		_ensure_wave(index+1)
+		last_stage = index
+		for id_value in actor_by_id.keys():
+			if int(id_value)/10<index-1:
+				enemies.erase(actor_by_id[id_value])
+				actor_by_id[id_value].queue_free()
+				bars[id_value].queue_free()
+				actor_by_id.erase(id_value)
+				bars.erase(id_value)
+	hero.position = hero.position.lerp(_point(simulation.hero_pos),minf(1.0,delta*18.0))
+	var direction := hero.position-previous
+	var walking := direction.length()>0.002
+	if not walking:
+		var target: Dictionary = simulation.enemy_by_id(simulation.target_id)
+		if not target.is_empty(): direction = _point(target.pos)-hero.position
+	if direction.length()>0.01:
+		hero.rotation.y = lerp_angle(hero.rotation.y,atan2(-direction.x,-direction.z),minf(delta*12.0,1.0))
+	hero.animate(delta,walking)
+	for id_value in actor_by_id:
+		var enemy: Dictionary = simulation.enemy_by_id(id_value)
+		var actor: Node3D = actor_by_id[id_value]
+		var old_position: Vector3 = actor.position
+		actor.position = actor.position.lerp(_point(enemy.pos),minf(1.0,delta*15.0))
+		if enemy.hp>0:
+			var facing: Vector3 = hero.position-actor.position
+			actor.rotation.y = lerp_angle(actor.rotation.y,atan2(-facing.x,-facing.z),minf(delta*7.0,1.0))
+		actor.animate(delta,actor.position.distance_to(old_position)>0.002)
+		var bar: MeshInstance3D = bars[id_value]
+		bar.visible = enemy.hp>0 and int(id_value)/10==index
+		bar.position = actor.position+Vector3(0,3.8 if enemy.role=="boss" else 2.5,0)
+		bar.scale.x = maxf(0.01,float(enemy.hp)/float(enemy.max_hp))
+	for event in updates: _show_event(event)
+	for id_value in warnings.keys():
+		var enemy: Dictionary = simulation.enemy_by_id(id_value)
+		if enemy.warning.is_empty() or simulation.finished:
+			warnings[id_value].queue_free()
+			warnings.erase(id_value)
 		else:
-			phase = "combat"
-			attack_clock = 0.0
-			phase_time = 0.0
-	elif phase == "combat":
-		hero.animate(delta,false)
-		var direction: Vector3 = enemy.position-hero.position
-		hero.rotation.y = lerp_angle(hero.rotation.y,atan2(-direction.x,-direction.z),minf(delta*10.0,1.0))
-		attack_clock -= delta
-		if attack_clock <= 0.0:
-			hero.strike()
-			attack_clock = 2.05
-			impact_pending = true
-			phase_time = 0.0
-		if impact_pending and phase_time >= 0.36:
-			impact_pending = false
-			combat_requested.emit()
-		_set_description("AUTO • " + ("BOSS FIGHT" if index==5 else "IN COMBAT"))
-	elif phase == "loot":
-		hero.animate(delta,false)
-		if phase_time > 0.9:
-			index = next_index
-			phase = "travel"
-			health_ratio = 1.0
-			phase_time = 0.0
-			_set_description("AUTO • CONTINUING THE DESCENT")
-	elif phase == "complete":
-		hero.animate(delta,false)
-	for opponent in enemies:
-		opponent.animate(delta,false)
-	if enemy.death_time < 0:
-		var facing: Vector3 = hero.position-enemy.position
-		enemy.rotation.y = lerp_angle(enemy.rotation.y,atan2(-facing.x,-facing.z),minf(delta*4.0,1.0))
-	enemy_bar.visible = phase == "combat"
-	enemy_bar.position = enemy.position+Vector3(0,3.8 if index==5 else 2.65,0)
-	enemy_bar.scale.x = maxf(0.01,health_ratio)
+			warnings[id_value].scale = Vector3.ONE*(0.92+sin(elapsed*14.0)*0.04)
+	target_ring.visible = phase=="combat" and actor_by_id.has(simulation.target_id)
+	if target_ring.visible: target_ring.position = actor_by_id[simulation.target_id].position+Vector3(0,0.07,0)
+	for i in range(torches.size()): torches[i].light_energy = 2.1+sin(elapsed*8.0+i*2.1)*0.15
 	camera_target = camera_target.lerp(hero.position+Vector3(0,0,-1.8),1.0-exp(-delta*4.0))
 	_position_camera()
+	_set_description("AUTO • " + String(simulation.action).to_upper())
+	simulation_advanced.emit(updates)
 
 func _position_camera() -> void:
 	camera.position = camera_target+Vector3(9.0,12.8,12.0)
@@ -377,44 +389,76 @@ func _set_description(value: String) -> void:
 		last_description = value
 		state_changed.emit(value)
 
-func resolve_hit(damage: int, ratio: float, defeated: bool, next_stage: int, ability: bool) -> void:
-	health_ratio = ratio
-	var target: Node3D = enemies[index]
-	var color := Color("f3cc86")
-	if character_class == "Arcanist": color = Color("a797ff")
-	if character_class == "Ranger": color = Color("91e9bd")
-	var effect_mat := _material(color,0.0,true)
-	var ring := _ring(target.position+Vector3(0,0.15,0),0.8,effect_mat)
-	effects.append({"node":ring,"age":0.0,"life":0.5,"kind":"ring"})
-	for i in range(9):
-		var spark := _box(target.position+Vector3(0,1.0,0),Vector3.ONE*0.055,effect_mat)
-		effects.append({"node":spark,"age":0.0,"life":0.45,"kind":"spark","velocity":Vector3(rng.randf_range(-2,2),rng.randf_range(1,4),rng.randf_range(-2,2))})
-	var number := Label3D.new()
-	number.text = str(damage)
-	number.font_size = 64 if ability else 48
-	number.pixel_size = 0.008
-	number.modulate = color
-	number.outline_size = 10
-	number.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	number.no_depth_test = true
-	number.position = target.position+Vector3(0,2.7 if index<5 else 4.0,0)
-	add_child(number)
-	effects.append({"node":number,"age":0.0,"life":0.9,"kind":"number"})
-	if character_class != "Vowkeeper":
-		var start := hero.position+Vector3(0,1.3,0)
-		var end := target.position+Vector3(0,1.1,0)
-		var bolt := _box((start+end)*0.5,Vector3(0.055,0.055,start.distance_to(end)),effect_mat)
-		bolt.look_at(end)
-		effects.append({"node":bolt,"age":0.0,"life":0.18,"kind":"bolt"})
-	if defeated:
-		target.die()
-		next_index = mini(next_stage,5)
-		phase = "complete" if next_stage>=6 else "loot"
-		phase_time = 0.0
-		var loot := _box(target.position+Vector3(0,0.35,0),Vector3(0.13,0.65,0.13),materials.soul)
-		effects.append({"node":loot,"age":0.0,"life":1.1,"kind":"loot"})
-	else:
-		target.strike()
+func _show_event(event: Dictionary) -> void:
+	var color := {"Vowkeeper":Color("f3cc86"),"Arcanist":Color("ac88ff"),"Ranger":Color("84e3b4")}[character_class] as Color
+	match String(event.type):
+		"hero_attack":
+			hero.strike()
+		"hit":
+			if not actor_by_id.has(event.target): return
+			var actor: Node3D = actor_by_id[event.target]
+			_float_text(actor.position+Vector3(0,2.5,0),str(event.damage)+("!" if event.critical else ""),color)
+			var mat := _material(color,0.0,true)
+			var ring := _ring(actor.position+Vector3(0,0.08,0),0.6,mat)
+			effects.append({"node":ring,"age":0.0,"life":0.4,"kind":"ring"})
+			if character_class!="Vowkeeper":
+				var start := hero.position+Vector3(0,1.3,0)
+				var end := actor.position+Vector3(0,1.1,0)
+				var bolt := _box((start+end)*0.5,Vector3(0.06,0.06,start.distance_to(end)),mat)
+				bolt.look_at(end)
+				effects.append({"node":bolt,"age":0.0,"life":0.18,"kind":"bolt"})
+			if event.dead:
+				actor.die()
+				var loot := _box(actor.position+Vector3(0,0.5,0),Vector3(0.12,0.5,0.12),materials.soul)
+				effects.append({"node":loot,"age":0.0,"life":0.9,"kind":"loot"})
+		"hero_hit":
+			if actor_by_id.has(event.source): actor_by_id[event.source].strike()
+			_float_text(hero.position+Vector3(0,2.3,0),"−"+str(event.damage),Color("f89583"))
+		"warning":
+			if warnings.has(event.source): warnings[event.source].queue_free()
+			var zone := Node3D.new()
+			zone.position = _point(event.position)+Vector3(0,0.06,0)
+			add_child(zone)
+			var disc := MeshInstance3D.new()
+			var mesh := CylinderMesh.new()
+			mesh.top_radius = event.radius
+			mesh.bottom_radius = event.radius
+			mesh.height = 0.025
+			mesh.radial_segments = 40
+			disc.mesh = mesh
+			var mat := _material(Color(0.9,0.12,0.045,0.30))
+			mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+			disc.material_override = mat
+			disc.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			zone.add_child(disc)
+			var outline := _ring(Vector3.ZERO,event.radius,materials.blood)
+			remove_child(outline)
+			zone.add_child(outline)
+			warnings[event.source] = zone
+		"impact":
+			var ring := _ring(_point(event.position)+Vector3(0,0.12,0),event.radius,materials.fire)
+			effects.append({"node":ring,"age":0.0,"life":0.35,"kind":"ring"})
+		"interrupt":
+			if actor_by_id.has(event.target): _float_text(actor_by_id[event.target].position+Vector3(0,2.8,0),"INTERRUPTED",Color("b4a2e4"))
+		"guard":
+			_float_text(hero.position+Vector3(0,2.6,0),"GUARD +"+str(event.heal),Color("91d1ae"))
+		"evade", "backstep":
+			_float_text(hero.position+Vector3(0,2.3,0),"EVADE",Color("adcbe0"))
+		"finished":
+			if not event.won: hero.die()
+
+func _float_text(pos: Vector3, value: String, color: Color) -> void:
+	var label := Label3D.new()
+	label.text = value
+	label.font_size = 38 if value.length()>5 else 52
+	label.pixel_size = 0.007
+	label.modulate = color
+	label.outline_size = 8
+	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	label.no_depth_test = true
+	label.position = pos
+	add_child(label)
+	effects.append({"node":label,"age":0.0,"life":0.85,"kind":"number"})
 
 func _update_effects(delta: float) -> void:
 	for i in range(effects.size()-1,-1,-1):
