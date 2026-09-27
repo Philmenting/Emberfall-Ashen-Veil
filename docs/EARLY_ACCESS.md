@@ -15,7 +15,7 @@ Der bisherige Entwicklungsschritt ist **Fortschritt**: Version 0.4.1 enthält ec
 | Bedienung | Querformat-HUD und Lager | Einstieg, Hilfen, Einstellungen, verständliche Fehlerfälle, Rücknavigation und verschiedene Bildschirmgrößen |
 | Darstellung und Ton | Originale prozedurale 3D-Modelle, ein gemeinsamer Dungeon-Grundriss | Unterschiedliche Umgebungen, Audio, Feedback, Leistungsoptionen und längere Android-Messungen |
 | Online-Umfang | Der aktuelle Stand ist lokal/solo | Rückmeldung zum Online-Umfang des Early Access steht aus; keine Mehrspieler-Funktionen behaupten |
-| Veröffentlichung | Lokale Debug-APK; Release-Exportwerkzeuge vorhanden | Aktuelles signiertes AAB, verifizierter CI-Lauf, Release-Checkliste, Store-Material, Datenschutz-/Altersangaben anhand tatsächlicher Funktionen |
+| Veröffentlichung | Lokale Debug-APK und signiertes AAB 0.4.1; CI baut APK und AAB erfolgreich | Release-Checkliste, Store-Material, Datenschutz-/Altersangaben anhand tatsächlicher Funktionen, Freigabe in der Play Console |
 
 ## Freigabeprinzip
 

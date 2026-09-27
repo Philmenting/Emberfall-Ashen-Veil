@@ -350,7 +350,7 @@ func _build_camp(parent: VBoxContainer) -> void:
 	heading.add_child(_label("RECOMMENDED  %d" % recommended, 9, Color("b2a392"), true))
 	stack.add_child(heading)
 	stack.add_child(_label(String(region.dungeon).to_upper(), 22, PALE, true))
-	stack.add_child(_paragraph_label("%s Nyra will fight through five encounters and face %s for the region's relics." % [String(region.description), String(region.boss)], 13, MUTED))
+	stack.add_child(_paragraph_label("%s Nyra will fight through six enemy groups and face %s for the region's relics." % [String(region.description), String(region.boss)], 13, MUTED))
 	stack.add_child(_map_route())
 	stack.add_child(_button("DESCEND TO FLOOR %02d   →" % floor_number, RED, 14, Callable(self, "_start_run")))
 	if floor_number == 1 and player_level == 1:
@@ -1367,18 +1367,23 @@ func _show_save_notice() -> void:
 	if previous!=null:
 		previous.queue_free()
 		remove_child(previous)
-	var notice := Label.new()
-	notice.name = "SaveNotice"
-	notice.text = save_notice
-	notice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	notice.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
-	notice.offset_left = 22
-	notice.offset_right = -22
-	notice.offset_top = 116 if page=="run" else 58
-	notice.add_theme_font_size_override("font_size",12)
-	notice.add_theme_color_override("font_color",Color("ffd295"))
-	notice.add_theme_color_override("font_shadow_color",Color.BLACK)
-	notice.add_theme_constant_override("shadow_offset_x",1)
-	notice.add_theme_constant_override("shadow_offset_y",1)
-	notice.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(notice)
+	var toast := _panel(Color("171b21"),GOLD,10)
+	toast.name = "SaveNotice"
+	toast.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
+	toast.offset_left = -220
+	toast.offset_right = 220
+	toast.offset_top = 12
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation",10)
+	toast.add_child(row)
+	var notice := _paragraph_label(save_notice,12,Color("ffd295"))
+	notice.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	row.add_child(notice)
+	var dismiss := _button("×",PANEL_LIGHT,18,func():
+		save_notice = ""
+		toast.queue_free()
+	)
+	dismiss.custom_minimum_size = Vector2(36,36)
+	dismiss.size_flags_horizontal = Control.SIZE_SHRINK_END
+	row.add_child(dismiss)
+	add_child(toast)
