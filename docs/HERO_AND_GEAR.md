@@ -10,7 +10,7 @@
 
 ## Lokale Prüfungen
 
-208 Prüfungen bestanden: Kampfsimulation 50, Persistenz 68, Gebiete 36, Ausrüstungsvergleiche/Farm-Prognosen 35, Einstieg/Neuverteilen 19. Jede Suite verwendet einen eigenen temporären Spielstand. Die Prognose wird gegen die tatsächlichen 64 Simulationen abgeglichen, einschließlich einer zu schweren Etage.
+209 Prüfungen bestanden: Kampfsimulation 50, Persistenz 69, Gebiete 36, Ausrüstungsvergleiche/Farm-Prognosen 35, Einstieg/Neuverteilen 19. Jede Suite verwendet einen eigenen temporären Spielstand. Die Prognose wird gegen die tatsächlichen 64 Simulationen abgeglichen, einschließlich einer zu schweren Etage.
 
 ## Android-Touchtest
 

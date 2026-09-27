@@ -64,6 +64,8 @@ const MAX_OFFLINE_SECONDS := 24 * 60 * 60
 const MAX_BAG_SIZE := 20
 const MAX_TEMPER_RANK := 5
 
+var clock_source: Callable = Time.get_unix_time_from_system
+
 var page := "camp"
 var gear_tab := "bag"
 var character_class := "Vowkeeper"
@@ -156,7 +158,7 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_RESIZED:
 		queue_redraw()
 	elif initialized and (what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_WM_CLOSE_REQUEST):
-		backgrounded_at = int(Time.get_unix_time_from_system())
+		backgrounded_at = int(clock_source.call())
 		if is_instance_valid(run_arena): run_arena.animation_enabled = false
 		_save_progress()
 	elif what == NOTIFICATION_APPLICATION_RESUMED:
@@ -1277,7 +1279,7 @@ func _simulate_offline_time(available_seconds: int) -> void:
 	idle_progress_seconds = remaining
 
 func _accrue_offline_time() -> void:
-	var now := int(Time.get_unix_time_from_system())
+	var now := int(clock_source.call())
 	if last_saved_at<=0:
 		last_saved_at = now
 		return
@@ -1314,7 +1316,7 @@ func _load_progress() -> void:
 	var save: ConfigFile = save_store.load_save()
 	save_notice = save_store.notice
 	if save==null:
-		last_saved_at = int(Time.get_unix_time_from_system())
+		last_saved_at = int(clock_source.call())
 		return
 	onboarding_complete = bool(save.get_value("hero","onboarding_complete",true))
 	character_class = String(save.get_value("hero", "class", character_class))
@@ -1352,7 +1354,7 @@ func _load_progress() -> void:
 	farm_floor = clampi(int(save.get_value("idle","farm_floor",1)),1,maxi(1,floor_number-1))
 	expedition_serial = maxi(1,int(save.get_value("hero","expedition_serial",1)))
 	farm_enabled = bool(save.get_value("idle", "farm_enabled", farm_enabled))
-	last_saved_at = int(save.get_value("idle", "saved_at", Time.get_unix_time_from_system()))
+	last_saved_at = int(save.get_value("idle", "saved_at", clock_source.call()))
 	var run_data = save.get_value("run","snapshot","")
 	if run_data is String and not run_data.is_empty():
 		var restored := Expedition.new()
@@ -1404,7 +1406,7 @@ func _save_progress() -> void:
 	save.set_value("idle", "salvaged", pending_idle_salvaged)
 	save.set_value("idle", "progress_seconds", idle_progress_seconds)
 	save.set_value("idle", "farm_enabled", farm_enabled)
-	last_saved_at = maxi(last_saved_at,int(Time.get_unix_time_from_system()))
+	last_saved_at = maxi(last_saved_at,int(clock_source.call()))
 	save.set_value("idle", "saved_at", last_saved_at)
 	if page=="run" and expedition!=null and not expedition.finished:
 		save.set_value("run","snapshot",expedition.encode_snapshot())

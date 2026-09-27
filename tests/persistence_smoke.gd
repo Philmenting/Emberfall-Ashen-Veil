@@ -2,6 +2,7 @@ extends SceneTree
 ## Run with isolated XDG_DATA_HOME. Never opens the player's normal save.
 const Expedition = preload("res://scripts/expedition_simulation.gd")
 const Store = preload("res://scripts/save_store.gd")
+var test_now := 1790511800
 var checks := 0
 var failures := 0
 var folder := "user://persistence-"+str(Time.get_ticks_usec())
@@ -19,7 +20,7 @@ func check(condition: bool, description: String) -> void:
 func payload(gold: int) -> ConfigFile:
 	var save := ConfigFile.new()
 	save.set_value("hero","gold",gold)
-	save.set_value("idle","saved_at",int(Time.get_unix_time_from_system()))
+	save.set_value("idle","saved_at",test_now)
 	return save
 
 func write(path: String, body: String) -> void:
@@ -33,6 +34,7 @@ func result(sim: RefCounted) -> Array:
 func new_game(path: String) -> Node:
 	var game: Node = load("res://Main.tscn").instantiate()
 	game.save_store = Store.new(path)
+	game.clock_source = func(): return float(test_now)
 	root.add_child(game)
 	if is_instance_valid(game.run_arena): game.run_arena.animation_enabled=false
 	return game
@@ -134,14 +136,14 @@ func run_checks() -> void:
 	check(game.page=="run" and not game.run_active and game.auto_repeat,"cold launch restores paused and repeat controls")
 	check(game.expedition.snapshot()==checkpoint,"cold launch restores exact fight state")
 	check(game.run_arena.world.hero.position==Vector3(game.expedition.hero_pos.x,0,game.expedition.hero_pos.y),"restored camera world starts at the hero's saved position")
-	game.last_saved_at=int(Time.get_unix_time_from_system())-120
+	game.last_saved_at=test_now-120
 	game._accrue_offline_time()
 	check(game.expedition.snapshot()==checkpoint and game.pending_idle_runs==0,"paused hero earns no parallel offline expeditions")
 	game.run_active=true
 	var reference:=Expedition.new()
 	reference.restore(checkpoint)
 	reference.advance(5.0)
-	game.backgrounded_at=int(Time.get_unix_time_from_system())-5
+	game.backgrounded_at=test_now-5
 	game.last_saved_at=game.backgrounded_at
 	game._resume_from_background()
 	check(game.expedition.snapshot()==reference.snapshot() and game.pending_idle_runs==0,"background catch-up advances the current run without duplicate farming")
@@ -150,7 +152,13 @@ func run_checks() -> void:
 	game.free()
 	game=new_game(game_path)
 	check(game.run_active and game.auto_repeat and game.expedition.snapshot()==reference.snapshot(),"active run survives process death with repeat state")
-	game.last_saved_at=int(Time.get_unix_time_from_system())-150
+	game._save_progress()
+	game.free()
+	test_now+=1
+	reference.advance(1.0)
+	game=new_game(game_path)
+	check(game.expedition.snapshot()==reference.snapshot(),"one real second between save and launch is accounted exactly")
+	game.last_saved_at=test_now-150
 	game._accrue_offline_time()
 	check(game.page=="camp" and game.expedition==null and game.pending_idle_runs>0,"long absence settles current run and remaining AFK time")
 	var reports: int=game.pending_idle_runs
@@ -166,7 +174,7 @@ func run_checks() -> void:
 	game=new_game(game_path)
 	game._claim_idle_cache()
 	check(game.player_gold==claimed_gold,"claimed offline rewards cannot be claimed again after restart")
-	var watermark:=int(Time.get_unix_time_from_system())+1000
+	var watermark:=test_now+1000
 	game.last_saved_at=watermark
 	game._accrue_offline_time()
 	game._save_progress()
