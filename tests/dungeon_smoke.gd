@@ -34,7 +34,7 @@ func run_checks() -> void:
 		var stepped: RefCounted = game._new_expedition(1,1)
 		while not stepped.finished: stepped.advance(0.017)
 		check(outcome(skipped)==outcome(stepped),class_value+": frame rate and skipping produce identical combat")
-		check(skipped.kills==18 and skipped.won,class_value+": defeats six varied packs and boss")
+		check(skipped.kills==26 and skipped.won,class_value+": defeats six varied packs and boss")
 		var threatened: RefCounted=game._new_expedition(1,1)
 		threatened.phase="combat"
 		threatened._warn(threatened.waves[0][0],1.15,0.5)

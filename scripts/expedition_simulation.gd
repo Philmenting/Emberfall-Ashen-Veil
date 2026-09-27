@@ -1,11 +1,13 @@
 extends RefCounted
 ## Single deterministic authority for watched, skipped and offline expeditions.
 ## All combat and movement use fixed 100 ms steps; rendering never rolls damage.
+const Layout = preload("res://scripts/dungeon_layout.gd")
 const ThemeData = preload("res://scripts/dungeon_theme.gd")
 const BossPatterns = preload("res://scripts/boss_patterns.gd")
 const STEP := 0.1
 const WALK_SPEED := 2.55
-const MAX_DURATION := 180.0
+const MAX_DURATION := 240.0
+const LEGACY_MAX_DURATION := 180.0
 const COMBAT_VARIANTS := 64
 const CHECKPOINTS := [Vector2(0,-4),Vector2(3,-15),Vector2(0,-27),Vector2(-3,-39),Vector2(2,-50),Vector2(0,-63)]
 const PACKS := [
@@ -47,6 +49,7 @@ var events: Array = []
 var kills := 0
 var dodges := 0
 var casts := 0
+var journey: Dictionary = {}
 
 func setup(selected_class: String, combat_stats: Dictionary, target_floor: int, boss_name: String, seed_value: int) -> void:
 	class_key = selected_class
@@ -57,14 +60,17 @@ func setup(selected_class: String, combat_stats: Dictionary, target_floor: int, 
 	hero_hp = int(stats.max_hp)
 	hero_mana = int(stats.max_mana)
 	var scaling := 1.0+float(floor_id-1)*0.13+pow(maxf(floor_id-8,0.0),1.35)*0.035
-	var offsets := [Vector2(-1.2,0.3),Vector2(0,-1.1),Vector2(1.2,0.4)]
-	for room in range(PACKS.size()):
+	if uses_journey(): journey={"travel_index":0,"channel":0.0,"well_used":false,"seal_broken":false,"chest_open":false}
+	var packs: Array = Layout.PACKS if uses_journey() else PACKS
+	var offsets := [Vector2(-1.2,0.3),Vector2(0,-1.1),Vector2(1.2,0.4),Vector2(-2.4,-1.5),Vector2(2.4,-1.4)]
+	for room in range(packs.size()):
 		var pack: Array = []
-		for slot in range(PACKS[room].size()):
-			var role: String = PACKS[room][slot]
+		for slot in range(packs[room].size()):
+			var role: String = packs[room][slot]
 			var hp := int(float({"raider":300,"bulwark":520,"hexer":260,"elite":850,"boss":2400}[role])*scaling)
-			var point: Vector2 = CHECKPOINTS[room]+offsets[slot]
-			if role == "boss": point = CHECKPOINTS[room]
+			if uses_journey() and role not in ["boss","elite"]: hp=int(hp*0.72)
+			var point: Vector2 = checkpoint(room)+offsets[slot]
+			if role == "boss": point = checkpoint(room)
 			if role == "hexer": point.y -= 1.0
 			pack.append({"id":room*10+slot,"role":role,"name":boss_name if role=="boss" else ThemeData.enemy_name((floor_id-1)/10,role),"hp":hp,"max_hp":hp,"pos":point,"spawn":point,"cooldown":0.7+slot*0.35,"special_cd":2.5,"slow":0.0,"warning":{},"damage":(10.0+floor_id*2.2)*(1.6 if role in ["elite","boss"] else 1.0)})
 			if role=="boss" and int(stats.get("boss_patterns",0))==1: pack.back()["awakened"]=false
@@ -105,12 +111,15 @@ func _step() -> void:
 	skill_cd = maxf(0.0,skill_cd-STEP)
 	dodge_cd = maxf(0.0,dodge_cd-STEP)
 	guard_time = maxf(0.0,guard_time-STEP)
-	if elapsed >= MAX_DURATION:
+	if elapsed >= (MAX_DURATION if uses_journey() else LEGACY_MAX_DURATION):
 		_finish(false)
+		return
+	if uses_journey() and phase in ["travel","interact"]:
+		_tick_journey()
 		return
 	if phase == "travel":
 		var approach := 2.1 if class_key=="Vowkeeper" else 4.4
-		var goal: Vector2 = CHECKPOINTS[stage]+Vector2(0,approach)
+		var goal: Vector2 = checkpoint(stage)+Vector2(0,approach)
 		hero_pos = hero_pos.move_toward(goal,WALK_SPEED*STEP)
 		action = "Moving to encounter %d" % (stage+1)
 		if hero_pos.distance_to(goal)<0.03:
@@ -122,6 +131,7 @@ func _step() -> void:
 		action = "Collecting • continuing the descent"
 		if phase_clock>=0.9:
 			stage += 1
+			if uses_journey(): journey.travel_index=0
 			if stage >= waves.size():
 				_finish(true)
 			else:
@@ -131,8 +141,9 @@ func _step() -> void:
 	if phase != "combat": return
 	var targets := living()
 	if targets.is_empty():
-		phase = "loot"
+		phase = "interact" if uses_journey() else "loot"
 		phase_clock = 0.0
+		if uses_journey(): journey.channel=0.0
 		pending_attack.clear()
 		dodging = false
 		return
@@ -258,7 +269,7 @@ func _arcane_reposition() -> bool:
 	var best_distance:=nearest+0.02
 	for direction in range(16):
 		var point:=_clamp_walkable(hero_pos+Vector2.from_angle(TAU*direction/16.0)*WALK_SPEED*STEP)
-		if point.distance_to(CHECKPOINTS[stage])>6.5: continue
+		if point.distance_to(checkpoint(stage))>6.5: continue
 		var safe:=true
 		var separation:=INF
 		for enemy in living():
@@ -398,7 +409,49 @@ func _hurt_hero(enemy: Dictionary, raw: float) -> void:
 	hero_hp = maxi(0,hero_hp-damage)
 	events.append({"type":"hero_hit","source":enemy.id,"damage":damage})
 
+func uses_journey() -> bool:
+	return int(stats.get("dungeon_journey",0))==1
+
+func checkpoint(room: int) -> Vector2:
+	return Layout.center(Layout.region(floor_id),room) if uses_journey() else CHECKPOINTS[room]
+
+func _tick_journey() -> void:
+	var region_id := Layout.region(floor_id)
+	if phase=="travel":
+		var points := Layout.travel_points(region_id,stage,2.1 if class_key=="Vowkeeper" else 4.4)
+		var leg: int=journey.travel_index
+		var goal: Vector2=points[leg]
+		hero_pos=hero_pos.move_toward(goal,WALK_SPEED*STEP)
+		action="Following the passage to "+Layout.room_name(region_id,stage)
+		if hero_pos.distance_to(goal)<0.03:
+			journey.travel_index+=1
+			if journey.travel_index>=points.size():
+				phase="combat"
+				phase_clock=0.0
+				events.append({"type":"engage","stage":stage})
+		return
+	if stage in [1,3,5]:
+		var destination := Layout.interact_point(region_id,stage)+Vector2(0,1.25)
+		if hero_pos.distance_to(destination)>0.05:
+			hero_pos=hero_pos.move_toward(destination,WALK_SPEED*STEP)
+			action="Approaching the "+({1:"healing well",3:"sanctum seal",5:"guardian's reliquary"}[stage])
+			return
+		action=Layout.interact_name(stage)
+		journey.channel+=STEP
+		if journey.channel<1.2: return
+		if stage==1 and not journey.well_used:
+			journey.well_used=true
+			var restored := mini(int(stats.max_hp)-hero_hp,maxi(1,int(stats.max_hp*0.18)))
+			hero_hp+=restored
+			events.append({"type":"well","position":hero_pos,"restored":restored})
+		elif stage==3: journey.seal_broken=true
+		elif stage==5: journey.chest_open=true
+		events.append({"type":"objective","stage":stage,"position":hero_pos})
+	phase="loot"
+	phase_clock=0.0
+
 func _clamp_walkable(point: Vector2) -> Vector2:
+	if uses_journey(): return Layout.combat_point(Layout.region(floor_id),stage,point)
 	var half_width := 2.2 if point.y<-20.0 and point.y>-33.0 else 5.8
 	return Vector2(clampf(point.x,-half_width,half_width),clampf(point.y,-67.0,8.0))
 
@@ -417,6 +470,7 @@ func snapshot() -> Dictionary:
 	for field in SNAPSHOT_FIELDS:
 		var value = get(field)
 		state.fields[field] = value.duplicate(true) if value is Dictionary or value is Array else value
+	if uses_journey(): state["journey"]=journey.duplicate(true)
 	return state
 
 func encode_snapshot() -> String:
@@ -437,7 +491,21 @@ func restore(state: Dictionary) -> bool:
 		if data[field] is float and not is_finite(data[field]): return false
 	if not ABILITIES.has(data.class_key) or data.floor_id<1 or data.floor_id>100000: return false
 	if data.stage<0 or data.stage>6 or data.elapsed<0 or data.elapsed>MAX_DURATION+STEP*2: return false
-	if not data.phase in ["travel","combat","loot","finished"]: return false
+	if not data.phase in ["travel","combat","interact","loot","finished"]: return false
+	if data.stats.has("dungeon_journey") and (not data.stats.dungeon_journey is int or not data.stats.dungeon_journey in [0,1]): return false
+	var new_journey: bool = data.stats.get("dungeon_journey",0)==1
+	if data.elapsed>(MAX_DURATION if new_journey else LEGACY_MAX_DURATION)+STEP*2: return false
+	if data.phase=="interact" and not new_journey: return false
+	if new_journey:
+		var saved_journey=state.get("journey")
+		if not saved_journey is Dictionary: return false
+		if not saved_journey.get("travel_index") is int or saved_journey.travel_index<0 or saved_journey.travel_index>4: return false
+		if data.phase=="travel" and saved_journey.travel_index>=(1 if data.stage==0 else 4): return false
+		if not saved_journey.get("channel") is float or not is_finite(saved_journey.channel) or saved_journey.channel<0.0 or saved_journey.channel>1.31: return false
+		for flag in ["well_used","seal_broken","chest_open"]:
+			if not saved_journey.get(flag) is bool: return false
+		if data.stage>=4 and not saved_journey.seal_broken: return false
+		if data.won and not saved_journey.chest_open: return false
 	if data.finished!=(data.phase=="finished") or (data.stage==6 and not data.finished): return false
 	if data.won and (not data.finished or data.stage!=6): return false
 	if data.accumulator < -0.0001 or (not data.finished and data.accumulator>STEP+0.0001): return false
@@ -451,13 +519,14 @@ func restore(state: Dictionary) -> bool:
 	if data.stats.has("arcane_tactics") and (not data.stats.arcane_tactics is int or not data.stats.arcane_tactics in [0,1]): return false
 	if not data.stats.get("attributes") is Dictionary or not _valid_number(data.stats.attributes.get("Spirit")): return false
 	if data.hero_hp<0 or data.hero_hp>data.stats.max_hp or data.hero_mana<0 or data.hero_mana>data.stats.max_mana: return false
+	var expected_packs: Array=Layout.PACKS if new_journey else PACKS
 	if data.waves.size()!=6: return false
 	for wave_index in range(6):
-		if not data.waves[wave_index] is Array or data.waves[wave_index].size()!=PACKS[wave_index].size(): return false
+		if not data.waves[wave_index] is Array or data.waves[wave_index].size()!=expected_packs[wave_index].size(): return false
 		for slot in range(data.waves[wave_index].size()):
 			var enemy = data.waves[wave_index][slot]
 			if not enemy is Dictionary: return false
-			if enemy.get("id")!=wave_index*10+slot or enemy.get("role")!=PACKS[wave_index][slot]: return false
+			if enemy.get("id")!=wave_index*10+slot or enemy.get("role")!=expected_packs[wave_index][slot]: return false
 			if not enemy.get("name") is String or not _valid_point(enemy.get("pos")) or not _valid_point(enemy.get("spawn")): return false
 			for stat in ["hp","max_hp","cooldown","special_cd","slow","damage"]:
 				if not _valid_number(enemy.get(stat)): return false
@@ -470,13 +539,14 @@ func restore(state: Dictionary) -> bool:
 				for stat in ["left","total","radius"]:
 					if not _valid_number(warning.get(stat)) or warning[stat]<0: return false
 				if warning.has("zones") and (enemy.role!="boss" or not BossPatterns.valid(warning)): return false
-	if data.target_id!=-1 and not _valid_enemy_id(data.target_id): return false
+	if data.target_id!=-1 and not _valid_enemy_id(data.target_id,expected_packs): return false
 	if not data.pending_attack.is_empty():
 		var attack: Dictionary = data.pending_attack
-		if not _valid_enemy_id(attack.get("target")) or not attack.get("skill") is bool or not attack.get("name") is String or not _valid_number(attack.get("left")): return false
+		if not _valid_enemy_id(attack.get("target"),expected_packs) or not attack.get("skill") is bool or not attack.get("name") is String or not _valid_number(attack.get("left")): return false
 	for field in SNAPSHOT_FIELDS:
 		var value = data[field]
 		set(field,value.duplicate(true) if value is Dictionary or value is Array else value)
+	journey=state.journey.duplicate(true) if new_journey else {}
 	rng.state = state.rng_state
 	events = []
 	return true
@@ -487,5 +557,5 @@ func _valid_number(value: Variant) -> bool:
 func _valid_point(value: Variant) -> bool:
 	return value is Vector2 and is_finite(value.x) and is_finite(value.y) and absf(value.x)<=20.0 and value.y>=-80.0 and value.y<=20.0
 
-func _valid_enemy_id(value: Variant) -> bool:
-	return value is int and value>=0 and value/10<6 and value%10<3
+func _valid_enemy_id(value: Variant, packs: Array=PACKS) -> bool:
+	return value is int and value>=0 and value/10<6 and value%10<packs[value/10].size()

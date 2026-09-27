@@ -85,6 +85,9 @@ jobs:
           XDG_DATA_HOME="$RUNNER_TEMP/emberfall-loot-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/class_loot_smoke.gd
           XDG_DATA_HOME="$RUNNER_TEMP/emberfall-tactics-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/arcane_tactics_smoke.gd
 
+      - name: Check dungeon routes, objectives and legacy checkpoints
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-journey-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/journey_smoke.gd
+
       - name: Export Android test APK and Play-format AAB
         env:
           GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ runner.temp }}/debug.keystore

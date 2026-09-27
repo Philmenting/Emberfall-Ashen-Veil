@@ -8,6 +8,7 @@ var warnings: Dictionary = {}
 var last_stage := -1
 var target_ring: MeshInstance3D
 signal state_changed(description: String)
+const Layout = preload("res://scripts/dungeon_layout.gd")
 const Actor = preload("res://scripts/dungeon_actor.gd")
 const ThemeData = preload("res://scripts/dungeon_theme.gd")
 const BossPatterns = preload("res://scripts/boss_patterns.gd")
@@ -33,6 +34,8 @@ var materials: Dictionary = {}
 var floor_materials: Array[ShaderMaterial] = []
 var rng := RandomNumberGenerator.new()
 var last_description := ""
+var journey_props: Dictionary = {}
+var sanctum_gate: Node3D
 
 func _ready() -> void:
 	region_index = clampi(region_index,0,3)
@@ -43,6 +46,7 @@ func _ready() -> void:
 	_build_dungeon()
 	_build_regional_details()
 	_batch_static_geometry()
+	if simulation.uses_journey(): _build_journey_props()
 	hero = Actor.new()
 	hero.kind = character_class
 	hero.position = _point(simulation.hero_pos)
@@ -140,6 +144,9 @@ func _build_environment() -> void:
 	add_child(moon)
 
 func _build_dungeon() -> void:
+	if simulation.uses_journey():
+		_build_journey_floor()
+		return
 	# Stone tiles are grouped per chamber/material so the long map stays inexpensive.
 	for room in range(7):
 		var batches: Array = [[],[],[],[],[]]
@@ -432,6 +439,7 @@ func _process(delta: float) -> void:
 		bar.position = actor.position+Vector3(0,3.8 if enemy.role=="boss" else 2.5,0)
 		bar.scale.x = maxf(0.01,float(enemy.hp)/float(enemy.max_hp))
 	for event in updates: _show_event(event)
+	if simulation.uses_journey(): _sync_journey_props(delta)
 	for id_value in warnings.keys():
 		var enemy: Dictionary = simulation.enemy_by_id(id_value)
 		if enemy.warning.is_empty() or simulation.finished:
@@ -460,6 +468,11 @@ func _set_description(value: String) -> void:
 func _show_event(event: Dictionary) -> void:
 	var color := {"Vowkeeper":Color("f3cc86"),"Arcanist":Color("ac88ff"),"Ranger":Color("84e3b4")}[character_class] as Color
 	match String(event.type):
+		"well":
+			_float_text(hero.position+Vector3(0,2.6,0),"LIFE +"+str(event.restored),Color("91d1ae"))
+		"objective":
+			var message: String={1:"WELL RESTORED",3:"SANCTUM UNSEALED",5:"RELIQUARY CLAIMED"}.get(int(event.stage),"COMPLETE")
+			_float_text(hero.position+Vector3(0,3.0,0),message,Color("efcf93"))
 		"hero_attack":
 			hero.strike()
 		"hit":
@@ -607,6 +620,9 @@ func _build_regional_details() -> void:
 	materials.moss = _material(Color("315746"))
 	materials.crystal = _material(Color("655184"),0.55)
 	materials.iron = _material(Color("262329"),0.7)
+	if simulation.uses_journey():
+		_build_journey_details()
+		return
 	match region_index:
 		0:
 			# An enormous broken bell marks the original tower's final chamber.
@@ -728,3 +744,127 @@ func _furnace(pos: Vector3,side: float) -> void:
 
 func set_shadows(enabled: bool) -> void:
 	if is_instance_valid(sun): sun.shadow_enabled=enabled
+
+func _build_journey_floor() -> void:
+	var cells: Dictionary={}
+	var rectangles := Layout.floor_rects(region_index)
+	var tile_size := 1.0
+	for x in range(-16,17):
+		for z in range(-76,10):
+			var point := Vector2(x,z)*tile_size
+			for rect in rectangles:
+				if rect.grow(0.5).has_point(point):
+					cells[Vector2i(x,z)]=true
+					break
+	var batches: Array=[[],[],[],[],[]]
+	for cell: Vector2i in cells:
+		var position3 := Vector3(cell.x,-0.2,cell.y)
+		var dimensions := Vector3(0.97,0.36,0.97)
+		batches[posmod(cell.x*7+cell.y*3,5)].append(Transform3D(Basis.IDENTITY.scaled(dimensions),position3))
+		for direction in [Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP,Vector2i.DOWN]:
+			if cells.has(cell+direction): continue
+			# Only silhouettes at floor boundaries; passages remain open.
+			var rear: bool=direction.x<0 or direction.y<0
+			var height := 1.65 if rear and region_index!=2 else 0.42
+			var edge := Vector3(cell.x+direction.x*0.49,height*0.5,cell.y+direction.y*0.49)
+			var shape := Vector3(0.16,height,1.0) if direction.x!=0 else Vector3(1.0,height,0.16)
+			_box(edge,shape,materials.stone)
+			_box(edge+Vector3(0,height*0.5,0),Vector3(shape.x+0.08,0.1,shape.z+0.08),materials.edge)
+	for m in range(5): _batch_boxes(batches[m],floor_materials[m])
+	for room in range(6):
+		var origin := _point(Layout.center(region_index,room))
+		for side in [-1.0,1.0]:
+			for end in [-1.0,1.0]:
+				_pillar(origin+Vector3(side*5.5,0,end*4.3),side<0)
+			_torch(origin+Vector3(side*4.9,1.5,0))
+		for i in range(12):
+			var rubble := _box(origin+Vector3((-1.0 if i%2==0 else 1.0)*rng.randf_range(4.8,5.3),0.07,rng.randf_range(-3.8,3.8)),Vector3(0.2,0.14,0.3),materials.stone)
+			rubble.rotation.y=rng.randf()*TAU
+		if room in [0,3] and region_index in [0,3]:
+			_box(origin+Vector3(0,0.012,0),Vector3(2.8,0.015,5.2),materials.cloth)
+		if room>0:
+			var previous := Layout.center(region_index,room-1)
+			var current := Layout.center(region_index,room)
+			var middle := (previous.y+current.y)*0.5
+			# Entry markers frame both ends of a bent connecting gallery.
+			for point in [Vector2(previous.x,middle),Vector2(current.x,middle)]:
+				for side in [-1.0,1.0]:
+					_box(_point(point)+Vector3(0,0.4,side*2.0),Vector3(0.3,0.8,0.3),materials.metal)
+	_arch(Vector3(0,0,7.8),0)
+	var boss_center := _point(Layout.center(region_index,5))
+	_ring(boss_center+Vector3(0,0.04,0),3.4,materials.metal)
+	_ring(boss_center+Vector3(0,0.045,0),3.1,materials.dark)
+
+func _build_journey_details() -> void:
+	if region_index==1: _liquid(Vector3(0,-0.5,-32),Vector2(48,105),false)
+	if region_index==3: _liquid(Vector3(0,-0.5,-32),Vector2(48,105),true)
+	if region_index==2: _box(Vector3(0,-4,-32),Vector3(55,0.5,110),materials.dark)
+	for room in range(6):
+		var origin := _point(Layout.center(region_index,room))
+		for side in [-1.0,1.0]:
+			match region_index:
+				0:
+					_sarcophagus(origin+Vector3(side*4.9,0,2.5))
+					if side<0: _banner(origin+Vector3(-5.4,3.4,0))
+				1:
+					_bookshelf(origin+Vector3(side*5.0,0,1),side)
+					_box(origin+Vector3(side*4.7,0.025,3.3),Vector3(1.6,0.025,1.2),materials.moss)
+				2:
+					_rib_arch(origin+Vector3(side*5.4,0,1.2),side)
+					for i in range(3):
+						var shard := _cylinder(origin+Vector3(side*(4.9+i*0.25),0.7+i*0.2,3),0.25,0.015,1.4+i*0.4,materials.crystal,5)
+						shard.rotation.z=side*0.25
+				3:
+					_furnace(origin+Vector3(side*5.1,0,1.5),side)
+	var boss_center := _point(Layout.center(region_index,5))
+	if region_index==0:
+		_cylinder(boss_center+Vector3(0,3.5,-4.3),1.05,0.58,1.5,materials.metal,16)
+		_ring(boss_center+Vector3(0,2.78,-4.3),1.02,materials.metal)
+	elif region_index==3:
+		for i in range(7):
+			var height: float = 3.0+(3-absi(i-3))*0.4
+			_cylinder(boss_center+Vector3((i-3)*0.7,height*0.5,-4.4),0.26,0.0,height,materials.metal,5)
+
+func _build_journey_props() -> void:
+	for room in [1,3,5]:
+		var prop := Node3D.new()
+		prop.name="HealingWell" if room==1 else ("SanctumSeal" if room==3 else "GuardianReliquary")
+		prop.position=_point(Layout.interact_point(region_index,room))
+		add_child(prop)
+		journey_props[room]=prop
+		_box(Vector3(0,-0.03,0),Vector3(1.5,0.15,1.5),materials.dark,prop)
+		if room==1:
+			for side in [-1.0,1.0]:
+				_box(Vector3(side*0.6,0.3,0),Vector3(0.18,0.6,1.4),materials.edge,prop)
+				_box(Vector3(0,0.3,side*0.6),Vector3(1.4,0.6,0.18),materials.edge,prop)
+			_box(Vector3(0,0.28,0),Vector3(1.0,0.06,1.0),materials.soul,prop)
+		elif room==3:
+			_box(Vector3(0,0.55,0),Vector3(0.8,1.1,0.8),materials.stone,prop)
+			var seal := _box(Vector3(0,1.4,0),Vector3(0.5,0.5,0.5),materials.soul,prop)
+			seal.name="SealGem"
+			seal.rotation=Vector3(0.5,0.6,0.5)
+		else:
+			_box(Vector3(0,0.35,0),Vector3(1.3,0.7,0.85),materials.dark,prop)
+			for x in [-0.48,0.48]: _box(Vector3(x,0.4,0),Vector3(0.1,0.78,0.9),materials.metal,prop)
+			var lid := _box(Vector3(0,0.77,0),Vector3(1.35,0.16,0.9),materials.metal,prop)
+			lid.name="ChestLid"
+			var beam := _box(Vector3(0,1.8,0),Vector3(0.09,2.5,0.09),materials.soul,prop)
+			beam.name="LootBeam"
+			beam.visible=false
+	sanctum_gate=Node3D.new()
+	sanctum_gate.name="SanctumGate"
+	sanctum_gate.position=_point(Layout.center(region_index,5))+Vector3(0,0,5.8)
+	add_child(sanctum_gate)
+	for i in range(9): _box(Vector3((i-4)*0.48,1.1,0),Vector3(0.1,2.2,0.1),materials.metal,sanctum_gate)
+	_box(Vector3(0,2.1,0),Vector3(4.3,0.16,0.16),materials.metal,sanctum_gate)
+	_sync_journey_props(100.0)
+
+func _sync_journey_props(delta: float) -> void:
+	if journey_props.is_empty(): return
+	var gem: Node3D=journey_props[3].get_node("SealGem")
+	gem.visible=not simulation.journey.seal_broken
+	var gate_height := -2.8 if simulation.journey.seal_broken else 0.0
+	sanctum_gate.position.y=move_toward(sanctum_gate.position.y,gate_height,delta*2.6)
+	var lid: Node3D=journey_props[5].get_node("ChestLid")
+	lid.rotation.x=lerpf(lid.rotation.x,-1.1 if simulation.journey.chest_open else 0.0,minf(1.0,delta*5.0))
+	journey_props[5].get_node("LootBeam").visible=simulation.journey.chest_open

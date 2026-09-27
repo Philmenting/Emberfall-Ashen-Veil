@@ -1,6 +1,10 @@
 # Emberfall: Ashen Veil
 
-**Emberfall: Ashen Veil** ist ein eigenständiger, im Querformat gestalteter Godot-Prototyp für ein düsteres Idle-Action-RPG. Gegner haben eigene Lebensleisten; Nyra kämpft in automatischen Schlägen bis ein Gegner fällt. Alle zehn Etagen wechselt die Kampagne Gebiet, Dungeon-Namen und Boss: vom Hollow Spire bis zur Last Ember Citadel. Ein Boss-Sieg garantiert mindestens ein seltenes Ausrüstungsteil und schaltet sofort die nächste Etage frei. Vowkeeper, Arcanist und Ranger haben unterschiedliche Kampfvorteile; Attribute stärken ihre Werte und Klassenfähigkeiten. Die vier Gebiete besitzen eigene Materialien, Architekturdetails, Umgebungen und Bossmerkmale; die begehbare Route bleibt gemeinsam. Sechs Ausrüstungsslots, fünf Qualitäten und Stufen T1–T10 bilden die Beute-Progression. Angelegte Ausrüstung kann beim Schmied bis +5 verstärkt werden.
+**Emberfall: Ashen Veil** ist ein eigenständiger, im Querformat gestalteter Godot-Prototyp für ein düsteres Idle-Action-RPG. Gegner haben eigene Lebensleisten; Nyra kämpft in automatischen Schlägen bis ein Gegner fällt. Alle zehn Etagen wechselt die Kampagne Gebiet, Dungeon-Namen und Boss: vom Hollow Spire bis zur Last Ember Citadel. Ein Boss-Sieg garantiert mindestens ein seltenes Ausrüstungsteil und schaltet sofort die nächste Etage frei. Vowkeeper, Arcanist und Ranger haben unterschiedliche Kampfvorteile; Attribute stärken ihre Werte und Klassenfähigkeiten. Die vier Gebiete besitzen eigene Materialien, Architekturdetails, Umgebungen und Bossmerkmale; jedes Gebiet besitzt seit 0.11 einen eigenen begehbaren Grundriss. Sechs Ausrüstungsslots, fünf Qualitäten und Stufen T1–T10 bilden die Beute-Progression. Angelegte Ausrüstung kann beim Schmied bis +5 verstärkt werden.
+
+## Dungeon-Erkundung (0.11)
+
+Vier räumlich unterschiedliche Wege, eine Übersichtskarte, 26 Gegner und automatische Zwischenziele bringen den Ablauf näher an die Gameplay-Referenz. Nyra benutzt einen Heilbrunnen, öffnet über ein bewachtes Siegel den Bosszugang und birgt das finale Reliquiar. Zuschauen, Skip und AFK rechnen denselben Weg. Alte laufende Expeditionen werden mit ihren bisherigen Regeln fortgesetzt. [Referenzbeobachtungen, Umsetzung, 544 Prüfungen und nächste Gameplay-Schritte](docs/GAMEPLAY_DIRECTION.md).
 
 ## Klassen-Builds (0.10)
 
@@ -47,7 +51,7 @@ Gegnernamen und Farben folgen dem Gebiet. Der automatische Kampf bleibt dieselbe
 
 ## Automatische Gruppenkämpfe und Farmen (0.4)
 
-- **Sechs Gegnergruppen / 18 Gegner:** schnelle Nahkämpfer, Schildträger, Hexer, ein Elitehauptmann und ein Boss mit Begleitern. Hexer wirken unterbrechbare Bodenzauber, Schildträger reduzieren physischen Schaden, der Boss kündigt Flächenangriffe an.
+- **Sechs Gegnergruppen / 26 Gegner:** schnelle Nahkämpfer, Schildträger, Hexer, ein Elitehauptmann und ein Boss mit Begleitern. Hexer wirken unterbrechbare Bodenzauber, Schildträger reduzieren physischen Schaden, der Boss kündigt Flächenangriffe an.
 - **Vowkeeper:** bindet Gegner im Nahkampf, trifft mehrere Ziele mit Ember Oath, heilt sich und erhält kurzzeitig Guard.
 - **Arcanist:** wählt Gegneransammlungen für Veil Nova, verursacht Flächenschaden, verlangsamt und unterbricht Hexer.
 - **Ranger:** priorisiert Hexer, weicht bei zu geringer Distanz zurück und nutzt Cinder Volley gegen mehrere Ziele. Alle Klassen versuchen angekündigten Bodenangriffen auszuweichen; dafür gilt eine Abklingzeit.
@@ -63,7 +67,7 @@ Die Kampfsimulation ist bei gleichen Werten, Etage und Startwert reproduzierbar.
 
 ## 3D-Dungeon (0.3)
 
-Im Lager **Descend to Floor** oder auf der Weltkarte **Enter Dungeon** wählen. Die Figur läuft sichtbar durch einen zusammenhängenden 3D-Dungeon. Die schräge Kamera folgt ihr durch sechs Begegnungen, über eine Brücke bis zum Boss. Ausrüstung, Klassenwerte, Schadensberechnung und Beute bleiben Teil des bestehenden Spielmodells.
+Im Lager **Descend to Floor** oder auf der Weltkarte **Enter Dungeon** wählen. Die Figur läuft sichtbar durch einen zusammenhängenden 3D-Dungeon. Die schräge Kamera folgt ihr durch sechs benannte Kammern und die gebietsspezifischen Verbindungswege bis zum Boss und seiner Truhe. Ausrüstung, Klassenwerte, Schadensberechnung und Beute bleiben Teil des bestehenden Spielmodells.
 
 - Vollbild-Spielwelt mit darüberliegender Lebens-/Manaleiste, Fortschritt, Pause und Überspringen.
 - Automatische Zustände: Laufen → Angriff in Waffenreichweite → Gegner fällt → nächster Abschnitt. Die feste Kampfsimulation löst Angriffe und ihre Animationskontakte aus.

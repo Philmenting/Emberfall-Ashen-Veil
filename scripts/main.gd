@@ -530,6 +530,7 @@ func _build_run() -> void:
 	var hero_panel := _panel(Color(0.025,0.035,0.05,0.86),Color("5d6370"),12)
 	hero_panel.custom_minimum_size.x = 190
 	hero_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	hero_panel.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
 	top.add_child(hero_panel)
 	var hero_stack := VBoxContainer.new()
 	hero_panel.add_child(hero_stack)
@@ -559,6 +560,17 @@ func _build_run() -> void:
 	objective.add_child(_label("FLOOR %02d  •  AUTOMATIC EXPEDITION" % run_floor,8,MUTED,true))
 	combat_hud.progress = _progress_bar(0,run_max_stages,GOLD,5)
 	objective.add_child(combat_hud.progress)
+	if expedition.uses_journey():
+		var route_map := preload("res://scripts/expedition_map.gd").new()
+		route_map.name="ExpeditionMap"
+		route_map.simulation=expedition
+		objective.add_child(route_map)
+		combat_hud.room = _label("",10,GOLD,true)
+		objective.add_child(combat_hud.room)
+		combat_hud.objective = _label("",8,MUTED)
+		combat_hud.objective.custom_minimum_size.x=190
+		combat_hud.objective.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+		objective.add_child(combat_hud.objective)
 	combat_hud.encounter = _label("",10,PALE,true)
 	objective.add_child(combat_hud.encounter)
 	combat_hud.boss = _label("",9,Color("f3aa82"),true)
@@ -612,6 +624,12 @@ func _sync_combat_hud() -> void:
 	combat_hud.life.text = "%d LIFE   /   %d MANA" % [run_health,run_mana]
 	combat_hud.progress.value = run_stage
 	combat_hud.encounter.text = "PACK %02d / %02d  •  %d ALIVE" % [mini(run_stage+1,run_max_stages),run_max_stages,expedition.living().size()]
+	if combat_hud.has("room"):
+		combat_hud.room.text=expedition.Layout.room_name(expedition.Layout.region(run_floor),mini(run_stage,5)).to_upper()
+		combat_hud.objective.text=expedition.Layout.objective(mini(run_stage,5))
+		if expedition.journey.chest_open: combat_hud.objective.text="Reliquary recovered • returning with the spoils"
+		elif expedition.stage==5 and expedition.living().is_empty(): combat_hud.objective.text="Guardian defeated • recover the reliquary"
+		elif expedition.stage==3 and expedition.journey.seal_broken: combat_hud.objective.text="Sanctum open • follow the passage"
 	combat_hud.boss.visible=false
 	if expedition.stage==5:
 		var boss: Dictionary=expedition.enemy_by_id(50)
@@ -623,6 +641,10 @@ func _sync_combat_hud() -> void:
 	combat_hud.enemy.text = "%s  •  %d / %d" % [current_enemy,enemy_health,enemy_max_health]
 	combat_hud.enemy_hp.max_value = enemy_max_health
 	combat_hud.enemy_hp.value = enemy_health
+	if expedition.uses_journey() and expedition.phase in ["interact","loot"]:
+		combat_hud.enemy.text=expedition.action
+		combat_hud.enemy_hp.max_value=1.2
+		combat_hud.enemy_hp.value=expedition.journey.channel
 	combat_hud.pause.text = "Ⅱ  PAUSE" if run_active else "▶  RESUME"
 	combat_hud.repeat.text = "REPEAT: ON" if auto_repeat else "REPEAT: OFF"
 	combat_hud.skill.text = "%s  /  %s" % [String(CLASS_DATA[character_class].ability),"READY" if expedition.skill_cd<=0 else "%.1fs" % expedition.skill_cd]
@@ -947,7 +969,7 @@ func _combat_stats(loadout: Dictionary = {}) -> Dictionary:
 			mana_cost = 12 + rank * 2
 			class_mitigation = int(attributes.Vitality / 18)
 	var power := attack + armor * 2 + int(attributes.Intellect) * 3 + int(attributes.Vitality) * 2
-	return {"attributes": attributes, "attack": attack, "max_hp": max_hp, "max_mana": max_mana, "armor": armor, "crit": crit, "ability_damage": ability_damage, "mana_cost": mana_cost, "class_mitigation": class_mitigation, "mana_guard":0.35 if character_class=="Arcanist" else 0.0, "boss_patterns":1, "arcane_tactics":1 if character_class=="Arcanist" else 0, "power": power, "gear_power": gear_power}
+	return {"attributes": attributes, "attack": attack, "max_hp": max_hp, "max_mana": max_mana, "armor": armor, "crit": crit, "ability_damage": ability_damage, "mana_cost": mana_cost, "class_mitigation": class_mitigation, "mana_guard":0.35 if character_class=="Arcanist" else 0.0, "dungeon_journey":1, "boss_patterns":1, "arcane_tactics":1 if character_class=="Arcanist" else 0, "power": power, "gear_power": gear_power}
 
 func _hero_power() -> int:
 	return int(_combat_stats().power)
