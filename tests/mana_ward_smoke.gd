@@ -78,15 +78,17 @@ func run_checks() -> void:
 	game.allocated_attributes.Spirit=10
 	check(game._combat_stats().max_mana-normal_stats.max_mana==90,"Spirit adds a usable defensive Mana pool")
 	game.allocated_attributes.Spirit=0
-	var live: RefCounted=game._new_expedition(8,77)
-	var skipped: RefCounted=game._new_expedition(8,77)
+	var live: RefCounted=game._new_expedition(10,77)
+	var skipped: RefCounted=game._new_expedition(10,77)
 	var ward_events:=0
+	var nova_casts:=0
 	while not live.finished:
 		for event in live.advance(1.0/60.0):
 			if event.type=="ward": ward_events+=1
+			if event.type=="hero_attack" and event.get("skill",false) and event.name=="Veil Nova": nova_casts+=1
 	skipped.simulate_to_end()
 	check(live.won==skipped.won and live.hero_hp==skipped.hero_hp and live.hero_mana==skipped.hero_mana and live.rng.state==skipped.rng.state,"live and skipped ward combat remain identical")
-	check(ward_events>0 and live.casts>0,"automatic combat uses both ward and Nova")
+	check(ward_events>0 and nova_casts>0,"automatic combat uses both ward and Nova")
 	game._start_run(1)
 	check(game.combat_hud.has("ward") and game.run_arena.world.ward_shell!=null,"Arcanist world and HUD expose ward feedback")
 	game.run_arena.world._show_event({"type":"ward","absorbed":7,"mana_spent":14,"source":0})

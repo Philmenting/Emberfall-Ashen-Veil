@@ -88,6 +88,9 @@ jobs:
       - name: Check dungeon routes, objectives and legacy checkpoints
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-journey-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/journey_smoke.gd
 
+      - name: Check selectable automatic skill rotations and old checkpoints
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-rotation-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/skill_rotation_smoke.gd
+
       - name: Export Android test APK and Play-format AAB
         env:
           GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ runner.temp }}/debug.keystore

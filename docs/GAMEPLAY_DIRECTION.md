@@ -1,6 +1,6 @@
 # Gameplay-Richtung nach erneuter Referenzsichtung
 
-Stand: 27. September 2026, Umsetzungsschritt 0.11.
+Stand: 27. September 2026, Umsetzungsschritte 0.11 und 0.12.
 
 ## Betrachtete Ausschnitte
 
@@ -20,7 +20,7 @@ Die folgende Übertragung ist unsere Designentscheidung. Eigene Orte, Modelle, N
 | Gruppen mit Nahkämpfern, Fernkämpfern und Eliten | Gegnerrollen beeinflussen automatische Zielwahl und Flächenfähigkeiten | 0.11: 26 Gegner in unterschiedlich großen Gruppen statt immer drei Gegnern |
 | Abwechslung zwischen Kämpfen und kleinen Aufgaben | Brunnen nutzen, bewachtes Siegel brechen, Bosszugang öffnen, Reliquiar bergen | 0.11: automatisch in derselben Live-/Skip-/AFK-Simulation |
 | Sichtbare Heilung und Beute im Geschehen | Einmalige Brunnenheilung; sichtbare finale Truhe vor der Beuteauswertung | 0.11; einzelne physische Ausrüstungsdrops mit Namen bleiben offen |
-| Mehrere Fähigkeiten mit unterschiedlichen Rollen | Konfigurierbare automatische Rotation aus Angriff, Flächenschaden, Bewegung und Schutz | Nächster Schwerpunkt; aktuell Grundangriff plus eine aktive Klassenfähigkeit und Passive |
+| Mehrere Fähigkeiten mit unterschiedlichen Rollen | Konfigurierbare automatische Rotation aus Angriff, Flächenschaden, Bewegung und Schutz | 0.12: Klassenfähigkeit plus zwei wählbare Techniken, eigene Mana-Kosten, Bedingungen und Abklingzeiten |
 | Hub, Aufgaben, Gebiete und Portale erfüllen verschiedene Zwecke | Gebietsexpeditionen, gezieltes Farmen und eine separate Herausforderung mit ersten Abschlussbelohnungen | Weitere Entwicklung; aktuell Etagenprogression und Farm-Auswahl |
 | Andere Spieler bewegen und kämpfen gemeinsam | Online-Spiel braucht echte gemeinsame Zustände, Gruppen und Server | Offen; aktuelle Version bleibt ehrlich als lokal/solo beschrieben |
 
@@ -40,10 +40,14 @@ Die folgende Übertragung ist unsere Designentscheidung. Eigene Orte, Modelle, N
 
 Android-Testlauf mit unveränderter Arcanist-Startausrüstung auf Etage 1: sichtbare Gruppen, Abbiegung, Brunnen, Siegel, Boss, Truhe und normale Beuteauswertung. Bilder und Protokoll liegen lokal in `build/previews/android-011-*.png` und `build/reports/android-011-journey.log`.
 
-Diese Version hat noch keine freie offene Welt, zufällige Raumgenerierung, mehrere ausrüstbare aktive Fähigkeiten oder Mehrspielerfunktion. Die Referenzsichtung und dieser Ausbau ersetzen keine physischen Gerätetests und keinen menschlichen Langzeittest. Die bisherigen Balance-Messungen aus 0.10 gelten nicht unverändert für die längeren Wege und zusätzlichen Gegner.
+Diese Version hat noch keine freie offene Welt, zufällige Raumgenerierung, Mehrspielerfunktion. Die Referenzsichtung und dieser Ausbau ersetzen keine physischen Gerätetests und keinen menschlichen Langzeittest. Die bisherigen Balance-Messungen aus 0.10 gelten nicht unverändert für die längeren Wege und zusätzlichen Gegner.
 
 ### Fortschrittsprobe mit dem endgültigen Vier-Minuten-Limit
 
 Der vorhandene Ausrüstungs-/Farm-Bot absolvierte 480 echte Simulationen je Klasse (Beutefolge 0), einschließlich Ausrüstungswahl, Attribute und Verstärkung. Vowkeeper erreichte nächste Etage 91 in 19,84 simulierten Stunden, Arcanist 97 in 13,59 Stunden, Ranger 97 in 12,12 Stunden. Alle drei gewannen 480/480 ausgewählte Farm-/Fortschrittsläufe. Die Auswahl prüft vor einem Aufstieg die Erfolgsaussicht; dies bedeutet daher keine Erfolgsgarantie auf beliebig hohen Etagen. Der Nahkämpfer ist weiter langsamer. Ein einzelner Bot und eine Beutefolge belegen keine vollständige Klassenbalance.
 
 Lokales Rohprotokoll: `build/reports/balance-011-0-final.log`. Der 105-Sekunden-Android-Mitschnitt liegt unter `build/previews/emberfall-011-gameplay.mp4` (1280×720, ohne Audiospur). Er zeigt den vollständigen ersten Arcanist-Lauf mit 26 besiegten Gegnern, 76,8 Sekunden Simulationszeit und der tatsächlich vergebenen seltenen Klassenbeute. Die abschließende Änderung am Zeitlimit betrifft höhere/längere Läufe; der aufgezeichnete Erstlauf bleibt unverändert.
+
+## Ausbau 0.12: Fähigkeiten konfigurieren
+
+[SKILL_ROTATION.md](SKILL_ROTATION.md) beschreibt neun eigene Techniken, die Auswahl zweier Plätze je Klasse, automatische Prioritäten und die Nachweise. Nächster Gameplay-Schritt sind unterschiedliche Expeditionstypen und gezielte Belohnungen; aktuell gibt es weiterhin Etagenfortschritt und wiederholbares Farmen.

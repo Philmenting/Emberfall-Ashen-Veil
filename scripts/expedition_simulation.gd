@@ -1,6 +1,7 @@
 extends RefCounted
 ## Single deterministic authority for watched, skipped and offline expeditions.
 ## All combat and movement use fixed 100 ms steps; rendering never rolls damage.
+const Skills = preload("res://scripts/class_skills.gd")
 const Layout = preload("res://scripts/dungeon_layout.gd")
 const ThemeData = preload("res://scripts/dungeon_theme.gd")
 const BossPatterns = preload("res://scripts/boss_patterns.gd")
@@ -50,6 +51,7 @@ var kills := 0
 var dodges := 0
 var casts := 0
 var journey: Dictionary = {}
+var rotation: Dictionary = {}
 
 func setup(selected_class: String, combat_stats: Dictionary, target_floor: int, boss_name: String, seed_value: int) -> void:
 	class_key = selected_class
@@ -59,6 +61,11 @@ func setup(selected_class: String, combat_stats: Dictionary, target_floor: int, 
 	rng.seed = posmod(run_seed,COMBAT_VARIANTS)+floor_id*4099
 	hero_hp = int(stats.max_hp)
 	hero_mana = int(stats.max_mana)
+	if uses_rotation():
+		rotation={"cooldowns":{},"uses":{}}
+		for key in stats.skill_loadout:
+			rotation.cooldowns[key]=0.0
+			rotation.uses[key]=0
 	var scaling := 1.0+float(floor_id-1)*0.13+pow(maxf(floor_id-8,0.0),1.35)*0.035
 	if uses_journey(): journey={"travel_index":0,"channel":0.0,"well_used":false,"seal_broken":false,"chest_open":false}
 	var packs: Array = Layout.PACKS if uses_journey() else PACKS
@@ -111,6 +118,8 @@ func _step() -> void:
 	skill_cd = maxf(0.0,skill_cd-STEP)
 	dodge_cd = maxf(0.0,dodge_cd-STEP)
 	guard_time = maxf(0.0,guard_time-STEP)
+	if uses_rotation():
+		for key in rotation.cooldowns: rotation.cooldowns[key]=maxf(0.0,rotation.cooldowns[key]-STEP)
 	if elapsed >= (MAX_DURATION if uses_journey() else LEGACY_MAX_DURATION):
 		_finish(false)
 		return
@@ -239,6 +248,7 @@ func _auto_hero() -> void:
 			return
 		action = "Holding the front line" if class_key=="Vowkeeper" else "Keeping firing distance"
 		return
+	if uses_rotation() and _try_technique(target,true): return
 	var use_skill := skill_cd<=0 and hero_mana>=int(stats.mana_cost)
 	var nearby := 0
 	for enemy in living():
@@ -246,6 +256,7 @@ func _auto_hero() -> void:
 	if class_key=="Vowkeeper": use_skill = use_skill and (nearby>=2 or hero_hp<int(stats.max_hp)*0.75 or target.role in ["boss","elite"])
 	elif class_key=="Arcanist": use_skill = use_skill and (nearby>=2 or target.role in ["boss","elite"])
 	elif class_key=="Ranger": use_skill = use_skill and (target.role in ["hexer","elite","boss"] or living().size()>=2)
+	if not use_skill and uses_rotation() and _try_technique(target,false): return
 	var name_value: String = ABILITIES[class_key] if use_skill else {"Vowkeeper":"Oathblade","Arcanist":"Arcane Bolt","Ranger":"Piercing Shot"}[class_key]
 	pending_attack = {"target":target.id,"skill":use_skill,"left":0.3,"name":name_value}
 	attack_cd = 1.05 if class_key=="Ranger" else 1.3
@@ -287,6 +298,9 @@ func _arcane_reposition() -> bool:
 func _resolve_hero_attack() -> void:
 	var attack := pending_attack.duplicate()
 	pending_attack.clear()
+	if attack.has("ability_id"):
+		_resolve_technique(attack)
+		return
 	var target := enemy_by_id(attack.target)
 	if target.is_empty() or target.hp<=0: return
 	var selected: Array = [target]
@@ -301,7 +315,7 @@ func _resolve_hero_attack() -> void:
 			if Vector2(enemy.pos).distance_to(origin)<=radius: selected.append(enemy)
 		if not selected.has(target): selected.append(target)
 		if class_key=="Vowkeeper":
-			guard_time = 2.8
+			guard_time = maxf(guard_time,2.8) if uses_rotation() else 2.8
 			var healed := mini(int(stats.max_hp)-hero_hp,int(float(stats.max_hp)*0.08))
 			hero_hp += healed
 			events.append({"type":"guard","heal":healed})
@@ -471,6 +485,7 @@ func snapshot() -> Dictionary:
 		var value = get(field)
 		state.fields[field] = value.duplicate(true) if value is Dictionary or value is Array else value
 	if uses_journey(): state["journey"]=journey.duplicate(true)
+	if uses_rotation(): state["rotation"]=rotation.duplicate(true)
 	return state
 
 func encode_snapshot() -> String:
@@ -520,6 +535,18 @@ func restore(state: Dictionary) -> bool:
 	if not data.stats.get("attributes") is Dictionary or not _valid_number(data.stats.attributes.get("Spirit")): return false
 	if data.hero_hp<0 or data.hero_hp>data.stats.max_hp or data.hero_mana<0 or data.hero_mana>data.stats.max_mana: return false
 	var expected_packs: Array=Layout.PACKS if new_journey else PACKS
+	var has_rotation: bool=data.stats.get("skill_rotation",0) is int and data.stats.get("skill_rotation",0)==1
+	if data.stats.has("skill_rotation") and (not data.stats.skill_rotation is int or not data.stats.skill_rotation in [0,1]): return false
+	if has_rotation:
+		if not Skills.valid(data.class_key,data.stats.get("skill_loadout")): return false
+		var saved_rotation=state.get("rotation")
+		if not saved_rotation is Dictionary or not saved_rotation.get("cooldowns") is Dictionary or not saved_rotation.get("uses") is Dictionary: return false
+		if saved_rotation.cooldowns.size()!=2 or saved_rotation.uses.size()!=2: return false
+		for key in data.stats.skill_loadout:
+			var cd=saved_rotation.cooldowns.get(key)
+			var used=saved_rotation.uses.get(key)
+			if not cd is float or not is_finite(cd) or cd<0.0 or cd>Skills.DEFINITIONS[key].cooldown: return false
+			if not used is int or used<0 or used>1000: return false
 	if data.waves.size()!=6: return false
 	for wave_index in range(6):
 		if not data.waves[wave_index] is Array or data.waves[wave_index].size()!=expected_packs[wave_index].size(): return false
@@ -543,10 +570,16 @@ func restore(state: Dictionary) -> bool:
 	if not data.pending_attack.is_empty():
 		var attack: Dictionary = data.pending_attack
 		if not _valid_enemy_id(attack.get("target"),expected_packs) or not attack.get("skill") is bool or not attack.get("name") is String or not _valid_number(attack.get("left")): return false
+	if not data.pending_attack.is_empty() and data.pending_attack.has("ability_id"):
+		var attack: Dictionary=data.pending_attack
+		if not has_rotation or not attack.ability_id is String or not attack.ability_id in data.stats.skill_loadout: return false
+		if not attack.skill or attack.name!=Skills.DEFINITIONS[attack.ability_id].name: return false
+		if not _valid_point(attack.get("center")) or attack.left<0.0 or attack.left>Skills.DEFINITIONS[attack.ability_id].cast: return false
 	for field in SNAPSHOT_FIELDS:
 		var value = data[field]
 		set(field,value.duplicate(true) if value is Dictionary or value is Array else value)
 	journey=state.journey.duplicate(true) if new_journey else {}
+	rotation=state.rotation.duplicate(true) if has_rotation else {}
 	rng.state = state.rng_state
 	events = []
 	return true
@@ -559,3 +592,97 @@ func _valid_point(value: Variant) -> bool:
 
 func _valid_enemy_id(value: Variant, packs: Array=PACKS) -> bool:
 	return value is int and value>=0 and value/10<6 and value%10<packs[value/10].size()
+
+func uses_rotation() -> bool:
+	return int(stats.get("skill_rotation",0))==1
+
+func _try_technique(target: Dictionary, protection: bool) -> bool:
+	for key in stats.skill_loadout:
+		var definition: Dictionary=Skills.DEFINITIONS[key]
+		if (definition.kind=="guard")!=protection or rotation.cooldowns[key]>0.0 or hero_mana<int(definition.cost): continue
+		if protection:
+			if guard_time>0.5: continue
+			var threatened:=hero_hp<float(stats.max_hp)*0.7
+			for enemy in living():
+				if not enemy.warning.is_empty() and BossPatterns.threatens(enemy.warning,hero_pos,0.2): threatened=true
+			if not threatened: continue
+		else:
+			var special: bool=target.role in ["elite","boss"]
+			if definition.kind=="single":
+				if key=="marked": special=special or target.role in ["hexer","bulwark"]
+				if not special and target.hp>float(target.max_hp)*0.4: continue
+			else:
+				var nearby:=0
+				var origin: Vector2=hero_pos if key=="sunder" else target.pos
+				for enemy in living():
+					if Vector2(enemy.pos).distance_to(origin)<=float(definition.radius): nearby+=1
+				if nearby<2 and not special: continue
+		pending_attack={"target":target.id,"skill":true,"left":float(definition.cast),"name":definition.name,"ability_id":key,"center":hero_pos if key=="sunder" else Vector2(target.pos)}
+		hero_mana-=int(definition.cost)
+		rotation.cooldowns[key]=float(definition.cooldown)
+		rotation.uses[key]+=1
+		casts+=1
+		attack_cd=maxf(1.05 if class_key=="Ranger" else 1.3,float(definition.cast)+0.15)
+		action="Casting "+String(definition.name)
+		events.append({"type":"technique_cast","ability_id":key,"position":pending_attack.center,"duration":definition.cast,"radius":definition.radius})
+		events.append({"type":"hero_attack","target":target.id,"skill":true,"name":definition.name,"ability_id":key})
+		return true
+	return false
+
+func _resolve_technique(attack: Dictionary) -> void:
+	var key: String=attack.ability_id
+	var definition: Dictionary=Skills.DEFINITIONS[key]
+	var target := enemy_by_id(attack.target)
+	var origin: Vector2=attack.center
+	var selected: Array=[]
+	if definition.kind=="guard":
+		guard_time=maxf(guard_time,float(definition.guard))
+		origin=hero_pos
+		if key=="frost_ward":
+			for enemy in living():
+				if hero_pos.distance_to(enemy.pos)<=3.0: enemy.slow=maxf(enemy.slow,4.0)
+		if key=="smoke":
+			var away := (hero_pos-Vector2(target.get("pos",hero_pos+Vector2(0,-1)))).normalized()
+			var goal := _clamp_walkable(hero_pos+away*2.4)
+			var safe:=goal.distance_to(hero_pos)>0.3
+			for enemy in living():
+				if not enemy.warning.is_empty() and BossPatterns.threatens(enemy.warning,goal,0.2): safe=false
+			if safe:
+				dodge_goal=goal
+				dodging=true
+	elif definition.kind=="area":
+		if key=="sunder": origin=hero_pos
+		for enemy in living():
+			if Vector2(enemy.pos).distance_to(origin)<=float(definition.radius): selected.append(enemy)
+	elif not target.is_empty() and target.hp>0:
+		selected.append(target)
+		origin=target.pos
+		if definition.kind=="chain":
+			var from: Vector2=target.pos
+			for jump in range(2):
+				var next: Dictionary={}
+				var nearest: float=definition.radius+0.00001
+				for enemy in living():
+					if selected.has(enemy): continue
+					var distance:=from.distance_to(enemy.pos)
+					if distance<nearest: nearest=distance; next=enemy
+				if next.is_empty(): break
+				selected.append(next)
+				from=next.pos
+	var points: Array=[hero_pos]
+	for enemy in selected:
+		points.append(Vector2(enemy.pos))
+		var amount := float(Skills.damage(key,stats))
+		var critical:=rng.randf()*100.0<float(stats.crit)
+		if critical: amount*=2.15 if class_key=="Ranger" else 1.7
+		if key!="marked" and enemy.role in ["bulwark","elite"] and class_key!="Arcanist": amount*=0.72
+		var damage:=mini(enemy.hp,maxi(1,int(amount)))
+		enemy.hp-=damage
+		if key=="rain": enemy.slow=maxf(enemy.slow,1.7)
+		events.append({"type":"hit","target":enemy.id,"damage":damage,"critical":critical,"skill":true,"name":definition.name,"dead":enemy.hp<=0})
+		if enemy.hp<=0:
+			kills+=1
+			enemy.warning={}
+	# Same on-hit Spirit recovery as a normal attack, once per technique.
+	if not selected.is_empty(): hero_mana=mini(int(stats.max_mana),hero_mana+maxi(1,int(stats.attributes.Spirit)/4))
+	events.append({"type":"technique","ability_id":key,"position":origin,"radius":definition.radius,"points":points})

@@ -2,6 +2,10 @@
 
 **Emberfall: Ashen Veil** ist ein eigenständiger, im Querformat gestalteter Godot-Prototyp für ein düsteres Idle-Action-RPG. Gegner haben eigene Lebensleisten; Nyra kämpft in automatischen Schlägen bis ein Gegner fällt. Alle zehn Etagen wechselt die Kampagne Gebiet, Dungeon-Namen und Boss: vom Hollow Spire bis zur Last Ember Citadel. Ein Boss-Sieg garantiert mindestens ein seltenes Ausrüstungsteil und schaltet sofort die nächste Etage frei. Vowkeeper, Arcanist und Ranger haben unterschiedliche Kampfvorteile; Attribute stärken ihre Werte und Klassenfähigkeiten. Die vier Gebiete besitzen eigene Materialien, Architekturdetails, Umgebungen und Bossmerkmale; jedes Gebiet besitzt seit 0.11 einen eigenen begehbaren Grundriss. Sechs Ausrüstungsslots, fünf Qualitäten und Stufen T1–T10 bilden die Beute-Progression. Angelegte Ausrüstung kann beim Schmied bis +5 verstärkt werden.
 
+## Automatische Fähigkeiten (0.12)
+
+Unter **Gear → Skills** wählst du zwei von drei zusätzlichen Techniken je Klasse. Zusammen mit der Klassenfähigkeit entstehen automatische Rotationen aus Schutz, Flächenangriffen und gezielten Treffern. Mana, Abklingzeiten, Gegnergruppen und Gefahren bestimmen den Einsatz. Die Auswahl bleibt je Klasse gespeichert und gilt auch für Skip und Offline-Farmen. Eigene Godot-Symbole, Schutzschilde, Kettenblitze und Bodenmarkierungen machen den Ablauf sichtbar. Wischen über Karten und Buttons scrollt die Ausrüstungsliste jetzt zuverlässig. [Regeln und Prüfungen](docs/SKILL_ROTATION.md).
+
 ## Dungeon-Erkundung (0.11)
 
 Vier räumlich unterschiedliche Wege, eine Übersichtskarte, 26 Gegner und automatische Zwischenziele bringen den Ablauf näher an die Gameplay-Referenz. Nyra benutzt einen Heilbrunnen, öffnet über ein bewachtes Siegel den Bosszugang und birgt das finale Reliquiar. Zuschauen, Skip und AFK rechnen denselben Weg. Alte laufende Expeditionen werden mit ihren bisherigen Regeln fortgesetzt. [Referenzbeobachtungen, Umsetzung, 544 Prüfungen und nächste Gameplay-Schritte](docs/GAMEPLAY_DIRECTION.md).
@@ -75,7 +79,7 @@ Im Lager **Descend to Floor** oder auf der Weltkarte **Enter Dungeon** wählen. 
 - Originale prozedurale Steinmaterialien, Säulen, Sarkophage, Banner, Fackelbeleuchtung, Schatten und Distanznebel. Keine Assets aus Diablo oder dem Referenzvideo.
 - Kurzes Wechseln in den Hintergrund erhält die Szene und setzt denselben Kampf fort; sobald dieser während der Abwesenheit endet, zeigt das Lager den Offline-Bericht. Doppelte Resume-Ereignisse vergeben keine zusätzlichen Belohnungen.
 
-**Aktueller Umfang:** ein lokaler 3D-Prototyp mit einer gemeinsamen Dungeon-Route. Modelle und Animationen sind vorläufig, die Gegner verwenden einen gemeinsamen Grundkörper mit unterschiedlichen Proportionen, Waffen und Rollen. Es gibt noch keinen Mehrspieler-Server. Die Gestaltung bleibt bewusst eigenständig und stilisiert. Die Offline-Berechnung nutzt dieselbe Kampfsimulation wie die sichtbaren Läufe.
+**Aktueller Umfang:** ein lokaler 3D-Prototyp mit vier gebietsspezifischen Dungeon-Routen. Modelle und Animationen sind vorläufig, die Gegner verwenden einen gemeinsamen Grundkörper mit unterschiedlichen Proportionen, Waffen und Rollen. Es gibt noch keinen Mehrspieler-Server. Die Gestaltung bleibt bewusst eigenständig und stilisiert. Die Offline-Berechnung nutzt dieselbe Kampfsimulation wie die sichtbaren Läufe.
 
 ## Starten
 
@@ -83,7 +87,7 @@ Das Projekt mit Godot 4.7.2 öffnen und `Main.tscn` starten. Die Spielfläche is
 
 ### Android-Test- und Beta-Build
 
-Das Exportprofil `Android Debug` erstellt eine installierbare Test-APK für ARM64 unter `build/emberfall-debug.apk`. Das Profil `Google Play Beta` baut ein AAB mit Android API 36, ARM64 und Version `0.10.0-beta.1` unter `build/emberfall-beta-debug.aab`. Es verwendet Godots Gradle-Build-Vorlage mit Android Gradle Plugin 8.10.1; für den Export werden OpenJDK 17, Android SDK Platform 36 und Build-Tools 36.1.0 benötigt. Die tatsächliche Annahme und Veröffentlichung muss anschließend in der Play Console geprüft werden.
+Das Exportprofil `Android Debug` erstellt eine installierbare Test-APK für ARM64 unter `build/emberfall-debug.apk`. Das Profil `Google Play Beta` baut ein AAB mit Android API 36, ARM64 und Version `0.12.0-beta.1` unter `build/emberfall-beta-debug.aab`. Es verwendet Godots Gradle-Build-Vorlage mit Android Gradle Plugin 8.10.1; für den Export werden OpenJDK 17, Android SDK Platform 36 und Build-Tools 36.1.0 benötigt. Die tatsächliche Annahme und Veröffentlichung muss anschließend in der Play Console geprüft werden.
 
 GitHub Actions baut beide Testpakete bei Änderungen am Projekt und stellt sie als Workflow-Artefakt bereit. Die CI-Artefakte dienen zur technischen Prüfung und sind keine freigegebene Play-Veröffentlichung. Vor dem Upload in die Play Console muss `Google Play Beta` mit einem privaten Upload-Schlüssel als Release exportiert werden. Der Schlüssel gehört weder ins Repository noch in den Debug-Build.
 

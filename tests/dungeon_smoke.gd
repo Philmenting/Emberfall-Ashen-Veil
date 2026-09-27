@@ -91,6 +91,8 @@ func run_checks() -> void:
 	check(cached_pattern.run_seed!=first_pattern.run_seed,"repeated combat patterns retain independent loot seeds")
 	var without_mana: RefCounted = game._new_expedition(1,3)
 	without_mana.stats.mana_cost=10000
+	without_mana.stats.max_mana=0
+	without_mana.hero_mana=0
 	without_mana.simulate_to_end()
 	check(without_mana.casts==0,"abilities cannot be cast without sufficient mana")
 	var ordinary: RefCounted = game._new_expedition(10,3)

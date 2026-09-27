@@ -3,6 +3,7 @@ extends Control
 const HeroArt = preload("res://scripts/hero_art.gd")
 const BattleArt = preload("res://scripts/battle_art.gd")
 const Expedition = preload("res://scripts/expedition_simulation.gd")
+const Skills = preload("res://scripts/class_skills.gd")
 const BossPatterns = preload("res://scripts/boss_patterns.gd")
 const ClassLoot = preload("res://scripts/class_loot.gd")
 const SaveStore = preload("res://scripts/save_store.gd")
@@ -72,6 +73,7 @@ var last_back_frame := -1
 var page := "camp"
 var gear_tab := "bag"
 var character_class := "Vowkeeper"
+var skill_loadouts := Skills.normalize_book({})
 var player_gold := 600
 var player_shards := 0
 var player_level := 1
@@ -233,6 +235,7 @@ func _build_ui() -> void:
 	middle.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	body.add_child(middle)
 	var scroll := ScrollContainer.new()
+	scroll.name="PageScroll"
 	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
@@ -429,10 +432,11 @@ func _build_gear(parent: VBoxContainer) -> void:
 	var tabs:=HBoxContainer.new()
 	tabs.add_theme_constant_override("separation",6)
 	parent.add_child(tabs)
-	for tab in [["bag","BAG (%d)" % inventory.size()],["equipment","EQUIPMENT"],["build","CLASS & STATS"]]:
+	for tab in [["bag","BAG (%d)" % inventory.size()],["equipment","EQUIPMENT"],["build","CLASS & STATS"],["skills","SKILLS"]]:
 		tabs.add_child(_button(tab[1],Color("493b30") if gear_tab==tab[0] else PANEL_LIGHT,10,_select_gear_tab.bind(String(tab[0]))))
 	match gear_tab:
 		"build": _build_class_editor(parent)
+		"skills": _build_skill_editor(parent)
 		"equipment": _build_equipment_list(parent)
 		_: _build_inventory_list(parent)
 
@@ -547,6 +551,15 @@ func _build_run() -> void:
 	if character_class=="Arcanist" and float(expedition.stats.get("mana_guard",0.0))>0.0:
 		combat_hud.ward = _label("",8,Color("ac9bdc"))
 		hero_stack.add_child(combat_hud.ward)
+	if expedition.uses_rotation():
+		combat_hud.techniques={}
+		for key in expedition.stats.skill_loadout:
+			var status := _label("",8,Color(Skills.DEFINITIONS[key].color))
+			status.name="TechniqueStatus_"+key
+			hero_stack.add_child(status)
+			combat_hud.techniques[key]=status
+		combat_hud.guard=_label("",8,GREEN)
+		hero_stack.add_child(combat_hud.guard)
 	var top_gap := Control.new()
 	top_gap.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	top.add_child(top_gap)
@@ -648,6 +661,15 @@ func _sync_combat_hud() -> void:
 	combat_hud.pause.text = "Ⅱ  PAUSE" if run_active else "▶  RESUME"
 	combat_hud.repeat.text = "REPEAT: ON" if auto_repeat else "REPEAT: OFF"
 	combat_hud.skill.text = "%s  /  %s" % [String(CLASS_DATA[character_class].ability),"READY" if expedition.skill_cd<=0 else "%.1fs" % expedition.skill_cd]
+	if combat_hud.has("techniques"):
+		for key in combat_hud.techniques:
+			var definition: Dictionary=Skills.DEFINITIONS[key]
+			var cooldown: float=expedition.rotation.cooldowns[key]
+			var status: String="READY" if cooldown<=0.0 else "%.1fs" % cooldown
+			if cooldown<=0.0 and expedition.hero_mana<int(definition.cost): status="LOW MANA"
+			if expedition.pending_attack.get("ability_id","")==key: status="CASTING"
+			combat_hud.techniques[key].text="%s / %s" % [definition.short,status]
+		combat_hud.guard.text="GUARD • %.1fs" % expedition.guard_time if expedition.guard_time>0.0 else "AUTO ROTATION • 3 SKILLS"
 	if combat_hud.has("ward"):
 		combat_hud.ward.text = "WARD • %d MANA AVAILABLE" % maxi(0,expedition.hero_mana-int(expedition.stats.mana_cost))
 
@@ -837,6 +859,7 @@ func _resource_chip(icon: String, value: String, color: Color) -> Control:
 
 func _button(caption: String, fill: Color, font_size: int, action: Callable) -> Button:
 	var button := Button.new()
+	button.mouse_filter=Control.MOUSE_FILTER_PASS
 	button.text = caption
 	button.custom_minimum_size = Vector2(0, 46)
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -869,6 +892,7 @@ func _button(caption: String, fill: Color, font_size: int, action: Callable) -> 
 
 func _panel(fill: Color, edge: Color, radius: int) -> PanelContainer:
 	var panel := PanelContainer.new()
+	panel.mouse_filter=Control.MOUSE_FILTER_PASS
 	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var style := StyleBoxFlat.new()
 	style.bg_color = fill
@@ -911,6 +935,7 @@ func _small_divider() -> Control:
 
 func _progress_bar(value: float, maximum: float, color: Color, height: int) -> ProgressBar:
 	var bar := ProgressBar.new()
+	bar.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	bar.custom_minimum_size.y = height
 	bar.max_value = maximum
 	bar.value = value
@@ -969,7 +994,7 @@ func _combat_stats(loadout: Dictionary = {}) -> Dictionary:
 			mana_cost = 12 + rank * 2
 			class_mitigation = int(attributes.Vitality / 18)
 	var power := attack + armor * 2 + int(attributes.Intellect) * 3 + int(attributes.Vitality) * 2
-	return {"attributes": attributes, "attack": attack, "max_hp": max_hp, "max_mana": max_mana, "armor": armor, "crit": crit, "ability_damage": ability_damage, "mana_cost": mana_cost, "class_mitigation": class_mitigation, "mana_guard":0.35 if character_class=="Arcanist" else 0.0, "dungeon_journey":1, "boss_patterns":1, "arcane_tactics":1 if character_class=="Arcanist" else 0, "power": power, "gear_power": gear_power}
+	return {"attributes": attributes, "attack": attack, "max_hp": max_hp, "max_mana": max_mana, "armor": armor, "crit": crit, "ability_damage": ability_damage, "mana_cost": mana_cost, "class_mitigation": class_mitigation, "mana_guard":0.35 if character_class=="Arcanist" else 0.0, "skill_rotation":1, "skill_loadout":Skills.normalize(character_class,skill_loadouts.get(character_class)), "dungeon_journey":1, "boss_patterns":1, "arcane_tactics":1 if character_class=="Arcanist" else 0, "power": power, "gear_power": gear_power}
 
 func _hero_power() -> int:
 	return int(_combat_stats().power)
@@ -1359,6 +1384,7 @@ func _load_progress() -> void:
 		last_saved_at = int(clock_source.call())
 		return
 	preferences = Preferences.normalize(save.get_value("settings","preferences",preferences))
+	skill_loadouts=Skills.normalize_book(save.get_value("hero","skill_loadouts",{}))
 	onboarding_complete = bool(save.get_value("hero","onboarding_complete",true))
 	character_class = String(save.get_value("hero", "class", character_class))
 	if not CLASS_DATA.has(character_class):
@@ -1428,6 +1454,7 @@ func _save_progress() -> void:
 	save.set_value("settings","preferences",preferences)
 	save.set_value("hero","onboarding_complete",onboarding_complete)
 	save.set_value("hero", "class", character_class)
+	save.set_value("hero","skill_loadouts",skill_loadouts)
 	save.set_value("hero","expedition_serial",expedition_serial)
 	save.set_value("idle","farm_floor",farm_floor)
 	save.set_value("hero", "gold", player_gold)
@@ -1680,3 +1707,51 @@ func _save_and_exit() -> void:
 		_show_save_notice()
 		return
 	get_tree().quit()
+
+func _build_skill_editor(parent: VBoxContainer) -> void:
+	var loadout := Skills.normalize(character_class,skill_loadouts.get(character_class))
+	var stats := _combat_stats()
+	parent.add_child(_section_heading("AUTOMATIC SKILL ROTATION","2 TECHNIQUES + SIGNATURE"))
+	parent.add_child(_paragraph_label("Equip two techniques for "+character_class+". Protection reacts to danger; your signature has priority over offensive techniques. Otherwise slot I is tried before slot II. Mana, range and cooldowns still apply.",11,MUTED))
+	parent.add_child(_empty_note("ALWAYS EQUIPPED: "+String(CLASS_DATA[character_class].ability)+" • your class signature"))
+	for key in Skills.choices(character_class):
+		var definition: Dictionary=Skills.DEFINITIONS[key]
+		var card := _panel(PANEL_LIGHT,Color(definition.color).darkened(0.5),12)
+		card.name="TechniqueCard_"+key
+		parent.add_child(card)
+		var stack := VBoxContainer.new()
+		stack.add_theme_constant_override("separation",6)
+		card.add_child(stack)
+		var title := HBoxContainer.new()
+		stack.add_child(title)
+		var glyph := preload("res://scripts/skill_glyph.gd").new()
+		glyph.ability_id=key
+		title.add_child(glyph)
+		var name_label := _label(String(definition.name).to_upper(),14,Color(definition.color),true)
+		name_label.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+		title.add_child(name_label)
+		var details: String="%s • %d Mana • %.1fs cooldown" % [definition.role,definition.cost,definition.cooldown]
+		if float(definition.factor)>0.0: details+=" • %d base damage" % Skills.damage(key,stats)
+		stack.add_child(_paragraph_label(details,10,PALE))
+		stack.add_child(_paragraph_label(definition.rule,11,MUTED))
+		var slots := HBoxContainer.new()
+		slots.add_theme_constant_override("separation",8)
+		stack.add_child(slots)
+		for slot in range(2):
+			var selected: bool=loadout[slot]==key
+			var button := _button(("✓ SLOT " if selected else "EQUIP SLOT ")+("I" if slot==0 else "II"),Color("3c4c3d") if selected else PANEL,10,_equip_technique.bind(key,slot))
+			button.name="EquipTechnique_"+key+"_"+str(slot)
+			button.custom_minimum_size.y=38
+			button.disabled=selected
+			slots.add_child(button)
+
+func _equip_technique(key: String, slot: int) -> void:
+	if page=="run" or slot<0 or slot>1 or not key in Skills.choices(character_class): return
+	var loadout := Skills.normalize(character_class,skill_loadouts.get(character_class))
+	var old: String=loadout[slot]
+	var other:=1-slot
+	if loadout[other]==key: loadout[other]=old
+	loadout[slot]=key
+	skill_loadouts[character_class]=loadout
+	_save_progress()
+	_build_ui()

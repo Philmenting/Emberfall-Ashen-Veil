@@ -8,6 +8,7 @@ var warnings: Dictionary = {}
 var last_stage := -1
 var target_ring: MeshInstance3D
 signal state_changed(description: String)
+const Skills = preload("res://scripts/class_skills.gd")
 const Layout = preload("res://scripts/dungeon_layout.gd")
 const Actor = preload("res://scripts/dungeon_actor.gd")
 const ThemeData = preload("res://scripts/dungeon_theme.gd")
@@ -20,6 +21,7 @@ var damage_numbers := true
 var sun: DirectionalLight3D
 var ward_shell: MeshInstance3D
 var ward_flash := 0.0
+var guard_visual: Node3D
 var hero: Node3D
 var camera: Camera3D
 var enemies: Array[Node3D] = []
@@ -67,6 +69,18 @@ func _ready() -> void:
 		ward_shell.position=Vector3(0,1.15,0)
 		ward_shell.visible=false
 		hero.add_child(ward_shell)
+	guard_visual=Node3D.new()
+	guard_visual.name="GuardVisual"
+	hero.add_child(guard_visual)
+	var guard_color := Color("edc98b") if character_class=="Vowkeeper" else Color("89dbe9") if character_class=="Arcanist" else Color("97bdb5")
+	var guard_material := _material(Color(guard_color,0.32),0.0,true)
+	guard_material.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA
+	for segment in range(6):
+		var angle := TAU*segment/6.0
+		var plate := _box(Vector3(sin(angle)*0.8,0.9,cos(angle)*0.8),Vector3(0.48,0.9,0.04),guard_material,guard_visual)
+		plate.rotation.y=angle
+		plate.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	guard_visual.visible=simulation.guard_time>0.0
 	_ensure_wave(mini(simulation.stage,5))
 	_ensure_wave(mini(simulation.stage,5)+1)
 	target_ring = _ring(Vector3.ZERO,0.65,materials.metal)
@@ -393,6 +407,8 @@ func _point(point: Vector2) -> Vector3:
 func _process(delta: float) -> void:
 	if not active or simulation==null: return
 	elapsed += delta
+	guard_visual.visible=simulation.guard_time>0.0
+	guard_visual.rotation.y=elapsed*0.4
 	ward_flash=maxf(0.0,ward_flash-delta)
 	if is_instance_valid(ward_shell):
 		ward_shell.visible=ward_flash>0.0
@@ -468,6 +484,13 @@ func _set_description(value: String) -> void:
 func _show_event(event: Dictionary) -> void:
 	var color := {"Vowkeeper":Color("f3cc86"),"Arcanist":Color("ac88ff"),"Ranger":Color("84e3b4")}[character_class] as Color
 	match String(event.type):
+		"technique_cast":
+			var definition: Dictionary=Skills.DEFINITIONS[event.ability_id]
+			if event.ability_id in ["starfall","rain"]:
+				var marker := _ring(_point(event.position)+Vector3(0,0.07,0),float(event.radius),_material(Color(definition.color),0.0,true))
+				effects.append({"node":marker,"age":0.0,"life":float(event.duration)+0.1,"kind":"cast_mark","ability_id":event.ability_id})
+		"technique":
+			_show_technique(event)
 		"well":
 			_float_text(hero.position+Vector3(0,2.6,0),"LIFE +"+str(event.restored),Color("91d1ae"))
 		"objective":
@@ -602,6 +625,8 @@ func _update_effects(delta: float) -> void:
 		var effect: Dictionary = effects[i]
 		effect.age += delta
 		var node: Node3D = effect.node
+		if effect.kind=="cast_mark" and simulation.pending_attack.get("ability_id","")!=effect.ability_id: effect.age=effect.life
+		if effect.kind=="fall": node.position+=Vector3(0,-10.0*delta,0)
 		if effect.kind == "ring": node.scale = Vector3.ONE*(1.0+effect.age*3.0)
 		elif effect.kind == "nova": node.scale=Vector3.ONE*lerpf(0.15,1.0,minf(1.0,effect.age/effect.life))
 		elif effect.kind == "spark":
@@ -868,3 +893,37 @@ func _sync_journey_props(delta: float) -> void:
 	var lid: Node3D=journey_props[5].get_node("ChestLid")
 	lid.rotation.x=lerpf(lid.rotation.x,-1.1 if simulation.journey.chest_open else 0.0,minf(1.0,delta*5.0))
 	journey_props[5].get_node("LootBeam").visible=simulation.journey.chest_open
+
+func _show_technique(event: Dictionary) -> void:
+	var key: String=event.ability_id
+	var definition: Dictionary=Skills.DEFINITIONS[key]
+	var tint := Color(definition.color)
+	var material := _material(tint,0.0,true)
+	_float_text(hero.position+Vector3(0,3.2,0),String(definition.short),tint)
+	if definition.kind=="guard":
+		var pulse := _ring(hero.position+Vector3(0,0.1,0),0.9,material)
+		effects.append({"node":pulse,"age":0.0,"life":0.5,"kind":"ring"})
+	elif key=="chain" or definition.kind=="single":
+		for i in range(event.points.size()-1):
+			var start := _point(event.points[i])+Vector3(0,1.4,0)
+			var finish := _point(event.points[i+1])+Vector3(0,1.2,0)
+			var previous := start
+			for part in range(1,7):
+				var point := start.lerp(finish,part/6.0)
+				if key=="chain" and part<6: point+=Vector3(0.12 if part%2==0 else -0.12,0.14 if part%2==0 else -0.14,0)
+				if previous.distance_to(point)>0.001:
+					var bolt := _box((previous+point)*0.5,Vector3(0.08,0.08,previous.distance_to(point)),material)
+					bolt.look_at(point)
+					effects.append({"node":bolt,"age":0.0,"life":0.32,"kind":"bolt"})
+				previous=point
+	else:
+		var origin := _point(event.position)
+		var pulse := _ring(origin+Vector3(0,0.12,0),float(event.radius),material)
+		pulse.scale=Vector3.ONE*0.15
+		effects.append({"node":pulse,"age":0.0,"life":0.45,"kind":"nova"})
+		for i in range(10 if key=="rain" else 6):
+			var angle := TAU*i/(10.0 if key=="rain" else 6.0)
+			var radius := float(event.radius)*0.7
+			var position3 := origin+Vector3(sin(angle)*radius,3.0,cos(angle)*radius)
+			var streak := _box(position3,Vector3(0.04,0.9,0.04) if key=="rain" else Vector3(0.12,1.2,0.12),material)
+			effects.append({"node":streak,"age":0.0,"life":0.3,"kind":"fall"})
