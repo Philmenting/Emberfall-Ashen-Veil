@@ -6,6 +6,10 @@
 
 Schlankere Figuren mit zusammenhängenden Rüstungs- und Kleidungsformen, gotische Arkaden, unregelmäßige Steinplatten, tiefere Fundamente, animierte Feuer und Nebel geben den Dungeons mehr Atmosphäre. Neue Waffenbögen, Trefferfunken und eine nähere Kamera machen Kämpfe besser sichtbar. Alle neuen Grafikbestandteile sind in Godot erstellt. [Umsetzung und Grenzen](docs/VISUAL_UPGRADE.md).
 
+## Flüssigere Bewegung und Treffer (0.15)
+
+Nyra und Gegner takten ihre Schritte passend zur tatsächlichen Laufgeschwindigkeit. Schläge holen sichtbar aus und federn zurück; Treffer lösen ein kurzes Taumeln aus, Gegner fallen mit leichten Variationen. Atem- und Mantelbewegungen lockern den Stand. Die Animationen laufen rein visuell und verändern weder Kampfwerte noch Offline-Ergebnisse.
+
 ## Beutejagden und Aschenprüfungen (0.13)
 
 Nach dem ersten Kampagnensieg bietet **World → Hunts** gezieltes Farmen für einen gewählten Ausrüstungsslot – sichtbar und offline, gegen stärkere Gegner. **Ash Trials** enthält 30 separate Prüfungsstufen mit 150 Sekunden Zeitlimit und einmaliger Epic-Abschlussbeute. Die Farm-Prognose berücksichtigt die gewählte Schwierigkeit. [Regeln, 749 Prüfungen und Balance-Messung](docs/HUNTS_AND_TRIALS.md).
@@ -95,7 +99,7 @@ Das Projekt mit Godot 4.7.2 öffnen und `Main.tscn` starten. Die Spielfläche is
 
 ### Android-Test- und Beta-Build
 
-Das Exportprofil `Android Debug` erstellt eine installierbare Test-APK für ARM64 unter `build/emberfall-debug.apk`. Das Profil `Google Play Beta` baut ein AAB mit Android API 36, ARM64 und Version `0.14.0-beta.1` unter `build/emberfall-beta-debug.aab`. Es verwendet Godots Gradle-Build-Vorlage mit Android Gradle Plugin 8.10.1; für den Export werden OpenJDK 17, Android SDK Platform 36 und Build-Tools 36.1.0 benötigt. Die tatsächliche Annahme und Veröffentlichung muss anschließend in der Play Console geprüft werden.
+Das Exportprofil `Android Debug` erstellt eine installierbare Test-APK für ARM64 unter `build/emberfall-debug.apk`. Das Profil `Google Play Beta` baut ein AAB mit Android API 36, ARM64 und Version `0.15.0-beta.1` unter `build/emberfall-beta-debug.aab`. Es verwendet Godots Gradle-Build-Vorlage mit Android Gradle Plugin 8.10.1; für den Export werden OpenJDK 17, Android SDK Platform 36 und Build-Tools 36.1.0 benötigt. Die tatsächliche Annahme und Veröffentlichung muss anschließend in der Play Console geprüft werden.
 
 GitHub Actions baut beide Testpakete bei Änderungen am Projekt und stellt sie als Workflow-Artefakt bereit. Die CI-Artefakte dienen zur technischen Prüfung und sind keine freigegebene Play-Veröffentlichung. Vor dem Upload in die Play Console muss `Google Play Beta` mit einem privaten Upload-Schlüssel als Release exportiert werden. Der Schlüssel gehört weder ins Repository noch in den Debug-Build.
 

@@ -1,4 +1,12 @@
-# Grafischer Ausbau – 0.14
+# Grafischer Ausbau und flüssigere Animationen – 0.15
+
+## Bewegung und Treffer (0.15)
+
+Die zusätzliche Referenz *Nonstop Knight 2* lenkt den Blick auf den kontinuierlichen Lauf und die deutliche Schlagwirkung. Die Spielfigur und Gegner bewegen ihre Beine jetzt im Rhythmus ihrer tatsächlich zurückgelegten Strecke; Oberkörper, Arme und Mantel gleichen die Schritte aus. Im Stand halten leichte Atem- und Gewichtsbewegungen die Figuren lebendig.
+
+Angriffe teilen sich in Ausholen, Trefferbewegung und Rückkehr zur Grundhaltung. Kommt ein weiterer Schlag während einer Pose, wird er eingereiht. Treffer lösen ein kurzes Taumeln aus; Stürze variieren leicht nach Rolle und Gebiet. Diese Änderungen wirken nur auf die Darstellung. Sie greifen weder in Kampfschritte noch Zufall, Belohnungen oder AFK-Fortschritt ein.
+
+Sieben zusätzliche Animationstests kontrollieren Bewegungstakt, gegensätzliche Schritte, Schlagbewegung, Trefferreaktion, eingereihte Schläge und Fallpose.
 
 ## Gestaltung
 

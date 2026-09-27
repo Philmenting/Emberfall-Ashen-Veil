@@ -49,6 +49,26 @@ func run_checks() -> void:
 	root.add_child(second)
 	check(Actor.merged_cache.size()==size_before,"repeated character appearances reuse merged geometry")
 	first.queue_free(); second.queue_free()
+	var runner:=Actor.new()
+	runner.kind="Ranger"
+	root.add_child(runner)
+	var initial_phase: float=runner.gait_phase
+	runner.animate(0.2,true,3.4)
+	check(runner.gait_phase>initial_phase,"running cadence advances with actual travel speed")
+	check(is_equal_approx(runner.left_leg.rotation.x,-runner.right_leg.rotation.x),"locomotion keeps left and right steps in opposition")
+	runner.strike()
+	runner.animate(0.30,false)
+	check(runner.body.position.z< -0.05,"attack animation has a visible forward follow-through")
+	runner.react()
+	runner.animate(0.06,false)
+	check(runner.impact_time>=0.0 and absf(runner.body.rotation.z)>0.01,"enemy reacts to a hit with a short flinch")
+	runner.strike(); runner.strike()
+	check(runner.attack_queued,"rapid attacks queue without restarting the current swing")
+	runner.animate(0.65,false)
+	check(runner.attack_time==0.0 and not runner.attack_queued,"queued swing begins after recovery")
+	runner.die(); runner.animate(0.16,false)
+	check(runner.body.position.y<0.0 and absf(runner.body.rotation.z)>0.01,"death animation falls with a varied lean")
+	runner.queue_free()
 	var game:=Bot.new()
 	game.character_class="Arcanist"
 	for region in range(4):

@@ -17,13 +17,19 @@ var right_knee: Node3D
 var cape: Node3D
 var weapon: Node3D
 var clock := 0.0
+var gait_phase := 0.0
 var attack_time := -1.0
+var attack_queued := false
+var impact_time := -1.0
 var death_time := -1.0
+var death_lean := 1.0
+var body_hunch := 0.0
 var moving := false
 var health_bar: MeshInstance3D
 var materials: Dictionary = {}
 
 func _ready() -> void:
+	death_lean = -1.0 if (kind.hash()+region_index)%2==0 else 1.0
 	var theme := ThemeData.definition(region_index)
 	var accent := Color("b18b57")
 	if kind == "Arcanist": accent = Color("9170bd")
@@ -134,7 +140,8 @@ func _ready() -> void:
 	elif kind=="bulwark" or kind=="elite": scale = Vector3(1.22,1.15,1.22)
 	elif hostile: scale = Vector3(0.87,0.96,0.87)
 	if ghoul:
-		body.rotation.x=0.18
+		body_hunch=0.18
+		body.rotation.x=body_hunch
 		for side in [-1.0,1.0]:
 			for rib in range(4):
 				var bone:=_box(body,Vector3(side*0.15,1.19+rib*0.075,-0.17),Vector3(0.23,0.025,0.025),materials.bone)
@@ -236,48 +243,89 @@ func _leg(side: float) -> Node3D:
 	return pivot
 
 func strike() -> void:
-	attack_time = 0.0
+	if death_time>=0.0: return
+	if attack_time>=0.0:
+		attack_queued=true
+	else:
+		attack_time=0.0
+
+func react() -> void:
+	if death_time>=0.0 or impact_time>=0.0: return
+	impact_time=0.0
 
 func die() -> void:
 	death_time = 0.0
 
-func animate(delta: float, walking: bool) -> void:
+func animate(delta: float, walking: bool, horizontal_speed: float = -1.0) -> void:
 	clock += delta
 	moving = walking
 	if death_time >= 0.0:
 		death_time += delta
-		body.rotation.z = minf(death_time * 2.6, PI*0.48)
-		body.position.y = -minf(death_time*0.5,0.32)
+		var fall:=1.0-exp(-death_time*4.2)
+		body.rotation.z = death_lean*minf(death_time*2.8, PI*0.49)
+		body.rotation.x = sin(death_time*8.0)*0.12*exp(-death_time*2.8)
+		body.position.y = -minf(death_time*0.68,0.48)
+		left_arm.rotation.x = -0.8*fall+sin(death_time*6.0)*0.22*exp(-death_time*3.0)
+		right_arm.rotation.x = 0.45*fall-sin(death_time*6.0+0.8)*0.18*exp(-death_time*3.0)
+		left_leg.rotation.x = death_lean*0.42*fall
+		right_leg.rotation.x = -death_lean*0.32*fall
+		cape.rotation.x = -0.15+0.38*fall
 		return
-	var stride := sin(clock*10.0) * (0.65 if walking else 0.025)
-	body.position.y = absf(sin(clock*10.0))*0.055 if walking else sin(clock*2.0)*0.012
+	var speed:=maxf(horizontal_speed,2.5) if horizontal_speed>=0.0 else 3.2
+	var gait:=1.0 if walking else 0.0
+	if walking: gait_phase+=delta*speed*3.25
+	var stride := sin(gait_phase)*0.49*gait
+	var breath:=sin(clock*1.65)
+	var bob:=(0.032+0.038*(0.5+0.5*cos(gait_phase*2.0)))*gait
+	body.position = Vector3(sin(clock*0.83)*0.012, bob+breath*0.014*(1.0-gait), 0.0)
 	left_leg.rotation.x = stride
 	right_leg.rotation.x = -stride
-	left_knee.rotation.x = maxf(0.0,-stride)*1.1
-	right_knee.rotation.x = maxf(0.0,stride)*1.1
-	left_arm.rotation.x = -stride*0.65
-	right_arm.rotation.x = stride*0.65 - 0.25
-	body.rotation.y = sin(clock*10.0)*0.07 if walking else 0.0
-	cape.rotation.x = -0.15-absf(stride)*0.3
-	cape.rotation.z = sin(clock*5.0)*0.045
+	left_knee.rotation.x = maxf(0.0,-stride)*0.92
+	right_knee.rotation.x = maxf(0.0,stride)*0.92
+	left_arm.rotation.x = -0.18-stride*0.48
+	right_arm.rotation.x = -0.25+stride*0.48
+	left_arm.rotation.z = -0.035+sin(gait_phase)*0.035*gait
+	right_arm.rotation.z = 0.035-sin(gait_phase)*0.035*gait
+	body.rotation.x = body_hunch+sin(gait_phase)*0.035*gait+breath*0.008
+	body.rotation.y = sin(gait_phase)*0.045*gait+sin(clock*0.72)*0.018*(1.0-gait)
+	body.rotation.z = -sin(gait_phase)*0.035*gait
+	cape.rotation.x = -0.15-absf(stride)*0.22
+	cape.rotation.y = -sin(gait_phase)*0.035*gait
+	cape.rotation.z = sin(gait_phase-0.8)*0.09*gait+sin(clock*2.1)*0.035
 	if attack_time >= 0.0:
 		attack_time += delta
-		var phase := clampf(attack_time/0.75,0.0,1.0)
-		right_arm.rotation.x = -sin(phase*PI)*2.4
-		right_arm.rotation.z = sin(phase*TAU)*0.65
-		body.rotation.y = sin(phase*TAU)*0.4
+		var phase := clampf(attack_time/0.62,0.0,1.0)
+		var anticipation:=1.0-smoothstep(0.0,0.27,phase)
+		var follow_through:=smoothstep(0.25,0.48,phase)*(1.0-smoothstep(0.69,1.0,phase))
+		var recovery:=smoothstep(0.67,1.0,phase)
+		right_arm.rotation.x += -0.52*anticipation-1.12*follow_through+0.26*recovery
+		right_arm.rotation.z += 0.18*anticipation-0.34*follow_through
+		left_arm.rotation.x += -0.18*anticipation-0.25*follow_through
+		body.rotation.x += 0.12*anticipation-0.21*follow_through+0.08*recovery
+		body.rotation.y += -0.18*anticipation+0.48*follow_through-0.20*recovery
+		body.position.z += -0.19*follow_through+0.08*recovery
 		if kind in ["Arcanist","hexer"]:
-			right_arm.rotation.x=-0.3-sin(phase*PI)*0.9
-			left_arm.rotation.x=-0.8-sin(phase*PI)*0.5
-			body.rotation.y=sin(phase*TAU)*0.15
+			right_arm.rotation.x += -0.38*anticipation-0.40*follow_through+0.12*recovery
+			left_arm.rotation.x += -0.55*anticipation-0.44*follow_through
+			body.rotation.y += -0.10*anticipation+0.16*follow_through
 		elif kind=="Ranger":
-			right_arm.rotation.x=-1.1
-			left_arm.rotation.x=-1.25
-			right_arm.rotation.z=0.35+sin(phase*PI)*0.25
-		if attack_time > 0.75:
-			attack_time = -1.0
-	else:
-		right_arm.rotation.z = 0.0
+			right_arm.rotation.x += -0.34*anticipation-0.54*follow_through
+			left_arm.rotation.x += -0.24*anticipation-0.34*follow_through
+			right_arm.rotation.z += 0.26*anticipation-0.30*follow_through
+		if phase>=1.0:
+			if attack_queued:
+				attack_time=0.0
+				attack_queued=false
+			else:
+				attack_time=-1.0
+	if impact_time>=0.0:
+		impact_time+=delta
+		var flinch:=sin(clampf(impact_time/0.24,0.0,1.0)*PI)*exp(-impact_time*2.6)
+		body.position.x+=death_lean*0.075*flinch
+		body.rotation.z+=death_lean*0.14*flinch
+		left_arm.rotation.x-=0.24*flinch
+		right_arm.rotation.x+=0.18*flinch
+		if impact_time>=0.24: impact_time=-1.0
 
 func _build_boss_regalia() -> void:
 	# Each region's boss has a silhouette readable from the following camera.

@@ -451,7 +451,7 @@ func _process(delta: float) -> void:
 		if not target.is_empty(): direction = _point(target.pos)-hero.position
 	if direction.length()>0.01:
 		hero.rotation.y = lerp_angle(hero.rotation.y,atan2(-direction.x,-direction.z),minf(delta*12.0,1.0))
-	hero.animate(delta,walking)
+	hero.animate(delta,walking,direction.length()/maxf(delta,0.0001))
 	for id_value in actor_by_id:
 		var enemy: Dictionary = simulation.enemy_by_id(id_value)
 		var actor: Node3D = actor_by_id[id_value]
@@ -461,7 +461,8 @@ func _process(delta: float) -> void:
 			var facing: Vector3 = hero.position-actor.position
 			actor.rotation.y = lerp_angle(actor.rotation.y,atan2(-facing.x,-facing.z),minf(delta*7.0,1.0))
 		if enemy.hp<=0 and actor.death_time<0: actor.die()
-		actor.animate(delta,actor.position.distance_to(old_position)>0.002)
+		var actor_displacement:=actor.position.distance_to(old_position)
+		actor.animate(delta,actor_displacement>0.002,actor_displacement/maxf(delta,0.0001))
 		if not enemy.warning.is_empty() and not warnings.has(id_value):
 			_show_event(_warning_event(enemy))
 		var bar: MeshInstance3D = bars[id_value]
@@ -515,6 +516,7 @@ func _show_event(event: Dictionary) -> void:
 		"hit":
 			if not actor_by_id.has(event.target): return
 			var actor: Node3D = actor_by_id[event.target]
+			actor.react()
 			_float_text(actor.position+Vector3(0,2.5,0),str(event.damage)+("!" if event.critical else ""),color)
 			var mat := _material(color,0.0,true)
 			var ring := _ring(actor.position+Vector3(0,0.08,0),0.6,mat)
@@ -532,6 +534,7 @@ func _show_event(event: Dictionary) -> void:
 				var loot := _box(actor.position+Vector3(0,0.5,0),Vector3(0.12,0.5,0.12),materials.soul)
 				effects.append({"node":loot,"age":0.0,"life":0.9,"kind":"loot"})
 		"hero_hit":
+			hero.react()
 			if actor_by_id.has(event.source): actor_by_id[event.source].strike()
 			_float_text(hero.position+Vector3(0,2.3,0),"−"+str(event.damage),Color("f89583"))
 		"ward":
