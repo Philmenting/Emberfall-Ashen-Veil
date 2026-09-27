@@ -27,7 +27,7 @@ jobs:
           packages: platform-tools
 
       - name: Install Android export packages
-        run: sdkmanager --install 'platform-tools' 'platforms;android-35' 'build-tools;35.0.1'
+        run: sdkmanager --install 'platform-tools' 'platforms;android-35' 'build-tools;35.0.1' 'platforms;android-36' 'build-tools;36.1.0'
 
       - name: Download Godot 4.7.2 and Android templates
         run: |
@@ -56,7 +56,12 @@ jobs:
           export/android/android_sdk_path = "$ANDROID_HOME"
           EOF
 
-      - name: Export Android debug APK
+      - name: Check automatic 3D dungeon and background lifecycle
+        run: |
+          godot --headless --path . --editor --import --quit
+          XDG_DATA_HOME="$RUNNER_TEMP/emberfall-smoke-data" godot --headless --path . --fixed-fps 60 --script tests/dungeon_smoke.gd
+
+      - name: Export Android test APK and Play-format AAB
         env:
           GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ runner.temp }}/debug.keystore
           GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
@@ -64,12 +69,16 @@ jobs:
         run: |
           mkdir -p build
           godot --headless --path . --editor --import --quit
-          godot --headless --path . --export-debug 'Android Debug' 'build/emberfall-debug.apk'
+          godot --headless --path . --install-android-build-template --export-debug 'Android Debug' 'build/emberfall-debug.apk'
+          python3 scripts/prepare_android_beta_build.py
+          godot --headless --path . --export-debug 'Google Play Beta' 'build/emberfall-beta-debug.aab'
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v7
         with:
-          name: emberfall-ashen-veil-android-debug
-          path: build/emberfall-debug.apk
+          name: emberfall-ashen-veil-android-beta-test
+          path: |
+            build/emberfall-debug.apk
+            build/emberfall-beta-debug.aab
           if-no-files-found: error
           retention-days: 14

@@ -2,6 +2,9 @@
 .godot/
 .export/
 
+# Local screenshots and generated packages
+build/
+
 # Android/Gradle output
 android/.gradle/
 android/build/

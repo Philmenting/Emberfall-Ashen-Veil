@@ -107,6 +107,13 @@ var run_events: Array[String] = []
 var current_enemy := ENEMIES[0]
 var run_visual_seconds := 0.0
 var run_timer: Timer
+var run_arena: Control
+var combat_hud: Dictionary = {}
+var last_hit_damage := 0
+var last_hit_ability := false
+var finish_pending := false
+var skipping_run := false
+var backgrounded_at := 0
 
 func _ready() -> void:
 	randomize()
@@ -140,10 +147,27 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_RESIZED:
 		queue_redraw()
 	elif what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_WM_CLOSE_REQUEST:
+		backgrounded_at = int(Time.get_unix_time_from_system())
+		if is_instance_valid(run_arena): run_arena.animation_enabled = false
 		_save_progress()
 	elif what == NOTIFICATION_APPLICATION_RESUMED:
-		_accrue_offline_time()
-		_save_progress()
+		_resume_from_background.call_deferred()
+
+func _resume_from_background() -> void:
+	if backgrounded_at == 0: return
+	backgrounded_at = 0
+	var away := clampi(int(Time.get_unix_time_from_system())-last_saved_at,0,MAX_OFFLINE_SECONDS)
+	# A long absence uses the same offline report as a cold launch. A short
+	# interruption preserves the live 3D world and carries fractional AFK time.
+	if page == "run" and farm_enabled and idle_progress_seconds+away >= DUNGEON_RUN_SECONDS:
+		run_active = false
+		run_timer.stop()
+		page = "camp"
+	_accrue_offline_time()
+	_save_progress()
+	if page == "run":
+		if is_instance_valid(run_arena): run_arena.animation_enabled = run_active
+	else:
 		_build_ui()
 
 func _region_index(target_floor: int = -1) -> int:
@@ -158,6 +182,9 @@ func _build_ui() -> void:
 		if child != run_timer:
 			remove_child(child)
 			child.queue_free()
+	if page == "run":
+		_build_run()
+		return
 	var margins := MarginContainer.new()
 	margins.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	margins.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -174,39 +201,31 @@ func _build_ui() -> void:
 	margins.add_child(layout)
 	layout.add_child(_build_header())
 	layout.add_child(_build_title_row())
-	if page == "run":
-		var run_body := VBoxContainer.new()
-		run_body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		run_body.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		run_body.add_theme_constant_override("separation", 8)
-		layout.add_child(run_body)
-		_build_run(run_body)
-	else:
-		var body := HBoxContainer.new()
-		body.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		body.add_theme_constant_override("separation", 10)
-		layout.add_child(body)
-		body.add_child(_build_hero_rail())
-		var middle := VBoxContainer.new()
-		middle.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		middle.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		body.add_child(middle)
-		var scroll := ScrollContainer.new()
-		scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-		middle.add_child(scroll)
-		var content := VBoxContainer.new()
-		content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		content.add_theme_constant_override("separation", 9)
-		scroll.add_child(content)
-		match page:
-			"camp": _build_camp(content)
-			"gear": _build_gear(content)
-			"map": _build_map(content)
-			"loot": _build_loot(content)
-		body.add_child(_build_stats_rail())
-		layout.add_child(_build_navigation())
+	var body := HBoxContainer.new()
+	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	body.add_theme_constant_override("separation", 10)
+	layout.add_child(body)
+	body.add_child(_build_hero_rail())
+	var middle := VBoxContainer.new()
+	middle.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	middle.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	body.add_child(middle)
+	var scroll := ScrollContainer.new()
+	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	middle.add_child(scroll)
+	var content := VBoxContainer.new()
+	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	content.add_theme_constant_override("separation", 9)
+	scroll.add_child(content)
+	match page:
+		"camp": _build_camp(content)
+		"gear": _build_gear(content)
+		"map": _build_map(content)
+		"loot": _build_loot(content)
+	body.add_child(_build_stats_rail())
+	layout.add_child(_build_navigation())
 
 func _build_header() -> Control:
 	var bar := HBoxContainer.new()
@@ -411,89 +430,104 @@ func _build_map(parent: VBoxContainer) -> void:
 	notes_stack.add_child(_paragraph_label("When you leave or background the app, the next launch simulates completed runs from elapsed time. Up to 24 hours are counted; overflow gear is salvaged into Gold.", 12, PALE))
 	notes.add_child(notes_stack)
 
-func _build_run(parent: VBoxContainer) -> void:
-	var region := _region_data()
-	var stage := Control.new()
-	stage.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	stage.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	stage.custom_minimum_size.y = 280
-	parent.add_child(stage)
+func _build_run() -> void:
+	combat_hud.clear()
 	var arena := BattleArt.new()
 	arena.name = "BattleArena"
 	arena.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	arena.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	arena.character_class = character_class
-	arena.enemy_name = current_enemy
-	arena.encounter = run_stage + 1
-	arena.region_index = _region_index(floor_number)
-	arena.elapsed = run_visual_seconds
+	arena.region_index = _region_index()
 	arena.animation_enabled = run_active
-	stage.add_child(arena)
-	var hud_margins := MarginContainer.new()
-	hud_margins.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	hud_margins.add_theme_constant_override("margin_left", 17)
-	hud_margins.add_theme_constant_override("margin_right", 17)
-	hud_margins.add_theme_constant_override("margin_top", 13)
-	stage.add_child(hud_margins)
-	var top_hud := VBoxContainer.new()
-	top_hud.add_theme_constant_override("separation", 5)
-	hud_margins.add_child(top_hud)
-	var top_panel := _panel(Color(0.035, 0.041, 0.052, 0.80), Color("806247"), 12)
-	top_hud.add_child(top_panel)
-	var top_stack := VBoxContainer.new()
-	top_stack.add_theme_constant_override("separation", 5)
-	top_panel.add_child(top_stack)
-	var title := HBoxContainer.new()
-	title.add_child(_label("ENCOUNTER %02d / %02d" % [mini(run_stage + 1, run_max_stages), run_max_stages], 10, GOLD, true))
-	var title_spacer := Control.new()
-	title_spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	title.add_child(title_spacer)
-	title.add_child(_label("%s" % ("AUTO-FIGHTING" if run_active else "PAUSED"), 9, Color("eda66e") if run_active else MUTED, true))
-	top_stack.add_child(title)
-	top_stack.add_child(_progress_bar(run_stage, run_max_stages, GOLD, 8))
-	var hud_spacer := Control.new()
-	hud_spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	top_hud.add_child(hud_spacer)
-	var is_boss := current_enemy == String(region.boss)
-	var threat := int((620 + maxi(0, floor_number - 4) * 85) * (1.55 if is_boss else 1.0))
-	var combat_status := HBoxContainer.new()
-	combat_status.add_theme_constant_override("separation", 8)
-	parent.add_child(combat_status)
-	var enemy_panel := _panel(Color(0.045, 0.039, 0.045, 0.88), Color("784b3d"), 12)
-	enemy_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	combat_status.add_child(enemy_panel)
-	var enemy_info := VBoxContainer.new()
-	enemy_info.add_theme_constant_override("separation", 4)
-	enemy_panel.add_child(enemy_info)
-	enemy_info.add_child(_label(current_enemy.to_upper(), 12, PALE, true))
-	enemy_info.add_child(_label("%s  •  THREAT %d" % ["BOSS" if is_boss else "ELITE", threat], 8, Color("e6a16c"), true))
-	enemy_info.add_child(_label("LIFE  %s / %s" % [_short_number(enemy_health), _short_number(enemy_max_health)], 9, Color("d9b5a8"), true))
-	enemy_info.add_child(_progress_bar(enemy_health, enemy_max_health, Color("c55649"), 7))
-	var current_stats := _combat_stats()
-	var hero_panel := _panel(Color(0.035, 0.049, 0.046, 0.88), Color("4f705d"), 12)
-	hero_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	combat_status.add_child(hero_panel)
-	var hero_info := VBoxContainer.new()
-	hero_info.add_theme_constant_override("separation", 4)
-	hero_panel.add_child(hero_info)
-	hero_info.add_child(_label("NYRA  •  %s" % character_class.to_upper(), 12, PALE, true))
-	hero_info.add_child(_label("VITALITY  %s / %s" % [_short_number(run_health), _short_number(int(current_stats.max_hp))], 9, GREEN, true))
-	hero_info.add_child(_progress_bar(run_health, int(current_stats.max_hp), GREEN, 7))
-	hero_info.add_child(_label("MANA  %d / %d" % [run_mana, int(current_stats.max_mana)], 9, Color("bca5df"), true))
-	var actions := HBoxContainer.new()
-	actions.add_theme_constant_override("separation", 8)
-	parent.add_child(actions)
-	var latest_event: String = String(run_events.back()) if not run_events.is_empty() else "Nyra enters the Hollow Spire."
-	var event_panel := _panel(Color(0.035, 0.041, 0.052, 0.86), Color("41434a"), 10)
-	event_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	event_panel.add_child(_paragraph_label("✦  " + latest_event, 10, PALE))
-	actions.add_child(event_panel)
-	var pause := _button("Ⅱ   %s" % ("PAUSE" if run_active else "RESUME"), PANEL_LIGHT, 11, Callable(self, "_toggle_run_pause"))
-	pause.custom_minimum_size = Vector2(130, 42)
-	actions.add_child(pause)
-	var skip := _button("SKIP TO LOOT   »", RED, 11, Callable(self, "_skip_run"))
-	skip.custom_minimum_size = Vector2(190, 42)
-	actions.add_child(skip)
+	arena.combat_requested.connect(_on_run_tick)
+	arena.state_changed.connect(_on_dungeon_state_changed)
+	add_child(arena)
+	run_arena = arena
+	var safe := MarginContainer.new()
+	safe.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	for edge in ["left","right","top","bottom"]:
+		safe.add_theme_constant_override("margin_" + edge, 18)
+	safe.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(safe)
+	var overlay := VBoxContainer.new()
+	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	safe.add_child(overlay)
+	var top := HBoxContainer.new()
+	top.add_theme_constant_override("separation",24)
+	top.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	overlay.add_child(top)
+	var hero_panel := _panel(Color(0.025,0.035,0.05,0.86),Color("5d6370"),12)
+	hero_panel.custom_minimum_size.x = 190
+	hero_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	top.add_child(hero_panel)
+	var hero_stack := VBoxContainer.new()
+	hero_panel.add_child(hero_stack)
+	hero_stack.add_child(_label("NYRA  /  LV. %d" % player_level,15,PALE,true))
+	hero_stack.add_child(_label(character_class.to_upper(),9,GOLD,true))
+	combat_hud.hp = _progress_bar(run_health,int(_combat_stats().max_hp),RED,9)
+	hero_stack.add_child(combat_hud.hp)
+	combat_hud.mana = _progress_bar(run_mana,int(_combat_stats().max_mana),Color("5f91c4"),5)
+	hero_stack.add_child(combat_hud.mana)
+	combat_hud.life = _label("",9,MUTED)
+	hero_stack.add_child(combat_hud.life)
+	var top_gap := Control.new()
+	top_gap.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	top.add_child(top_gap)
+	var objective_panel := _panel(Color(0.025,0.035,0.05,0.80),Color("5a4b37"),12)
+	objective_panel.custom_minimum_size.x = 215
+	objective_panel.size_flags_horizontal = Control.SIZE_SHRINK_END
+	top.add_child(objective_panel)
+	var objective := VBoxContainer.new()
+	objective_panel.add_child(objective)
+	objective.add_child(_label(String(_region_data().dungeon).to_upper(),13,GOLD,true))
+	objective.add_child(_label("FLOOR %02d  •  AUTOMATIC EXPEDITION" % floor_number,8,MUTED,true))
+	combat_hud.progress = _progress_bar(0,run_max_stages,GOLD,5)
+	objective.add_child(combat_hud.progress)
+	combat_hud.encounter = _label("",10,PALE,true)
+	objective.add_child(combat_hud.encounter)
+	var spacer := Control.new()
+	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	overlay.add_child(spacer)
+	var bottom := HBoxContainer.new()
+	bottom.alignment = BoxContainer.ALIGNMENT_END
+	bottom.add_theme_constant_override("separation",12)
+	overlay.add_child(bottom)
+	var status_panel := _panel(Color(0.025,0.035,0.05,0.82),Color("4b505a"),12)
+	status_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	bottom.add_child(status_panel)
+	var status := VBoxContainer.new()
+	status_panel.add_child(status)
+	combat_hud.state = _label("AUTO • ENTERING THE DUNGEON",11,GOLD,true)
+	status.add_child(combat_hud.state)
+	combat_hud.enemy = _label("",10,PALE)
+	status.add_child(combat_hud.enemy)
+	combat_hud.enemy_hp = _progress_bar(enemy_health,enemy_max_health,RED,5)
+	status.add_child(combat_hud.enemy_hp)
+	combat_hud.pause = _button("Ⅱ  PAUSE",Color("26323b"),11,Callable(self,"_toggle_run_pause"))
+	combat_hud.pause.custom_minimum_size = Vector2(112,48)
+	combat_hud.pause.size_flags_horizontal = Control.SIZE_SHRINK_END
+	bottom.add_child(combat_hud.pause)
+	var skip := _button("SKIP TO LOOT  »",Color("713c32"),11,Callable(self,"_skip_run"))
+	skip.custom_minimum_size = Vector2(160,48)
+	skip.size_flags_horizontal = Control.SIZE_SHRINK_END
+	bottom.add_child(skip)
+	_sync_combat_hud()
+
+func _on_dungeon_state_changed(description: String) -> void:
+	if combat_hud.has("state"):
+		combat_hud.state.text = description
+
+func _sync_combat_hud() -> void:
+	if page != "run" or combat_hud.is_empty(): return
+	combat_hud.hp.value = run_health
+	combat_hud.mana.value = run_mana
+	combat_hud.life.text = "%d LIFE   /   %d MANA" % [run_health,run_mana]
+	combat_hud.progress.value = run_stage
+	combat_hud.encounter.text = "ENCOUNTER %02d / %02d" % [mini(run_stage+1,run_max_stages),run_max_stages]
+	combat_hud.enemy.text = "%s  •  %d / %d" % [current_enemy,enemy_health,enemy_max_health]
+	combat_hud.enemy_hp.max_value = enemy_max_health
+	combat_hud.enemy_hp.value = enemy_health
+	combat_hud.pause.text = "Ⅱ  PAUSE" if run_active else "▶  RESUME"
 
 func _build_loot(parent: VBoxContainer) -> void:
 	var victory := _panel(Color("28261f"), Color("796746"), 17)
@@ -892,17 +926,24 @@ func _start_run() -> void:
 	run_events = ["Nyra enters %s." % String(_region_data().dungeon)]
 	current_enemy = ENEMIES[randi() % ENEMIES.size()]
 	_prepare_enemy()
-	run_timer.start()
+	run_timer.stop() # Visible combat is driven by contact events from the 3D scene.
+	finish_pending = false
 	_save_progress()
 	_build_ui()
 
 func _on_run_tick() -> void:
-	if not run_active:
+	if not run_active or page != "run" or finish_pending:
 		return
-	run_visual_seconds += run_timer.wait_time
-	if _resolve_stage():
-		_save_progress()
-		_build_ui()
+	var previous_stage := run_stage
+	var previous_max := enemy_max_health
+	var previous_health := enemy_health
+	_resolve_stage()
+	if is_instance_valid(run_arena):
+		var defeated := run_stage > previous_stage
+		var remaining := 0.0 if defeated else float(enemy_health)/float(maxi(1,previous_max))
+		run_arena.resolve_hit(mini(last_hit_damage,previous_health),remaining,defeated,run_stage,last_hit_ability)
+	_save_progress()
+	_sync_combat_hud()
 
 func _resolve_stage() -> bool:
 	var stats := _combat_stats()
@@ -917,6 +958,8 @@ func _resolve_stage() -> bool:
 	var critical := randf() * 100.0 < crit_chance
 	if critical:
 		damage = int(float(damage) * (2.15 if character_class == "Ranger" else 1.7))
+	last_hit_damage = damage
+	last_hit_ability = cast_ability
 	enemy_health = maxi(0, enemy_health - damage)
 	var enemy_fell := enemy_health == 0
 	if not enemy_fell:
@@ -983,24 +1026,23 @@ func _clear_chance_for_floor(power: int, target_floor: int) -> float:
 func _skip_run() -> void:
 	if page != "run":
 		return
+	if finish_pending: return
+	skipping_run = true
 	while page == "run" and run_stage < run_max_stages:
 		if not _resolve_stage():
 			break
 	if page == "run":
 		_complete_run()
+	skipping_run = false
 
 func _toggle_run_pause() -> void:
-	var arena := find_child("BattleArena", true, false)
-	if arena != null:
-		run_visual_seconds = float(arena.get("elapsed"))
-	if run_active:
-		run_timer.stop()
-		run_active = false
-	else:
-		run_timer.start()
-		run_active = true
+	if finish_pending: return
+	run_active = not run_active
+	if is_instance_valid(run_arena):
+		run_arena.animation_enabled = run_active
+	combat_hud.state.text = "PAUSED" if not run_active else "AUTO • RESUMING"
+	_sync_combat_hud()
 	_save_progress()
-	_build_ui()
 
 func _toggle_farm() -> void:
 	farm_enabled = not farm_enabled
@@ -1032,7 +1074,7 @@ func _complete_run() -> void:
 	floor_number += 1
 	page = "loot"
 	_save_progress()
-	_build_ui()
+	_finish_run_presentation()
 
 func _fail_run() -> void:
 	run_active = false
@@ -1044,7 +1086,21 @@ func _fail_run() -> void:
 	run_loot.clear()
 	page = "loot"
 	_save_progress()
-	_build_ui()
+	_finish_run_presentation()
+
+func _finish_run_presentation() -> void:
+	if skipping_run:
+		_build_ui()
+		return
+	finish_pending = true
+	if is_instance_valid(run_arena):
+		if not run_succeeded:
+			run_arena.world.hero.die()
+	combat_hud.state.text = "DUNGEON CLEARED • COLLECTING LOOT" if run_succeeded else "EXPEDITION ENDED"
+	get_tree().create_timer(1.2).timeout.connect(func():
+		finish_pending = false
+		_build_ui()
+	)
 
 func _generate_item(boss_bonus: bool = false, target_floor: int = -1) -> Dictionary:
 	var slot: String = GEAR_SLOTS[randi() % GEAR_SLOTS.size()]
