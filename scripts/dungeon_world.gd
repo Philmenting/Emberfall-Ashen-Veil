@@ -47,6 +47,7 @@ func _ready() -> void:
 	_build_environment()
 	_build_dungeon()
 	_build_regional_details()
+	_build_dressed_rooms()
 	_batch_static_geometry()
 	if simulation.uses_journey(): _build_journey_props()
 	if simulation.Contract.mode(simulation.contract())=="trial": _build_trial_gate()
@@ -88,7 +89,7 @@ func _ready() -> void:
 	target_ring.visible = false
 	camera = Camera3D.new()
 	camera.projection = Camera3D.PROJECTION_PERSPECTIVE
-	camera.fov = 44.0
+	camera.fov = 40.0
 	camera.near = 0.2
 	camera.far = 100.0
 	add_child(camera)
@@ -96,8 +97,8 @@ func _ready() -> void:
 	camera_target = hero.position + Vector3(0,0,-1.8)
 	_position_camera()
 	var lantern := OmniLight3D.new()
-	lantern.light_color = Color("afcfeb")
-	lantern.light_energy = 0.65
+	lantern.light_color = Color("cad8e5")
+	lantern.light_energy = 1.15
 	lantern.omni_range = 6.0
 	lantern.position = Vector3(0,2.8,0)
 	hero.add_child(lantern)
@@ -142,7 +143,7 @@ func _build_environment() -> void:
 	env.background_color = Color(theme.background)
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	env.ambient_light_color = Color(theme.ambient)
-	env.ambient_light_energy = 0.28
+	env.ambient_light_energy = 0.32
 	env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
 	env.fog_enabled = true
 	env.fog_light_color = Color(theme.fog)
@@ -153,10 +154,15 @@ func _build_environment() -> void:
 	sun = moon
 	moon.rotation_degrees = Vector3(-52,-32,0)
 	moon.light_color = Color(theme.moon)
-	moon.light_energy = 0.7
+	moon.light_energy = 0.95
 	moon.shadow_enabled = true
-	moon.directional_shadow_max_distance = 45.0
+	moon.directional_shadow_max_distance = 32.0
 	add_child(moon)
+	var rim:=DirectionalLight3D.new()
+	rim.rotation_degrees=Vector3(-24,145,0)
+	rim.light_color=Color("c4a278")
+	rim.light_energy=0.38
+	add_child(rim)
 
 func _build_dungeon() -> void:
 	if simulation.uses_journey():
@@ -284,19 +290,22 @@ func _banner(pos: Vector3) -> void:
 func _torch(pos: Vector3) -> void:
 	_box(pos+Vector3(0,-0.55,0),Vector3(0.16,1.1,0.16),materials.metal)
 	_box(pos,Vector3(0.48,0.12,0.48),materials.dark)
-	var flame := SphereMesh.new()
-	flame.radius = 0.14
-	flame.height = 0.50
+	var flame := QuadMesh.new()
+	flame.size=Vector2(0.7,1.1)
 	var fire := MeshInstance3D.new()
-	fire.mesh = flame
-	fire.material_override = materials.fire
-	fire.position = pos+Vector3(0,0.22,0)
+	fire.mesh=flame
+	var fire_mat:=ShaderMaterial.new()
+	fire_mat.shader=preload("res://assets/shaders/ember_flame.gdshader")
+	fire_mat.set_shader_parameter("flame_color",Color(theme.fire))
+	fire.material_override=fire_mat
+	fire.position=pos+Vector3(0,0.35,0)
+	fire.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(fire)
 	var light := OmniLight3D.new()
 	light.position = pos+Vector3(0,0.55,0)
 	light.light_color = Color(theme.light)
-	light.light_energy = 2.2
-	light.omni_range = 5.5
+	light.light_energy = 3.4
+	light.omni_range = 7.0
 	add_child(light)
 	torches.append(light)
 
@@ -307,6 +316,7 @@ func _batch_static_geometry() -> void:
 	for node in find_children("*","MeshInstance3D",true,false):
 		var mesh_node: MeshInstance3D = node
 		var source: Mesh = mesh_node.mesh
+		if mesh_node.name in ["FloodedArchive","LavaBasin","LowCryptMist"]: continue
 		var signature := ""
 		var transform: Transform3D = mesh_node.global_transform
 		if source is BoxMesh:
@@ -316,6 +326,8 @@ func _batch_static_geometry() -> void:
 			signature = "cylinder:"+str([source.bottom_radius,source.top_radius,source.height,source.radial_segments])
 		elif source is TorusMesh:
 			signature = "torus:"+str([source.inner_radius,source.outer_radius,source.rings,source.ring_segments])
+		elif source is PlaneMesh:
+			signature="plane:"+str(source.size)
 		elif source is SphereMesh:
 			signature = "sphere:"+str([source.radius,source.height,source.radial_segments,source.rings])
 		else: continue
@@ -337,7 +349,7 @@ func _batch_boxes(transforms: Array, mat: Material) -> void:
 	mesh.size = Vector3.ONE
 	_batch_mesh(transforms,mat,mesh)
 
-func _batch_mesh(transforms: Array,mat: Material,mesh: Mesh) -> void:
+func _batch_mesh(transforms: Array,mat: Material,mesh: Mesh,casts_shadow: bool=true) -> void:
 	if transforms.is_empty(): return
 	var multi := MultiMesh.new()
 	multi.transform_format = MultiMesh.TRANSFORM_3D
@@ -346,6 +358,7 @@ func _batch_mesh(transforms: Array,mat: Material,mesh: Mesh) -> void:
 	for i in range(transforms.size()): multi.set_instance_transform(i,transforms[i])
 	var node := MultiMeshInstance3D.new()
 	node.multimesh = multi
+	if mesh is PlaneMesh or not casts_shadow: node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	node.material_override = mat
 	add_child(node)
 
@@ -467,14 +480,14 @@ func _process(delta: float) -> void:
 			warnings[id_value].scale = Vector3.ONE if enemy.warning.has("zones") else Vector3.ONE*(0.92+sin(elapsed*14.0)*0.04)
 	target_ring.visible = phase=="combat" and actor_by_id.has(simulation.target_id)
 	if target_ring.visible: target_ring.position = actor_by_id[simulation.target_id].position+Vector3(0,0.07,0)
-	for i in range(torches.size()): torches[i].light_energy = 2.1+sin(elapsed*8.0+i*2.1)*0.15
+	for i in range(torches.size()): torches[i].light_energy = 3.1+sin(elapsed*8.0+i*2.1)*0.22
 	camera_target = camera_target.lerp(hero.position+Vector3(0,0,-1.8),1.0-exp(-delta*4.0))
 	_position_camera()
 	_set_description("AUTO • " + String(simulation.action).to_upper())
 	simulation_advanced.emit(updates)
 
 func _position_camera() -> void:
-	camera.position = camera_target+Vector3(9.0,12.8,12.0)
+	camera.position = camera_target+Vector3(8.5,11.8,11.2)
 	camera.look_at(camera_target+Vector3(0,0.4,0))
 
 func _set_description(value: String) -> void:
@@ -512,6 +525,8 @@ func _show_event(event: Dictionary) -> void:
 				var bolt := _box((start+end)*0.5,Vector3(0.06,0.06,start.distance_to(end)),mat)
 				bolt.look_at(end)
 				effects.append({"node":bolt,"age":0.0,"life":0.18,"kind":"bolt"})
+			_impact_sparks(actor.position+Vector3(0,1.0,0),color)
+			if character_class=="Vowkeeper": _slash_arc(hero.position,color)
 			if event.dead:
 				actor.die()
 				var loot := _box(actor.position+Vector3(0,0.5,0),Vector3(0.12,0.5,0.12),materials.soul)
@@ -783,10 +798,17 @@ func _build_journey_floor() -> void:
 					cells[Vector2i(x,z)]=true
 					break
 	var batches: Array=[[],[],[],[],[]]
+	var covered: Dictionary={}
 	for cell: Vector2i in cells:
 		var position3 := Vector3(cell.x,-0.2,cell.y)
 		var dimensions := Vector3(0.97,0.36,0.97)
-		batches[posmod(cell.x*7+cell.y*3,5)].append(Transform3D(Basis.IDENTITY.scaled(dimensions),position3))
+		if not covered.has(cell):
+			if cells.has(cell+Vector2i.RIGHT) and posmod(cell.x+cell.y,3)!=0:
+				dimensions.x=1.97
+				position3.x+=0.5
+				covered[cell+Vector2i.RIGHT]=true
+			position3.y+=float(posmod(cell.x*17+cell.y*29,7)-3)*0.003
+			batches[posmod(cell.x*17+cell.y*13,5)].append(Transform3D(Basis.IDENTITY.scaled(dimensions),position3))
 		for direction in [Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP,Vector2i.DOWN]:
 			if cells.has(cell+direction): continue
 			# Only silhouettes at floor boundaries; passages remain open.
@@ -796,7 +818,8 @@ func _build_journey_floor() -> void:
 			var shape := Vector3(0.16,height,1.0) if direction.x!=0 else Vector3(1.0,height,0.16)
 			_box(edge,shape,materials.stone)
 			_box(edge+Vector3(0,height*0.5,0),Vector3(shape.x+0.08,0.1,shape.z+0.08),materials.edge)
-	for m in range(5): _batch_boxes(batches[m],floor_materials[m])
+	var paver:=preload("res://scripts/sculpted_mesh.gd").paver()
+	for m in range(5): _batch_mesh(batches[m],floor_materials[m],paver,false)
 	for room in range(6):
 		var origin := _point(Layout.center(region_index,room))
 		for side in [-1.0,1.0]:
@@ -941,3 +964,110 @@ func _build_trial_gate() -> void:
 		var angle:=TAU*i/8.0
 		var rune:=_box(center+Vector3(sin(angle)*1.55,cos(angle)*1.55,0),Vector3(0.14,0.25,0.12),glow)
 		rune.rotation.z=-angle
+
+func _build_dressed_rooms() -> void:
+	# Secondary architecture below and behind the playable floor gives the ruins mass.
+	var grime:=ShaderMaterial.new()
+	grime.shader=preload("res://assets/shaders/ground_grime.gdshader")
+	grime.set_shader_parameter("tint",Color(0.075,0.055,0.042,0.68))
+	var blood:=ShaderMaterial.new()
+	blood.shader=preload("res://assets/shaders/ground_grime.gdshader")
+	blood.set_shader_parameter("tint",Color(0.13,0.032,0.024,0.46))
+	for room in range(6):
+		var origin:=_point(Layout.center(region_index,room)) if simulation.uses_journey() else Vector3(0,0,4-room*11.2)
+		_box(origin+Vector3(0,-1.1,0),Vector3(12.1,1.7,9.4),materials.dark)
+		for side in [-1.0,1.0]:
+			for step in range(3):
+				_box(origin+Vector3(side*(5.7-step*0.28),-1.6-step*0.7,0),Vector3(0.85,0.75,9.5),materials.stone)
+			for z in [-3.5,0.0,3.5]:
+				# Molded bases and inset ribbed niches break the flat boundary wall.
+				_box(origin+Vector3(side*5.5,0.35,z),Vector3(0.9,0.7,1.1),materials.dark)
+				if side<0 and region_index!=2:
+					_pillar(origin+Vector3(-6.1,0,z),true)
+					_box(origin+Vector3(-6.55,1.8,z),Vector3(0.25,3.6,2.9),materials.dark)
+					for bar in range(4):
+						_box(origin+Vector3(-6.37,1.7,z-0.75+bar*0.5),Vector3(0.07,2.4,0.07),materials.metal)
+		if region_index in [0,1]:
+			_arch(origin+Vector3(-6.6,-0.15,0),PI/2)
+			for far in [-1.0,1.0]:
+				_pillar(origin+Vector3(-9.3,-3.1,far*3.6),true)
+		for i in range(9):
+			var patch:=MeshInstance3D.new()
+			var plane:=PlaneMesh.new()
+			plane.size=Vector2(2.0+rng.randf()*2.0,1.2+rng.randf()*2.0)
+			patch.mesh=plane
+			patch.material_override=blood if i%4==0 and region_index!=1 else grime
+			patch.position=origin+Vector3(rng.randf_range(-4.5,4.5),0.025+i*0.0004,rng.randf_range(-3.7,3.7))
+			patch.rotation.y=rng.randf()*TAU
+			patch.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			add_child(patch)
+		for i in range(18):
+			var side: float=-1.0 if i%2==0 else 1.0
+			var rock:=_cylinder(origin+Vector3(side*rng.randf_range(4.2,5.4),0.08,rng.randf_range(-4,4)),rng.randf_range(0.12,0.28),0.05,rng.randf_range(0.13,0.38),materials.stone,5)
+			rock.rotation=Vector3(rng.randf()*0.6,rng.randf()*TAU,rng.randf()*0.4)
+	var mist:=MeshInstance3D.new()
+	mist.name="LowCryptMist"
+	var veil:=PlaneMesh.new()
+	veil.size=Vector2(52,110)
+	mist.mesh=veil
+	var fog_material:=ShaderMaterial.new()
+	fog_material.shader=preload("res://assets/shaders/crypt_mist.gdshader")
+	fog_material.set_shader_parameter("mist_color",Color(Color(theme.fog).lightened(0.18),0.42))
+	mist.material_override=fog_material
+	mist.position=Vector3(0,-0.7,-32)
+	mist.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(mist)
+	if region_index==0:
+		_box(Vector3(0,-4.6,-32),Vector3(54,0.3,110),materials.dark)
+		for side in [-1.0,1.0]:
+			for i in range(16):
+				var rock:=_cylinder(Vector3(side*(8.5+float(i%3)), -2.6,-3-i*4.4),2.0,0.6,4.5,materials.dark,5)
+				rock.rotation.z=side*0.25
+	# Floating motes remain decorative and never consume simulation randomness.
+	var dust:=CPUParticles3D.new()
+	dust.name="DungeonDust"
+	dust.amount=90
+	dust.lifetime=9.0
+	dust.preprocess=9.0
+	dust.emission_shape=CPUParticles3D.EMISSION_SHAPE_BOX
+	dust.emission_box_extents=Vector3(16,2.2,43)
+	dust.position=Vector3(0,1.8,-32)
+	dust.direction=Vector3(0.3,1.0,0)
+	dust.initial_velocity_min=0.08
+	dust.initial_velocity_max=0.22
+	dust.gravity=Vector3.ZERO
+	dust.scale_amount_min=0.012
+	dust.scale_amount_max=0.035
+	var mote:=SphereMesh.new()
+	mote.radial_segments=4
+	mote.rings=2
+	dust.mesh=mote
+	dust.material_override=_material(Color("b49a73"),0,true)
+	add_child(dust)
+
+func _impact_sparks(origin: Vector3,color: Color) -> void:
+	for i in range(5):
+		var spark:=_box(origin,Vector3(0.025,0.07,0.025),_material(color,0,true))
+		spark.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		effects.append({"node":spark,"age":0.0,"life":0.22+rng.randf()*0.15,"kind":"spark","velocity":Vector3(rng.randf_range(-2.5,2.5),rng.randf_range(0.6,2.2),rng.randf_range(-2.5,2.5))})
+
+func _slash_arc(origin: Vector3,color: Color) -> void:
+	var mesh:=SurfaceTool.new()
+	mesh.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for i in range(12):
+		var a:=hero.rotation.y-1.2+i*0.2
+		var b:=a+0.2
+		for point in [Vector2(a,1.1),Vector2(b,1.1),Vector2(a,1.9),Vector2(b,1.1),Vector2(b,1.9),Vector2(a,1.9)]:
+			mesh.add_vertex(Vector3(-sin(point.x)*point.y,0.9+sin(point.x)*0.25,-cos(point.x)*point.y))
+	mesh.generate_normals()
+	var arc:=MeshInstance3D.new()
+	arc.mesh=mesh.commit()
+	var mat:=_material(Color(color,0.45),0,true)
+	mat.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.cull_mode=BaseMaterial3D.CULL_DISABLED
+	mat.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED
+	arc.material_override=mat
+	arc.position=origin
+	arc.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(arc)
+	effects.append({"node":arc,"age":0.0,"life":0.16,"kind":"slash"})

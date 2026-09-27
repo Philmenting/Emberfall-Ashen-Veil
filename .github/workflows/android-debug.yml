@@ -94,6 +94,9 @@ jobs:
       - name: Check targeted hunts, timed trials and one-time rewards
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-contracts-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/contracts_smoke.gd
 
+      - name: Check sculpted graphics, regional surfaces and isolated effects
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-visuals-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/visuals_smoke.gd
+
       - name: Export Android test APK and Play-format AAB
         env:
           GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ runner.temp }}/debug.keystore

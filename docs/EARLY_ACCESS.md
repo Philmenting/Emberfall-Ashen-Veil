@@ -4,7 +4,7 @@ Ziel: ein veröffentlichbares Android-AFK-Action-RPG im Querformat mit dem räum
 
 ## Stand und Nachweise
 
-Der bisherige Entwicklungsschritt ist **Fortschritt**: Version 0.13 enthält automatische 3D-Gruppenkämpfe, vier eigene begehbare Grundrisse mit Zwischenzielen und Karte, Klassenverhalten mit Mana-Barriere, Abstandhalten und wählbarer automatischer Fähigkeitsrotation, gemeinsame Live-/Skip-/AFK-Simulation und persistente Expeditionen mit Speichersicherung sowie gezielte Beutejagden und 30 zeitbegrenzte Aschenprüfungen. 749 lokale Prüfungen, Android-Aufnahmen und zwei erfolgreiche Prüfungen bei tatsächlichem Android-Prozessneustart liegen vor. Das allein belegt noch keine Early-Access-Reife.
+Der bisherige Entwicklungsschritt ist **Fortschritt**: Version 0.14 enthält automatische 3D-Gruppenkämpfe, vier eigene begehbare Grundrisse mit Zwischenzielen und Karte, Klassenverhalten mit Mana-Barriere, Abstandhalten und wählbarer automatischer Fähigkeitsrotation, gemeinsame Live-/Skip-/AFK-Simulation und persistente Expeditionen mit Speichersicherung sowie gezielte Beutejagden und 30 zeitbegrenzte Aschenprüfungen. 784 lokale Prüfungen, Android-Aufnahmen und zwei erfolgreiche Prüfungen bei tatsächlichem Android-Prozessneustart liegen vor. Das allein belegt noch keine Early-Access-Reife.
 
 | Bereich | Aktueller Stand | Noch zu belegen / entwickeln |
 |---|---|---|
@@ -13,13 +13,13 @@ Der bisherige Entwicklungsschritt ist **Fortschritt**: Version 0.13 enthält aut
 | AFK | Gemeinsame Kampflogik, gewählte Etage, Zeitlimit, Overflow-Verkauf; exakte Fortsetzung über Neustarts geprüft | Längere Abwesenheiten auf physischen Geräten; Balancing der Erträge |
 | Spielstände | Zwei atomar ersetzte Generationen, Prüfsumme, Kampfzustand, Migration und sichtbare Fehler; 69 Prüfungen | Verständliche Sicherungs-/Wiederherstellungsbedienung, künftige Migrationen |
 | Bedienung | Klassenwahl beim Einstieg, getrennte Ausrüstungsreiter, echte Wertevergleiche, Farm-Prognosen, Offline-Bericht oben | Optionen, Hilfe und Rücknavigation ergänzt; weitere Bildschirmgrößen und physische Geräte prüfen |
-| Darstellung und Ton | Vier eigene Umgebungen, verschiedene Routen, Boss-Silhouetten und interaktive Zwischenziele; starre Figurenteile zusammengefasst | Synthetisierte Musik/Effekte und Leistungsmodus ergänzt; subjektive Klangprüfung und längere Gerätemessungen offen |
+| Darstellung und Ton | Vier eigene Umgebungen, verschiedene Routen, Boss-Silhouetten und interaktive Zwischenziele; geformte Figuren, gotische Architektur, neue Oberflächen, Nebel und Feuer; Figurenmeshes zusammengefasst und zwischengespeichert | Synthetisierte Musik/Effekte und Leistungsmodus ergänzt; subjektive Klangprüfung und längere Gerätemessungen offen |
 | Online-Umfang | Der aktuelle Stand ist lokal/solo | Rückmeldung zum Online-Umfang des Early Access steht aus; keine Mehrspieler-Funktionen behaupten |
-| Veröffentlichung | Lokale Debug-APK und signiertes AAB 0.13 lokal exportiert und geprüft; CI baut APK und AAB | Release-Checkliste, Store-Material, Datenschutz-/Altersangaben anhand tatsächlicher Funktionen, Freigabe in der Play Console |
+| Veröffentlichung | Lokale Debug-APK und signiertes AAB 0.14 lokal exportiert und geprüft; CI baut APK und AAB | Release-Checkliste, Store-Material, Datenschutz-/Altersangaben anhand tatsächlicher Funktionen, Freigabe in der Play Console |
 
 ## Freigabeprinzip
 
-Jeder Bereich braucht konkrete Belege am tatsächlichen Release-Kandidaten. Ein APK-Export oder grüne Unit-Tests allein ersetzen weder Spieltests noch die Prüfung der Veröffentlichungsvoraussetzungen. Offene Punkte bleiben offen; der Gesamtauftrag bleibt aktiv.
+Jeder Bereich braucht konkrete Belege am tatsächlichen Release-Kandidaten. Ein APK-Export oder grüne Unit-Tests allein ersetzen weder Spieltests noch die Prüfung der Veröffentlichungsvoraussetzungen. Offene Punkte bleiben offen; eine Early-Access-Freigabe ist damit noch nicht erteilt.
 
 ## Aktuelle Gameplay-Priorität
 
@@ -28,3 +28,7 @@ Der Nutzer hat eine engere Orientierung am weiteren Diablo-Immortal-Spielablauf 
 ## Stand nach 0.13
 
 [Beutejagden und Aschenprüfungen](HUNTS_AND_TRIALS.md) erweitern die Dungeon-Auswahl. Vor einer Early-Access-Freigabe bleiben insbesondere Sicherungs-/Wiederherstellungsbedienung, physische Geräte, menschliche Langzeittests, Online-Umfang und die Veröffentlichungsvoraussetzungen offen.
+
+## Grafischer Ausbau 0.14
+
+Die [Grafiküberarbeitung](VISUAL_UPGRADE.md) verbessert Figuren, Materialien, Architektur, Beleuchtung und Kampfeffekte. Die bisherigen Kampf- und Belohnungsregeln bleiben erhalten.

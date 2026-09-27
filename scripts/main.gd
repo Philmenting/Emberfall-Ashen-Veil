@@ -550,7 +550,7 @@ func _build_run() -> void:
 	top.add_theme_constant_override("separation",24)
 	top.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	overlay.add_child(top)
-	var hero_panel := _panel(Color(0.025,0.035,0.05,0.86),Color("5d6370"),12)
+	var hero_panel := _panel(Color(0.025,0.028,0.035,0.72),Color("756344"),4)
 	hero_panel.custom_minimum_size.x = 190
 	hero_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	hero_panel.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
@@ -582,7 +582,7 @@ func _build_run() -> void:
 	var top_gap := Control.new()
 	top_gap.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	top.add_child(top_gap)
-	var objective_panel := _panel(Color(0.025,0.035,0.05,0.80),Color("5a4b37"),12)
+	var objective_panel := _panel(Color(0.025,0.028,0.035,0.68),Color("756344"),4)
 	objective_panel.custom_minimum_size.x = 215
 	objective_panel.size_flags_horizontal = Control.SIZE_SHRINK_END
 	top.add_child(objective_panel)
@@ -623,7 +623,7 @@ func _build_run() -> void:
 	bottom.alignment = BoxContainer.ALIGNMENT_END
 	bottom.add_theme_constant_override("separation",12)
 	overlay.add_child(bottom)
-	var status_panel := _panel(Color(0.025,0.035,0.05,0.82),Color("4b505a"),12)
+	var status_panel := _panel(Color(0.025,0.028,0.035,0.72),Color("756344"),4)
 	status_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	bottom.add_child(status_panel)
 	var status := VBoxContainer.new()

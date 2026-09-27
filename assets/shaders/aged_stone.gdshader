@@ -16,6 +16,8 @@ void fragment() {
  vec3 base=stone_tint.rgb*(0.64+broad*0.62+grain);
  base=mix(base,vec3(0.075,0.084,0.073),smoothstep(0.65,0.88,broad)*0.7);
  ALBEDO=base*(1.0-veins*0.15);
- ROUGHNESS=roughness;
+ float pits=hash(floor(world_pos*36.0));
+ NORMAL_MAP=normalize(vec3((pits-0.5)*0.24,(grain-0.13)*0.6,1.0))*0.5+0.5;
+ ROUGHNESS=clamp(roughness+(broad-0.5)*0.2,0.25,1.0);
  SPECULAR=0.24;
 }

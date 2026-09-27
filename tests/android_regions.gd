@@ -6,25 +6,28 @@ var case_captured := false
 var transitioning := false
 var fps_samples: Array[float] = []
 func _ready() -> void:
+	save_store=SaveStore.new("user://regional-art-"+str(Time.get_ticks_usec()))
 	super._ready()
+	var welcome:=get_node_or_null("Welcome")
+	if welcome!=null: remove_child(welcome); welcome.queue_free()
 	farm_enabled=false
 	_next_case.call_deferred()
 func _next_case() -> void:
 	region_case+=1
-	if region_case>=8:
+	if region_case>=12:
 		set_process(false)
 		print("ANDROID_REGIONS_DONE")
 		return
 	floor_number=(region_case%4)*10+1
-	character_class="Vowkeeper"
+	character_class=["Vowkeeper","Arcanist","Ranger"][region_case/4]
 	_start_run()
 	# High health isolates rendering from progression balance during the showcase.
 	expedition.stats.max_hp=100000
 	expedition.hero_hp=100000
 	expedition.stats.armor=10000
-	expedition.stage=1 if region_case<4 else 5
+	expedition.stage=1 if region_case<8 else 5
 	expedition.phase="combat"
-	expedition.hero_pos=Vector2(0,-13) if region_case<4 else Vector2(0,-60)
+	expedition.hero_pos=expedition.checkpoint(expedition.stage)+Vector2(0,3.0)
 	_sync_model_state()
 	_build_ui()
 	case_clock=0.0
