@@ -93,6 +93,7 @@ func _options(parent: VBoxContainer) -> void:
 func _help(parent: VBoxContainer) -> void:
 	for entry in [
 		["AUTOMATIC EXPEDITIONS","Nyra walks, targets enemies, casts abilities and dodges on her own. Pause freezes the expedition; Skip to Loot simulates the remaining fight and ends repeat mode."],
+		["BOSS WARNINGS","Each guardian has a different ground attack: a bell ring, tidal lane, three grave blasts or crossing fire lanes. Unmarked ground is safe from that attack. Below half Life, guardians awaken with wider, faster attacks. Nyra dodges automatically when ready; gear and the dodge cooldown still matter. Skip and offline farming use the same rules."],
 		["CHOOSE A BUILD","Strength powers Vowkeeper, Intellect powers Arcanist and Dexterity powers Ranger. Vitality increases Life; Spirit improves Mana and its recovery on hits. Compare the six stat changes before equipping. Class changes refund spent points."],
 		["ARCANIST: MANA WARD","Mana Ward absorbs up to 35% of damage after armor at a cost of 2 Mana per damage absorbed. It always reserves enough Mana for one Nova. When the reserve is reached, incoming hits deal full damage. Nova refunds 25% of its cost. Mana and Spirit therefore support both offense and survival."],
 		["FARM WITH CONFIDENCE","Choose a cleared Farm Floor in camp. Reliable means at least 95% of the current combat patterns succeed. Recheck after changing gear. Repeat stops after a visible defeat."],

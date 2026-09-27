@@ -10,6 +10,7 @@ var target_ring: MeshInstance3D
 signal state_changed(description: String)
 const Actor = preload("res://scripts/dungeon_actor.gd")
 const ThemeData = preload("res://scripts/dungeon_theme.gd")
+const BossPatterns = preload("res://scripts/boss_patterns.gd")
 var theme: Dictionary = {}
 var character_class := "Vowkeeper"
 var region_index := 0
@@ -200,7 +201,8 @@ func _build_dungeon() -> void:
 		_torch(Vector3(side*3.8,2.5,-66.8))
 	_box(Vector3(0,0.005,-63),Vector3(7.0,0.02,6.0),materials.dark)
 	_ring(Vector3(0,0.035,-63),2.7,materials.metal)
-	_ring(Vector3(0,0.040,-63),2.4,materials.blood)
+	# Decorative inlays must not look like an active red danger telegraph.
+	_ring(Vector3(0,0.040,-63),2.4,materials.dark)
 	_box(Vector3(0,0.5,-67),Vector3(3.0,1.0,1.0),materials.stone)
 	# Faded carpet sections and scattered bones, clear of the walking centerline.
 	for z in [1.0,-11.0,-38.0,-49.0]:
@@ -371,7 +373,12 @@ func _ensure_wave(wave_index: int) -> void:
 			actor.die()
 			actor.animate(0.8,false)
 		if not enemy.warning.is_empty():
-			_show_event({"type":"warning","source":enemy.id,"position":enemy.warning.center,"radius":enemy.warning.radius,"duration":enemy.warning.left})
+			_show_event(_warning_event(enemy))
+
+func _warning_event(enemy: Dictionary) -> Dictionary:
+	var event: Dictionary=enemy.warning.duplicate(true)
+	event.merge({"type":"warning","source":enemy.id,"position":enemy.warning.center,"duration":enemy.warning.left})
+	return event
 
 func _point(point: Vector2) -> Vector3:
 	return Vector3(point.x,0,point.y)
@@ -419,7 +426,7 @@ func _process(delta: float) -> void:
 		if enemy.hp<=0 and actor.death_time<0: actor.die()
 		actor.animate(delta,actor.position.distance_to(old_position)>0.002)
 		if not enemy.warning.is_empty() and not warnings.has(id_value):
-			_show_event({"type":"warning","source":id_value,"position":enemy.warning.center,"radius":enemy.warning.radius,"duration":enemy.warning.left})
+			_show_event(_warning_event(enemy))
 		var bar: MeshInstance3D = bars[id_value]
 		bar.visible = enemy.hp>0 and int(id_value)/10==index
 		bar.position = actor.position+Vector3(0,3.8 if enemy.role=="boss" else 2.5,0)
@@ -431,7 +438,8 @@ func _process(delta: float) -> void:
 			warnings[id_value].queue_free()
 			warnings.erase(id_value)
 		else:
-			warnings[id_value].scale = Vector3.ONE*(0.92+sin(elapsed*14.0)*0.04)
+			# Boss telegraphs keep the exact collision footprint throughout the cast.
+			warnings[id_value].scale = Vector3.ONE if enemy.warning.has("zones") else Vector3.ONE*(0.92+sin(elapsed*14.0)*0.04)
 	target_ring.visible = phase=="combat" and actor_by_id.has(simulation.target_id)
 	if target_ring.visible: target_ring.position = actor_by_id[simulation.target_id].position+Vector3(0,0.07,0)
 	for i in range(torches.size()): torches[i].light_energy = 2.1+sin(elapsed*8.0+i*2.1)*0.15
@@ -481,6 +489,10 @@ func _show_event(event: Dictionary) -> void:
 			if is_instance_valid(ward_shell): ward_shell.visible=true
 		"warning":
 			if warnings.has(event.source): warnings[event.source].queue_free()
+			if event.has("zones"):
+				warnings[event.source]=_pattern_visual(event.zones,Color("f05f40"),0.32)
+				if actor_by_id.has(event.source): actor_by_id[event.source].strike()
+				return
 			var zone := Node3D.new()
 			zone.position = _point(event.position)+Vector3(0,0.06,0)
 			add_child(zone)
@@ -501,8 +513,14 @@ func _show_event(event: Dictionary) -> void:
 			zone.add_child(outline)
 			warnings[event.source] = zone
 		"impact":
+			if event.has("zones"):
+				var burst:=_pattern_visual(event.zones,Color(theme.fire),0.55)
+				effects.append({"node":burst,"age":0.0,"life":0.45,"kind":"pattern"})
+				return
 			var ring := _ring(_point(event.position)+Vector3(0,0.12,0),event.radius,materials.fire)
 			effects.append({"node":ring,"age":0.0,"life":0.35,"kind":"ring"})
+		"boss_phase":
+			if actor_by_id.has(event.source): _float_text(actor_by_id[event.source].position+Vector3(0,4.3,0),"AWAKENED",Color("ffd89b"))
 		"interrupt":
 			if actor_by_id.has(event.target): _float_text(actor_by_id[event.target].position+Vector3(0,2.8,0),"INTERRUPTED",Color("b4a2e4"))
 		"guard":
@@ -511,6 +529,41 @@ func _show_event(event: Dictionary) -> void:
 			_float_text(hero.position+Vector3(0,2.3,0),"EVADE",Color("adcbe0"))
 		"finished":
 			if not event.won: hero.die()
+
+func _pattern_visual(zones: Array, tint: Color, alpha: float) -> Node3D:
+	var node:=Node3D.new()
+	node.name="BossTelegraph"
+	add_child(node)
+	for border in [false,true]:
+		var vertices:=PackedVector3Array()
+		for zone in zones:
+			if not border:
+				for point in BossPatterns.triangles(zone): vertices.append(_point(point)+Vector3(0,0.085,0))
+			else:
+				for outline in BossPatterns.outlines(zone):
+					for i in range(outline.size()):
+						var a: Vector2=outline[i]
+						var b: Vector2=outline[(i+1)%outline.size()]
+						var direction: Vector2=(b-a).normalized()
+						var width:=Vector2(-direction.y,direction.x)*0.035
+						for point in [a-width,b-width,a+width,b-width,b+width,a+width]: vertices.append(_point(point)+Vector3(0,0.10,0))
+		var arrays:=[]
+		arrays.resize(Mesh.ARRAY_MAX)
+		arrays[Mesh.ARRAY_VERTEX]=vertices
+		var mesh:=ArrayMesh.new()
+		mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,arrays)
+		var visual:=MeshInstance3D.new()
+		visual.mesh=mesh
+		var color:=tint.lightened(0.3) if border else tint
+		color.a=0.95 if border else alpha
+		var material:=_material(color,0.0,true)
+		material.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA
+		material.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED
+		material.cull_mode=BaseMaterial3D.CULL_DISABLED
+		visual.material_override=material
+		visual.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		node.add_child(visual)
+	return node
 
 func _float_text(pos: Vector3, value: String, color: Color) -> void:
 	if not damage_numbers: return

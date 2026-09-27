@@ -3,6 +3,7 @@ extends Control
 const HeroArt = preload("res://scripts/hero_art.gd")
 const BattleArt = preload("res://scripts/battle_art.gd")
 const Expedition = preload("res://scripts/expedition_simulation.gd")
+const BossPatterns = preload("res://scripts/boss_patterns.gd")
 const SaveStore = preload("res://scripts/save_store.gd")
 const Forecast = preload("res://scripts/farm_forecast.gd")
 const Preferences = preload("res://scripts/game_preferences.gd")
@@ -491,6 +492,7 @@ func _build_map(parent: VBoxContainer) -> void:
 	stack.add_child(_label(String(region.name).to_upper(), 10, GOLD, true))
 	stack.add_child(_label("%s  •  Floor %02d" % [String(region.dungeon), floor_number], 20, PALE, true))
 	stack.add_child(_paragraph_label("%s Its guardian is %s. Nyra advances automatically while the expedition is active." % [String(region.description), String(region.boss)], 13, MUTED))
+	stack.add_child(_paragraph_label("%s: %s Below half Life, the guardian awakens with wider, faster attacks. Nyra seeks safety automatically when her dodge is ready." % [BossPatterns.NAMES[_region_index(floor_number)],BossPatterns.DESCRIPTIONS[_region_index(floor_number)]],12,PALE))
 	stack.add_child(_map_route())
 	var tier_start := int(floor(float(floor_number - 1) / 10.0)) * 10 + 1
 	stack.add_child(_label("Tier %d drops are available on floors %d–%d." % [_gear_tier(), tier_start, tier_start + 9], 11, PALE))
@@ -565,6 +567,8 @@ func _build_run() -> void:
 	objective.add_child(combat_hud.progress)
 	combat_hud.encounter = _label("",10,PALE,true)
 	objective.add_child(combat_hud.encounter)
+	combat_hud.boss = _label("",9,Color("f3aa82"),true)
+	objective.add_child(combat_hud.boss)
 	var options:=_button("OPTIONS / PAUSE",PANEL_LIGHT,9,_show_settings)
 	options.name="OpenSettings"
 	options.custom_minimum_size.y=34
@@ -614,6 +618,14 @@ func _sync_combat_hud() -> void:
 	combat_hud.life.text = "%d LIFE   /   %d MANA" % [run_health,run_mana]
 	combat_hud.progress.value = run_stage
 	combat_hud.encounter.text = "PACK %02d / %02d  •  %d ALIVE" % [mini(run_stage+1,run_max_stages),run_max_stages,expedition.living().size()]
+	combat_hud.boss.visible=false
+	if expedition.stage==5:
+		var boss: Dictionary=expedition.enemy_by_id(50)
+		if boss.get("hp",0)>0 and boss.has("awakened"):
+			combat_hud.boss.visible=true
+			combat_hud.boss.text="AWAKENED • STRONGER ATTACKS" if boss.awakened else "BOSS • WATCH THE GROUND"
+			if boss.warning.has("zones"):
+				combat_hud.boss.text="%s • %.1fs" % [String(boss.warning.name).to_upper(),maxf(0.0,boss.warning.left)]
 	combat_hud.enemy.text = "%s  •  %d / %d" % [current_enemy,enemy_health,enemy_max_health]
 	combat_hud.enemy_hp.max_value = enemy_max_health
 	combat_hud.enemy_hp.value = enemy_health
@@ -939,7 +951,7 @@ func _combat_stats(loadout: Dictionary = {}) -> Dictionary:
 			mana_cost = 12 + rank * 2
 			class_mitigation = int(attributes.Vitality / 18)
 	var power := attack + armor * 2 + int(attributes.Intellect) * 3 + int(attributes.Vitality) * 2
-	return {"attributes": attributes, "attack": attack, "max_hp": max_hp, "max_mana": max_mana, "armor": armor, "crit": crit, "ability_damage": ability_damage, "mana_cost": mana_cost, "class_mitigation": class_mitigation, "mana_guard":0.35 if character_class=="Arcanist" else 0.0, "power": power, "gear_power": gear_power}
+	return {"attributes": attributes, "attack": attack, "max_hp": max_hp, "max_mana": max_mana, "armor": armor, "crit": crit, "ability_damage": ability_damage, "mana_cost": mana_cost, "class_mitigation": class_mitigation, "mana_guard":0.35 if character_class=="Arcanist" else 0.0, "boss_patterns":1, "power": power, "gear_power": gear_power}
 
 func _hero_power() -> int:
 	return int(_combat_stats().power)

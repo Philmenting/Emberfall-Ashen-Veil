@@ -1,0 +1,62 @@
+[
+	{
+		"class": "Vowkeeper",
+		"region": 0,
+		"sha256": "021a9b47e8edb09dc69c0f9977451b84b31fc7b734179b67f4afca32d1014f5e"
+	},
+	{
+		"class": "Arcanist",
+		"region": 0,
+		"sha256": "8132e6cd8ceaa873429b476965f74ce36e1707d05379d1324b24373b7b12083b"
+	},
+	{
+		"class": "Ranger",
+		"region": 0,
+		"sha256": "4eb7e2284218c57feb3a8c861e042c518501d81207c88d91c3668248467ac541"
+	},
+	{
+		"class": "Vowkeeper",
+		"region": 1,
+		"sha256": "ab917cf39a8c642b29f65ec3793171f29dea6643f229d29324cfded90c7e7b5a"
+	},
+	{
+		"class": "Arcanist",
+		"region": 1,
+		"sha256": "30c0660f67091e7d157a3ed7d5b2c55f7f3ff2d9cac29bc13df2106a59e66901"
+	},
+	{
+		"class": "Ranger",
+		"region": 1,
+		"sha256": "49db8cc271f278892a79eea38586c9bb4aa666659a1d1e421330c5c758e2ba97"
+	},
+	{
+		"class": "Vowkeeper",
+		"region": 2,
+		"sha256": "b79972f22b9ac8be0ea1eed58722ce2eff28732fd04dfc27f2aa8266c22e42ef"
+	},
+	{
+		"class": "Arcanist",
+		"region": 2,
+		"sha256": "6bdf13419029eb94c5374c3f5948d3f2b0d54cc77be8b5ea65a613c95cfd4eba"
+	},
+	{
+		"class": "Ranger",
+		"region": 2,
+		"sha256": "eb9e917fc5cb9089422afb43b99d20518f8435063e36b47719c9080ed2e03c9a"
+	},
+	{
+		"class": "Vowkeeper",
+		"region": 3,
+		"sha256": "d184a7025dd47eae5c9f251a53596ca69e78cad58c4601959d0c23bd689f2c60"
+	},
+	{
+		"class": "Arcanist",
+		"region": 3,
+		"sha256": "53e0ed561c07255d32b04b99b4c820904a2610a50955e88df8dcb1b5c4a48666"
+	},
+	{
+		"class": "Ranger",
+		"region": 3,
+		"sha256": "5a56d7d568c86ec633092da9d4b335fe27f483828b5913c25f908c36c9d793b8"
+	}
+]

@@ -2,6 +2,7 @@ extends RefCounted
 ## Single deterministic authority for watched, skipped and offline expeditions.
 ## All combat and movement use fixed 100 ms steps; rendering never rolls damage.
 const ThemeData = preload("res://scripts/dungeon_theme.gd")
+const BossPatterns = preload("res://scripts/boss_patterns.gd")
 const STEP := 0.1
 const WALK_SPEED := 2.55
 const MAX_DURATION := 180.0
@@ -66,6 +67,7 @@ func setup(selected_class: String, combat_stats: Dictionary, target_floor: int, 
 			if role == "boss": point = CHECKPOINTS[room]
 			if role == "hexer": point.y -= 1.0
 			pack.append({"id":room*10+slot,"role":role,"name":boss_name if role=="boss" else ThemeData.enemy_name((floor_id-1)/10,role),"hp":hp,"max_hp":hp,"pos":point,"spawn":point,"cooldown":0.7+slot*0.35,"special_cd":2.5,"slow":0.0,"warning":{},"damage":(10.0+floor_id*2.2)*(1.6 if role in ["elite","boss"] else 1.0)})
+			if role=="boss" and int(stats.get("boss_patterns",0))==1: pack.back()["awakened"]=false
 		waves.append(pack)
 
 func advance(delta: float) -> Array:
@@ -172,12 +174,17 @@ func _auto_hero() -> void:
 		for enemy in living():
 			if enemy.warning.is_empty(): continue
 			var warning: Dictionary = enemy.warning
-			if warning.left>0.75 or hero_pos.distance_to(warning.center)>warning.radius+0.2: continue
-			var away: Vector2 = (hero_pos-Vector2(warning.center)).normalized()
-			if away.length()<0.1: away = Vector2(1,0)
-			dodge_goal = _clamp_walkable(Vector2(warning.center)+away*(warning.radius+0.7))
-			if dodge_goal.distance_to(warning.center)<warning.radius+0.1:
-				dodge_goal = _clamp_walkable(Vector2(warning.center)+Vector2(0,warning.radius+0.8))
+			if warning.has("zones"):
+				if warning.left>0.95 or not BossPatterns.threatens(warning,hero_pos,0.2): continue
+				dodge_goal=_safe_boss_escape()
+				if dodge_goal==hero_pos: continue
+			else:
+				if warning.left>0.75 or hero_pos.distance_to(warning.center)>warning.radius+0.2: continue
+				var away: Vector2 = (hero_pos-Vector2(warning.center)).normalized()
+				if away.length()<0.1: away = Vector2(1,0)
+				dodge_goal = _clamp_walkable(Vector2(warning.center)+away*(warning.radius+0.7))
+				if dodge_goal.distance_to(warning.center)<warning.radius+0.1:
+					dodge_goal = _clamp_walkable(Vector2(warning.center)+Vector2(0,warning.radius+0.8))
 			dodging = true
 			dodges += 1
 			dodge_cd = 3.5 if class_key=="Ranger" else 6.0
@@ -207,7 +214,12 @@ func _auto_hero() -> void:
 		events.append({"type":"backstep","position":hero_pos,"goal":dodge_goal})
 		return
 	if distance>reach:
-		hero_pos = _clamp_walkable(hero_pos.move_toward(target.pos,WALK_SPEED*STEP))
+		var next_position:=_clamp_walkable(hero_pos.move_toward(target.pos,WALK_SPEED*STEP))
+		for enemy in living():
+			if enemy.warning.has("zones") and not BossPatterns.threatens(enemy.warning,hero_pos,0.2) and BossPatterns.threatens(enemy.warning,next_position,0.2):
+				action="Holding safe ground"
+				return
+		hero_pos = next_position
 		action = "Closing on " + String(target.name)
 		return
 	if attack_cd>0:
@@ -274,16 +286,39 @@ func _resolve_hero_attack() -> void:
 			enemy.warning = {}
 	hero_mana = mini(int(stats.max_mana),hero_mana+maxi(1,int(stats.attributes.Spirit)/4))
 
+func _safe_boss_escape() -> Vector2:
+	var best:=hero_pos
+	var best_distance:=INF
+	for radius in [0.8,1.4,2.1,3.0,4.0,5.0,6.0]:
+		for direction in range(16):
+			var point:=_clamp_walkable(hero_pos+Vector2.from_angle(TAU*direction/16.0)*float(radius))
+			var distance:=hero_pos.distance_to(point)
+			if distance>=best_distance: continue
+			var safe:=true
+			for enemy in living():
+				if not enemy.warning.is_empty() and BossPatterns.threatens(enemy.warning,point,0.35):
+					safe=false
+					break
+			if safe:
+				best=point
+				best_distance=distance
+	return best
+
 func _tick_enemy(enemy: Dictionary) -> void:
+	if enemy.has("awakened") and not enemy.awakened and enemy.hp<=enemy.max_hp*0.5:
+		enemy.awakened=true
+		events.append({"type":"boss_phase","source":enemy.id,"name":enemy.name})
 	if not enemy.warning.is_empty():
 		enemy.warning.left -= STEP
 		if enemy.warning.left<=0:
 			var warning: Dictionary = enemy.warning
-			if hero_pos.distance_to(warning.center)<=warning.radius:
-				_hurt_hero(enemy,float(enemy.damage)*(2.7 if enemy.role=="boss" else 1.5))
+			if BossPatterns.threatens(warning,hero_pos):
+				_hurt_hero(enemy,float(enemy.damage)*float(warning.get("multiplier",2.7 if enemy.role=="boss" else 1.5)))
 			else:
 				events.append({"type":"miss","source":enemy.id})
-			events.append({"type":"impact","source":enemy.id,"position":warning.center,"radius":warning.radius})
+			var impact: Dictionary={"type":"impact","source":enemy.id,"position":warning.center,"radius":warning.radius}
+			if warning.has("zones"): impact["zones"]=warning.zones.duplicate(true)
+			events.append(impact)
 			enemy.warning = {}
 			enemy.cooldown = 1.5
 		return
@@ -291,8 +326,15 @@ func _tick_enemy(enemy: Dictionary) -> void:
 	enemy.special_cd -= STEP
 	var distance := Vector2(enemy.pos).distance_to(hero_pos)
 	if enemy.role=="boss" and enemy.special_cd<=0:
-		_warn(enemy,2.6,1.4)
-		enemy.special_cd = 6.5
+		if int(stats.get("boss_patterns",0))==1:
+			enemy.warning=BossPatterns.create((floor_id-1)/10,enemy.pos,hero_pos,enemy.get("awakened",false))
+			var event: Dictionary=enemy.warning.duplicate(true)
+			event.merge({"type":"warning","source":enemy.id,"position":enemy.warning.center,"duration":enemy.warning.total})
+			events.append(event)
+			enemy.special_cd=5.0 if enemy.get("awakened",false) else 6.8
+		else:
+			_warn(enemy,2.6,1.4)
+			enemy.special_cd = 6.5
 		return
 	if enemy.role=="hexer":
 		if distance>5.8: enemy.pos = Vector2(enemy.pos).move_toward(hero_pos,STEP*1.15)
@@ -375,6 +417,7 @@ func restore(state: Dictionary) -> bool:
 	if data.stats.max_hp<1 or data.stats.max_mana<0 or data.stats.mana_cost<0: return false
 	if data.stats.has("mana_guard"):
 		if not _valid_number(data.stats.mana_guard) or data.stats.mana_guard<0.0 or data.stats.mana_guard>0.5: return false
+	if data.stats.has("boss_patterns") and (not data.stats.boss_patterns is int or not data.stats.boss_patterns in [0,1]): return false
 	if not data.stats.get("attributes") is Dictionary or not _valid_number(data.stats.attributes.get("Spirit")): return false
 	if data.hero_hp<0 or data.hero_hp>data.stats.max_hp or data.hero_mana<0 or data.hero_mana>data.stats.max_mana: return false
 	if data.waves.size()!=6: return false
@@ -388,12 +431,14 @@ func restore(state: Dictionary) -> bool:
 			for stat in ["hp","max_hp","cooldown","special_cd","slow","damage"]:
 				if not _valid_number(enemy.get(stat)): return false
 			if enemy.max_hp<1 or enemy.hp<0 or enemy.hp>enemy.max_hp: return false
+			if enemy.has("awakened") and (enemy.role!="boss" or not enemy.awakened is bool): return false
 			var warning = enemy.get("warning")
 			if not warning is Dictionary: return false
 			if not warning.is_empty():
 				if not _valid_point(warning.get("center")): return false
 				for stat in ["left","total","radius"]:
 					if not _valid_number(warning.get(stat)) or warning[stat]<0: return false
+				if warning.has("zones") and (enemy.role!="boss" or not BossPatterns.valid(warning)): return false
 	if data.target_id!=-1 and not _valid_enemy_id(data.target_id): return false
 	if not data.pending_attack.is_empty():
 		var attack: Dictionary = data.pending_attack

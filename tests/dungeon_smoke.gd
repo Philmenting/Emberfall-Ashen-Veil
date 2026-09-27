@@ -35,7 +35,11 @@ func run_checks() -> void:
 		while not stepped.finished: stepped.advance(0.017)
 		check(outcome(skipped)==outcome(stepped),class_value+": frame rate and skipping produce identical combat")
 		check(skipped.kills==18 and skipped.won,class_value+": defeats six varied packs and boss")
-		check(skipped.casts>0 and skipped.dodges>0,class_value+": uses abilities and reacts to warnings")
+		var threatened: RefCounted=game._new_expedition(1,1)
+		threatened.phase="combat"
+		threatened._warn(threatened.waves[0][0],1.15,0.5)
+		threatened._auto_hero()
+		check(skipped.casts>0 and threatened.dodging and threatened.dodges==1,class_value+": uses abilities and reacts when actually threatened")
 		await create_timer(1.0).timeout
 		check(world.hero.position.distance_to(origin)>1.0,class_value+": walks through dungeon")
 		check(game.expedition.kills==0 and game.enemy_health==game.enemy_max_health,class_value+": no attacks before entering combat")
@@ -94,7 +98,7 @@ func run_checks() -> void:
 	game.equipment.Weapon.power += 500
 	var upgraded: RefCounted = game._new_expedition(10,3)
 	upgraded.simulate_to_end()
-	check(upgraded.won and upgraded.kills>ordinary.kills,"equipping a stronger weapon changes combat outcome")
+	check(upgraded.won and upgraded.elapsed<ordinary.elapsed and upgraded.hero_hp>ordinary.hero_hp,"stronger weapon clears faster with more remaining health")
 	game.equipment.Weapon.power -= 500
 	game.queue_free()
 	await process_frame
