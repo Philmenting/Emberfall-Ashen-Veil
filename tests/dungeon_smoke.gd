@@ -134,10 +134,13 @@ func run_checks() -> void:
 	game.last_saved_at=game.backgrounded_at
 	game._resume_from_background()
 	check(game.page=="run" and game.run_arena==same_arena,"short interruption preserves the live world")
-	check(game.idle_progress_seconds>=5,"partial AFK seconds are preserved")
-	var available: int = 150+game.idle_progress_seconds
+	check(game.expedition.elapsed>=4.999 and game.idle_progress_seconds==0,"short background time advances the same expedition exactly once")
+	var pending: RefCounted = load("res://scripts/expedition_simulation.gd").new()
+	check(pending.restore(game.expedition.snapshot()),"current expedition checkpoint can be restored")
+	pending.advance(150.0)
+	var available: int = floori(pending.accumulator+0.00001)+game.idle_progress_seconds
 	var serial: int = game.expedition_serial
-	var expected_runs := 0
+	var expected_runs := 1
 	while available>=30:
 		var expected: RefCounted = game._new_expedition(1,serial)
 		expected.simulate_to_end()

@@ -2,6 +2,14 @@
 
 **Emberfall: Ashen Veil** ist ein eigenständiger, im Querformat gestalteter Godot-Prototyp für ein düsteres Idle-Action-RPG. Gegner haben eigene Lebensleisten; Nyra kämpft in automatischen Schlägen bis ein Gegner fällt. Alle zehn Etagen wechselt die Kampagne Gebiet, Dungeon-Namen und Boss: vom Hollow Spire bis zur Last Ember Citadel. Ein Boss-Sieg garantiert mindestens ein seltenes Ausrüstungsteil und schaltet sofort die nächste Etage frei. Vowkeeper, Arcanist und Ranger haben unterschiedliche Kampfvorteile; Attribute stärken ihre Werte und Klassenfähigkeiten. Die Gebiete verwenden vorerst dieselbe 3D-Dungeon-Geometrie. Sechs Ausrüstungsslots, fünf Qualitäten und Stufen T1–T10 bilden die Beute-Progression. Angelegte Ausrüstung kann beim Schmied bis +5 verstärkt werden.
 
+## Verlässliche Wiederaufnahme (0.4.1)
+
+- Ein laufender Dungeon wird einschließlich Positionen, Gegner-Leben, Mana, Fähigkeiten, Ausweichbewegung und Zufallszustand gespeichert. Auch Pause und Wiederholung bleiben nach einem Neustart erhalten.
+- Bei aktivem Offline-Farmen wird zuerst der bereits laufende Kampf um die verstrichene Zeit fortgesetzt. Erst anschließend werden weitere Farm-Läufe berechnet. Ein pausierter Lauf bleibt pausiert.
+- Zwei Speicherdateien wechseln sich ab. Jede Generation wird vor der Übernahme geprüft und atomar ersetzt. Bei einer beschädigten Datei wird der vorherige gültige Checkpoint geladen und ein Hinweis angezeigt. Sind beide Dateien unlesbar oder gehört ein Stand zu einer neueren Version, bleiben die Dateien erhalten und Schreibzugriffe werden gesperrt.
+- Alte Spielstände werden übernommen; die ursprüngliche Datei bleibt als zusätzliche Sicherung erhalten. Ohne Server sind Gerätewechsel, Neuinstallation und Manipulationsschutz nicht abgesichert.
+- Beim abrupten Prozessabbruch kann höchstens der letzte Checkpoint (normalerweise bis zu fünf Sekunden) fehlen. Mit aktiviertem AFK-Farmen wird diese Zeit nachgerechnet. Reguläres Wechseln in den Hintergrund speichert sofort.
+
 ## Automatische Gruppenkämpfe und Farmen (0.4)
 
 - **Sechs Gegnergruppen / 18 Gegner:** schnelle Nahkämpfer, Schildträger, Hexer, ein Elitehauptmann und ein Boss mit Begleitern. Hexer wirken unterbrechbare Bodenzauber, Schildträger reduzieren physischen Schaden, der Boss kündigt Flächenangriffe an.
@@ -26,7 +34,7 @@ Im Lager **Descend to Floor** oder auf der Weltkarte **Enter Dungeon** wählen. 
 - Automatische Zustände: Laufen → Angriff in Waffenreichweite → Gegner fällt → nächster Abschnitt. Die feste Kampfsimulation löst Angriffe und ihre Animationskontakte aus.
 - Selbst gebaute Godot-Modelle mit artikulierten Armen/Beinen, Mantelbewegung, Schwert/Schild, Stab oder Bogen; sichtbare Trefferzahlen und Klasseneffekte.
 - Originale prozedurale Steinmaterialien, Säulen, Sarkophage, Banner, Fackelbeleuchtung, Schatten und Distanznebel. Keine Assets aus Diablo oder dem Referenzvideo.
-- Kurzes Wechseln in den Hintergrund erhält die Szene; nach mindestens einem vollständig berechneten AFK-Lauf ersetzt der Offline-Bericht den laufenden Dungeon. Doppelte Resume-Ereignisse vergeben keine zusätzlichen Belohnungen.
+- Kurzes Wechseln in den Hintergrund erhält die Szene und setzt denselben Kampf fort; sobald dieser während der Abwesenheit endet, zeigt das Lager den Offline-Bericht. Doppelte Resume-Ereignisse vergeben keine zusätzlichen Belohnungen.
 
 **Aktueller Umfang:** ein lokaler 3D-Prototyp mit einer gemeinsamen Dungeon-Route. Modelle und Animationen sind vorläufig, die Gegner verwenden einen gemeinsamen Grundkörper mit unterschiedlichen Proportionen, Waffen und Rollen. Es gibt noch keinen Mehrspieler-Server. Die Gestaltung bleibt bewusst eigenständig und stilisiert. Die Offline-Berechnung nutzt dieselbe Kampfsimulation wie die sichtbaren Läufe.
 
@@ -36,9 +44,9 @@ Das Projekt mit Godot 4.7.2 öffnen und `Main.tscn` starten. Die Spielfläche is
 
 ### Android-Test- und Beta-Build
 
-Das Exportprofil `Android Debug` erstellt eine installierbare Test-APK für ARM64 unter `build/emberfall-debug.apk`. Das Profil `Google Play Beta` baut ein AAB mit Android API 36, ARM64 und Version `0.4.0-beta.1` unter `build/emberfall-beta-debug.aab`. Es verwendet Godots Gradle-Build-Vorlage mit Android Gradle Plugin 8.10.1; für den Export werden OpenJDK 17, Android SDK Platform 36 und Build-Tools 36.1.0 benötigt. Die tatsächliche Annahme und Veröffentlichung muss anschließend in der Play Console geprüft werden.
+Das Exportprofil `Android Debug` erstellt eine installierbare Test-APK für ARM64 unter `build/emberfall-debug.apk`. Das Profil `Google Play Beta` baut ein AAB mit Android API 36, ARM64 und Version `0.4.1-beta.1` unter `build/emberfall-beta-debug.aab`. Es verwendet Godots Gradle-Build-Vorlage mit Android Gradle Plugin 8.10.1; für den Export werden OpenJDK 17, Android SDK Platform 36 und Build-Tools 36.1.0 benötigt. Die tatsächliche Annahme und Veröffentlichung muss anschließend in der Play Console geprüft werden.
 
-GitHub Actions baut beide Testpakete bei Änderungen am Projekt und stellt sie als Workflow-Artefakt bereit. Das AAB aus diesem Testlauf ist unsigniert und dient nur zur technischen Prüfung. Vor dem Upload in die Play Console muss `Google Play Beta` mit einem privaten Upload-Schlüssel als Release exportiert werden. Der Schlüssel gehört weder ins Repository noch in den Debug-Build.
+GitHub Actions baut beide Testpakete bei Änderungen am Projekt und stellt sie als Workflow-Artefakt bereit. Die CI-Artefakte dienen zur technischen Prüfung und sind keine freigegebene Play-Veröffentlichung. Vor dem Upload in die Play Console muss `Google Play Beta` mit einem privaten Upload-Schlüssel als Release exportiert werden. Der Schlüssel gehört weder ins Repository noch in den Debug-Build.
 
 Für den signierten Release-Export `python3 scripts/export_google_play_beta.py` ausführen. Das Skript verwendet die private Schlüsseldatei und Zugangsdaten außerhalb des Projekt-Repos im lokalen Android-Werkzeugordner und erzeugt `build/emberfall-play-beta.aab`. Das öffentliche `upload-certificate.pem` wird beim Einrichten der App-Signatur in der Play Console benötigt. Keystore und Zugangsdaten nicht hochladen oder teilen.
 
@@ -58,9 +66,12 @@ Mit separatem Datenverzeichnis ausführen, damit der eigene Spielstand unangetas
 
 ```bash
 XDG_DATA_HOME=/tmp/emberfall-smoke-data godot --headless --path . --fixed-fps 60 --script tests/dungeon_smoke.gd
+XDG_DATA_HOME=/tmp/emberfall-persistence-data godot --headless --path . --fixed-fps 60 --script tests/persistence_smoke.gd
 ```
 
 Die Prüfung deckt alle drei Klassen, Bewegung, Reichweite, Pause, Bossabschluss, Beute, Überspringen, Niederlage und Hintergrundwechsel ab. `tests/android_preview.tscn` ist ein separater Test-Einstieg: startet automatisch einen frischen Lauf und speichert nach 2/12/25/40/58/75 Sekunden sowie beim ersten angekündigten Bossangriff Screenshots unter `user://`. Nur mit einer separaten Android-Paketkennung und einem eigenen Spielstand verwenden; `Main.tscn` bleibt der normale Einstieg.
+
+`tests/persistence_smoke.gd` prüft exakte Kampffortsetzung, Speicher-Generationen, Korruption, Migration, Pausen und einmalige AFK-Auszahlung. `tests/android_lifecycle.tscn` ist ein weiterer separater Test-Einstieg für echte Android-Prozessabbrüche. Ablauf und Nachweise stehen in [docs/PERSISTENCE.md](docs/PERSISTENCE.md).
 
 ### Technischer Aufbau
 
@@ -69,3 +80,5 @@ Die Prüfung deckt alle drei Klassen, Bewegung, Reichweite, Pause, Bossabschluss
 - `scripts/dungeon_actor.gd`: ursprüngliche Godot-Geometrie und Gelenkanimationen für Figuren.
 - `scripts/battle_art.gd`: 3D-Viewport und Verbindung zum Spielmodell.
 - `scripts/main.gd`: Klassen, Werte, HUD, Ausrüstung, Belohnungen und Speicherung.
+
+- `scripts/save_store.gd`: versionierte, geprüfte Speichergenerationen und Legacy-Migration.

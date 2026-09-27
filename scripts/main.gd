@@ -3,6 +3,7 @@ extends Control
 const HeroArt = preload("res://scripts/hero_art.gd")
 const BattleArt = preload("res://scripts/battle_art.gd")
 const Expedition = preload("res://scripts/expedition_simulation.gd")
+const SaveStore = preload("res://scripts/save_store.gd")
 
 const BG_TOP := Color("201c20")
 const BG_BOTTOM := Color("090d12")
@@ -116,12 +117,16 @@ var combat_hud: Dictionary = {}
 var finish_pending := false
 var skipping_run := false
 var backgrounded_at := 0
+var save_store := SaveStore.new()
+var save_notice := ""
+var initialized := false
 
 func _ready() -> void:
 	randomize()
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_PASS
 	_load_progress()
+	initialized = true
 	for slot in GEAR_SLOTS:
 		equipment[slot]["slot"] = slot
 	_accrue_offline_time()
@@ -143,7 +148,7 @@ func _draw() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_RESIZED:
 		queue_redraw()
-	elif what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_WM_CLOSE_REQUEST:
+	elif initialized and (what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_WM_CLOSE_REQUEST):
 		backgrounded_at = int(Time.get_unix_time_from_system())
 		if is_instance_valid(run_arena): run_arena.animation_enabled = false
 		_save_progress()
@@ -153,15 +158,12 @@ func _notification(what: int) -> void:
 func _resume_from_background() -> void:
 	if backgrounded_at == 0: return
 	backgrounded_at = 0
-	var reports_before := pending_idle_runs+pending_idle_fails
 	_accrue_offline_time()
-	if page=="run" and pending_idle_runs+pending_idle_fails>reports_before:
-		run_active = false
-		auto_repeat = false
-		page = "camp"
 	_save_progress()
 	if page == "run":
-		if is_instance_valid(run_arena): run_arena.animation_enabled = run_active
+		if is_instance_valid(run_arena):
+			run_arena.animation_enabled = run_active
+			_sync_combat_hud()
 	else:
 		_build_ui()
 
@@ -178,6 +180,7 @@ func _build_ui() -> void:
 		child.queue_free()
 	if page == "run":
 		_build_run()
+		_show_save_notice()
 		return
 	var margins := MarginContainer.new()
 	margins.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -220,6 +223,7 @@ func _build_ui() -> void:
 		"loot": _build_loot(content)
 	body.add_child(_build_stats_rail())
 	layout.add_child(_build_navigation())
+	_show_save_notice()
 
 func _build_header() -> Control:
 	var bar := HBoxContainer.new()
@@ -997,6 +1001,7 @@ func _skip_run() -> void:
 func _toggle_repeat() -> void:
 	if finish_pending: return
 	auto_repeat = not auto_repeat
+	_save_progress()
 	_sync_combat_hud()
 
 func _set_farm_floor(change: int) -> void:
@@ -1223,17 +1228,39 @@ func _accrue_offline_time() -> void:
 	if last_saved_at<=0:
 		last_saved_at = now
 		return
+	var away := clampi(now-last_saved_at,0,MAX_OFFLINE_SECONDS)
+	last_saved_at = maxi(last_saved_at,now)
 	if not farm_enabled:
 		idle_progress_seconds = 0
-		last_saved_at = now
 		return
-	var away := clampi(now-last_saved_at,0,MAX_OFFLINE_SECONDS)
+	if page=="run" and expedition!=null:
+		# Pausing is persistent: no second copy of the same hero farms in parallel.
+		if not run_active: return
+		expedition.advance(float(away))
+		_sync_model_state()
+		if not expedition.finished: return
+		var remaining := maxi(0,floori(expedition.accumulator+0.00001))
+		last_run_floor = run_floor
+		_grant_expedition_rewards(expedition.won,run_floor,true,expedition.run_seed)
+		if auto_repeat and expedition.won: farm_floor = run_floor
+		run_active = false
+		auto_repeat = false
+		page = "camp"
+		expedition = null
+		_simulate_offline_time(mini(MAX_OFFLINE_SECONDS,idle_progress_seconds+remaining))
+		return
 	_simulate_offline_time(mini(MAX_OFFLINE_SECONDS,idle_progress_seconds+away))
-	last_saved_at = now
 
 func _load_progress() -> void:
-	var save := ConfigFile.new()
-	if save.load("user://emberfall.save") != OK:
+	page = "camp"
+	expedition = null
+	run_active = false
+	auto_repeat = false
+	finish_pending = false
+	last_combat_save = 0.0
+	var save: ConfigFile = save_store.load_save()
+	save_notice = save_store.notice
+	if save==null:
 		last_saved_at = int(Time.get_unix_time_from_system())
 		return
 	character_class = String(save.get_value("hero", "class", character_class))
@@ -1272,6 +1299,19 @@ func _load_progress() -> void:
 	expedition_serial = maxi(1,int(save.get_value("hero","expedition_serial",1)))
 	farm_enabled = bool(save.get_value("idle", "farm_enabled", farm_enabled))
 	last_saved_at = int(save.get_value("idle", "saved_at", Time.get_unix_time_from_system()))
+	var run_data = save.get_value("run","snapshot","")
+	if run_data is String and not run_data.is_empty():
+		var restored := Expedition.new()
+		if restored.restore_encoded(run_data) and not restored.finished and restored.class_key==character_class:
+			expedition = restored
+			run_floor = restored.floor_id
+			run_active = bool(save.get_value("run","active",true))
+			auto_repeat = bool(save.get_value("run","repeat",false))
+			page = "run"
+			_sync_model_state()
+		else:
+			save_notice = "The expedition checkpoint could not be restored. Your hero and equipment are intact."
+
 
 func _normalize_item(item: Dictionary, default_slot: String) -> Dictionary:
 	var normalized := item.duplicate(true)
@@ -1309,6 +1349,36 @@ func _save_progress() -> void:
 	save.set_value("idle", "salvaged", pending_idle_salvaged)
 	save.set_value("idle", "progress_seconds", idle_progress_seconds)
 	save.set_value("idle", "farm_enabled", farm_enabled)
-	last_saved_at = int(Time.get_unix_time_from_system())
+	last_saved_at = maxi(last_saved_at,int(Time.get_unix_time_from_system()))
 	save.set_value("idle", "saved_at", last_saved_at)
-	save.save("user://emberfall.save")
+	if page=="run" and expedition!=null and not expedition.finished:
+		save.set_value("run","snapshot",expedition.encode_snapshot())
+		save.set_value("run","active",run_active)
+		save.set_value("run","repeat",auto_repeat)
+	var status: Error = save_store.save_game(save)
+	if status!=OK:
+		save_notice = save_store.notice if not save_store.notice.is_empty() else "Progress could not be saved. Existing checkpoints are preserved. (%s)" % error_string(status)
+		_show_save_notice()
+
+
+func _show_save_notice() -> void:
+	if not is_inside_tree() or save_notice.is_empty(): return
+	var previous := get_node_or_null("SaveNotice")
+	if previous!=null:
+		previous.queue_free()
+		remove_child(previous)
+	var notice := Label.new()
+	notice.name = "SaveNotice"
+	notice.text = save_notice
+	notice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	notice.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+	notice.offset_left = 22
+	notice.offset_right = -22
+	notice.offset_top = 116 if page=="run" else 58
+	notice.add_theme_font_size_override("font_size",12)
+	notice.add_theme_color_override("font_color",Color("ffd295"))
+	notice.add_theme_color_override("font_shadow_color",Color.BLACK)
+	notice.add_theme_constant_override("shadow_offset_x",1)
+	notice.add_theme_constant_override("shadow_offset_y",1)
+	notice.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(notice)

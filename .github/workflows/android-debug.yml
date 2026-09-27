@@ -60,6 +60,7 @@ jobs:
         run: |
           godot --headless --path . --editor --import --quit
           XDG_DATA_HOME="$RUNNER_TEMP/emberfall-smoke-data" godot --headless --path . --fixed-fps 60 --script tests/dungeon_smoke.gd
+          XDG_DATA_HOME="$RUNNER_TEMP/emberfall-persistence-data" godot --headless --path . --fixed-fps 60 --script tests/persistence_smoke.gd
 
       - name: Export Android test APK and Play-format AAB
         env:
@@ -70,10 +71,11 @@ jobs:
           mkdir -p build
           godot --headless --path . --editor --import --quit
           godot --headless --path . --install-android-build-template --export-debug 'Android Debug' 'build/emberfall-debug.apk'
-          python3 scripts/prepare_android_beta_build.py
+          python3 scripts/prepare_android_beta_build.py --central-mirror https://maven-central.storage-download.googleapis.com/maven2/
           godot --headless --path . --export-debug 'Google Play Beta' 'build/emberfall-beta-debug.aab'
 
-      - name: Upload debug APK
+      - name: Upload available Android artifacts
+        if: ${{ !cancelled() && hashFiles('build/emberfall-debug.apk') != '' }}
         uses: actions/upload-artifact@v7
         with:
           name: emberfall-ashen-veil-android-beta-test

@@ -35,11 +35,12 @@ func _ready() -> void:
 	_batch_static_geometry()
 	hero = Actor.new()
 	hero.kind = character_class
-	hero.position = Vector3(0,0,5)
+	hero.position = _point(simulation.hero_pos)
 	add_child(hero)
-	_ensure_wave(0)
-	_ensure_wave(1)
+	_ensure_wave(mini(simulation.stage,5))
+	_ensure_wave(mini(simulation.stage,5)+1)
 	target_ring = _ring(Vector3.ZERO,0.65,materials.metal)
+	target_ring.visible = false
 	camera = Camera3D.new()
 	camera.projection = Camera3D.PROJECTION_PERSPECTIVE
 	camera.fov = 44.0
@@ -318,7 +319,14 @@ func _ensure_wave(wave_index: int) -> void:
 		actor_by_id[enemy.id] = actor
 		enemies.append(actor)
 		bars[enemy.id] = _box(actor.position+Vector3(0,2.5,0),Vector3(0.9,0.045,0.075),materials.blood)
-		bars[enemy.id].visible = false
+		bars[enemy.id].visible = enemy.hp>0 and wave_index==simulation.stage
+		bars[enemy.id].position.y = 3.8 if enemy.role=="boss" else 2.5
+		bars[enemy.id].scale.x = maxf(0.01,float(enemy.hp)/float(enemy.max_hp))
+		if enemy.hp<=0:
+			actor.die()
+			actor.animate(0.8,false)
+		if not enemy.warning.is_empty():
+			_show_event({"type":"warning","source":enemy.id,"position":enemy.warning.center,"radius":enemy.warning.radius,"duration":enemy.warning.left})
 
 func _point(point: Vector2) -> Vector3:
 	return Vector3(point.x,0,point.y)
@@ -359,7 +367,10 @@ func _process(delta: float) -> void:
 		if enemy.hp>0:
 			var facing: Vector3 = hero.position-actor.position
 			actor.rotation.y = lerp_angle(actor.rotation.y,atan2(-facing.x,-facing.z),minf(delta*7.0,1.0))
+		if enemy.hp<=0 and actor.death_time<0: actor.die()
 		actor.animate(delta,actor.position.distance_to(old_position)>0.002)
+		if not enemy.warning.is_empty() and not warnings.has(id_value):
+			_show_event({"type":"warning","source":id_value,"position":enemy.warning.center,"radius":enemy.warning.radius,"duration":enemy.warning.left})
 		var bar: MeshInstance3D = bars[id_value]
 		bar.visible = enemy.hp>0 and int(id_value)/10==index
 		bar.position = actor.position+Vector3(0,3.8 if enemy.role=="boss" else 2.5,0)

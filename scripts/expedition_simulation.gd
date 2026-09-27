@@ -89,6 +89,7 @@ func living() -> Array:
 	return result
 
 func enemy_by_id(id_value: int) -> Dictionary:
+	if id_value<0: return {}
 	var wave_index := id_value/10
 	var slot := id_value%10
 	if wave_index<0 or wave_index>=waves.size() or slot>=waves[wave_index].size(): return {}
@@ -324,3 +325,78 @@ func _finish(success: bool) -> void:
 	phase = "finished"
 	pending_attack.clear()
 	events.append({"type":"finished","won":won})
+
+const SNAPSHOT_VERSION := 1
+const SNAPSHOT_FIELDS := ["class_key","stats","floor_id","run_seed","waves","stage","phase","phase_clock","elapsed","accumulator","hero_pos","hero_hp","hero_mana","target_id","action","attack_cd","skill_cd","dodge_cd","guard_time","pending_attack","dodge_goal","dodging","finished","won","kills","dodges","casts"]
+
+func snapshot() -> Dictionary:
+	var state := {"version":SNAPSHOT_VERSION,"rng_state":rng.state,"fields":{}}
+	for field in SNAPSHOT_FIELDS:
+		var value = get(field)
+		state.fields[field] = value.duplicate(true) if value is Dictionary or value is Array else value
+	return state
+
+func encode_snapshot() -> String:
+	# Binary Variant encoding preserves the exact floating point and RNG state.
+	return Marshalls.raw_to_base64(var_to_bytes(snapshot()))
+
+func restore_encoded(encoded: String) -> bool:
+	if encoded.length()>512000: return false
+	var decoded = bytes_to_var(Marshalls.base64_to_raw(encoded))
+	return restore(decoded) if decoded is Dictionary else false
+
+func restore(state: Dictionary) -> bool:
+	if state.get("version",0)!=SNAPSHOT_VERSION or not state.get("rng_state") is int: return false
+	var data = state.get("fields")
+	if not data is Dictionary: return false
+	for field in SNAPSHOT_FIELDS:
+		if not data.has(field) or typeof(data[field])!=typeof(get(field)): return false
+		if data[field] is float and not is_finite(data[field]): return false
+	if not ABILITIES.has(data.class_key) or data.floor_id<1 or data.floor_id>100000: return false
+	if data.stage<0 or data.stage>6 or data.elapsed<0 or data.elapsed>MAX_DURATION+STEP*2: return false
+	if not data.phase in ["travel","combat","loot","finished"]: return false
+	if data.finished!=(data.phase=="finished") or (data.stage==6 and not data.finished): return false
+	if data.won and (not data.finished or data.stage!=6): return false
+	if data.accumulator < -0.0001 or (not data.finished and data.accumulator>STEP+0.0001): return false
+	if not _valid_point(data.hero_pos) or not _valid_point(data.dodge_goal): return false
+	for stat in ["max_hp","max_mana","attack","ability_damage","mana_cost","crit","armor","class_mitigation"]:
+		if not _valid_number(data.stats.get(stat)): return false
+	if data.stats.max_hp<1 or data.stats.max_mana<0 or data.stats.mana_cost<0: return false
+	if not data.stats.get("attributes") is Dictionary or not _valid_number(data.stats.attributes.get("Spirit")): return false
+	if data.hero_hp<0 or data.hero_hp>data.stats.max_hp or data.hero_mana<0 or data.hero_mana>data.stats.max_mana: return false
+	if data.waves.size()!=6: return false
+	for wave_index in range(6):
+		if not data.waves[wave_index] is Array or data.waves[wave_index].size()!=PACKS[wave_index].size(): return false
+		for slot in range(data.waves[wave_index].size()):
+			var enemy = data.waves[wave_index][slot]
+			if not enemy is Dictionary: return false
+			if enemy.get("id")!=wave_index*10+slot or enemy.get("role")!=PACKS[wave_index][slot]: return false
+			if not enemy.get("name") is String or not _valid_point(enemy.get("pos")) or not _valid_point(enemy.get("spawn")): return false
+			for stat in ["hp","max_hp","cooldown","special_cd","slow","damage"]:
+				if not _valid_number(enemy.get(stat)): return false
+			if enemy.max_hp<1 or enemy.hp<0 or enemy.hp>enemy.max_hp: return false
+			var warning = enemy.get("warning")
+			if not warning is Dictionary: return false
+			if not warning.is_empty():
+				if not _valid_point(warning.get("center")): return false
+				for stat in ["left","total","radius"]:
+					if not _valid_number(warning.get(stat)) or warning[stat]<0: return false
+	if data.target_id!=-1 and not _valid_enemy_id(data.target_id): return false
+	if not data.pending_attack.is_empty():
+		var attack: Dictionary = data.pending_attack
+		if not _valid_enemy_id(attack.get("target")) or not attack.get("skill") is bool or not attack.get("name") is String or not _valid_number(attack.get("left")): return false
+	for field in SNAPSHOT_FIELDS:
+		var value = data[field]
+		set(field,value.duplicate(true) if value is Dictionary or value is Array else value)
+	rng.state = state.rng_state
+	events = []
+	return true
+
+func _valid_number(value: Variant) -> bool:
+	return (value is int or value is float) and is_finite(float(value))
+
+func _valid_point(value: Variant) -> bool:
+	return value is Vector2 and is_finite(value.x) and is_finite(value.y) and absf(value.x)<=20.0 and value.y>=-80.0 and value.y<=20.0
+
+func _valid_enemy_id(value: Variant) -> bool:
+	return value is int and value>=0 and value/10<6 and value%10<3
