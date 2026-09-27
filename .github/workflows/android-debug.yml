@@ -74,6 +74,9 @@ jobs:
       - name: Check audio, options and safe Back navigation
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-options-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/options_smoke.gd
 
+      - name: Check Mana Ward and old expedition compatibility
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-ward-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/mana_ward_smoke.gd
+
       - name: Export Android test APK and Play-format AAB
         env:
           GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ runner.temp }}/debug.keystore

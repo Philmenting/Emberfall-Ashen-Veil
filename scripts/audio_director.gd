@@ -78,12 +78,13 @@ func combat_events(events: Array,class_key: String) -> void:
 			"hit": cue("impact")
 			"hero_hit": cue("hurt")
 			"warning": cue("warning")
+			"ward": cue("ward")
 			"evade", "backstep": cue("step")
 
 static func stream_for(key: String) -> AudioStreamWAV:
 	if bank.has(key): return bank[key]
 	var ambient:=key in ["camp","dungeon"]
-	var duration:=12.0 if ambient else float({"ui":0.07,"swing":0.24,"bolt":0.22,"impact":0.18,"hurt":0.25,"oath":0.8,"nova":0.85,"volley":0.6,"warning":0.55,"step":0.12,"victory":1.8,"defeat":1.3}.get(key,0.2))
+	var duration:=12.0 if ambient else float({"ui":0.07,"swing":0.24,"bolt":0.22,"impact":0.18,"hurt":0.25,"oath":0.8,"nova":0.85,"volley":0.6,"warning":0.55,"step":0.12,"ward":0.3,"victory":1.8,"defeat":1.3}.get(key,0.2))
 	var count:=int(duration*RATE)
 	var bytes:=PackedByteArray()
 	bytes.resize(count*2)
@@ -115,6 +116,7 @@ static func stream_for(key: String) -> AudioStreamWAV:
 				"oath": sample=0.24*sin(TAU*82.5*t)+0.11*sin(TAU*330*t)*exp(-t*4)+filtered*0.8
 				"nova": sample=0.2*sin(TAU*(180*t+160*t*t))+0.08*sin(TAU*523.25*t)+filtered
 				"warning": sample=0.2*sin(TAU*155.5*t)*(0.65+0.35*sin(TAU*8*t))
+				"ward": sample=0.11*sin(TAU*392*t)*exp(-t*8)+0.05*sin(TAU*587.33*t)*exp(-t*12)
 				"victory":
 					for n in range(3):
 						var age:=t-n*0.17

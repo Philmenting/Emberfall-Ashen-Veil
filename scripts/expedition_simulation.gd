@@ -313,6 +313,16 @@ func _warn(enemy: Dictionary, radius: float, seconds: float) -> void:
 func _hurt_hero(enemy: Dictionary, raw: float) -> void:
 	var mitigation := float(stats.armor)/(float(stats.armor)+180.0)
 	var damage := maxi(1,int(raw*(1.0-mitigation)*(0.55 if guard_time>0 else 1.0))-int(stats.class_mitigation))
+	# The optional stat keeps pre-0.8 expedition checkpoints on their old rules.
+	# Reserve one ability cast; Spirit now fuels both spellcasting and defense.
+	var ward_fraction := float(stats.get("mana_guard",0.0)) if class_key=="Arcanist" else 0.0
+	if ward_fraction>0.0:
+		var reserve := int(stats.mana_cost)
+		var absorbed := mini(floori(damage*ward_fraction),maxi(0,hero_mana-reserve)/2)
+		if absorbed>0:
+			hero_mana -= absorbed*2
+			damage -= absorbed
+			events.append({"type":"ward","source":enemy.id,"absorbed":absorbed,"mana_spent":absorbed*2})
 	hero_hp = maxi(0,hero_hp-damage)
 	events.append({"type":"hero_hit","source":enemy.id,"damage":damage})
 
@@ -363,6 +373,8 @@ func restore(state: Dictionary) -> bool:
 	for stat in ["max_hp","max_mana","attack","ability_damage","mana_cost","crit","armor","class_mitigation"]:
 		if not _valid_number(data.stats.get(stat)): return false
 	if data.stats.max_hp<1 or data.stats.max_mana<0 or data.stats.mana_cost<0: return false
+	if data.stats.has("mana_guard"):
+		if not _valid_number(data.stats.mana_guard) or data.stats.mana_guard<0.0 or data.stats.mana_guard>0.5: return false
 	if not data.stats.get("attributes") is Dictionary or not _valid_number(data.stats.attributes.get("Spirit")): return false
 	if data.hero_hp<0 or data.hero_hp>data.stats.max_hp or data.hero_mana<0 or data.hero_mana>data.stats.max_mana: return false
 	if data.waves.size()!=6: return false

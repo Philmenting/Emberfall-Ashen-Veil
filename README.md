@@ -2,6 +2,10 @@
 
 **Emberfall: Ashen Veil** ist ein eigenständiger, im Querformat gestalteter Godot-Prototyp für ein düsteres Idle-Action-RPG. Gegner haben eigene Lebensleisten; Nyra kämpft in automatischen Schlägen bis ein Gegner fällt. Alle zehn Etagen wechselt die Kampagne Gebiet, Dungeon-Namen und Boss: vom Hollow Spire bis zur Last Ember Citadel. Ein Boss-Sieg garantiert mindestens ein seltenes Ausrüstungsteil und schaltet sofort die nächste Etage frei. Vowkeeper, Arcanist und Ranger haben unterschiedliche Kampfvorteile; Attribute stärken ihre Werte und Klassenfähigkeiten. Die vier Gebiete besitzen eigene Materialien, Architekturdetails, Umgebungen und Bossmerkmale; die begehbare Route bleibt gemeinsam. Sechs Ausrüstungsslots, fünf Qualitäten und Stufen T1–T10 bilden die Beute-Progression. Angelegte Ausrüstung kann beim Schmied bis +5 verstärkt werden.
 
+## Mana-Barriere (0.8)
+
+Der Arcanist absorbiert automatisch bis zu 35 Prozent eingehenden Schadens mit überschüssigem Mana. Eine Nova bleibt reserviert. Ein violetter Schild und das Kampf-HUD zeigen den Schutz an. Begonnene Expeditionen aus älteren Versionen behalten ihre ursprünglichen Regeln. [Regeln, 295 Prüfungen und offene Balance-Fragen](docs/MANA_WARD.md).
+
 ## Ton, Optionen und Zurück-Navigation (0.7)
 
 Originale, in Godot synthetisierte Klänge begleiten Lager, Dungeon, Treffer, Klassenfähigkeiten und Beute. Im Optionsmenü lassen sich Gesamtlautstärke, Musik und Effekte getrennt regeln. Ein Battery-Modus reduziert die 3D-Auflösung, deaktiviert Schatten und begrenzt die Darstellung auf 30 FPS. Die Kampfsimulation bleibt unverändert. Schadenszahlen sind abschaltbar.
@@ -67,7 +71,7 @@ Das Projekt mit Godot 4.7.2 öffnen und `Main.tscn` starten. Die Spielfläche is
 
 ### Android-Test- und Beta-Build
 
-Das Exportprofil `Android Debug` erstellt eine installierbare Test-APK für ARM64 unter `build/emberfall-debug.apk`. Das Profil `Google Play Beta` baut ein AAB mit Android API 36, ARM64 und Version `0.7.0-beta.1` unter `build/emberfall-beta-debug.aab`. Es verwendet Godots Gradle-Build-Vorlage mit Android Gradle Plugin 8.10.1; für den Export werden OpenJDK 17, Android SDK Platform 36 und Build-Tools 36.1.0 benötigt. Die tatsächliche Annahme und Veröffentlichung muss anschließend in der Play Console geprüft werden.
+Das Exportprofil `Android Debug` erstellt eine installierbare Test-APK für ARM64 unter `build/emberfall-debug.apk`. Das Profil `Google Play Beta` baut ein AAB mit Android API 36, ARM64 und Version `0.8.0-beta.1` unter `build/emberfall-beta-debug.aab`. Es verwendet Godots Gradle-Build-Vorlage mit Android Gradle Plugin 8.10.1; für den Export werden OpenJDK 17, Android SDK Platform 36 und Build-Tools 36.1.0 benötigt. Die tatsächliche Annahme und Veröffentlichung muss anschließend in der Play Console geprüft werden.
 
 GitHub Actions baut beide Testpakete bei Änderungen am Projekt und stellt sie als Workflow-Artefakt bereit. Die CI-Artefakte dienen zur technischen Prüfung und sind keine freigegebene Play-Veröffentlichung. Vor dem Upload in die Play Console muss `Google Play Beta` mit einem privaten Upload-Schlüssel als Release exportiert werden. Der Schlüssel gehört weder ins Repository noch in den Debug-Build.
 

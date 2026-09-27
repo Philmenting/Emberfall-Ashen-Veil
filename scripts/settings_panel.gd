@@ -93,7 +93,8 @@ func _options(parent: VBoxContainer) -> void:
 func _help(parent: VBoxContainer) -> void:
 	for entry in [
 		["AUTOMATIC EXPEDITIONS","Nyra walks, targets enemies, casts abilities and dodges on her own. Pause freezes the expedition; Skip to Loot simulates the remaining fight and ends repeat mode."],
-		["CHOOSE A BUILD","Strength powers Vowkeeper, Intellect powers Arcanist and Dexterity powers Ranger. Vitality increases Life; Spirit improves Mana. Compare the six stat changes before equipping. Class changes refund spent points."],
+		["CHOOSE A BUILD","Strength powers Vowkeeper, Intellect powers Arcanist and Dexterity powers Ranger. Vitality increases Life; Spirit improves Mana and its recovery on hits. Compare the six stat changes before equipping. Class changes refund spent points."],
+		["ARCANIST: MANA WARD","Mana Ward absorbs up to 35% of damage after armor at a cost of 2 Mana per damage absorbed. It always reserves enough Mana for one Nova. When the reserve is reached, incoming hits deal full damage. Nova refunds 25% of its cost. Mana and Spirit therefore support both offense and survival."],
 		["FARM WITH CONFIDENCE","Choose a cleared Farm Floor in camp. Reliable means at least 95% of the current combat patterns succeed. Recheck after changing gear. Repeat stops after a visible defeat."],
 		["WHILE YOU ARE AWAY","Offline farming is enabled in the hero attributes rail. Up to 24 hours are calculated when you return. Paused expeditions stay paused. Claim Gold and XP from the report; relics are already in your bag. Overflow gear is sold."],
 		["KEEP YOUR PROGRESS","Progress is saved on important actions and every five seconds in combat. This version is solo and local: uninstalling or clearing app data removes the save. Save & Exit resumes farming after closing only when you leave an active, unpaused expedition or are in camp."]

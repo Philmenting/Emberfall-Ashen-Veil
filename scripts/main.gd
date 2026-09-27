@@ -41,7 +41,7 @@ const CLASS_DATA := {
 		"primary": "Intellect", "secondary": "Spirit", "ability": "Veil Nova",
 		"base": {"Strength": 5, "Dexterity": 8, "Intellect": 20, "Vitality": 9, "Spirit": 17},
 		"color": Color("a58ed4"), "tagline": "Spellcaster • burst and mana",
-		"passive": "Nova hits clustered foes, slows them and interrupts hexers. Refunds 25% mana. Cooldown: 6s."
+		"passive": "Nova slows and interrupts groups (6s). Mana Ward absorbs 35% damage for 2 Mana each, reserving one Nova."
 	},
 	"Ranger": {
 		"primary": "Dexterity", "secondary": "Vitality", "ability": "Cinder Volley",
@@ -547,6 +547,9 @@ func _build_run() -> void:
 	hero_stack.add_child(combat_hud.life)
 	combat_hud.skill = _label("",9,GOLD)
 	hero_stack.add_child(combat_hud.skill)
+	if character_class=="Arcanist" and float(expedition.stats.get("mana_guard",0.0))>0.0:
+		combat_hud.ward = _label("",8,Color("ac9bdc"))
+		hero_stack.add_child(combat_hud.ward)
 	var top_gap := Control.new()
 	top_gap.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	top.add_child(top_gap)
@@ -617,6 +620,8 @@ func _sync_combat_hud() -> void:
 	combat_hud.pause.text = "Ⅱ  PAUSE" if run_active else "▶  RESUME"
 	combat_hud.repeat.text = "REPEAT: ON" if auto_repeat else "REPEAT: OFF"
 	combat_hud.skill.text = "%s  /  %s" % [String(CLASS_DATA[character_class].ability),"READY" if expedition.skill_cd<=0 else "%.1fs" % expedition.skill_cd]
+	if combat_hud.has("ward"):
+		combat_hud.ward.text = "WARD • %d MANA AVAILABLE" % maxi(0,expedition.hero_mana-int(expedition.stats.mana_cost))
 
 func _build_loot(parent: VBoxContainer) -> void:
 	var victory := _panel(Color("28261f"), Color("796746"), 17)
@@ -934,7 +939,7 @@ func _combat_stats(loadout: Dictionary = {}) -> Dictionary:
 			mana_cost = 12 + rank * 2
 			class_mitigation = int(attributes.Vitality / 18)
 	var power := attack + armor * 2 + int(attributes.Intellect) * 3 + int(attributes.Vitality) * 2
-	return {"attributes": attributes, "attack": attack, "max_hp": max_hp, "max_mana": max_mana, "armor": armor, "crit": crit, "ability_damage": ability_damage, "mana_cost": mana_cost, "class_mitigation": class_mitigation, "power": power, "gear_power": gear_power}
+	return {"attributes": attributes, "attack": attack, "max_hp": max_hp, "max_mana": max_mana, "armor": armor, "crit": crit, "ability_damage": ability_damage, "mana_cost": mana_cost, "class_mitigation": class_mitigation, "mana_guard":0.35 if character_class=="Arcanist" else 0.0, "power": power, "gear_power": gear_power}
 
 func _hero_power() -> int:
 	return int(_combat_stats().power)

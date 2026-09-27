@@ -16,6 +16,8 @@ var region_index := 0
 var active := true
 var damage_numbers := true
 var sun: DirectionalLight3D
+var ward_shell: MeshInstance3D
+var ward_flash := 0.0
 var hero: Node3D
 var camera: Camera3D
 var enemies: Array[Node3D] = []
@@ -44,6 +46,22 @@ func _ready() -> void:
 	hero.kind = character_class
 	hero.position = _point(simulation.hero_pos)
 	add_child(hero)
+	if character_class=="Arcanist":
+		ward_shell = MeshInstance3D.new()
+		var shell_mesh := SphereMesh.new()
+		shell_mesh.radius=0.88
+		shell_mesh.height=2.3
+		shell_mesh.radial_segments=16
+		shell_mesh.rings=8
+		ward_shell.mesh=shell_mesh
+		var shell_material := _material(Color(0.50,0.40,0.95,0.22),0.0,true)
+		shell_material.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA
+		shell_material.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED
+		ward_shell.material_override=shell_material
+		ward_shell.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		ward_shell.position=Vector3(0,1.15,0)
+		ward_shell.visible=false
+		hero.add_child(ward_shell)
 	_ensure_wave(mini(simulation.stage,5))
 	_ensure_wave(mini(simulation.stage,5)+1)
 	target_ring = _ring(Vector3.ZERO,0.65,materials.metal)
@@ -361,6 +379,10 @@ func _point(point: Vector2) -> Vector3:
 func _process(delta: float) -> void:
 	if not active or simulation==null: return
 	elapsed += delta
+	ward_flash=maxf(0.0,ward_flash-delta)
+	if is_instance_valid(ward_shell):
+		ward_shell.visible=ward_flash>0.0
+		ward_shell.scale=Vector3.ONE*(1.0+(0.35-ward_flash)*0.12)
 	_update_effects(delta)
 	var previous: Vector3 = hero.position
 	var updates: Array = simulation.advance(delta)
@@ -452,6 +474,11 @@ func _show_event(event: Dictionary) -> void:
 		"hero_hit":
 			if actor_by_id.has(event.source): actor_by_id[event.source].strike()
 			_float_text(hero.position+Vector3(0,2.3,0),"−"+str(event.damage),Color("f89583"))
+		"ward":
+			if ward_flash<=0.0:
+				_float_text(hero.position+Vector3(0,2.85,0),"WARD "+str(event.absorbed),Color("b6a4f0"))
+			ward_flash=0.35
+			if is_instance_valid(ward_shell): ward_shell.visible=true
 		"warning":
 			if warnings.has(event.source): warnings[event.source].queue_free()
 			var zone := Node3D.new()
