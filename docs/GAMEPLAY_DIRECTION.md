@@ -1,6 +1,6 @@
 # Gameplay-Richtung nach erneuter Referenzsichtung
 
-Stand: 27. September 2026, Umsetzungsschritte 0.11 und 0.12.
+Stand: 27. September 2026, Umsetzungsschritte 0.11 bis 0.13.
 
 ## Betrachtete Ausschnitte
 
@@ -21,7 +21,7 @@ Die folgende Übertragung ist unsere Designentscheidung. Eigene Orte, Modelle, N
 | Abwechslung zwischen Kämpfen und kleinen Aufgaben | Brunnen nutzen, bewachtes Siegel brechen, Bosszugang öffnen, Reliquiar bergen | 0.11: automatisch in derselben Live-/Skip-/AFK-Simulation |
 | Sichtbare Heilung und Beute im Geschehen | Einmalige Brunnenheilung; sichtbare finale Truhe vor der Beuteauswertung | 0.11; einzelne physische Ausrüstungsdrops mit Namen bleiben offen |
 | Mehrere Fähigkeiten mit unterschiedlichen Rollen | Konfigurierbare automatische Rotation aus Angriff, Flächenschaden, Bewegung und Schutz | 0.12: Klassenfähigkeit plus zwei wählbare Techniken, eigene Mana-Kosten, Bedingungen und Abklingzeiten |
-| Hub, Aufgaben, Gebiete und Portale erfüllen verschiedene Zwecke | Gebietsexpeditionen, gezieltes Farmen und eine separate Herausforderung mit ersten Abschlussbelohnungen | Weitere Entwicklung; aktuell Etagenprogression und Farm-Auswahl |
+| Hub, Aufgaben, Gebiete und Portale erfüllen verschiedene Zwecke | Gebietsexpeditionen, gezieltes Farmen und eine separate Herausforderung mit ersten Abschlussbelohnungen | 0.13: Kampagne, gezielte Beutejagden und 30 zeitbegrenzte Aschenprüfungen mit Erstbelohnungen |
 | Andere Spieler bewegen und kämpfen gemeinsam | Online-Spiel braucht echte gemeinsame Zustände, Gruppen und Server | Offen; aktuelle Version bleibt ehrlich als lokal/solo beschrieben |
 
 ## Regeln der aktuellen Umsetzung
@@ -50,4 +50,4 @@ Lokales Rohprotokoll: `build/reports/balance-011-0-final.log`. Der 105-Sekunden-
 
 ## Ausbau 0.12: Fähigkeiten konfigurieren
 
-[SKILL_ROTATION.md](SKILL_ROTATION.md) beschreibt neun eigene Techniken, die Auswahl zweier Plätze je Klasse, automatische Prioritäten und die Nachweise. Nächster Gameplay-Schritt sind unterschiedliche Expeditionstypen und gezielte Belohnungen; aktuell gibt es weiterhin Etagenfortschritt und wiederholbares Farmen.
+[SKILL_ROTATION.md](SKILL_ROTATION.md) beschreibt neun eigene Techniken, die Auswahl zweier Plätze je Klasse, automatische Prioritäten und die Nachweise. 0.13 ergänzt unterschiedliche Expeditionstypen und gezielte Belohnungen; Regeln und Nachweise stehen in [HUNTS_AND_TRIALS.md](HUNTS_AND_TRIALS.md).

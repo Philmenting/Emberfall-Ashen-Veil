@@ -30,9 +30,10 @@ const NAMES := {
 	}
 }
 
-static func roll(selected_class: String, boss_bonus: bool, requested_tier: int, rng: RandomNumberGenerator) -> Dictionary:
+static func roll(selected_class: String, boss_bonus: bool, requested_tier: int, rng: RandomNumberGenerator, focused_slot: String="", minimum_quality: String="") -> Dictionary:
 	var affinity: String=selected_class if PRIMARY.has(selected_class) else "Vowkeeper"
 	var slot: String=SLOTS[rng.randi()%SLOTS.size()]
+	if focused_slot in SLOTS: slot=focused_slot
 	var quality_roll:=rng.randf()
 	var quality:="COMMON"
 	if quality_roll>0.992: quality="LEGENDARY"
@@ -40,6 +41,8 @@ static func roll(selected_class: String, boss_bonus: bool, requested_tier: int, 
 	elif quality_roll>0.82: quality="RARE"
 	elif quality_roll>0.53: quality="UNCOMMON"
 	if boss_bonus and quality in ["COMMON","UNCOMMON"]: quality="RARE"
+	var quality_order := ["COMMON","UNCOMMON","RARE","EPIC","LEGENDARY"]
+	if minimum_quality in quality_order and quality_order.find(quality)<quality_order.find(minimum_quality): quality=minimum_quality
 	var bonus: int={"COMMON":0,"UNCOMMON":5,"RARE":12,"EPIC":22,"LEGENDARY":36}[quality]
 	var tier:=clampi(requested_tier,1,10)
 	var power:=tier*18+rng.randi_range(7,17)+bonus

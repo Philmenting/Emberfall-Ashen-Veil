@@ -1,6 +1,7 @@
 extends RefCounted
 ## Single deterministic authority for watched, skipped and offline expeditions.
 ## All combat and movement use fixed 100 ms steps; rendering never rolls damage.
+const Contract = preload("res://scripts/expedition_contract.gd")
 const Skills = preload("res://scripts/class_skills.gd")
 const Layout = preload("res://scripts/dungeon_layout.gd")
 const ThemeData = preload("res://scripts/dungeon_theme.gd")
@@ -76,10 +77,12 @@ func setup(selected_class: String, combat_stats: Dictionary, target_floor: int, 
 			var role: String = packs[room][slot]
 			var hp := int(float({"raider":300,"bulwark":520,"hexer":260,"elite":850,"boss":2400}[role])*scaling)
 			if uses_journey() and role not in ["boss","elite"]: hp=int(hp*0.72)
+			hp=int(hp*Contract.health_scale(contract()))
 			var point: Vector2 = checkpoint(room)+offsets[slot]
 			if role == "boss": point = checkpoint(room)
 			if role == "hexer": point.y -= 1.0
 			pack.append({"id":room*10+slot,"role":role,"name":boss_name if role=="boss" else ThemeData.enemy_name((floor_id-1)/10,role),"hp":hp,"max_hp":hp,"pos":point,"spawn":point,"cooldown":0.7+slot*0.35,"special_cd":2.5,"slow":0.0,"warning":{},"damage":(10.0+floor_id*2.2)*(1.6 if role in ["elite","boss"] else 1.0)})
+			pack.back().damage*=Contract.damage_scale(contract())
 			if role=="boss" and int(stats.get("boss_patterns",0))==1: pack.back()["awakened"]=false
 		waves.append(pack)
 
@@ -120,7 +123,7 @@ func _step() -> void:
 	guard_time = maxf(0.0,guard_time-STEP)
 	if uses_rotation():
 		for key in rotation.cooldowns: rotation.cooldowns[key]=maxf(0.0,rotation.cooldowns[key]-STEP)
-	if elapsed >= (MAX_DURATION if uses_journey() else LEGACY_MAX_DURATION):
+	if elapsed >= duration_limit():
 		_finish(false)
 		return
 	if uses_journey() and phase in ["travel","interact"]:
@@ -508,6 +511,8 @@ func restore(state: Dictionary) -> bool:
 	if data.stage<0 or data.stage>6 or data.elapsed<0 or data.elapsed>MAX_DURATION+STEP*2: return false
 	if not data.phase in ["travel","combat","interact","loot","finished"]: return false
 	if data.stats.has("dungeon_journey") and (not data.stats.dungeon_journey is int or not data.stats.dungeon_journey in [0,1]): return false
+	if data.stats.has("expedition_contract") and not Contract.valid(data.stats.expedition_contract,data.floor_id): return false
+	if data.stats.has("expedition_contract") and Contract.mode(data.stats.expedition_contract)=="trial" and data.elapsed>Contract.TRIAL_LIMIT+STEP*2: return false
 	var new_journey: bool = data.stats.get("dungeon_journey",0)==1
 	if data.elapsed>(MAX_DURATION if new_journey else LEGACY_MAX_DURATION)+STEP*2: return false
 	if data.phase=="interact" and not new_journey: return false
@@ -686,3 +691,10 @@ func _resolve_technique(attack: Dictionary) -> void:
 	# Same on-hit Spirit recovery as a normal attack, once per technique.
 	if not selected.is_empty(): hero_mana=mini(int(stats.max_mana),hero_mana+maxi(1,int(stats.attributes.Spirit)/4))
 	events.append({"type":"technique","ability_id":key,"position":origin,"radius":definition.radius,"points":points})
+
+func contract() -> Dictionary:
+	return stats.get("expedition_contract",{})
+
+func duration_limit() -> float:
+	if Contract.mode(contract())=="trial": return Contract.TRIAL_LIMIT
+	return MAX_DURATION if uses_journey() else LEGACY_MAX_DURATION

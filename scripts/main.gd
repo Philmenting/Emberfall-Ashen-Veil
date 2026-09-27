@@ -3,6 +3,7 @@ extends Control
 const HeroArt = preload("res://scripts/hero_art.gd")
 const BattleArt = preload("res://scripts/battle_art.gd")
 const Expedition = preload("res://scripts/expedition_simulation.gd")
+const Contract = preload("res://scripts/expedition_contract.gd")
 const Skills = preload("res://scripts/class_skills.gd")
 const BossPatterns = preload("res://scripts/boss_patterns.gd")
 const ClassLoot = preload("res://scripts/class_loot.gd")
@@ -84,6 +85,11 @@ var floor_number := 1
 var last_run_floor := 0
 var run_floor := 1
 var farm_floor := 1
+var farm_mode := "campaign"
+var hunt_slot := "Weapon"
+var trial_cleared := 0
+var world_tab := "campaign"
+var run_reward: Dictionary = {}
 var expedition_serial := 1
 var expedition: RefCounted
 var auto_repeat := false
@@ -368,7 +374,7 @@ func _build_stats_rail() -> Control:
 	return rail
 
 func _build_camp(parent: VBoxContainer) -> void:
-	if pending_idle_runs>0 or pending_idle_ash>0 or pending_idle_xp>0: _build_idle_report(parent)
+	if pending_idle_runs>0 or pending_idle_fails>0 or pending_idle_ash>0 or pending_idle_xp>0: _build_idle_report(parent)
 	var region := _region_data()
 	var expedition := _panel(PANEL_LIGHT, Color("574039"), 17)
 	parent.add_child(expedition)
@@ -392,11 +398,12 @@ func _build_camp(parent: VBoxContainer) -> void:
 	parent.add_child(farm_panel)
 	var farm_stack := VBoxContainer.new()
 	farm_panel.add_child(farm_stack)
-	farm_stack.add_child(_label("FARM FLOOR %02d  •  WATCHED + OFFLINE" % farm_floor,12,GREEN,true))
+	farm_stack.add_child(_label("%s  •  FLOOR %02d" % [Contract.title(_farm_contract()),farm_floor],12,GREEN,true))
+	farm_stack.add_child(_button("FARM GOAL: "+(hunt_slot.to_upper() if farm_mode=="hunt" else "ALL GEAR"),PANEL_LIGHT,11,_open_hunts))
 	farm_stack.add_child(_paragraph_label("Choose a cleared floor. Repeat runs collect gear automatically and stop after a defeat. Offline farming uses this same floor and combat rules.",10,MUTED))
 	var forecast := _paragraph_label("Assessing this floor with your current gear…",10,MUTED)
 	farm_stack.add_child(forecast)
-	_update_forecast(forecast,farm_floor,true)
+	_update_forecast(forecast,farm_floor,true,_farm_contract())
 	var farm_actions := HBoxContainer.new()
 	farm_stack.add_child(farm_actions)
 	var previous := _button("−",PANEL_LIGHT,14,Callable(self,"_set_farm_floor").bind(-1))
@@ -413,7 +420,7 @@ func _build_camp(parent: VBoxContainer) -> void:
 	progress.add_child(progress_stack)
 	progress_stack.add_child(_label("RUN LOOP", 9, GOLD, true))
 	progress_stack.add_child(_paragraph_label("Run duration depends on combat  •  24-hour AFK limit  •  overflow loot auto-sold", 11, PALE))
-	if pending_idle_runs==0 and pending_idle_ash==0 and pending_idle_xp==0:
+	if pending_idle_runs==0 and pending_idle_fails==0 and pending_idle_ash==0 and pending_idle_xp==0:
 		var status := "ON — expeditions keep progressing while you are away." if farm_enabled else "OFF — offline time will not start dungeon runs."
 		parent.add_child(_empty_note("AFK FARM %s" % status))
 
@@ -481,6 +488,18 @@ func _build_inventory_list(parent: VBoxContainer) -> void:
 			parent.add_child(_item_card(item, true))
 
 func _build_map(parent: VBoxContainer) -> void:
+	var tabs:=HBoxContainer.new()
+	parent.add_child(tabs)
+	for entry in [["campaign","CAMPAIGN"],["hunts","HUNTS"],["trials","ASH TRIALS"]]:
+		var tab:=_button(entry[1],RED if world_tab==entry[0] else PANEL_LIGHT,11,_select_world_tab.bind(entry[0]))
+		tab.name="WorldTab_"+entry[0]
+		tabs.add_child(tab)
+	if world_tab=="hunts":
+		_build_hunts(parent)
+		return
+	if world_tab=="trials":
+		_build_trials(parent)
+		return
 	var region := _region_data()
 	var map_card := _panel(PANEL, EDGE, 17)
 	parent.add_child(map_card)
@@ -570,7 +589,11 @@ func _build_run() -> void:
 	var objective := VBoxContainer.new()
 	objective_panel.add_child(objective)
 	objective.add_child(_label(String(_region_data(run_floor).dungeon).to_upper(),13,GOLD,true))
-	objective.add_child(_label("FLOOR %02d  •  AUTOMATIC EXPEDITION" % run_floor,8,MUTED,true))
+	objective.add_child(_label("%s • FLOOR %02d" % [Contract.title(expedition.contract()),run_floor],8,MUTED,true))
+	if Contract.mode(expedition.contract())=="trial":
+		combat_hud.trial_clock=_label("",12,Color("c5a3e6"),true)
+		combat_hud.trial_clock.name="TrialClock"
+		objective.add_child(combat_hud.trial_clock)
 	combat_hud.progress = _progress_bar(0,run_max_stages,GOLD,5)
 	objective.add_child(combat_hud.progress)
 	if expedition.uses_journey():
@@ -631,6 +654,11 @@ func _on_dungeon_state_changed(description: String) -> void:
 
 func _sync_combat_hud() -> void:
 	if page != "run" or combat_hud.is_empty(): return
+	if combat_hud.has("trial_clock"):
+		combat_hud.trial_clock.text="TIME LEFT • %03d s" % maxi(0,ceili(expedition.duration_limit()-expedition.elapsed))
+	if combat_hud.has("repeat"):
+		combat_hud.repeat.disabled=Contract.mode(expedition.contract())=="trial"
+	if page != "run" or combat_hud.is_empty(): return
 	combat_hud.state.text = ("AUTO • " if run_active else "PAUSED • ")+String(expedition.action).to_upper()
 	combat_hud.hp.value = run_health
 	combat_hud.mana.value = run_mana
@@ -679,9 +707,10 @@ func _build_loot(parent: VBoxContainer) -> void:
 	var stack := VBoxContainer.new()
 	stack.add_theme_constant_override("separation", 4)
 	victory.add_child(stack)
-	stack.add_child(_label("%s" % ("✦  THE BELLS ARE QUIET  ✦" if run_succeeded else "NYRA RETREATS FROM THE SPIRE"), 11, GOLD if run_succeeded else Color("d48166"), true))
+	stack.add_child(_label("%s" % ("✦  EXPEDITION CLEARED  ✦" if run_succeeded else "EXPEDITION ENDED"), 11, GOLD if run_succeeded else Color("d48166"), true))
 	var reward_floor := last_run_floor if last_run_floor > 0 else floor_number
-	stack.add_child(_label("Floor %02d  •  +%d XP  •  +%d Gold" % [reward_floor, 420 + reward_floor * 8 if run_succeeded else 100, 186 + reward_floor * 4 if run_succeeded else 55], 16, PALE, true))
+	stack.add_child(_label("%s • +%d XP • +%d Gold" % [String(run_reward.get("title","Floor %02d" % reward_floor)),int(run_reward.get("xp",0)),int(run_reward.get("gold",0))],16,PALE,true))
+	if not String(run_reward.get("note","")).is_empty(): stack.add_child(_paragraph_label(run_reward.note,11,GOLD,true))
 	if run_succeeded and run_boss_defeated:
 		var boss_name := String(_region_data(reward_floor).boss)
 		stack.add_child(_label("%s's seal guarantees at least a Rare relic." % boss_name, 10, Color("e0a35d")))
@@ -1080,17 +1109,20 @@ func _allocate_attribute(attribute: String) -> void:
 	_save_progress()
 	_build_ui()
 
-func _start_run(target_floor: int = -1) -> void:
+func _start_run(target_floor: int = -1, rules: Dictionary = {}) -> void:
+	if not rules.is_empty() and not Contract.valid(rules,target_floor): return
+	if Contract.mode(rules)=="trial": auto_repeat=false
 	onboarding_complete = true
 	page = "run"
-	run_floor = clampi(floor_number if target_floor<1 else target_floor,1,maxi(1,floor_number))
+	run_floor = target_floor if Contract.mode(rules)=="trial" else clampi(floor_number if target_floor<1 else target_floor,1,maxi(1,floor_number))
 	run_active = true
 	run_stage = 0
 	run_succeeded = false
 	run_boss_defeated = false
 	run_loot.clear()
+	run_reward.clear()
 	run_events = ["Nyra enters %s." % String(_region_data(run_floor).dungeon)]
-	expedition = _new_expedition(run_floor,expedition_serial)
+	expedition = _new_expedition(run_floor,expedition_serial,rules)
 	expedition_serial += 1
 	_sync_model_state()
 	finish_pending = false
@@ -1098,9 +1130,11 @@ func _start_run(target_floor: int = -1) -> void:
 	_save_progress()
 	_build_ui()
 
-func _new_expedition(target_floor: int, serial: int) -> RefCounted:
+func _new_expedition(target_floor: int, serial: int, rules: Dictionary = {}) -> RefCounted:
 	var simulation := Expedition.new()
-	simulation.setup(character_class,_combat_stats(),target_floor,String(_region_data(target_floor).boss),1979+serial*104729)
+	var values:=_combat_stats()
+	if not rules.is_empty(): values.expedition_contract=rules.duplicate(true)
+	simulation.setup(character_class,values,target_floor,String(_region_data(target_floor).boss),1979+serial*104729)
 	return simulation
 
 func _sync_model_state() -> void:
@@ -1147,19 +1181,21 @@ func _skip_run() -> void:
 	skipping_run = false
 
 func _toggle_repeat() -> void:
-	if finish_pending: return
+	if finish_pending or (expedition!=null and Contract.mode(expedition.contract())=="trial"): return
 	auto_repeat = not auto_repeat
 	_save_progress()
 	_sync_combat_hud()
 
 func _set_farm_floor(change: int) -> void:
+	_accrue_offline_time()
+	idle_progress_seconds=0
 	farm_floor = clampi(farm_floor+change,1,maxi(1,floor_number-1))
 	_save_progress()
 	_build_ui()
 
 func _start_farming() -> void:
 	auto_repeat = true
-	_start_run(farm_floor)
+	_start_run(farm_floor,_farm_contract())
 
 func _toggle_run_pause() -> void:
 	if finish_pending: return
@@ -1177,15 +1213,25 @@ func _toggle_farm() -> void:
 	_save_progress()
 	_build_ui()
 
-func _grant_expedition_rewards(success: bool, target_floor: int, offline: bool, seed_value: int, loot_class: String="") -> void:
+func _grant_expedition_rewards(success: bool, target_floor: int, offline: bool, seed_value: int, loot_class: String="", rules: Dictionary={}) -> void:
+	var mode:=Contract.mode(rules)
+	var first_trial:=success and mode=="trial" and int(rules.tier)==trial_cleared+1
+	if mode=="trial" and not first_trial:
+		if not offline: run_reward={"gold":0,"xp":0,"title":Contract.title(rules),"note":"No reward: clear the next trial within 150 seconds."}
+		if offline and not success: pending_idle_fails+=1
+		return
 	var gold := 186+target_floor*4 if success else 55
 	var xp := 420+target_floor*8 if success else 100
+	if first_trial:
+		gold+=500+int(rules.tier)*40
+		xp+=500+int(rules.tier)*50
 	if success:
 		var loot_rng := RandomNumberGenerator.new()
 		loot_rng.seed = seed_value+7919
 		var drop_count := 1 if loot_rng.randf()<0.68 else 2
+		if first_trial: drop_count=1
 		for i in range(drop_count):
-			var item := _generate_item(true,target_floor,loot_rng,loot_class)
+			var item := _generate_item(true,target_floor,loot_rng,loot_class,String(rules.get("slot","")),"EPIC" if first_trial else "")
 			if inventory.size()<MAX_BAG_SIZE:
 				inventory.append(item)
 				if offline: pending_idle_gear += 1
@@ -1193,7 +1239,10 @@ func _grant_expedition_rewards(success: bool, target_floor: int, offline: bool, 
 			else:
 				gold += int(item.sell)
 				if offline: pending_idle_salvaged += 1
-		floor_number = maxi(floor_number,target_floor+1)
+		if mode=="campaign": floor_number = maxi(floor_number,target_floor+1)
+		if first_trial: trial_cleared=int(rules.tier)
+	if not offline:
+		run_reward={"gold":gold,"xp":xp,"title":Contract.title(rules),"note":"First clear • guaranteed Epic relic" if first_trial else "Focused drops • "+String(rules.slot) if mode=="hunt" else ""}
 	if offline:
 		pending_idle_ash += gold
 		pending_idle_xp += xp
@@ -1210,7 +1259,7 @@ func _complete_run() -> void:
 	run_succeeded = true
 	last_run_floor = run_floor
 	run_loot.clear()
-	_grant_expedition_rewards(true,run_floor,false,expedition.run_seed,expedition.class_key)
+	_grant_expedition_rewards(true,run_floor,false,expedition.run_seed,expedition.class_key,expedition.contract())
 	page = "loot"
 	_save_progress()
 	_finish_run_presentation()
@@ -1222,7 +1271,7 @@ func _fail_run() -> void:
 	run_succeeded = false
 	last_run_floor = run_floor
 	run_loot.clear()
-	_grant_expedition_rewards(false,run_floor,false,expedition.run_seed,expedition.class_key)
+	_grant_expedition_rewards(false,run_floor,false,expedition.run_seed,expedition.class_key,expedition.contract())
 	page = "loot"
 	_save_progress()
 	_finish_run_presentation()
@@ -1240,16 +1289,16 @@ func _finish_run_presentation() -> void:
 	get_tree().create_timer(1.2).timeout.connect(func():
 		finish_pending = false
 		if auto_repeat and run_succeeded:
-			_start_run(run_floor)
+			_start_run(run_floor,expedition.contract())
 		else: _build_ui()
 	)
 
-func _generate_item(boss_bonus: bool = false, target_floor: int = -1, loot_rng: RandomNumberGenerator = null, loot_class: String="") -> Dictionary:
+func _generate_item(boss_bonus: bool = false, target_floor: int = -1, loot_rng: RandomNumberGenerator = null, loot_class: String="", focused_slot: String="", minimum_quality: String="") -> Dictionary:
 	if loot_rng==null:
 		loot_rng = RandomNumberGenerator.new()
 		loot_rng.randomize()
 	var drop_floor := floor_number if target_floor < 1 else target_floor
-	return ClassLoot.roll(character_class if loot_class.is_empty() else loot_class,boss_bonus,_gear_tier_at_floor(drop_floor),loot_rng)
+	return ClassLoot.roll(character_class if loot_class.is_empty() else loot_class,boss_bonus,_gear_tier_at_floor(drop_floor),loot_rng,focused_slot,minimum_quality)
 
 func _equip_item(item: Dictionary) -> void:
 	if not inventory.has(item):
@@ -1333,14 +1382,14 @@ func _simulate_offline_time(available_seconds: int) -> void:
 		var seed_value := 1979+expedition_serial*104729
 		var pattern := posmod(seed_value,Expedition.COMBAT_VARIANTS)
 		if not outcomes.has(pattern):
-			var simulation := _new_expedition(farm_floor,expedition_serial)
+			var simulation := _new_expedition(farm_floor,expedition_serial,_farm_contract())
 			simulation.simulate_to_end()
 			outcomes[pattern] = {"duration":maxi(30,ceili(simulation.elapsed)),"won":simulation.won}
 		var outcome: Dictionary = outcomes[pattern]
 		if outcome.duration>remaining: break
 		remaining -= outcome.duration
 		expedition_serial += 1
-		_grant_expedition_rewards(outcome.won,farm_floor,true,seed_value)
+		_grant_expedition_rewards(outcome.won,farm_floor,true,seed_value,"",_farm_contract())
 	idle_progress_seconds = remaining
 
 func _accrue_offline_time() -> void:
@@ -1361,8 +1410,11 @@ func _accrue_offline_time() -> void:
 		if not expedition.finished: return
 		var remaining := maxi(0,floori(expedition.accumulator+0.00001))
 		last_run_floor = run_floor
-		_grant_expedition_rewards(expedition.won,run_floor,true,expedition.run_seed,expedition.class_key)
-		if auto_repeat and expedition.won: farm_floor = run_floor
+		_grant_expedition_rewards(expedition.won,run_floor,true,expedition.run_seed,expedition.class_key,expedition.contract())
+		if auto_repeat and expedition.won and Contract.mode(expedition.contract())!="trial":
+			farm_floor = run_floor
+			farm_mode=Contract.mode(expedition.contract())
+			if farm_mode=="hunt": hunt_slot=String(expedition.contract().slot)
 		run_active = false
 		auto_repeat = false
 		page = "camp"
@@ -1419,6 +1471,11 @@ func _load_progress() -> void:
 	idle_progress_seconds = int(save.get_value("idle", "progress_seconds", 0))
 	idle_progress_seconds = clampi(idle_progress_seconds,0,int(Expedition.MAX_DURATION))
 	farm_floor = clampi(int(save.get_value("idle","farm_floor",1)),1,maxi(1,floor_number-1))
+	farm_mode=String(save.get_value("idle","farm_mode","campaign"))
+	if farm_mode not in ["campaign","hunt"] or floor_number<2: farm_mode="campaign"
+	hunt_slot=String(save.get_value("idle","hunt_slot","Weapon"))
+	if hunt_slot not in GEAR_SLOTS: hunt_slot="Weapon"
+	trial_cleared=clampi(int(save.get_value("hero","trial_cleared",0)),0,Contract.MAX_TRIAL)
 	expedition_serial = maxi(1,int(save.get_value("hero","expedition_serial",1)))
 	farm_enabled = bool(save.get_value("idle", "farm_enabled", farm_enabled))
 	last_saved_at = int(save.get_value("idle", "saved_at", clock_source.call()))
@@ -1429,7 +1486,7 @@ func _load_progress() -> void:
 			expedition = restored
 			run_floor = restored.floor_id
 			run_active = bool(save.get_value("run","active",true))
-			auto_repeat = bool(save.get_value("run","repeat",false))
+			auto_repeat = bool(save.get_value("run","repeat",false)) and Contract.mode(restored.contract())!="trial"
 			page = "run"
 			_sync_model_state()
 		else:
@@ -1457,6 +1514,9 @@ func _save_progress() -> void:
 	save.set_value("hero","skill_loadouts",skill_loadouts)
 	save.set_value("hero","expedition_serial",expedition_serial)
 	save.set_value("idle","farm_floor",farm_floor)
+	save.set_value("idle","farm_mode",farm_mode)
+	save.set_value("idle","hunt_slot",hunt_slot)
+	save.set_value("hero","trial_cleared",trial_cleared)
 	save.set_value("hero", "gold", player_gold)
 	save.set_value("hero", "shards", player_shards)
 	save.set_value("hero", "level", player_level)
@@ -1525,9 +1585,11 @@ func _compare_item(item: Dictionary) -> Dictionary:
 		changes[key]=after[key]-before[key]
 	return changes
 
-func _update_forecast(label: Label,target_floor: int,farming: bool) -> void:
+func _update_forecast(label: Label,target_floor: int,farming: bool,rules: Dictionary={}) -> void:
+	label.custom_minimum_size.y=44 if farming else 24
 	var revision:=ui_revision
 	var values:=_combat_stats()
+	if not rules.is_empty(): values.expedition_contract=rules.duplicate(true)
 	var selected_class:=character_class
 	var boss:=String(_region_data(target_floor).boss)
 	var key:=selected_class+":"+str(target_floor)+":"+var_to_str(values)
@@ -1755,3 +1817,90 @@ func _equip_technique(key: String, slot: int) -> void:
 	skill_loadouts[character_class]=loadout
 	_save_progress()
 	_build_ui()
+
+func _farm_contract() -> Dictionary:
+	return Contract.hunt(hunt_slot) if farm_mode=="hunt" else {}
+
+func _select_world_tab(tab: String) -> void:
+	world_tab=tab
+	_build_ui()
+
+func _open_hunts() -> void:
+	world_tab="hunts"
+	_navigate("map")
+
+func _choose_farm_goal(slot: String) -> void:
+	if page=="run" or (not slot.is_empty() and (floor_number<2 or slot not in GEAR_SLOTS)): return
+	_accrue_offline_time()
+	idle_progress_seconds=0
+	farm_mode="campaign" if slot.is_empty() else "hunt"
+	if not slot.is_empty(): hunt_slot=slot
+	_save_progress()
+	_build_ui()
+
+func _start_trial() -> void:
+	if floor_number<2 or trial_cleared>=Contract.MAX_TRIAL or page=="run": return
+	var tier:=trial_cleared+1
+	_start_run(Contract.trial_floor(tier),Contract.trial(tier))
+
+func _build_hunts(parent: VBoxContainer) -> void:
+	parent.add_child(_section_heading("TARGETED HUNTS","WATCHED + AFK"))
+	parent.add_child(_paragraph_label("Choose the gear slot your build needs. Every recovered item uses that slot. Hunt enemies have 15% more Life and deal 8% more damage than the same campaign floor. Boss loot remains at least Rare.",12,PALE))
+	if floor_number<2:
+		parent.add_child(_empty_note("Clear campaign floor 1 to unlock targeted hunts."))
+		return
+	var grid:=GridContainer.new()
+	grid.columns=2
+	grid.add_theme_constant_override("h_separation",8)
+	grid.add_theme_constant_override("v_separation",8)
+	parent.add_child(grid)
+	for slot in GEAR_SLOTS:
+		var selected: bool=farm_mode=="hunt" and hunt_slot==slot
+		var choice:=_button(("✓ " if selected else "")+slot.to_upper(),Color("314b3c") if selected else PANEL_LIGHT,12,_choose_farm_goal.bind(slot))
+		choice.name="HuntSlot_"+slot
+		grid.add_child(choice)
+	var broad:=_button("ALL GEAR • CAMPAIGN RULES",PANEL_LIGHT,11,_choose_farm_goal.bind(""))
+	broad.name="HuntAllGear"
+	parent.add_child(broad)
+	parent.add_child(_label("CURRENT FARM: %s • FLOOR %02d" % [Contract.title(_farm_contract()),farm_floor],12,GREEN,true))
+	parent.add_child(_paragraph_label(String(_region_data(farm_floor).dungeon)+" • T%d loot • this choice also applies while the app is closed." % _gear_tier_at_floor(farm_floor),11,MUTED))
+	var forecast:=_paragraph_label("Assessing your chosen hunt…",11,MUTED)
+	parent.add_child(forecast)
+	_update_forecast(forecast,farm_floor,true,_farm_contract())
+	var actions:=HBoxContainer.new()
+	parent.add_child(actions)
+	var previous:=_button("−",PANEL_LIGHT,14,_set_farm_floor.bind(-1))
+	previous.disabled=farm_floor<=1
+	actions.add_child(previous)
+	var start:=_button("START SELECTED FARM",Color("314b3c"),12,_start_farming)
+	start.name="StartHunt"
+	actions.add_child(start)
+	var next:=_button("+",PANEL_LIGHT,14,_set_farm_floor.bind(1))
+	next.disabled=farm_floor>=maxi(1,floor_number-1)
+	actions.add_child(next)
+
+func _build_trials(parent: VBoxContainer) -> void:
+	parent.add_child(_section_heading("ASH TRIALS","%d CLEARED" % trial_cleared))
+	parent.add_child(_paragraph_label("Defeat the guardian and open the reliquary within 150 seconds. Enemies have 25% more Life and deal 15% more damage. Each trial grants its first-clear reward once. Trials do not advance the campaign or repeat automatically.",12,PALE))
+	if floor_number<2:
+		parent.add_child(_empty_note("Clear campaign floor 1 to open the trial gate."))
+		return
+	if trial_cleared>=Contract.MAX_TRIAL:
+		parent.add_child(_empty_note("All current Ash Trials cleared."))
+		return
+	var tier:=trial_cleared+1
+	var target:=Contract.trial_floor(tier)
+	var card:=_panel(Color("272031"),Color("806393"),16)
+	parent.add_child(card)
+	var stack:=VBoxContainer.new()
+	card.add_child(stack)
+	stack.add_child(_label("ASH TRIAL %02d" % tier,22,Color("c5a3e6"),true))
+	stack.add_child(_paragraph_label("%s • enemy floor %d • 150 seconds" % [String(_region_data(target).dungeon),target],12,PALE))
+	stack.add_child(_paragraph_label("First clear: 1 Epic-or-better T%d relic • %d Gold • %d XP" % [_gear_tier_at_floor(target),186+target*4+500+tier*40,420+target*8+500+tier*50],12,GOLD,true))
+	stack.add_child(_paragraph_label("A failed trial grants no loot, Gold or XP. Skip uses the same timer and combat. If you close the app with AFK enabled, this trial finishes once; your selected farm then resumes.",11,MUTED))
+	var forecast:=_paragraph_label("Assessing the trial with your build…",11,MUTED)
+	stack.add_child(forecast)
+	_update_forecast(forecast,target,false,Contract.trial(tier))
+	var start:=_button("ENTER ASH TRIAL",Color("614674"),13,_start_trial)
+	start.name="StartTrial"
+	stack.add_child(start)

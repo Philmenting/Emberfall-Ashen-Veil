@@ -49,6 +49,7 @@ func _ready() -> void:
 	_build_regional_details()
 	_batch_static_geometry()
 	if simulation.uses_journey(): _build_journey_props()
+	if simulation.Contract.mode(simulation.contract())=="trial": _build_trial_gate()
 	hero = Actor.new()
 	hero.kind = character_class
 	hero.position = _point(simulation.hero_pos)
@@ -927,3 +928,16 @@ func _show_technique(event: Dictionary) -> void:
 			var position3 := origin+Vector3(sin(angle)*radius,3.0,cos(angle)*radius)
 			var streak := _box(position3,Vector3(0.04,0.9,0.04) if key=="rain" else Vector3(0.12,1.2,0.12),material)
 			effects.append({"node":streak,"age":0.0,"life":0.3,"kind":"fall"})
+
+func _build_trial_gate() -> void:
+	var glow:=_material(Color("9365c4"),0.0,true)
+	var center:=Vector3(0,1.65,5.5)
+	for radius in [1.4,1.65]:
+		var ring:=_ring(center,radius,glow)
+		ring.name="AshTrialGate"
+		ring.rotation_degrees.x=90
+		ring.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	for i in range(8):
+		var angle:=TAU*i/8.0
+		var rune:=_box(center+Vector3(sin(angle)*1.55,cos(angle)*1.55,0),Vector3(0.14,0.25,0.12),glow)
+		rune.rotation.z=-angle
