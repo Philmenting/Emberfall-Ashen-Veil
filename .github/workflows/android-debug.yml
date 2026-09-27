@@ -11,6 +11,7 @@ permissions:
 jobs:
   android-debug:
     runs-on: ubuntu-24.04
+    timeout-minutes: 20
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
@@ -59,11 +60,16 @@ jobs:
       - name: Check automatic 3D dungeon and background lifecycle
         run: |
           godot --headless --path . --editor --import --quit
-          XDG_DATA_HOME="$RUNNER_TEMP/emberfall-smoke-data" godot --headless --path . --fixed-fps 60 --script tests/dungeon_smoke.gd
-          XDG_DATA_HOME="$RUNNER_TEMP/emberfall-persistence-data" godot --headless --path . --fixed-fps 60 --script tests/persistence_smoke.gd
+          XDG_DATA_HOME="$RUNNER_TEMP/emberfall-smoke-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/dungeon_smoke.gd
+          XDG_DATA_HOME="$RUNNER_TEMP/emberfall-persistence-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/persistence_smoke.gd
 
       - name: Check regional scenery and world separation
-        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-regions-data" godot --headless --path . --fixed-fps 60 --script tests/regions_smoke.gd
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-regions-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/regions_smoke.gd
+
+      - name: Check gear forecasts and first-run flow
+        run: |
+          XDG_DATA_HOME="$RUNNER_TEMP/emberfall-gear-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/gear_forecast_smoke.gd
+          XDG_DATA_HOME="$RUNNER_TEMP/emberfall-onboarding-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/onboarding_smoke.gd
 
       - name: Export Android test APK and Play-format AAB
         env:

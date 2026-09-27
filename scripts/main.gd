@@ -4,6 +4,7 @@ const HeroArt = preload("res://scripts/hero_art.gd")
 const BattleArt = preload("res://scripts/battle_art.gd")
 const Expedition = preload("res://scripts/expedition_simulation.gd")
 const SaveStore = preload("res://scripts/save_store.gd")
+const Forecast = preload("res://scripts/farm_forecast.gd")
 
 const BG_TOP := Color("201c20")
 const BG_BOTTOM := Color("090d12")
@@ -64,6 +65,7 @@ const MAX_BAG_SIZE := 20
 const MAX_TEMPER_RANK := 5
 
 var page := "camp"
+var gear_tab := "bag"
 var character_class := "Vowkeeper"
 var player_gold := 600
 var player_shards := 0
@@ -120,6 +122,10 @@ var backgrounded_at := 0
 var save_store := SaveStore.new()
 var save_notice := ""
 var initialized := false
+var onboarding_complete := false
+var ui_revision := 0
+var forecast_cache: Dictionary = {}
+var forecast_jobs: Dictionary = {}
 
 func _ready() -> void:
 	randomize()
@@ -132,6 +138,7 @@ func _ready() -> void:
 	_accrue_offline_time()
 	_save_progress()
 	_build_ui()
+	if not onboarding_complete and not save_store.write_blocked: _show_welcome()
 
 func _draw() -> void:
 	for i in range(48):
@@ -175,6 +182,8 @@ func _region_data(target_floor: int = -1) -> Dictionary:
 	return REGIONS[_region_index(target_floor)]
 
 func _build_ui() -> void:
+	ui_revision += 1
+	forecast_jobs.clear()
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
@@ -286,7 +295,7 @@ func _build_hero_rail() -> Control:
 	stack.add_child(_centered_label("NYRA", 20, PALE, true))
 	stack.add_child(_centered_label("%s  •  LEVEL %02d" % [character_class.to_upper(), player_level], 9, GOLD, true))
 	stack.add_child(_centered_label(String(CLASS_DATA[character_class].tagline), 9, MUTED))
-	var class_button := _button("CHANGE CLASS", PANEL_LIGHT, 10, Callable(self, "_navigate").bind("gear"))
+	var class_button := _button("CHANGE CLASS",PANEL_LIGHT,10,Callable(self,"_open_build"))
 	class_button.custom_minimum_size.y = 38
 	rail.add_child(class_button)
 	return rail
@@ -330,11 +339,12 @@ func _build_stats_rail() -> Control:
 	skill_stack.add_child(_label(String(CLASS_DATA[character_class].ability), 14, PALE, true))
 	skill_stack.add_child(_label("%d damage  •  %d mana" % [stats.ability_damage, stats.mana_cost], 10, MUTED))
 	skill_stack.add_child(_paragraph_label(String(CLASS_DATA[character_class].passive), 9, MUTED))
-	skill_stack.add_child(_label("Next rank at %s %d" % [String(CLASS_DATA[character_class].primary), ability_rank * 15], 9, GOLD))
+	skill_stack.add_child(_label("MAXIMUM RANK" if ability_rank>=10 else "Next rank at %s %d" % [String(CLASS_DATA[character_class].primary),ability_rank*15],9,GOLD))
 	content.add_child(_button("AFK FARM: %s" % ("ON" if farm_enabled else "OFF"), Color("31443a") if farm_enabled else PANEL_LIGHT, 9, Callable(self, "_toggle_farm")))
 	return rail
 
 func _build_camp(parent: VBoxContainer) -> void:
+	if pending_idle_runs>0 or pending_idle_ash>0 or pending_idle_xp>0: _build_idle_report(parent)
 	var region := _region_data()
 	var expedition := _panel(PANEL_LIGHT, Color("574039"), 17)
 	parent.add_child(expedition)
@@ -346,21 +356,23 @@ func _build_camp(parent: VBoxContainer) -> void:
 	var spacer := Control.new()
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	heading.add_child(spacer)
-	var recommended := 515 + maxi(0, mini(floor_number, 4) - 1) * 35 + maxi(0, floor_number - 4) * 85
-	heading.add_child(_label("RECOMMENDED  %d" % recommended, 9, Color("b2a392"), true))
+	heading.add_child(_label("FLOOR %02d" % floor_number,9,Color("b2a392"),true))
 	stack.add_child(heading)
 	stack.add_child(_label(String(region.dungeon).to_upper(), 22, PALE, true))
-	stack.add_child(_paragraph_label("%s Nyra will fight through six enemy groups and face %s for the region's relics." % [String(region.description), String(region.boss)], 13, MUTED))
-	stack.add_child(_map_route())
+	stack.add_child(_paragraph_label(String(region.description),11,MUTED))
+	var challenge := _paragraph_label("Assessing this floor with your current gear…",10,MUTED)
+	stack.add_child(challenge)
+	_update_forecast(challenge,floor_number,false)
 	stack.add_child(_button("DESCEND TO FLOOR %02d   →" % floor_number, RED, 14, Callable(self, "_start_run")))
-	if floor_number == 1 and player_level == 1:
-		stack.add_child(_empty_note("FIRST DESCENT  •  Set your class and attribute points in the Armory. Equip or temper gear before each run; the dungeon fights automatically."))
 	var farm_panel := _panel(Color("19241f"),Color("405347"),14)
 	parent.add_child(farm_panel)
 	var farm_stack := VBoxContainer.new()
 	farm_panel.add_child(farm_stack)
-	farm_stack.add_child(_label("FARM FLOOR %02d  •  ONLINE + OFFLINE" % farm_floor,12,GREEN,true))
+	farm_stack.add_child(_label("FARM FLOOR %02d  •  WATCHED + OFFLINE" % farm_floor,12,GREEN,true))
 	farm_stack.add_child(_paragraph_label("Choose a cleared floor. Repeat runs collect gear automatically and stop after a defeat. Offline farming uses this same floor and combat rules.",10,MUTED))
+	var forecast := _paragraph_label("Assessing this floor with your current gear…",10,MUTED)
+	farm_stack.add_child(forecast)
+	_update_forecast(forecast,farm_floor,true)
 	var farm_actions := HBoxContainer.new()
 	farm_stack.add_child(farm_actions)
 	var previous := _button("−",PANEL_LIGHT,14,Callable(self,"_set_farm_floor").bind(-1))
@@ -377,21 +389,33 @@ func _build_camp(parent: VBoxContainer) -> void:
 	progress.add_child(progress_stack)
 	progress_stack.add_child(_label("RUN LOOP", 9, GOLD, true))
 	progress_stack.add_child(_paragraph_label("Run duration depends on combat  •  24-hour AFK limit  •  overflow loot auto-sold", 11, PALE))
-	if pending_idle_runs > 0 or pending_idle_ash > 0 or pending_idle_xp > 0:
-		var report := _panel(Color("19241f"), Color("405347"), 16)
-		parent.add_child(report)
-		var report_stack := VBoxContainer.new()
-		report_stack.add_theme_constant_override("separation", 5)
-		report.add_child(report_stack)
-		report_stack.add_child(_label("OFFLINE REPORT  •  READY TO CLAIM", 10, GREEN, true))
-		report_stack.add_child(_paragraph_label("%d cleared  •  %d setbacks  •  %d relics kept  •  %d auto-salvaged" % [pending_idle_runs, pending_idle_fails, pending_idle_gear, pending_idle_salvaged], 11, PALE))
-		report_stack.add_child(_label("+%d Gold  •  +%d XP" % [pending_idle_ash, pending_idle_xp], 12, GOLD, true))
-		report_stack.add_child(_button("CLAIM OFFLINE HAUL", Color("31443a"), 11, Callable(self, "_claim_idle_cache")))
-	else:
+	if pending_idle_runs==0 and pending_idle_ash==0 and pending_idle_xp==0:
 		var status := "ON — expeditions keep progressing while you are away." if farm_enabled else "OFF — offline time will not start dungeon runs."
 		parent.add_child(_empty_note("AFK FARM %s" % status))
 
+func _build_idle_report(parent: VBoxContainer) -> void:
+	var report := _panel(Color("19241f"), Color("405347"), 16)
+	parent.add_child(report)
+	var report_stack := VBoxContainer.new()
+	report_stack.add_theme_constant_override("separation", 5)
+	report.add_child(report_stack)
+	report_stack.add_child(_label("OFFLINE REPORT  •  READY TO CLAIM", 10, GREEN, true))
+	report_stack.add_child(_paragraph_label("%d cleared  •  %d setbacks  •  %d relics kept  •  %d auto-salvaged" % [pending_idle_runs, pending_idle_fails, pending_idle_gear, pending_idle_salvaged], 11, PALE))
+	report_stack.add_child(_label("+%d Gold  •  +%d XP" % [pending_idle_ash, pending_idle_xp], 12, GOLD, true))
+	report_stack.add_child(_button("CLAIM OFFLINE HAUL", Color("31443a"), 11, Callable(self, "_claim_idle_cache")))
+
 func _build_gear(parent: VBoxContainer) -> void:
+	var tabs:=HBoxContainer.new()
+	tabs.add_theme_constant_override("separation",6)
+	parent.add_child(tabs)
+	for tab in [["bag","BAG (%d)" % inventory.size()],["equipment","EQUIPMENT"],["build","CLASS & STATS"]]:
+		tabs.add_child(_button(tab[1],Color("493b30") if gear_tab==tab[0] else PANEL_LIGHT,10,_select_gear_tab.bind(String(tab[0]))))
+	match gear_tab:
+		"build": _build_class_editor(parent)
+		"equipment": _build_equipment_list(parent)
+		_: _build_inventory_list(parent)
+
+func _build_class_editor(parent: VBoxContainer) -> void:
 	var classes := HBoxContainer.new()
 	classes.add_theme_constant_override("separation", 6)
 	parent.add_child(_section_heading("PLAYABLE CLASSES", "%d ATTRIBUTE POINTS" % attribute_points))
@@ -411,9 +435,19 @@ func _build_gear(parent: VBoxContainer) -> void:
 		attr_button.disabled = attribute_points <= 0
 		attr_row.add_child(attr_button)
 	parent.add_child(attr_row)
+	parent.add_child(_empty_note("Your primary attribute strengthens attacks and abilities. Vitality gives Life; Spirit gives Mana. Changing class refunds allocated points so you can rebuild freely."))
+	var reset:=_button("REFUND ALLOCATED POINTS",PANEL_LIGHT,10,_reset_attributes)
+	var spent:=0
+	for value in allocated_attributes.values(): spent+=int(value)
+	reset.disabled=spent==0
+	parent.add_child(reset)
+
+func _build_equipment_list(parent: VBoxContainer) -> void:
 	parent.add_child(_section_heading("EQUIPPED GEAR", "%d SLOTS  •  TEMPER UP TO +%d" % [GEAR_SLOTS.size(), MAX_TEMPER_RANK]))
 	for slot in GEAR_SLOTS:
 		parent.add_child(_equipped_row(slot, equipment[slot]))
+
+func _build_inventory_list(parent: VBoxContainer) -> void:
 	parent.add_child(_section_heading("SATCHEL", "%d / %d ITEMS" % [inventory.size(), MAX_BAG_SIZE]))
 	if inventory.is_empty():
 		parent.add_child(_empty_note("No spare gear. Clear a floor to find new equipment."))
@@ -611,7 +645,7 @@ func _equipped_row(slot: String, item: Dictionary) -> Control:
 	info.add_child(_label(String(item.name), 12, PALE, true))
 	info.add_child(_label(_item_stats_line(item), 9, MUTED))
 	line.add_child(info)
-	line.add_child(_label("+%d" % int(item.power), 13, GOLD, true))
+	line.add_child(_label("ITEM %d" % int(item.power),10,GOLD,true))
 	line.add_child(_temper_button(slot, item))
 	return row
 
@@ -628,11 +662,25 @@ func _item_card(item: Dictionary, show_actions: bool) -> Control:
 	identity.add_child(_label(String(item.name), 12, PALE, true))
 	identity.add_child(_label("%s  •  T%d  •  +%d  •  %s" % [String(item.slot).to_upper(), int(item.tier), int(item.get("temper", 0)), _quality_label(rarity)], 8, _quality_color(rarity), true))
 	top.add_child(identity)
-	top.add_child(_label("+%d" % int(item.power), 14, GOLD, true))
+	top.add_child(_label("ITEM %d" % int(item.power),11,GOLD,true))
 	stack.add_child(top)
-	var current: Dictionary = equipment.get(item.slot, {"power": 0, "stats": {}})
-	var delta := int(item.power) - int(current.get("power", 0))
-	stack.add_child(_label("%s%d power  •  %s  •  %d armor" % ["+" if delta >= 0 else "", delta, _item_stats_line(item), int(item.armor)], 9, GREEN if delta >= 0 else MUTED))
+	stack.add_child(_paragraph_label("%s  •  %d armor" % [_item_stats_line(item),int(item.armor)],9,MUTED))
+	stack.add_child(_label("IF EQUIPPED  •  "+character_class.to_upper(),8,GOLD,true))
+	var comparison := _compare_item(item)
+	var changes := GridContainer.new()
+	changes.columns = 3
+	changes.add_theme_constant_override("h_separation",12)
+	changes.add_theme_constant_override("v_separation",3)
+	stack.add_child(changes)
+	for key in ["attack","ability_damage","max_hp","armor","max_mana","crit"]:
+		var value := float(comparison[key])
+		var caption: String = {"attack":"Attack","ability_damage":"Ability","max_hp":"Life","armor":"Armor","max_mana":"Mana","crit":"Crit"}[key]
+		var amount := ("+" if value>0 else "")+("%.1f%%" % value if key=="crit" else str(int(value)))
+		var label := _label(caption+" "+amount,9,GREEN if value>0 else Color("dc9683") if value<0 else MUTED)
+		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		changes.add_child(label)
+	if comparison.mana_cost!=0:
+		stack.add_child(_label("Ability cost: %s%d mana per cast" % ["+" if comparison.mana_cost>0 else "",comparison.mana_cost],9,GOLD if comparison.mana_cost>0 else GREEN))
 	if show_actions:
 		var actions := HBoxContainer.new()
 		actions.add_theme_constant_override("separation", 6)
@@ -807,23 +855,24 @@ func _progress_bar(value: float, maximum: float, color: Color, height: int) -> P
 	bar.add_theme_stylebox_override("fill", fill)
 	return bar
 
-func _combat_stats() -> Dictionary:
+func _combat_stats(loadout: Dictionary = {}) -> Dictionary:
+	var equipped: Dictionary = equipment if loadout.is_empty() else loadout
 	var class_info: Dictionary = CLASS_DATA[character_class]
 	var base: Dictionary = class_info.base
 	var attributes: Dictionary = {}
 	var level_gain := maxi(0, player_level - 1)
 	for attribute in ATTRIBUTES:
 		var value := int(base[attribute]) + level_gain + int(allocated_attributes.get(attribute, 0))
-		for item in equipment.values():
+		for item in equipped.values():
 			value += int(item.get("stats", {}).get(attribute, 0))
 		attributes[attribute] = value
 	var primary := String(class_info.primary)
 	var primary_value := int(attributes[primary])
-	var weapon_power := int(equipment["Weapon"].get("power", 0))
+	var weapon_power := int(equipped["Weapon"].get("power", 0))
 	var armor := 0
 	var gear_power := 0
 	var gear_crit := 0.0
-	for item in equipment.values():
+	for item in equipped.values():
 		armor += int(item.get("armor", 0))
 		gear_power += int(item.get("power", 0))
 		gear_crit += float(item.get("stats", {}).get("Crit", 0))
@@ -833,7 +882,7 @@ func _combat_stats() -> Dictionary:
 	var crit_scale := 0.35
 	if character_class == "Ranger":
 		crit_scale = 0.65
-	var crit := float(attributes.Dexterity) * crit_scale + gear_crit
+	var crit := clampf(float(attributes.Dexterity) * crit_scale + gear_crit,0.0,100.0)
 	var rank := _ability_rank(primary_value)
 	var ability_damage := 0
 	var mana_cost := 0
@@ -923,6 +972,7 @@ func _navigate(destination: String) -> void:
 func _select_class(class_key: String) -> void:
 	if not CLASS_DATA.has(class_key):
 		return
+	if character_class!=class_key: _refund_attributes()
 	character_class = class_key
 	_save_progress()
 	_build_ui()
@@ -936,6 +986,7 @@ func _allocate_attribute(attribute: String) -> void:
 	_build_ui()
 
 func _start_run(target_floor: int = -1) -> void:
+	onboarding_complete = true
 	page = "run"
 	run_floor = clampi(floor_number if target_floor<1 else target_floor,1,maxi(1,floor_number))
 	run_active = true
@@ -1139,6 +1190,7 @@ func _equip_item(item: Dictionary) -> void:
 	var slot: String = item.slot
 	var displaced: Dictionary = equipment[slot]
 	displaced["slot"] = slot
+	displaced["status"] = ""
 	equipment[slot] = item
 	item.status = "equipped"
 	inventory.erase(item)
@@ -1264,6 +1316,7 @@ func _load_progress() -> void:
 	if save==null:
 		last_saved_at = int(Time.get_unix_time_from_system())
 		return
+	onboarding_complete = bool(save.get_value("hero","onboarding_complete",true))
 	character_class = String(save.get_value("hero", "class", character_class))
 	if not CLASS_DATA.has(character_class):
 		character_class = "Vowkeeper"
@@ -1329,6 +1382,7 @@ func _normalize_item(item: Dictionary, default_slot: String) -> Dictionary:
 
 func _save_progress() -> void:
 	var save := ConfigFile.new()
+	save.set_value("hero","onboarding_complete",onboarding_complete)
 	save.set_value("hero", "class", character_class)
 	save.set_value("hero","expedition_serial",expedition_serial)
 	save.set_value("idle","farm_floor",farm_floor)
@@ -1388,3 +1442,135 @@ func _show_save_notice() -> void:
 	dismiss.size_flags_horizontal = Control.SIZE_SHRINK_END
 	row.add_child(dismiss)
 	add_child(toast)
+
+func _compare_item(item: Dictionary) -> Dictionary:
+	var before:=_combat_stats()
+	var proposed:=equipment.duplicate()
+	proposed[item.slot]=item
+	var after:=_combat_stats(proposed)
+	var changes: Dictionary={}
+	for key in ["attack","ability_damage","max_hp","armor","max_mana","crit","mana_cost"]:
+		changes[key]=after[key]-before[key]
+	return changes
+
+func _update_forecast(label: Label,target_floor: int,farming: bool) -> void:
+	var revision:=ui_revision
+	var values:=_combat_stats()
+	var selected_class:=character_class
+	var boss:=String(_region_data(target_floor).boss)
+	var key:=selected_class+":"+str(target_floor)+":"+var_to_str(values)
+	if forecast_cache.has(key):
+		_display_forecast(label,forecast_cache[key],farming)
+		return
+	var owns_job:=not forecast_jobs.has(key)
+	var assessment: RefCounted=Forecast.new() if owns_job else forecast_jobs[key]
+	if owns_job:
+		assessment.setup(selected_class,values,target_floor,boss)
+		forecast_jobs[key]=assessment
+	while not assessment.complete():
+		await get_tree().process_frame
+		if not is_inside_tree() or revision!=ui_revision or not is_instance_valid(label): return
+		if owns_job: assessment.step(2)
+	var result: Dictionary=assessment.summary()
+	if forecast_cache.size()>16: forecast_cache.clear()
+	forecast_cache[key]=result
+	_display_forecast(label,result,farming)
+
+func _display_forecast(label: Label,result: Dictionary,farming: bool) -> void:
+	var percent:=int(round(result.rate*100.0))
+	var verdict: String="RELIABLE" if result.rate>=0.95 else "RISKY" if result.rate>=0.5 else "TOO DIFFICULT"
+	var shortest: int=result.shortest if farming else result.combat_shortest
+	var longest: int=result.longest if farming else result.combat_longest
+	var duration:=str(shortest) if shortest==longest else "%d–%d" % [shortest,longest]
+	label.text="%s  •  %d%% clear rate  •  %ss / %s" % [verdict,percent,duration,"AFK cycle" if farming else "run"]
+	if farming:
+		label.text+="\nAbout %.1f clears / hour with your current gear." % result.clears_per_hour
+		if result.rate<0.95: label.text+=" Choose a lower floor for steadier farming."
+	label.add_theme_color_override("font_color",GREEN if result.rate>=0.95 else GOLD if result.rate>=0.5 else Color("dc9683"))
+
+func _show_welcome() -> void:
+	var overlay := Control.new()
+	overlay.name="Welcome"
+	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	overlay.mouse_filter=Control.MOUSE_FILTER_STOP
+	add_child(overlay)
+	var shade:=ColorRect.new()
+	shade.color=Color(0.015,0.02,0.03,0.88)
+	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	overlay.add_child(shade)
+	var center:=CenterContainer.new()
+	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	overlay.add_child(center)
+	var sheet:=_panel(Color("171b21"),GOLD,16)
+	sheet.custom_minimum_size.x=710
+	center.add_child(sheet)
+	var stack:=VBoxContainer.new()
+	stack.add_theme_constant_override("separation",12)
+	sheet.add_child(stack)
+	stack.add_child(_centered_label("CHOOSE YOUR OATH",22,PALE,true))
+	stack.add_child(_centered_label("Your hero fights automatically. You choose the gear and the next expedition.",11,MUTED))
+	var classes:=HBoxContainer.new()
+	classes.add_theme_constant_override("separation",10)
+	stack.add_child(classes)
+	for key in CLASS_DATA:
+		var info: Dictionary=CLASS_DATA[key]
+		var card:=_panel(Color("28251f") if key==character_class else PANEL_LIGHT,info.color if key==character_class else EDGE,12)
+		card.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		card.custom_minimum_size.x=218
+		classes.add_child(card)
+		var column:=VBoxContainer.new()
+		column.add_theme_constant_override("separation",8)
+		card.add_child(column)
+		column.add_child(_label(key.to_upper(),13,info.color,true))
+		column.add_child(_paragraph_label(info.tagline,10,PALE))
+		column.add_child(_paragraph_label(info.passive,10,MUTED))
+		var space:=Control.new()
+		space.size_flags_vertical=Control.SIZE_EXPAND_FILL
+		column.add_child(space)
+		column.add_child(_label("FOCUS: "+String(info.primary).to_upper(),9,GOLD))
+		var choose:=_button("SELECTED" if key==character_class else "CHOOSE",Color("493b30") if key==character_class else PANEL,10,_choose_initial_class.bind(String(key)))
+		choose.name="Choose"+String(key)
+		column.add_child(choose)
+	stack.add_child(_paragraph_label("Walk, fight and collect automatically. After a run, compare your loot or sell it. Enable AFK farming to continue while the game is closed, for up to 24 hours.",11,PALE))
+	var actions:=HBoxContainer.new()
+	actions.add_theme_constant_override("separation",12)
+	stack.add_child(actions)
+	var prepare:=_button("REVIEW GEAR FIRST",PANEL_LIGHT,11,_finish_welcome.bind(false))
+	prepare.name="ReviewGear"
+	actions.add_child(prepare)
+	var begin:=_button("BEGIN FIRST EXPEDITION  →",RED,12,_finish_welcome.bind(true))
+	begin.name="BeginExpedition"
+	actions.add_child(begin)
+	stack.add_child(_centered_label("You can change your class in the Armory. Your save stays on this device.",9,MUTED))
+
+func _choose_initial_class(selected: String) -> void:
+	character_class=selected
+	_save_progress()
+	_build_ui()
+	_show_welcome()
+
+func _finish_welcome(begin: bool) -> void:
+	onboarding_complete=true
+	_save_progress()
+	if begin: _start_run(1)
+	else:
+		gear_tab="build"
+		_navigate("gear")
+
+func _select_gear_tab(selected: String) -> void:
+	gear_tab=selected
+	_build_ui()
+
+func _open_build() -> void:
+	gear_tab="build"
+	_navigate("gear")
+
+func _refund_attributes() -> void:
+	for attribute in ATTRIBUTES:
+		attribute_points+=int(allocated_attributes.get(attribute,0))
+		allocated_attributes[attribute]=0
+
+func _reset_attributes() -> void:
+	_refund_attributes()
+	_save_progress()
+	_build_ui()
