@@ -28,12 +28,12 @@ Der reguläre Android-Arcanist-Lauf wird mit unveränderter Startausrüstung auf
 
 ## Nachweise
 
-- **784 Prüfungen in 14 Suiten bestanden**, davon 35 für die neue Grafik. Die bisherigen 749 Prüfungen für Kämpfe, Beute, Speicherung, AFK und Expeditionen bleiben grün.
+- **791 Prüfungen in 14 Suiten bestanden**, davon 42 Grafik-/Animationsprüfungen. Alle bestehenden 749 Prüfungen für Kämpfe, Beute, Speicherung, AFK und Expeditionen bleiben grün. Der GitHub-Android-Build mit diesen Prüfungen war erfolgreich.
 - Android-Emulator API 36, 1280 × 720, OpenGL ES 3.0 über Intel UHD: ein regulärer Arcanist-Lauf mit Startausrüstung endet nach 72,9 Simulationssekunden erfolgreich, mit 380 Leben, 126 Mana und seltenen Veilwalker Treads.
 - Während der Bildschirmaufnahme wurden nach 2/12/35/60 Sekunden 39/40/40/33 FPS und 430/574/519/452 Zeichenaufrufe gemessen. Das sind einzelne Momentaufnahmen, keine Mindest-FPS oder Messung auf einem Telefon. Die Beuteansicht erreichte 60 FPS.
 - Die neue Bündelung der Figuren reduziert in der vergleichbaren frühen Szene die Zeichenaufrufe von etwa 940 auf 570. Der erste Shaderstart kann wegen einer Cache-Neukompilierung länger dauern.
 - Alle zwölf Kombinationen aus drei Klassen und vier Gebieten wurden im separaten Android-Grafiktest erfasst. Wasser, Lava, regionale Bosse und Klassenmodelle sind enthalten.
-- Das lokale Gameplay-Video `build/previews/emberfall-014-gameplay.mp4` enthält knapp 90 Sekunden echte Android-Darstellung, 1280 × 720, H.264, ohne Tonspur; vollständig dekodiert geprüft.
+- Das lokale Gameplay-Video `build/previews/emberfall-015-animation.mp4` enthält 30 Sekunden echte Android-Darstellung, 1280 × 720, H.264, ohne Tonspur; vollständig dekodiert geprüft.
 
 ## Grenzen
 
