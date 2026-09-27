@@ -1,0 +1,18 @@
+[
+	{
+		"floor": 1,
+		"sha256": "4b57f2e4568a0a3a562cac87bfc06debc3cf1473d5eabb52f40430e0c3d7cee9"
+	},
+	{
+		"floor": 11,
+		"sha256": "4d39dab856b0ef35990c80348ba951d1c75b4482ac33cb89fb8cb4fd74778468"
+	},
+	{
+		"floor": 21,
+		"sha256": "a6257230df876504962a3eba80ba7158f1dd94ec8452cd41d6072d82617dd97c"
+	},
+	{
+		"floor": 31,
+		"sha256": "12cccff1103748a009417454503f65a811a42b944da6020e29721ec46e3040f7"
+	}
+]

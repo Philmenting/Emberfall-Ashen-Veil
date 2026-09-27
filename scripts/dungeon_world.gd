@@ -487,6 +487,11 @@ func _show_event(event: Dictionary) -> void:
 				_float_text(hero.position+Vector3(0,2.85,0),"WARD "+str(event.absorbed),Color("b6a4f0"))
 			ward_flash=0.35
 			if is_instance_valid(ward_shell): ward_shell.visible=true
+		"nova":
+			var wave:=_ring(_point(event.position)+Vector3(0,0.12,0),float(event.radius),_material(Color("b89aef"),0.0,true))
+			wave.scale=Vector3.ONE*0.15
+			wave.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			effects.append({"node":wave,"age":0.0,"life":0.45,"kind":"nova"})
 		"warning":
 			if warnings.has(event.source): warnings[event.source].queue_free()
 			if event.has("zones"):
@@ -585,6 +590,7 @@ func _update_effects(delta: float) -> void:
 		effect.age += delta
 		var node: Node3D = effect.node
 		if effect.kind == "ring": node.scale = Vector3.ONE*(1.0+effect.age*3.0)
+		elif effect.kind == "nova": node.scale=Vector3.ONE*lerpf(0.15,1.0,minf(1.0,effect.age/effect.life))
 		elif effect.kind == "spark":
 			node.position += Vector3(effect.velocity)*delta
 			effect.velocity.y -= delta*8.0

@@ -2,7 +2,10 @@ extends SceneTree
 const Bot=preload("res://tests/balance_survey_bot.gd")
 ## Deterministic 480-run survey per class; no UI or save writes.
 ## The equipment score is a simple heuristic, not an optimal build search.
+var seed_offset:=0
 func _initialize() -> void:
+	var args:=OS.get_cmdline_user_args()
+	if not args.is_empty(): seed_offset=maxi(0,int(args[0]))
 	call_deferred("survey")
 func score(game: Node) -> float:
 	var s: Dictionary=game._combat_stats()
@@ -39,7 +42,7 @@ func survey() -> void:
 					target=maxi(1,game.floor_number-1)
 					while target>1 and predict(game,target)<0.95: target-=1
 				highest_reliable=maxi(highest_reliable,target)
-			var sim: RefCounted=game._new_expedition(target,run+1)
+			var sim: RefCounted=game._new_expedition(target,seed_offset+run+1)
 			sim.simulate_to_end()
 			played+=maxf(30.0,ceilf(sim.elapsed))
 			game._grant_expedition_rewards(sim.won,target,false,sim.run_seed)
@@ -63,6 +66,6 @@ func survey() -> void:
 					game._temper_equipment(slot)
 					temper_count+=1
 			if run in [29,119,239,479]:
-				print("SAFE_BALANCE ",JSON.stringify({"class":selected,"runs":run+1,"floor":game.floor_number,"farm":target,"highest_reliable":highest_reliable,"level":game.player_level,"wins":victories,"fails":defeats,"hours":snappedf(played/3600.0,0.01),"tempers":temper_count,"upgrades":upgrades,"gold":game.player_gold,"stats":game._combat_stats()}))
+				print("SAFE_BALANCE ",JSON.stringify({"seed_offset":seed_offset,"class":selected,"runs":run+1,"floor":game.floor_number,"farm":target,"highest_reliable":highest_reliable,"level":game.player_level,"wins":victories,"fails":defeats,"hours":snappedf(played/3600.0,0.01),"tempers":temper_count,"upgrades":upgrades,"gold":game.player_gold,"stats":game._combat_stats()}))
 		game.free()
 	quit()

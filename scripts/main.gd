@@ -4,6 +4,7 @@ const HeroArt = preload("res://scripts/hero_art.gd")
 const BattleArt = preload("res://scripts/battle_art.gd")
 const Expedition = preload("res://scripts/expedition_simulation.gd")
 const BossPatterns = preload("res://scripts/boss_patterns.gd")
+const ClassLoot = preload("res://scripts/class_loot.gd")
 const SaveStore = preload("res://scripts/save_store.gd")
 const Forecast = preload("res://scripts/farm_forecast.gd")
 const Preferences = preload("res://scripts/game_preferences.gd")
@@ -42,7 +43,7 @@ const CLASS_DATA := {
 		"primary": "Intellect", "secondary": "Spirit", "ability": "Veil Nova",
 		"base": {"Strength": 5, "Dexterity": 8, "Intellect": 20, "Vitality": 9, "Spirit": 17},
 		"color": Color("a58ed4"), "tagline": "Spellcaster • burst and mana",
-		"passive": "Nova slows and interrupts groups (6s). Mana Ward absorbs 35% damage for 2 Mana each, reserving one Nova."
+		"passive": "Nova slows and interrupts groups (6s). Repositions between spells. Mana Ward absorbs 35% damage for 2 Mana each."
 	},
 	"Ranger": {
 		"primary": "Dexterity", "secondary": "Vitality", "ability": "Cinder Volley",
@@ -51,14 +52,7 @@ const CLASS_DATA := {
 		"passive": "Prioritizes hexers; retreats in close combat. Volley gains 12% crit and interrupts. Cooldown: 4.5s."
 	}
 }
-const GEAR_NAMES := {
-	"Weapon": ["Gloamfang", "Oathsplitter", "Ashwake Edge", "Quietus"],
-	"Helmet": ["Cowl of Last Embers", "Hollow-Crowned Hood", "Veilstitch Mask", "Warden's Sight"],
-	"Chest": ["Mantle of the Dusk", "Sable Pilgrim's Shroud", "Ashen Vowcoat", "Nightglass Wrap"],
-	"Gloves": ["Grips of the Bellkeeper", "Cinderbound Gauntlets", "Pale Knuckle-wraps", "Warden's Grasp"],
-	"Boots": ["Pilgrim's Treads", "Steps Between Veils", "Ashwalker Greaves", "Hollowstride"],
-	"Amulet": ["Heart of the Spire", "Blackglass Sigil", "Lastlight Reliquary", "Cinder Votive"]
-}
+
 const QUALITY_ORDER := ["COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY"]
 const QUALITY_COLORS := {
 	"COMMON": Color("c2bcb0"), "UNCOMMON": Color("85b497"), "RARE": Color("81a9d9"),
@@ -692,6 +686,7 @@ func _equipped_row(slot: String, item: Dictionary) -> Control:
 	info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	info.add_child(_label("%s  •  T%d  •  +%d  •  %s" % [slot.to_upper(), item.tier, int(item.get("temper", 0)), _quality_label(item.quality)], 8, _quality_color(item.quality), true))
 	info.add_child(_label(String(item.name), 12, PALE, true))
+	if CLASS_DATA.has(String(item.get("affinity",""))): info.add_child(_label(String(item.affinity).to_upper()+" ATTUNEMENT",8,MUTED))
 	info.add_child(_label(_item_stats_line(item), 9, MUTED))
 	line.add_child(info)
 	line.add_child(_label("ITEM %d" % int(item.power),10,GOLD,true))
@@ -713,6 +708,7 @@ func _item_card(item: Dictionary, show_actions: bool) -> Control:
 	top.add_child(identity)
 	top.add_child(_label("ITEM %d" % int(item.power),11,GOLD,true))
 	stack.add_child(top)
+	if CLASS_DATA.has(String(item.get("affinity",""))): stack.add_child(_paragraph_label(String(item.affinity).to_upper()+" ATTUNEMENT • Usable by all classes",8,MUTED))
 	stack.add_child(_paragraph_label("%s  •  %d armor" % [_item_stats_line(item),int(item.armor)],9,MUTED))
 	stack.add_child(_label("IF EQUIPPED  •  "+character_class.to_upper(),8,GOLD,true))
 	var comparison := _compare_item(item)
@@ -941,7 +937,7 @@ func _combat_stats(loadout: Dictionary = {}) -> Dictionary:
 	var class_mitigation := 0
 	match character_class:
 		"Arcanist":
-			ability_damage = int(attack * (1.28 + float(rank) * 0.18) + primary_value * 7)
+			ability_damage = int((attack * (1.28 + float(rank) * 0.18) + primary_value * 7) * 1.3)
 			mana_cost = 19 + rank * 3
 		"Ranger":
 			ability_damage = int(attack * (1.16 + float(rank) * 0.14) + primary_value * 6)
@@ -951,7 +947,7 @@ func _combat_stats(loadout: Dictionary = {}) -> Dictionary:
 			mana_cost = 12 + rank * 2
 			class_mitigation = int(attributes.Vitality / 18)
 	var power := attack + armor * 2 + int(attributes.Intellect) * 3 + int(attributes.Vitality) * 2
-	return {"attributes": attributes, "attack": attack, "max_hp": max_hp, "max_mana": max_mana, "armor": armor, "crit": crit, "ability_damage": ability_damage, "mana_cost": mana_cost, "class_mitigation": class_mitigation, "mana_guard":0.35 if character_class=="Arcanist" else 0.0, "boss_patterns":1, "power": power, "gear_power": gear_power}
+	return {"attributes": attributes, "attack": attack, "max_hp": max_hp, "max_mana": max_mana, "armor": armor, "crit": crit, "ability_damage": ability_damage, "mana_cost": mana_cost, "class_mitigation": class_mitigation, "mana_guard":0.35 if character_class=="Arcanist" else 0.0, "boss_patterns":1, "arcane_tactics":1 if character_class=="Arcanist" else 0, "power": power, "gear_power": gear_power}
 
 func _hero_power() -> int:
 	return int(_combat_stats().power)
@@ -1134,7 +1130,7 @@ func _toggle_farm() -> void:
 	_save_progress()
 	_build_ui()
 
-func _grant_expedition_rewards(success: bool, target_floor: int, offline: bool, seed_value: int) -> void:
+func _grant_expedition_rewards(success: bool, target_floor: int, offline: bool, seed_value: int, loot_class: String="") -> void:
 	var gold := 186+target_floor*4 if success else 55
 	var xp := 420+target_floor*8 if success else 100
 	if success:
@@ -1142,7 +1138,7 @@ func _grant_expedition_rewards(success: bool, target_floor: int, offline: bool, 
 		loot_rng.seed = seed_value+7919
 		var drop_count := 1 if loot_rng.randf()<0.68 else 2
 		for i in range(drop_count):
-			var item := _generate_item(true,target_floor,loot_rng)
+			var item := _generate_item(true,target_floor,loot_rng,loot_class)
 			if inventory.size()<MAX_BAG_SIZE:
 				inventory.append(item)
 				if offline: pending_idle_gear += 1
@@ -1167,7 +1163,7 @@ func _complete_run() -> void:
 	run_succeeded = true
 	last_run_floor = run_floor
 	run_loot.clear()
-	_grant_expedition_rewards(true,run_floor,false,expedition.run_seed)
+	_grant_expedition_rewards(true,run_floor,false,expedition.run_seed,expedition.class_key)
 	page = "loot"
 	_save_progress()
 	_finish_run_presentation()
@@ -1179,7 +1175,7 @@ func _fail_run() -> void:
 	run_succeeded = false
 	last_run_floor = run_floor
 	run_loot.clear()
-	_grant_expedition_rewards(false,run_floor,false,expedition.run_seed)
+	_grant_expedition_rewards(false,run_floor,false,expedition.run_seed,expedition.class_key)
 	page = "loot"
 	_save_progress()
 	_finish_run_presentation()
@@ -1201,42 +1197,12 @@ func _finish_run_presentation() -> void:
 		else: _build_ui()
 	)
 
-func _generate_item(boss_bonus: bool = false, target_floor: int = -1, loot_rng: RandomNumberGenerator = null) -> Dictionary:
+func _generate_item(boss_bonus: bool = false, target_floor: int = -1, loot_rng: RandomNumberGenerator = null, loot_class: String="") -> Dictionary:
 	if loot_rng==null:
 		loot_rng = RandomNumberGenerator.new()
 		loot_rng.randomize()
-	var slot: String = GEAR_SLOTS[loot_rng.randi() % GEAR_SLOTS.size()]
-	var roll := loot_rng.randf()
-	var quality := "COMMON"
-	if roll > 0.992:
-		quality = "LEGENDARY"
-	elif roll > 0.955:
-		quality = "EPIC"
-	elif roll > 0.82:
-		quality = "RARE"
-	elif roll > 0.53:
-		quality = "UNCOMMON"
-	if boss_bonus and (quality == "COMMON" or quality == "UNCOMMON"):
-		quality = "RARE"
-	var quality_bonus: int = int({"COMMON": 0, "UNCOMMON": 5, "RARE": 12, "EPIC": 22, "LEGENDARY": 36}[quality])
 	var drop_floor := floor_number if target_floor < 1 else target_floor
-	var tier := _gear_tier_at_floor(drop_floor)
-	var power: int = tier * 18 + loot_rng.randi_range(7, 17) + quality_bonus
-	var armor := int(power * (0.82 if ["Helmet", "Chest", "Gloves", "Boots"].has(slot) else 0.0))
-	var stats := {}
-	var affixes := 1
-	if quality == "RARE": affixes = 2
-	if quality == "EPIC": affixes = 3
-	if quality == "LEGENDARY": affixes = 4
-	var candidates := ATTRIBUTES.duplicate()
-	for i in range(affixes):
-		var selected: String = candidates.pop_at(loot_rng.randi() % candidates.size())
-		stats[selected] = loot_rng.randi_range(1, 3 + tier + int(quality_bonus / 10))
-	if quality == "EPIC" or quality == "LEGENDARY":
-		stats["Crit"] = loot_rng.randi_range(1, 3 + tier)
-	var sell_value: int = 28 + tier * 12 + quality_bonus * 4 + loot_rng.randi_range(0, 16)
-	var item_name: String = GEAR_NAMES[slot][loot_rng.randi() % GEAR_NAMES[slot].size()]
-	return {"name": item_name, "slot": slot, "power": power, "quality": quality, "tier": tier, "armor": armor, "stats": stats, "sell": sell_value, "temper": 0, "status": ""}
+	return ClassLoot.roll(character_class if loot_class.is_empty() else loot_class,boss_bonus,_gear_tier_at_floor(drop_floor),loot_rng)
 
 func _equip_item(item: Dictionary) -> void:
 	if not inventory.has(item):
@@ -1348,7 +1314,7 @@ func _accrue_offline_time() -> void:
 		if not expedition.finished: return
 		var remaining := maxi(0,floori(expedition.accumulator+0.00001))
 		last_run_floor = run_floor
-		_grant_expedition_rewards(expedition.won,run_floor,true,expedition.run_seed)
+		_grant_expedition_rewards(expedition.won,run_floor,true,expedition.run_seed,expedition.class_key)
 		if auto_repeat and expedition.won: farm_floor = run_floor
 		run_active = false
 		auto_repeat = false

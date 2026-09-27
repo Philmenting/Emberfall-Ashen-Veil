@@ -223,6 +223,9 @@ func _auto_hero() -> void:
 		action = "Closing on " + String(target.name)
 		return
 	if attack_cd>0:
+		if class_key=="Arcanist" and int(stats.get("arcane_tactics",0))==1 and _arcane_reposition():
+			action="Creating spell distance"
+			return
 		action = "Holding the front line" if class_key=="Vowkeeper" else "Keeping firing distance"
 		return
 	var use_skill := skill_cd<=0 and hero_mana>=int(stats.mana_cost)
@@ -244,6 +247,32 @@ func _auto_hero() -> void:
 		action = name_value
 	events.append({"type":"hero_attack","target":target.id,"skill":use_skill,"name":name_value})
 
+func _arcane_reposition() -> bool:
+	# Walk between committed casts. Never cancel an attack, teleport or gain
+	# invulnerability; the normal dodge cooldown still governs ground attacks.
+	var nearest:=INF
+	for enemy in living():
+		if enemy.role!="hexer": nearest=minf(nearest,hero_pos.distance_to(enemy.pos))
+	if nearest>=2.8: return false
+	var best:=hero_pos
+	var best_distance:=nearest+0.02
+	for direction in range(16):
+		var point:=_clamp_walkable(hero_pos+Vector2.from_angle(TAU*direction/16.0)*WALK_SPEED*STEP)
+		if point.distance_to(CHECKPOINTS[stage])>6.5: continue
+		var safe:=true
+		var separation:=INF
+		for enemy in living():
+			if not enemy.warning.is_empty() and BossPatterns.threatens(enemy.warning,point,0.2):
+				safe=false
+				break
+			if enemy.role!="hexer": separation=minf(separation,point.distance_to(enemy.pos))
+		if safe and separation>best_distance:
+			best=point
+			best_distance=separation
+	if best==hero_pos: return false
+	hero_pos=best
+	return true
+
 func _resolve_hero_attack() -> void:
 	var attack := pending_attack.duplicate()
 	pending_attack.clear()
@@ -254,7 +283,7 @@ func _resolve_hero_attack() -> void:
 		selected.clear()
 		for enemy in living():
 			var origin: Vector2 = hero_pos if class_key=="Vowkeeper" else target.pos
-			var radius := 2.9 if class_key=="Vowkeeper" else 3.2
+			var radius := 2.9 if class_key=="Vowkeeper" else 4.5 if class_key=="Arcanist" and int(stats.get("arcane_tactics",0))==1 else 3.2
 			if class_key=="Ranger":
 				origin = hero_pos
 				radius = 6.0
@@ -267,6 +296,7 @@ func _resolve_hero_attack() -> void:
 			events.append({"type":"guard","heal":healed})
 		elif class_key=="Arcanist":
 			hero_mana = mini(int(stats.max_mana),hero_mana+int(stats.mana_cost)/4)
+			events.append({"type":"nova","position":target.pos,"radius":4.5 if int(stats.get("arcane_tactics",0))==1 else 3.2})
 	for enemy in selected:
 		var amount := float(stats.ability_damage if attack.skill else stats.attack)
 		if attack.skill: amount *= 0.82 if class_key=="Ranger" else 0.90
@@ -418,6 +448,7 @@ func restore(state: Dictionary) -> bool:
 	if data.stats.has("mana_guard"):
 		if not _valid_number(data.stats.mana_guard) or data.stats.mana_guard<0.0 or data.stats.mana_guard>0.5: return false
 	if data.stats.has("boss_patterns") and (not data.stats.boss_patterns is int or not data.stats.boss_patterns in [0,1]): return false
+	if data.stats.has("arcane_tactics") and (not data.stats.arcane_tactics is int or not data.stats.arcane_tactics in [0,1]): return false
 	if not data.stats.get("attributes") is Dictionary or not _valid_number(data.stats.attributes.get("Spirit")): return false
 	if data.hero_hp<0 or data.hero_hp>data.stats.max_hp or data.hero_mana<0 or data.hero_mana>data.stats.max_mana: return false
 	if data.waves.size()!=6: return false
