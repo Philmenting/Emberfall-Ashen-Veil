@@ -14,6 +14,8 @@ var theme: Dictionary = {}
 var character_class := "Vowkeeper"
 var region_index := 0
 var active := true
+var damage_numbers := true
+var sun: DirectionalLight3D
 var hero: Node3D
 var camera: Camera3D
 var enemies: Array[Node3D] = []
@@ -110,6 +112,7 @@ func _build_environment() -> void:
 	environment.environment = env
 	add_child(environment)
 	var moon := DirectionalLight3D.new()
+	sun = moon
 	moon.rotation_degrees = Vector3(-52,-32,0)
 	moon.light_color = Color(theme.moon)
 	moon.light_energy = 0.7
@@ -483,6 +486,7 @@ func _show_event(event: Dictionary) -> void:
 			if not event.won: hero.die()
 
 func _float_text(pos: Vector3, value: String, color: Color) -> void:
+	if not damage_numbers: return
 	var label := Label3D.new()
 	label.text = value
 	label.font_size = 38 if value.length()>5 else 52
@@ -635,3 +639,6 @@ func _furnace(pos: Vector3,side: float) -> void:
 	_box(pos+Vector3(0,2.0,0),Vector3(1.85,0.23,2.7),materials.metal)
 	_box(pos+Vector3(side*0.23,2.80,0),Vector3(0.68,1.45,0.86),materials.iron)
 	_box(pos+Vector3(side*0.23,3.59,0),Vector3(0.95,0.20,1.1),materials.metal)
+
+func set_shadows(enabled: bool) -> void:
+	if is_instance_valid(sun): sun.shadow_enabled=enabled

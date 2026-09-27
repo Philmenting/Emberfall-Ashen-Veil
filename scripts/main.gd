@@ -5,6 +5,9 @@ const BattleArt = preload("res://scripts/battle_art.gd")
 const Expedition = preload("res://scripts/expedition_simulation.gd")
 const SaveStore = preload("res://scripts/save_store.gd")
 const Forecast = preload("res://scripts/farm_forecast.gd")
+const Preferences = preload("res://scripts/game_preferences.gd")
+const AudioDirector = preload("res://scripts/audio_director.gd")
+const SettingsPanel = preload("res://scripts/settings_panel.gd")
 
 const BG_TOP := Color("201c20")
 const BG_BOTTOM := Color("090d12")
@@ -66,6 +69,11 @@ const MAX_TEMPER_RANK := 5
 
 var clock_source: Callable = Time.get_unix_time_from_system
 
+var preferences := Preferences.DEFAULTS.duplicate()
+var audio: Node
+var menu_resume_run := false
+var last_back_frame := -1
+
 var page := "camp"
 var gear_tab := "bag"
 var character_class := "Vowkeeper"
@@ -123,6 +131,7 @@ var skipping_run := false
 var backgrounded_at := 0
 var save_store := SaveStore.new()
 var save_notice := ""
+var last_save_ok := true
 var initialized := false
 var onboarding_complete := false
 var ui_revision := 0
@@ -134,6 +143,12 @@ func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_PASS
 	_load_progress()
+	get_tree().quit_on_go_back = false
+	get_window().go_back_requested.connect(_handle_back)
+	audio = AudioDirector.new()
+	audio.name = "AudioDirector"
+	add_child(audio)
+	_apply_preferences()
 	initialized = true
 	for slot in GEAR_SLOTS:
 		equipment[slot]["slot"] = slot
@@ -159,6 +174,7 @@ func _notification(what: int) -> void:
 		queue_redraw()
 	elif initialized and (what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_WM_CLOSE_REQUEST):
 		backgrounded_at = int(clock_source.call())
+		if is_instance_valid(audio): audio.set_suspended(true)
 		if is_instance_valid(run_arena): run_arena.animation_enabled = false
 		_save_progress()
 	elif what == NOTIFICATION_APPLICATION_RESUMED:
@@ -167,6 +183,7 @@ func _notification(what: int) -> void:
 func _resume_from_background() -> void:
 	if backgrounded_at == 0: return
 	backgrounded_at = 0
+	if is_instance_valid(audio): audio.set_suspended(false)
 	_accrue_offline_time()
 	_save_progress()
 	if page == "run":
@@ -187,8 +204,10 @@ func _build_ui() -> void:
 	ui_revision += 1
 	forecast_jobs.clear()
 	for child in get_children():
+		if child == audio: continue
 		remove_child(child)
 		child.queue_free()
+	if is_instance_valid(audio): audio.set_context(page=="run")
 	if page == "run":
 		_build_run()
 		_show_save_notice()
@@ -250,6 +269,11 @@ func _build_header() -> Control:
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	bar.add_child(spacer)
 	bar.add_child(_resource_chip("◈", "%s GOLD" % _short_number(player_gold), GOLD))
+	var options:=_button("OPTIONS",PANEL_LIGHT,10,_show_settings)
+	options.name="OpenSettings"
+	options.custom_minimum_size=Vector2(86,34)
+	options.size_flags_horizontal=Control.SIZE_SHRINK_END
+	bar.add_child(options)
 	return bar
 
 func _build_title_row() -> Control:
@@ -488,6 +512,8 @@ func _build_run() -> void:
 	arena.region_index = _region_index(run_floor)
 	arena.simulation = expedition
 	arena.animation_enabled = run_active
+	arena.battery_mode = preferences.battery
+	arena.damage_numbers = preferences.numbers
 	arena.simulation_advanced.connect(_on_combat_advanced)
 	arena.state_changed.connect(_on_dungeon_state_changed)
 	add_child(arena)
@@ -536,6 +562,10 @@ func _build_run() -> void:
 	objective.add_child(combat_hud.progress)
 	combat_hud.encounter = _label("",10,PALE,true)
 	objective.add_child(combat_hud.encounter)
+	var options:=_button("OPTIONS / PAUSE",PANEL_LIGHT,9,_show_settings)
+	options.name="OpenSettings"
+	options.custom_minimum_size.y=34
+	objective.add_child(options)
 	var spacer := Control.new()
 	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -796,6 +826,9 @@ func _button(caption: String, fill: Color, font_size: int, action: Callable) -> 
 	button.add_theme_stylebox_override("hover", hover)
 	button.add_theme_stylebox_override("pressed", pressed)
 	button.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	button.pressed.connect(func():
+		if is_instance_valid(audio): audio.cue("ui")
+	)
 	button.pressed.connect(action)
 	return button
 
@@ -1025,6 +1058,7 @@ func _sync_model_state() -> void:
 func _on_combat_advanced(updates: Array) -> void:
 	if page!="run" or finish_pending: return
 	_sync_model_state()
+	if is_instance_valid(audio): audio.combat_events(updates,character_class)
 	for event in updates:
 		if event.type=="hit":
 			run_events.append("%s hits for %d." % [event.name,event.damage])
@@ -1134,6 +1168,7 @@ func _fail_run() -> void:
 	_finish_run_presentation()
 
 func _finish_run_presentation() -> void:
+	if is_instance_valid(audio): audio.cue("victory" if run_succeeded else "defeat")
 	if skipping_run:
 		_build_ui()
 		return
@@ -1318,6 +1353,7 @@ func _load_progress() -> void:
 	if save==null:
 		last_saved_at = int(clock_source.call())
 		return
+	preferences = Preferences.normalize(save.get_value("settings","preferences",preferences))
 	onboarding_complete = bool(save.get_value("hero","onboarding_complete",true))
 	character_class = String(save.get_value("hero", "class", character_class))
 	if not CLASS_DATA.has(character_class):
@@ -1384,6 +1420,7 @@ func _normalize_item(item: Dictionary, default_slot: String) -> Dictionary:
 
 func _save_progress() -> void:
 	var save := ConfigFile.new()
+	save.set_value("settings","preferences",preferences)
 	save.set_value("hero","onboarding_complete",onboarding_complete)
 	save.set_value("hero", "class", character_class)
 	save.set_value("hero","expedition_serial",expedition_serial)
@@ -1413,6 +1450,7 @@ func _save_progress() -> void:
 		save.set_value("run","active",run_active)
 		save.set_value("run","repeat",auto_repeat)
 	var status: Error = save_store.save_game(save)
+	last_save_ok = status==OK
 	if status!=OK:
 		save_notice = save_store.notice if not save_store.notice.is_empty() else "Progress could not be saved. Existing checkpoints are preserved. (%s)" % error_string(status)
 		_show_save_notice()
@@ -1576,3 +1614,64 @@ func _reset_attributes() -> void:
 	_refund_attributes()
 	_save_progress()
 	_build_ui()
+
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		_handle_back()
+		get_viewport().set_input_as_handled()
+
+func _handle_back() -> void:
+	# Android can deliver one press as both a key event and a window request.
+	var frame:=Engine.get_process_frames()
+	if last_back_frame==frame: return
+	last_back_frame=frame
+	if has_node("Options"):
+		_close_settings()
+	elif has_node("Welcome"):
+		return
+	elif page=="run" or page=="camp":
+		_show_settings()
+	else:
+		_navigate("camp")
+
+func _show_settings() -> void:
+	if has_node("Options") or has_node("Welcome") or finish_pending: return
+	menu_resume_run=page=="run" and run_active
+	if menu_resume_run: _toggle_run_pause()
+	var menu:=SettingsPanel.new()
+	menu.name="Options"
+	menu.game=self
+	add_child(menu)
+
+func _close_settings() -> void:
+	var menu:=get_node_or_null("Options")
+	if menu==null: return
+	remove_child(menu)
+	menu.queue_free()
+	if menu_resume_run and page=="run" and not run_active: _toggle_run_pause()
+	menu_resume_run=false
+	_save_progress()
+
+func _change_preference(key: String,value: Variant,persist: bool=true) -> void:
+	if not preferences.has(key): return
+	preferences[key]=value
+	preferences=Preferences.normalize(preferences)
+	_apply_preferences()
+	if persist: _save_progress()
+
+func _apply_preferences() -> void:
+	Engine.max_fps=30 if preferences.battery else 60
+	if is_instance_valid(audio): audio.apply_preferences(preferences)
+	if page=="run" and is_instance_valid(run_arena):
+		run_arena.apply_quality(preferences.battery,preferences.numbers)
+
+func _save_and_exit() -> void:
+	# Opening options temporarily pauses; explicit exit preserves the prior intent.
+	if menu_resume_run and page=="run": run_active=true
+	_save_progress()
+	if not last_save_ok:
+		if menu_resume_run and page=="run": run_active=false
+		_show_save_notice()
+		return
+	get_tree().quit()
