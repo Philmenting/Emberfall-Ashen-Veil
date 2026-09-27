@@ -539,6 +539,7 @@ func _on_dungeon_state_changed(description: String) -> void:
 
 func _sync_combat_hud() -> void:
 	if page != "run" or combat_hud.is_empty(): return
+	combat_hud.state.text = ("AUTO • " if run_active else "PAUSED • ")+String(expedition.action).to_upper()
 	combat_hud.hp.value = run_health
 	combat_hud.mana.value = run_mana
 	combat_hud.life.text = "%d LIFE   /   %d MANA" % [run_health,run_mana]

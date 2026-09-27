@@ -1,6 +1,15 @@
 # Emberfall: Ashen Veil
 
-**Emberfall: Ashen Veil** ist ein eigenständiger, im Querformat gestalteter Godot-Prototyp für ein düsteres Idle-Action-RPG. Gegner haben eigene Lebensleisten; Nyra kämpft in automatischen Schlägen bis ein Gegner fällt. Alle zehn Etagen wechselt die Kampagne Gebiet, Dungeon-Namen und Boss: vom Hollow Spire bis zur Last Ember Citadel. Ein Boss-Sieg garantiert mindestens ein seltenes Ausrüstungsteil und schaltet sofort die nächste Etage frei. Vowkeeper, Arcanist und Ranger haben unterschiedliche Kampfvorteile; Attribute stärken ihre Werte und Klassenfähigkeiten. Die Gebiete verwenden vorerst dieselbe 3D-Dungeon-Geometrie. Sechs Ausrüstungsslots, fünf Qualitäten und Stufen T1–T10 bilden die Beute-Progression. Angelegte Ausrüstung kann beim Schmied bis +5 verstärkt werden.
+**Emberfall: Ashen Veil** ist ein eigenständiger, im Querformat gestalteter Godot-Prototyp für ein düsteres Idle-Action-RPG. Gegner haben eigene Lebensleisten; Nyra kämpft in automatischen Schlägen bis ein Gegner fällt. Alle zehn Etagen wechselt die Kampagne Gebiet, Dungeon-Namen und Boss: vom Hollow Spire bis zur Last Ember Citadel. Ein Boss-Sieg garantiert mindestens ein seltenes Ausrüstungsteil und schaltet sofort die nächste Etage frei. Vowkeeper, Arcanist und Ranger haben unterschiedliche Kampfvorteile; Attribute stärken ihre Werte und Klassenfähigkeiten. Die vier Gebiete besitzen eigene Materialien, Architekturdetails, Umgebungen und Bossmerkmale; die begehbare Route bleibt gemeinsam. Sechs Ausrüstungsslots, fünf Qualitäten und Stufen T1–T10 bilden die Beute-Progression. Angelegte Ausrüstung kann beim Schmied bis +5 verstärkt werden.
+
+## Vier Gebiete (0.5)
+
+- **Hollow Spire:** kalter Stein, verfallene Bögen, Banner und eine geborstene Glocke über dem Heiligtum.
+- **Sunken Archive:** überflutete Umgebung, feuchter Stein, verfallene Bücherregale und türkisfarbene Geisterlichter. Der Silt Abbot trägt eine hohe Mitra und eine lange Robe.
+- **Crow Ossuary:** offene Knochenbögen, schwarze Kristalle, Knochenfelder und violettes Licht. Die Mourning Queen trägt eine gezackte Krone und knöcherne Schulterfortsätze.
+- **Last Ember Citadel:** dunkle Lava, Öfen, Gitter und Ketten. Der Cinder Sovereign trägt eine glühende Brustplatte und Ofenschlote.
+
+Gegnernamen und Farben folgen dem Gebiet. Der automatische Kampf bleibt dieselbe verifizierte Simulation. Wiederholte statische Quader, Kugeln, Zylinder und Ringe werden pro Raum und Material gebündelt, damit die zusätzlichen Details weniger Zeichenaufrufe benötigen. Starre Teile der Figuren werden innerhalb ihrer beweglichen Gelenke zu gemeinsamen Meshes zusammengeführt. Wasser und Lava sind eigene animierte Godot-Shader. Alle Modelle und Materialien sind im Projekt erstellt.
 
 ## Verlässliche Wiederaufnahme (0.4.1)
 
@@ -44,7 +53,7 @@ Das Projekt mit Godot 4.7.2 öffnen und `Main.tscn` starten. Die Spielfläche is
 
 ### Android-Test- und Beta-Build
 
-Das Exportprofil `Android Debug` erstellt eine installierbare Test-APK für ARM64 unter `build/emberfall-debug.apk`. Das Profil `Google Play Beta` baut ein AAB mit Android API 36, ARM64 und Version `0.4.1-beta.1` unter `build/emberfall-beta-debug.aab`. Es verwendet Godots Gradle-Build-Vorlage mit Android Gradle Plugin 8.10.1; für den Export werden OpenJDK 17, Android SDK Platform 36 und Build-Tools 36.1.0 benötigt. Die tatsächliche Annahme und Veröffentlichung muss anschließend in der Play Console geprüft werden.
+Das Exportprofil `Android Debug` erstellt eine installierbare Test-APK für ARM64 unter `build/emberfall-debug.apk`. Das Profil `Google Play Beta` baut ein AAB mit Android API 36, ARM64 und Version `0.5.0-beta.1` unter `build/emberfall-beta-debug.aab`. Es verwendet Godots Gradle-Build-Vorlage mit Android Gradle Plugin 8.10.1; für den Export werden OpenJDK 17, Android SDK Platform 36 und Build-Tools 36.1.0 benötigt. Die tatsächliche Annahme und Veröffentlichung muss anschließend in der Play Console geprüft werden.
 
 GitHub Actions baut beide Testpakete bei Änderungen am Projekt und stellt sie als Workflow-Artefakt bereit. Die CI-Artefakte dienen zur technischen Prüfung und sind keine freigegebene Play-Veröffentlichung. Vor dem Upload in die Play Console muss `Google Play Beta` mit einem privaten Upload-Schlüssel als Release exportiert werden. Der Schlüssel gehört weder ins Repository noch in den Debug-Build.
 
@@ -67,6 +76,7 @@ Mit separatem Datenverzeichnis ausführen, damit der eigene Spielstand unangetas
 ```bash
 XDG_DATA_HOME=/tmp/emberfall-smoke-data godot --headless --path . --fixed-fps 60 --script tests/dungeon_smoke.gd
 XDG_DATA_HOME=/tmp/emberfall-persistence-data godot --headless --path . --fixed-fps 60 --script tests/persistence_smoke.gd
+XDG_DATA_HOME=/tmp/emberfall-regions-data godot --headless --path . --fixed-fps 60 --script tests/regions_smoke.gd
 ```
 
 Die Prüfung deckt alle drei Klassen, Bewegung, Reichweite, Pause, Bossabschluss, Beute, Überspringen, Niederlage und Hintergrundwechsel ab. `tests/android_preview.tscn` ist ein separater Test-Einstieg: startet automatisch einen frischen Lauf und speichert nach 2/12/25/40/58/75 Sekunden sowie beim ersten angekündigten Bossangriff Screenshots unter `user://`. Nur mit einer separaten Android-Paketkennung und einem eigenen Spielstand verwenden; `Main.tscn` bleibt der normale Einstieg.
@@ -82,3 +92,8 @@ Die Prüfung deckt alle drei Klassen, Bewegung, Reichweite, Pause, Bossabschluss
 - `scripts/main.gd`: Klassen, Werte, HUD, Ausrüstung, Belohnungen und Speicherung.
 
 - `scripts/save_store.gd`: versionierte, geprüfte Speichergenerationen und Legacy-Migration.
+
+- `scripts/dungeon_theme.gd`: Gebietspaletten und Gegnernamen.
+- `tests/android_regions.tscn`: separater Android-Einstieg für acht Gebiets-/Bossaufnahmen und eine kurze Bildratenmessung; kein Progressionstest.
+
+Die kurzen Android-Vergleichsmessungen und ihre Grenzen stehen in [docs/REGIONS.md](docs/REGIONS.md).

@@ -62,6 +62,9 @@ jobs:
           XDG_DATA_HOME="$RUNNER_TEMP/emberfall-smoke-data" godot --headless --path . --fixed-fps 60 --script tests/dungeon_smoke.gd
           XDG_DATA_HOME="$RUNNER_TEMP/emberfall-persistence-data" godot --headless --path . --fixed-fps 60 --script tests/persistence_smoke.gd
 
+      - name: Check regional scenery and world separation
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-regions-data" godot --headless --path . --fixed-fps 60 --script tests/regions_smoke.gd
+
       - name: Export Android test APK and Play-format AAB
         env:
           GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ runner.temp }}/debug.keystore

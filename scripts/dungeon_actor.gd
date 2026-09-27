@@ -1,5 +1,7 @@
 extends Node3D
 ## Original articulated models. Geometry and animation are authored in Godot.
+const ThemeData = preload("res://scripts/dungeon_theme.gd")
+var region_index := 0
 var kind := "Vowkeeper"
 var hostile := false
 var boss := false
@@ -20,11 +22,12 @@ var health_bar: MeshInstance3D
 var materials: Dictionary = {}
 
 func _ready() -> void:
+	var theme := ThemeData.definition(region_index)
 	var accent := Color("b18b57")
 	if kind == "Arcanist": accent = Color("9170bd")
 	if kind == "Ranger": accent = Color("579b7f")
-	if hostile: accent = Color("943b30")
-	if kind=="hexer": accent = Color("8b61b0")
+	if hostile: accent = Color(theme.enemy)
+	if kind=="hexer": accent = Color(theme.enemy).lightened(0.15)
 	if kind=="bulwark": accent = Color("8d7954")
 	if kind=="elite": accent = Color("d15b2e")
 	materials.metal = _mat(Color("303c49") if not hostile else Color("30282b"), 0.72)
@@ -32,8 +35,8 @@ func _ready() -> void:
 	materials.cloth = _mat(accent.darkened(0.55), 0.0)
 	materials.trim = _mat(accent, 0.65)
 	materials.leather = _mat(Color("211e22"), 0.0)
-	materials.skin = _mat(Color("c1aa95") if not hostile else Color("7e8075"), 0.0)
-	materials.glow = _mat(Color("81d9e6") if not hostile else Color("ff7433"), 0.0, true)
+	materials.skin = _mat(Color("c1aa95") if not hostile else Color(theme.skin), 0.0)
+	materials.glow = _mat(Color("81d9e6") if not hostile else Color(theme.glow), 0.0, true)
 	body = Node3D.new()
 	add_child(body)
 	# Torso: tapered cuirass, inset breastplate, belt and overlapping tassets.
@@ -95,12 +98,15 @@ func _ready() -> void:
 		if not hostile or kind in ["bulwark","elite","boss"]:
 			var shield := _sphere(left_arm,Vector3(-0.05,-0.37,-0.12),Vector3(0.29,0.39,0.10),materials.metal)
 			_box(shield,Vector3(0,0,-1.0),Vector3(0.16,1.5,0.10),materials.trim)
-	if boss: scale = Vector3.ONE * 1.65
+	if boss:
+		scale = Vector3.ONE * 1.65
+		_build_boss_regalia()
 	elif kind=="hexer":
 		scale = Vector3(0.82,1.10,0.82)
 		_cylinder(body,Vector3(0,0.57,0),0.40,0.25,0.85,materials.cloth,10)
 	elif kind=="bulwark" or kind=="elite": scale = Vector3(1.22,1.15,1.22)
 	elif hostile: scale = Vector3(0.87,0.96,0.87)
+	_merge_rigid_parts(self)
 
 func _mat(color: Color, metal: float, glow: bool = false) -> StandardMaterial3D:
 	var mat := StandardMaterial3D.new()
@@ -202,3 +208,66 @@ func animate(delta: float, walking: bool) -> void:
 			attack_time = -1.0
 	else:
 		right_arm.rotation.z = 0.0
+
+func _build_boss_regalia() -> void:
+	# Each region's boss has a silhouette readable from the following camera.
+	match region_index:
+		0:
+			for side in [-1.0,1.0]:
+				_cylinder(body,Vector3(side*0.57,1.85,0),0.18,0.10,0.35,materials.trim,8)
+		1:
+			_cylinder(body,Vector3(0,0.69,0),0.53,0.27,1.15,materials.cloth,12)
+			_cylinder(body,Vector3(0,2.06,0),0.29,0.09,0.68,materials.cloth,6)
+			for side in [-1.0,1.0]:
+				_box(body,Vector3(side*0.26,1.15,-0.30),Vector3(0.11,0.9,0.04),materials.trim)
+		2:
+			for i in range(7):
+				var angle:=float(i)*TAU/7.0
+				_cylinder(body,Vector3(sin(angle)*0.25,2.19,cos(angle)*0.25),0.065,0.0,0.50,materials.edge,5)
+			for side in [-1.0,1.0]:
+				var rib:=_box(body,Vector3(side*0.66,1.75,0.12),Vector3(0.65,0.10,0.16),materials.skin)
+				rib.rotation.z=side*0.6
+		3:
+			for side in [-1.0,1.0]:
+				var vent:=_box(body,Vector3(side*0.38,1.78,0.18),Vector3(0.20,0.68,0.24),materials.metal)
+				vent.rotation.z=-side*0.22
+				_sphere(body,Vector3(side*0.43,2.16,0.18),Vector3(0.11,0.17,0.11),materials.glow)
+			_box(body,Vector3(0,1.36,-0.31),Vector3(0.20,0.28,0.03),materials.glow)
+
+func _merge_rigid_parts(pivot: Node3D) -> void:
+	# Keep animated joints, merge only static meshes attached to each joint.
+	# The authored silhouette and materials stay intact with fewer draw calls.
+	var groups: Dictionary = {}
+	var meshes: Array[MeshInstance3D] = []
+	_collect_rigid_meshes(pivot,pivot,groups,meshes)
+	for group in groups.values():
+		var surface:=SurfaceTool.new()
+		surface.begin(Mesh.PRIMITIVE_TRIANGLES)
+		for entry in group.entries:
+			surface.append_from(entry.mesh,0,entry.transform)
+		var combined:=MeshInstance3D.new()
+		combined.mesh=surface.commit()
+		combined.material_override=group.material
+		pivot.add_child(combined)
+	# Remove deepest children first so nested shield details are merged once.
+	meshes.reverse()
+	for mesh in meshes:
+		mesh.get_parent().remove_child(mesh)
+		mesh.queue_free()
+
+func _collect_rigid_meshes(pivot: Node3D,parent: Node3D,groups: Dictionary,meshes: Array[MeshInstance3D]) -> void:
+	for child in parent.get_children():
+		if child is MeshInstance3D:
+			var mat: Material=child.material_override
+			var key:=mat.get_instance_id()
+			if not groups.has(key): groups[key]={"material":mat,"entries":[]}
+			var local_transform:=Transform3D.IDENTITY
+			var cursor: Node3D=child
+			while cursor!=pivot:
+				local_transform=cursor.transform*local_transform
+				cursor=cursor.get_parent()
+			groups[key].entries.append({"mesh":child.mesh,"transform":local_transform})
+			meshes.append(child)
+			_collect_rigid_meshes(pivot,child,groups,meshes)
+		elif child is Node3D:
+			_merge_rigid_parts(child)

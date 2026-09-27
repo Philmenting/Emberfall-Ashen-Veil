@@ -9,6 +9,8 @@ var last_stage := -1
 var target_ring: MeshInstance3D
 signal state_changed(description: String)
 const Actor = preload("res://scripts/dungeon_actor.gd")
+const ThemeData = preload("res://scripts/dungeon_theme.gd")
+var theme: Dictionary = {}
 var character_class := "Vowkeeper"
 var region_index := 0
 var active := true
@@ -28,10 +30,13 @@ var rng := RandomNumberGenerator.new()
 var last_description := ""
 
 func _ready() -> void:
+	region_index = clampi(region_index,0,3)
+	theme = ThemeData.definition(region_index)
 	rng.seed = 7291 + region_index
 	_build_materials()
 	_build_environment()
 	_build_dungeon()
+	_build_regional_details()
 	_batch_static_geometry()
 	hero = Actor.new()
 	hero.kind = character_class
@@ -58,24 +63,25 @@ func _ready() -> void:
 	hero.add_child(lantern)
 
 func _build_materials() -> void:
-	materials.stone = _material(Color("444950"))
-	materials.edge = _material(Color("656a71"))
-	materials.dark = _material(Color("252933"))
-	materials.metal = _material(Color("65533a"),0.7)
+	materials.stone = _material(Color(theme.stone))
+	materials.edge = _material(Color(theme.edge))
+	materials.dark = _material(Color(theme.dark))
+	materials.metal = _material(Color(theme.metal),0.7)
 	materials.blood = _material(Color("ae493c"),0.0,true)
-	materials.fire = _material(Color("f37825"),0.0,true)
+	materials.fire = _material(Color(theme.fire),0.0,true)
 	materials.soul = _material(Color("6bc4cc"),0.0,true)
-	materials.cloth = _material(Color("392c35"))
+	materials.cloth = _material(Color(theme.cloth))
 	materials.bone = _material(Color("a29b86"))
 	for i in range(5):
 		var mat := ShaderMaterial.new()
 		mat.shader = preload("res://assets/shaders/aged_stone.gdshader")
-		mat.set_shader_parameter("stone_tint", Color("636970").darkened(float(i)*0.055))
+		mat.set_shader_parameter("stone_tint", Color(theme.stone).darkened(float(i)*0.055))
+		mat.set_shader_parameter("roughness",theme.roughness)
 		floor_materials.append(mat)
 	materials.stone = floor_materials[2]
 	var edge_mat := ShaderMaterial.new()
 	edge_mat.shader = preload("res://assets/shaders/aged_stone.gdshader")
-	edge_mat.set_shader_parameter("stone_tint", Color("727777"))
+	edge_mat.set_shader_parameter("stone_tint", Color(theme.edge))
 	materials.edge = edge_mat
 
 func _material(color: Color, metallic: float = 0.0, glow: bool = false) -> StandardMaterial3D:
@@ -93,19 +99,19 @@ func _build_environment() -> void:
 	var environment := WorldEnvironment.new()
 	var env := Environment.new()
 	env.background_mode = Environment.BG_COLOR
-	env.background_color = Color("070c12")
+	env.background_color = Color(theme.background)
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	env.ambient_light_color = Color("8c9eb8")
+	env.ambient_light_color = Color(theme.ambient)
 	env.ambient_light_energy = 0.28
 	env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
 	env.fog_enabled = true
-	env.fog_light_color = Color("111b25")
-	env.fog_density = 0.020
+	env.fog_light_color = Color(theme.fog)
+	env.fog_density = theme.density
 	environment.environment = env
 	add_child(environment)
 	var moon := DirectionalLight3D.new()
 	moon.rotation_degrees = Vector3(-52,-32,0)
-	moon.light_color = Color("a8c9ee")
+	moon.light_color = Color(theme.moon)
 	moon.light_energy = 0.7
 	moon.shadow_enabled = true
 	moon.directional_shadow_max_distance = 45.0
@@ -132,19 +138,20 @@ func _build_dungeon() -> void:
 			for side in [-1.0,1.0]:
 				# Foreground parapets are deliberately low to keep the hero visible.
 				var height := 2.4 if side < 0.0 else 0.65
+				if region_index==2: height = 0.45
 				_box(Vector3(side*7.3,height/2-0.15,z_center),Vector3(0.8,height,10.9),materials.stone)
 				_box(Vector3(side*7.3,height-0.1,z_center),Vector3(1.0,0.18,10.9),materials.edge)
 				for dz in [-4.5,4.5]:
-					_pillar(Vector3(side*6.5,0,z_center+dz),side<0)
+					if region_index!=2: _pillar(Vector3(side*6.5,0,z_center+dz),side<0)
 				_torch(Vector3(side*5.8,1.35,z_center))
 				# Buttress ribs and staggered masonry articulate the outer wall.
-				for row in range(3 if side<0 else 1):
+				for row in range((3 if side<0 else 1) if region_index!=2 else 0):
 					for brick in range(8):
 						_box(Vector3(side*6.86,0.18+row*0.62,z_center-4.7+brick*1.3+(0.3 if row%2 else 0.0)),Vector3(0.13,0.57,1.24),floor_materials[(brick+row)%5])
-				if room % 2 == 0:
+				if room % 2 == 0 and region_index==0:
 					_sarcophagus(Vector3(side*5.3,0,z_center+2.5))
-			_arch(Vector3(-6.45,0,z_center),PI/2)
-			_banner(Vector3(-6.3,3.8,z_center-2.5))
+			if region_index in [0,1]: _arch(Vector3(-6.45,0,z_center),PI/2)
+			if region_index in [0,3]: _banner(Vector3(-6.3,3.8,z_center-2.5))
 			for j in range(35):
 				var rubble := _box(Vector3((-1.0 if j%2==0 else 1.0)*rng.randf_range(4.4,6.5),0.08,z_center+rng.randf_range(-4.7,4.7)),Vector3(rng.randf_range(0.1,0.42),0.18,rng.randf_range(0.1,0.35)),materials.stone)
 				rubble.rotation = Vector3(rng.randf()*0.4,rng.randf()*TAU,rng.randf()*0.3)
@@ -176,7 +183,7 @@ func _build_dungeon() -> void:
 	_box(Vector3(0,0.5,-67),Vector3(3.0,1.0,1.0),materials.stone)
 	# Faded carpet sections and scattered bones, clear of the walking centerline.
 	for z in [1.0,-11.0,-38.0,-49.0]:
-		_box(Vector3(0,0.012,z),Vector3(2.5,0.018,4.5),materials.cloth)
+		if region_index in [0,3]: _box(Vector3(0,0.012,z),Vector3(2.5,0.018,4.5),materials.cloth)
 		for side in [-1.0,1.0]:
 			_box(Vector3(side*1.15,0.026,z),Vector3(0.045,0.01,4.5),materials.metal)
 		for j in range(4):
@@ -242,36 +249,51 @@ func _torch(pos: Vector3) -> void:
 	add_child(fire)
 	var light := OmniLight3D.new()
 	light.position = pos+Vector3(0,0.55,0)
-	light.light_color = Color("ffab60")
+	light.light_color = Color(theme.light)
 	light.light_energy = 2.2
 	light.omni_range = 5.5
 	add_child(light)
 	torches.append(light)
 
 func _batch_static_geometry() -> void:
-	# Batch static boxes by material AND room, preserving frustum/light culling.
-	# Dynamic actors/effects are created afterwards and remain articulated.
+	# All repeated static primitives share draw calls per material and chamber.
+	# Animated liquid surfaces, actors and combat effects remain separate.
 	var groups: Dictionary = {}
 	for node in find_children("*","MeshInstance3D",true,false):
 		var mesh_node: MeshInstance3D = node
-		if not mesh_node.mesh is BoxMesh: continue
+		var source: Mesh = mesh_node.mesh
+		var signature := ""
+		var transform: Transform3D = mesh_node.global_transform
+		if source is BoxMesh:
+			signature = "box"
+			transform.basis = transform.basis.scaled_local(source.size)
+		elif source is CylinderMesh:
+			signature = "cylinder:"+str([source.bottom_radius,source.top_radius,source.height,source.radial_segments])
+		elif source is TorusMesh:
+			signature = "torus:"+str([source.inner_radius,source.outer_radius,source.rings,source.ring_segments])
+		elif source is SphereMesh:
+			signature = "sphere:"+str([source.radius,source.height,source.radial_segments,source.rings])
+		else: continue
 		var mat: Material = mesh_node.material_override
 		var room := floori(mesh_node.global_position.z/11.0)
-		var key := str(mat.get_instance_id())+":"+str(room)
-		if not groups.has(key): groups[key] = {"material":mat,"transforms":[]}
-		var transform: Transform3D = mesh_node.global_transform
-		transform.basis = transform.basis.scaled_local(mesh_node.mesh.size)
+		var key := str(mat.get_instance_id())+":"+str(room)+":"+signature
+		if not groups.has(key):
+			var mesh: Mesh = BoxMesh.new() if source is BoxMesh else source
+			if mesh is BoxMesh: mesh.size = Vector3.ONE
+			groups[key] = {"material":mat,"transforms":[],"mesh":mesh}
 		groups[key].transforms.append(transform)
 		mesh_node.get_parent().remove_child(mesh_node)
 		mesh_node.queue_free()
 	for group in groups.values():
-		_batch_boxes(group.transforms,group.material)
+		_batch_mesh(group.transforms,group.material,group.mesh)
 
 func _batch_boxes(transforms: Array, mat: Material) -> void:
-	if transforms.is_empty(): return
 	var mesh := BoxMesh.new()
 	mesh.size = Vector3.ONE
-	mesh.material = mat
+	_batch_mesh(transforms,mat,mesh)
+
+func _batch_mesh(transforms: Array,mat: Material,mesh: Mesh) -> void:
+	if transforms.is_empty(): return
 	var multi := MultiMesh.new()
 	multi.transform_format = MultiMesh.TRANSFORM_3D
 	multi.mesh = mesh
@@ -279,6 +301,7 @@ func _batch_boxes(transforms: Array, mat: Material) -> void:
 	for i in range(transforms.size()): multi.set_instance_transform(i,transforms[i])
 	var node := MultiMeshInstance3D.new()
 	node.multimesh = multi
+	node.material_override = mat
 	add_child(node)
 
 func _box(pos: Vector3,dimensions: Vector3,mat: Material,parent: Node3D = null) -> MeshInstance3D:
@@ -313,6 +336,7 @@ func _ensure_wave(wave_index: int) -> void:
 		actor.hostile = true
 		actor.boss = enemy.role=="boss"
 		actor.kind = enemy.role
+		actor.region_index = region_index
 		actor.position = _point(enemy.pos)
 		actor.rotation.y = PI
 		add_child(actor)
@@ -486,3 +510,128 @@ func _update_effects(delta: float) -> void:
 		if effect.age >= effect.life:
 			node.queue_free()
 			effects.remove_at(i)
+
+func _build_regional_details() -> void:
+	materials.wood = _material(Color("302b28"))
+	materials.pages = _material(Color("adac85"))
+	materials.moss = _material(Color("315746"))
+	materials.crystal = _material(Color("655184"),0.55)
+	materials.iron = _material(Color("262329"),0.7)
+	match region_index:
+		0:
+			# An enormous broken bell marks the original tower's final chamber.
+			_cylinder(Vector3(0,3.5,-67.4),1.05,0.58,1.5,materials.metal,16)
+			_ring(Vector3(0,2.78,-67.4),1.02,materials.metal)
+			_box(Vector3(0,2.5,-67.4),Vector3(0.15,0.70,0.15),materials.dark)
+			_box(Vector3(0,4.6,-67.4),Vector3(0.12,0.8,0.12),materials.metal)
+		1:
+			_liquid(Vector3(0,-0.36,-28),Vector2(44,104),false)
+			for chamber in range(7):
+				var z:=3.0-chamber*11.2
+				if chamber==3: continue
+				for side in [-1.0,1.0]:
+					_bookshelf(Vector3(side*6.1,0,z),side)
+					_box(Vector3(side*5.8,0.025,z+3.0),Vector3(1.7,0.025,1.2),materials.moss)
+					for reed in range(5):
+						var stem:=_box(Vector3(side*(5.8+reed*0.11),0.35,z+3.0+reed*0.09),Vector3(0.025,0.65+reed*0.06,0.025),materials.moss)
+						stem.rotation.z=side*0.16
+				for side in [-1.0,1.0]:
+					var broken:=_box(Vector3(side*4.9,0.13,z-3.0),Vector3(0.5,0.24,0.65),materials.wood)
+					broken.rotation.y=side*0.7
+					_box(broken.position+Vector3(0,0.13,0),Vector3(0.4,0.03,0.55),materials.pages)
+			for side in [-1.0,1.0]:
+				_bookshelf(Vector3(side*5.3,0,-64),side)
+		2:
+			for chamber in range(7):
+				var z:=4.0-chamber*11.2
+				if chamber==3: continue
+				for side in [-1.0,1.0]:
+					_rib_arch(Vector3(side*6.3,0,z),side)
+					for i in range(4):
+						var pos:=Vector3(side*(5.4+i*0.4),0,z+2.4+i*0.6)
+						var shard:=_cylinder(pos+Vector3(0,0.6+i*0.19,0),0.28+i*0.09,0.015,1.2+i*0.38,materials.crystal,5)
+						shard.rotation.z=side*(0.12+i*0.07)
+						shard.rotation.y=i*1.7
+					for bone in range(7):
+						var fragment:=_box(Vector3(side*(4.9+float(bone%3)*0.45),0.1,z-3.1+bone*0.3),Vector3(0.6,0.14,0.12),materials.bone)
+						fragment.rotation.y=float(bone)*0.9
+			# An open blackglass basin replaces the tower's empty void.
+			_box(Vector3(0,-3.8,-28),Vector3(60,0.5,115),materials.dark)
+			for side in [-1.0,1.0]:
+				for i in range(10):
+					_cylinder(Vector3(side*(9.2+float(i%3)),0.2,-3.0-i*7),0.75,0.02,4.2,materials.crystal,5)
+		3:
+			_liquid(Vector3(0,-0.55,-28),Vector2(44,104),true)
+			for chamber in range(7):
+				var z:=4.0-chamber*11.2
+				if chamber==3: continue
+				for side in [-1.0,1.0]:
+					_furnace(Vector3(side*6.1,0,z),side)
+					for i in range(5):
+						_box(Vector3(side*5.8,0.04,z+3.2+i*0.22),Vector3(1.8,0.08,0.08),materials.iron)
+					for link in range(6):
+						var chain:=_ring(Vector3(side*5.6,3.0-link*0.34,z-3.9),0.19,materials.metal)
+						chain.rotation.x=PI/2
+						chain.rotation.y=float(link%2)*PI/2
+			# Crown-shaped gate silhouettes the final arena.
+			for i in range(7):
+				var height:=3.2+float(3-abs(i-3))*0.45
+				_cylinder(Vector3((i-3)*0.72,height/2,-67.3),0.26,0.0,height,materials.metal,5)
+
+func _cylinder(pos: Vector3,bottom: float,top: float,height: float,mat: Material,sides: int = 8) -> MeshInstance3D:
+	var node:=MeshInstance3D.new()
+	var mesh:=CylinderMesh.new()
+	mesh.bottom_radius=bottom
+	mesh.top_radius=top
+	mesh.height=height
+	mesh.radial_segments=sides
+	node.mesh=mesh
+	node.material_override=mat
+	node.position=pos
+	add_child(node)
+	return node
+
+func _liquid(pos: Vector3,dimensions: Vector2,lava: bool) -> void:
+	var mat:=ShaderMaterial.new()
+	mat.shader=preload("res://assets/shaders/dungeon_water.gdshader")
+	mat.set_shader_parameter("water_color",Color("491b0b") if lava else Color("123d42"))
+	mat.set_shader_parameter("crest_color",Color("f57d29") if lava else Color("459082"))
+	mat.set_shader_parameter("lava",1.0 if lava else 0.0)
+	var mesh:=PlaneMesh.new()
+	mesh.size=dimensions
+	var surface:=MeshInstance3D.new()
+	surface.name="LavaBasin" if lava else "FloodedArchive"
+	surface.mesh=mesh
+	surface.material_override=mat
+	surface.position=pos
+	add_child(surface)
+
+func _bookshelf(pos: Vector3,side: float) -> void:
+	_box(pos+Vector3(side*0.34,1.35,0),Vector3(0.14,2.7,3.4),materials.wood)
+	for end in [-1.0,1.0]:
+		_box(pos+Vector3(0,1.35,end*1.7),Vector3(0.8,2.7,0.13),materials.metal)
+	for shelf in range(4):
+		_box(pos+Vector3(0,0.18+shelf*0.75,0),Vector3(0.8,0.12,3.4),materials.wood)
+		if shelf==3: continue
+		for book in range(11):
+			var height:=0.34+float((book+shelf)%3)*0.085
+			var volume:=_box(pos+Vector3(-side*0.14,0.28+shelf*0.75+height/2,-1.40+book*0.28),Vector3(0.46,height,0.20),materials.pages if book%4==0 else materials.cloth)
+			volume.rotation.x=0.10 if book%5==0 else 0.0
+
+func _rib_arch(pos: Vector3,side: float) -> void:
+	_box(pos+Vector3(0,0.20,0),Vector3(1.25,0.4,1.7),materials.dark)
+	for i in range(6):
+		var t:=float(i)/5.0
+		var rib:=_box(pos+Vector3(-side*pow(t,1.5)*1.7,0.6+t*3.7,0),Vector3(0.42-t*0.24,0.92,0.38-t*0.20),materials.bone)
+		rib.rotation.z=side*t*0.72
+		var second:=_box(pos+Vector3(-side*pow(t,1.5)*1.5,0.6+t*3.3,0.8),Vector3(0.34-t*0.18,0.82,0.30-t*0.14),materials.bone)
+		second.rotation.z=side*t*0.72
+
+func _furnace(pos: Vector3,side: float) -> void:
+	_box(pos+Vector3(0,0.95,0),Vector3(1.6,1.9,2.5),materials.dark)
+	_box(pos+Vector3(-side*0.82,0.85,0),Vector3(0.04,0.95,1.65),materials.fire)
+	for bar in range(6):
+		_box(pos+Vector3(-side*0.87,0.85,-0.77+bar*0.31),Vector3(0.08,1.14,0.075),materials.iron)
+	_box(pos+Vector3(0,2.0,0),Vector3(1.85,0.23,2.7),materials.metal)
+	_box(pos+Vector3(side*0.23,2.80,0),Vector3(0.68,1.45,0.86),materials.iron)
+	_box(pos+Vector3(side*0.23,3.59,0),Vector3(0.95,0.20,1.1),materials.metal)

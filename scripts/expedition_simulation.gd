@@ -1,6 +1,7 @@
 extends RefCounted
 ## Single deterministic authority for watched, skipped and offline expeditions.
 ## All combat and movement use fixed 100 ms steps; rendering never rolls damage.
+const ThemeData = preload("res://scripts/dungeon_theme.gd")
 const STEP := 0.1
 const WALK_SPEED := 2.55
 const MAX_DURATION := 180.0
@@ -64,7 +65,7 @@ func setup(selected_class: String, combat_stats: Dictionary, target_floor: int, 
 			var point: Vector2 = CHECKPOINTS[room]+offsets[slot]
 			if role == "boss": point = CHECKPOINTS[room]
 			if role == "hexer": point.y -= 1.0
-			pack.append({"id":room*10+slot,"role":role,"name":boss_name if role=="boss" else ROLE_NAMES[role],"hp":hp,"max_hp":hp,"pos":point,"spawn":point,"cooldown":0.7+slot*0.35,"special_cd":2.5,"slow":0.0,"warning":{},"damage":(10.0+floor_id*2.2)*(1.6 if role in ["elite","boss"] else 1.0)})
+			pack.append({"id":room*10+slot,"role":role,"name":boss_name if role=="boss" else ThemeData.enemy_name((floor_id-1)/10,role),"hp":hp,"max_hp":hp,"pos":point,"spawn":point,"cooldown":0.7+slot*0.35,"special_cd":2.5,"slow":0.0,"warning":{},"damage":(10.0+floor_id*2.2)*(1.6 if role in ["elite","boss"] else 1.0)})
 		waves.append(pack)
 
 func advance(delta: float) -> Array:
