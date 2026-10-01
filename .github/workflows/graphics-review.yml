@@ -15,7 +15,7 @@ concurrency:
 jobs:
   graphics:
     runs-on: ubuntu-24.04
-    timeout-minutes: 12
+    timeout-minutes: 18
     env:
       GODOT_VERSION: 4.7.2
       LIBGL_ALWAYS_SOFTWARE: "1"
@@ -81,10 +81,10 @@ jobs:
           from pathlib import Path
           from PIL import Image, ImageDraw, ImageFont
           folder = Path("build/graphics-review")
-          canvas = Image.new("RGB", (1280, 776), "#11131a")
+          canvas = Image.new("RGB", (1280, 1552), "#11131a")
           draw = ImageDraw.Draw(canvas)
           font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 18)
-          for row, scene in enumerate(["spire-vowkeeper", "citadel-boss"]):
+          for row, scene in enumerate(["portrait-vowkeeper", "portrait-arcanist", "portrait-ranger", "citadel-boss"]):
               for column, state in enumerate(["before", "after"]):
                   shot = Image.open(folder / state / (scene + ".png")).convert("RGB")
                   shot.thumbnail((640, 360), Image.Resampling.LANCZOS)
@@ -100,3 +100,4 @@ jobs:
           name: emberfall-graphics-review
           path: build/graphics-review/
           retention-days: 14
+

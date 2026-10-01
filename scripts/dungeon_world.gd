@@ -127,6 +127,7 @@ func _build_materials() -> void:
 		mat.set_shader_parameter("stone_tint", Color(theme.stone).darkened(float(i)*0.055))
 		mat.set_shader_parameter("roughness",theme.roughness)
 		mat.set_shader_parameter("grain_texture",preload("res://assets/materials/ruin_grain.tres"))
+		mat.set_shader_parameter("stone_texture",preload("res://assets/textures/limestone-albedo.webp"))
 		mat.set_shader_parameter("dampness",0.75 if region_index==1 else 0.12)
 		floor_materials.append(mat)
 	materials.stone = floor_materials[2]
@@ -134,12 +135,15 @@ func _build_materials() -> void:
 	edge_mat.shader = preload("res://assets/shaders/aged_stone.gdshader")
 	edge_mat.set_shader_parameter("stone_tint", Color(theme.edge))
 	edge_mat.set_shader_parameter("grain_texture",preload("res://assets/materials/ruin_grain.tres"))
+	edge_mat.set_shader_parameter("stone_texture",preload("res://assets/textures/limestone-albedo.webp"))
 	edge_mat.set_shader_parameter("roughness",theme.roughness)
 	materials.edge = edge_mat
 
 func _surface_material(color: Color, metal: float) -> ShaderMaterial:
 	var mat:=ShaderMaterial.new()
 	mat.shader=preload("res://assets/shaders/forged_surface.gdshader")
+	mat.set_shader_parameter("steel_texture",preload("res://assets/textures/steel-albedo.webp"))
+	mat.set_shader_parameter("linen_texture",preload("res://assets/textures/linen-albedo.webp"))
 	mat.set_shader_parameter("tint",color)
 	mat.set_shader_parameter("metal",metal)
 	mat.set_shader_parameter("cloth",1.0-metal)
@@ -1290,3 +1294,4 @@ func _build_crafted_ruins() -> void:
 		ray.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		add_child(ray)
 		decorative_rays.append(ray)
+

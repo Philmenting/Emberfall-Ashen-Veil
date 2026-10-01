@@ -60,8 +60,8 @@ func capture() -> void:
 				quit(1)
 				return
 			if region==0 and scene_kind!="Boss":
-				world.camera.position=world.hero.position+Vector3(2.3,2.4,3.5)
-				world.camera.look_at(world.hero.position+Vector3(0,1.05,0))
+				world.camera.position=world.hero.position+Vector3(1.3,1.95,-3.1)
+				world.camera.look_at(world.hero.position+Vector3(0,1.23,0))
 				await process_frame
 				await RenderingServer.frame_post_draw
 				root.get_texture().get_image().save_png(capture_dir.path_join("portrait-"+kind.to_lower()+".png"))
@@ -69,3 +69,4 @@ func capture() -> void:
 			await process_frame
 	game.free()
 	quit()
+

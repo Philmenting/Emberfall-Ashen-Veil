@@ -5,6 +5,11 @@ uniform float metal = 0.0;
 uniform float cloth = 0.0;
 uniform float surface_type = 0.0;
 uniform bool vertex_materials = false;
+uniform sampler2D steel_texture : source_color, filter_linear_mipmap, repeat_enable;
+uniform sampler2D linen_texture : source_color, filter_linear_mipmap, repeat_enable;
+uniform sampler2D leather_texture : source_color, filter_linear_mipmap, repeat_enable;
+uniform sampler2D bone_texture : source_color, filter_linear_mipmap, repeat_enable;
+uniform sampler2D skin_texture : source_color, filter_linear_mipmap, repeat_enable;
 varying vec3 local_pos;
 float hash(vec3 p) { return fract(sin(dot(p, vec3(127.1, 311.7, 74.7))) * 43758.5453); }
 void vertex() { local_pos = VERTEX; }
@@ -22,15 +27,21 @@ void fragment() {
  float scratch_filter = 1.0 - smoothstep(0.7, 2.0, fwidth(scratch_phase));
  float scratches = pow(abs(sin(scratch_phase)), 26.0) * scratch_filter;
  float micro_filter = 1.0 - smoothstep(0.005, 0.03, length(fwidth(local_pos)));
- ALBEDO = base_tint.rgb * (0.91 + (grain - 0.5) * 0.10 * micro_filter + weave * 0.055 * fabric + scratches * 0.065 * surface_metal);
+ vec3 detail = texture(linen_texture, UV * 3.0).rgb;
+ if (surface_metal > 0.05) { detail = texture(steel_texture, UV * 2.0).rgb; }
+ if (type > 0.5 && type < 1.5) { detail = texture(leather_texture, UV * 3.0).rgb; }
+ if (type > 1.5 && type < 2.5) { detail = texture(skin_texture, UV * 8.0).rgb; }
+ if (type > 2.5) { detail = texture(bone_texture, UV * 2.0).rgb; }
+ float tactile = dot(detail, vec3(0.2126, 0.7152, 0.0722));
+ ALBEDO = base_tint.rgb * (0.74 + tactile * 0.70 + weave * 0.025 * fabric + scratches * 0.035 * surface_metal);
  METALLIC = surface_metal;
  float base_roughness = mix(0.88, 0.32, surface_metal);
  if (type > 0.5 && type < 1.5) { base_roughness = 0.63; }
  if (type > 1.5 && type < 2.5) { base_roughness = 0.57; }
- ROUGHNESS = clamp(base_roughness + (grain - 0.5) * 0.08 * micro_filter + length(fwidth(NORMAL)) * 0.30, 0.22, 0.98);
+ ROUGHNESS = clamp(base_roughness + (tactile - 0.4) * 0.22 + length(fwidth(NORMAL)) * 0.30, 0.22, 0.98);
  EMISSION = base_tint.rgb * glow * 1.5;
  SPECULAR = mix(0.32, 0.55, surface_metal);
- float height = weave * fabric * 0.0006 + scratches * surface_metal * 0.0003;
+ float height = tactile * mix(0.0015, 0.0007, surface_metal) + weave * fabric * 0.0003;
  vec3 dx = dFdx(VERTEX);
  vec3 dy = dFdy(VERTEX);
  vec3 tangent = cross(dy, NORMAL);
@@ -39,3 +50,4 @@ void fragment() {
  vec3 gradient = sign(determinant) * (dFdx(height) * tangent + dFdy(height) * bitangent);
  NORMAL = normalize(abs(determinant) * NORMAL - gradient);
 }
+

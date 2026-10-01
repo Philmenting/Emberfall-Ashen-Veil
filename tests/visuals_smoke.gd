@@ -60,12 +60,21 @@ func run_checks() -> void:
 		actor.kind=kind; actor.hostile=kind not in ["Vowkeeper","Arcanist","Ranger"]; actor.boss=kind=="boss"
 		root.add_child(actor)
 		check(actor.find_child("ContactShadow",true,false)!=null and actor.left_knee!=null and actor.right_knee!=null,kind+": model retains shadow and articulated joints")
+		check(actor.anatomy!=null and actor.anatomy_bones.values().all(func(index): return index>=0),kind+": imported anatomy retains all six animated limb joints")
+		var weighted_mesh:=actor.find_child("Anatomy",true,false) as MeshInstance3D
+		var skin_arrays: Array=weighted_mesh.mesh.surface_get_arrays(0)
+		var skin_weights: PackedFloat32Array=skin_arrays[Mesh.ARRAY_WEIGHTS]
+		var normalized_weights:=true
+		for i in range(0,skin_weights.size(),4):
+			normalized_weights=normalized_weights and is_equal_approx(skin_weights[i]+skin_weights[i+1]+skin_weights[i+2]+skin_weights[i+3],1.0)
+		check(weighted_mesh.skin!=null and skin_arrays[Mesh.ARRAY_VERTEX].size()>10000 and normalized_weights,kind+": detailed mesh has normalized GPU skinning weights")
 		var finite:=true
 		for node in actor.find_children("*","MeshInstance3D",true,false):
 			for surface in range(node.mesh.get_surface_count()):
 				for vertex in node.mesh.surface_get_arrays(surface)[Mesh.ARRAY_VERTEX]: finite=finite and vertex.is_finite()
 		actor.strike()
 		for i in range(20): actor.animate(0.016,true)
+		check(actor.anatomy.get_bone_pose_rotation(actor.anatomy_bones.ArmR).is_equal_approx(actor.right_arm.quaternion),kind+": combat poses reach the visible weighted body")
 		actor.die(); actor.animate(0.2,false)
 		check(finite and actor.body.position.is_finite(),kind+": geometry and movement stay finite")
 		actor.queue_free()
@@ -132,3 +141,4 @@ func run_checks() -> void:
 	game.free()
 	print("VISUALS SMOKE: %d checks, %d failures" % [checks,failures])
 	quit(1 if failures else 0)
+
