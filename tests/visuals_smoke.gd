@@ -27,8 +27,28 @@ func run_checks() -> void:
 	for i in range(arrays[Mesh.ARRAY_VERTEX].size()):
 		var point: Vector3=arrays[Mesh.ARRAY_VERTEX][i]
 		var normal: Vector3=arrays[Mesh.ARRAY_NORMAL][i]
-		if Vector2(point.x,point.z).length()>0.5: outward=outward and Vector2(point.x,point.z).dot(Vector2(normal.x,normal.z))>0.0
+		if Vector2(point.x,point.z).length()>0.5 and absf(normal.y)<0.99: outward=outward and Vector2(point.x,point.z).dot(Vector2(normal.x,normal.z))>0.0
 	check(outward,"sculpted character surfaces face outward")
+	var bevel:=Sculpt.bevelled_box()
+	var bevel_arrays:=bevel.surface_get_arrays(0)
+	var bevel_outward:=true
+	for i in range(bevel_arrays[Mesh.ARRAY_VERTEX].size()):
+		var point: Vector3=bevel_arrays[Mesh.ARRAY_VERTEX][i]
+		var normal: Vector3=bevel_arrays[Mesh.ARRAY_NORMAL][i]
+		bevel_outward=bevel_outward and point.dot(normal)>0.3 and normal.is_normalized()
+	check(bevel_outward,"beveled armor and architecture have finite outward normals")
+	check(Sculpt.bevelled_box()==bevel,"beveled geometry is shared across static batches")
+	var mantle_arrays:=Sculpt.mantle().surface_get_arrays(0)
+	var front:=false
+	var back:=false
+	for normal: Vector3 in mantle_arrays[Mesh.ARRAY_NORMAL]:
+		front=front or normal.z< -0.5
+		back=back or normal.z>0.5
+	check(front and back,"folded mantle is visible from both sides")
+	var smooth:=true
+	for normal: Vector3 in arrays[Mesh.ARRAY_NORMAL]:
+		smooth=smooth and normal.is_normalized()
+	check(smooth,"profile normals remain normalized at seams and end caps")
 	var floor_mesh:=Sculpt.paver()
 	var floor_arrays:=floor_mesh.surface_get_arrays(0)
 	var up:=true
@@ -40,12 +60,31 @@ func run_checks() -> void:
 		actor.kind=kind; actor.hostile=kind not in ["Vowkeeper","Arcanist","Ranger"]; actor.boss=kind=="boss"
 		root.add_child(actor)
 		check(actor.find_child("ContactShadow",true,false)!=null and actor.left_knee!=null and actor.right_knee!=null,kind+": model retains shadow and articulated joints")
+		check(actor.anatomy!=null and actor.anatomy_bones.values().all(func(index): return index>=0),kind+": imported anatomy retains all six animated limb joints")
+		var weighted_mesh:=actor.find_child("Anatomy",true,false) as MeshInstance3D
+		var skin_arrays: Array=weighted_mesh.mesh.surface_get_arrays(0)
+		var skin_weights: PackedFloat32Array=skin_arrays[Mesh.ARRAY_WEIGHTS]
+		var normalized_weights:=true
+		var stride: int=skin_weights.size()/skin_arrays[Mesh.ARRAY_VERTEX].size()
+		var max_weight_error:=0.0
+		for i in range(0,skin_weights.size(),stride):
+			var total:=0.0
+			for j in range(stride):
+				normalized_weights=normalized_weights and is_finite(skin_weights[i+j]) and skin_weights[i+j]>=0.0
+				total+=skin_weights[i+j]
+			max_weight_error=maxf(max_weight_error,absf(total-1.0))
+		# Imported GPU weights use quantized storage. This allows less than one 16-bit unit per component.
+		normalized_weights=normalized_weights and stride in [4,8] and max_weight_error<0.0001
+		print("ANATOMY ",kind," vertices=",skin_arrays[Mesh.ARRAY_VERTEX].size()," stride=",stride," max_weight_error=",max_weight_error," skin=",weighted_mesh.skin!=null)
+		check(weighted_mesh.skin!=null and skin_arrays[Mesh.ARRAY_VERTEX].size()>10000 and normalized_weights,kind+": detailed mesh has normalized GPU skinning weights")
+		check(weighted_mesh.skin.get_bind_name(0)=="Torso" or weighted_mesh.skin.get_bind_bone(0)==actor.anatomy.find_bone("Torso"),kind+": facial texture mask uses the stable torso binding")
 		var finite:=true
 		for node in actor.find_children("*","MeshInstance3D",true,false):
 			for surface in range(node.mesh.get_surface_count()):
 				for vertex in node.mesh.surface_get_arrays(surface)[Mesh.ARRAY_VERTEX]: finite=finite and vertex.is_finite()
 		actor.strike()
 		for i in range(20): actor.animate(0.016,true)
+		check(actor.anatomy.get_bone_pose_rotation(actor.anatomy_bones.ArmR).is_equal_approx(actor.right_arm.quaternion),kind+": combat poses reach the visible weighted body")
 		actor.die(); actor.animate(0.2,false)
 		check(finite and actor.body.position.is_finite(),kind+": geometry and movement stay finite")
 		actor.queue_free()
@@ -95,6 +134,13 @@ func run_checks() -> void:
 		check(sim.encode_snapshot()==before,"region %d: visual setup does not alter combat or RNG" % region)
 		check(world.find_child("LowCryptMist",true,false)!=null and world.find_child("DungeonDust",true,false)!=null,"region %d: mist and dust are present" % region)
 		check((world.find_child("FloodedArchive",true,false)!=null)==(region==1) and (world.find_child("LavaBasin",true,false)!=null)==(region==3),"region %d: animated regional surfaces retained" % region)
+		check(world.scene_environment.glow_enabled and world.scene_environment.sky!=null,"region %d: reflective lighting and glow are configured" % region)
+		world.set_shadows(false)
+		var battery_rays_hidden:=true
+		for ray in world.decorative_rays: battery_rays_hidden=battery_rays_hidden and not ray.visible
+		check(not world.scene_environment.glow_enabled and battery_rays_hidden and not world.sun.shadow_enabled,"region %d: battery mode disables the added lighting cost" % region)
+		world.set_shadows(true)
+		check(world.scene_environment.glow_enabled and world.decorative_rays[0].visible,"region %d: normal quality restores decorative lighting" % region)
 		world._impact_sparks(Vector3.ZERO,Color.WHITE)
 		world._slash_arc(Vector3.ZERO,Color.WHITE)
 		world._update_effects(1.0)

@@ -1,8 +1,10 @@
 extends Node3D
-## Original articulated models. Geometry and animation are authored in Godot.
+## Weighted anatomical meshes with original articulated armor and weapons.
 const ThemeData = preload("res://scripts/dungeon_theme.gd")
 static var merged_cache: Dictionary={}
 static var shared_surface: ShaderMaterial
+var anatomy: Skeleton3D
+var anatomy_bones: Dictionary={}
 var region_index := 0
 var kind := "Vowkeeper"
 var hostile := false
@@ -31,127 +33,242 @@ var health_bar: MeshInstance3D
 var materials: Dictionary = {}
 
 func _ready() -> void:
-	death_lean = -1.0 if (kind.hash()+region_index)%2==0 else 1.0
-	var theme := ThemeData.definition(region_index)
-	var accent := Color("b18b57")
-	if kind == "Arcanist": accent = Color("9170bd")
-	if kind == "Ranger": accent = Color("579b7f")
-	if hostile: accent = Color(theme.enemy)
-	if kind=="hexer": accent = Color(theme.enemy).lightened(0.15)
-	if kind=="bulwark": accent = Color("8d7954")
-	if kind=="elite": accent = Color("d15b2e")
-	materials.metal = _mat(Color("303c49") if not hostile else Color("30282b"), 0.72)
-	materials.edge = _mat(Color("adb7b7") if not hostile else Color("79685b"), 0.8)
-	materials.cloth = _mat(accent.darkened(0.55), 0.0)
-	materials.trim = _mat(accent, 0.65)
-	materials.leather = _mat(Color("211e22"), 0.0)
-	materials.bone = _mat(Color("a19b84"),0.0)
-	materials.skin = _mat(Color("c1aa95") if not hostile else Color(theme.skin), 0.0)
-	materials.glow = _mat(Color("81d9e6") if not hostile else Color(theme.glow), 0.0, true)
+	death_lean=-1.0 if (kind.hash()+region_index)%2==0 else 1.0
+	var theme:=ThemeData.definition(region_index)
+	var accent:=Color("b18b57")
+	if kind=="Arcanist": accent=Color("9170bd")
+	if kind=="Ranger": accent=Color("579b7f")
+	if hostile: accent=Color(theme.enemy)
+	if kind=="bulwark": accent=Color("8d7954")
+	if kind=="elite": accent=Color("d15b2e")
+	materials.metal=_mat(Color("808b96") if not hostile else Color("746267"),0.72)
+	materials.edge=_mat(Color("aeb8bc") if not hostile else Color("978775"),0.82)
+	materials.cloth=_mat(accent.darkened(0.42),0.0)
+	materials.trim=_mat(accent,0.7)
+	materials.leather=_mat(Color("423132"),0.0,false,1.0)
+	materials.bone=_mat(Color("b7ad91"),0.0,false,3.0)
+	materials.skin=_mat(Color("c1aa95") if not hostile else Color(theme.skin),0.0,false,2.0)
+	materials.glow=_mat(Color("81d9e6") if not hostile else Color(theme.glow),0.0,true)
+	materials.hair=_mat(Color("332a27"),0.0,false,1.0)
+	materials.cuirass=_mat(Color.WHITE,0.72,false,4.0)
+	materials.arcane=_mat(Color.WHITE,0.0,false,5.0)
+	materials.woodland=_mat(Color.WHITE,0.0,false,6.0)
 	for key in materials: materials[key].resource_name=key
-	body = Node3D.new()
+	body=Node3D.new()
 	body.name="Body"
 	add_child(body)
-	# Human proportions, fitted cuirasses and layered cloth, authored as ring meshes.
 	var caster: bool=kind in ["Arcanist","hexer"]
 	var ranger: bool=kind=="Ranger"
 	var ghoul: bool=hostile and kind=="raider"
-	_profile(body,[Vector4(0.9,0.20,0.15,0),Vector4(1.04,0.21,0.16,0),Vector4(1.32,0.31,0.20,0),Vector4(1.51,0.28,0.16,0),Vector4(1.6,0.16,0.12,0)],materials.skin if ghoul else materials.cloth if caster or ranger else materials.metal)
-	if not ghoul:
-		_profile(body,[Vector4(0.88,0.22,0.17,0),Vector4(0.97,0.23,0.18,0)],materials.leather)
-		_sphere(body,Vector3(0,0.93,-0.18),Vector3(0.065,0.065,0.025),materials.trim)
-		if caster:
-			_profile(body,[Vector4(0.13,0.38,0.25,0.04),Vector4(0.40,0.32,0.23,0),Vector4(0.85,0.21,0.16,0)],materials.cloth)
-			for side in [-1.0,1.0]:
-				var stole:=_profile(body,[Vector4(0.30,0.055,0.015,0),Vector4(1.35,0.06,0.02,0)],materials.trim)
-				stole.position=Vector3(side*0.13,0,-0.21)
-		else:
-			for side in [-1.0,1.0]:
-				var tasset:=_profile(body,[Vector4(0.62,0.13,0.055,0),Vector4(0.87,0.15,0.065,0)],materials.leather if ranger else materials.metal)
-				tasset.position=Vector3(side*0.18,0,-0.14)
-				tasset.rotation.z=side*0.12
-	# Sculpted neck, narrow jaw and brow; less oversized helmet/head mass.
-	_cylinder(body,Vector3(0,1.65,0),0.075,0.09,0.20,materials.skin,12)
-	_profile(body,[Vector4(1.65,0.075,0.08,-0.05),Vector4(1.72,0.125,0.13,-0.025),Vector4(1.87,0.145,0.14,0),Vector4(1.98,0.08,0.09,0.015)],materials.skin)
-	if caster or ranger:
-		_profile(body,[Vector4(1.67,0.17,0.16,0.065),Vector4(1.89,0.19,0.16,0.06),Vector4(2.05,0.07,0.07,0.08)],materials.cloth)
-		_sphere(body,Vector3(0,1.80,-0.115),Vector3(0.105,0.135,0.04),materials.skin if not hostile else materials.leather)
-	elif not ghoul:
-		_profile(body,[Vector4(1.68,0.16,0.15,0.015),Vector4(1.9,0.17,0.16,0),Vector4(2.03,0.065,0.075,0)],materials.metal)
-		_box(body,Vector3(0,1.79,-0.158),Vector3(0.26,0.025,0.018),materials.leather)
-		_box(body,Vector3(0,1.72,-0.16),Vector3(0.025,0.16,0.025),materials.edge)
-	for side in [-1.0,1.0]:
-		_sphere(body,Vector3(side*0.059,1.81,-0.156),Vector3(0.027,0.013,0.01),materials.glow if hostile else materials.leather)
-	if hostile and not ghoul and not caster:
-		for side in [-1.0,1.0]:
-			var horn:=_profile(body,[Vector4(0,0.065,0.06,0),Vector4(0.22,0.035,0.04,0.03),Vector4(0.40,0.003,0.005,0.11)],materials.bone)
-			horn.position=Vector3(side*0.17,1.9,0.02)
-			horn.rotation.z=-side*0.6
-	left_arm = _arm(-1.0)
-	right_arm = _arm(1.0)
-	left_leg = _leg(-1.0)
-	right_leg = _leg(1.0)
-	left_knee = left_leg.get_child(1)
-	right_knee = right_leg.get_child(1)
-	cape = Node3D.new()
-	cape.name="Cape"
-	cape.position = Vector3(0,1.5,0.21)
-	body.add_child(cape)
-	if not ghoul:
-		_profile(cape,[Vector4(-1.13,0.34,0.035,0.22),Vector4(-0.65,0.30,0.03,0.10),Vector4(0,0.22,0.03,0)],materials.cloth)
-		for side in [-1.0,1.0]:
-			var hem:=_profile(cape,[Vector4(-1.12,0.018,0.02,0.22),Vector4(-0.65,0.018,0.02,0.10),Vector4(0,0.016,0.02,0)],materials.trim)
-			hem.position.x=side*0.26
-	weapon = Node3D.new()
-	weapon.name="Weapon"
-	weapon.position = Vector3(0,-0.54,0)
-	right_arm.add_child(weapon)
-	if (kind == "Arcanist" and not hostile) or kind=="hexer":
-		_cylinder(weapon,Vector3(0,0.37,0),0.036,0.025,1.8,materials.trim,8)
-		_sphere(weapon,Vector3(0,1.34,0),Vector3.ONE*0.13,materials.glow)
-		for side in [-1.0,1.0]:
-			var claw := _box(weapon,Vector3(side*0.14,1.26,0),Vector3(0.04,0.36,0.06),materials.edge)
-			claw.rotation.z = -side*0.4
-	elif kind == "Ranger" and not hostile:
-		for i in range(8):
-			var angle := -1.2+float(i)*2.4/7.0
-			var bow := _box(weapon,Vector3(0, sin(angle)*0.65, -cos(angle)*0.32),Vector3(0.065,0.23,0.07),materials.trim)
-			bow.rotation.x = -angle*0.4
-		_box(weapon,Vector3(0,0,-0.11),Vector3(0.014,1.23,0.014),materials.edge)
-	elif ghoul:
-		for finger in range(3):
-			var claw:=_profile(weapon,[Vector4(-0.30,0.002,0.003,-0.05),Vector4(0,0.025,0.025,0)],materials.bone)
-			claw.position.x=(finger-1)*0.06
-	else:
-		_box(weapon,Vector3(0,-0.09,0),Vector3(0.09,0.3,0.09),materials.leather)
-		_box(weapon,Vector3(0,0.10,0),Vector3(0.40,0.085,0.10),materials.trim)
-		var blade := _profile(weapon,[Vector4(0.16,0.095,0.025,0),Vector4(0.96,0.065,0.017,0),Vector4(1.27,0.002,0.002,0)],materials.edge,4)
-		blade.rotation.z = 0.015
-		_box(weapon,Vector3(0,0.67,-0.035),Vector3(0.027,0.85,0.012),materials.glow)
-		_cylinder(weapon,Vector3(0,1.31,0),0.085,0,0.18,materials.edge,4)
-		if not hostile or kind in ["bulwark","elite","boss"]:
-			var shield := _profile(left_arm,[Vector4(-0.86,0.035,0.025,0),Vector4(-0.63,0.25,0.065,0),Vector4(-0.20,0.30,0.075,0),Vector4(-0.07,0.19,0.06,0)],materials.metal,8)
-			shield.position=Vector3(-0.08,0,-0.18)
-			_box(left_arm,Vector3(-0.08,-0.43,-0.26),Vector3(0.025,0.61,0.025),materials.trim)
-	if boss:
-		scale = Vector3.ONE * 1.65
-		_build_boss_regalia()
-	elif kind=="hexer":
-		scale = Vector3(0.82,1.10,0.82)
-		_cylinder(body,Vector3(0,0.57,0),0.40,0.25,0.85,materials.cloth,10)
-	elif kind=="bulwark" or kind=="elite": scale = Vector3(1.22,1.15,1.22)
-	elif hostile: scale = Vector3(0.87,0.96,0.87)
+	left_arm=_arm(-1.0)
+	right_arm=_arm(1.0)
+	left_leg=_leg(-1.0)
+	right_leg=_leg(1.0)
+	left_knee=left_leg.get_node("Knee")
+	right_knee=right_leg.get_node("Knee")
+	_load_anatomy(theme,accent)
 	if ghoul:
 		body_hunch=0.18
-		body.rotation.x=body_hunch
+		_profile(body,[Vector4(0.59,0.25,0.15,0),Vector4(0.90,0.23,0.16,0)],materials.leather)
 		for side in [-1.0,1.0]:
-			for rib in range(4):
-				var bone:=_box(body,Vector3(side*0.15,1.19+rib*0.075,-0.17),Vector3(0.23,0.025,0.025),materials.bone)
-				bone.rotation.z=-side*0.25
+			for rib in range(5):
+				_curve(body,[Vector3(side*0.055,1.16+rib*0.065,-0.18),Vector3(side*0.20,1.18+rib*0.065,-0.15),Vector3(side*0.26,1.16+rib*0.065,-0.02)],0.009,materials.bone)
+	else:
+		_build_cuirass(caster,ranger)
+		if caster: _build_robe()
+		else:
+			for side in [-1.0,1.0]:
+				for tier in range(3):
+					var tasset:=_panel(body,[Vector4(0.59-tier*0.045,0.125,0.042,0),Vector4(0.73-tier*0.045,0.14,0.055,0),Vector4(0.88-tier*0.045,0.12,0.050,0)],materials.leather if ranger else materials.metal,1.24)
+					tasset.position=Vector3(side*0.18,0,-0.15)
+					tasset.rotation.z=side*0.14
+		_build_headwear(caster,ranger)
+	cape=Node3D.new()
+	cape.name="Cape"
+	cape.position=Vector3(0,1.49,0.20)
+	body.add_child(cape)
+	if not ghoul:
+		var fabric:=_mesh(cape,Vector3.ZERO,preload("res://scripts/sculpted_mesh.gd").mantle(),materials.cloth)
+		fabric.scale=Vector3(1.15,0.84 if ranger else 1.0,1.0)
+		for side in [-1.0,1.0]:
+			_curve(cape,[Vector3(side*0.17,0,0),Vector3(side*0.24,-0.40,0.05),Vector3(side*0.29,-0.85,0.17),Vector3(side*0.30,-1.08,0.22)],0.009,materials.trim)
+	weapon=Node3D.new()
+	weapon.name="Weapon"
+	weapon.position=Vector3(0,-0.61,-0.035)
+	right_arm.add_child(weapon)
+	_build_weapon(caster,ranger,ghoul)
+	if boss:
+		scale=Vector3.ONE*1.65
+		_build_boss_regalia()
+	elif kind=="hexer": scale=Vector3(0.86,1.10,0.86)
+	elif kind in ["bulwark","elite"]: scale=Vector3(1.22,1.15,1.22)
+	elif hostile: scale=Vector3(0.87,0.96,0.87)
 	_merge_rigid_parts(self)
+	_sync_anatomy()
 	_contact_shadow()
 
-func _mat(color: Color, metal: float, glow: bool = false) -> Material:
+func _load_anatomy(theme: Dictionary, accent: Color) -> void:
+	var model: Node3D=(preload("res://assets/models/ashen-anatomy.glb") if hostile else preload("res://assets/models/nyra-anatomy.glb")).instantiate()
+	model.name="SkinnedAnatomy"
+	model.set_meta("keep_unmerged",true)
+	body.add_child(model)
+	anatomy=model.find_children("*","Skeleton3D",true,false)[0]
+	for name_value in ["ArmL","ArmR","LegL","LegR","KneeL","KneeR"]:
+		anatomy_bones[name_value]=anatomy.find_bone(name_value)
+	var material:=ShaderMaterial.new()
+	material.shader=preload("res://assets/shaders/anatomy_surface.gdshader")
+	material.set_shader_parameter("skin_tint",Color("c6ae9c") if not hostile else Color(theme.skin))
+	material.set_shader_parameter("cloth_tint",accent.darkened(0.62))
+	material.set_shader_parameter("all_skin",hostile and kind=="raider")
+	material.set_shader_parameter("male_face",hostile)
+	material.set_shader_parameter("face_texture",preload("res://assets/textures/faces-albedo.webp"))
+	material.set_shader_parameter("skin_texture",preload("res://assets/textures/skin-albedo.webp"))
+	material.set_shader_parameter("skin_normal",preload("res://assets/textures/skin-normal.png"))
+	material.set_shader_parameter("linen_texture",preload("res://assets/textures/linen-albedo.webp"))
+	for mesh in model.find_children("*","MeshInstance3D",true,false):
+		mesh.material_override=material
+	# Eyeballs sit inside the sculpted eyelids, at the imported anatomical landmarks.
+	var eye_y:=1.88279 if hostile else 1.87190
+	var eye_z:=-0.13972 if hostile else -0.11698
+	var sclera:=_mat(Color("aeaaa0"),0.0,false,3.0)
+	var iris:=_mat(Color(theme.glow) if hostile else Color("477c83"),0.15,hostile)
+	for side in [-1.0,1.0]:
+		_sphere(body,Vector3(side*0.035,eye_y,eye_z),Vector3(0.024,0.021,0.022),sclera)
+		_sphere(body,Vector3(side*0.035,eye_y,eye_z-0.020),Vector3(0.011,0.011,0.004),iris)
+		if not hostile:
+			_sphere(body,Vector3(side*0.035,eye_y,eye_z-0.024),Vector3(0.0045,0.0055,0.002),materials.leather)
+
+func _sync_anatomy() -> void:
+	if anatomy==null: return
+	for entry in [["ArmL",left_arm],["ArmR",right_arm],["LegL",left_leg],["LegR",right_leg],["KneeL",left_knee],["KneeR",right_knee]]:
+		var bone: int=anatomy_bones[entry[0]]
+		if bone>=0: anatomy.set_bone_pose_rotation(bone,entry[1].quaternion)
+
+func _textures(material: ShaderMaterial) -> void:
+	material.set_shader_parameter("steel_texture",preload("res://assets/textures/steel-albedo.webp"))
+	material.set_shader_parameter("linen_texture",preload("res://assets/textures/linen-albedo.webp"))
+	material.set_shader_parameter("leather_texture",preload("res://assets/textures/leather-albedo.webp"))
+	material.set_shader_parameter("bone_texture",preload("res://assets/textures/bone-albedo.webp"))
+	material.set_shader_parameter("skin_texture",preload("res://assets/textures/skin-albedo.webp"))
+	material.set_shader_parameter("vowkeeper_texture",preload("res://assets/textures/vowkeeper-regalia.webp"))
+	material.set_shader_parameter("arcanist_texture",preload("res://assets/textures/arcanist-regalia.webp"))
+	material.set_shader_parameter("ranger_texture",preload("res://assets/textures/ranger-regalia.webp"))
+
+func _panel(parent: Node3D,rings: Array,mat: Material,arc: float=1.25) -> MeshInstance3D:
+	return _mesh(parent,Vector3.ZERO,preload("res://scripts/regalia_mesh.gd").panel(rings,arc),mat)
+
+func _curve(parent: Node3D,points: Array,radius: float,mat: Material) -> MeshInstance3D:
+	return _mesh(parent,Vector3.ZERO,preload("res://scripts/regalia_mesh.gd").tube(points,radius),mat)
+
+func _build_cuirass(caster: bool,ranger: bool) -> void:
+	var plate_material: Material=materials.cloth if caster else materials.leather if ranger else materials.metal
+	var rings: Array=[Vector4(0.92,0.225,0.165,0),Vector4(1.04,0.235,0.185,0),Vector4(1.18,0.27,0.215,0),Vector4(1.34,0.295,0.23,0),Vector4(1.46,0.265,0.19,0),Vector4(1.56,0.19,0.135,0)]
+	_panel(body,rings,materials.arcane if caster else materials.woodland if ranger else materials.cuirass,1.35)
+	var back:=_panel(body,rings,materials.cloth if caster else plate_material,1.35)
+	back.rotation.y=PI
+	for side in [-1.0,1.0]:
+		_curve(body,[Vector3(side*0.12,1.58,-0.12),Vector3(side*0.23,1.48,-0.17),Vector3(side*0.265,1.34,-0.20),Vector3(side*0.22,1.08,-0.18),Vector3(side*0.19,0.92,-0.14)],0.010,materials.trim)
+		for tier in range(3):
+			var plate:=_panel(body,[Vector4(0.94+tier*0.085,0.215+tier*0.015,0.175+tier*0.016,0),Vector4(1.015+tier*0.085,0.23+tier*0.015,0.19+tier*0.016,0)],plate_material,1.26)
+			plate.position.z=-0.017
+		# Three scrolls per side are raised metal inlays, following the chest curvature.
+		for tier in range(3):
+			var points: Array=[]
+			for step in range(16):
+				var t:=float(step)/15.0
+				points.append(Vector3(side*(0.045+t*0.17),1.24+tier*0.085+sin(t*PI)*0.035,-0.236+pow(t,2.0)*0.034))
+			_curve(body,points,0.004,materials.trim)
+	_profile(body,[Vector4(0.88,0.242,0.179,0),Vector4(0.93,0.245,0.184,0)],materials.leather)
+	_box(body,Vector3(0,0.912,-0.195),Vector3(0.10,0.065,0.023),materials.trim)
+	for side in [-1.0,1.0]:
+		var pouch:=_profile(body,[Vector4(0.68,0.055,0.050,0),Vector4(0.86,0.075,0.057,0)],materials.leather)
+		pouch.position=Vector3(side*0.235,0,0.06)
+		_sphere(body,Vector3(side*0.235,0.83,-0.001),Vector3.ONE*0.010,materials.trim)
+	if ranger:
+		_curve(body,[Vector3(-0.23,1.54,-0.12),Vector3(-0.10,1.34,-0.242),Vector3(0.10,1.12,-0.205),Vector3(0.23,0.94,-0.13)],0.023,materials.leather)
+		var quiver:=_profile(body,[Vector4(0.82,0.09,0.10,0),Vector4(1.50,0.115,0.11,0)],materials.leather)
+		quiver.position=Vector3(-0.23,0,0.27)
+		for i in range(6):
+			var x: float=-0.29+i*0.025
+			_curve(body,[Vector3(x,1.35,0.27),Vector3(x-0.02,1.78,0.27)],0.004,materials.bone)
+			var feather:=_panel(body,[Vector4(1.68,0.024,0.006,0),Vector4(1.78,0.010,0.005,0)],materials.cloth,1.5)
+			feather.position=Vector3(x-0.02,0,0.27)
+	elif caster:
+		_sphere(body,Vector3(0,1.45,-0.202),Vector3(0.035,0.047,0.02),materials.trim)
+		_sphere(body,Vector3(0,1.45,-0.225),Vector3(0.020,0.031,0.015),materials.glow)
+
+func _build_robe() -> void:
+	_profile(body,[Vector4(0.10,0.36,0.25,0.03),Vector4(0.25,0.34,0.24,0.02),Vector4(0.62,0.27,0.20,0),Vector4(0.88,0.22,0.16,0)],materials.cloth,48)
+	for pleat in range(14):
+		var angle:=float(pleat)*TAU/14.0
+		var fold:=_panel(body,[Vector4(0.11,0.030,0.017,0),Vector4(0.30,0.050,0.025,0),Vector4(0.68,0.035,0.015,0),Vector4(0.86,0.016,0.005,0)],materials.cloth,1.4)
+		fold.position=Vector3(sin(angle)*0.25,0,cos(angle)*0.18)
+		fold.rotation.y=angle
+	for side in [-1.0,1.0]:
+		_curve(body,[Vector3(side*0.07,0.15,-0.246),Vector3(side*0.09,0.44,-0.226),Vector3(side*0.11,0.74,-0.20),Vector3(side*0.12,1.17,-0.229)],0.010,materials.trim)
+		for i in range(5):
+			var jewel:=_box(body,Vector3(side*0.09,0.24+i*0.085,-0.25+i*0.009),Vector3(0.024,0.024,0.008),materials.trim)
+			jewel.rotation.z=PI/4
+
+func _build_headwear(caster: bool,ranger: bool) -> void:
+	var hood:=_mesh(body,Vector3.ZERO,preload("res://scripts/regalia_mesh.gd").hood(),materials.cloth if caster or ranger else materials.metal)
+	hood.rotation.y=PI
+	for side in [-1.0,1.0]:
+		_curve(body,[Vector3(side*0.13,1.70,-0.080),Vector3(side*0.153,1.82,-0.096),Vector3(side*0.11,1.98,-0.14),Vector3(side*0.025,2.05,-0.061)],0.010,materials.trim)
+		if ranger:
+			for strand in range(3):
+				_curve(body,[Vector3(side*(0.12+strand*0.005),1.85,0.04),Vector3(side*0.16,1.69,0.09+strand*0.008),Vector3(side*0.15,1.55,0.15)],0.012,materials.hair)
+	if not caster and not ranger:
+		_curve(body,[Vector3(-0.13,1.92,-0.113),Vector3(-0.055,1.96,-0.149),Vector3(0,1.97,-0.16),Vector3(0.055,1.96,-0.149),Vector3(0.13,1.92,-0.113)],0.012,materials.edge)
+		_curve(body,[Vector3(0,1.96,-0.162),Vector3(0,1.86,-0.173),Vector3(0,1.80,-0.185)],0.010,materials.edge)
+	if hostile:
+		for side in [-1.0,1.0]:
+			var horn:=_profile(body,[Vector4(0,0.065,0.06,0),Vector4(0.14,0.054,0.04,0.02),Vector4(0.30,0.028,0.025,0.09),Vector4(0.44,0.002,0.003,0.16)],materials.bone,16)
+			horn.position=Vector3(side*0.15,1.94,0.045)
+			horn.rotation.z=-side*0.50
+
+func _build_weapon(caster: bool,ranger: bool,ghoul: bool) -> void:
+	if caster:
+		_curve(weapon,[Vector3(0,-0.50,0),Vector3(0,0.30,0),Vector3(0.025,1.08,0)],0.024,materials.leather)
+		for y in [-0.43,-0.12,0.26,0.72,1.02]:
+			_cylinder(weapon,Vector3(0,y,0),0.039,0.039,0.035,materials.trim,20)
+		var gem:=_profile(weapon,[Vector4(1.12,0.025,0.025,0),Vector4(1.27,0.10,0.10,0),Vector4(1.42,0.012,0.012,0)],materials.glow,6)
+		gem.rotation.y=PI/6
+		for side in [-1.0,1.0]:
+			_curve(weapon,[Vector3(0,0.93,0),Vector3(side*0.13,1.13,0),Vector3(side*0.15,1.30,0),Vector3(side*0.06,1.45,0)],0.015,materials.edge)
+	elif ranger:
+		var path: Array=[]
+		for i in range(33):
+			var t: float=-1.0+float(i)/16.0
+			path.append(Vector3(0,t*0.69,-0.15-(1.0-t*t)*0.27))
+		_curve(weapon,path,0.024,materials.leather)
+		for side in [-1.0,1.0]:
+			_curve(weapon,[Vector3(0,side*0.69,-0.15),Vector3(0,side*0.60,-0.20),Vector3(0,side*0.52,-0.27)],0.033,materials.trim)
+		_curve(weapon,[Vector3(0,-0.69,-0.15),Vector3(0,0,-0.10),Vector3(0,0.69,-0.15)],0.0025,materials.bone)
+		_curve(weapon,[Vector3(0,0,-0.10),Vector3(0,0,-0.96)],0.004,materials.bone)
+		var tip:=_profile(weapon,[Vector4(0,0.025,0.025,0),Vector4(0.10,0.001,0.001,0)],materials.edge,4)
+		tip.rotation.x=-PI/2
+		tip.position.z=-0.96
+	elif ghoul:
+		for finger in range(3):
+			_curve(weapon,[Vector3((finger-1)*0.038,-0.07,-0.035),Vector3((finger-1)*0.04,-0.15,-0.055),Vector3((finger-1)*0.045,-0.21,-0.13)],0.009,materials.bone)
+	else:
+		_cylinder(weapon,Vector3(0,-0.045,0),0.034,0.034,0.29,materials.leather,20)
+		_sphere(weapon,Vector3(0,-0.21,0),Vector3.ONE*0.045,materials.trim)
+		_curve(weapon,[Vector3(-0.22,0.085,0.015),Vector3(-0.10,0.135,0),Vector3(0,0.12,0),Vector3(0.10,0.135,0),Vector3(0.22,0.085,0.015)],0.025,materials.trim)
+		_mesh(weapon,Vector3.ZERO,preload("res://scripts/regalia_mesh.gd").blade(),materials.edge)
+		for row in range(4):
+			var rune:=_box(weapon,Vector3(0,0.38+row*0.11,-0.026),Vector3(0.018,0.042,0.003),materials.trim)
+			rune.rotation.z=0.35
+		if not hostile or kind in ["bulwark","elite","boss"]:
+			var shield:=_panel(left_arm,[Vector4(-0.91,0.025,0.045,0),Vector4(-0.74,0.19,0.09,0),Vector4(-0.31,0.265,0.14,0),Vector4(-0.08,0.22,0.11,0)],materials.metal,1.3)
+			shield.position=Vector3(-0.075,0,-0.16)
+			for side in [-1.0,1.0]:
+				_curve(left_arm,[Vector3(-0.075,-0.90,-0.205),Vector3(-0.075+side*0.19,-0.73,-0.24),Vector3(-0.075+side*0.23,-0.32,-0.23),Vector3(-0.075+side*0.19,-0.11,-0.23)],0.012,materials.trim)
+			_curve(left_arm,[Vector3(-0.075,-0.80,-0.27),Vector3(-0.075,-0.45,-0.306),Vector3(-0.075,-0.19,-0.28)],0.014,materials.trim)
+			_sphere(left_arm,Vector3(-0.075,-0.36,-0.302),Vector3(0.032,0.040,0.014),materials.trim)
+
+func _mat(color: Color, metal: float, glow: bool = false, surface_type: float = 0.0) -> Material:
 	if glow:
 		var emissive:=StandardMaterial3D.new()
 		emissive.albedo_color=color
@@ -164,15 +281,18 @@ func _mat(color: Color, metal: float, glow: bool = false) -> Material:
 		return emissive
 	var mat:=ShaderMaterial.new()
 	mat.shader=preload("res://assets/shaders/forged_surface.gdshader")
+	_textures(mat)
 	mat.set_shader_parameter("tint",color)
 	mat.set_shader_parameter("metal",metal)
 	mat.set_shader_parameter("cloth",1.0 if metal==0.0 else 0.0)
+	mat.set_shader_parameter("surface_type",surface_type)
+	mat.set_meta("art_surface",surface_type)
 	mat.set_meta("art_tint",color)
 	mat.set_meta("art_metal",metal)
 	mat.set_meta("art_glow",0.0)
 	return mat
 
-func _profile(parent: Node3D,rings: Array,mat: Material,sides: int=16) -> MeshInstance3D:
+func _profile(parent: Node3D,rings: Array,mat: Material,sides: int=24) -> MeshInstance3D:
 	return _mesh(parent,Vector3.ZERO,preload("res://scripts/sculpted_mesh.gd").profile(rings,sides),mat)
 
 func _contact_shadow() -> void:
@@ -186,9 +306,10 @@ func _contact_shadow() -> void:
 	shadow.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 
 func _box(parent: Node3D, pos: Vector3, dimensions: Vector3, mat: Material) -> MeshInstance3D:
-	var mesh := BoxMesh.new()
-	mesh.size = dimensions
-	return _mesh(parent,pos,mesh,mat)
+	var mesh:=preload("res://scripts/sculpted_mesh.gd").bevelled_box()
+	var instance:=_mesh(parent,pos,mesh,mat)
+	instance.scale=dimensions
+	return instance
 
 func _cylinder(parent: Node3D,pos: Vector3,bottom: float,top: float,height: float,mat: Material,sides: int = 12) -> MeshInstance3D:
 	var mesh := CylinderMesh.new()
@@ -200,8 +321,8 @@ func _cylinder(parent: Node3D,pos: Vector3,bottom: float,top: float,height: floa
 
 func _sphere(parent: Node3D,pos: Vector3,dimensions: Vector3,mat: Material) -> MeshInstance3D:
 	var mesh := SphereMesh.new()
-	mesh.radial_segments = 12
-	mesh.rings = 6
+	mesh.radial_segments = 20
+	mesh.rings = 10
 	var instance := _mesh(parent,pos,mesh,mat)
 	instance.scale = dimensions * 2.0
 	return instance
@@ -215,33 +336,45 @@ func _mesh(parent: Node3D,pos: Vector3,mesh: Mesh,mat: Material) -> MeshInstance
 	return instance
 
 func _arm(side: float) -> Node3D:
-	var pivot := Node3D.new()
+	var pivot:=Node3D.new()
 	pivot.name="ArmL" if side<0 else "ArmR"
-	pivot.position = Vector3(side*0.33,1.47,0)
+	pivot.position=Vector3(side*0.33,1.47,0)
 	body.add_child(pivot)
-	_sphere(pivot,Vector3(side*0.03,0,0),Vector3(0.18,0.13,0.19),materials.edge)
-	_sphere(pivot,Vector3(side*0.03,0.025,0),Vector3(0.16,0.12,0.17),materials.metal)
-	_cylinder(pivot,Vector3(0,-0.21,0),0.085,0.10,0.32,materials.leather)
-	var bracer:=_profile(pivot,[Vector4(-0.56,0.08,0.075,-0.02),Vector4(-0.29,0.115,0.105,-0.02)],materials.metal)
-	for i in range(2):
-		_cylinder(pivot,Vector3(0,-0.35-i*0.15,-0.02),0.116-i*0.012,0.116-i*0.012,0.035,materials.trim,12)
-	_sphere(pivot,Vector3(0,-0.59,-0.02),Vector3.ONE*0.10,materials.leather)
+	if kind=="raider" and hostile: return pivot
+	var light_armor: bool=kind in ["Ranger","Arcanist","hexer"]
+	for tier in range(3):
+		var plate:=_panel(pivot,[Vector4(-0.10,0.135,0.14,0),Vector4(0.015,0.175,0.19,0),Vector4(0.09,0.12,0.15,0)],materials.leather if light_armor else materials.metal,1.58)
+		plate.position=Vector3(side*(0.025+tier*0.015),-tier*0.074,0)
+		plate.rotation.z=side*(0.2+tier*0.06)
+		var rear:=_panel(pivot,[Vector4(-0.10,0.135,0.14,0),Vector4(0.015,0.175,0.19,0),Vector4(0.09,0.12,0.15,0)],materials.leather if light_armor else materials.metal,1.58)
+		rear.transform=plate.transform
+		rear.rotate_y(PI)
+		_curve(pivot,[Vector3(-0.11,-0.09-tier*0.074,-0.11),Vector3(0,-0.11-tier*0.074,-0.145),Vector3(0.11,-0.09-tier*0.074,-0.11)],0.008,materials.trim)
+	_profile(pivot,[Vector4(-0.51,0.074,0.08,-0.025),Vector4(-0.46,0.085,0.090,-0.02),Vector4(-0.35,0.102,0.10,-0.01),Vector4(-0.29,0.094,0.095,0)],materials.leather if light_armor else materials.metal)
+	for y in [-0.48,-0.34]:
+		_cylinder(pivot,Vector3(0,y,-0.017),0.096,0.096,0.024,materials.trim,24)
+	for i in range(4):
+		_sphere(pivot,Vector3(side*0.065,-0.32-i*0.05,-0.090),Vector3.ONE*0.008,materials.trim)
 	return pivot
 
 func _leg(side: float) -> Node3D:
-	var pivot := Node3D.new()
+	var pivot:=Node3D.new()
 	pivot.name="LegL" if side<0 else "LegR"
-	pivot.position = Vector3(side*0.18,0.89,0)
+	pivot.position=Vector3(side*0.18,0.89,0)
 	body.add_child(pivot)
-	_cylinder(pivot,Vector3(0,-0.20,0),0.11,0.14,0.40,materials.leather)
-	var knee := Node3D.new()
+	var knee:=Node3D.new()
 	knee.name="Knee"
-	knee.position.y = -0.39
+	knee.position.y=-0.39
 	pivot.add_child(knee)
-	_sphere(knee,Vector3(0,0,-0.055),Vector3(0.13,0.12,0.13),materials.edge)
-	_cylinder(knee,Vector3(0,-0.20,0),0.10,0.13,0.34,materials.metal)
-	_box(knee,Vector3(0,-0.40,-0.07),Vector3(0.19,0.13,0.32),materials.leather)
-	_box(knee,Vector3(0,-0.365,-0.18),Vector3(0.195,0.07,0.17),materials.edge)
+	if kind=="raider" and hostile: return pivot
+	_panel(pivot,[Vector4(-0.30,0.10,0.105,0),Vector4(-0.13,0.13,0.14,0),Vector4(-0.015,0.13,0.12,0)],materials.leather,1.32)
+	var light_armor: bool=kind in ["Ranger","Arcanist","hexer"]
+	_panel(knee,[Vector4(-0.10,0.055,0.085,-0.015),Vector4(0,0.10,0.12,-0.03),Vector4(0.085,0.070,0.095,-0.01)],materials.edge,1.33)
+	_profile(knee,[Vector4(-0.35,0.060,0.075,0),Vector4(-0.25,0.073,0.085,0),Vector4(-0.08,0.105,0.11,0)],materials.leather if light_armor else materials.metal)
+	for i in range(3):
+		var shoe:=_panel(knee,[Vector4(-0.45+i*0.034,0.080,0.10,0),Vector4(-0.38+i*0.034,0.084,0.10,0)],materials.leather if light_armor else materials.metal,1.5)
+		shoe.position.z=-0.045-i*0.023
+	_box(knee,Vector3(0,-0.451,-0.047),Vector3(0.165,0.06,0.27),materials.leather)
 	return pivot
 
 func strike(style: String = "basic") -> void:
@@ -275,6 +408,7 @@ func animate(delta: float, walking: bool, horizontal_speed: float = -1.0) -> voi
 		left_leg.rotation.x = death_lean*0.42*fall
 		right_leg.rotation.x = -death_lean*0.32*fall
 		cape.rotation.x = -0.15+0.38*fall
+		_sync_anatomy()
 		return
 	var speed:=maxf(horizontal_speed,2.5) if horizontal_speed>=0.0 else 3.2
 	var gait:=1.0 if walking else 0.0
@@ -388,6 +522,8 @@ func animate(delta: float, walking: bool, horizontal_speed: float = -1.0) -> voi
 		right_arm.rotation.x+=0.18*flinch
 		if impact_time>=0.24: impact_time=-1.0
 
+	_sync_anatomy()
+
 func _telegraph_pose(anticipation: float) -> void:
 	if attack_style!="telegraph": return
 	left_arm.rotation.x += -0.86*anticipation
@@ -434,7 +570,7 @@ func _merge_rigid_parts(pivot: Node3D) -> void:
 			surface.begin(Mesh.PRIMITIVE_TRIANGLES)
 			for group in groups.values():
 				var tint: Color=group.material.get_meta("art_tint",Color.WHITE)
-				var packed_material:=Vector2(group.material.get_meta("art_metal",0.0),group.material.get_meta("art_glow",0.0))
+				var packed_material:=Vector2(group.material.get_meta("art_metal",0.0),group.material.get_meta("art_glow",0.0)+group.material.get_meta("art_surface",0.0)*4.0)
 				for entry in group.entries:
 					var arrays: Array=entry.mesh.surface_get_arrays(0)
 					var vertices: PackedVector3Array=arrays[Mesh.ARRAY_VERTEX]
@@ -444,7 +580,7 @@ func _merge_rigid_parts(pivot: Node3D) -> void:
 					var normal_basis: Basis=entry.transform.basis.inverse().transposed()
 					for i in range(indices.size() if not indices.is_empty() else vertices.size()):
 						var index: int=indices[i] if not indices.is_empty() else i
-						surface.set_color(tint)
+						surface.set_color(tint.srgb_to_linear())
 						surface.set_uv2(packed_material)
 						surface.set_uv(uv[index] if index<uv.size() else Vector2.ZERO)
 						surface.set_normal((normal_basis*normals[index]).normalized())
@@ -455,6 +591,7 @@ func _merge_rigid_parts(pivot: Node3D) -> void:
 			shared_surface=ShaderMaterial.new()
 			shared_surface.shader=preload("res://assets/shaders/forged_surface.gdshader")
 			shared_surface.set_shader_parameter("vertex_materials",true)
+			_textures(shared_surface)
 		var combined:=MeshInstance3D.new()
 		combined.mesh=merged_cache[key]
 		combined.material_override=shared_surface
@@ -467,6 +604,7 @@ func _merge_rigid_parts(pivot: Node3D) -> void:
 
 func _collect_rigid_meshes(pivot: Node3D,parent: Node3D,groups: Dictionary,meshes: Array[MeshInstance3D]) -> void:
 	for child in parent.get_children():
+		if child.has_meta("keep_unmerged"): continue
 		if child is MeshInstance3D:
 			var mat: Material=child.material_override
 			var key:=mat.get_instance_id()
@@ -481,3 +619,4 @@ func _collect_rigid_meshes(pivot: Node3D,parent: Node3D,groups: Dictionary,meshe
 			_collect_rigid_meshes(pivot,child,groups,meshes)
 		elif child is Node3D:
 			_merge_rigid_parts(child)
+

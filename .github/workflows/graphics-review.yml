@@ -1,0 +1,103 @@
+name: Graphics Review
+
+on:
+  push:
+    branches: [codex/ashen-veil-graphics]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: graphics-review-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  graphics:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    env:
+      GODOT_VERSION: 4.7.2
+      LIBGL_ALWAYS_SOFTWARE: "1"
+    steps:
+      - name: Check out graphics branch
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Install render tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1-mesa-dri python3-pil ripgrep
+          mkdir -p "$RUNNER_TEMP/godot"
+          curl --fail --location --retry 3 --output "$RUNNER_TEMP/godot.zip" "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP/godot"
+          echo "$RUNNER_TEMP/godot" >> "$GITHUB_PATH"
+      - name: Verify graphics and combat contracts
+        env:
+          XDG_DATA_HOME: ${{ runner.temp }}/graphics-test-data
+        run: |
+          GODOT="$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64"
+          timeout 120s "$GODOT" --headless --path . --editor --import --quit 2>&1 | tee "$RUNNER_TEMP/import.log"
+          if rg 'SCRIPT ERROR|Parse Error|Compile Error' "$RUNNER_TEMP/import.log"
+          then
+            exit 1
+          fi
+          for SUITE in visuals_smoke regions_smoke dungeon_smoke options_smoke combat_movement_smoke
+          do
+            if ! timeout 180s "$GODOT" --headless --path . --fixed-fps 60 --script "tests/$SUITE.gd" 2>&1 | tee "$RUNNER_TEMP/$SUITE.log"
+            then
+              exit 1
+            fi
+            if rg 'SCRIPT ERROR|Parse Error|Compile Error|FAIL:' "$RUNNER_TEMP/$SUITE.log"
+            then
+              exit 1
+            fi
+          done
+      - name: Render updated game scenes
+        env:
+          XDG_DATA_HOME: ${{ runner.temp }}/graphics-capture-data
+          EMBERFALL_CAPTURE_DIR: ${{ github.workspace }}/build/graphics-review/after
+        run: |
+          mkdir -p build/graphics-review/after
+          xvfb-run -a -s "-screen 0 1280x720x24" "$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" --path . --rendering-method gl_compatibility --audio-driver Dummy --fixed-fps 60 --script tests/graphics_capture.gd 2>&1 | tee build/graphics-review/after.log
+          if rg 'SCRIPT ERROR|SHADER ERROR|Shader compilation failed|Parse Error|Compile Error' build/graphics-review/after.log
+          then
+            exit 1
+          fi
+      - name: Render unchanged baseline
+        env:
+          XDG_DATA_HOME: ${{ runner.temp }}/graphics-baseline-data
+          EMBERFALL_CAPTURE_DIR: ${{ github.workspace }}/build/graphics-review/before
+          EMBERFALL_CAPTURE_BASELINE: "1"
+        run: |
+          git worktree add --detach "$RUNNER_TEMP/graphics-baseline" 610c343073e7186589cba92c3fefb55a4db68e12
+          cp tests/graphics_capture.gd "$RUNNER_TEMP/graphics-baseline/tests/graphics_capture.gd"
+          "$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" --headless --path "$RUNNER_TEMP/graphics-baseline" --editor --import --quit
+          xvfb-run -a -s "-screen 0 1280x720x24" "$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" --path "$RUNNER_TEMP/graphics-baseline" --rendering-method gl_compatibility --audio-driver Dummy --fixed-fps 60 --script tests/graphics_capture.gd 2>&1 | tee build/graphics-review/before.log
+      - name: Make rendered comparison
+        run: |
+          python3 - <<'PY'
+          import base64
+          from pathlib import Path
+          from PIL import Image, ImageDraw, ImageFont
+          folder = Path("build/graphics-review")
+          canvas = Image.new("RGB", (1280, 1552), "#11131a")
+          draw = ImageDraw.Draw(canvas)
+          font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 18)
+          for row, scene in enumerate(["portrait-vowkeeper", "portrait-arcanist", "portrait-ranger", "citadel-boss"]):
+              for column, state in enumerate(["before", "after"]):
+                  shot = Image.open(folder / state / (scene + ".png")).convert("RGB")
+                  shot.thumbnail((640, 360), Image.Resampling.LANCZOS)
+                  canvas.paste(shot, (column * 640, row * 388 + 28))
+                  draw.text((column * 640 + 12, row * 388 + 4), state.upper() + "  /  " + scene, font=font, fill="#d9c9a9")
+          canvas.save(folder / "comparison.jpg", quality=82)
+          print("RENDERED_COMPARISON_BASE64=" + base64.b64encode((folder / "comparison.jpg").read_bytes()).decode())
+          PY
+      - name: Upload rendered scenes
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: emberfall-graphics-review
+          path: build/graphics-review/
+          retention-days: 14
+

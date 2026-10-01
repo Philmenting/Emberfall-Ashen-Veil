@@ -33,7 +33,7 @@ func _ready() -> void:
 	viewport.size = Vector2i(960,540)
 	viewport.own_world_3d = true
 	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
-	viewport.msaa_3d = Viewport.MSAA_2X
+	viewport.msaa_3d = Viewport.MSAA_4X
 	container.add_child(viewport)
 	world = DungeonWorld.new()
 	world.character_class = character_class
@@ -60,7 +60,7 @@ func apply_quality(battery: bool,numbers: bool,motion_reduced: bool=false) -> vo
 	reduced_motion=motion_reduced
 	if not is_instance_valid(render_viewport): return
 	render_container.stretch_shrink=2 if battery else 1
-	render_viewport.msaa_3d=Viewport.MSAA_DISABLED if battery else Viewport.MSAA_2X
+	render_viewport.msaa_3d=Viewport.MSAA_DISABLED if battery else Viewport.MSAA_4X
 	world.damage_numbers=numbers
 	world.reduced_motion=motion_reduced
 	world.set_shadows(not battery)
