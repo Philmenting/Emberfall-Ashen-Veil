@@ -77,6 +77,7 @@ func run_checks() -> void:
 		normalized_weights=normalized_weights and stride in [4,8] and max_weight_error<0.0001
 		print("ANATOMY ",kind," vertices=",skin_arrays[Mesh.ARRAY_VERTEX].size()," stride=",stride," max_weight_error=",max_weight_error," skin=",weighted_mesh.skin!=null)
 		check(weighted_mesh.skin!=null and skin_arrays[Mesh.ARRAY_VERTEX].size()>10000 and normalized_weights,kind+": detailed mesh has normalized GPU skinning weights")
+		check(weighted_mesh.skin.get_bind_name(0)=="Torso" or weighted_mesh.skin.get_bind_bone(0)==actor.anatomy.find_bone("Torso"),kind+": facial texture mask uses the stable torso binding")
 		var finite:=true
 		for node in actor.find_children("*","MeshInstance3D",true,false):
 			for surface in range(node.mesh.get_surface_count()):

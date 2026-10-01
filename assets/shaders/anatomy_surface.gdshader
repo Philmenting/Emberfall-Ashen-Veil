@@ -9,7 +9,12 @@ uniform sampler2D skin_texture : source_color, filter_linear_mipmap, repeat_enab
 uniform sampler2D skin_normal : hint_normal, filter_linear_mipmap, repeat_enable;
 uniform sampler2D linen_texture : source_color, filter_linear_mipmap, repeat_enable;
 varying vec3 anatomical_pos;
-void vertex() { anatomical_pos = VERTEX; }
+varying float anatomical_head;
+void vertex() {
+ anatomical_pos = VERTEX;
+ // Compatibility skinning deforms positions before this shader. Bind identity stays stable.
+ anatomical_head = float(float(BONE_INDICES.x) < 0.5 && BONE_WEIGHTS.x > 0.999);
+}
 void fragment() {
  float exposed = all_skin ? 1.0 : step(0.5, COLOR.a);
  vec3 detail = texture(skin_texture, UV * 12.0).rgb;
@@ -22,7 +27,7 @@ void fragment() {
               : mix(0.28, 0.0, clamp((y - 1.87190) / 0.15810, 0.0, 1.0));
  vec2 face_uv = vec2(clamp(anatomical_pos.x / 0.16 + 0.5, 0.01, 0.99) * 0.5 + (male_face ? 0.5 : 0.0), face_v);
  vec3 face = texture(face_texture, face_uv).rgb;
- float face_mask = smoothstep(1.68, 1.74, anatomical_pos.y) * (1.0 - smoothstep(-0.075, -0.005, anatomical_pos.z)) * exposed;
+ float face_mask = smoothstep(1.68, 1.74, anatomical_pos.y) * (1.0 - smoothstep(-0.075, -0.005, anatomical_pos.z)) * exposed * anatomical_head;
  vec3 face_tint = male_face ? skin_tint.rgb / vec3(0.56, 0.44, 0.35) : vec3(1.0);
  ALBEDO = mix(ALBEDO, face * face_tint, face_mask);
  ROUGHNESS = mix(0.92, 0.62, exposed);
