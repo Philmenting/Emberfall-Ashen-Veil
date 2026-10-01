@@ -448,7 +448,7 @@ func _merge_rigid_parts(pivot: Node3D) -> void:
 					var normal_basis: Basis=entry.transform.basis.inverse().transposed()
 					for i in range(indices.size() if not indices.is_empty() else vertices.size()):
 						var index: int=indices[i] if not indices.is_empty() else i
-						surface.set_color(tint)
+						surface.set_color(tint.srgb_to_linear())
 						surface.set_uv2(packed_material)
 						surface.set_uv(uv[index] if index<uv.size() else Vector2.ZERO)
 						surface.set_normal((normal_basis*normals[index]).normalized())

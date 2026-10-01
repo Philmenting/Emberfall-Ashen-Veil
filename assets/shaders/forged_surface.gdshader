@@ -11,8 +11,8 @@ void vertex() { local_pos = VERTEX; }
 void fragment() {
  vec4 base_tint = vertex_materials ? COLOR : tint;
  float surface_metal = vertex_materials ? UV2.x : metal;
- float type = vertex_materials ? floor(UV2.y / 4.0) : surface_type;
- float glow = vertex_materials ? mod(UV2.y, 4.0) : 0.0;
+ float type = vertex_materials ? floor(UV2.y / 4.0 + 0.01) : surface_type;
+ float glow = vertex_materials ? clamp(UV2.y - type * 4.0, 0.0, 1.0) : 0.0;
  float fabric = (1.0 - step(0.05, surface_metal)) * (1.0 - step(0.5, type)) * (1.0 - step(0.5, glow));
  vec2 threads = UV * vec2(190.0, 145.0);
  vec2 thread_filter = 1.0 - smoothstep(vec2(0.4), vec2(1.5), fwidth(threads));

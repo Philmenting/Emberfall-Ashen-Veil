@@ -8,6 +8,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: graphics-review-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   graphics:
     runs-on: ubuntu-24.04
@@ -34,11 +38,20 @@ jobs:
         run: |
           GODOT="$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64"
           timeout 120s "$GODOT" --headless --path . --editor --import --quit 2>&1 | tee "$RUNNER_TEMP/import.log"
-          ! rg 'SCRIPT ERROR|Parse Error|Compile Error' "$RUNNER_TEMP/import.log"
+          if rg 'SCRIPT ERROR|Parse Error|Compile Error' "$RUNNER_TEMP/import.log"
+          then
+            exit 1
+          fi
           for SUITE in visuals_smoke regions_smoke dungeon_smoke options_smoke combat_movement_smoke
           do
-            timeout 180s "$GODOT" --headless --path . --fixed-fps 60 --script "tests/$SUITE.gd" 2>&1 | tee "$RUNNER_TEMP/$SUITE.log"
-            ! rg 'SCRIPT ERROR|Parse Error|Compile Error|FAIL:' "$RUNNER_TEMP/$SUITE.log"
+            if ! timeout 180s "$GODOT" --headless --path . --fixed-fps 60 --script "tests/$SUITE.gd" 2>&1 | tee "$RUNNER_TEMP/$SUITE.log"
+            then
+              exit 1
+            fi
+            if rg 'SCRIPT ERROR|Parse Error|Compile Error|FAIL:' "$RUNNER_TEMP/$SUITE.log"
+            then
+              exit 1
+            fi
           done
       - name: Render updated game scenes
         env:
@@ -46,17 +59,21 @@ jobs:
           EMBERFALL_CAPTURE_DIR: ${{ github.workspace }}/build/graphics-review/after
         run: |
           mkdir -p build/graphics-review/after
-          xvfb-run -a -s "-screen 0 1280x720x24" "$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" --path . --rendering-method gl_compatibility --fixed-fps 60 --script tests/graphics_capture.gd 2>&1 | tee build/graphics-review/after.log
-          ! rg 'SCRIPT ERROR|SHADER ERROR|Shader compilation failed|Parse Error|Compile Error' build/graphics-review/after.log
+          xvfb-run -a -s "-screen 0 1280x720x24" "$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" --path . --rendering-method gl_compatibility --audio-driver Dummy --fixed-fps 60 --script tests/graphics_capture.gd 2>&1 | tee build/graphics-review/after.log
+          if rg 'SCRIPT ERROR|SHADER ERROR|Shader compilation failed|Parse Error|Compile Error' build/graphics-review/after.log
+          then
+            exit 1
+          fi
       - name: Render unchanged baseline
         env:
           XDG_DATA_HOME: ${{ runner.temp }}/graphics-baseline-data
           EMBERFALL_CAPTURE_DIR: ${{ github.workspace }}/build/graphics-review/before
+          EMBERFALL_CAPTURE_BASELINE: "1"
         run: |
           git worktree add --detach "$RUNNER_TEMP/graphics-baseline" 610c343073e7186589cba92c3fefb55a4db68e12
           cp tests/graphics_capture.gd "$RUNNER_TEMP/graphics-baseline/tests/graphics_capture.gd"
           "$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" --headless --path "$RUNNER_TEMP/graphics-baseline" --editor --import --quit
-          xvfb-run -a -s "-screen 0 1280x720x24" "$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" --path "$RUNNER_TEMP/graphics-baseline" --rendering-method gl_compatibility --fixed-fps 60 --script tests/graphics_capture.gd 2>&1 | tee build/graphics-review/before.log
+          xvfb-run -a -s "-screen 0 1280x720x24" "$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" --path "$RUNNER_TEMP/graphics-baseline" --rendering-method gl_compatibility --audio-driver Dummy --fixed-fps 60 --script tests/graphics_capture.gd 2>&1 | tee build/graphics-review/before.log
       - name: Make rendered comparison
         run: |
           python3 - <<'PY'

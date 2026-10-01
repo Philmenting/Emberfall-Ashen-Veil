@@ -352,7 +352,7 @@ func _batch_static_geometry() -> void:
 	for node in find_children("*","MeshInstance3D",true,false):
 		var mesh_node: MeshInstance3D = node
 		var source: Mesh = mesh_node.mesh
-		if mesh_node.name in ["FloodedArchive","LavaBasin","LowCryptMist"]: continue
+		if mesh_node.name in ["FloodedArchive","LavaBasin","LowCryptMist"] or mesh_node.has_meta("keep_unbatched"): continue
 		var signature := ""
 		var transform: Transform3D = mesh_node.global_transform
 		if source is BoxMesh:
@@ -882,7 +882,8 @@ func _furnace(pos: Vector3,side: float) -> void:
 func set_shadows(enabled: bool) -> void:
 	if is_instance_valid(sun): sun.shadow_enabled=enabled
 	if scene_environment!=null: scene_environment.glow_enabled=enabled
-	for ray in decorative_rays: ray.visible=enabled
+	for ray in decorative_rays:
+		if is_instance_valid(ray): ray.visible=enabled
 
 func _build_journey_floor() -> void:
 	var cells: Dictionary={}
@@ -1276,6 +1277,7 @@ func _build_crafted_ruins() -> void:
 			_box(origin+Vector3(-4.4,step*0.12,-3.9-step*0.24),Vector3(1.25,0.18,0.34),materials.stone)
 		var ray:=MeshInstance3D.new()
 		ray.name="AtmosphericRay"
+		ray.set_meta("keep_unbatched",true)
 		var plane:=QuadMesh.new()
 		plane.size=Vector2(2.4,6.5)
 		ray.mesh=plane

@@ -15,6 +15,7 @@ func capture() -> void:
 		return
 	DirAccess.make_dir_recursive_absolute(capture_dir)
 	root.size=Vector2i(1280,720)
+	root.msaa_3d=Viewport.MSAA_2X if OS.get_environment("EMBERFALL_CAPTURE_BASELINE")=="1" else Viewport.MSAA_4X
 	var game:=Bot.new()
 	for region in range(4):
 		for kind in ["Vowkeeper","Arcanist","Ranger"]:
