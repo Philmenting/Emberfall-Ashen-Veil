@@ -141,7 +141,9 @@ func run_checks() -> void:
 		game._sync_model_state()
 		game._build_ui()
 		var world: Node=game.run_arena.world
-		check(world.warnings.has(50) and world.warnings[50].get_child_count()==2,"region %d: restored shape has fill and outline" % region)
+		check(world.warnings.has(50) and world.warnings[50].find_children("*","MeshInstance3D",false,false).size()==2,"region %d: restored shape has fill and outline" % region)
+		var countdown := world.warnings[50].get_node_or_null("ImpactCountdown") as Label3D
+		check(countdown!=null and not countdown.text.is_empty(),"region %d: restored warning immediately displays its countdown" % region)
 		check(game.combat_hud.boss.visible and game.combat_hud.boss.text.contains(Patterns.NAMES[region].to_upper()),"region %d: HUD names the current boss attack" % region)
 		var before: Dictionary=game.expedition.snapshot()
 		world._process(0.4)

@@ -83,6 +83,9 @@ jobs:
       - name: Check seed-bound combat movement and attack timing
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-combat-movement-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/combat_movement_smoke.gd
 
+      - name: Check per-class combat stances and saved expedition compatibility
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-combat-stances-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/combat_stances_smoke.gd
+
       - name: Check server-owned progression simulation
         run: |
           node --check server/modules/emberfall.js
@@ -232,4 +235,3 @@ jobs:
 
       - name: Check sculpted graphics, regional surfaces and isolated effects
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-visuals-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/visuals_smoke.gd
-

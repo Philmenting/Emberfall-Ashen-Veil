@@ -91,7 +91,7 @@ func _ready() -> void:
 	guard_visual.visible=simulation.guard_time>0.0
 	_ensure_wave(mini(simulation.stage,5))
 	_ensure_wave(mini(simulation.stage,5)+1)
-	target_ring = _ring(Vector3.ZERO,0.65,materials.metal)
+	target_ring = _ring(Vector3.ZERO,0.65,_material(Color("e8cb8f"),0.0,true))
 	target_ring.visible = false
 	camera = Camera3D.new()
 	camera.projection = Camera3D.PROJECTION_PERSPECTIVE
@@ -487,8 +487,7 @@ func _process(delta: float) -> void:
 			warnings[id_value].queue_free()
 			warnings.erase(id_value)
 		else:
-			# Boss telegraphs keep the exact collision footprint throughout the cast.
-			warnings[id_value].scale = Vector3.ONE if enemy.warning.has("zones") else Vector3.ONE*(0.92+sin(elapsed*14.0)*0.04)
+			_update_warning(warnings[id_value],enemy.warning)
 	target_ring.visible = phase=="combat" and actor_by_id.has(simulation.target_id)
 	if target_ring.visible: target_ring.position = actor_by_id[simulation.target_id].position+Vector3(0,0.07,0)
 	for i in range(torches.size()): torches[i].light_energy = 3.1+sin(elapsed*8.0+i*2.1)*0.22
@@ -562,20 +561,18 @@ func _show_event(event: Dictionary) -> void:
 			var style:=String(event.get("ability_id",""))
 			if style.is_empty(): style="signature" if event.get("skill",false) else "basic"
 			hero.strike(style)
+			if character_class!="Vowkeeper" and not event.has("ability_id") and actor_by_id.has(event.target):
+				_launch_projectile(int(event.target),color)
 		"hit":
 			if not actor_by_id.has(event.target): return
 			var actor: Node3D = actor_by_id[event.target]
 			actor.react()
-			_float_text(actor.position+Vector3(0,2.5,0),str(event.damage)+("!" if event.critical else ""),color)
+			var impact_color: Color = Color("ffe1a2") if event.critical else color
+			_float_text(actor.position+Vector3(0,2.5,0),str(event.damage)+("!" if event.critical else ""),impact_color)
+			if event.critical: _kick_camera(0.025)
 			var mat := _material(color,0.0,true)
 			var ring := _ring(actor.position+Vector3(0,0.08,0),0.6,mat)
 			effects.append({"node":ring,"age":0.0,"life":0.4,"kind":"ring"})
-			if character_class!="Vowkeeper":
-				var start := hero.position+Vector3(0,1.3,0)
-				var end := actor.position+Vector3(0,1.1,0)
-				var bolt := _box((start+end)*0.5,Vector3(0.06,0.06,start.distance_to(end)),mat)
-				bolt.look_at(end)
-				effects.append({"node":bolt,"age":0.0,"life":0.18,"kind":"bolt"})
 			_impact_sparks(actor.position+Vector3(0,1.0,0),color)
 			if character_class=="Vowkeeper": _slash_arc(hero.position,color)
 			if event.dead:
@@ -605,29 +602,21 @@ func _show_event(event: Dictionary) -> void:
 			effects.append({"node":wave,"age":0.0,"life":0.45,"kind":"nova"})
 		"warning":
 			if warnings.has(event.source): warnings[event.source].queue_free()
-			if event.has("zones"):
-				warnings[event.source]=_pattern_visual(event.zones,Color("f05f40"),0.32)
-				if actor_by_id.has(event.source): actor_by_id[event.source].strike("telegraph")
-				return
-			var zone := Node3D.new()
-			zone.position = _point(event.position)+Vector3(0,0.06,0)
-			add_child(zone)
-			var disc := MeshInstance3D.new()
-			var mesh := CylinderMesh.new()
-			mesh.top_radius = event.radius
-			mesh.bottom_radius = event.radius
-			mesh.height = 0.025
-			mesh.radial_segments = 40
-			disc.mesh = mesh
-			var mat := _material(Color(0.9,0.12,0.045,0.30))
-			mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-			disc.material_override = mat
-			disc.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-			zone.add_child(disc)
-			var outline := _ring(Vector3.ZERO,event.radius,materials.blood)
-			remove_child(outline)
-			zone.add_child(outline)
+			var zones: Array = event.get("zones",[{"shape":"circle","center":event.position,"radius":event.get("radius",1.0)}])
+			var zone := _pattern_visual(zones,Color("f05f40"),0.32,true)
+			var timer := Label3D.new()
+			timer.name = "ImpactCountdown"
+			timer.font_size = 36
+			timer.pixel_size = 0.006
+			timer.outline_size = 8
+			timer.modulate = Color("ffe1b0")
+			timer.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+			timer.no_depth_test = true
+			timer.position = _point(event.position)+Vector3(0,0.6,0)
+			zone.add_child(timer)
 			warnings[event.source] = zone
+			var source: Dictionary = simulation.enemy_by_id(int(event.source))
+			if not source.is_empty() and not source.warning.is_empty(): _update_warning(zone,source.warning)
 			if actor_by_id.has(event.source): actor_by_id[event.source].strike("telegraph")
 		"impact":
 			_kick_camera(0.055)
@@ -649,7 +638,7 @@ func _show_event(event: Dictionary) -> void:
 		"finished":
 			if not event.won: hero.die()
 
-func _pattern_visual(zones: Array, tint: Color, alpha: float) -> Node3D:
+func _pattern_visual(zones: Array, tint: Color, alpha: float, timed: bool=false) -> Node3D:
 	var node:=Node3D.new()
 	node.name="BossTelegraph"
 	add_child(node)
@@ -679,7 +668,14 @@ func _pattern_visual(zones: Array, tint: Color, alpha: float) -> Node3D:
 		material.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA
 		material.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED
 		material.cull_mode=BaseMaterial3D.CULL_DISABLED
-		visual.material_override=material
+		if timed:
+			var telegraph := ShaderMaterial.new()
+			telegraph.shader = preload("res://assets/shaders/combat_telegraph.gdshader")
+			telegraph.set_shader_parameter("danger_color",tint)
+			telegraph.set_shader_parameter("border",border)
+			visual.material_override=telegraph
+		else:
+			visual.material_override=material
 		visual.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		node.add_child(visual)
 	return node
@@ -704,6 +700,13 @@ func _update_effects(delta: float) -> void:
 		effect.age += delta
 		var node: Node3D = effect.node
 		if effect.kind=="cast_mark" and simulation.pending_attack.get("ability_id","")!=effect.ability_id: effect.age=effect.life
+		if effect.kind=="projectile":
+			var destination: Vector3 = effect.destination
+			if actor_by_id.has(effect.target): destination=actor_by_id[effect.target].position+Vector3(0,1.15,0)
+			var progress := clampf(float(effect.age)/float(effect.life),0.0,1.0)
+			node.position = Vector3(effect.origin).lerp(destination,progress)
+			if character_class=="Arcanist": node.position.y+=sin(progress*PI)*0.35
+			if node.position.distance_to(destination)>0.01: node.look_at(destination)
 		if effect.kind=="fall": node.position+=Vector3(0,-10.0*delta,0)
 		if effect.kind == "ring": node.scale = Vector3.ONE*(1.0+effect.age*3.0)
 		elif effect.kind == "nova": node.scale=Vector3.ONE*lerpf(0.15,1.0,minf(1.0,effect.age/effect.life))
@@ -1215,3 +1218,27 @@ func _slash_arc(origin: Vector3,color: Color) -> void:
 	arc.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(arc)
 	effects.append({"node":arc,"age":0.0,"life":0.16,"kind":"slash"})
+
+func _update_warning(node: Node3D, warning: Dictionary) -> void:
+	# Temporal feedback never shrinks or moves the actual hazard footprint.
+	var progress := clampf(1.0-float(warning.left)/maxf(0.001,float(warning.total)),0.0,1.0)
+	for child in node.get_children():
+		if child is MeshInstance3D and child.material_override is ShaderMaterial:
+			child.material_override.set_shader_parameter("progress",progress)
+	var timer := node.get_node_or_null("ImpactCountdown") as Label3D
+	if timer!=null: timer.text="%.1fs" % maxf(0.0,float(warning.left))
+
+func _launch_projectile(target: int, color: Color) -> void:
+	var origin := hero.position+Vector3(0,1.3,0)
+	var destination: Vector3 = actor_by_id[target].position+Vector3(0,1.15,0)
+	var projectile := Node3D.new()
+	projectile.name = "SpellBolt" if character_class=="Arcanist" else "CinderArrow"
+	projectile.position = origin
+	add_child(projectile)
+	var material := _material(color,0.0,true)
+	_box(Vector3.ZERO,Vector3(0.065,0.065,0.55),material,projectile).cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	_box(Vector3(0,0,0.30),Vector3(0.025,0.025,0.38),material,projectile).cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	if character_class=="Arcanist":
+		_drop_sphere(Vector3(0,0,-0.22),0.105,material,projectile)
+	if origin.distance_to(destination)>0.01: projectile.look_at(destination)
+	effects.append({"node":projectile,"age":0.0,"life":0.28,"kind":"projectile","origin":origin,"destination":destination,"target":target})
