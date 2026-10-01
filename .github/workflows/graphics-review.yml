@@ -23,7 +23,7 @@ jobs:
       - name: Install render tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y xvfb libgl1-mesa-dri python3-pil
+          sudo apt-get install -y xvfb libgl1-mesa-dri python3-pil ripgrep
           mkdir -p "$RUNNER_TEMP/godot"
           curl --fail --location --retry 3 --output "$RUNNER_TEMP/godot.zip" "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
           unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP/godot"
@@ -33,7 +33,7 @@ jobs:
           XDG_DATA_HOME: ${{ runner.temp }}/graphics-test-data
         run: |
           GODOT="$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64"
-          "$GODOT" --headless --path . --editor --import --quit 2>&1 | tee "$RUNNER_TEMP/import.log"
+          timeout 120s "$GODOT" --headless --path . --editor --import --quit 2>&1 | tee "$RUNNER_TEMP/import.log"
           ! rg 'SCRIPT ERROR|Parse Error|Compile Error' "$RUNNER_TEMP/import.log"
           for SUITE in visuals_smoke regions_smoke dungeon_smoke options_smoke combat_movement_smoke
           do

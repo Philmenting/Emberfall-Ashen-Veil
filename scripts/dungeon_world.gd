@@ -169,7 +169,7 @@ func _build_environment() -> void:
 	var sky:=Sky.new()
 	sky.sky_material=sky_material
 	env.sky=sky
-	env.reflected_light_source=Environment.REFLECTED_SOURCE_SKY
+	env.reflected_light_source=Environment.REFLECTION_SOURCE_SKY
 	env.glow_enabled=true
 	env.glow_intensity=0.48
 	env.glow_bloom=0.06
