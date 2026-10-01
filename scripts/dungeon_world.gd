@@ -20,6 +20,8 @@ var region_index := 0
 var active := true
 var damage_numbers := true
 var reduced_motion := false
+var scene_environment: Environment
+var decorative_rays: Array[MeshInstance3D]=[]
 var sun: DirectionalLight3D
 var ward_shell: MeshInstance3D
 var ward_flash := 0.0
@@ -104,8 +106,8 @@ func _ready() -> void:
 	_position_camera()
 	var lantern := OmniLight3D.new()
 	lantern.light_color = Color("cad8e5")
-	lantern.light_energy = 1.15
-	lantern.omni_range = 6.0
+	lantern.light_energy = 1.45
+	lantern.omni_range = 5.5
 	lantern.position = Vector3(0,2.8,0)
 	hero.add_child(lantern)
 
@@ -113,23 +115,35 @@ func _build_materials() -> void:
 	materials.stone = _material(Color(theme.stone))
 	materials.edge = _material(Color(theme.edge))
 	materials.dark = _material(Color(theme.dark))
-	materials.metal = _material(Color(theme.metal),0.7)
+	materials.metal = _surface_material(Color(theme.metal),0.72)
 	materials.blood = _material(Color("ae493c"),0.0,true)
 	materials.fire = _material(Color(theme.fire),0.0,true)
 	materials.soul = _material(Color("6bc4cc"),0.0,true)
-	materials.cloth = _material(Color(theme.cloth))
+	materials.cloth = _surface_material(Color(theme.cloth),0.0)
 	materials.bone = _material(Color("a29b86"))
 	for i in range(5):
 		var mat := ShaderMaterial.new()
 		mat.shader = preload("res://assets/shaders/aged_stone.gdshader")
 		mat.set_shader_parameter("stone_tint", Color(theme.stone).darkened(float(i)*0.055))
 		mat.set_shader_parameter("roughness",theme.roughness)
+		mat.set_shader_parameter("grain_texture",preload("res://assets/materials/ruin_grain.tres"))
+		mat.set_shader_parameter("dampness",0.75 if region_index==1 else 0.12)
 		floor_materials.append(mat)
 	materials.stone = floor_materials[2]
 	var edge_mat := ShaderMaterial.new()
 	edge_mat.shader = preload("res://assets/shaders/aged_stone.gdshader")
 	edge_mat.set_shader_parameter("stone_tint", Color(theme.edge))
+	edge_mat.set_shader_parameter("grain_texture",preload("res://assets/materials/ruin_grain.tres"))
+	edge_mat.set_shader_parameter("roughness",theme.roughness)
 	materials.edge = edge_mat
+
+func _surface_material(color: Color, metal: float) -> ShaderMaterial:
+	var mat:=ShaderMaterial.new()
+	mat.shader=preload("res://assets/shaders/forged_surface.gdshader")
+	mat.set_shader_parameter("tint",color)
+	mat.set_shader_parameter("metal",metal)
+	mat.set_shader_parameter("cloth",1.0-metal)
+	return mat
 
 func _material(color: Color, metallic: float = 0.0, glow: bool = false) -> StandardMaterial3D:
 	var mat := StandardMaterial3D.new()
@@ -145,11 +159,25 @@ func _material(color: Color, metallic: float = 0.0, glow: bool = false) -> Stand
 func _build_environment() -> void:
 	var environment := WorldEnvironment.new()
 	var env := Environment.new()
+	scene_environment=env
+	var sky_material:=ProceduralSkyMaterial.new()
+	sky_material.sky_top_color=Color(theme.moon).darkened(0.65)
+	sky_material.sky_horizon_color=Color(theme.ambient).darkened(0.4)
+	sky_material.ground_bottom_color=Color(theme.dark).darkened(0.65)
+	sky_material.ground_horizon_color=Color(theme.ambient).darkened(0.5)
+	sky_material.sky_energy_multiplier=0.65
+	var sky:=Sky.new()
+	sky.sky_material=sky_material
+	env.sky=sky
+	env.reflected_light_source=Environment.REFLECTED_SOURCE_SKY
+	env.glow_enabled=true
+	env.glow_intensity=0.48
+	env.glow_bloom=0.06
 	env.background_mode = Environment.BG_COLOR
 	env.background_color = Color(theme.background)
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	env.ambient_light_color = Color(theme.ambient)
-	env.ambient_light_energy = 0.32
+	env.ambient_light_energy = 0.40
 	env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
 	env.fog_enabled = true
 	env.fog_light_color = Color(theme.fog)
@@ -160,14 +188,16 @@ func _build_environment() -> void:
 	sun = moon
 	moon.rotation_degrees = Vector3(-52,-32,0)
 	moon.light_color = Color(theme.moon)
-	moon.light_energy = 0.95
+	moon.light_energy = 1.05
 	moon.shadow_enabled = true
-	moon.directional_shadow_max_distance = 32.0
+	moon.directional_shadow_max_distance = 28.0
+	moon.shadow_bias=0.035
+	moon.shadow_normal_bias=0.7
 	add_child(moon)
 	var rim:=DirectionalLight3D.new()
 	rim.rotation_degrees=Vector3(-24,145,0)
 	rim.light_color=Color("c4a278")
-	rim.light_energy=0.38
+	rim.light_energy=0.46
 	add_child(rim)
 
 func _build_dungeon() -> void:
@@ -336,6 +366,8 @@ func _batch_static_geometry() -> void:
 			signature="plane:"+str(source.size)
 		elif source is SphereMesh:
 			signature = "sphere:"+str([source.radius,source.height,source.radial_segments,source.rings])
+		elif source is ArrayMesh and source.has_meta("batch_shape"):
+			signature=String(source.get_meta("batch_shape"))
 		else: continue
 		var mat: Material = mesh_node.material_override
 		var room := floori(mesh_node.global_position.z/11.0)
@@ -370,9 +402,8 @@ func _batch_mesh(transforms: Array,mat: Material,mesh: Mesh,casts_shadow: bool=t
 
 func _box(pos: Vector3,dimensions: Vector3,mat: Material,parent: Node3D = null) -> MeshInstance3D:
 	var instance := MeshInstance3D.new()
-	var mesh := BoxMesh.new()
-	mesh.size = dimensions
-	instance.mesh = mesh
+	instance.mesh = preload("res://scripts/sculpted_mesh.gd").bevelled_box()
+	instance.scale = dimensions
 	instance.material_override = mat
 	instance.position = pos
 	if parent == null: add_child(instance)
@@ -514,7 +545,7 @@ func _position_camera() -> void:
 		var envelope:=clampf(camera_shake_time/0.18,0.0,1.0)
 		var phase:=elapsed*73.0
 		shake=Vector3(sin(phase),cos(phase*1.17+0.6),sin(phase*0.83+1.7))*camera_shake_strength*envelope
-	camera.position = camera_target+Vector3(8.5,11.8,11.2)*camera_zoom+shake
+	camera.position = camera_target+Vector3(8.0,10.8,10.5)*camera_zoom+shake
 	camera.look_at(camera_target+Vector3(0,0.4,0))
 
 func _boss_is_active() -> bool:
@@ -850,6 +881,8 @@ func _furnace(pos: Vector3,side: float) -> void:
 
 func set_shadows(enabled: bool) -> void:
 	if is_instance_valid(sun): sun.shadow_enabled=enabled
+	if scene_environment!=null: scene_environment.glow_enabled=enabled
+	for ray in decorative_rays: ray.visible=enabled
 
 func _build_journey_floor() -> void:
 	var cells: Dictionary={}
@@ -1110,6 +1143,7 @@ func _build_trial_gate() -> void:
 		rune.rotation.z=-angle
 
 func _build_dressed_rooms() -> void:
+	_build_crafted_ruins()
 	# Secondary architecture below and behind the playable floor gives the ruins mass.
 	var grime:=ShaderMaterial.new()
 	grime.shader=preload("res://assets/shaders/ground_grime.gdshader")
@@ -1215,3 +1249,42 @@ func _slash_arc(origin: Vector3,color: Color) -> void:
 	arc.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(arc)
 	effects.append({"node":arc,"age":0.0,"life":0.16,"kind":"slash"})
+
+func _build_crafted_ruins() -> void:
+	for room in range(6):
+		var origin:=_point(Layout.center(region_index,room,simulation.layout_seed())) if simulation.uses_journey() else Vector3(0,0,4-room*11.2)
+		# Rear walls carry the detail so combat space remains readable.
+		for z in [-3.4,0.0,3.4]:
+			var niche:=origin+Vector3(-5.7,0,z)
+			for height in [0.18,0.34,2.85,3.02]:
+				_box(niche+Vector3(0,height,0),Vector3(0.58,0.10,2.35),materials.edge)
+			for side in [-1.0,1.0]:
+				_box(niche+Vector3(0,1.60,side*1.02),Vector3(0.42,2.55,0.16),materials.edge)
+				var finial:=_cylinder(niche+Vector3(0,3.15,side*1.02),0.15,0.005,0.48,materials.edge,8)
+				finial.rotation.z=-0.10
+			if region_index==2:
+				_cylinder(niche+Vector3(0.10,1.2,0),0.14,0.10,1.9,materials.bone,12)
+			else:
+				var relief:=_box(niche+Vector3(0.24,1.6,0),Vector3(0.11,0.95,0.23),materials.metal)
+				relief.rotation.x=0.25
+				_box(niche+Vector3(0.28,1.8,0),Vector3(0.13,0.14,0.62),materials.metal)
+		for side in [-1.0,1.0]:
+			for height in [-0.48,-0.74]:
+				_box(origin+Vector3(side*5.9,height,0),Vector3(0.34,0.12,9.2),materials.edge)
+		# A short sculpted stair at the rear stays outside the walking route.
+		for step in range(3):
+			_box(origin+Vector3(-4.4,step*0.12,-3.9-step*0.24),Vector3(1.25,0.18,0.34),materials.stone)
+		var ray:=MeshInstance3D.new()
+		ray.name="AtmosphericRay"
+		var plane:=QuadMesh.new()
+		plane.size=Vector2(2.4,6.5)
+		ray.mesh=plane
+		var mat:=ShaderMaterial.new()
+		mat.shader=preload("res://assets/shaders/ruin_lightshaft.gdshader")
+		mat.set_shader_parameter("shaft_color",Color(theme.moon))
+		ray.material_override=mat
+		ray.position=origin+Vector3(-2.8,3.0,-2.9)
+		ray.rotation_degrees=Vector3(-18,35,-19)
+		ray.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		add_child(ray)
+		decorative_rays.append(ray)

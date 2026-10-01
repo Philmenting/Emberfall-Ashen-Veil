@@ -44,9 +44,9 @@ func _ready() -> void:
 	materials.edge = _mat(Color("adb7b7") if not hostile else Color("79685b"), 0.8)
 	materials.cloth = _mat(accent.darkened(0.55), 0.0)
 	materials.trim = _mat(accent, 0.65)
-	materials.leather = _mat(Color("211e22"), 0.0)
-	materials.bone = _mat(Color("a19b84"),0.0)
-	materials.skin = _mat(Color("c1aa95") if not hostile else Color(theme.skin), 0.0)
+	materials.leather = _mat(Color("282023"), 0.0, false, 1.0)
+	materials.bone = _mat(Color("b0a48b"),0.0, false, 3.0)
+	materials.skin = _mat(Color("c1aa95") if not hostile else Color(theme.skin), 0.0, false, 2.0)
 	materials.glow = _mat(Color("81d9e6") if not hostile else Color(theme.glow), 0.0, true)
 	for key in materials: materials[key].resource_name=key
 	body = Node3D.new()
@@ -98,7 +98,7 @@ func _ready() -> void:
 	cape.position = Vector3(0,1.5,0.21)
 	body.add_child(cape)
 	if not ghoul:
-		_profile(cape,[Vector4(-1.13,0.34,0.035,0.22),Vector4(-0.65,0.30,0.03,0.10),Vector4(0,0.22,0.03,0)],materials.cloth)
+		_mesh(cape,Vector3.ZERO,preload("res://scripts/sculpted_mesh.gd").mantle(),materials.cloth)
 		for side in [-1.0,1.0]:
 			var hem:=_profile(cape,[Vector4(-1.12,0.018,0.02,0.22),Vector4(-0.65,0.018,0.02,0.10),Vector4(0,0.016,0.02,0)],materials.trim)
 			hem.position.x=side*0.26
@@ -148,10 +148,11 @@ func _ready() -> void:
 			for rib in range(4):
 				var bone:=_box(body,Vector3(side*0.15,1.19+rib*0.075,-0.17),Vector3(0.23,0.025,0.025),materials.bone)
 				bone.rotation.z=-side*0.25
+	_build_costume_details(caster,ranger,ghoul)
 	_merge_rigid_parts(self)
 	_contact_shadow()
 
-func _mat(color: Color, metal: float, glow: bool = false) -> Material:
+func _mat(color: Color, metal: float, glow: bool = false, surface_type: float = 0.0) -> Material:
 	if glow:
 		var emissive:=StandardMaterial3D.new()
 		emissive.albedo_color=color
@@ -167,12 +168,14 @@ func _mat(color: Color, metal: float, glow: bool = false) -> Material:
 	mat.set_shader_parameter("tint",color)
 	mat.set_shader_parameter("metal",metal)
 	mat.set_shader_parameter("cloth",1.0 if metal==0.0 else 0.0)
+	mat.set_shader_parameter("surface_type",surface_type)
+	mat.set_meta("art_surface",surface_type)
 	mat.set_meta("art_tint",color)
 	mat.set_meta("art_metal",metal)
 	mat.set_meta("art_glow",0.0)
 	return mat
 
-func _profile(parent: Node3D,rings: Array,mat: Material,sides: int=16) -> MeshInstance3D:
+func _profile(parent: Node3D,rings: Array,mat: Material,sides: int=24) -> MeshInstance3D:
 	return _mesh(parent,Vector3.ZERO,preload("res://scripts/sculpted_mesh.gd").profile(rings,sides),mat)
 
 func _contact_shadow() -> void:
@@ -186,9 +189,10 @@ func _contact_shadow() -> void:
 	shadow.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 
 func _box(parent: Node3D, pos: Vector3, dimensions: Vector3, mat: Material) -> MeshInstance3D:
-	var mesh := BoxMesh.new()
-	mesh.size = dimensions
-	return _mesh(parent,pos,mesh,mat)
+	var mesh:=preload("res://scripts/sculpted_mesh.gd").bevelled_box()
+	var instance:=_mesh(parent,pos,mesh,mat)
+	instance.scale=dimensions
+	return instance
 
 func _cylinder(parent: Node3D,pos: Vector3,bottom: float,top: float,height: float,mat: Material,sides: int = 12) -> MeshInstance3D:
 	var mesh := CylinderMesh.new()
@@ -200,8 +204,8 @@ func _cylinder(parent: Node3D,pos: Vector3,bottom: float,top: float,height: floa
 
 func _sphere(parent: Node3D,pos: Vector3,dimensions: Vector3,mat: Material) -> MeshInstance3D:
 	var mesh := SphereMesh.new()
-	mesh.radial_segments = 12
-	mesh.rings = 6
+	mesh.radial_segments = 20
+	mesh.rings = 10
 	var instance := _mesh(parent,pos,mesh,mat)
 	instance.scale = dimensions * 2.0
 	return instance
@@ -434,7 +438,7 @@ func _merge_rigid_parts(pivot: Node3D) -> void:
 			surface.begin(Mesh.PRIMITIVE_TRIANGLES)
 			for group in groups.values():
 				var tint: Color=group.material.get_meta("art_tint",Color.WHITE)
-				var packed_material:=Vector2(group.material.get_meta("art_metal",0.0),group.material.get_meta("art_glow",0.0))
+				var packed_material:=Vector2(group.material.get_meta("art_metal",0.0),group.material.get_meta("art_glow",0.0)+group.material.get_meta("art_surface",0.0)*4.0)
 				for entry in group.entries:
 					var arrays: Array=entry.mesh.surface_get_arrays(0)
 					var vertices: PackedVector3Array=arrays[Mesh.ARRAY_VERTEX]
@@ -481,3 +485,45 @@ func _collect_rigid_meshes(pivot: Node3D,parent: Node3D,groups: Dictionary,meshe
 			_collect_rigid_meshes(pivot,child,groups,meshes)
 		elif child is Node3D:
 			_merge_rigid_parts(child)
+
+func _build_costume_details(caster: bool, ranger: bool, ghoul: bool) -> void:
+	if ghoul: return
+	# All ornament is merged into the existing animated joints.
+	for side in [-1.0,1.0]:
+		var collar:=_profile(body,[Vector4(1.47,0.12,0.10,0),Vector4(1.56,0.14,0.10,0),Vector4(1.64,0.085,0.06,0)],materials.trim,12)
+		collar.position=Vector3(side*0.17,0,0.005)
+		collar.rotation.z=-side*0.18
+		var clasp:=_sphere(body,Vector3(side*0.19,1.48,-0.145),Vector3(0.038,0.05,0.026),materials.edge)
+		clasp.rotation.z=side*0.3
+		var arm: Node3D=left_arm if side<0 else right_arm
+		for tier in range(3):
+			var plate:=_profile(arm,[Vector4(-0.13,0.13,0.11,0),Vector4(-0.015,0.18,0.16,0),Vector4(0.075,0.14,0.13,0)],materials.trim if tier==0 else materials.metal,16)
+			plate.position=Vector3(side*(0.035+tier*0.035),-tier*0.085,0)
+			plate.rotation.z=side*(0.25+tier*0.11)
+		for rivet in range(3):
+			_sphere(arm,Vector3(side*0.075,-0.33-rivet*0.085,-0.104),Vector3.ONE*0.012,materials.trim)
+	if caster:
+		for row in range(3):
+			var chain:=_profile(body,[Vector4(1.04+row*0.11,0.23,0.018,0),Vector4(1.065+row*0.11,0.23,0.018,0)],materials.trim)
+			chain.position.z=-0.18
+		var focus:=_sphere(body,Vector3(0,1.34,-0.23),Vector3(0.038,0.065,0.025),materials.glow)
+		focus.rotation.z=PI/4
+		for ring_y in [0.08,0.58,1.0]:
+			_cylinder(weapon,Vector3(0,ring_y,0),0.049,0.049,0.04,materials.edge,16)
+	elif ranger:
+		var strap:=_box(body,Vector3(0,1.23,-0.204),Vector3(0.08,0.61,0.035),materials.leather)
+		strap.rotation.z=-0.47
+		var quiver:=_profile(body,[Vector4(0.76,0.11,0.10,0),Vector4(1.40,0.14,0.11,0)],materials.leather)
+		quiver.position=Vector3(-0.24,0,0.26)
+		for arrow in range(4):
+			var shaft:=_cylinder(body,Vector3(-0.3+arrow*0.038,1.49,0.27),0.007,0.007,0.34,materials.edge,6)
+			shaft.rotation.z=-0.13
+	else:
+		for row in range(3):
+			var breastplate:=_profile(body,[Vector4(1.06+row*0.135,0.22+row*0.025,0.035,0),Vector4(1.17+row*0.135,0.23+row*0.027,0.042,0)],materials.metal,16)
+			breastplate.position.z=-0.185
+			for side in [-1.0,1.0]:
+				_sphere(body,Vector3(side*(0.17+row*0.025),1.11+row*0.135,-0.225),Vector3.ONE*0.015,materials.trim)
+		var sigil:=_box(body,Vector3(0,1.35,-0.242),Vector3(0.06,0.20,0.025),materials.trim)
+		sigil.rotation.z=0.16
+		_box(body,Vector3(0,1.39,-0.245),Vector3(0.16,0.038,0.025),materials.trim)

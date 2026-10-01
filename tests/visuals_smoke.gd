@@ -27,8 +27,28 @@ func run_checks() -> void:
 	for i in range(arrays[Mesh.ARRAY_VERTEX].size()):
 		var point: Vector3=arrays[Mesh.ARRAY_VERTEX][i]
 		var normal: Vector3=arrays[Mesh.ARRAY_NORMAL][i]
-		if Vector2(point.x,point.z).length()>0.5: outward=outward and Vector2(point.x,point.z).dot(Vector2(normal.x,normal.z))>0.0
+		if Vector2(point.x,point.z).length()>0.5 and absf(normal.y)<0.99: outward=outward and Vector2(point.x,point.z).dot(Vector2(normal.x,normal.z))>0.0
 	check(outward,"sculpted character surfaces face outward")
+	var bevel:=Sculpt.bevelled_box()
+	var bevel_arrays:=bevel.surface_get_arrays(0)
+	var bevel_outward:=true
+	for i in range(bevel_arrays[Mesh.ARRAY_VERTEX].size()):
+		var point: Vector3=bevel_arrays[Mesh.ARRAY_VERTEX][i]
+		var normal: Vector3=bevel_arrays[Mesh.ARRAY_NORMAL][i]
+		bevel_outward=bevel_outward and point.dot(normal)>0.3 and normal.is_normalized()
+	check(bevel_outward,"beveled armor and architecture have finite outward normals")
+	check(Sculpt.bevelled_box()==bevel,"beveled geometry is shared across static batches")
+	var mantle_arrays:=Sculpt.mantle().surface_get_arrays(0)
+	var front:=false
+	var back:=false
+	for normal: Vector3 in mantle_arrays[Mesh.ARRAY_NORMAL]:
+		front=front or normal.z< -0.5
+		back=back or normal.z>0.5
+	check(front and back,"folded mantle is visible from both sides")
+	var smooth:=true
+	for normal: Vector3 in arrays[Mesh.ARRAY_NORMAL]:
+		smooth=smooth and normal.is_normalized()
+	check(smooth,"profile normals remain normalized at seams and end caps")
 	var floor_mesh:=Sculpt.paver()
 	var floor_arrays:=floor_mesh.surface_get_arrays(0)
 	var up:=true
@@ -95,6 +115,13 @@ func run_checks() -> void:
 		check(sim.encode_snapshot()==before,"region %d: visual setup does not alter combat or RNG" % region)
 		check(world.find_child("LowCryptMist",true,false)!=null and world.find_child("DungeonDust",true,false)!=null,"region %d: mist and dust are present" % region)
 		check((world.find_child("FloodedArchive",true,false)!=null)==(region==1) and (world.find_child("LavaBasin",true,false)!=null)==(region==3),"region %d: animated regional surfaces retained" % region)
+		check(world.scene_environment.glow_enabled and world.scene_environment.sky!=null,"region %d: reflective lighting and glow are configured" % region)
+		world.set_shadows(false)
+		var battery_rays_hidden:=true
+		for ray in world.decorative_rays: battery_rays_hidden=battery_rays_hidden and not ray.visible
+		check(not world.scene_environment.glow_enabled and battery_rays_hidden and not world.sun.shadow_enabled,"region %d: battery mode disables the added lighting cost" % region)
+		world.set_shadows(true)
+		check(world.scene_environment.glow_enabled and world.decorative_rays[0].visible,"region %d: normal quality restores decorative lighting" % region)
 		world._impact_sparks(Vector3.ZERO,Color.WHITE)
 		world._slash_arc(Vector3.ZERO,Color.WHITE)
 		world._update_effects(1.0)
