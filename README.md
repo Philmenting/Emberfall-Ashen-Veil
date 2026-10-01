@@ -1,5 +1,15 @@
 # Emberfall: Ashen Veil
 
+## Kampflesbarkeit und vorbereitbare Kampfstile
+
+Unter **Gear → Skills** lassen sich pro Klasse Balanced, Assault oder Bastion
+wählen: unveränderte Balance, mehr Schaden mit höherem Risiko oder mehr Schutz
+auf Kosten des Schadens. Die Auswahl gilt für neue Runs, Farm-Prognosen und AFK;
+pausierte Expeditionen behalten ihre ursprünglichen Regeln. Schraffierte
+Gefahrenflächen mit echtem Countdown, fliegende Fernangriffe und hervorgehobene
+kritische Treffer machen die Kämpfe leichter lesbar.
+[Regeln, Screenshots und Prüfungen](docs/COMBAT_CRAFT.md).
+
 **Emberfall: Ashen Veil** ist ein eigenständiger, im Querformat gestalteter Godot-Prototyp für ein düsteres Idle-Action-RPG. Gegner haben eigene Lebensleisten; Nyra kämpft in automatischen Schlägen bis ein Gegner fällt. Alle zehn Etagen wechselt die Kampagne Gebiet, Dungeon-Namen und Boss: vom Hollow Spire bis zur Last Ember Citadel. Ein Boss-Sieg garantiert mindestens ein seltenes Ausrüstungsteil und schaltet sofort die nächste Etage frei. Vowkeeper, Arcanist und Ranger haben unterschiedliche Kampfvorteile; Attribute stärken ihre Werte und Klassenfähigkeiten. Die vier Gebiete besitzen eigene Materialien, Architekturdetails, Umgebungen und Bossmerkmale; jedes Gebiet besitzt seit 0.11 einen eigenen begehbaren Grundriss. Sechs Ausrüstungsslots, fünf Qualitäten und Stufen T1–T10 bilden die Beute-Progression. Angelegte Ausrüstung kann beim Schmied bis +5 verstärkt werden.
 
 ## Seedgesteuerter Auto-Kampf und variable Dungeon-Erkundung (0.38 Closed-Beta-Kandidat)

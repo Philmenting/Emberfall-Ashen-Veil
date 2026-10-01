@@ -6,6 +6,7 @@ const Skills = preload("res://scripts/class_skills.gd")
 const Layout = preload("res://scripts/dungeon_layout.gd")
 const ThemeData = preload("res://scripts/dungeon_theme.gd")
 const BossPatterns = preload("res://scripts/boss_patterns.gd")
+const Stances = preload("res://scripts/combat_stances.gd")
 const STEP := 0.1
 const WALK_SPEED := 2.55
 const MAX_DURATION := 240.0
@@ -518,6 +519,7 @@ func _resolve_hero_attack() -> void:
 			events.append({"type":"nova","position":target.pos,"radius":4.5 if int(stats.get("arcane_tactics",0))==1 else 3.2})
 	for enemy in selected:
 		var amount := float(stats.ability_damage if attack.skill else stats.attack)
+		amount *= float(Stances.definition(stats).outgoing)
 		if attack.skill: amount *= 0.82 if class_key=="Ranger" else 0.90
 		var crit := rng.randf()*100.0 < float(stats.crit)+(12.0 if class_key=="Ranger" and attack.skill else 0.0)
 		if crit: amount *= 2.15 if class_key=="Ranger" else 1.7
@@ -631,6 +633,7 @@ func _warn(enemy: Dictionary, radius: float, seconds: float) -> void:
 	events.append({"type":"warning","source":enemy.id,"position":hero_pos,"radius":radius,"duration":seconds})
 
 func _hurt_hero(enemy: Dictionary, raw: float) -> void:
+	raw *= float(Stances.definition(stats).incoming)
 	var mitigation := float(stats.armor)/(float(stats.armor)+180.0)
 	var damage := maxi(1,int(raw*(1.0-mitigation)*(0.55 if guard_time>0 else 1.0))-int(stats.class_mitigation))
 	# The optional stat keeps pre-0.8 expedition checkpoints on their old rules.
@@ -806,6 +809,7 @@ func restore(state: Dictionary) -> bool:
 	if data.stats.has("dungeon_generation") and (not data.stats.dungeon_generation is int or not data.stats.dungeon_generation in [1,2,3,4,5,6]): return false
 	if data.stats.has("route_pattern_version") and (not data.stats.route_pattern_version is int or data.stats.route_pattern_version not in [1,2,3,4]): return false
 	if data.stats.has("auto_target_variance") and (not data.stats.auto_target_variance is int or data.stats.auto_target_variance not in [0,1]): return false
+	if data.stats.has("combat_stance") and not Stances.valid(data.stats.combat_stance): return false
 	if not data.stats.get("attributes") is Dictionary or not _valid_number(data.stats.attributes.get("Spirit")): return false
 	if data.hero_hp<0 or data.hero_hp>data.stats.max_hp or data.hero_mana<0 or data.hero_mana>data.stats.max_mana: return false
 	var saved_legacy_layout := _snapshot_uses_legacy_layout(data) if new_journey else true
@@ -1007,6 +1011,7 @@ func _resolve_technique(attack: Dictionary) -> void:
 	for enemy in selected:
 		points.append(Vector2(enemy.pos))
 		var amount := float(Skills.damage(key,stats))
+		amount *= float(Stances.definition(stats).outgoing)
 		var critical:=rng.randf()*100.0<float(stats.crit)
 		if critical: amount*=2.15 if class_key=="Ranger" else 1.7
 		if key!="marked" and enemy.role in ["bulwark","elite"] and class_key!="Arcanist": amount*=0.72

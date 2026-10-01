@@ -5,6 +5,7 @@ const BattleArt = preload("res://scripts/battle_art.gd")
 const Expedition = preload("res://scripts/expedition_simulation.gd")
 const Contract = preload("res://scripts/expedition_contract.gd")
 const Skills = preload("res://scripts/class_skills.gd")
+const Stances = preload("res://scripts/combat_stances.gd")
 const BossPatterns = preload("res://scripts/boss_patterns.gd")
 const ClassLoot = preload("res://scripts/class_loot.gd")
 const SaveStore = preload("res://scripts/save_store.gd")
@@ -77,6 +78,7 @@ var page := "camp"
 var gear_tab := "bag"
 var character_class := "Vowkeeper"
 var skill_loadouts := Skills.normalize_book({})
+var combat_stances := Stances.normalize_book({})
 var player_gold := 600
 var player_shards := 0
 var player_level := 1
@@ -563,6 +565,8 @@ func _build_run() -> void:
 	hero_panel.add_child(hero_stack)
 	hero_stack.add_child(_label("NYRA  /  LV. %d" % player_level,15,PALE,true))
 	hero_stack.add_child(_label(character_class.to_upper(),10,GOLD,true))
+	var stance: Dictionary = Stances.definition(expedition.stats)
+	hero_stack.add_child(_label(String(stance.name).to_upper()+" STANCE",9,Color(stance.color)))
 	combat_hud.hp = _progress_bar(run_health,int(_combat_stats().max_hp),RED,9)
 	hero_stack.add_child(combat_hud.hp)
 	combat_hud.mana = _progress_bar(run_mana,int(_combat_stats().max_mana),Color("5f91c4"),5)
@@ -1055,7 +1059,7 @@ func _combat_stats(loadout: Dictionary = {}) -> Dictionary:
 			mana_cost = 12 + rank * 2
 			class_mitigation = int(attributes.Vitality / 18)
 	var power := attack + armor * 2 + int(attributes.Intellect) * 3 + int(attributes.Vitality) * 2
-	return {"attributes": attributes, "attack": attack, "max_hp": max_hp, "max_mana": max_mana, "armor": armor, "crit": crit, "ability_damage": ability_damage, "mana_cost": mana_cost, "class_mitigation": class_mitigation, "mana_guard":0.35 if character_class=="Arcanist" else 0.0, "skill_rotation":1, "skill_loadout":Skills.normalize(character_class,skill_loadouts.get(character_class)), "dungeon_journey":1, "dungeon_generation":6, "route_pattern_version":4, "auto_target_variance":1, "boss_patterns":1, "arcane_tactics":1 if character_class=="Arcanist" else 0, "power": power, "gear_power": gear_power}
+	return {"attributes": attributes, "attack": attack, "max_hp": max_hp, "max_mana": max_mana, "armor": armor, "crit": crit, "ability_damage": ability_damage, "mana_cost": mana_cost, "class_mitigation": class_mitigation, "mana_guard":0.35 if character_class=="Arcanist" else 0.0, "combat_stance":Stances.normalize(combat_stances.get(character_class)), "skill_rotation":1, "skill_loadout":Skills.normalize(character_class,skill_loadouts.get(character_class)), "dungeon_journey":1, "dungeon_generation":6, "route_pattern_version":4, "auto_target_variance":1, "boss_patterns":1, "arcane_tactics":1 if character_class=="Arcanist" else 0, "power": power, "gear_power": gear_power}
 
 func _hero_power() -> int:
 	return int(_combat_stats().power)
@@ -1486,6 +1490,7 @@ func _load_progress() -> void:
 		return
 	preferences = Preferences.normalize(save.get_value("settings","preferences",preferences))
 	skill_loadouts=Skills.normalize_book(save.get_value("hero","skill_loadouts",{}))
+	combat_stances=Stances.normalize_book(save.get_value("hero","combat_stances",{}))
 	onboarding_complete = bool(save.get_value("hero","onboarding_complete",true))
 	character_class = String(save.get_value("hero", "class", character_class))
 	if not CLASS_DATA.has(character_class):
@@ -1563,6 +1568,7 @@ func _build_save_payload() -> ConfigFile:
 	save.set_value("hero","onboarding_complete",onboarding_complete)
 	save.set_value("hero", "class", character_class)
 	save.set_value("hero","skill_loadouts",skill_loadouts)
+	save.set_value("hero","combat_stances",combat_stances)
 	save.set_value("hero","expedition_serial",expedition_serial)
 	if world_seed<=0 or world_seed>MAX_PROFILE_SEED: world_seed=_new_profile_seed()
 	save.set_value("hero","world_seed",world_seed)
@@ -1679,6 +1685,11 @@ func _valid_backup_payload(save: ConfigFile) -> bool:
 		if not amount is int or amount<0 or amount>1000000: return false
 	var loadouts: Variant=save.get_value("hero","skill_loadouts",null)
 	if not loadouts is Dictionary: return false
+	if save.has_section_key("hero","combat_stances"):
+		var stances: Variant=save.get_value("hero","combat_stances")
+		if not stances is Dictionary: return false
+		for key in stances:
+			if not CLASS_DATA.has(key) or not Stances.valid(stances[key]): return false
 	var preferences: Variant=save.get_value("settings","preferences",null)
 	if not preferences is Dictionary: return false
 	var equipment: Variant=save.get_value("hero","equipment",null)
@@ -1941,6 +1952,7 @@ func _save_and_exit() -> void:
 	get_tree().quit()
 
 func _build_skill_editor(parent: VBoxContainer) -> void:
+	_build_stance_editor(parent)
 	var loadout := Skills.normalize(character_class,skill_loadouts.get(character_class))
 	var stats := _combat_stats()
 	parent.add_child(_section_heading("AUTOMATIC SKILL ROTATION","2 TECHNIQUES + SIGNATURE"))
@@ -1985,6 +1997,38 @@ func _equip_technique(key: String, slot: int) -> void:
 	if loadout[other]==key: loadout[other]=old
 	loadout[slot]=key
 	skill_loadouts[character_class]=loadout
+	_save_progress()
+	_build_ui()
+
+func _build_stance_editor(parent: VBoxContainer) -> void:
+	parent.add_child(_section_heading("COMBAT STANCE","PREPARE YOUR NEXT RUN"))
+	parent.add_child(_paragraph_label("Choose a stance for "+character_class+". It applies to new expeditions, hunts, trials and offline farming. A paused expedition keeps its original stance.",11,MUTED))
+	var choices := HBoxContainer.new()
+	choices.add_theme_constant_override("separation",8)
+	parent.add_child(choices)
+	var selected := Stances.normalize(combat_stances.get(character_class))
+	for key in Stances.ORDER:
+		var definition: Dictionary = Stances.DEFINITIONS[key]
+		var button := _button(String(definition.name).to_upper(),Color("3c4c3d") if key==selected else PANEL,10,_select_combat_stance.bind(key))
+		button.name = "CombatStance_"+key
+		button.focus_mode = Control.FOCUS_ALL
+		var focus := StyleBoxFlat.new()
+		focus.bg_color = Color.TRANSPARENT
+		focus.border_color = GOLD
+		focus.set_border_width_all(2)
+		focus.set_corner_radius_all(10)
+		button.add_theme_stylebox_override("focus",focus)
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		button.disabled = key==selected
+		button.add_theme_color_override("font_disabled_color",Color(definition.color))
+		button.tooltip_text = definition.description
+		choices.add_child(button)
+	parent.add_child(_paragraph_label(Stances.DEFINITIONS[selected].description,11,Color(Stances.DEFINITIONS[selected].color)))
+	parent.add_child(_small_divider())
+
+func _select_combat_stance(key: String) -> void:
+	if page=="run" or not Stances.valid(key): return
+	combat_stances[character_class] = key
 	_save_progress()
 	_build_ui()
 
