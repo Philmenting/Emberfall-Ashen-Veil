@@ -8,7 +8,7 @@ Die elliptischen Körperprofile verwenden analytisch berechnete, durchgehend geg
 
 Der gemeinsame Figuren-Shader unterscheidet Metall, Stoff, Leder, Haut, Knochen und leuchtende Elemente. Oberflächendetails werden bei kleinen Bildschirmflächen gefiltert, um Flimmern zu reduzieren. Starre Teile bleiben in ihren beweglichen Gelenken zusammengefasst. Die zusätzlichen Details führen dadurch nicht zu einem eigenen Zeichenaufruf pro Niete.
 
-Eine eigene, nahtlose Godot-Rauschtextur erzeugt gröbere Steinstruktur, kleinere Poren und wechselnde Rauheit. Die Projektion folgt den Weltkoordinaten und funktioniert auf Böden und Wänden. Der Stein im Sunken Archive erhält zusätzlich feuchte Stellen. Die Normalenberechnung benötigt keine nachträglich importierten Tangenten.
+Eine eigene, nahtlose Godot-Rauschtextur erzeugt gröbere Steinstruktur, kleinere Poren und wechselnde Rauheit. Lava erhält dunkle Basaltkruste und langsam fließende Glutrisse. Wasser verwendet Wellenrelief mit korrekter Oberflächenorientierung und zurückhaltenden Reflexionen. Die Projektion folgt den Weltkoordinaten und funktioniert auf Böden und Wänden. Der Stein im Sunken Archive erhält zusätzlich feuchte Stellen. Die Normalenberechnung benötigt keine nachträglich importierten Tangenten.
 
 ## Räume und Licht
 
@@ -18,9 +18,9 @@ Der Battery-Modus schaltet Glow, Lichtstrahlen und Schatten ab. Er behält die v
 
 ## Prüfung
 
-Der separate Workflow Graphics Review prüft den Godot-Import sowie Grafik, Regionen, Dungeon, Optionen und Kampfbewegung. Er rendert mit Godot 4.7.2 und dem Compatibility-Renderer alle zwölf Kombinationen aus vier Gebieten und drei Klassen sowie drei nähere Figurenansichten. Dieselbe Aufnahmeszene läuft anschließend auf dem unveränderten Ausgangsstand 610c343073e7186589cba92c3fefb55a4db68e12.
+Der separate Workflow Graphics Review prüft den Godot-Import sowie Grafik, Regionen, Dungeon, Optionen und Kampfbewegung. Er rendert mit Godot 4.7.2 und dem Compatibility-Renderer alle zwölf Kombinationen aus vier Gebieten und drei Klassen sowie drei nähere Figurenansichten und vier separate Bossansichten. Dieselbe Aufnahmeszene läuft anschließend auf dem unveränderten Ausgangsstand 610c343073e7186589cba92c3fefb55a4db68e12.
 
-Die Bilder im Workflow-Artefakt sind echte Godot-Aufnahmen. Der verwendete Software-Renderer eignet sich zum Prüfen der Darstellung und Shader. Seine Bildrate ist kein Leistungsnachweis für Android-Geräte. Die Aufnahmeszene verwendet isolierte Testdaten und wird wie die übrigen tests-Szenen aus regulären Exporten ausgeschlossen.
+Die Bilder im Workflow-Artefakt sind echte Godot-Aufnahmen. Die Bossansichten verwenden eine stationäre Testaufstellung im letzten Raum und belegen keine erspielte Kampagnenprogression. Der verwendete Software-Renderer eignet sich zum Prüfen der Darstellung und Shader. Seine Bildrate ist kein Leistungsnachweis für Android-Geräte. Die Aufnahmeszene verwendet isolierte Testdaten und wird wie die übrigen tests-Szenen aus regulären Exporten ausgeschlossen.
 
 Die erweiterten Grafikprüfungen kontrollieren Normalen, Modellwiederverwendung, beidseitige Mantelflächen, wiederherstellbare Grafikeinstellungen und unveränderte Kampfsnapshots. Das vorhandene Android-Build-Verfahren bleibt zusätzlich aktiv.
 

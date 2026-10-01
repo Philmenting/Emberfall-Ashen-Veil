@@ -84,7 +84,7 @@ jobs:
           canvas = Image.new("RGB", (1280, 776), "#11131a")
           draw = ImageDraw.Draw(canvas)
           font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 18)
-          for row, scene in enumerate(["spire-vowkeeper", "citadel-arcanist"]):
+          for row, scene in enumerate(["spire-vowkeeper", "citadel-boss"]):
               for column, state in enumerate(["before", "after"]):
                   shot = Image.open(folder / state / (scene + ".png")).convert("RGB")
                   shot.thumbnail((640, 360), Image.Resampling.LANCZOS)
