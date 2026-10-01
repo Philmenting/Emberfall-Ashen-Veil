@@ -1,0 +1,82 @@
+name: Android Beta Runtime
+'on':
+  pull_request:
+    branches:
+    - main
+  workflow_dispatch: null
+permissions:
+  contents: read
+jobs:
+  offline-runtime:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v7
+    - name: Install Java 17
+      uses: actions/setup-java@v6
+      with:
+        distribution: temurin
+        java-version: '17'
+    - name: Install Android SDK
+      uses: android-actions/setup-android@v4
+      with:
+        packages: platform-tools
+    - name: Install Android export packages
+      run: sdkmanager --install 'platform-tools' 'platforms;android-35' 'build-tools;35.0.1' 'platforms;android-36' 'build-tools;36.1.0'
+    - name: Download Godot 4.7.2 and Android templates
+      run: |
+        mkdir -p "$RUNNER_TEMP/godot" "$HOME/.local/share/godot/export_templates/4.7.2.stable"
+        curl --fail --location --retry 3 --output "$RUNNER_TEMP/godot/godot.zip" \
+          https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+        unzip -q "$RUNNER_TEMP/godot/godot.zip" -d "$RUNNER_TEMP/godot"
+        sudo install -m 0755 "$RUNNER_TEMP/godot/Godot_v4.7.2-stable_linux.x86_64" /usr/local/bin/godot
+        curl --fail --location --retry 3 --output "$RUNNER_TEMP/godot/templates.tpz" \
+          https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_export_templates.tpz
+        unzip -q "$RUNNER_TEMP/godot/templates.tpz" -d "$RUNNER_TEMP/godot/templates"
+        cp "$RUNNER_TEMP/godot/templates/templates/"* "$HOME/.local/share/godot/export_templates/4.7.2.stable/"
+    - name: Configure Godot Android paths and debug key
+      run: |
+        mkdir -p "$HOME/.config/godot" "$HOME/.android"
+        keytool -genkeypair -keystore "$RUNNER_TEMP/debug.keystore" -storepass android \
+          -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 \
+          -dname 'CN=Android Debug,O=Android,C=US'
+        cat > "$HOME/.config/godot/editor_settings-4.7.tres" <<EOF
+        [gd_resource type="EditorSettings" format=3]
+
+        [resource]
+
+        export/android/java_sdk_path = "$JAVA_HOME"
+        export/android/android_sdk_path = "$ANDROID_HOME"
+        EOF
+    - name: Build isolated offline AFK QA package
+      env:
+        GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ runner.temp }}/debug.keystore
+        GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
+        GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: android
+      run: python3 scripts/export_android_qa.py --scene res://tests/android_beta_flow.tscn --output build/emberfall-afk-qa.apk
+    - name: Enable emulator hardware acceleration
+      run: |-
+        echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+        sudo udevadm control --reload-rules
+        sudo udevadm trigger --name-match=kvm
+    - name: Verify AFK recovery and restart on Android 16
+      uses: ReactiveCircus/android-emulator-runner@v2
+      with:
+        api-level: 36
+        target: google_apis
+        arch: x86_64
+        profile: pixel_6
+        disable-animations: true
+        emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot -camera-back none
+        script: python3 scripts/android_beta_smoke.py --apk build/emberfall-afk-qa.apk
+    - name: Upload QA evidence
+      if: always()
+      uses: actions/upload-artifact@v7
+      with:
+        name: emberfall-android-beta-runtime-evidence
+        path: |-
+          build/android-beta-runtime
+          build/emberfall-afk-qa.apk
+        if-no-files-found: warn
+        retention-days: 14

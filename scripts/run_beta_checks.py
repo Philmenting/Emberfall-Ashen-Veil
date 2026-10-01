@@ -15,6 +15,7 @@ import tempfile
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 GODOT_SUITES = (
+    "beta_flow",
     "combat_stances",
     "combat_movement",
     "journey",

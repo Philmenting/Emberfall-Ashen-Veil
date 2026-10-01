@@ -1,5 +1,15 @@
 # Emberfall: Ashen Veil
 
+## Geschlossener Play-Beta-Kandidat 0.39
+
+Android-AFK-Rückkehr mit sichtbarem Fortschritt und wiederherstellbarem Restzeit-
+Eintrag, breiterer Beutebildschirm mit direkten Folge-Expeditionen, sichere
+Ausrüstungs-Upgrades, eigene Boss-Lebensanzeige und Display-Randabstände. Die
+Solo-/AFK-Beta enthält keine Werbung oder Käufe und speichert lokal.
+**19 Godot-Suiten / 1.401 Prüfungen bestanden**, APK und AAB lokal gebaut und
+geprüft. Play-Upload mit dauerhaftem Schlüssel und Geräte-Abnahme stehen noch aus.
+[Umfang, Store-Paket und konkrete Release-Gates](docs/PLAY_BETA_039.md).
+
 ## Kampflesbarkeit und vorbereitbare Kampfstile
 
 Unter **Gear → Skills** lassen sich pro Klasse Balanced, Assault oder Bastion

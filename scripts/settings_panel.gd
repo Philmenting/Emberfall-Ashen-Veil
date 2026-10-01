@@ -4,6 +4,7 @@ var game: Control
 var help_open := false
 var backup_open := false
 var online_open := false
+var beta_open := false
 var confirm_cloud_restore := false
 var confirm_cloud_overwrite := false
 
@@ -21,10 +22,11 @@ func _build() -> void:
 	add_child(shade)
 	var panel: PanelContainer=game._panel(game.PANEL,game.GOLD,14)
 	panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	panel.offset_left=100
-	panel.offset_right=-100
-	panel.offset_top=28
-	panel.offset_bottom=-28
+	var insets: Dictionary=game._mobile_insets()
+	panel.offset_left=60+int(insets.left)
+	panel.offset_right=-60-int(insets.right)
+	panel.offset_top=28+int(insets.top)
+	panel.offset_bottom=-28-int(insets.bottom)
 	add_child(panel)
 	var stack:=VBoxContainer.new()
 	stack.add_theme_constant_override("separation",10)
@@ -45,6 +47,9 @@ func _build() -> void:
 	var help_tab: Button=game._button("HOW TO PLAY",game.PANEL_LIGHT,12,func(): _select_tab("help"))
 	help_tab.name="HowToPlayTab"
 	tabs.add_child(help_tab)
+	var beta_tab: Button=game._button("BETA / PRIVACY",game.PANEL_LIGHT,11,func(): _select_tab("beta"))
+	beta_tab.name="BetaInfoTab"
+	tabs.add_child(beta_tab)
 	var scroll:=ScrollContainer.new()
 	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
@@ -53,7 +58,8 @@ func _build() -> void:
 	content.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	content.add_theme_constant_override("separation",10)
 	scroll.add_child(content)
-	if online_open: _online(content)
+	if beta_open: _beta(content)
+	elif online_open: _online(content)
 	elif backup_open: _backup(content)
 	elif help_open: _help(content)
 	else: _options(content)
@@ -70,6 +76,7 @@ func _select_tab(tab: String) -> void:
 	backup_open=tab=="backup"
 	help_open=tab=="help"
 	online_open=tab=="online"
+	beta_open=tab=="beta"
 	confirm_cloud_restore=false
 	confirm_cloud_overwrite=false
 	_build()
@@ -705,3 +712,24 @@ func _help(parent: VBoxContainer) -> void:
 	]:
 		parent.add_child(game._label(entry[0],12,game.GOLD,true))
 		parent.add_child(game._paragraph_label(entry[1],12,game.PALE))
+
+func _beta(parent: VBoxContainer) -> void:
+	var release = preload("res://scripts/release_info.gd")
+	parent.add_child(game._label("CLOSED BETA  /  "+release.VERSION,15,game.GOLD,true))
+	parent.add_child(game._paragraph_label("Explore four regions, prepare an automatic combat build and recover up to 24 hours of AFK rewards. This beta is a solo experience. Progress is stored on this device; keep a recovery code under Save Backup before reinstalling or changing devices.",12,game.PALE))
+	parent.add_child(game._label("PRIVACY",12,game.GOLD,true))
+	parent.add_child(game._paragraph_label("The offline beta contains no advertising, analytics, purchases or account registration. Your character, equipment, preferences and expedition checkpoints are saved locally. The game does not upload this progress. A recovery code contains your save: share it privately. Android manages app data and uninstalling removes it.",12,game.PALE))
+	parent.add_child(game._paragraph_label("Feedback is optional. Opening the issue tracker launches your browser; GitHub's own privacy policy applies there. Review the copied report before posting. It contains game and display settings, but no recovery code or account key.",11,game.MUTED))
+	var status: Label=game._paragraph_label("Tell us the steps that caused a problem, your device model and what you expected.",11,game.MUTED)
+	parent.add_child(status)
+	var copy: Button=game._button("COPY FEEDBACK TEMPLATE",game.PANEL_LIGHT,11,func():
+		DisplayServer.clipboard_set(release.feedback(game))
+		status.text="Feedback template copied. Review it before sending."
+	)
+	copy.name="CopyBetaFeedback"
+	parent.add_child(copy)
+	var tracker: Button=game._button("OPEN ISSUE TRACKER",game.PANEL_LIGHT,11,func():
+		if OS.shell_open(release.FEEDBACK_URL)!=OK: status.text="Open github.com/Philmenting/Emberfall-Ashen-Veil/issues in your browser."
+	)
+	tracker.name="OpenBetaFeedback"
+	parent.add_child(tracker)

@@ -10,6 +10,8 @@ const BossPatterns = preload("res://scripts/boss_patterns.gd")
 const ClassLoot = preload("res://scripts/class_loot.gd")
 const SaveStore = preload("res://scripts/save_store.gd")
 const Forecast = preload("res://scripts/farm_forecast.gd")
+const OfflineFarm = preload("res://scripts/offline_farm.gd")
+const MobileSafeArea = preload("res://scripts/mobile_safe_area.gd")
 const Preferences = preload("res://scripts/game_preferences.gd")
 const AudioDirector = preload("res://scripts/audio_director.gd")
 const SettingsPanel = preload("res://scripts/settings_panel.gd")
@@ -145,6 +147,9 @@ var onboarding_complete := false
 var ui_revision := 0
 var forecast_cache: Dictionary = {}
 var forecast_jobs: Dictionary = {}
+var offline_job: RefCounted
+var pending_afk_seconds := 0
+var offline_checkpoint_clock := 0.0
 
 func _ready() -> void:
 	randomize()
@@ -160,7 +165,7 @@ func _ready() -> void:
 	initialized = true
 	for slot in GEAR_SLOTS:
 		equipment[slot]["slot"] = slot
-	_accrue_offline_time()
+	_accrue_offline_time(OS.has_feature("android"))
 	_save_progress()
 	_build_ui()
 	if not onboarding_complete and not save_store.write_blocked: _show_welcome()
@@ -192,7 +197,7 @@ func _resume_from_background() -> void:
 	if backgrounded_at == 0: return
 	backgrounded_at = 0
 	if is_instance_valid(audio): audio.set_suspended(false)
-	_accrue_offline_time()
+	_accrue_offline_time(OS.has_feature("android"))
 	_save_progress()
 	if page == "run":
 		if is_instance_valid(run_arena):
@@ -221,13 +226,14 @@ func _build_ui() -> void:
 		_show_save_notice()
 		return
 	var margins := MarginContainer.new()
+	var insets := _mobile_insets()
 	margins.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	margins.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	margins.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	margins.add_theme_constant_override("margin_left", 18)
-	margins.add_theme_constant_override("margin_right", 18)
-	margins.add_theme_constant_override("margin_top", 13)
-	margins.add_theme_constant_override("margin_bottom", 11)
+	margins.add_theme_constant_override("margin_left", 18+int(insets.left))
+	margins.add_theme_constant_override("margin_right", 18+int(insets.right))
+	margins.add_theme_constant_override("margin_top", 13+int(insets.top))
+	margins.add_theme_constant_override("margin_bottom", 11+int(insets.bottom))
 	add_child(margins)
 	var layout := VBoxContainer.new()
 	layout.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -240,7 +246,7 @@ func _build_ui() -> void:
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	body.add_theme_constant_override("separation", 10)
 	layout.add_child(body)
-	body.add_child(_build_hero_rail())
+	if page!="loot": body.add_child(_build_hero_rail())
 	var middle := VBoxContainer.new()
 	middle.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	middle.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -260,9 +266,10 @@ func _build_ui() -> void:
 		"gear": _build_gear(content)
 		"map": _build_map(content)
 		"loot": _build_loot(content)
-	body.add_child(_build_stats_rail())
+	if page!="loot": body.add_child(_build_stats_rail())
 	layout.add_child(_build_navigation())
 	_show_save_notice()
+	if offline_job!=null: _build_offline_loading()
 
 func _build_header() -> Control:
 	var bar := HBoxContainer.new()
@@ -399,6 +406,7 @@ func _build_camp(parent: VBoxContainer) -> void:
 	stack.add_child(challenge)
 	_update_forecast(challenge,floor_number,false)
 	stack.add_child(_button("DESCEND TO FLOOR %02d   →" % floor_number, RED, 14, Callable(self, "_start_run")))
+	if floor_number<=3: _build_first_steps(parent)
 	var farm_panel := _panel(Color("19241f"),Color("405347"),14)
 	parent.add_child(farm_panel)
 	var farm_stack := VBoxContainer.new()
@@ -544,9 +552,10 @@ func _build_run() -> void:
 	add_child(arena)
 	run_arena = arena
 	var safe := MarginContainer.new()
+	var insets := _mobile_insets()
 	safe.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for edge in ["left","right","top","bottom"]:
-		safe.add_theme_constant_override("margin_" + edge, 18)
+		safe.add_theme_constant_override("margin_" + edge, 18+int(insets[edge]))
 	safe.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(safe)
 	var overlay := VBoxContainer.new()
@@ -587,9 +596,22 @@ func _build_run() -> void:
 			combat_hud.techniques[key]=status
 		combat_hud.guard=_label("",9,GREEN)
 		hero_stack.add_child(combat_hud.guard)
-	var top_gap := Control.new()
+	var top_gap := VBoxContainer.new()
 	top_gap.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	top.add_child(top_gap)
+	combat_hud.boss_panel=_panel(Color(0.025,0.028,0.035,0.86),Color("9e6553"),4)
+	combat_hud.boss_panel.name="BossEncounter"
+	combat_hud.boss_panel.size_flags_horizontal=Control.SIZE_SHRINK_CENTER
+	combat_hud.boss_panel.custom_minimum_size.x=190
+	top_gap.add_child(combat_hud.boss_panel)
+	var boss_stack := VBoxContainer.new()
+	combat_hud.boss_panel.add_child(boss_stack)
+	combat_hud.boss_name=_centered_label("",13,PALE,true)
+	boss_stack.add_child(combat_hud.boss_name)
+	combat_hud.boss_hp=_progress_bar(0,1,Color("bd6048"),8)
+	boss_stack.add_child(combat_hud.boss_hp)
+	combat_hud.boss_life=_centered_label("",10,GOLD)
+	boss_stack.add_child(combat_hud.boss_life)
 	var objective_panel := _panel(Color(0.025,0.028,0.035,0.68),Color("756344"),4)
 	objective_panel.custom_minimum_size.x = 215
 	objective_panel.size_flags_horizontal = Control.SIZE_SHRINK_END
@@ -680,6 +702,14 @@ func _sync_combat_hud() -> void:
 		elif expedition.stage==5 and expedition.living().is_empty(): combat_hud.objective.text="Guardian defeated • recover the reliquary"
 		elif expedition.stage==3 and expedition.journey.seal_broken: combat_hud.objective.text="Sanctum open • follow the passage"
 	combat_hud.boss.visible=false
+	if combat_hud.has("boss_panel"):
+		var guardian: Dictionary=expedition.enemy_by_id(50)
+		combat_hud.boss_panel.visible=expedition.stage==5 and guardian.get("hp",0)>0
+		if combat_hud.boss_panel.visible:
+			combat_hud.boss_name.text=String(guardian.name).to_upper()
+			combat_hud.boss_hp.max_value=guardian.max_hp
+			combat_hud.boss_hp.value=guardian.hp
+			combat_hud.boss_life.text="%d%% LIFE" % ceili(100.0*guardian.hp/guardian.max_hp)
 	if expedition.stage==5:
 		var boss: Dictionary=expedition.enemy_by_id(50)
 		if boss.get("hp",0)>0 and boss.has("awakened"):
@@ -719,6 +749,36 @@ func _build_loot(parent: VBoxContainer) -> void:
 	var reward_floor := last_run_floor if last_run_floor > 0 else floor_number
 	stack.add_child(_label("%s • +%d XP • +%d Gold" % [String(run_reward.get("title","Floor %02d" % reward_floor)),int(run_reward.get("xp",0)),int(run_reward.get("gold",0))],16,PALE,true))
 	if not String(run_reward.get("note","")).is_empty(): stack.add_child(_paragraph_label(run_reward.note,11,GOLD,true))
+	if run_reward.has("seconds"):
+		stack.add_child(_label("%.1fs  •  %d foes defeated  •  %d skills cast  •  %d evasions" % [run_reward.seconds,run_reward.kills,run_reward.casts,run_reward.dodges],12,MUTED))
+	if not run_succeeded: stack.add_child(_paragraph_label("Your recovered Gold and XP are kept. Review your build or farm a cleared floor before trying again.",12,PALE))
+	var next := HBoxContainer.new()
+	next.add_theme_constant_override("separation",10)
+	stack.add_child(next)
+	if run_succeeded:
+		var mode := Contract.mode(expedition.contract()) if expedition!=null else "campaign"
+		var caption := "DESCEND TO FLOOR %02d" % floor_number
+		if mode=="hunt": caption="REPEAT "+hunt_slot.to_upper()+" HUNT"
+		elif mode=="trial": caption="ENTER TRIAL %02d" % (trial_cleared+1)
+		var advance := _button(caption,RED,12,_continue_expedition)
+		advance.name="ContinueExpedition"
+		advance.disabled=mode=="trial" and trial_cleared>=Contract.MAX_TRIAL
+		next.add_child(advance)
+	else:
+		var review := _button("REVIEW CLASS & BUILD",RED,12,_open_build)
+		review.name="ReviewDefeatedBuild"
+		next.add_child(review)
+	var camp := _button("RETURN TO CAMP",PANEL_LIGHT,11,_return_to_camp)
+	camp.name="ReturnToCamp"
+	next.add_child(camp)
+	var safe_count := 0
+	for item in run_loot:
+		if inventory.has(item) and _is_safe_upgrade(item): safe_count+=1
+	if safe_count>0:
+		var equip := _button("EQUIP SAFE UPGRADES (%d)" % safe_count,Color("314b3c"),11,_equip_recovered_upgrades)
+		equip.name="EquipRecoveredUpgrades"
+		stack.add_child(equip)
+		stack.add_child(_paragraph_label("Only equips relics that improve a combat stat without lowering another stat or increasing skill Mana cost. Displaced gear stays in your bag.",11,MUTED))
 	if run_succeeded and run_boss_defeated:
 		var boss_name := String(_region_data(reward_floor).boss)
 		stack.add_child(_label("%s's seal guarantees at least a Rare relic." % boss_name, 10, Color("e0a35d")))
@@ -732,7 +792,6 @@ func _build_loot(parent: VBoxContainer) -> void:
 			parent.add_child(_empty_note("%s  •  SOLD FOR %d GOLD" % [item.name, item.sell]))
 		else:
 			parent.add_child(_item_card(item, true))
-	parent.add_child(_button("RETURN TO CAMP", RED, 12, Callable(self, "_return_to_camp")))
 
 func _build_navigation() -> Control:
 	var tray := _panel(Color(0.055, 0.060, 0.072, 0.97), Color("34373d"), 15)
@@ -787,6 +846,7 @@ func _item_card(item: Dictionary, show_actions: bool) -> Control:
 	identity.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	identity.add_child(_label(String(item.name), 12, PALE, true))
 	identity.add_child(_label("%s  •  T%d  •  +%d  •  %s" % [String(item.slot).to_upper(), int(item.tier), int(item.get("temper", 0)), _quality_label(rarity)], 8, _quality_color(rarity), true))
+	if _is_safe_upgrade(item): identity.add_child(_label("UPGRADE • NO STAT TRADEOFF",9,GREEN,true))
 	top.add_child(identity)
 	top.add_child(_label("ITEM %d" % int(item.power),11,GOLD,true))
 	stack.add_child(top)
@@ -1124,12 +1184,14 @@ func _short_number(value: int) -> String:
 	return str(value)
 
 func _navigate(destination: String) -> void:
+	if offline_job!=null: return
 	if page == "run" and destination != "run":
 		return
 	page = destination
 	_build_ui()
 
 func _select_class(class_key: String) -> void:
+	if offline_job!=null: return
 	if not CLASS_DATA.has(class_key):
 		return
 	if character_class!=class_key: _refund_attributes()
@@ -1138,6 +1200,7 @@ func _select_class(class_key: String) -> void:
 	_build_ui()
 
 func _allocate_attribute(attribute: String) -> void:
+	if offline_job!=null: return
 	if attribute_points <= 0 or not ATTRIBUTES.has(attribute):
 		return
 	allocated_attributes[attribute] = int(allocated_attributes.get(attribute, 0)) + 1
@@ -1146,6 +1209,7 @@ func _allocate_attribute(attribute: String) -> void:
 	_build_ui()
 
 func _start_run(target_floor: int = -1, rules: Dictionary = {}) -> void:
+	if offline_job!=null: return
 	if not rules.is_empty() and not Contract.valid(rules,target_floor): return
 	if Contract.mode(rules)=="trial": auto_repeat=false
 	onboarding_complete = true
@@ -1181,8 +1245,7 @@ func _run_seed_for_serial(serial: int) -> int:
 		world_seed=_new_profile_seed()
 	# Every save gets its own deterministic sequence. Serial and profile seed both
 	# contribute to the full loot seed; layout selection remains a reproducible bank.
-	var mixed_seed:=posmod(world_seed*48271+maxi(1,serial)*104729+1979,RUN_SEED_MODULUS)
-	return maxi(1,mixed_seed)
+	return OfflineFarm.seed_for_serial(world_seed,serial)
 
 func _sync_model_state() -> void:
 	run_stage = mini(expedition.stage,run_max_stages)
@@ -1234,7 +1297,7 @@ func _toggle_repeat() -> void:
 	_sync_combat_hud()
 
 func _set_farm_floor(change: int) -> void:
-	_accrue_offline_time()
+	_accrue_offline_time(OS.has_feature("android"))
 	idle_progress_seconds=0
 	farm_floor = clampi(farm_floor+change,1,maxi(1,floor_number-1))
 	_save_progress()
@@ -1254,6 +1317,7 @@ func _toggle_run_pause() -> void:
 	_save_progress()
 
 func _toggle_farm() -> void:
+	if offline_job!=null: return
 	farm_enabled = not farm_enabled
 	if not farm_enabled:
 		idle_progress_seconds = 0
@@ -1307,6 +1371,7 @@ func _complete_run() -> void:
 	last_run_floor = run_floor
 	run_loot.clear()
 	_grant_expedition_rewards(true,run_floor,false,expedition.run_seed,expedition.class_key,expedition.contract())
+	_stamp_run_report()
 	_present_recovered_gear()
 	page = "loot"
 	_save_progress()
@@ -1324,6 +1389,7 @@ func _fail_run() -> void:
 	last_run_floor = run_floor
 	run_loot.clear()
 	_grant_expedition_rewards(false,run_floor,false,expedition.run_seed,expedition.class_key,expedition.contract())
+	_stamp_run_report()
 	page = "loot"
 	_save_progress()
 	_finish_run_presentation()
@@ -1353,6 +1419,7 @@ func _generate_item(boss_bonus: bool = false, target_floor: int = -1, loot_rng: 
 	return ClassLoot.roll(character_class if loot_class.is_empty() else loot_class,boss_bonus,_gear_tier_at_floor(drop_floor),loot_rng,focused_slot,minimum_quality)
 
 func _equip_item(item: Dictionary) -> void:
+	if offline_job!=null: return
 	if not inventory.has(item):
 		return
 	var slot: String = item.slot
@@ -1367,6 +1434,7 @@ func _equip_item(item: Dictionary) -> void:
 	_build_ui()
 
 func _temper_equipment(slot: String) -> void:
+	if offline_job!=null: return
 	if not GEAR_SLOTS.has(slot) or not equipment.has(slot):
 		return
 	var item: Dictionary = equipment[slot]
@@ -1392,6 +1460,7 @@ func _temper_equipment(slot: String) -> void:
 	_build_ui()
 
 func _sell_item(item: Dictionary) -> void:
+	if offline_job!=null: return
 	if not inventory.has(item):
 		return
 	inventory.erase(item)
@@ -1444,15 +1513,20 @@ func _simulate_offline_time(available_seconds: int) -> void:
 		_grant_expedition_rewards(outcome.won,farm_floor,true,seed_value,"",_farm_contract())
 	idle_progress_seconds = remaining
 
-func _accrue_offline_time() -> void:
+func _accrue_offline_time(cooperative: bool=false) -> void:
 	var now := int(clock_source.call())
 	if last_saved_at<=0:
 		last_saved_at = now
 		return
 	var away := clampi(now-last_saved_at,0,MAX_OFFLINE_SECONDS)
 	last_saved_at = maxi(last_saved_at,now)
+	if offline_job!=null:
+		offline_job.remaining=mini(MAX_OFFLINE_SECONDS,offline_job.remaining+away)
+		pending_afk_seconds=offline_job.remaining
+		return
 	if not farm_enabled:
 		idle_progress_seconds = 0
+		pending_afk_seconds = 0
 		return
 	if page=="run" and expedition!=null:
 		# Pausing is persistent: no second copy of the same hero farms in parallel.
@@ -1471,13 +1545,15 @@ func _accrue_offline_time() -> void:
 		auto_repeat = false
 		page = "camp"
 		expedition = null
-		_simulate_offline_time(mini(MAX_OFFLINE_SECONDS,idle_progress_seconds+remaining))
+		_reconcile_farm_time(mini(MAX_OFFLINE_SECONDS,idle_progress_seconds+remaining+pending_afk_seconds),cooperative)
 		return
-	_simulate_offline_time(mini(MAX_OFFLINE_SECONDS,idle_progress_seconds+away))
+	_reconcile_farm_time(mini(MAX_OFFLINE_SECONDS,idle_progress_seconds+away+pending_afk_seconds),cooperative)
 
 func _load_progress() -> void:
 	page = "camp"
 	expedition = null
+	offline_job = null
+	pending_afk_seconds = 0
 	run_active = false
 	auto_repeat = false
 	finish_pending = false
@@ -1524,6 +1600,8 @@ func _load_progress() -> void:
 	pending_idle_salvaged = int(save.get_value("idle", "salvaged", 0))
 	idle_progress_seconds = int(save.get_value("idle", "progress_seconds", 0))
 	idle_progress_seconds = clampi(idle_progress_seconds,0,int(Expedition.MAX_DURATION))
+	var saved_pending: Variant=save.get_value("idle","reconcile_seconds",0)
+	pending_afk_seconds=clampi(saved_pending,0,MAX_OFFLINE_SECONDS) if saved_pending is int else 0
 	farm_floor = clampi(int(save.get_value("idle","farm_floor",1)),1,maxi(1,floor_number-1))
 	farm_mode=String(save.get_value("idle","farm_mode","campaign"))
 	if farm_mode not in ["campaign","hunt"] or floor_number<2: farm_mode="campaign"
@@ -1593,6 +1671,7 @@ func _build_save_payload() -> ConfigFile:
 	save.set_value("idle", "gear", pending_idle_gear)
 	save.set_value("idle", "salvaged", pending_idle_salvaged)
 	save.set_value("idle", "progress_seconds", idle_progress_seconds)
+	save.set_value("idle","reconcile_seconds",pending_afk_seconds)
 	save.set_value("idle", "farm_enabled", farm_enabled)
 	last_saved_at = maxi(last_saved_at,int(clock_source.call()))
 	save.set_value("idle", "saved_at", last_saved_at)
@@ -1670,6 +1749,9 @@ func _valid_backup_payload(save: ConfigFile) -> bool:
 	for field in integer_fields:
 		var value: Variant=save.get_value(field[0],field[1],null)
 		if not value is int or value<int(field[2]) or value>int(field[3]): return false
+	if save.has_section_key("idle","reconcile_seconds"):
+		var pending: Variant=save.get_value("idle","reconcile_seconds")
+		if not pending is int or pending<0 or pending>MAX_OFFLINE_SECONDS: return false
 	if save.has_section_key("hero","world_seed"):
 		var saved_world_seed: Variant=save.get_value("hero","world_seed",null)
 		if not saved_world_seed is int or saved_world_seed<1 or saved_world_seed>MAX_PROFILE_SEED: return false
@@ -1773,6 +1855,9 @@ func _update_forecast(label: Label,target_floor: int,farming: bool,rules: Dictio
 	var selected_class:=character_class
 	var boss:=String(_region_data(target_floor).boss)
 	var key:=selected_class+":"+str(target_floor)+":"+var_to_str(values)
+	if offline_job!=null:
+		label.text="Updating your offline expedition report…"
+		return
 	if forecast_cache.has(key):
 		_display_forecast(label,forecast_cache[key],farming)
 		return
@@ -1784,7 +1869,7 @@ func _update_forecast(label: Label,target_floor: int,farming: bool,rules: Dictio
 	while not assessment.complete():
 		await get_tree().process_frame
 		if not is_inside_tree() or revision!=ui_revision or not is_instance_valid(label): return
-		if owns_job: assessment.step(2)
+		if owns_job: assessment.step_budget()
 	var result: Dictionary=assessment.summary()
 	if forecast_cache.size()>16: forecast_cache.clear()
 	forecast_cache[key]=result
@@ -1896,6 +1981,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func _handle_back() -> void:
+	if offline_job!=null:
+		_save_progress()
+		if last_save_ok: get_tree().quit()
+		return
 	# Android can deliver one press as both a key event and a window request.
 	var frame:=Engine.get_process_frames()
 	if last_back_frame==frame: return
@@ -1910,6 +1999,7 @@ func _handle_back() -> void:
 		_navigate("camp")
 
 func _show_settings() -> void:
+	if offline_job!=null: return
 	if has_node("Options") or has_node("Welcome") or finish_pending: return
 	menu_resume_run=page=="run" and run_active
 	if menu_resume_run: _toggle_run_pause()
@@ -2027,6 +2117,7 @@ func _build_stance_editor(parent: VBoxContainer) -> void:
 	parent.add_child(_small_divider())
 
 func _select_combat_stance(key: String) -> void:
+	if offline_job!=null: return
 	if page=="run" or not Stances.valid(key): return
 	combat_stances[character_class] = key
 	_save_progress()
@@ -2045,7 +2136,7 @@ func _open_hunts() -> void:
 
 func _choose_farm_goal(slot: String) -> void:
 	if page=="run" or (not slot.is_empty() and (floor_number<2 or slot not in GEAR_SLOTS)): return
-	_accrue_offline_time()
+	_accrue_offline_time(OS.has_feature("android"))
 	idle_progress_seconds=0
 	farm_mode="campaign" if slot.is_empty() else "hunt"
 	if not slot.is_empty(): hunt_slot=slot
@@ -2118,3 +2209,126 @@ func _build_trials(parent: VBoxContainer) -> void:
 	var start:=_button("ENTER ASH TRIAL",Color("614674"),13,_start_trial)
 	start.name="StartTrial"
 	stack.add_child(start)
+
+func _reconcile_farm_time(seconds: int, cooperative: bool) -> void:
+	if cooperative and seconds>=300:
+		var values := _combat_stats()
+		values.expedition_contract=_farm_contract()
+		offline_job=OfflineFarm.new()
+		offline_job.setup(character_class,values,farm_floor,String(_region_data(farm_floor).boss),seconds,expedition_serial,world_seed)
+		pending_afk_seconds=seconds
+		idle_progress_seconds=0
+		offline_checkpoint_clock=0.0
+	else:
+		pending_afk_seconds=0
+		_simulate_offline_time(seconds)
+
+func _process(delta: float) -> void:
+	if offline_job==null: return
+	var completed: Array=offline_job.step()
+	for result in completed:
+		_grant_expedition_rewards(result.won,farm_floor,true,result.seed,character_class,_farm_contract())
+	expedition_serial=offline_job.serial
+	pending_afk_seconds=offline_job.remaining
+	offline_checkpoint_clock+=delta
+	var progress := get_node_or_null("OfflineReconcile/Center/Panel/Content/Progress") as ProgressBar
+	if progress!=null:
+		progress.max_value=maxi(1,offline_job.total_seconds)
+		progress.value=maxi(0,offline_job.total_seconds-offline_job.remaining)
+	if offline_job.done:
+		idle_progress_seconds=offline_job.remaining
+		pending_afk_seconds=0
+		offline_job=null
+		_save_progress()
+		_build_ui()
+	elif offline_checkpoint_clock>=2.0:
+		offline_checkpoint_clock=0.0
+		_save_progress()
+
+func _build_offline_loading() -> void:
+	var overlay := Control.new()
+	overlay.name="OfflineReconcile"
+	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	overlay.mouse_filter=Control.MOUSE_FILTER_STOP
+	add_child(overlay)
+	get_viewport().gui_release_focus()
+	var shade := ColorRect.new()
+	shade.color=Color(0.02,0.025,0.03,0.94)
+	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	overlay.add_child(shade)
+	var center := CenterContainer.new()
+	center.name="Center"
+	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	overlay.add_child(center)
+	var panel := _panel(PANEL,GOLD,12)
+	panel.name="Panel"
+	panel.custom_minimum_size.x=420
+	center.add_child(panel)
+	var content := VBoxContainer.new()
+	content.name="Content"
+	content.add_theme_constant_override("separation",12)
+	panel.add_child(content)
+	content.add_child(_label("NYRA RETURNS FROM THE VEIL",20,PALE,true))
+	content.add_child(_paragraph_label("Recovering your expeditions, relics and offline rewards. Your progress is saved as the report is prepared.",12,MUTED))
+	var progress := _progress_bar(0,maxi(1,offline_job.total_seconds),GOLD,8)
+	progress.name="Progress"
+	content.add_child(progress)
+
+func _unhandled_input(_event: InputEvent) -> void:
+	if offline_job!=null: get_viewport().set_input_as_handled()
+
+func _is_safe_upgrade(item: Dictionary) -> bool:
+	if not item.get("slot","") in GEAR_SLOTS: return false
+	var changes := _compare_item(item)
+	var improved := false
+	for key in ["attack","ability_damage","max_hp","armor","max_mana","crit"]:
+		if float(changes[key])<0.0: return false
+		if float(changes[key])>0.0: improved=true
+	return improved and int(changes.mana_cost)<=0
+
+func _equip_recovered_upgrades() -> void:
+	if page!="loot" or offline_job!=null: return
+	for item in run_loot.duplicate():
+		if not inventory.has(item) or not _is_safe_upgrade(item): continue
+		var slot: String=item.slot
+		var displaced: Dictionary=equipment[slot]
+		displaced["slot"]=slot; displaced["status"]=""
+		equipment[slot]=item
+		item.status="equipped"
+		inventory.erase(item)
+		inventory.append(displaced)
+	_save_progress()
+	_build_ui()
+
+func _stamp_run_report() -> void:
+	run_reward.merge({"seconds":expedition.elapsed,"kills":expedition.kills,"casts":expedition.casts,"dodges":expedition.dodges})
+
+func _continue_expedition() -> void:
+	if page!="loot" or not run_succeeded or offline_job!=null: return
+	var rules: Dictionary=expedition.contract() if expedition!=null else {}
+	match Contract.mode(rules):
+		"trial":
+			if trial_cleared<Contract.MAX_TRIAL: _start_run(Contract.trial_floor(trial_cleared+1),Contract.trial(trial_cleared+1))
+		"hunt": _start_run(last_run_floor,rules)
+		_: _start_run(floor_number)
+
+func _mobile_insets() -> Dictionary:
+	if not OS.has_feature("android"): return {"left":0,"top":0,"right":0,"bottom":0}
+	return MobileSafeArea.insets(DisplayServer.screen_get_size(),DisplayServer.get_display_safe_area(),get_viewport_rect().size)
+
+func _build_first_steps(parent: VBoxContainer) -> void:
+	var card := _panel(PANEL,EDGE,12)
+	card.name="FirstSteps"
+	parent.add_child(card)
+	var content := VBoxContainer.new()
+	content.add_theme_constant_override("separation",6)
+	card.add_child(content)
+	content.add_child(_label("YOUR NEXT STEP",10,GOLD,true))
+	if floor_number==1:
+		content.add_child(_paragraph_label("Clear the first guardian above to open focused gear hunts and Ash Trials. Nyra fights and dodges automatically; your equipment decides how far she can go.",11,PALE))
+	elif attribute_points>0:
+		content.add_child(_paragraph_label("You earned %d attribute points. Spend them in Gear > Build. %s powers your class; Vitality improves survival." % [attribute_points,CLASS_DATA[character_class].primary],11,PALE))
+		content.add_child(_button("PREPARE YOUR BUILD",PANEL_LIGHT,11,_open_build))
+	else:
+		content.add_child(_paragraph_label("Compare recovered gear in the Armory, then choose a reliable farm floor below. Focused Hunts let you work towards a specific gear slot while away.",11,PALE))
+		content.add_child(_button("CHOOSE A GEAR HUNT",PANEL_LIGHT,11,_open_hunts))
