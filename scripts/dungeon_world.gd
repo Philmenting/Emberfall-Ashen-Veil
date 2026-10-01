@@ -34,7 +34,7 @@ var elapsed := 0.0
 var phase := "travel"
 var phase_time := 0.0
 var camera_target := Vector3.ZERO
-var camera_zoom := 1.0
+var camera_zoom := 0.94
 var camera_shake_time := 0.0
 var camera_shake_strength := 0.0
 var materials: Dictionary = {}
@@ -124,12 +124,19 @@ func _build_materials() -> void:
 		mat.shader = preload("res://assets/shaders/aged_stone.gdshader")
 		mat.set_shader_parameter("stone_tint", Color(theme.stone).darkened(float(i)*0.055))
 		mat.set_shader_parameter("roughness",theme.roughness)
+		_set_stone_textures(mat)
 		floor_materials.append(mat)
 	materials.stone = floor_materials[2]
 	var edge_mat := ShaderMaterial.new()
 	edge_mat.shader = preload("res://assets/shaders/aged_stone.gdshader")
 	edge_mat.set_shader_parameter("stone_tint", Color(theme.edge))
+	_set_stone_textures(edge_mat)
 	materials.edge = edge_mat
+
+func _set_stone_textures(mat: ShaderMaterial) -> void:
+	mat.set_shader_parameter("stone_color",preload("res://assets/materials/stone/Rock030_1K-JPG_Color.jpg"))
+	mat.set_shader_parameter("stone_normal",preload("res://assets/materials/stone/Rock030_1K-JPG_NormalGL.jpg"))
+	mat.set_shader_parameter("stone_roughness",preload("res://assets/materials/stone/Rock030_1K-JPG_Roughness.jpg"))
 
 func _material(color: Color, metallic: float = 0.0, glow: bool = false) -> StandardMaterial3D:
 	var mat := StandardMaterial3D.new()
@@ -150,6 +157,8 @@ func _build_environment() -> void:
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	env.ambient_light_color = Color(theme.ambient)
 	env.ambient_light_energy = 0.32
+	env.sky=preload("res://scripts/dungeon_lighting.gd").reflection_sky()
+	env.reflected_light_source=Environment.REFLECTION_SOURCE_SKY
 	env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
 	env.fog_enabled = true
 	env.fog_light_color = Color(theme.fog)
@@ -248,35 +257,28 @@ func _build_dungeon() -> void:
 			bone.rotation.y = j*0.7
 
 func _pillar(pos: Vector3, tall: bool) -> void:
-	_box(pos+Vector3(0,0.16,0),Vector3(1.15,0.32,1.15),materials.dark)
-	_box(pos+Vector3(0,0.39,0),Vector3(0.90,0.16,0.90),materials.edge)
-	var height := 4.0 if tall else 1.3
-	_box(pos+Vector3(0,height/2+0.45,0),Vector3(0.63,height,0.63),materials.stone)
-	for side in [-1.0,1.0]:
-		_box(pos+Vector3(side*0.29,height/2+0.45,-0.34),Vector3(0.12,height,0.15),materials.edge)
-	_box(pos+Vector3(0,height+0.46,0),Vector3(0.9,0.22,0.9),materials.edge)
-	if tall:
-		_box(pos+Vector3(0,height+0.68,0),Vector3(0.72,0.24,0.72),materials.dark)
+	_authored_prop("pillar" if tall else "broken_pillar",pos)
 
 func _arch(pos: Vector3, angle: float) -> void:
-	var root := Node3D.new()
-	root.position = pos
-	root.rotation.y = angle
-	add_child(root)
-	for side in [-1.0,1.0]:
-		var foot := _box(Vector3(side*2.0,1.8,0),Vector3(0.38,3.6,0.42),materials.edge,root)
-		foot.name = "ArchPillar"
-		for i in range(6):
-			var t := float(i)/6.0
-			var block := _box(Vector3(side*(2.0-t*1.85),3.6+sin(t*PI/2)*1.9,0),Vector3(0.5,0.43,0.48),materials.stone,root)
-			block.rotation.z = -side*(0.4+t*0.8)
-	_box(Vector3(0,5.5,0),Vector3(0.42,0.6,0.65),materials.metal,root)
+	_authored_prop("arch",pos,angle)
 
 func _sarcophagus(pos: Vector3) -> void:
-	_box(pos+Vector3(0,0.35,0),Vector3(0.95,0.7,2.3),materials.dark)
-	_box(pos+Vector3(0,0.78,0),Vector3(1.1,0.22,2.5),materials.stone)
-	_box(pos+Vector3(0,0.92,0),Vector3(0.14,0.045,1.4),materials.metal)
-	_box(pos+Vector3(0,0.93,-0.4),Vector3(0.6,0.045,0.14),materials.metal)
+	_authored_prop("tomb",pos)
+
+func _authored_prop(kind: String, pos: Vector3, angle: float=0.0, parent: Node3D=null) -> Node3D:
+	var prop: Node3D = preload("res://scripts/authored_architecture.gd").MODELS[kind].instantiate()
+	prop.position=pos
+	prop.rotation.y=angle
+	if parent==null: add_child(prop)
+	else: parent.add_child(prop)
+	for piece in prop.find_children("*","MeshInstance3D",true,false):
+		var original: StandardMaterial3D=piece.mesh.surface_get_material(0)
+		match original.resource_name.get_slice(".",0):
+			"stone": piece.material_override=materials.stone
+			"edge": piece.material_override=materials.edge
+			"recess": piece.material_override=materials.dark
+			_: piece.material_override=original
+	return prop
 
 func _banner(pos: Vector3) -> void:
 	# Torn cloth with a raised original oath sigil.
@@ -336,6 +338,8 @@ func _batch_static_geometry() -> void:
 			signature="plane:"+str(source.size)
 		elif source is SphereMesh:
 			signature = "sphere:"+str([source.radius,source.height,source.radial_segments,source.rings])
+		elif source is ArrayMesh:
+			signature="authored:"+str(source.get_instance_id())
 		else: continue
 		var mat: Material = mesh_node.material_override
 		var room := floori(mesh_node.global_position.z/11.0)
@@ -500,7 +504,7 @@ func _process(delta: float) -> void:
 		var focus_weight:=0.30 if target_enemy.get("role","")=="boss" else 0.12
 		camera_anchor=camera_anchor.lerp(focus_point,focus_weight)
 	var boss_focus:=_boss_is_active()
-	var zoom_target:=0.94 if boss_focus and not reduced_motion else 1.0
+	var zoom_target:=0.86 if boss_focus and not reduced_motion else 0.94
 	camera_zoom=lerpf(camera_zoom,zoom_target,1.0-exp(-delta*1.35))
 	camera_target = camera_target.lerp(camera_anchor,1.0-exp(-delta*4.0))
 	_position_camera()
@@ -735,9 +739,7 @@ func _build_regional_details() -> void:
 	match region_index:
 		0:
 			# An enormous broken bell marks the original tower's final chamber.
-			_cylinder(Vector3(0,3.5,-67.4),1.05,0.58,1.5,materials.metal,16)
-			_ring(Vector3(0,2.78,-67.4),1.02,materials.metal)
-			_box(Vector3(0,2.5,-67.4),Vector3(0.15,0.70,0.15),materials.dark)
+			_authored_prop("bell",Vector3(0,2.78,-67.4))
 			_box(Vector3(0,4.6,-67.4),Vector3(0.12,0.8,0.12),materials.metal)
 		1:
 			_liquid(Vector3(0,-0.36,-28),Vector2(44,104),false)
@@ -834,22 +836,11 @@ func _bookshelf(pos: Vector3,side: float) -> void:
 			volume.rotation.x=0.10 if book%5==0 else 0.0
 
 func _rib_arch(pos: Vector3,side: float) -> void:
-	_box(pos+Vector3(0,0.20,0),Vector3(1.25,0.4,1.7),materials.dark)
-	for i in range(6):
-		var t:=float(i)/5.0
-		var rib:=_box(pos+Vector3(-side*pow(t,1.5)*1.7,0.6+t*3.7,0),Vector3(0.42-t*0.24,0.92,0.38-t*0.20),materials.bone)
-		rib.rotation.z=side*t*0.72
-		var second:=_box(pos+Vector3(-side*pow(t,1.5)*1.5,0.6+t*3.3,0.8),Vector3(0.34-t*0.18,0.82,0.30-t*0.14),materials.bone)
-		second.rotation.z=side*t*0.72
+	var rib:=_authored_prop("bone_arch",pos)
+	rib.scale.x=-side
 
 func _furnace(pos: Vector3,side: float) -> void:
-	_box(pos+Vector3(0,0.95,0),Vector3(1.6,1.9,2.5),materials.dark)
-	_box(pos+Vector3(-side*0.82,0.85,0),Vector3(0.04,0.95,1.65),materials.fire)
-	for bar in range(6):
-		_box(pos+Vector3(-side*0.87,0.85,-0.77+bar*0.31),Vector3(0.08,1.14,0.075),materials.iron)
-	_box(pos+Vector3(0,2.0,0),Vector3(1.85,0.23,2.7),materials.metal)
-	_box(pos+Vector3(side*0.23,2.80,0),Vector3(0.68,1.45,0.86),materials.iron)
-	_box(pos+Vector3(side*0.23,3.59,0),Vector3(0.95,0.20,1.1),materials.metal)
+	_authored_prop("furnace",pos,side*PI/2)
 
 func set_shadows(enabled: bool) -> void:
 	if is_instance_valid(sun): sun.shadow_enabled=enabled
@@ -935,8 +926,7 @@ func _build_journey_details() -> void:
 					_furnace(origin+Vector3(side*5.1,0,1.5),side)
 	var boss_center := _point(Layout.center(region_index,5,simulation.layout_seed()))
 	if region_index==0:
-		_cylinder(boss_center+Vector3(0,3.5,-4.3),1.05,0.58,1.5,materials.metal,16)
-		_ring(boss_center+Vector3(0,2.78,-4.3),1.02,materials.metal)
+		_authored_prop("bell",boss_center+Vector3(0,2.78,-4.3))
 	elif region_index==3:
 		for i in range(7):
 			var height: float = 3.0+(3-absi(i-3))*0.4
@@ -951,10 +941,7 @@ func _build_journey_props() -> void:
 		journey_props[room]=prop
 		_box(Vector3(0,-0.03,0),Vector3(1.5,0.15,1.5),materials.dark,prop)
 		if room==1:
-			for side in [-1.0,1.0]:
-				_box(Vector3(side*0.6,0.3,0),Vector3(0.18,0.6,1.4),materials.edge,prop)
-				_box(Vector3(0,0.3,side*0.6),Vector3(1.4,0.6,0.18),materials.edge,prop)
-			_box(Vector3(0,0.28,0),Vector3(1.0,0.06,1.0),materials.soul,prop)
+			_authored_prop("well",Vector3.ZERO,0.0,prop)
 		elif room==3:
 			_box(Vector3(0,0.55,0),Vector3(0.8,1.1,0.8),materials.stone,prop)
 			var seal := _box(Vector3(0,1.4,0),Vector3(0.5,0.5,0.5),materials.soul,prop)

@@ -13,6 +13,7 @@ def main() -> int:
     parser.add_argument("--apk", type=Path, required=True)
     parser.add_argument("--output", type=Path, default=Path("build/android-beta-runtime"))
     parser.add_argument("--skip-install", action="store_true", help="Use the already installed fixture on a slow local emulator")
+    parser.add_argument("--art-only", action="store_true", help="Verify the four-region Android graphics fixture instead of AFK reconciliation")
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
 
@@ -26,7 +27,7 @@ def main() -> int:
         while time.monotonic() < deadline:
             log = adb("logcat", "-d", "-s", "godot", timeout=30)
             (args.output / filename).write_text(log)
-            if "ANDROID_BETA_FAIL" in log: raise RuntimeError(log[-4000:])
+            if "ANDROID_BETA_FAIL" in log or "ANDROID_ART_FAIL" in log: raise RuntimeError(log[-4000:])
             if "ERROR:" in log or "shader failed to compile" in log.lower():
                 raise RuntimeError("Godot reported a runtime or shader error; see " + str(args.output / filename))
             if marker in log: return log
@@ -38,6 +39,17 @@ def main() -> int:
         adb("shell", "pm", "clear", PACKAGE)  # Dedicated fixture package only.
         adb("logcat", "-c")
         adb("shell", "am", "start", "-n", PACKAGE + "/com.godot.game.GodotAppLauncher")
+        if args.art_only:
+            log = await_marker("ANDROID_ART_PASS all four regions rendered", "art-launch.log")
+            for region in range(4):
+                if f"ANDROID_ART_REGION_PASS {region}" not in log:
+                    raise RuntimeError(f"Graphics fixture did not render region {region}")
+                capture = subprocess.run([args.adb, "exec-out", "run-as", PACKAGE, "cat", f"files/art-region-{region}.png"], capture_output=True, timeout=60)
+                if capture.returncode or not capture.stdout.startswith(b"\x89PNG\r\n\x1a\n"):
+                    raise RuntimeError(f"Android graphics capture {region} missing or invalid")
+                (args.output / f"android-region-{region}.png").write_bytes(capture.stdout)
+            print("ANDROID ART VERIFIED: four guardian scenes, real GLTF geometry, PBR maps and rendered screenshots")
+            return 0
         log = await_marker("ANDROID_BETA_PASS exact AFK ledger", "first-launch.log")
         if "cooperative=true" not in log: raise RuntimeError("Android launch did not select cooperative AFK recovery")
         adb("shell", "am", "force-stop", PACKAGE)

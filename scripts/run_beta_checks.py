@@ -31,6 +31,7 @@ GODOT_SUITES = (
     "options",
     "skill_rotation",
     "visuals",
+    "authored_art",
     "fellowship_ui",
     "cloud_identity",
     "mana_ward",
@@ -113,7 +114,7 @@ def main() -> int:
                 continue
             output = result.stdout + result.stderr
             matches = list(SUMMARY.finditer(output))
-            if result.returncode != 0 or not matches:
+            if result.returncode != 0 or not matches or "SCRIPT ERROR:" in output:
                 failures.append(suite)
                 report_failure(suite, output)
                 continue

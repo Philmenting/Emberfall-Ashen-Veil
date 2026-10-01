@@ -99,6 +99,9 @@ jobs:
           python3 scripts/check_play_release.py
           python3 -m unittest discover -s tests -p test_android_release.py -v
 
+      - name: Check authored model geometry, joint contracts and render budgets
+        run: godot --headless --path . --script tests/authored_art_smoke.gd
+
       - name: Create ephemeral CI-only Play signing key
         run: |
           ci_password="$(openssl rand -hex 32)"
@@ -197,6 +200,13 @@ jobs:
 
       - name: Verify transfer and shared fellowships between isolated installations
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-transfer-e2e" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/cloud_transfer_e2e.gd
+
+      - name: Collect isolated server diagnostics on failure
+        if: failure()
+        run: |
+          if [ -f "$RUNNER_TEMP/nakama/server.log" ]; then
+            tail -100 "$RUNNER_TEMP/nakama/server.log"
+          fi
 
       - name: Stop isolated Nakama test server
         if: always()

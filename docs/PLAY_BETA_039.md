@@ -8,6 +8,10 @@ Grafik und Inhalt sind keine Nachbildung von Diablo Immortal.
 
 ## Was sich für Spieler verbessert
 
+- Figuren und Bosse verwenden jetzt elf eigens modellierte GLTF-Assets mit
+  geschwungenen Platten, Stofffalten, Gesichtern und unterschiedlichen Waffen.
+  Acht neue Architekturmodule und lizenzierte CC0-Stein-/Metalloberflächen ersetzen
+  die bisherigen einfachen Körperformen. [Grafikänderungen und echte Bilder](ART_DIRECTION_039.md).
 - Längere AFK-Abwesenheit wird auf Android mit einer sichtbaren Fortschrittsanzeige
   in kleinen Rechenschritten ausgewertet. Kampf, Seed, Beute und Restzeit bleiben
   identisch zur bisherigen Simulation. Ein gespeicherter Restzeit-Eintrag erlaubt
@@ -40,7 +44,7 @@ python3 -m unittest discover -s tests -p test_android_release.py -v
 python3 scripts/check_play_release.py
 ```
 
-Der aktuelle lokale Stand besteht **19 Godot-Suiten mit 1.401 Prüfungen**, die
+Der aktuelle lokale Stand besteht **20 Godot-Suiten mit 1.450 Prüfungen**, die
 Server-JavaScript-Prüfung und fünf Android-/Release-Prüfungen. Die neue Beta-
 Suite vergleicht alle Klassen und Kampfstile, gezielte Hunts und einen echten
 Save/Reload-Abbruch mit den vollständigen ursprünglichen AFK-Ergebnissen.
@@ -79,7 +83,10 @@ Der bisher hängende CI-Aufruf zur Vorlageninstallation wurde durch eine explizi
 Installation des offiziellen `android_source.zip` ersetzt. Der erzeugte Gradle-
 Build nutzt AGP 8.10.1. Die reguläre CI liefert überprüfte Test-APK/AAB-Artefakte.
 Der zusätzliche **Android Beta Runtime**-Workflow baut eine getrennte x86_64-QA-
-Installation und prüft exakte AFK-Belohnungen sowie Neustart auf Android 16. Diese
+Installation und prüft exakte AFK-Belohnungen sowie Neustart auf Android 16.
+Eine zusätzliche Grafik-Fixture rendert alle vier Bossräume mit den neuen Modellen,
+Materialkarten und Gefahrenflächen und liefert die tatsächlichen Android-Captures.
+Diese
 Fixture ist kein Shipping-Build und prüft keine ARM64-Geräteleistung.
 
 ## Store-Paket

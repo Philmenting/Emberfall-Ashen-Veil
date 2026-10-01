@@ -169,6 +169,9 @@ func verify_server_progression(install: Node) -> void:
 func call_progression_rpc(install: Node, rpc_id: String, payload: Dictionary) -> Dictionary:
 	var response = await install.client.rpc_async(install.session, rpc_id, JSON.stringify(payload))
 	if response == null or response.is_exception():
+		if response!=null:
+			var error: NakamaException=response.get_exception()
+			print("RPC diagnostic: HTTP ",error.status_code," / gRPC ",error.grpc_status_code)
 		check(false, "RPC %s reaches the server runtime" % rpc_id)
 		return {}
 	var parsed: Variant = JSON.parse_string(response.payload)
