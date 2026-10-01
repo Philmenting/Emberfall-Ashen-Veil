@@ -88,6 +88,69 @@ jobs:
           node --check server/modules/emberfall.js
           node tests/progression_runtime_test.js
 
+      - name: Create ephemeral CI-only Play signing key
+        run: |
+          ci_password="$(openssl rand -hex 32)"
+          echo "::add-mask::$ci_password"
+          keytool -genkeypair -noprompt -keystore "$RUNNER_TEMP/emberfall-ci-upload.jks" \
+            -storepass "$ci_password" -alias emberfall-ci -keypass "$ci_password" \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname 'CN=Emberfall CI,O=Emberfall,C=US'
+          {
+            echo "GODOT_ANDROID_KEYSTORE_RELEASE_PATH=$RUNNER_TEMP/emberfall-ci-upload.jks"
+            echo "GODOT_ANDROID_KEYSTORE_RELEASE_USER=emberfall-ci"
+            echo "GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD=$ci_password"
+          } >> "$GITHUB_ENV"
+
+      - name: Build Android test APK and release-configured Play bundle
+        env:
+          GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ runner.temp }}/debug.keystore
+          GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
+          GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: android
+        run: |
+          mkdir -p build
+          godot --headless --path . --editor --import --quit
+          godot --headless --path . --install-android-build-template
+          python3 scripts/prepare_android_beta_build.py --central-mirror https://maven-central.storage-download.googleapis.com/maven2/
+          godot --headless --path . --export-debug 'Android Debug' 'build/emberfall-debug.apk'
+          godot --headless --path . --export-release 'Android Closed Beta APK' 'build/emberfall-closed-beta-ci.apk'
+          godot --headless --path . --export-release 'Google Play Beta' 'build/emberfall-beta-ci-release.aab'
+          curl --fail --location --retry 3 --output "$RUNNER_TEMP/bundletool-all-1.18.3.jar" \
+            https://github.com/google/bundletool/releases/download/1.18.3/bundletool-all-1.18.3.jar
+          "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-debug.apk
+          "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-closed-beta-ci.apk
+          apk_info="$("$ANDROID_HOME/build-tools/36.1.0/aapt" dump badging build/emberfall-debug.apk)"
+          grep -F "package: name='com.philmenting.emberfallashenveil.test029' versionCode='42' versionName='0.38.0-online-test'" <<< "$apk_info"
+          grep -F "uses-permission: name='android.permission.INTERNET'" <<< "$apk_info"
+          closed_beta_info="$("$ANDROID_HOME/build-tools/36.1.0/aapt" dump badging build/emberfall-closed-beta-ci.apk)"
+          grep -F "package: name='com.philmenting.emberfallashenveil.closedbeta' versionCode='42' versionName='0.38.0-beta.1'" <<< "$closed_beta_info"
+          grep -F "sdkVersion:'24'" <<< "$closed_beta_info"
+          grep -F "targetSdkVersion:'36'" <<< "$closed_beta_info"
+          if grep -Fq 'android.permission.INTERNET' <<< "$closed_beta_info"; then echo 'Closed-beta APK must remain offline'; exit 1; fi
+          "$ANDROID_HOME/build-tools/36.1.0/aapt" dump xmltree build/emberfall-closed-beta-ci.apk AndroidManifest.xml | grep -F 'android:screenOrientation(0x0101001e)=(type 0x10)0x0'
+          python3 scripts/verify_android_aab.py \
+            --bundle build/emberfall-beta-ci-release.aab \
+            --bundletool "$RUNNER_TEMP/bundletool-all-1.18.3.jar" \
+            --package com.philmenting.emberfallashenveil \
+            --version-code 42 --version-name 0.38.0-beta.1 \
+            --min-sdk 24 --target-sdk 36
+          cat > build/CI_ARTIFACT_README.txt <<'EOF'
+          CI validation artifacts only. The AAB and closed-beta APK use an ephemeral CI signing key; they cannot be uploaded to Google Play or update builds signed by another key.
+          EOF
+
+      - name: Upload available Android artifacts
+        if: ${{ !cancelled() && hashFiles('build/emberfall-debug.apk') != '' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: emberfall-ashen-veil-android-ci-validation-only
+          path: |
+            build/emberfall-debug.apk
+            build/emberfall-closed-beta-ci.apk
+            build/emberfall-beta-ci-release.aab
+            build/CI_ARTIFACT_README.txt
+          if-no-files-found: error
+          retention-days: 14
+
       - name: Start isolated Nakama account-transfer test server
         run: |
           mkdir -p "$RUNNER_TEMP/nakama"
@@ -170,65 +233,3 @@ jobs:
       - name: Check sculpted graphics, regional surfaces and isolated effects
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-visuals-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/visuals_smoke.gd
 
-      - name: Create ephemeral CI-only Play signing key
-        run: |
-          ci_password="$(openssl rand -hex 32)"
-          echo "::add-mask::$ci_password"
-          keytool -genkeypair -noprompt -keystore "$RUNNER_TEMP/emberfall-ci-upload.jks" \
-            -storepass "$ci_password" -alias emberfall-ci -keypass "$ci_password" \
-            -keyalg RSA -keysize 2048 -validity 10000 \
-            -dname 'CN=Emberfall CI,O=Emberfall,C=US'
-          {
-            echo "GODOT_ANDROID_KEYSTORE_RELEASE_PATH=$RUNNER_TEMP/emberfall-ci-upload.jks"
-            echo "GODOT_ANDROID_KEYSTORE_RELEASE_USER=emberfall-ci"
-            echo "GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD=$ci_password"
-          } >> "$GITHUB_ENV"
-
-      - name: Build Android test APK and release-configured Play bundle
-        env:
-          GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ runner.temp }}/debug.keystore
-          GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
-          GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: android
-        run: |
-          mkdir -p build
-          godot --headless --path . --editor --import --quit
-          godot --headless --path . --install-android-build-template
-          python3 scripts/prepare_android_beta_build.py --central-mirror https://maven-central.storage-download.googleapis.com/maven2/
-          godot --headless --path . --export-debug 'Android Debug' 'build/emberfall-debug.apk'
-          godot --headless --path . --export-release 'Android Closed Beta APK' 'build/emberfall-closed-beta-ci.apk'
-          godot --headless --path . --export-release 'Google Play Beta' 'build/emberfall-beta-ci-release.aab'
-          curl --fail --location --retry 3 --output "$RUNNER_TEMP/bundletool-all-1.18.3.jar" \
-            https://github.com/google/bundletool/releases/download/1.18.3/bundletool-all-1.18.3.jar
-          "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-debug.apk
-          "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-closed-beta-ci.apk
-          apk_info="$("$ANDROID_HOME/build-tools/36.1.0/aapt" dump badging build/emberfall-debug.apk)"
-          grep -F "package: name='com.philmenting.emberfallashenveil.test029' versionCode='42' versionName='0.38.0-online-test'" <<< "$apk_info"
-          grep -F "uses-permission: name='android.permission.INTERNET'" <<< "$apk_info"
-          closed_beta_info="$("$ANDROID_HOME/build-tools/36.1.0/aapt" dump badging build/emberfall-closed-beta-ci.apk)"
-          grep -F "package: name='com.philmenting.emberfallashenveil.closedbeta' versionCode='42' versionName='0.38.0-beta.1'" <<< "$closed_beta_info"
-          grep -F "sdkVersion:'24'" <<< "$closed_beta_info"
-          grep -F "targetSdkVersion:'36'" <<< "$closed_beta_info"
-          if grep -Fq 'android.permission.INTERNET' <<< "$closed_beta_info"; then echo 'Closed-beta APK must remain offline'; exit 1; fi
-          "$ANDROID_HOME/build-tools/36.1.0/aapt" dump xmltree build/emberfall-closed-beta-ci.apk AndroidManifest.xml | grep -F 'android:screenOrientation(0x0101001e)=(type 0x10)0x0'
-          python3 scripts/verify_android_aab.py \
-            --bundle build/emberfall-beta-ci-release.aab \
-            --bundletool "$RUNNER_TEMP/bundletool-all-1.18.3.jar" \
-            --package com.philmenting.emberfallashenveil \
-            --version-code 42 --version-name 0.38.0-beta.1 \
-            --min-sdk 24 --target-sdk 36
-          cat > build/CI_ARTIFACT_README.txt <<'EOF'
-          CI validation artifacts only. The AAB and closed-beta APK use an ephemeral CI signing key; they cannot be uploaded to Google Play or update builds signed by another key.
-          EOF
-
-      - name: Upload available Android artifacts
-        if: ${{ !cancelled() && hashFiles('build/emberfall-debug.apk') != '' }}
-        uses: actions/upload-artifact@v7
-        with:
-          name: emberfall-ashen-veil-android-ci-validation-only
-          path: |
-            build/emberfall-debug.apk
-            build/emberfall-closed-beta-ci.apk
-            build/emberfall-beta-ci-release.aab
-            build/CI_ARTIFACT_README.txt
-          if-no-files-found: error
-          retention-days: 14
