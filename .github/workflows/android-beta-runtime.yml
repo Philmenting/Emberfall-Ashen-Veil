@@ -68,7 +68,7 @@ jobs:
         arch: x86_64
         profile: pixel_6
         disable-animations: true
-        emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot -camera-back none
+        emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -no-snapshot -camera-back none
         script: python3 scripts/android_beta_smoke.py --apk build/emberfall-afk-qa.apk
     - name: Upload QA evidence
       if: always()

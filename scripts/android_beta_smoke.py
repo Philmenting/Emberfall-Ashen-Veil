@@ -27,6 +27,8 @@ def main() -> int:
             log = adb("logcat", "-d", "-s", "godot", timeout=30)
             (args.output / filename).write_text(log)
             if "ANDROID_BETA_FAIL" in log: raise RuntimeError(log[-4000:])
+            if "ERROR:" in log or "shader failed to compile" in log.lower():
+                raise RuntimeError("Godot reported a runtime or shader error; see " + str(args.output / filename))
             if marker in log: return log
             time.sleep(3)
         raise RuntimeError(f"Timed out waiting for {marker}; see {args.output / filename}")
