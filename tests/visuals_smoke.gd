@@ -65,8 +65,17 @@ func run_checks() -> void:
 		var skin_arrays: Array=weighted_mesh.mesh.surface_get_arrays(0)
 		var skin_weights: PackedFloat32Array=skin_arrays[Mesh.ARRAY_WEIGHTS]
 		var normalized_weights:=true
-		for i in range(0,skin_weights.size(),4):
-			normalized_weights=normalized_weights and is_equal_approx(skin_weights[i]+skin_weights[i+1]+skin_weights[i+2]+skin_weights[i+3],1.0)
+		var stride: int=skin_weights.size()/skin_arrays[Mesh.ARRAY_VERTEX].size()
+		var max_weight_error:=0.0
+		for i in range(0,skin_weights.size(),stride):
+			var total:=0.0
+			for j in range(stride):
+				normalized_weights=normalized_weights and is_finite(skin_weights[i+j]) and skin_weights[i+j]>=0.0
+				total+=skin_weights[i+j]
+			max_weight_error=maxf(max_weight_error,absf(total-1.0))
+		# Imported GPU weights use quantized storage. This allows less than one 16-bit unit per component.
+		normalized_weights=normalized_weights and stride in [4,8] and max_weight_error<0.0001
+		print("ANATOMY ",kind," vertices=",skin_arrays[Mesh.ARRAY_VERTEX].size()," stride=",stride," max_weight_error=",max_weight_error," skin=",weighted_mesh.skin!=null)
 		check(weighted_mesh.skin!=null and skin_arrays[Mesh.ARRAY_VERTEX].size()>10000 and normalized_weights,kind+": detailed mesh has normalized GPU skinning weights")
 		var finite:=true
 		for node in actor.find_children("*","MeshInstance3D",true,false):
@@ -141,4 +150,3 @@ func run_checks() -> void:
 	game.free()
 	print("VISUALS SMOKE: %d checks, %d failures" % [checks,failures])
 	quit(1 if failures else 0)
-
