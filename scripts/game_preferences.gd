@@ -1,6 +1,6 @@
 extends RefCounted
 ## Stored inside the same validated save generations as the hero.
-const DEFAULTS := {"master":0.8,"music":0.35,"effects":0.7,"battery":false,"numbers":true}
+const DEFAULTS := {"master":0.8,"music":0.35,"effects":0.7,"battery":false,"numbers":true,"large_text":false,"reduced_motion":false}
 
 static func normalize(raw: Variant) -> Dictionary:
 	var result := DEFAULTS.duplicate()
@@ -9,6 +9,6 @@ static func normalize(raw: Variant) -> Dictionary:
 		var value: Variant = raw.get(key,result[key])
 		if (value is int or value is float) and is_finite(float(value)):
 			result[key] = clampf(float(value),0.0,1.0)
-	for key in ["battery","numbers"]:
+	for key in ["battery","numbers","large_text","reduced_motion"]:
 		if raw.get(key) is bool: result[key] = raw[key]
 	return result

@@ -2,6 +2,30 @@
 
 **Emberfall: Ashen Veil** ist ein eigenständiger, im Querformat gestalteter Godot-Prototyp für ein düsteres Idle-Action-RPG. Gegner haben eigene Lebensleisten; Nyra kämpft in automatischen Schlägen bis ein Gegner fällt. Alle zehn Etagen wechselt die Kampagne Gebiet, Dungeon-Namen und Boss: vom Hollow Spire bis zur Last Ember Citadel. Ein Boss-Sieg garantiert mindestens ein seltenes Ausrüstungsteil und schaltet sofort die nächste Etage frei. Vowkeeper, Arcanist und Ranger haben unterschiedliche Kampfvorteile; Attribute stärken ihre Werte und Klassenfähigkeiten. Die vier Gebiete besitzen eigene Materialien, Architekturdetails, Umgebungen und Bossmerkmale; jedes Gebiet besitzt seit 0.11 einen eigenen begehbaren Grundriss. Sechs Ausrüstungsslots, fünf Qualitäten und Stufen T1–T10 bilden die Beute-Progression. Angelegte Ausrüstung kann beim Schmied bis +5 verstärkt werden.
 
+## Seedgesteuerter Auto-Kampf und variable Dungeon-Erkundung (0.38 Closed-Beta-Kandidat)
+
+Nyra setzt in den Angriffspausen kurze, seedgebundene Positionswechsel ein: Die Vowkeeperin umrundet Gegner auf Nahkampfreichweite, während Arcanist und Ranger ihre Schussposition variieren. Sie prüft die nächsten Schritte gegen angekündigte Gefahren und bleibt in der begehbaren Kammer. Ein bereiter Angriff hat Vorrang; ein Positionswechsel setzt in der nächsten Angriffspause fort. Laufwege und Gegnerbewegung bleiben zielgerichtet; Zufall sorgt für unterschiedliche Kampfbilder, ohne Zuschauen, Skip und AFK auseinanderlaufen zu lassen. Generation 5 ergänzt diese Kampfbewegung; pausierte ältere Läufe behalten ihre gespeicherte Version.
+
+Neue Läufe verwenden Dungeon-Generation 6 und Route-Version 4: Jeder Korridor wählt seedgebunden eine von vier Wegformen – mehrspurige Kurve, kurzer Seitengang, breiter Seitenschwung oder Zickzackpfad. Boden, Laufbewegung und Minikarte folgen denselben Wegpunkten. Dazu bleiben Gegneraufstellungen, Spawnpositionen, Flanken und zwei zeitversetzte Verstärkungen seedgebunden; die Zahl der Gegner und die Beutemenge ändern sich nicht. Automatische Fähigkeiten, Zuschauen, Skip und AFK rechnen denselben Lauf. Pausierte Routen der Versionen 1–3 behalten ihre Wegform.
+
+Die 256er-Bank hält dieselben Läufe für Zuschauen, Skip und AFK reproduzierbar.
+
+Bei ähnlich wichtigen Gegnern entscheidet der Seed beim nächsten bereiten Angriff neu, wen Nyra fokussiert. Während sie auf Reichweite läuft oder ihr Angriff abklingt, bleibt das Ziel stabil. Das ergänzt zufällige Gegneraufstellungen und automatische Fähigkeitswahl, ohne hektisches Umschalten oder unterschiedliche Skip-/AFK-Ergebnisse.
+
+## Kampfkamera und reduzierte Bewegung (0.30)
+
+Die isometrische Kamera gibt Nyra einen kleinen Vorlauf in Laufrichtung und hält das gewählte Ziel besser im Bild. In Bossräumen zieht sie sich sanft näher heran; schwere Treffer und Bossimpakte geben einen kurzen, begrenzten Kameraimpuls. Unter **Options → Reduced Motion** lassen sich Zoom und Erschütterung abschalten. Die Änderung ist rein visuell und beeinflusst weder Kampf noch Beute, Skip oder Offline-Fortschritt. Neue Expeditionen wählen Weg und Kampfmuster aus derselben 256er-Bank; dadurch kann AFK exakt passende Kämpfe wiederverwenden, während Beute weiterhin den individuellen Run-Seed nutzt. Angefangene ältere Läufe behalten ihre bisherige Wegführung.
+
+## Freiere Laufwege (0.31)
+
+Neue Läufe schicken Nyra auf seedgebundenen S-Kurven durch die Verbindungsgänge. Die Route ist im Dungeon und auf der Karte dieselbe; zufällige Gegnergruppen, Formationen, Hinterhalte und passende Fähigkeitswahl laufen weiter automatisch. Das Muster bleibt über Zuschauen, Skip und AFK identisch. Version-1-Checkpoints und ältere pausierte Läufe behalten ihren bisherigen Weg.
+
+## Serverfortschritt (0.33 · Online-Test)
+
+Die Android-Testprofile verbinden nun einen Nakama-Laufzeitserver mit einem getrennten serververwalteten Testprofil. Der Server rechnet AFK-Zeit aus seiner eigenen Uhr ab (höchstens 24 Stunden), ermittelt Sieg oder Niederlage aus serverseitiger Charakterstärke und Etage und erzeugt Beute mit frischen kryptografischen Zufallsstarts. Er begrenzt freigeschaltete Etagen und verwaltet Klassenwahl, Attribute, Inventar, Verkauf, Ausrüstung und Verstärkung. Für Gold, Siege oder Gegenstände nimmt er keine vom Client vorgegebenen Werte an. Nakama-Speicher lässt Spieler das Profil lesen, aber nicht direkt überschreiben.
+
+Das Serverprofil ist noch nicht mit Nyras lokalem Charakter verbunden. Der bestehende lokale Spielstand wird nicht importiert oder überschrieben; sichtbarer Dungeon-Kampf, lokale Belohnungen und Kampagnenfortschritt laufen weiterhin auf dem Gerät. Die Testoberfläche zeigt den getrennten Serverstand unter **Options → Online Test**. Zusätzlich bleiben offene Nakama-Gemeinschaften und persistenter Echtzeit-Gruppenchat verfügbar. Details und Startanleitung: [Lokaler Online-Test](docs/ONLINE_TEST.md).
+
 ## Grafischer Ausbau (0.14)
 
 Schlankere Figuren mit zusammenhängenden Rüstungs- und Kleidungsformen, gotische Arkaden, unregelmäßige Steinplatten, tiefere Fundamente, animierte Feuer und Nebel geben den Dungeons mehr Atmosphäre. Neue Waffenbögen, Trefferfunken und eine nähere Kamera machen Kämpfe besser sichtbar. Alle neuen Grafikbestandteile sind in Godot erstellt. [Umsetzung und Grenzen](docs/VISUAL_UPGRADE.md).
@@ -9,6 +33,54 @@ Schlankere Figuren mit zusammenhängenden Rüstungs- und Kleidungsformen, gotisc
 ## Flüssigere Bewegung und Treffer (0.15)
 
 Nyra und Gegner takten ihre Schritte passend zur tatsächlichen Laufgeschwindigkeit. Schläge holen sichtbar aus und federn zurück; Treffer lösen ein kurzes Taumeln aus, Gegner fallen mit leichten Variationen. Atem- und Mantelbewegungen lockern den Stand. Die Animationen laufen rein visuell und verändern weder Kampfwerte noch Offline-Ergebnisse.
+
+## Zufällige Dungeonläufe (0.16)
+
+Jeder Lauf nutzt seinen Seed für leicht veränderte Wege, Gegnergruppen, Formationen und Fähigkeitsentscheidungen. Nyra wählt bereitstehende Fähigkeiten nach der Situation; wenn mehrere passen, wechselt die Auswahl von Lauf zu Lauf. Dieselbe Expedition bleibt beim Zuschauen, Überspringen und AFK-Fortschritt reproduzierbar. [Design und Grenzen](docs/GAMEPLAY_DIRECTION.md).
+
+## Klassenbalance (0.17)
+
+Der Vowkeeper erhält als Klassenmerkmal 20% zusätzliches Leben und Rüstung. Die 480-Läufe-Farmprobe stieg damit von Farmetage 58 (476 Siege) auf Etage 84 (479 Siege); Arcanist und Ranger blieben auf Etage 86 mit 479 bzw. 480 Siegen. [Messung und Grenzen](docs/GAMEPLAY_DIRECTION.md#klassenbalance-017).
+
+## Sichtbare Ausrüstungsbeute (0.18)
+
+Nach dem besiegten Boss zeigt das geöffnete Reliquiar bis zu zwei der tatsächlich erhaltenen Gegenstände als schwebende, nach Qualität eingefärbte 3D-Beute mit Name und Ausrüstungsslot. Das ist dieselbe Beute, die im anschließenden Beutefenster erscheint; die Szene erzeugt keine zusätzlichen Gegenstände.
+
+## Lesbar auf kompakten Querformatdisplays (0.19)
+
+Bei kleinen Querformatfenstern skaliert die Oberfläche Schrift automatisch um 20 Prozent und vergrößert Aktionsflächen auf mindestens 52 logische Pixel. Unter **Options → Large Text** lässt sich die Schrift auf jedem Display weiter vergrößern; die Einstellung bleibt gespeichert. Sie greift auch auf bereits geöffnete Ansichten und das Kampf-HUD durch.
+
+## Mehr Abwechslung pro Dungeon (0.20)
+
+Neue Läufe wählen aus 256 wiederholbaren Seedmustern: Wegführung, Gegnergruppen und Formationen verändern sich sichtbar. Räuber versuchen die Flanken zu erreichen, Hexer halten je Lauf einen eigenen Abstand und variieren ihre angekündigten Zauber; Eliten setzen gelegentlich einen ausweichbaren Flächenangriff ein. Nyra läuft weiterhin zielgerichtet durch verbundene Gänge und aktiviert Fähigkeiten selbstständig nach Situation. Zuschauen, Skip und AFK bleiben für denselben Seed identisch. Pausierte Läufe aus älteren Versionen behalten ihre bisherigen Regeln.
+
+## Bosskämpfe mit variierenden Angriffen (0.21)
+
+Jeder Gebiets-Boss nutzt jetzt zwei seedgebundene Formen seines Bodenangriffs und wechselt beim nächsten Angriff zur jeweils anderen. Ring, Flutbahn, Grabkreise und Feuerkreuz bleiben pro Gebiet erkennbar; ihre Gefahrenzonen ändern sich sichtbar. Nyra liest weiterhin die Vorwarnung und weicht selbstständig aus. Wiederholung, Skip, AFK und gespeicherte Kämpfe verwenden dieselbe Auswahl.
+
+## Spielstand sichern und umziehen (0.22)
+
+Unter **Options → Save Backup** kannst du einen geprüften Backup-Code kopieren und außerhalb des Geräts aufbewahren. Der Code enthält Held, Ausrüstung, Einstellungen und einen pausierten Dungeon-Checkpoint. Auf einem neuen Gerät fügst du ihn wieder ein. Der vorherige lokale Stand bleibt als Wiederherstellung verfügbar; **Undo Last Restore** setzt ihn zurück. Der Code enthält persönliche Spielstanddaten und sollte privat bleiben.
+
+## Lesbareres Kampf-HUD auf kleinen Querformatdisplays (0.23)
+
+Die kleinsten Ziel-, Raum- und Kampfhinweise sind jetzt größer; die Routenkarte zeigt den aktuellen Standort mit größeren Knoten. Die Änderungen betreffen ausschließlich die Darstellung. Sie wurden bei 854×480 und 1280×720 verglichen; der Text kann weiterhin von echten Geräten und den Android-Anzeigeeinstellungen abhängen.
+
+## Persönliche Zufallsfolge (0.24)
+
+Neue Spielstände erhalten beim ersten Start einen eigenen Zufalls-Startwert. Er bestimmt die Reihenfolge reproduzierbarer Dungeonläufe und variiert auch die Beute. Derselbe Lauf behält seinen Seed beim Zuschauen, Überspringen, Pausieren, Neustart und AFK-Fortschritt; ältere Spielstände bekommen den neuen Wert einmalig beim Laden und Speichern.
+
+## Zufälligere Gegnerformationen (0.25)
+
+Spawnformationen werden jetzt pro Lauf gedreht und die Positionen leicht individuell verschoben. Dadurch unterscheiden sich auch die Abstände und Anmarschwinkel der Gegner, während Wege, Gegnerrollen, Fähigkeiten und AFK-Ergebnis weiter seedgebunden reproduzierbar bleiben. 256 unterschiedliche Formationen sind geprüft; Anzahl und Stärke der Gegner bleiben unverändert.
+
+## Wechselnde Laufwege (0.26)
+
+Auf jedem neuen Lauf liegt die Abbiegung in jedem Verbindungsgang an einer anderen Stelle. Der vollständige Lauf-Seed bestimmt den sichtbaren Weg; Gegner, Kampf und Offline-Berechnung behalten ihre gemeinsame 256er-Kampfmusterbank. Alle möglichen Abbiegungen haben dieselbe Weglänge, damit AFK-Zeit und Balance davon unberührt bleiben. Angefangene Läufe aus 0.25 behalten den bisherigen Weg beim Wiederaufnehmen.
+
+## Zeitversetzte Hinterhalte (0.27)
+
+In zwei zufällig gewählten Räumen taucht je ein Gegner erst während des automatischen Kampfes auf. Die Auswahl und Verzögerung sind pro Run-Seed festgelegt. Die Figur läuft weiter zielgerichtet, während Hinterhalte zusätzliche Überraschungsmomente bringen. Gegnergesamtzahl und Loot bleiben unverändert; Live, Skip und AFK spielen dieselbe Begegnung ab. Alte Dungeon-Checkpoints behalten ihre bisherigen Abläufe.
 
 ## Beutejagden und Aschenprüfungen (0.13)
 
@@ -46,7 +118,7 @@ Neue Spielstände beginnen mit einer Klassenwahl und einer kurzen Erklärung des
 
 Gegenstände zeigen die tatsächlichen Änderungen für die aktuelle Klasse: Angriff, Fähigkeitenschaden, Leben, Rüstung, Mana und kritische Trefferchance. Erhöht ein Gegenstand den Fähigkeitsrang, wird auch der zusätzliche Mana-Verbrauch pro Einsatz angezeigt. Die Krit-Chance ist auf die tatsächlich wirksamen 100 Prozent begrenzt.
 
-Im Lager werden Dungeon und gewählte Farm-Etage mit allen 64 Kampfmustern der aktuellen Ausrüstung bewertet. Die Prüfung läuft in kleinen Portionen, lässt die Oberfläche bedienbar und verbraucht keine Spielzeit, Laufnummern oder Beute. Die Anzeige zeigt Erfolgsrate und Dauer; für AFK wird die Mindestdauer von 30 Sekunden pro abgerechnetem Lauf berücksichtigt. Werte gelten bei unveränderter Klasse/Ausrüstung und ersetzen die frühere pauschale Kampfpunkt-Empfehlung. Offline-Ergebnisse stehen bei der Rückkehr oben im Lager.
+Im Lager werden Dungeon und gewählte Farm-Etage mit allen 256 Kampfmustern der aktuellen Ausrüstung bewertet. Die Prüfung läuft in kleinen Portionen, lässt die Oberfläche bedienbar und verbraucht keine Spielzeit, Laufnummern oder Beute. Die Anzeige zeigt Erfolgsrate und Dauer; für AFK wird die Mindestdauer von 30 Sekunden pro abgerechnetem Lauf berücksichtigt. Werte gelten bei unveränderter Klasse/Ausrüstung und ersetzen die frühere pauschale Kampfpunkt-Empfehlung. Offline-Ergebnisse stehen bei der Rückkehr oben im Lager.
 
 ## Vier Gebiete (0.5)
 
@@ -79,7 +151,7 @@ Im Lager die **Farm Floor** mit **− / +** auswählen und **Start Auto Farm** s
 
 Offline wird die gewählte Farm-Etage wiederholt. Die Berechnung verwendet die ausgerüsteten Werte, tatsächliche Kampfdauer und dieselben Angriffs-/Ausweichregeln wie beim Zuschauen. Überfordernde Etagen werden nicht mehr über eine pauschale Zufalls-Erfolgschance freigeschaltet. Beide Modi garantieren bei einem Boss-Sieg mindestens seltene Beute. Volle Taschen verkaufen weitere Funde; Gold und XP aus AFK-Läufen werden im Bericht abgeholt.
 
-Die Kampfsimulation ist bei gleichen Werten, Etage und Startwert reproduzierbar. 64 wiederkehrende Würfelmuster erlauben das Zwischenspeichern identischer Kämpfe innerhalb einer AFK-Berechnung, ohne das Ergebnis zu schätzen. Beute nutzt weiterhin den individuellen Startwert jedes Laufs. Etagenwahl, Laufzähler, Zeitrest und ausstehende Belohnungen werden gespeichert; höchstens 24 Stunden werden berechnet.
+Die Kampfsimulation ist bei gleichen Werten, Etage und Startwert reproduzierbar. Neue Läufe teilen Weg- und Kampfmuster in 256 wiederkehrende Varianten; identische Läufe lassen sich daher innerhalb einer AFK-Berechnung exakt wiederverwenden, ohne das Ergebnis zu schätzen. Beute nutzt weiterhin den individuellen Startwert jedes Laufs. Etagenwahl, Laufzähler, Zeitrest und ausstehende Belohnungen werden gespeichert; höchstens 24 Stunden werden berechnet.
 
 ## 3D-Dungeon (0.3)
 
@@ -99,11 +171,15 @@ Das Projekt mit Godot 4.7.2 öffnen und `Main.tscn` starten. Die Spielfläche is
 
 ### Android-Test- und Beta-Build
 
-Das Exportprofil `Android Debug` erstellt eine installierbare Test-APK für ARM64 unter `build/emberfall-debug.apk`. Das Profil `Google Play Beta` baut ein AAB mit Android API 36, ARM64 und Version `0.15.0-beta.1` unter `build/emberfall-beta-debug.aab`. Es verwendet Godots Gradle-Build-Vorlage mit Android Gradle Plugin 8.10.1; für den Export werden OpenJDK 17, Android SDK Platform 36 und Build-Tools 36.1.0 benötigt. Die tatsächliche Annahme und Veröffentlichung muss anschließend in der Play Console geprüft werden.
+Das Exportprofil `Android Debug` erstellt eine installierbare ARM64-Test-APK `build/emberfall-038-online-test-debug.apk` mit eigener Paketkennung. `Android Emulator Debug` baut für x86_64 nach `build/emberfall-038-emulator-debug.apk`. `Google Play Beta` zielt auf Android API 36, ARM64 und Version `0.38.0-beta.1`. `EMBERFALL_BETA_AAB=build/emberfall-038-play-beta.aab python3 scripts/export_google_play_beta.py` signiert das AAB mit dem lokalen Upload-Key. Für den Export werden Godots Gradle-Build-Vorlage mit Android Gradle Plugin 8.10.1, OpenJDK 17, Android SDK Platform 36 und Build-Tools 36.1.0 benötigt.
 
-GitHub Actions baut beide Testpakete bei Änderungen am Projekt und stellt sie als Workflow-Artefakt bereit. Die CI-Artefakte dienen zur technischen Prüfung und sind keine freigegebene Play-Veröffentlichung. Vor dem Upload in die Play Console muss `Google Play Beta` mit einem privaten Upload-Schlüssel als Release exportiert werden. Der Schlüssel gehört weder ins Repository noch in den Debug-Build.
+Für einen direkten manuellen Closed-Beta-Test erstellt `python3 scripts/export_closed_beta_apk.py` das release-signierte ARM64-APK `build/emberfall-038-closed-beta.apk` samt SHA-256-Datei. Es verwendet eine eigene Paketkennung, erzwingt Querformat, zielt auf API 36 und fordert keine Internetberechtigung an. Das APK ist sideloadbar, aber kein Google-Play-Upload; ein Play-AAB bleibt der erforderliche Store-Build.
 
-Für den signierten Release-Export `python3 scripts/export_google_play_beta.py` ausführen. Das Skript verwendet die private Schlüsseldatei und Zugangsdaten außerhalb des Projekt-Repos im lokalen Android-Werkzeugordner und erzeugt `build/emberfall-play-beta.aab`. Das öffentliche `upload-certificate.pem` wird beim Einrichten der App-Signatur in der Play Console benötigt. Keystore und Zugangsdaten nicht hochladen oder teilen.
+Die manuelle Prüfrunde steht in [docs/BETA_TESTING.md](docs/BETA_TESTING.md). Sie enthält Installationsdaten, Prüfschritte für Kampf, Beute und Kaltstart sowie ein Fehlerbericht-Schema. Zum Testen über GitHub öffne **Actions → Android Debug APK**, wähle den neuesten erfolgreichen Lauf auf `main` und lade das Artefakt `emberfall-ashen-veil-android-ci-validation-only` herunter. Darin liegt `build/emberfall-closed-beta-ci.apk`.
+
+GitHub Actions prüft bei Änderungen die Android-Test-APK, das Closed-Beta-APK-Profil und das Play-Bundle. Das CI-Artefakt ist 14 Tage verfügbar und mit einem nur für diesen Lauf erzeugten Schlüssel signiert. Vor dem Installieren eines Artefakts aus einem neuen Lauf muss eine ältere CI-Installation entfernt werden. CI-Artefakte können keine lokal oder über Google Play signierten Installationen aktualisieren und sind keine Veröffentlichung.
+
+Der Quellstand 0.38 ergänzt seedgebundene Zielwechsel zwischen taktisch gleichwertigen Gegnern. Die vollständige Regression besteht mit 17 Godot-Suites und 1.199 Checks ohne Fehler; Reise, Speicherung und Dungeon/AFK enthalten davon 557 gezielte Checks. Das release-signierte ARM64-APK 0.38 / Code 42 ist auf Signatur und Manifest geprüft. Installation auf Android, Play-AAB und gemeinsamer Online-Dungeon sind weiterhin offene Veröffentlichungsgates; es gibt keine Freigabe in der Play Console.
 
 ## Steuerung im Prototyp
 
@@ -117,16 +193,24 @@ Der erste Prototyp spielt sich allein und lokal. Godot speichert den letzten Zei
 
 ## Lokale Prüfungen
 
-Mit separatem Datenverzeichnis ausführen, damit der eigene Spielstand unangetastet bleibt:
+Der gebündelte lokale Offline-Regressionslauf ist `python3 scripts/run_beta_checks.py`. Er führt 17 Godot-Suites mit temporär isolierten Spielständen sowie Syntax- und Laufzeitprüfungen des Servermoduls aus. Für eine gezielte Godot-Suite kann `--suite` verwendet werden, zum Beispiel `python3 scripts/run_beta_checks.py --suite options`. Emulator-/Gerätetests, der Nakama-E2E-Test und der Play-AAB-Export bleiben separate Veröffentlichungsgates.
+
+Einzelne Prüfungen lassen sich auch mit separatem Datenverzeichnis ausführen, damit der eigene Spielstand unangetastet bleibt:
 
 ```bash
+XDG_DATA_HOME=/tmp/emberfall-journey-data godot --headless --path . --fixed-fps 60 --script tests/journey_smoke.gd
 XDG_DATA_HOME=/tmp/emberfall-smoke-data godot --headless --path . --fixed-fps 60 --script tests/dungeon_smoke.gd
 XDG_DATA_HOME=/tmp/emberfall-persistence-data godot --headless --path . --fixed-fps 60 --script tests/persistence_smoke.gd
+XDG_DATA_HOME=/tmp/emberfall-balance-data godot --headless --path . --fixed-fps 60 --script tests/balance_survey.gd -- 0
 XDG_DATA_HOME=/tmp/emberfall-regions-data godot --headless --path . --fixed-fps 60 --script tests/regions_smoke.gd
 XDG_DATA_HOME=/tmp/emberfall-gear-data godot --headless --path . --fixed-fps 60 --script tests/gear_forecast_smoke.gd
 XDG_DATA_HOME=/tmp/emberfall-onboarding-data godot --headless --path . --fixed-fps 60 --script tests/onboarding_smoke.gd
 XDG_DATA_HOME=/tmp/emberfall-options-data godot --headless --path . --fixed-fps 60 --script tests/options_smoke.gd
+XDG_DATA_HOME=/tmp/emberfall-fellowship-ui-data godot --headless --path . --fixed-fps 60 --script tests/fellowship_ui_smoke.gd
+XDG_DATA_HOME=/tmp/emberfall-cloud-identity-data godot --headless --path . --script tests/cloud_identity_smoke.gd
 ```
+
+Der vollständige 0.35-Quellstand bestand am 29. September 2026 17 Offline-Godot-Suites mit insgesamt 1.127 Checks; Node-Syntax und Serverlaufzeitprüfung waren ebenfalls erfolgreich. Sechs Balance-Seeds aus 0.34 ergaben mittlere Farmetagen 92,3 / 94,8 / 91,0 für Vowkeeper / Arcanist / Ranger und Siege von 2.879/2.880, 2.876/2.880 und 2.876/2.880. Die einzelne Bot-Heuristik belegt keine allgemeine Klassenbalance. Details und Grenzen stehen in [der 0.34-Prüfnotiz](docs/audit/2026-09-29/combat-movement-0.34.md).
 
 Die Prüfung deckt alle drei Klassen, Bewegung, Reichweite, Pause, Bossabschluss, Beute, Überspringen, Niederlage und Hintergrundwechsel ab. `tests/android_preview.tscn` ist ein separater Test-Einstieg: startet automatisch einen frischen Lauf und speichert nach 2/12/25/40/58/75 Sekunden sowie beim ersten angekündigten Bossangriff Screenshots unter `user://`. Nur mit einer separaten Android-Paketkennung und einem eigenen Spielstand verwenden; `Main.tscn` bleibt der normale Einstieg.
 
@@ -135,10 +219,14 @@ Die Prüfung deckt alle drei Klassen, Bewegung, Reichweite, Pause, Bossabschluss
 ### Technischer Aufbau
 
 - `scripts/expedition_simulation.gd`: feste 100-ms-Schritte für Bewegung, Zielwahl, Fähigkeiten, Gegner und Ergebnisse; dieselbe Logik für sichtbar/Skip/AFK.
+- `scripts/dungeon_layout.gd`: seedgebundene Varianten für Wege, Gegnergruppen und Spawnpunkte; derselbe Lauf bleibt bei Zuschauen, Skip und AFK identisch.
 - `scripts/dungeon_world.gd`: zusammenhängende Welt, Kamera, Darstellung der Simulation und Effekte.
 - `scripts/dungeon_actor.gd`: ursprüngliche Godot-Geometrie und Gelenkanimationen für Figuren.
 - `scripts/battle_art.gd`: 3D-Viewport und Verbindung zum Spielmodell.
 - `scripts/main.gd`: Klassen, Werte, HUD, Ausrüstung, Belohnungen und Speicherung.
+- `scripts/fellowship_service.gd`: Nakama-Gemeinschaften, serverseitige Mitgliedschaft, Online-Präsenz und persistenter Gruppenchat im Online-Test-Build.
+- `server/modules/emberfall.js`: serververwaltetes Testprofil, AFK-Abrechnung, Beutewürfe und validierte Ausrüstungs-/Attributaktionen; noch nicht an Nyras lokales Spielmodell angeschlossen.
+- `scripts/progression_service.gd`: Godot-Client für den getrennten serverautoritativen Fortschritt im Online-Test-Build.
 
 - `scripts/save_store.gd`: versionierte, geprüfte Speichergenerationen und Legacy-Migration.
 

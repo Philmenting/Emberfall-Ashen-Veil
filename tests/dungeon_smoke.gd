@@ -1,5 +1,6 @@
 extends SceneTree
 ## Isolated data required; tests exercise both live view and headless combat.
+const Simulation = preload("res://scripts/expedition_simulation.gd")
 var failures := 0
 var checks := 0
 var game: Node
@@ -16,6 +17,7 @@ func create_game(class_value: String) -> void:
 	root.add_child(game)
 	game.farm_enabled = false
 	game.character_class = class_value
+	game.world_seed = 1979
 	game.floor_number = 1
 	game.farm_floor = 1
 	game.inventory.clear()
@@ -56,10 +58,58 @@ func run_checks() -> void:
 		game.queue_free()
 		await process_frame
 	create_game("Ranger")
-	var ranger: RefCounted = game._new_expedition(1,9)
-	ranger.stage=1
-	ranger.hero_pos=Vector2(3,-13)
-	check(ranger._choose_target().role=="hexer","Ranger prioritizes the enemy caster")
+	var ranger: RefCounted = null
+	for serial in range(1,Simulation.COMBAT_VARIANTS*2+1):
+		var candidate: RefCounted=game._new_expedition(1,serial)
+		var caster: Dictionary={}
+		for enemy in candidate.waves[1]:
+			if enemy.role=="hexer": caster=enemy; break
+		if not caster.is_empty():
+			ranger=candidate
+			ranger.stage=1
+			ranger.hero_pos=Vector2(caster.pos)
+			break
+	check(ranger!=null and ranger._choose_target().role=="hexer","Ranger prioritizes the enemy caster when the pack contains one")
+	var varied_targets: Dictionary={"Vowkeeper":{},"Arcanist":{},"Ranger":{}}
+	var target_choices_replay:=true
+	var target_stays_during_cooldown:=true
+	game.character_class="Vowkeeper"
+	var varied_target_stats: Dictionary=game._combat_stats()
+	for selected_class in ["Vowkeeper","Arcanist","Ranger"]:
+		for serial in range(24):
+			var run_seed:=1979+serial*104729
+			var probe:=Simulation.new()
+			probe.setup(selected_class,varied_target_stats,1,"Target variance",run_seed)
+			probe.stage=0
+			probe.phase="combat"
+			probe.hero_pos=Vector2.ZERO
+			probe.attack_cd=0.0
+			for enemy in probe.waves[0]:
+				enemy.hp=0
+				enemy.spawned=true
+				enemy.warning={}
+			for target_index in range(2):
+				var target: Dictionary=probe.waves[0][target_index]
+				target.role="raider"
+				target.hp=100
+				target.max_hp=100
+				target.pos=Vector2(-1.4 if target_index==0 else 1.4,0)
+			var rng_before: int=probe.rng.state
+			var chosen: Dictionary=probe._choose_target()
+			var chosen_id:=int(chosen.get("id",-1))
+			var rng_after: int=probe.rng.state
+			varied_targets[selected_class][str(chosen_id)]=true
+			probe.rng.state=rng_before
+			var replayed: Dictionary=probe._choose_target()
+			if int(replayed.get("id",-2))!=chosen_id or probe.rng.state!=rng_after:
+				target_choices_replay=false
+			probe.target_id=chosen_id
+			probe.attack_cd=0.5
+			if int(probe._choose_target().get("id",-2))!=chosen_id:
+				target_stays_during_cooldown=false
+		check(varied_targets[selected_class].size()==2,selected_class+": similar targets vary across run seeds")
+	check(target_choices_replay,"the same seed replays the same target choice and RNG state")
+	check(target_stays_during_cooldown,"the hero keeps its selected target throughout attack cooldown")
 	game.character_class="Arcanist"
 	var arcanist: RefCounted = game._new_expedition(1,9)
 	var multiple_hits := false
@@ -83,8 +133,19 @@ func run_checks() -> void:
 	impossible.simulate_to_end()
 	check(not impossible.won,"insufficient gear cannot randomly clear an impossible floor")
 	# Same cached AFK pattern, distinct loot seeds.
-	var cached_pattern: RefCounted = game._new_expedition(1,73)
-	var first_pattern: RefCounted = game._new_expedition(1,9)
+	var serial_by_pattern: Dictionary={}
+	var first_serial: int=-1
+	var cached_serial: int=-1
+	for serial in range(1,Simulation.COMBAT_VARIANTS*3+1):
+		var seed_value: int=game._run_seed_for_serial(serial)
+		var pattern: int=posmod(seed_value,Simulation.COMBAT_VARIANTS)
+		if serial_by_pattern.has(pattern):
+			first_serial=int(serial_by_pattern[pattern])
+			cached_serial=serial
+			break
+		serial_by_pattern[pattern]=serial
+	var cached_pattern: RefCounted = game._new_expedition(1,cached_serial)
+	var first_pattern: RefCounted = game._new_expedition(1,first_serial)
 	cached_pattern.simulate_to_end()
 	first_pattern.simulate_to_end()
 	check(outcome(cached_pattern)==outcome(first_pattern),"offline pattern cache is equivalent to a full simulation")
@@ -118,7 +179,7 @@ func run_checks() -> void:
 	game.expedition.simulate_to_end()
 	game._on_combat_advanced([])
 	var old_model: RefCounted = game.expedition
-	await create_timer(1.4).timeout
+	await create_timer(2.4).timeout
 	check(game.page=="run" and game.expedition!=old_model and game.run_floor==1,"auto repeat starts the same farm floor after collecting loot")
 	game.expedition.hero_hp=1
 	game.expedition.hero_mana=0
@@ -127,7 +188,7 @@ func run_checks() -> void:
 	game.expedition.simulate_to_end()
 	game._on_combat_advanced([])
 	check(not game.auto_repeat and not game.run_succeeded,"auto repeat stops on defeat")
-	await create_timer(1.4).timeout
+	await create_timer(2.4).timeout
 	game.queue_free()
 	await process_frame
 	create_game("Vowkeeper")

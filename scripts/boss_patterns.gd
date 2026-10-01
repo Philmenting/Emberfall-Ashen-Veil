@@ -2,31 +2,41 @@ extends RefCounted
 ## Geometry shared by combat, avoidance and rendering. No RNG or scene state.
 const NAMES := ["Bell Requiem","Drowning Tide","Grave Bloom","Furnace Cross"]
 const DESCRIPTIONS := [
-	"A ringing shockwave leaves the center and the outside safe.",
-	"A long tidal lane locks onto Nyra's position before it breaks.",
-	"Three graves erupt together. Gaps beyond their circles remain safe.",
-	"Two fire lanes cross. Their diagonal sectors remain safe."
+	"A ring blast leaves a safe center; its alternate fills more of the chamber.",
+	"A long tide lane alternates with a cross-current through the passage.",
+	"Three grave blasts land side by side or in a line.",
+	"The fire cross alternates between straight and diagonal lanes."
 ]
 
-static func create(region: int, origin: Vector2, target: Vector2, awakened: bool) -> Dictionary:
+static func create(region: int, origin: Vector2, target: Vector2, awakened: bool, variant: int = 0) -> Dictionary:
 	var index:=clampi(region,0,3)
+	var selected_variant:=clampi(variant,0,1)
 	var aim: Vector2=(target-origin).normalized()
 	if aim.length_squared()<0.5: aim=Vector2.DOWN
 	var side:=Vector2(-aim.y,aim.x)
 	var zones: Array=[]
 	match index:
 		0:
-			zones.append({"shape":"annulus","center":origin,"radius":4.8 if awakened else 4.4,"inner":1.7 if awakened else 2.1})
+			if selected_variant==0:
+				zones.append({"shape":"annulus","center":origin,"radius":4.8 if awakened else 4.4,"inner":1.7 if awakened else 2.1})
+			else:
+				zones.append({"shape":"circle","center":origin,"radius":4.8 if awakened else 4.4})
 		1:
-			zones.append({"shape":"beam","center":target,"direction":aim,"radius":1.25 if awakened else 0.95,"length":5.5})
+			if selected_variant==0:
+				zones.append({"shape":"beam","center":target,"direction":aim,"radius":1.25 if awakened else 0.95,"length":5.5})
+			else:
+				zones.append({"shape":"beam","center":origin.lerp(target,0.5),"direction":side,"radius":1.0 if awakened else 0.8,"length":4.8})
 		2:
+			var row_direction:=side if selected_variant==0 else aim
 			for offset in [-2.3,0.0,2.3]:
-				zones.append({"shape":"circle","center":target+side*offset,"radius":1.35 if awakened else 1.15})
+				zones.append({"shape":"circle","center":target+row_direction*offset,"radius":1.35 if awakened else 1.15})
 		3:
-			for direction in [Vector2.RIGHT,Vector2.DOWN]:
+			var diagonal:=Vector2.from_angle(aim.angle()+PI*0.25)
+			var directions: Array=[Vector2.RIGHT,Vector2.DOWN] if selected_variant==0 else [diagonal,diagonal.rotated(PI*0.5)]
+			for direction in directions:
 				zones.append({"shape":"beam","center":target,"direction":direction,"radius":1.0 if awakened else 0.75,"length":5.3})
 	var duration:=1.25 if awakened else 1.65
-	return {"center":target,"radius":5.5,"left":duration,"total":duration,"zones":zones,"pattern":index,"name":NAMES[index],"awakened":awakened,"multiplier":[2.4,2.2,2.2,2.5][index]*(1.1 if awakened else 1.0)}
+	return {"center":target,"radius":5.5,"left":duration,"total":duration,"zones":zones,"pattern":index,"variant":selected_variant,"name":NAMES[index],"awakened":awakened,"multiplier":[2.4,2.2,2.2,2.5][index]*(1.1 if awakened else 1.0)}
 
 static func contains(zone: Dictionary, point: Vector2, margin: float=0.0) -> bool:
 	var delta: Vector2=point-Vector2(zone.center)
@@ -76,6 +86,7 @@ static func triangles(zone: Dictionary) -> PackedVector2Array:
 static func valid(warning: Dictionary) -> bool:
 	if not warning.get("zones") is Array or warning.zones.is_empty() or warning.zones.size()>3: return false
 	if not warning.get("pattern") is int or warning.pattern<0 or warning.pattern>3: return false
+	if warning.has("variant") and (not warning.variant is int or warning.variant not in [0,1]): return false
 	if warning.get("name")!=NAMES[warning.pattern] or not warning.get("awakened") is bool: return false
 	if not number(warning.get("multiplier"),1.0,4.0): return false
 	for zone in warning.zones:

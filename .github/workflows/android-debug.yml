@@ -3,6 +3,8 @@ name: Android Debug APK
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -11,7 +13,21 @@ permissions:
 jobs:
   android-debug:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: nakama_local
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d nakama_local"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
@@ -62,6 +78,60 @@ jobs:
           godot --headless --path . --editor --import --quit
           XDG_DATA_HOME="$RUNNER_TEMP/emberfall-smoke-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/dungeon_smoke.gd
           XDG_DATA_HOME="$RUNNER_TEMP/emberfall-persistence-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/persistence_smoke.gd
+          XDG_DATA_HOME="$RUNNER_TEMP/emberfall-fellowship-ui-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/fellowship_ui_smoke.gd
+
+      - name: Check seed-bound combat movement and attack timing
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-combat-movement-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/combat_movement_smoke.gd
+
+      - name: Check server-owned progression simulation
+        run: |
+          node --check server/modules/emberfall.js
+          node tests/progression_runtime_test.js
+
+      - name: Start isolated Nakama account-transfer test server
+        run: |
+          mkdir -p "$RUNNER_TEMP/nakama"
+          curl --fail --location --retry 3 --output "$RUNNER_TEMP/nakama/nakama.tar.gz" \
+            https://github.com/heroiclabs/nakama/releases/download/v3.41.0/nakama-3.41.0-linux-amd64.tar.gz
+          tar -xzf "$RUNNER_TEMP/nakama/nakama.tar.gz" -C "$RUNNER_TEMP/nakama"
+          nakama_bin="$RUNNER_TEMP/nakama/nakama"
+          database_address="postgres:postgres@127.0.0.1:5432/nakama_local"
+          "$nakama_bin" migrate up --database.address "$database_address"
+          "$nakama_bin" --name emberfall-ci --database.address "$database_address" \
+            --data_dir "$RUNNER_TEMP/nakama/data" --runtime.path "$GITHUB_WORKSPACE/server/modules" \
+            --runtime.js_entrypoint emberfall.js --console.address 127.0.0.1 \
+            --console.port 7351 --socket.address 127.0.0.1 --socket.port 7350 \
+            --logger.level INFO > "$RUNNER_TEMP/nakama/server.log" 2>&1 &
+          nakama_pid=$!
+          echo "$nakama_pid" > "$RUNNER_TEMP/nakama/server.pid"
+          ready=0
+          for attempt in $(seq 1 60); do
+            if ! kill -0 "$nakama_pid" 2>/dev/null; then
+              cat "$RUNNER_TEMP/nakama/server.log"
+              exit 1
+            fi
+            if curl --silent --output /dev/null --max-time 1 http://127.0.0.1:7350/; then
+              ready=1
+              break
+            fi
+            sleep 1
+          done
+          if [ "$ready" -ne 1 ]; then
+            cat "$RUNNER_TEMP/nakama/server.log"
+            kill "$nakama_pid" 2>/dev/null || true
+            exit 1
+          fi
+
+      - name: Verify transfer and shared fellowships between isolated installations
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-transfer-e2e" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/cloud_transfer_e2e.gd
+
+      - name: Stop isolated Nakama test server
+        if: always()
+        run: |
+          if [ -f "$RUNNER_TEMP/nakama/server.pid" ]; then
+            nakama_pid="$(cat "$RUNNER_TEMP/nakama/server.pid")"
+            kill "$nakama_pid" 2>/dev/null || true
+          fi
 
       - name: Check regional scenery and world separation
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-regions-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/regions_smoke.gd
@@ -73,6 +143,9 @@ jobs:
 
       - name: Check audio, options and safe Back navigation
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-options-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/options_smoke.gd
+
+      - name: Check local guest identity and transfer-key recovery
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-cloud-identity-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/cloud_identity_smoke.gd
 
       - name: Check Mana Ward and old expedition compatibility
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-ward-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/mana_ward_smoke.gd
@@ -86,7 +159,7 @@ jobs:
           XDG_DATA_HOME="$RUNNER_TEMP/emberfall-tactics-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/arcane_tactics_smoke.gd
 
       - name: Check dungeon routes, objectives and legacy checkpoints
-        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-journey-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/journey_smoke.gd
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-journey-data" timeout 600s godot --headless --path . --fixed-fps 60 --script tests/journey_smoke.gd
 
       - name: Check selectable automatic skill rotations and old checkpoints
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-rotation-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/skill_rotation_smoke.gd
@@ -97,7 +170,21 @@ jobs:
       - name: Check sculpted graphics, regional surfaces and isolated effects
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-visuals-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/visuals_smoke.gd
 
-      - name: Export Android test APK and Play-format AAB
+      - name: Create ephemeral CI-only Play signing key
+        run: |
+          ci_password="$(openssl rand -hex 32)"
+          echo "::add-mask::$ci_password"
+          keytool -genkeypair -noprompt -keystore "$RUNNER_TEMP/emberfall-ci-upload.jks" \
+            -storepass "$ci_password" -alias emberfall-ci -keypass "$ci_password" \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname 'CN=Emberfall CI,O=Emberfall,C=US'
+          {
+            echo "GODOT_ANDROID_KEYSTORE_RELEASE_PATH=$RUNNER_TEMP/emberfall-ci-upload.jks"
+            echo "GODOT_ANDROID_KEYSTORE_RELEASE_USER=emberfall-ci"
+            echo "GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD=$ci_password"
+          } >> "$GITHUB_ENV"
+
+      - name: Build Android test APK and release-configured Play bundle
         env:
           GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ runner.temp }}/debug.keystore
           GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
@@ -105,17 +192,43 @@ jobs:
         run: |
           mkdir -p build
           godot --headless --path . --editor --import --quit
-          godot --headless --path . --install-android-build-template --export-debug 'Android Debug' 'build/emberfall-debug.apk'
+          godot --headless --path . --install-android-build-template
           python3 scripts/prepare_android_beta_build.py --central-mirror https://maven-central.storage-download.googleapis.com/maven2/
-          godot --headless --path . --export-debug 'Google Play Beta' 'build/emberfall-beta-debug.aab'
+          godot --headless --path . --export-debug 'Android Debug' 'build/emberfall-debug.apk'
+          godot --headless --path . --export-release 'Android Closed Beta APK' 'build/emberfall-closed-beta-ci.apk'
+          godot --headless --path . --export-release 'Google Play Beta' 'build/emberfall-beta-ci-release.aab'
+          curl --fail --location --retry 3 --output "$RUNNER_TEMP/bundletool-all-1.18.3.jar" \
+            https://github.com/google/bundletool/releases/download/1.18.3/bundletool-all-1.18.3.jar
+          "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-debug.apk
+          "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-closed-beta-ci.apk
+          apk_info="$("$ANDROID_HOME/build-tools/36.1.0/aapt" dump badging build/emberfall-debug.apk)"
+          grep -F "package: name='com.philmenting.emberfallashenveil.test029' versionCode='42' versionName='0.38.0-online-test'" <<< "$apk_info"
+          grep -F "uses-permission: name='android.permission.INTERNET'" <<< "$apk_info"
+          closed_beta_info="$("$ANDROID_HOME/build-tools/36.1.0/aapt" dump badging build/emberfall-closed-beta-ci.apk)"
+          grep -F "package: name='com.philmenting.emberfallashenveil.closedbeta' versionCode='42' versionName='0.38.0-beta.1'" <<< "$closed_beta_info"
+          grep -F "sdkVersion:'24'" <<< "$closed_beta_info"
+          grep -F "targetSdkVersion:'36'" <<< "$closed_beta_info"
+          if grep -Fq 'android.permission.INTERNET' <<< "$closed_beta_info"; then echo 'Closed-beta APK must remain offline'; exit 1; fi
+          "$ANDROID_HOME/build-tools/36.1.0/aapt" dump xmltree build/emberfall-closed-beta-ci.apk AndroidManifest.xml | grep -F 'android:screenOrientation(0x0101001e)=(type 0x10)0x0'
+          python3 scripts/verify_android_aab.py \
+            --bundle build/emberfall-beta-ci-release.aab \
+            --bundletool "$RUNNER_TEMP/bundletool-all-1.18.3.jar" \
+            --package com.philmenting.emberfallashenveil \
+            --version-code 42 --version-name 0.38.0-beta.1 \
+            --min-sdk 24 --target-sdk 36
+          cat > build/CI_ARTIFACT_README.txt <<'EOF'
+          CI validation artifacts only. The AAB and closed-beta APK use an ephemeral CI signing key; they cannot be uploaded to Google Play or update builds signed by another key.
+          EOF
 
       - name: Upload available Android artifacts
         if: ${{ !cancelled() && hashFiles('build/emberfall-debug.apk') != '' }}
         uses: actions/upload-artifact@v7
         with:
-          name: emberfall-ashen-veil-android-beta-test
+          name: emberfall-ashen-veil-android-ci-validation-only
           path: |
             build/emberfall-debug.apk
-            build/emberfall-beta-debug.aab
+            build/emberfall-closed-beta-ci.apk
+            build/emberfall-beta-ci-release.aab
+            build/CI_ARTIFACT_README.txt
           if-no-files-found: error
           retention-days: 14

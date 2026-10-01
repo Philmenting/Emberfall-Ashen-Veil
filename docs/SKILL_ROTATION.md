@@ -9,7 +9,7 @@ Die Simulation entscheidet anhand derselben Positionen und Werte wie der sichtba
 1. Angefangene Ausweichbewegung, Zauber und das Erreichen der Angriffsreichweite werden abgewickelt.
 2. Eine benötigte Schutztechnik hat Vorrang, wenn Leben unter 70% liegt oder ein Bodenangriff droht. Bereits wirksamer Guard verhindert unnötiges erneutes Wirken.
 3. Die Klassenfähigkeit wird bei passender Zielgruppe eingesetzt.
-4. Danach folgen passende Angriffstechniken in der Reihenfolge Platz I, Platz II.
+4. Danach kommen passende Angriffstechniken infrage. Sind beide Plätze zugleich sinnvoll und bereit, wählt der Lauf-Seed zwischen ihnen; bei nur einer passenden Technik wird diese genommen.
 5. Ohne passende bezahlbare Fähigkeit wird normal angegriffen.
 
 Jede Technik hat Mana-Kosten, eine eigene Abklingzeit und eine Wirkzeit. Mana und Abklingzeit werden beim Beginn verbraucht. Ein nötiges Ausweichen kann das Wirken abbrechen; es gibt dann keine Erstattung. Mehrere Fähigkeiten ersetzen damit kein Ressourcenmanagement. Der Fähigkeitenschaden der Ausrüstung und Attribute bestimmt auch den Schaden der Techniken.
@@ -36,14 +36,14 @@ Ein Android-Touch-Test deckte auf, dass Karten und Buttons Wischgesten abfingen.
 
 ## Speicherung und Kompatibilität
 
-Neue Expeditionen enthalten `skill_rotation=1`, ihre konkrete Auswahl und die verbleibenden Abklingzeiten. Spielstände speichern die Auswahl getrennt je Klasse. Skip, Live-Spiel und Offline-Farmen verwenden dieselbe Simulation; Farm-Prognosen berücksichtigen den Build.
+Neue Expeditionen enthalten `skill_rotation=1`, ihre konkrete Auswahl und die verbleibenden Abklingzeiten. Spielstände speichern die Auswahl getrennt je Klasse. Der Seed legt zugleich Dungeonform, Gegnergruppen, Spawnpositionen und mögliche Fähigkeitenentscheidungen fest. Skip, Live-Spiel und Offline-Farmen verwenden dieselbe Simulation; Farm-Prognosen berücksichtigen den Build.
 
 Laufende Expeditionen aus 0.11 und früher werden mit ihren ursprünglichen Regeln fortgesetzt. Zwölf vorher mit dem unveränderten 0.11-Code erzeugte Checkpoints vergleichen die vollständigen Endzustände. Erst ein neuer Lauf erhält die Rotation. Ungültige neue Rotationszustände werden beim Laden zurückgewiesen.
 
 ## Nachweise
 
 - **681 erfolgreiche lokale Prüfungen in zwölf Suiten**: darunter 133 neue Prüfungen der Rotation und vier zusätzliche Audioprüfungen. Alle neun Techniken, tatsächliche Kosten/Wirkungen, Zielbedingungen, Abbruch, Abklingzeiten, Auswahl/Speicherung, alte Checkpoints und temporäre Grafikobjekte sind enthalten.
-- Alle 64 Startvarianten je Klasse vergleichen Live und Skip. Kombinationen werden über alle vier Gebiete geprüft. Dies ist kein vollständiger Beweis jeder späteren Ausrüstungskombination.
+- Alle 64 Startvarianten je Klasse vergleichen Live und Skip, auch wenn zwei Fähigkeiten gleichzeitig bereit sind. Kombinationen werden über alle vier Gebiete geprüft. Dies ist kein vollständiger Beweis jeder späteren Ausrüstungskombination.
 - **Realer Android-Emulatorlauf** (API 36, 1280×720): Arcanist, Etage 1, unveränderte Startausrüstung. Starfall per Touch in Platz I, Lightning in Platz II. Sieg nach 70,7 s Simulationszeit, 380 Leben, 123 Mana, zweimal Starfall, einmal Lightning. Reguläre Beute: seltene Veilwalker Treads. Keine erhöhten Testwerte.
 - Screenshots: `build/previews/android-012-*.png`; Ereignisse: `build/reports/android-012-skills.log`. Ein 85-Sekunden-Mitschnitt zeigt Auswahlabschluss, automatischen Dungeonlauf und Beute (`build/previews/emberfall-012-gameplay.mp4`, ohne Audio).
 - Der bestehende Fortschrittsbot gewann mit den Standardtechniken 480 ausgewählte Läufe je Klasse: Vowkeeper nächste Etage 90 / 18,06 simulierte Stunden, Arcanist 97 / 12,36 Stunden, Ranger 97 / 11,58 Stunden. Eine Beutefolge, ein Ausrüstungsalgorithmus; keine vollständige Klassenbalance. Rohdaten: `build/reports/balance-012-0.log`.

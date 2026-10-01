@@ -39,7 +39,7 @@ const CLASS_DATA := {
 		"primary": "Strength", "secondary": "Vitality", "ability": "Ember Oath",
 		"base": {"Strength": 18, "Dexterity": 8, "Intellect": 6, "Vitality": 16, "Spirit": 10},
 		"color": Color("d2ad70"), "tagline": "Front line • oathbound bruiser",
-		"passive": "Cleave nearby foes; Ember Oath heals 8% Life and grants Guard for 2.8s. Cooldown: 5.5s."
+		"passive": "Innate: 20% more Life and Armor. Ember Oath heals 8% Life, guards for 2.8s and cleaves nearby foes (5.5s cooldown)."
 	},
 	"Arcanist": {
 		"primary": "Intellect", "secondary": "Spirit", "ability": "Veil Nova",
@@ -63,6 +63,8 @@ const QUALITY_COLORS := {
 const MAX_OFFLINE_SECONDS := 24 * 60 * 60
 const MAX_BAG_SIZE := 20
 const MAX_TEMPER_RANK := 5
+const RUN_SEED_MODULUS := 2147483647
+const MAX_PROFILE_SEED := 2147483646
 
 var clock_source: Callable = Time.get_unix_time_from_system
 
@@ -91,6 +93,7 @@ var trial_cleared := 0
 var world_tab := "campaign"
 var run_reward: Dictionary = {}
 var expedition_serial := 1
+var world_seed := 0
 var expedition: RefCounted
 var auto_repeat := false
 var last_combat_save := 0.0
@@ -275,7 +278,7 @@ func _build_header() -> Control:
 	bar.add_child(_resource_chip("◈", "%s GOLD" % _short_number(player_gold), GOLD))
 	var options:=_button("OPTIONS",PANEL_LIGHT,10,_show_settings)
 	options.name="OpenSettings"
-	options.custom_minimum_size=Vector2(86,34)
+	options.custom_minimum_size=Vector2(86,_minimum_button_height(34))
 	options.size_flags_horizontal=Control.SIZE_SHRINK_END
 	bar.add_child(options)
 	return bar
@@ -326,7 +329,7 @@ func _build_hero_rail() -> Control:
 	stack.add_child(_centered_label("%s  •  LEVEL %02d" % [character_class.to_upper(), player_level], 9, GOLD, true))
 	stack.add_child(_centered_label(String(CLASS_DATA[character_class].tagline), 9, MUTED))
 	var class_button := _button("CHANGE CLASS",PANEL_LIGHT,10,Callable(self,"_open_build"))
-	class_button.custom_minimum_size.y = 38
+	class_button.custom_minimum_size.y = _minimum_button_height(38)
 	rail.add_child(class_button)
 	return rail
 
@@ -453,7 +456,7 @@ func _build_class_editor(parent: VBoxContainer) -> void:
 	parent.add_child(_section_heading("PLAYABLE CLASSES", "%d ATTRIBUTE POINTS" % attribute_points))
 	for class_key in CLASS_DATA.keys():
 		var class_button := _button(String(class_key).to_upper(), PANEL_LIGHT if character_class != class_key else Color("493b30"), 10, Callable(self, "_select_class").bind(String(class_key)))
-		class_button.custom_minimum_size.y = 42
+		class_button.custom_minimum_size.y = _minimum_button_height(42)
 		classes.add_child(class_button)
 	parent.add_child(classes)
 	parent.add_child(_section_heading("ATTRIBUTE ALLOCATION", "ATTRIBUTES ALSO RAISE ABILITY RANK"))
@@ -533,6 +536,7 @@ func _build_run() -> void:
 	arena.animation_enabled = run_active
 	arena.battery_mode = preferences.battery
 	arena.damage_numbers = preferences.numbers
+	arena.reduced_motion = preferences.reduced_motion
 	arena.simulation_advanced.connect(_on_combat_advanced)
 	arena.state_changed.connect(_on_dungeon_state_changed)
 	add_child(arena)
@@ -558,26 +562,26 @@ func _build_run() -> void:
 	var hero_stack := VBoxContainer.new()
 	hero_panel.add_child(hero_stack)
 	hero_stack.add_child(_label("NYRA  /  LV. %d" % player_level,15,PALE,true))
-	hero_stack.add_child(_label(character_class.to_upper(),9,GOLD,true))
+	hero_stack.add_child(_label(character_class.to_upper(),10,GOLD,true))
 	combat_hud.hp = _progress_bar(run_health,int(_combat_stats().max_hp),RED,9)
 	hero_stack.add_child(combat_hud.hp)
 	combat_hud.mana = _progress_bar(run_mana,int(_combat_stats().max_mana),Color("5f91c4"),5)
 	hero_stack.add_child(combat_hud.mana)
-	combat_hud.life = _label("",9,MUTED)
+	combat_hud.life = _label("",10,MUTED)
 	hero_stack.add_child(combat_hud.life)
-	combat_hud.skill = _label("",9,GOLD)
+	combat_hud.skill = _label("",10,GOLD)
 	hero_stack.add_child(combat_hud.skill)
 	if character_class=="Arcanist" and float(expedition.stats.get("mana_guard",0.0))>0.0:
-		combat_hud.ward = _label("",8,Color("ac9bdc"))
+		combat_hud.ward = _label("",9,Color("ac9bdc"))
 		hero_stack.add_child(combat_hud.ward)
 	if expedition.uses_rotation():
 		combat_hud.techniques={}
 		for key in expedition.stats.skill_loadout:
-			var status := _label("",8,Color(Skills.DEFINITIONS[key].color))
+			var status := _label("",9,Color(Skills.DEFINITIONS[key].color))
 			status.name="TechniqueStatus_"+key
 			hero_stack.add_child(status)
 			combat_hud.techniques[key]=status
-		combat_hud.guard=_label("",8,GREEN)
+		combat_hud.guard=_label("",9,GREEN)
 		hero_stack.add_child(combat_hud.guard)
 	var top_gap := Control.new()
 	top_gap.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -601,19 +605,19 @@ func _build_run() -> void:
 		route_map.name="ExpeditionMap"
 		route_map.simulation=expedition
 		objective.add_child(route_map)
-		combat_hud.room = _label("",10,GOLD,true)
+		combat_hud.room = _label("",11,GOLD,true)
 		objective.add_child(combat_hud.room)
-		combat_hud.objective = _label("",8,MUTED)
+		combat_hud.objective = _label("",10,MUTED)
 		combat_hud.objective.custom_minimum_size.x=190
 		combat_hud.objective.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 		objective.add_child(combat_hud.objective)
-	combat_hud.encounter = _label("",10,PALE,true)
+	combat_hud.encounter = _label("",11,PALE,true)
 	objective.add_child(combat_hud.encounter)
-	combat_hud.boss = _label("",9,Color("f3aa82"),true)
+	combat_hud.boss = _label("",10,Color("f3aa82"),true)
 	objective.add_child(combat_hud.boss)
 	var options:=_button("OPTIONS / PAUSE",PANEL_LIGHT,9,_show_settings)
 	options.name="OpenSettings"
-	options.custom_minimum_size.y=34
+	options.custom_minimum_size.y=_minimum_button_height(34)
 	objective.add_child(options)
 	var spacer := Control.new()
 	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -628,22 +632,22 @@ func _build_run() -> void:
 	bottom.add_child(status_panel)
 	var status := VBoxContainer.new()
 	status_panel.add_child(status)
-	combat_hud.state = _label("AUTO • ENTERING THE DUNGEON",11,GOLD,true)
+	combat_hud.state = _label("AUTO • ENTERING THE DUNGEON",12,GOLD,true)
 	status.add_child(combat_hud.state)
-	combat_hud.enemy = _label("",10,PALE)
+	combat_hud.enemy = _label("",11,PALE)
 	status.add_child(combat_hud.enemy)
 	combat_hud.enemy_hp = _progress_bar(enemy_health,enemy_max_health,RED,5)
 	status.add_child(combat_hud.enemy_hp)
 	combat_hud.pause = _button("Ⅱ  PAUSE",Color("26323b"),11,Callable(self,"_toggle_run_pause"))
-	combat_hud.pause.custom_minimum_size = Vector2(112,48)
+	combat_hud.pause.custom_minimum_size = Vector2(112,_minimum_button_height(48))
 	combat_hud.pause.size_flags_horizontal = Control.SIZE_SHRINK_END
 	bottom.add_child(combat_hud.pause)
 	combat_hud.repeat = _button("",Color("304638"),10,Callable(self,"_toggle_repeat"))
-	combat_hud.repeat.custom_minimum_size = Vector2(110,48)
+	combat_hud.repeat.custom_minimum_size = Vector2(110,_minimum_button_height(48))
 	combat_hud.repeat.size_flags_horizontal = Control.SIZE_SHRINK_END
 	bottom.add_child(combat_hud.repeat)
 	var skip := _button("SKIP TO LOOT  »",Color("713c32"),11,Callable(self,"_skip_run"))
-	skip.custom_minimum_size = Vector2(160,48)
+	skip.custom_minimum_size = Vector2(160,_minimum_button_height(48))
 	skip.size_flags_horizontal = Control.SIZE_SHRINK_END
 	bottom.add_child(skip)
 	_sync_combat_hud()
@@ -740,11 +744,12 @@ func _build_navigation() -> Control:
 func _nav_button(icon: String, caption: String, destination: String) -> Control:
 	var button := Button.new()
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	button.custom_minimum_size = Vector2(0, 40)
+	button.set_meta("emberfall_base_font_size",11)
+	button.add_theme_font_size_override("font_size",_scaled_font_size(11))
+	button.custom_minimum_size = Vector2(0,_minimum_button_height(40))
 	button.flat = true
 	button.focus_mode = Control.FOCUS_NONE
 	button.text = "%s   %s" % [icon, caption]
-	button.add_theme_font_size_override("font_size", 11)
 	button.add_theme_color_override("font_color", GOLD if page == destination else MUTED)
 	button.pressed.connect(_navigate.bind(destination))
 	return button
@@ -812,7 +817,7 @@ func _temper_button(slot: String, item: Dictionary) -> Button:
 	var maxed := rank >= MAX_TEMPER_RANK
 	var cost := _temper_cost(item)
 	var button := _button("MAX" if maxed else "TEMPER\n%d G" % cost, Color("493b30"), 8, Callable(self, "_temper_equipment").bind(slot))
-	button.custom_minimum_size = Vector2(76, 46)
+	button.custom_minimum_size = Vector2(76,_minimum_button_height(46))
 	button.size_flags_horizontal = Control.SIZE_SHRINK_END
 	button.disabled = maxed or player_gold < cost
 	return button
@@ -890,10 +895,11 @@ func _button(caption: String, fill: Color, font_size: int, action: Callable) -> 
 	var button := Button.new()
 	button.mouse_filter=Control.MOUSE_FILTER_PASS
 	button.text = caption
-	button.custom_minimum_size = Vector2(0, 46)
+	button.set_meta("emberfall_base_font_size",font_size)
+	button.add_theme_font_size_override("font_size",_scaled_font_size(font_size))
+	button.custom_minimum_size = Vector2(0,_minimum_button_height(46))
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	button.focus_mode = Control.FOCUS_NONE
-	button.add_theme_font_size_override("font_size", font_size)
 	button.add_theme_color_override("font_color", PALE)
 	button.add_theme_color_override("font_hover_color", Color.WHITE)
 	button.add_theme_color_override("font_pressed_color", GOLD)
@@ -938,12 +944,36 @@ func _panel(fill: Color, edge: Color, radius: int) -> PanelContainer:
 func _label(copy: String, font_size: int, color: Color, bold: bool = false) -> Label:
 	var label := Label.new()
 	label.text = copy
-	label.add_theme_font_size_override("font_size", font_size)
+	label.set_meta("emberfall_base_font_size",font_size)
+	label.add_theme_font_size_override("font_size",_scaled_font_size(font_size))
 	label.add_theme_color_override("font_color", color)
 	if bold:
 		label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.25))
 	label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	return label
+
+func _compact_layout() -> bool:
+	var window_size := DisplayServer.window_get_size()
+	return window_size.x <= 960 or window_size.y <= 540
+
+func _scaled_font_size(base_size: int) -> int:
+	var compact:=_compact_layout()
+	var scale := 1.2 if compact else 1.0
+	if preferences.get("large_text",false):
+		scale=maxf(scale,1.35 if compact else 1.15)
+	return maxi(1,roundi(float(base_size)*scale))
+
+func _minimum_button_height(base_size: int) -> int:
+	var compact:=_compact_layout()
+	var target:=base_size
+	if compact: target=maxi(target,52)
+	if preferences.get("large_text",false): target=maxi(target,58 if compact else 48)
+	return target
+
+func _refresh_font_sizes(node: Node) -> void:
+	if node is Control and node.has_meta("emberfall_base_font_size"):
+		node.add_theme_font_size_override("font_size",_scaled_font_size(int(node.get_meta("emberfall_base_font_size"))))
+	for child in node.get_children(): _refresh_font_sizes(child)
 
 func _paragraph_label(copy: String, font_size: int, color: Color, bold: bool = false) -> Label:
 	var label := _label(copy, font_size, color, bold)
@@ -1000,8 +1030,10 @@ func _combat_stats(loadout: Dictionary = {}) -> Dictionary:
 		armor += int(item.get("armor", 0))
 		gear_power += int(item.get("power", 0))
 		gear_crit += float(item.get("stats", {}).get("Crit", 0))
+	if character_class == "Vowkeeper": armor = int(float(armor) * 1.2)
 	var attack := 52 + weapon_power + primary_value * 5
 	var max_hp := 100 + int(attributes.Vitality) * 14
+	if character_class == "Vowkeeper": max_hp = int(float(max_hp) * 1.2)
 	var max_mana := 45 + int(attributes.Spirit) * 9 + int(attributes.Intellect) * 3
 	var crit_scale := 0.35
 	if character_class == "Ranger":
@@ -1023,7 +1055,7 @@ func _combat_stats(loadout: Dictionary = {}) -> Dictionary:
 			mana_cost = 12 + rank * 2
 			class_mitigation = int(attributes.Vitality / 18)
 	var power := attack + armor * 2 + int(attributes.Intellect) * 3 + int(attributes.Vitality) * 2
-	return {"attributes": attributes, "attack": attack, "max_hp": max_hp, "max_mana": max_mana, "armor": armor, "crit": crit, "ability_damage": ability_damage, "mana_cost": mana_cost, "class_mitigation": class_mitigation, "mana_guard":0.35 if character_class=="Arcanist" else 0.0, "skill_rotation":1, "skill_loadout":Skills.normalize(character_class,skill_loadouts.get(character_class)), "dungeon_journey":1, "boss_patterns":1, "arcane_tactics":1 if character_class=="Arcanist" else 0, "power": power, "gear_power": gear_power}
+	return {"attributes": attributes, "attack": attack, "max_hp": max_hp, "max_mana": max_mana, "armor": armor, "crit": crit, "ability_damage": ability_damage, "mana_cost": mana_cost, "class_mitigation": class_mitigation, "mana_guard":0.35 if character_class=="Arcanist" else 0.0, "skill_rotation":1, "skill_loadout":Skills.normalize(character_class,skill_loadouts.get(character_class)), "dungeon_journey":1, "dungeon_generation":6, "route_pattern_version":4, "auto_target_variance":1, "boss_patterns":1, "arcane_tactics":1 if character_class=="Arcanist" else 0, "power": power, "gear_power": gear_power}
 
 func _hero_power() -> int:
 	return int(_combat_stats().power)
@@ -1134,8 +1166,19 @@ func _new_expedition(target_floor: int, serial: int, rules: Dictionary = {}) -> 
 	var simulation := Expedition.new()
 	var values:=_combat_stats()
 	if not rules.is_empty(): values.expedition_contract=rules.duplicate(true)
-	simulation.setup(character_class,values,target_floor,String(_region_data(target_floor).boss),1979+serial*104729)
+	simulation.setup(character_class,values,target_floor,String(_region_data(target_floor).boss),_run_seed_for_serial(serial))
 	return simulation
+
+func _new_profile_seed() -> int:
+	return randi_range(1,MAX_PROFILE_SEED)
+
+func _run_seed_for_serial(serial: int) -> int:
+	if world_seed<=0 or world_seed>MAX_PROFILE_SEED:
+		world_seed=_new_profile_seed()
+	# Every save gets its own deterministic sequence. Serial and profile seed both
+	# contribute to the full loot seed; layout selection remains a reproducible bank.
+	var mixed_seed:=posmod(world_seed*48271+maxi(1,serial)*104729+1979,RUN_SEED_MODULUS)
+	return maxi(1,mixed_seed)
 
 func _sync_model_state() -> void:
 	run_stage = mini(expedition.stage,run_max_stages)
@@ -1260,9 +1303,14 @@ func _complete_run() -> void:
 	last_run_floor = run_floor
 	run_loot.clear()
 	_grant_expedition_rewards(true,run_floor,false,expedition.run_seed,expedition.class_key,expedition.contract())
+	_present_recovered_gear()
 	page = "loot"
 	_save_progress()
 	_finish_run_presentation()
+
+func _present_recovered_gear() -> void:
+	if skipping_run or not run_succeeded or run_loot.is_empty() or not is_instance_valid(run_arena): return
+	run_arena.world.show_recovered_gear(run_loot)
 
 func _fail_run() -> void:
 	if page!="run": return
@@ -1286,7 +1334,7 @@ func _finish_run_presentation() -> void:
 		if not run_succeeded:
 			run_arena.world.hero.die()
 	combat_hud.state.text = "DUNGEON CLEARED • COLLECTING LOOT" if run_succeeded else "EXPEDITION ENDED"
-	get_tree().create_timer(1.2).timeout.connect(func():
+	get_tree().create_timer(2.2).timeout.connect(func():
 		finish_pending = false
 		if auto_repeat and run_succeeded:
 			_start_run(run_floor,expedition.contract())
@@ -1374,12 +1422,12 @@ func _add_experience(amount: int) -> void:
 
 func _simulate_offline_time(available_seconds: int) -> void:
 	var remaining := mini(available_seconds,MAX_OFFLINE_SECONDS)
-	# Combat has 64 reproducible critical-roll patterns. During one AFK batch,
-	# floor/class/equipment stay fixed, so each pattern is simulated exactly once.
+	# Current combat and dungeon layout share 256 reproducible pattern IDs. During one
+	# AFK batch, floor/class/equipment stay fixed, so each pattern runs once.
 	# Loot keeps its unique run seed. This is a cache, never a success estimate.
 	var outcomes: Dictionary = {}
 	while remaining>=30:
-		var seed_value := 1979+expedition_serial*104729
+		var seed_value := _run_seed_for_serial(expedition_serial)
 		var pattern := posmod(seed_value,Expedition.COMBAT_VARIANTS)
 		if not outcomes.has(pattern):
 			var simulation := _new_expedition(farm_floor,expedition_serial,_farm_contract())
@@ -1433,6 +1481,7 @@ func _load_progress() -> void:
 	var save: ConfigFile = save_store.load_save()
 	save_notice = save_store.notice
 	if save==null:
+		world_seed = _new_profile_seed()
 		last_saved_at = int(clock_source.call())
 		return
 	preferences = Preferences.normalize(save.get_value("settings","preferences",preferences))
@@ -1477,6 +1526,8 @@ func _load_progress() -> void:
 	if hunt_slot not in GEAR_SLOTS: hunt_slot="Weapon"
 	trial_cleared=clampi(int(save.get_value("hero","trial_cleared",0)),0,Contract.MAX_TRIAL)
 	expedition_serial = maxi(1,int(save.get_value("hero","expedition_serial",1)))
+	var saved_world_seed: Variant=save.get_value("hero","world_seed") if save.has_section_key("hero","world_seed") else null
+	world_seed=int(saved_world_seed) if saved_world_seed is int and saved_world_seed>0 and saved_world_seed<=MAX_PROFILE_SEED else _new_profile_seed()
 	farm_enabled = bool(save.get_value("idle", "farm_enabled", farm_enabled))
 	last_saved_at = int(save.get_value("idle", "saved_at", clock_source.call()))
 	var run_data = save.get_value("run","snapshot","")
@@ -1506,13 +1557,15 @@ func _normalize_item(item: Dictionary, default_slot: String) -> Dictionary:
 	normalized["temper"] = clampi(int(normalized.get("temper", 0)), 0, MAX_TEMPER_RANK)
 	return normalized
 
-func _save_progress() -> void:
+func _build_save_payload() -> ConfigFile:
 	var save := ConfigFile.new()
 	save.set_value("settings","preferences",preferences)
 	save.set_value("hero","onboarding_complete",onboarding_complete)
 	save.set_value("hero", "class", character_class)
 	save.set_value("hero","skill_loadouts",skill_loadouts)
 	save.set_value("hero","expedition_serial",expedition_serial)
+	if world_seed<=0 or world_seed>MAX_PROFILE_SEED: world_seed=_new_profile_seed()
+	save.set_value("hero","world_seed",world_seed)
 	save.set_value("idle","farm_floor",farm_floor)
 	save.set_value("idle","farm_mode",farm_mode)
 	save.set_value("idle","hunt_slot",hunt_slot)
@@ -1541,11 +1594,127 @@ func _save_progress() -> void:
 		save.set_value("run","snapshot",expedition.encode_snapshot())
 		save.set_value("run","active",run_active)
 		save.set_value("run","repeat",auto_repeat)
+	return save
+
+func _save_progress() -> void:
+	var save:=_build_save_payload()
 	var status: Error = save_store.save_game(save)
 	last_save_ok = status==OK
 	if status!=OK:
 		save_notice = save_store.notice if not save_store.notice.is_empty() else "Progress could not be saved. Existing checkpoints are preserved. (%s)" % error_string(status)
 		_show_save_notice()
+
+func _create_backup_code() -> String:
+	if save_store.write_blocked:
+		save_notice="A backup cannot be made because this local save needs recovery."
+		return ""
+	var payload:=_build_save_payload()
+	var status: Error=save_store.save_game(payload)
+	if status!=OK:
+		last_save_ok=false
+		save_notice="Progress could not be saved, so no backup code was created."
+		return ""
+	last_save_ok=true
+	var code:=save_store.create_backup_code(payload)
+	if code.is_empty(): save_notice="This save is too large to export as a backup code."
+	else: save_notice="Backup code ready. Copy it and keep it private."
+	return code
+
+func _restore_backup_code(code: String) -> bool:
+	if page!="camp": return false
+	var payload: ConfigFile=save_store.parse_backup_code(code)
+	if payload==null:
+		save_notice="That backup code is invalid, incomplete or damaged."
+		return false
+	if not _valid_backup_payload(payload):
+		save_notice="That backup belongs to an incompatible or damaged save. Your current progress is unchanged."
+		return false
+	return _install_backup_payload(payload)
+
+func _restore_local_recovery_copy() -> bool:
+	if page!="camp" and not (page=="run" and not run_active): return false
+	var payload: ConfigFile=save_store.load_recovery_copy()
+	if payload==null or not _valid_backup_payload(payload):
+		save_notice="No valid local recovery copy is available."
+		return false
+	return _install_backup_payload(payload)
+
+func _install_backup_payload(payload: ConfigFile) -> bool:
+	var status: Error=save_store.restore_backup(payload)
+	if status!=OK:
+		save_notice="The backup could not be installed. Your current progress is preserved."
+		return false
+	last_save_ok=true
+	save_notice=save_store.notice
+	return true
+
+func _valid_backup_payload(save: ConfigFile) -> bool:
+	if not save.has_section("hero") or not save.has_section("idle"): return false
+	var saved_class: Variant=save.get_value("hero","class",null)
+	if not saved_class is String or not CLASS_DATA.has(saved_class): return false
+	var integer_fields: Array=[
+		["hero","gold",0,2000000000],["hero","shards",0,2000000000],["hero","level",1,100000],
+		["hero","xp",0,2000000000],["hero","attribute_points",0,2000000],["hero","floor",1,100000],
+		["hero","last_run_floor",0,100000],["hero","expedition_serial",1,2000000000],["hero","trial_cleared",0,Contract.MAX_TRIAL],
+		["idle","saved_at",0,5000000000],["idle","ash",0,2000000000],["idle","xp",0,2000000000],
+		["idle","runs",0,2000000],["idle","fails",0,2000000],["idle","gear",0,2000000],
+		["idle","salvaged",0,2000000],["idle","progress_seconds",0,int(Expedition.MAX_DURATION)],
+		["idle","farm_floor",1,100000]
+	]
+	for field in integer_fields:
+		var value: Variant=save.get_value(field[0],field[1],null)
+		if not value is int or value<int(field[2]) or value>int(field[3]): return false
+	if save.has_section_key("hero","world_seed"):
+		var saved_world_seed: Variant=save.get_value("hero","world_seed",null)
+		if not saved_world_seed is int or saved_world_seed<1 or saved_world_seed>MAX_PROFILE_SEED: return false
+	if not save.get_value("idle","farm_enabled",null) is bool: return false
+	var mode: Variant=save.get_value("idle","farm_mode",null)
+	var hunt_slot: Variant=save.get_value("idle","hunt_slot",null)
+	if not mode is String or not mode in ["campaign","hunt"]: return false
+	if not hunt_slot is String or not GEAR_SLOTS.has(hunt_slot): return false
+	var attributes: Variant=save.get_value("hero","allocated_attributes",null)
+	if not attributes is Dictionary: return false
+	for key in ATTRIBUTES:
+		var amount: Variant=attributes.get(key,0)
+		if not amount is int or amount<0 or amount>1000000: return false
+	var loadouts: Variant=save.get_value("hero","skill_loadouts",null)
+	if not loadouts is Dictionary: return false
+	var preferences: Variant=save.get_value("settings","preferences",null)
+	if not preferences is Dictionary: return false
+	var equipment: Variant=save.get_value("hero","equipment",null)
+	var inventory: Variant=save.get_value("hero","inventory",null)
+	if not equipment is Dictionary or not inventory is Array or inventory.size()>MAX_BAG_SIZE: return false
+	var aliases: Dictionary={"Blade":"Weapon","Cowl":"Helmet","Mantle":"Chest","Relic":"Amulet"}
+	for slot in equipment:
+		var normalized_slot: String=String(aliases.get(String(slot),String(slot)))
+		if not GEAR_SLOTS.has(normalized_slot) or not _valid_backup_item(equipment[slot],normalized_slot): return false
+	for item in inventory:
+		if not _valid_backup_item(item,"Weapon"): return false
+	if save.has_section("run"):
+		var snapshot: Variant=save.get_value("run","snapshot","")
+		if not snapshot is String: return false
+		if not snapshot.is_empty():
+			if not save.get_value("run","active",null) is bool or not save.get_value("run","repeat",null) is bool: return false
+			var restored:=Expedition.new()
+			if not restored.restore_encoded(snapshot) or restored.finished or restored.class_key!=saved_class: return false
+	return true
+
+func _valid_backup_item(value: Variant,default_slot: String) -> bool:
+	if not value is Dictionary: return false
+	var item_slot: Variant=value.get("slot",default_slot)
+	if not item_slot is String or not item_slot in GEAR_SLOTS: return false
+	for key in ["power","tier","armor","sell","temper"]:
+		if not value.has(key): continue
+		var amount: Variant=value[key]
+		if not (amount is int or amount is float) or not is_finite(float(amount)) or absf(float(amount))>2000000000.0: return false
+	var item_stats: Variant=value.get("stats",{})
+	if not item_stats is Dictionary: return false
+	for key in item_stats:
+		var amount: Variant=item_stats[key]
+		if not (amount is int or amount is float) or not is_finite(float(amount)) or absf(float(amount))>1000000.0: return false
+	for key in ["name","quality","status","affinity"]:
+		if value.has(key) and not value[key] is String: return false
+	return true
 
 
 func _show_save_notice() -> void:
@@ -1570,7 +1739,7 @@ func _show_save_notice() -> void:
 		save_notice = ""
 		toast.queue_free()
 	)
-	dismiss.custom_minimum_size = Vector2(36,36)
+	dismiss.custom_minimum_size = Vector2(36,_minimum_button_height(36))
 	dismiss.size_flags_horizontal = Control.SIZE_SHRINK_END
 	row.add_child(dismiss)
 	add_child(toast)
@@ -1752,13 +1921,14 @@ func _change_preference(key: String,value: Variant,persist: bool=true) -> void:
 	preferences[key]=value
 	preferences=Preferences.normalize(preferences)
 	_apply_preferences()
+	if key=="large_text": _refresh_font_sizes(self)
 	if persist: _save_progress()
 
 func _apply_preferences() -> void:
 	Engine.max_fps=30 if preferences.battery else 60
 	if is_instance_valid(audio): audio.apply_preferences(preferences)
 	if page=="run" and is_instance_valid(run_arena):
-		run_arena.apply_quality(preferences.battery,preferences.numbers)
+		run_arena.apply_quality(preferences.battery,preferences.numbers,preferences.reduced_motion)
 
 func _save_and_exit() -> void:
 	# Opening options temporarily pauses; explicit exit preserves the prior intent.
@@ -1774,7 +1944,7 @@ func _build_skill_editor(parent: VBoxContainer) -> void:
 	var loadout := Skills.normalize(character_class,skill_loadouts.get(character_class))
 	var stats := _combat_stats()
 	parent.add_child(_section_heading("AUTOMATIC SKILL ROTATION","2 TECHNIQUES + SIGNATURE"))
-	parent.add_child(_paragraph_label("Equip two techniques for "+character_class+". Protection reacts to danger; your signature has priority over offensive techniques. Otherwise slot I is tried before slot II. Mana, range and cooldowns still apply.",11,MUTED))
+	parent.add_child(_paragraph_label("Equip two techniques for "+character_class+". Protection reacts to danger, while your signature and attacks follow their situation rules. The expedition seed varies eligible techniques and target choices without making the hero switch targets during a cooldown. Mana, range and cooldowns still apply.",11,MUTED))
 	parent.add_child(_empty_note("ALWAYS EQUIPPED: "+String(CLASS_DATA[character_class].ability)+" • your class signature"))
 	for key in Skills.choices(character_class):
 		var definition: Dictionary=Skills.DEFINITIONS[key]
@@ -1803,7 +1973,7 @@ func _build_skill_editor(parent: VBoxContainer) -> void:
 			var selected: bool=loadout[slot]==key
 			var button := _button(("✓ SLOT " if selected else "EQUIP SLOT ")+("I" if slot==0 else "II"),Color("3c4c3d") if selected else PANEL,10,_equip_technique.bind(key,slot))
 			button.name="EquipTechnique_"+key+"_"+str(slot)
-			button.custom_minimum_size.y=38
+			button.custom_minimum_size.y=_minimum_button_height(38)
 			button.disabled=selected
 			slots.add_child(button)
 

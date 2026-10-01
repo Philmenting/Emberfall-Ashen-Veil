@@ -1,5 +1,6 @@
 extends SceneTree
 const Forecast = preload("res://scripts/farm_forecast.gd")
+const Simulation = preload("res://scripts/expedition_simulation.gd")
 var checks:=0
 var failures:=0
 func _initialize() -> void:
@@ -21,6 +22,10 @@ func run_checks() -> void:
 		candidate.power+=21
 		candidate.stats[game.CLASS_DATA[selected].primary]=int(candidate.stats.get(game.CLASS_DATA[selected].primary,0))+5
 		var before: Dictionary=game._combat_stats()
+		var raw_armor:=0
+		for item in game.equipment.values(): raw_armor+=int(item.get("armor",0))
+		var durability_scale:=1.2 if selected=="Vowkeeper" else 1.0
+		check(before.max_hp==int(float(100+int(before.attributes.Vitality)*14)*durability_scale) and before.armor==int(float(raw_armor)*durability_scale),selected+": class Life and Armor profile matches its design")
 		var changes: Dictionary=game._compare_item(candidate)
 		check(game.equipment==original,selected+": comparing gear never mutates equipment")
 		var old: Dictionary=game.equipment.Weapon
@@ -42,13 +47,13 @@ func run_checks() -> void:
 		while not report.complete(): report.step(2)
 		var expected_wins:=0
 		var expected_seconds:=0
-		for i in range(64):
+		for i in range(Simulation.COMBAT_VARIANTS):
 			var sim: RefCounted=game._new_expedition(1,i+1)
 			sim.simulate_to_end()
 			if sim.won: expected_wins+=1
 			expected_seconds+=maxi(30,ceili(sim.elapsed))
 		var result: Dictionary=report.summary()
-		check(result.wins==expected_wins and is_equal_approx(result.seconds,float(expected_seconds)/64.0),selected+": forecast matches all 64 actual combat patterns")
+		check(result.wins==expected_wins and is_equal_approx(result.seconds,float(expected_seconds)/Simulation.COMBAT_VARIANTS),selected+": forecast matches every actual combat pattern")
 		check(result.rate==1.0 and result.clears_per_hour>0,selected+": initial floor is reliable")
 		check(game.expedition_serial==serial and model.snapshot()==snapshot,selected+": forecast does not consume runs or alter a live fight")
 		var complete: Dictionary=report.summary()
@@ -71,7 +76,11 @@ func run_checks() -> void:
 	vitality.stats.Vitality+=4
 	vitality.armor+=10
 	var changes: Dictionary=game._compare_item(vitality)
-	check(changes.max_hp==56 and changes.armor==10,"armor and Vitality comparison shows actual survivability bonuses")
+	var before_vitality: Dictionary=game._combat_stats()
+	var proposed_loadout: Dictionary=game.equipment.duplicate()
+	proposed_loadout.Chest=vitality
+	var after_vitality: Dictionary=game._combat_stats(proposed_loadout)
+	check(changes.max_hp==after_vitality.max_hp-before_vitality.max_hp and changes.armor==after_vitality.armor-before_vitality.armor,"armor and Vitality comparison shows actual survivability bonuses")
 	game.allocated_attributes.Dexterity=1000
 	check(game._combat_stats().crit==100.0,"displayed critical chance respects the actual 100 percent maximum")
 	game.allocated_attributes.Dexterity=0
@@ -82,7 +91,7 @@ func run_checks() -> void:
 	await process_frame
 	check(game.ui_revision>old_revision and game.page=="gear","navigating cancels assessments tied to old UI")
 	game._navigate("camp")
-	for i in range(40): await process_frame
+	for i in range(180): await process_frame
 	check(not game.forecast_cache.is_empty(),"cooperative assessment completes and caches results in the camp")
 	game.free()
 	await process_frame

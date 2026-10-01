@@ -6,6 +6,7 @@ signal state_changed(description: String)
 const DungeonWorld = preload("res://scripts/dungeon_world.gd")
 var battery_mode := false
 var damage_numbers := true
+var reduced_motion := false
 var render_container: SubViewportContainer
 var render_viewport: SubViewport
 
@@ -37,6 +38,7 @@ func _ready() -> void:
 	world = DungeonWorld.new()
 	world.character_class = character_class
 	world.region_index = region_index
+	world.reduced_motion = reduced_motion
 	world.active = animation_enabled
 	world.simulation = simulation
 	world.simulation_advanced.connect(func(events: Array): simulation_advanced.emit(events))
@@ -49,14 +51,16 @@ func _ready() -> void:
 	shading.shader = preload("res://assets/shaders/dungeon_atmosphere.gdshader")
 	atmosphere.material = shading
 	add_child(atmosphere)
-	apply_quality(battery_mode,damage_numbers)
+	apply_quality(battery_mode,damage_numbers,reduced_motion)
 
 
-func apply_quality(battery: bool,numbers: bool) -> void:
+func apply_quality(battery: bool,numbers: bool,motion_reduced: bool=false) -> void:
 	battery_mode=battery
 	damage_numbers=numbers
+	reduced_motion=motion_reduced
 	if not is_instance_valid(render_viewport): return
 	render_container.stretch_shrink=2 if battery else 1
 	render_viewport.msaa_3d=Viewport.MSAA_DISABLED if battery else Viewport.MSAA_2X
 	world.damage_numbers=numbers
+	world.reduced_motion=motion_reduced
 	world.set_shadows(not battery)

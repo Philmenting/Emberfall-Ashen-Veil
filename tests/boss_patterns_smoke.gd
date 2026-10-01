@@ -15,13 +15,16 @@ func check(value: bool, description: String) -> void:
 		failures+=1
 		push_error("FAIL: "+description)
 
-func model(region: int, selected: String="Vowkeeper", variant: int=0) -> RefCounted:
+func model(region: int, selected: String="Vowkeeper", variant: int=0, procedural: bool=false) -> RefCounted:
 	var stats: Dictionary={"max_hp":10000,"max_mana":1000,"attack":300,"ability_damage":800,"mana_cost":25,"crit":5.0,"armor":0,"class_mitigation":0,"attributes":{"Spirit":20},"boss_patterns":1}
+	if procedural:
+		stats["dungeon_journey"]=1
+		stats["dungeon_generation"]=2
 	var sim:=Sim.new()
 	sim.setup(selected,stats,region*10+1,"Pattern Boss",1979+variant*104729)
 	return sim
 
-func boss_case(region: int, awakened: bool=false) -> RefCounted:
+func boss_case(region: int, awakened: bool=false, variant: int=0) -> RefCounted:
 	var sim:=model(region)
 	sim.stage=5
 	sim.phase="combat"
@@ -30,7 +33,7 @@ func boss_case(region: int, awakened: bool=false) -> RefCounted:
 	sim.waves[5][2].hp=0
 	var boss: Dictionary=sim.waves[5][0]
 	boss.awakened=awakened
-	boss.warning=Patterns.create(region,boss.pos,sim.hero_pos,awakened)
+	boss.warning=Patterns.create(region,boss.pos,sim.hero_pos,awakened,variant)
 	boss.cooldown=999.0
 	boss.special_cd=999.0
 	return sim
@@ -44,6 +47,37 @@ func run_checks() -> void:
 	check(grave.zones.size()==3 and Patterns.threatens(grave,Vector2(2.3,3)) and not Patterns.threatens(grave,Vector2(0,5)),"grave bloom has three distinct blast circles")
 	var cross: Dictionary=Patterns.create(3,Vector2.ZERO,Vector2(0,3),false)
 	check(Patterns.threatens(cross,Vector2(4,3)) and Patterns.threatens(cross,Vector2(0,7)) and not Patterns.threatens(cross,Vector2(2,5)),"furnace cross leaves safe diagonal sectors")
+	for region in range(4):
+		var standard:=Patterns.create(region,Vector2.ZERO,Vector2(0,3),false,0)
+		var alternate:=Patterns.create(region,Vector2.ZERO,Vector2(0,3),false,1)
+		check(standard.zones!=alternate.zones and Patterns.valid(standard) and Patterns.valid(alternate),"region %d has two distinct, readable boss telegraphs" % region)
+		var alternate_case:=boss_case(region,false,1)
+		var alternate_boss: Dictionary=alternate_case.waves[5][0]
+		var alternate_warning: Dictionary=alternate_boss.warning.duplicate(true)
+		var alternate_safe: Vector2=alternate_case._safe_boss_escape()
+		check(not Patterns.threatens(alternate_warning,alternate_safe,0.3),"region %d alternate attack has a reachable safe point" % region)
+		alternate_boss.warning.left=0.8
+		alternate_case._auto_hero()
+		while not alternate_boss.warning.is_empty(): alternate_case.advance(0.1)
+		check(alternate_case.hero_hp==10000 and not Patterns.threatens(alternate_warning,alternate_case.hero_pos),"region %d automatic dodge avoids its alternate attack" % region)
+		var first_run:=model(region,"Vowkeeper",42,true)
+		var replay:=model(region,"Vowkeeper",42,true)
+		var first_boss: Dictionary=first_run.waves[5][0]
+		var replay_boss: Dictionary=replay.waves[5][0]
+		first_run.stage=5; first_run.phase="combat"; first_run.hero_pos=Vector2(0,-60); first_boss.special_cd=0.0
+		replay.stage=5; replay.phase="combat"; replay.hero_pos=Vector2(0,-60); replay_boss.special_cd=0.0
+		first_run._tick_enemy(first_boss); replay._tick_enemy(replay_boss)
+		var initial_variant:=int(first_boss.warning.variant)
+		check(initial_variant==int(replay_boss.warning.variant),"region %d boss pattern selection replays from its seed" % region)
+		first_run.journey.seal_broken=true
+		var resumed:=Sim.new()
+		check(resumed.restore_encoded(first_run.encode_snapshot()) and resumed.snapshot()==first_run.snapshot(),"region %d selected warning restores exactly" % region)
+		first_boss.warning={}; first_boss.special_cd=0.0
+		first_run._tick_enemy(first_boss)
+		var resumed_boss: Dictionary=resumed.waves[5][0]
+		resumed_boss.warning={}; resumed_boss.special_cd=0.0
+		resumed._tick_enemy(resumed_boss)
+		check(int(first_boss.warning.variant)!=initial_variant and resumed_boss.warning.variant==first_boss.warning.variant,"region %d boss alternates shape after a saved warning" % region)
 	for region in range(4):
 		var sim:=boss_case(region)
 		var boss: Dictionary=sim.waves[5][0]
@@ -142,5 +176,8 @@ func run_checks() -> void:
 		var invalid:=Patterns.create(0,Vector2.ZERO,Vector2.ZERO,false)
 		invalid.zones=[malformed]
 		check(not Patterns.valid(invalid),"malformed geometry rejected: "+str(malformed.shape))
+	var invalid_variant:=Patterns.create(0,Vector2.ZERO,Vector2.DOWN,false)
+	invalid_variant.variant=2
+	check(not Patterns.valid(invalid_variant),"unknown boss pattern variant is rejected")
 	print("BOSS PATTERNS SMOKE: ",checks," checks, ",failures," failures")
 	quit(0 if failures==0 else 1)

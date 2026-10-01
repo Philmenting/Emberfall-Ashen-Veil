@@ -11,6 +11,13 @@ config/icon="res://assets/app_icon.png"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 
+[autoload]
+
+Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
+CloudSave="*res://scripts/cloud_save.gd"
+Fellowship="*res://scripts/fellowship_service.gd"
+Progression="*res://scripts/progression_service.gd"
+
 [display]
 
 window/size/viewport_width=960

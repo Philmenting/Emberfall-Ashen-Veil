@@ -73,6 +73,7 @@ func run_checks() -> void:
 	game.clock_source=func(): return 1790516000.0
 	root.add_child(game)
 	game.character_class="Arcanist"
+	game.world_seed=1979
 	check(game._combat_stats().mana_guard==0.35,"new Arcanist expeditions receive the ward stat")
 	var normal_stats: Dictionary=game._combat_stats()
 	game.allocated_attributes.Spirit=10

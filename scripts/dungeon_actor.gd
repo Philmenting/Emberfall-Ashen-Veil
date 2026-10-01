@@ -20,6 +20,8 @@ var clock := 0.0
 var gait_phase := 0.0
 var attack_time := -1.0
 var attack_queued := false
+var attack_style := "basic"
+var queued_attack_style := "basic"
 var impact_time := -1.0
 var death_time := -1.0
 var death_lean := 1.0
@@ -242,12 +244,15 @@ func _leg(side: float) -> Node3D:
 	_box(knee,Vector3(0,-0.365,-0.18),Vector3(0.195,0.07,0.17),materials.edge)
 	return pivot
 
-func strike() -> void:
+func strike(style: String = "basic") -> void:
 	if death_time>=0.0: return
+	var requested_style := style if not style.is_empty() else "basic"
 	if attack_time>=0.0:
 		attack_queued=true
+		queued_attack_style=requested_style
 	else:
 		attack_time=0.0
+		attack_style=requested_style
 
 func react() -> void:
 	if death_time>=0.0 or impact_time>=0.0: return
@@ -298,24 +303,80 @@ func animate(delta: float, walking: bool, horizontal_speed: float = -1.0) -> voi
 		var anticipation:=1.0-smoothstep(0.0,0.27,phase)
 		var follow_through:=smoothstep(0.25,0.48,phase)*(1.0-smoothstep(0.69,1.0,phase))
 		var recovery:=smoothstep(0.67,1.0,phase)
-		right_arm.rotation.x += -0.52*anticipation-1.12*follow_through+0.26*recovery
-		right_arm.rotation.z += 0.18*anticipation-0.34*follow_through
-		left_arm.rotation.x += -0.18*anticipation-0.25*follow_through
-		body.rotation.x += 0.12*anticipation-0.21*follow_through+0.08*recovery
-		body.rotation.y += -0.18*anticipation+0.48*follow_through-0.20*recovery
-		body.position.z += -0.19*follow_through+0.08*recovery
-		if kind in ["Arcanist","hexer"]:
-			right_arm.rotation.x += -0.38*anticipation-0.40*follow_through+0.12*recovery
-			left_arm.rotation.x += -0.55*anticipation-0.44*follow_through
-			body.rotation.y += -0.10*anticipation+0.16*follow_through
-		elif kind=="Ranger":
-			right_arm.rotation.x += -0.34*anticipation-0.54*follow_through
-			left_arm.rotation.x += -0.24*anticipation-0.34*follow_through
-			right_arm.rotation.z += 0.26*anticipation-0.30*follow_through
+		var guarding := attack_style in ["bastion","frost_ward","smoke"]
+		var empowered := attack_style in ["signature","sunder","judgment","chain","starfall","rain","marked"]
+		var power := 1.2 if empowered else 1.0
+		if attack_style=="telegraph": power=1.12
+		match kind:
+			"Vowkeeper":
+				if attack_style=="telegraph":
+					_telegraph_pose(anticipation)
+				elif guarding:
+					# Bring the shield across the chest; the weapon stays ready behind it.
+					left_arm.rotation.x += -0.88*anticipation-0.20*follow_through+0.15*recovery
+					left_arm.rotation.z += -0.16*anticipation+0.28*follow_through
+					right_arm.rotation.x += -0.18*anticipation-0.46*follow_through+0.10*recovery
+					body.rotation.x += 0.10*anticipation-0.12*follow_through
+					body.position.z += 0.06*anticipation
+				else:
+					right_arm.rotation.x += -0.50*anticipation-1.18*power*follow_through+0.26*recovery
+					right_arm.rotation.z += 0.20*anticipation-0.48*power*follow_through
+					left_arm.rotation.x += -0.18*anticipation-0.28*follow_through
+					left_arm.rotation.z += -0.08*anticipation-0.24*follow_through
+					body.rotation.x += 0.16*anticipation-0.31*power*follow_through+0.09*recovery
+					body.rotation.y += -0.26*anticipation+0.66*power*follow_through-0.20*recovery
+					body.position.z += -0.22*power*follow_through+0.08*recovery
+			"Arcanist","hexer":
+				if attack_style=="telegraph":
+					_telegraph_pose(anticipation)
+				elif guarding:
+					left_arm.rotation.x += -0.82*anticipation-0.18*follow_through+0.14*recovery
+					right_arm.rotation.x += -0.70*anticipation-0.22*follow_through+0.12*recovery
+					body.rotation.x += 0.10*anticipation-0.08*follow_through
+					body.rotation.y += -0.14*anticipation
+				else:
+					var overhead := 0.42 if attack_style=="starfall" else 0.0
+					right_arm.rotation.x += (-0.68-overhead)*anticipation-0.45*power*follow_through+0.18*recovery
+					left_arm.rotation.x += (-0.48-overhead*0.65)*anticipation-0.52*power*follow_through+0.12*recovery
+					right_arm.rotation.z += 0.10*anticipation-0.18*follow_through
+					left_arm.rotation.z += -0.12*anticipation+0.16*follow_through
+					body.rotation.x += 0.06*anticipation-0.12*follow_through
+					body.rotation.y += -0.12*anticipation+0.28*follow_through-0.12*recovery
+					body.position.z += 0.04*anticipation+0.05*follow_through
+			"Ranger":
+				if attack_style=="telegraph":
+					_telegraph_pose(anticipation)
+				elif guarding:
+					right_arm.rotation.x += -0.72*anticipation-0.16*follow_through+0.12*recovery
+					left_arm.rotation.x += -0.34*anticipation-0.12*follow_through
+					body.rotation.y += 0.24*anticipation-0.18*follow_through
+					body.position.z += 0.14*anticipation
+				else:
+					var overhead := 0.36 if attack_style=="rain" else 0.0
+					right_arm.rotation.x += (-0.46-overhead)*anticipation-0.68*power*follow_through+0.18*recovery
+					left_arm.rotation.x += -0.30*anticipation-0.62*power*follow_through+0.10*recovery
+					right_arm.rotation.z += 0.34*anticipation-0.26*follow_through
+					left_arm.rotation.z += -0.18*anticipation+0.12*follow_through
+					body.rotation.x += -0.06*anticipation+0.16*follow_through
+					body.rotation.y += 0.16*anticipation-0.34*follow_through+0.10*recovery
+					body.position.z += -0.19*power*follow_through+0.10*recovery
+			_:
+				if attack_style=="telegraph":
+					_telegraph_pose(anticipation)
+				else:
+					var heavy := attack_style=="heavy"
+					var force := 1.0 if heavy else 0.74
+					right_arm.rotation.x += -0.48*anticipation-0.92*force*follow_through+0.24*recovery
+					right_arm.rotation.z += 0.14*anticipation-0.34*force*follow_through
+					left_arm.rotation.x += -0.18*anticipation-0.20*follow_through
+					body.rotation.x += 0.12*anticipation-0.25*force*follow_through+0.08*recovery
+					body.rotation.y += -0.16*anticipation+0.36*force*follow_through-0.13*recovery
+					body.position.z += -0.16*force*follow_through+0.06*recovery
 		if phase>=1.0:
 			if attack_queued:
 				attack_time=0.0
 				attack_queued=false
+				attack_style=queued_attack_style
 			else:
 				attack_time=-1.0
 	if impact_time>=0.0:
@@ -326,6 +387,14 @@ func animate(delta: float, walking: bool, horizontal_speed: float = -1.0) -> voi
 		left_arm.rotation.x-=0.24*flinch
 		right_arm.rotation.x+=0.18*flinch
 		if impact_time>=0.24: impact_time=-1.0
+
+func _telegraph_pose(anticipation: float) -> void:
+	if attack_style!="telegraph": return
+	left_arm.rotation.x += -0.86*anticipation
+	right_arm.rotation.x += -0.98*anticipation
+	left_arm.rotation.z += -0.18*anticipation
+	right_arm.rotation.z += 0.18*anticipation
+	body.rotation.x += 0.12*anticipation
 
 func _build_boss_regalia() -> void:
 	# Each region's boss has a silhouette readable from the following camera.

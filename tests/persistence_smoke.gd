@@ -41,7 +41,48 @@ func new_game(path: String) -> Node:
 
 func run_checks() -> void:
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(folder))
+	var world_one:=new_game(folder+"/world-one")
+	var first_world_seed: int=world_one.world_seed
+	var first_run_seed: int=world_one._run_seed_for_serial(25)
+	check(first_world_seed>0 and first_world_seed<=world_one.MAX_PROFILE_SEED,"new profiles receive an in-range personal dungeon seed")
+	check(first_run_seed==world_one._run_seed_for_serial(25) and first_run_seed!=world_one._run_seed_for_serial(26),"personal dungeon seed produces a stable sequence of distinct runs")
+	world_one._save_progress()
+	world_one.free()
+	world_one=new_game(folder+"/world-one")
+	check(world_one.world_seed==first_world_seed and world_one._run_seed_for_serial(25)==first_run_seed,"profile seed and run sequence survive a cold launch")
+	world_one.free()
+	var world_two:=new_game(folder+"/world-two")
+	check(world_two.world_seed!=first_world_seed and world_two._run_seed_for_serial(25)!=first_run_seed,"separate new profiles start on independent dungeon sequences")
+	world_two.free()
+	var old_profile_store:=Store.new(folder+"/old-profile")
+	var old_profile:=ConfigFile.new()
+	old_profile.set_value("hero","expedition_serial",40)
+	old_profile.set_value("idle","saved_at",test_now)
+	check(old_profile_store.save_game(old_profile)==OK,"pre-seed profile fixture is stored")
+	var migrated_profile:=new_game(folder+"/old-profile")
+	check(migrated_profile.world_seed>0 and migrated_profile._build_save_payload().has_section_key("hero","world_seed"),"older saves get one persisted dungeon seed when loaded")
+	migrated_profile.free()
+	await process_frame
 	var sample := new_game(folder+"/sample")
+	var current_route: RefCounted=sample._new_expedition(1,25)
+	check(current_route.movement_seed()==posmod(current_route.run_seed,Expedition.COMBAT_VARIANTS)+1,"new expeditions share their route with the 256-pattern AFK cache")
+	check(current_route.uses_scouting_routes(),"new expeditions use seed-bound exploration routes with optional side passages")
+	var version_two_route_stats: Dictionary=sample._combat_stats()
+	version_two_route_stats.route_pattern_version=2
+	var version_two_route:=Expedition.new()
+	version_two_route.setup("Vowkeeper",version_two_route_stats,1,"Guardian",123456)
+	check(version_two_route.uses_wandering_routes() and not version_two_route.uses_scouting_routes(),"active version-2 checkpoints keep their original S-bend route")
+	var version_one_route_stats: Dictionary=sample._combat_stats()
+	version_one_route_stats.route_pattern_version=1
+	var version_one_route:=Expedition.new()
+	version_one_route.setup("Vowkeeper",version_one_route_stats,1,"Guardian",123456)
+	check(not version_one_route.uses_wandering_routes(),"active version-1 checkpoints keep their original passage shape")
+	var legacy_route_stats: Dictionary=sample._combat_stats()
+	legacy_route_stats.erase("route_pattern_version")
+	var legacy_route:=Expedition.new()
+	legacy_route.setup("Vowkeeper",legacy_route_stats,1,"Guardian",123456)
+	var resumed_legacy_route:=Expedition.new()
+	check(resumed_legacy_route.restore_encoded(legacy_route.encode_snapshot()) and resumed_legacy_route.movement_seed()==legacy_route.run_seed,"older active checkpoints retain their full-seed passage route")
 	for class_value in ["Vowkeeper","Arcanist","Ranger"]:
 		sample.character_class=class_value
 		var times := [1.37,3.1,12.25,29.05,48.15,60.03]
@@ -81,6 +122,37 @@ func run_checks() -> void:
 	check(not destination.restore(state),"future checkpoint version rejected")
 	check(destination.enemy_by_id(-1).is_empty(),"unset target cannot select an enemy through a negative index")
 	sample.free()
+
+	var source_game:=new_game(folder+"/backup-source")
+	source_game.player_gold=12345
+	source_game._start_run(1)
+	source_game.expedition.advance(3.27)
+	source_game.run_active=false
+	source_game._save_progress()
+	var backup_code: String=source_game._create_backup_code()
+	var imported_payload: ConfigFile=source_game.save_store.parse_backup_code(backup_code)
+	check(not backup_code.is_empty() and imported_payload!=null and imported_payload.get_value("hero","gold")==12345 and imported_payload.get_value("hero","world_seed")==source_game.world_seed,"backup code exports the personal dungeon sequence with the hero and resumable expedition")
+	var older_backup:=ConfigFile.new()
+	older_backup.parse(imported_payload.encode_to_text())
+	older_backup.erase_section_key("hero","world_seed")
+	check(source_game._valid_backup_payload(older_backup),"older backup codes remain valid without the personal dungeon seed")
+	var corrupt_code:=backup_code
+	corrupt_code=corrupt_code.substr(0,corrupt_code.length()-1)+("0" if corrupt_code.right(1)!="0" else "1")
+	check(source_game.save_store.parse_backup_code(corrupt_code)==null,"backup checksum rejects an altered code")
+	var restore_game:=new_game(folder+"/backup-target")
+	restore_game.player_gold=77
+	restore_game._save_progress()
+	check(restore_game._restore_backup_code(backup_code),"valid backup restores into the local store")
+	check(FileAccess.file_exists(restore_game.save_store.base_path+".0.pre_restore"),"restoring preserves the previous local save as a recovery copy")
+	restore_game._load_progress()
+	check(restore_game.player_gold==12345 and restore_game.page=="run" and not restore_game.run_active and restore_game.expedition.snapshot()==source_game.expedition.snapshot(),"imported backup restores hero data and the exact paused expedition")
+	var unchanged_gold: int=restore_game.player_gold
+	check(not restore_game._restore_backup_code("not a backup code") and restore_game.player_gold==unchanged_gold,"invalid backup leaves current progress unchanged")
+	check(restore_game._restore_local_recovery_copy(),"undo restores the previous on-device save")
+	restore_game._load_progress()
+	check(restore_game.player_gold==77 and restore_game.page=="camp","undo recovers the previous hero state")
+	source_game.free()
+	restore_game.free()
 
 	var path:=folder+"/slots"
 	var store:=Store.new(path)

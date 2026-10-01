@@ -1,5 +1,5 @@
 extends RefCounted
-## Read-only assessment of every combat pattern; never creates loot or advances a save.
+## Read-only assessment of every combat and layout pattern; never creates loot or advances a save.
 const Simulation = preload("res://scripts/expedition_simulation.gd")
 var selected_class := "Vowkeeper"
 var stats: Dictionary = {}

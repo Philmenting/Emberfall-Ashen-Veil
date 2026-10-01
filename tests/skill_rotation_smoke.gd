@@ -12,10 +12,10 @@ func check(value: bool, description: String) -> void:
 	else:
 		failures+=1
 		push_error("FAIL: "+description)
-func model(selected: String, key: String) -> RefCounted:
+func model(selected: String, key: String, seed_value: int = 1979) -> RefCounted:
 	var stats: Dictionary={"max_hp":10000,"max_mana":1000,"attack":100,"ability_damage":500,"mana_cost":25,"crit":0.0,"armor":0,"class_mitigation":0,"attributes":{"Spirit":20},"skill_rotation":1,"skill_loadout":Skills.normalize(selected,[key])}
 	var sim:=Sim.new()
-	sim.setup(selected,stats,1,"Guardian",1979)
+	sim.setup(selected,stats,1,"Guardian",seed_value)
 	sim.phase="combat"
 	sim.hero_pos=Vector2(0,-4)
 	sim.skill_cd=9.0
@@ -83,6 +83,27 @@ func run_checks() -> void:
 	signature.skill_cd=0.0
 	signature._auto_hero()
 	check(signature.pending_attack.skill and not signature.pending_attack.has("ability_id"),"signature precedes equipped offensive techniques")
+	var varied_choices: Dictionary={}
+	var replayable:=true
+	for seed_value in range(24):
+		var first:=model("Arcanist","chain",seed_value)
+		first.stats.skill_loadout=["chain","starfall"]
+		first.rotation={"cooldowns":{"chain":0.0,"starfall":0.0},"uses":{"chain":0,"starfall":0}}
+		first.waves[0][0].role="boss"
+		var duplicate:=model("Arcanist","chain",seed_value)
+		duplicate.stats.skill_loadout=["chain","starfall"]
+		duplicate.rotation={"cooldowns":{"chain":0.0,"starfall":0.0},"uses":{"chain":0,"starfall":0}}
+		duplicate.waves[0][0].role="boss"
+		var target: Dictionary=first.waves[0][0]
+		var clone_target: Dictionary=duplicate.waves[0][0]
+		first._try_technique(target,false)
+		duplicate._try_technique(clone_target,false)
+		var chosen: String=String(first.pending_attack.get("ability_id",""))
+		var chosen_again: String=String(duplicate.pending_attack.get("ability_id",""))
+		varied_choices[chosen]=true
+		if chosen!=chosen_again: replayable=false
+	check(varied_choices.size()==2,"ready offensive techniques vary between eligible seeded casts")
+	check(replayable,"the same expedition seed chooses the same technique")
 	var canceled:=model("Arcanist","starfall")
 	canceled._try_technique(canceled.waves[0][0],false)
 	canceled._warn(canceled.waves[0][0],1.5,0.6)

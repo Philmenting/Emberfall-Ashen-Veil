@@ -13,11 +13,13 @@ const Layout = preload("res://scripts/dungeon_layout.gd")
 const Actor = preload("res://scripts/dungeon_actor.gd")
 const ThemeData = preload("res://scripts/dungeon_theme.gd")
 const BossPatterns = preload("res://scripts/boss_patterns.gd")
+const LOOT_COLORS := {"COMMON":"c7c3bc","UNCOMMON":"83cf8b","RARE":"76bfe8","EPIC":"bb91ee","LEGENDARY":"ffd277"}
 var theme: Dictionary = {}
 var character_class := "Vowkeeper"
 var region_index := 0
 var active := true
 var damage_numbers := true
+var reduced_motion := false
 var sun: DirectionalLight3D
 var ward_shell: MeshInstance3D
 var ward_flash := 0.0
@@ -32,11 +34,15 @@ var elapsed := 0.0
 var phase := "travel"
 var phase_time := 0.0
 var camera_target := Vector3.ZERO
+var camera_zoom := 1.0
+var camera_shake_time := 0.0
+var camera_shake_strength := 0.0
 var materials: Dictionary = {}
 var floor_materials: Array[ShaderMaterial] = []
 var rng := RandomNumberGenerator.new()
 var last_description := ""
 var journey_props: Dictionary = {}
+var recovered_drops: Array[Dictionary] = []
 var sanctum_gate: Node3D
 
 func _ready() -> void:
@@ -373,7 +379,7 @@ func _box(pos: Vector3,dimensions: Vector3,mat: Material,parent: Node3D = null) 
 	else: parent.add_child(instance)
 	return instance
 
-func _ring(pos: Vector3,radius: float,mat: Material) -> MeshInstance3D:
+func _ring(pos: Vector3,radius: float,mat: Material,parent: Node3D = null) -> MeshInstance3D:
 	var node := MeshInstance3D.new()
 	var mesh := TorusMesh.new()
 	mesh.inner_radius = radius-0.028
@@ -383,7 +389,8 @@ func _ring(pos: Vector3,radius: float,mat: Material) -> MeshInstance3D:
 	node.mesh = mesh
 	node.material_override = mat
 	node.position = pos
-	add_child(node)
+	if parent==null: add_child(node)
+	else: parent.add_child(node)
 	return node
 
 func _ensure_wave(wave_index: int) -> void:
@@ -397,11 +404,12 @@ func _ensure_wave(wave_index: int) -> void:
 		actor.region_index = region_index
 		actor.position = _point(enemy.pos)
 		actor.rotation.y = PI
+		actor.visible = enemy.get("spawned",true)
 		add_child(actor)
 		actor_by_id[enemy.id] = actor
 		enemies.append(actor)
 		bars[enemy.id] = _box(actor.position+Vector3(0,2.5,0),Vector3(0.9,0.045,0.075),materials.blood)
-		bars[enemy.id].visible = enemy.hp>0 and wave_index==simulation.stage
+		bars[enemy.id].visible = enemy.hp>0 and enemy.get("spawned",true) and wave_index==simulation.stage
 		bars[enemy.id].position.y = 3.8 if enemy.role=="boss" else 2.5
 		bars[enemy.id].scale.x = maxf(0.01,float(enemy.hp)/float(enemy.max_hp))
 		if enemy.hp<=0:
@@ -428,6 +436,8 @@ func _process(delta: float) -> void:
 		ward_shell.visible=ward_flash>0.0
 		ward_shell.scale=Vector3.ONE*(1.0+(0.35-ward_flash)*0.12)
 	_update_effects(delta)
+	camera_shake_time=maxf(0.0,camera_shake_time-delta)
+	if camera_shake_time<=0.0: camera_shake_strength=0.0
 	var previous: Vector3 = hero.position
 	var updates: Array = simulation.advance(delta)
 	index = mini(simulation.stage,5)
@@ -466,7 +476,7 @@ func _process(delta: float) -> void:
 		if not enemy.warning.is_empty() and not warnings.has(id_value):
 			_show_event(_warning_event(enemy))
 		var bar: MeshInstance3D = bars[id_value]
-		bar.visible = enemy.hp>0 and int(id_value)/10==index
+		bar.visible = enemy.hp>0 and enemy.get("spawned",true) and int(id_value)/10==index
 		bar.position = actor.position+Vector3(0,3.8 if enemy.role=="boss" else 2.5,0)
 		bar.scale.x = maxf(0.01,float(enemy.hp)/float(enemy.max_hp))
 	for event in updates: _show_event(event)
@@ -482,14 +492,42 @@ func _process(delta: float) -> void:
 	target_ring.visible = phase=="combat" and actor_by_id.has(simulation.target_id)
 	if target_ring.visible: target_ring.position = actor_by_id[simulation.target_id].position+Vector3(0,0.07,0)
 	for i in range(torches.size()): torches[i].light_energy = 3.1+sin(elapsed*8.0+i*2.1)*0.22
-	camera_target = camera_target.lerp(hero.position+Vector3(0,0,-1.8),1.0-exp(-delta*4.0))
+	var camera_anchor:=hero.position+Vector3(0,0,-1.8)
+	if direction.length()>0.01:
+		camera_anchor+=direction.normalized()*0.48
+	var target_enemy: Dictionary=simulation.enemy_by_id(simulation.target_id)
+	if not target_enemy.is_empty():
+		var focus_point:=_point(target_enemy.pos)+Vector3(0,0,-1.05)
+		var focus_weight:=0.30 if target_enemy.get("role","")=="boss" else 0.12
+		camera_anchor=camera_anchor.lerp(focus_point,focus_weight)
+	var boss_focus:=_boss_is_active()
+	var zoom_target:=0.94 if boss_focus and not reduced_motion else 1.0
+	camera_zoom=lerpf(camera_zoom,zoom_target,1.0-exp(-delta*1.35))
+	camera_target = camera_target.lerp(camera_anchor,1.0-exp(-delta*4.0))
 	_position_camera()
 	_set_description("AUTO • " + String(simulation.action).to_upper())
 	simulation_advanced.emit(updates)
 
 func _position_camera() -> void:
-	camera.position = camera_target+Vector3(8.5,11.8,11.2)
+	var shake:=Vector3.ZERO
+	if not reduced_motion and camera_shake_time>0.0:
+		var envelope:=clampf(camera_shake_time/0.18,0.0,1.0)
+		var phase:=elapsed*73.0
+		shake=Vector3(sin(phase),cos(phase*1.17+0.6),sin(phase*0.83+1.7))*camera_shake_strength*envelope
+	camera.position = camera_target+Vector3(8.5,11.8,11.2)*camera_zoom+shake
 	camera.look_at(camera_target+Vector3(0,0.4,0))
+
+func _boss_is_active() -> bool:
+	if simulation==null or simulation.waves.is_empty(): return false
+	var wave_index:=clampi(simulation.stage,0,simulation.waves.size()-1)
+	for enemy in simulation.waves[wave_index]:
+		if enemy.get("role","")=="boss" and int(enemy.get("hp",0))>0 and enemy.get("spawned",true): return true
+	return false
+
+func _kick_camera(intensity: float) -> void:
+	if reduced_motion: return
+	camera_shake_strength=maxf(camera_shake_strength,clampf(intensity,0.0,0.085))
+	camera_shake_time=maxf(camera_shake_time,0.18)
 
 func _set_description(value: String) -> void:
 	if value != last_description:
@@ -511,8 +549,19 @@ func _show_event(event: Dictionary) -> void:
 		"objective":
 			var message: String={1:"WELL RESTORED",3:"SANCTUM UNSEALED",5:"RELIQUARY CLAIMED"}.get(int(event.stage),"COMPLETE")
 			_float_text(hero.position+Vector3(0,3.0,0),message,Color("efcf93"))
+		"reinforcement_spawn":
+			var source_id:=int(event.source)
+			if actor_by_id.has(source_id): actor_by_id[source_id].visible=true
+			var arrival_position:=_point(event.position)
+			var arrival:=_ring(arrival_position+Vector3(0,0.08,0),0.88,materials.fire)
+			arrival.scale=Vector3.ONE*0.18
+			arrival.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			effects.append({"node":arrival,"age":0.0,"life":0.48,"kind":"nova"})
+			_float_text(arrival_position+Vector3(0,2.55,0),"AMBUSH",Color("f29b68"))
 		"hero_attack":
-			hero.strike()
+			var style:=String(event.get("ability_id",""))
+			if style.is_empty(): style="signature" if event.get("skill",false) else "basic"
+			hero.strike(style)
 		"hit":
 			if not actor_by_id.has(event.target): return
 			var actor: Node3D = actor_by_id[event.target]
@@ -535,7 +584,14 @@ func _show_event(event: Dictionary) -> void:
 				effects.append({"node":loot,"age":0.0,"life":0.9,"kind":"loot"})
 		"hero_hit":
 			hero.react()
-			if actor_by_id.has(event.source): actor_by_id[event.source].strike()
+			var heavy_hit:=false
+			if actor_by_id.has(event.source):
+				var attacker: Node3D=actor_by_id[event.source]
+				var enemy_kind:=String(attacker.get("kind"))
+				var heavy: bool=enemy_kind in ["bulwark","elite","boss"]
+				heavy_hit=heavy
+				attacker.strike("heavy" if heavy else "enemy")
+			_kick_camera(0.070 if heavy_hit else 0.034)
 			_float_text(hero.position+Vector3(0,2.3,0),"−"+str(event.damage),Color("f89583"))
 		"ward":
 			if ward_flash<=0.0:
@@ -551,7 +607,7 @@ func _show_event(event: Dictionary) -> void:
 			if warnings.has(event.source): warnings[event.source].queue_free()
 			if event.has("zones"):
 				warnings[event.source]=_pattern_visual(event.zones,Color("f05f40"),0.32)
-				if actor_by_id.has(event.source): actor_by_id[event.source].strike()
+				if actor_by_id.has(event.source): actor_by_id[event.source].strike("telegraph")
 				return
 			var zone := Node3D.new()
 			zone.position = _point(event.position)+Vector3(0,0.06,0)
@@ -572,7 +628,9 @@ func _show_event(event: Dictionary) -> void:
 			remove_child(outline)
 			zone.add_child(outline)
 			warnings[event.source] = zone
+			if actor_by_id.has(event.source): actor_by_id[event.source].strike("telegraph")
 		"impact":
+			_kick_camera(0.055)
 			if event.has("zones"):
 				var burst:=_pattern_visual(event.zones,Color(theme.fire),0.55)
 				effects.append({"node":burst,"age":0.0,"life":0.45,"kind":"pattern"})
@@ -580,6 +638,7 @@ func _show_event(event: Dictionary) -> void:
 			var ring := _ring(_point(event.position)+Vector3(0,0.12,0),event.radius,materials.fire)
 			effects.append({"node":ring,"age":0.0,"life":0.35,"kind":"ring"})
 		"boss_phase":
+			_kick_camera(0.060)
 			if actor_by_id.has(event.source): _float_text(actor_by_id[event.source].position+Vector3(0,4.3,0),"AWAKENED",Color("ffd89b"))
 		"interrupt":
 			if actor_by_id.has(event.target): _float_text(actor_by_id[event.target].position+Vector3(0,2.8,0),"INTERRUPTED",Color("b4a2e4"))
@@ -654,6 +713,9 @@ func _update_effects(delta: float) -> void:
 		elif effect.kind == "number": node.position.y += delta*0.9
 		elif effect.kind == "loot":
 			node.position = node.position.lerp(hero.position+Vector3(0,0.8,0),delta*4.0)
+		elif effect.kind == "recovered_gear":
+			node.position.y=float(effect.base_y)+sin(elapsed*3.2+float(effect.phase))*0.11
+			node.rotation.y+=delta*0.9
 		if effect.age >= effect.life:
 			node.queue_free()
 			effects.remove_at(i)
@@ -791,7 +853,7 @@ func set_shadows(enabled: bool) -> void:
 
 func _build_journey_floor() -> void:
 	var cells: Dictionary={}
-	var rectangles := Layout.floor_rects(region_index)
+	var rectangles := Layout.floor_rects(region_index,simulation.layout_seed(),simulation.movement_seed(),simulation.uses_wandering_routes(),simulation.uses_scouting_routes(),simulation.uses_expanded_scouting_routes())
 	var tile_size := 1.0
 	for x in range(-16,17):
 		for z in range(-76,10):
@@ -824,7 +886,7 @@ func _build_journey_floor() -> void:
 	var paver:=preload("res://scripts/sculpted_mesh.gd").paver()
 	for m in range(5): _batch_mesh(batches[m],floor_materials[m],paver,false)
 	for room in range(6):
-		var origin := _point(Layout.center(region_index,room))
+		var origin := _point(Layout.center(region_index,room,simulation.layout_seed()))
 		for side in [-1.0,1.0]:
 			for end in [-1.0,1.0]:
 				_pillar(origin+Vector3(side*5.5,0,end*4.3),side<0)
@@ -835,15 +897,15 @@ func _build_journey_floor() -> void:
 		if room in [0,3] and region_index in [0,3]:
 			_box(origin+Vector3(0,0.012,0),Vector3(2.8,0.015,5.2),materials.cloth)
 		if room>0:
-			var previous := Layout.center(region_index,room-1)
-			var current := Layout.center(region_index,room)
+			var previous := Layout.center(region_index,room-1,simulation.layout_seed())
+			var current := Layout.center(region_index,room,simulation.layout_seed())
 			var middle := (previous.y+current.y)*0.5
 			# Entry markers frame both ends of a bent connecting gallery.
 			for point in [Vector2(previous.x,middle),Vector2(current.x,middle)]:
 				for side in [-1.0,1.0]:
 					_box(_point(point)+Vector3(0,0.4,side*2.0),Vector3(0.3,0.8,0.3),materials.metal)
 	_arch(Vector3(0,0,7.8),0)
-	var boss_center := _point(Layout.center(region_index,5))
+	var boss_center := _point(Layout.center(region_index,5,simulation.layout_seed()))
 	_ring(boss_center+Vector3(0,0.04,0),3.4,materials.metal)
 	_ring(boss_center+Vector3(0,0.045,0),3.1,materials.dark)
 
@@ -852,7 +914,7 @@ func _build_journey_details() -> void:
 	if region_index==3: _liquid(Vector3(0,-0.5,-32),Vector2(48,105),true)
 	if region_index==2: _box(Vector3(0,-4,-32),Vector3(55,0.5,110),materials.dark)
 	for room in range(6):
-		var origin := _point(Layout.center(region_index,room))
+		var origin := _point(Layout.center(region_index,room,simulation.layout_seed()))
 		for side in [-1.0,1.0]:
 			match region_index:
 				0:
@@ -868,7 +930,7 @@ func _build_journey_details() -> void:
 						shard.rotation.z=side*0.25
 				3:
 					_furnace(origin+Vector3(side*5.1,0,1.5),side)
-	var boss_center := _point(Layout.center(region_index,5))
+	var boss_center := _point(Layout.center(region_index,5,simulation.layout_seed()))
 	if region_index==0:
 		_cylinder(boss_center+Vector3(0,3.5,-4.3),1.05,0.58,1.5,materials.metal,16)
 		_ring(boss_center+Vector3(0,2.78,-4.3),1.02,materials.metal)
@@ -881,7 +943,7 @@ func _build_journey_props() -> void:
 	for room in [1,3,5]:
 		var prop := Node3D.new()
 		prop.name="HealingWell" if room==1 else ("SanctumSeal" if room==3 else "GuardianReliquary")
-		prop.position=_point(Layout.interact_point(region_index,room))
+		prop.position=_point(Layout.interact_point(region_index,room,simulation.layout_seed()))
 		add_child(prop)
 		journey_props[room]=prop
 		_box(Vector3(0,-0.03,0),Vector3(1.5,0.15,1.5),materials.dark,prop)
@@ -905,7 +967,7 @@ func _build_journey_props() -> void:
 			beam.visible=false
 	sanctum_gate=Node3D.new()
 	sanctum_gate.name="SanctumGate"
-	sanctum_gate.position=_point(Layout.center(region_index,5))+Vector3(0,0,5.8)
+	sanctum_gate.position=_point(Layout.center(region_index,5,simulation.layout_seed()))+Vector3(0,0,5.8)
 	add_child(sanctum_gate)
 	for i in range(9): _box(Vector3((i-4)*0.48,1.1,0),Vector3(0.1,2.2,0.1),materials.metal,sanctum_gate)
 	_box(Vector3(0,2.1,0),Vector3(4.3,0.16,0.16),materials.metal,sanctum_gate)
@@ -920,6 +982,85 @@ func _sync_journey_props(delta: float) -> void:
 	var lid: Node3D=journey_props[5].get_node("ChestLid")
 	lid.rotation.x=lerpf(lid.rotation.x,-1.1 if simulation.journey.chest_open else 0.0,minf(1.0,delta*5.0))
 	journey_props[5].get_node("LootBeam").visible=simulation.journey.chest_open
+
+func show_recovered_gear(items: Array) -> void:
+	if not simulation.uses_journey() or not journey_props.has(5) or items.is_empty(): return
+	recovered_drops.clear()
+	var count:=mini(items.size(),2)
+	var chest: Node3D=journey_props[5]
+	for index_value in range(count):
+		var item=items[index_value]
+		if not item is Dictionary: continue
+		var slot:=String(item.get("slot","Weapon"))
+		var quality:=String(item.get("quality","RARE")).to_upper()
+		var tint:=Color(LOOT_COLORS.get(quality,"76bfe8"))
+		var relic:=Node3D.new()
+		relic.name="RecoveredRelic"
+		var phase_offset:=float(index_value)*PI
+		var base_y:=1.55
+		relic.position=chest.position+Vector3((float(index_value)-float(count-1)*0.5)*1.45,base_y,0.0)
+		add_child(relic)
+		_ring(Vector3(0,0.05,0),0.48,_material(tint,0.0,true),relic)
+		_gear_drop_shape(slot,tint,relic)
+		var title:=Label3D.new()
+		title.name="RelicLabel"
+		title.text=String(item.get("name","Recovered Relic"))+"\n"+quality+"  •  "+slot.to_upper()
+		title.font_size=28
+		title.pixel_size=0.006
+		title.modulate=tint.lightened(0.14)
+		title.outline_size=5
+		title.outline_modulate=Color("171419")
+		title.billboard=BaseMaterial3D.BILLBOARD_ENABLED
+		title.no_depth_test=true
+		title.position=Vector3(0,1.85,0)
+		relic.add_child(title)
+		var saved_item: Dictionary=item.duplicate(true)
+		recovered_drops.append({"node":relic,"item":saved_item,"label":title})
+		effects.append({"node":relic,"age":0.0,"life":2.4,"kind":"recovered_gear","base_y":base_y,"phase":phase_offset})
+
+func _gear_drop_shape(slot: String,tint: Color,parent: Node3D) -> void:
+	var metal:=_material(tint,0.72,true)
+	var dark:=_material(tint.darkened(0.50),0.52)
+	match slot:
+		"Weapon":
+			var blade:=_box(Vector3(0,0.62,0),Vector3(0.14,0.96,0.09),metal,parent)
+			blade.rotation.z=-0.12
+			_box(Vector3(0,0.05,0),Vector3(0.52,0.10,0.14),dark,parent)
+			_box(Vector3(0,-0.16,0),Vector3(0.11,0.34,0.11),_material(Color("403027"),0.35),parent)
+		"Helmet":
+			_drop_sphere(Vector3(0,0.54,0),0.34,metal,parent)
+			_box(Vector3(0,0.32,-0.27),Vector3(0.46,0.11,0.12),dark,parent)
+			_box(Vector3(0,0.85,0),Vector3(0.10,0.42,0.12),metal,parent)
+		"Chest":
+			_box(Vector3(0,0.54,0),Vector3(0.68,0.70,0.32),metal,parent)
+			_box(Vector3(-0.42,0.77,0),Vector3(0.28,0.29,0.36),dark,parent)
+			_box(Vector3(0.42,0.77,0),Vector3(0.28,0.29,0.36),dark,parent)
+		"Gloves":
+			for side in [-1.0,1.0]:
+				_box(Vector3(side*0.25,0.48,0),Vector3(0.25,0.39,0.26),metal,parent)
+				_box(Vector3(side*0.25,0.22,0),Vector3(0.31,0.11,0.30),dark,parent)
+		"Boots":
+			for side in [-1.0,1.0]:
+				_box(Vector3(side*0.20,0.40,0),Vector3(0.23,0.54,0.27),metal,parent)
+				_box(Vector3(side*0.20,0.12,-0.08),Vector3(0.29,0.12,0.41),dark,parent)
+		"Amulet":
+			_ring(Vector3(0,0.57,0),0.28,metal,parent)
+			_drop_sphere(Vector3(0,0.56,0),0.16,metal,parent)
+		_:
+			_drop_sphere(Vector3.ZERO,0.34,metal,parent)
+
+func _drop_sphere(position_value: Vector3,radius: float,material: Material,parent: Node3D) -> MeshInstance3D:
+	var node:=MeshInstance3D.new()
+	var mesh:=SphereMesh.new()
+	mesh.radius=radius
+	mesh.height=radius*2.0
+	mesh.radial_segments=16
+	mesh.rings=8
+	node.mesh=mesh
+	node.material_override=material
+	node.position=position_value
+	parent.add_child(node)
+	return node
 
 func _show_technique(event: Dictionary) -> void:
 	var key: String=event.ability_id
@@ -977,7 +1118,7 @@ func _build_dressed_rooms() -> void:
 	blood.shader=preload("res://assets/shaders/ground_grime.gdshader")
 	blood.set_shader_parameter("tint",Color(0.13,0.032,0.024,0.46))
 	for room in range(6):
-		var origin:=_point(Layout.center(region_index,room)) if simulation.uses_journey() else Vector3(0,0,4-room*11.2)
+		var origin:=_point(Layout.center(region_index,room,simulation.layout_seed())) if simulation.uses_journey() else Vector3(0,0,4-room*11.2)
 		_box(origin+Vector3(0,-1.1,0),Vector3(12.1,1.7,9.4),materials.dark)
 		for side in [-1.0,1.0]:
 			for step in range(3):

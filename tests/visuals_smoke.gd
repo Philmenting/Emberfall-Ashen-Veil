@@ -11,6 +11,15 @@ func check(ok: bool, label: String) -> void:
 	checks+=1
 	if ok: print("PASS: ",label)
 	else: failures+=1; push_error("FAIL: "+label)
+func attack_pose(kind: String, style: String) -> Vector3:
+	var actor:=Actor.new()
+	actor.kind=kind
+	root.add_child(actor)
+	actor.strike(style)
+	actor.animate(0.08,false)
+	var result:=Vector3(actor.right_arm.rotation.x,actor.left_arm.rotation.x,actor.body.rotation.y)
+	actor.free()
+	return result
 func run_checks() -> void:
 	var profile:=Sculpt.profile([Vector4(0,1,1,0),Vector4(1,1,1,0)])
 	var arrays:=profile.surface_get_arrays(0)
@@ -40,6 +49,10 @@ func run_checks() -> void:
 		actor.die(); actor.animate(0.2,false)
 		check(finite and actor.body.position.is_finite(),kind+": geometry and movement stay finite")
 		actor.queue_free()
+	for row in [["Vowkeeper","bastion"],["Arcanist","starfall"],["Ranger","rain"]]:
+		var basic_pose:=attack_pose(row[0],"basic")
+		var technique_pose:=attack_pose(row[0],row[1])
+		check(basic_pose.distance_to(technique_pose)>0.15,row[0]+": equipped technique uses its own anticipation pose")
 	var first:=Actor.new()
 	first.kind="Arcanist"
 	root.add_child(first)

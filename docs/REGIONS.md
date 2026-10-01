@@ -1,6 +1,6 @@
-# Vier Gebiete – Version 0.5
+# Vier Gebiete – Gestaltung und Routen
 
-Die gemeinsame, automatisch begehbare Route erhält vier eigenständige Gestaltungen. Gebiet 1 beginnt auf Etage 1, Gebiet 2 auf 11, Gebiet 3 auf 21 und Gebiet 4 auf 31. Die Wege und Kampfpakete bleiben bislang gleich; unterschiedliche Bossmechaniken und weitere Routen sind noch offen.
+Die gemeinsame, automatisch begehbare Route hat vier eigenständige Grundrisse. Gebiet 1 beginnt auf Etage 1, Gebiet 2 auf 11, Gebiet 3 auf 21 und Gebiet 4 auf 31. Neue Läufe verwenden seit 0.20 eine von 256 wiederholbaren Generatorvarianten: Wegpunkte, Gegnergruppen und Spawnformationen verändern sich innerhalb begehbarer Grenzen. Gegner bewegen sich mit unterschiedlichen Angriffsabständen und Flankenbahnen; Eliten kündigen gelegentlich einen Flächenangriff an. Derselbe Seed ist in Zuschauen, Skip und AFK reproduzierbar. Ältere gespeicherte Läufe verwenden weiterhin ihre ursprüngliche 64-Muster-Variante. Die Grundrisse sind keine frei generierte offene Welt; zusätzliche handgebaute Routen pro Gebiet bleiben ein möglicher Ausbau.
 
 | Gebiet | Umgebung | Bossmerkmale |
 |---|---|---|

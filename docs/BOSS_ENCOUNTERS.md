@@ -1,13 +1,15 @@
 # Gebiets-Bosse — 0.9
 
+Seit 0.21 besitzt jeder Gebiets-Boss zwei Varianten des eigenen Bodenangriffs. Der Seed entscheidet über die erste Form; danach wechseln die Spezialangriffe ab. Die Vorwarnfläche zeigt die konkrete Form. Wiederaufnahme und Skip bewahren dieselbe Auswahl. Ältere gespeicherte Warnungen ohne Variantenfeld bleiben gültig.
+
 ## Vier Angriffsmuster
 
 | Boss | Angriff | Sichere Bereiche |
 |---|---|---|
-| Bell Warden | Bell Requiem: ringförmige Schockwelle um den Boss | Innerhalb des Rings oder außerhalb seiner Reichweite |
-| Silt Abbot | Drowning Tide: lange Flutbahn in der beim Wirken festgelegten Richtung | Seitlich der Bahn |
-| Mourning Queen | Grave Bloom: drei gleichzeitig explodierende Grabkreise | Außerhalb der drei Kreise |
-| Cinder Sovereign | Furnace Cross: zwei sich kreuzende Feuerbahnen | Die diagonalen Bereiche neben dem Kreuz |
+| Bell Warden | Bell Requiem: ringförmige Schockwelle; Variante: voller Gefahrenkreis | Im Ringzentrum oder außerhalb des Kreises |
+| Silt Abbot | Drowning Tide: gerichtete Flutbahn; Variante: quer verlaufende Strömung | Neben der Flutbahn oder vor/hinter der Querströmung |
+| Mourning Queen | Grave Bloom: drei Kreise nebeneinander oder in einer Linie | Außerhalb der Kreise und in den sichtbaren Lücken |
+| Cinder Sovereign | Furnace Cross: gerade oder diagonal gedrehte Feuerbahnen | Die sichtbaren freien Sektoren zwischen den Bahnen |
 
 Unter 50 Prozent Leben erwacht jeder Boss einmal. Nachfolgende Spezialangriffe werden breiter, kündigen sich 1,25 statt 1,65 Sekunden an und haben eine kürzere Abklingzeit. Eine bereits begonnene Attacke verändert dabei ihre Geometrie nicht. Überschneidende Gefahrenflächen verursachen pro Auflösung nur einen Treffer.
 
@@ -23,9 +25,9 @@ Die begehbare Route und die sechs Gegnergruppen bleiben gemeinsam. Dies ergänzt
 
 ## Automatisierte Nachweise
 
-Die acht lokalen Suiten enthalten 380 Prüfungen. 85 davon betreffen Bosse:
+Die vorherige Fassung enthielt 380 Prüfungen, davon 85 zu Bossen. Die aktualisierte Boss-Suite enthält 110 Prüfungen:
 
-- Geometrie und sichere Bereiche aller vier Angriffe, Schaden bei fehlendem Ausweichen, keine doppelten Treffer an Überschneidungen.
+- Geometrie und sichere Bereiche der acht Angriffsformen, Schaden bei fehlendem Ausweichen, keine doppelten Treffer an Überschneidungen.
 - Automatisches Ausweichen, einmaliger Phasenwechsel, kürzere Vorwarnzeit und stärkere Folgeangriffe.
 - Exaktes Speichern während eines Angriffs, identische Fortsetzung, Zurückweisung ungültiger Geometrie.
 - Alle 64 Kampfmuster mit drei Klassen in vier Gebieten: 768 vollständige Vergleiche zwischen unterschiedlich getaktetem Zuschauen und Überspringen. Dies ist eine Prüfung gleicher Regeln, kein Nachweis ausgeglichener Schwierigkeit.

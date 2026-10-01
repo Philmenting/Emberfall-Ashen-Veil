@@ -34,6 +34,12 @@ XDG_DATA_HOME=/tmp/emberfall-survey-64 godot --headless --path . --script tests/
 XDG_DATA_HOME=/tmp/emberfall-survey-128 godot --headless --path . --script tests/balance_survey.gd -- 128
 ```
 
+### Aktuelle Fähigkeiten-Paare — Version 0.31
+
+Eine erneute 480-Läufe-Probe mit Profil-Seed 1979 vergleicht je Klasse das Standardpaar mit einer alternativen Kombination. Der Vowkeeper erreichte mit Bastion + Sundering Arc Etage 91 und mit Judgment + Bastion Etage 81; beim Arcanist lagen Chain + Frost Mantle und Starfall + Frost Mantle mit Etage 90 beziehungsweise 91 eng beieinander. Der Ranger erreichte mit Smoke + Rain Etage 76 und mit Marked + Smoke Etage 73. In allen Fällen blieb die Siegquote mindestens 478/480. Das zeigt, dass die Flächenfähigkeit des Vowkeepers für diesen Seed besonders wichtig ist, aber keinen Grund für einen pauschalen Klassen-Buff. Eine einzelne Seedfolge ersetzt keine Mehrseed- oder Spielerprüfung. Details stehen in [der 0.31-Probe](audit/2026-09-29/balance-builds-0.31.md).
+
+`tests/balance_survey.gd` nimmt nach dem Seed-Offset einen Loadout-Index von 0 bis 2 an: 0 = Standardpaar, 1 = Techniken zwei und drei, 2 = Techniken drei und eins. Dadurch lassen sich alle drei spielbaren Zweierkombinationen jeder Klasse mit demselben Bot vergleichen.
+
 ## Funktionsprüfungen
 
 438 Prüfungen in zehn Suiten, darunter 29 für Klassenbeute und 29 für die Arcanist-Taktik. Die Beuteprüfung erzeugt für jede Klasse 5.000 normale und 5.000 Bossfunde. Die Taktikprüfung umfasst Bewegungsgrenzen, stationäres Zaubern, Gefahrenflächen, alte Regeln, Nova-Reichweite, Speicherung, Darstellung und 256 weitere Vergleiche aller Kampfmuster in vier Gebieten zwischen Zuschauen und Überspringen.

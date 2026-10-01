@@ -133,6 +133,7 @@ func run_checks() -> void:
 	offline.character_class="Arcanist"; offline.floor_number=2; offline.farm_mode="hunt"; offline.hunt_slot="Amulet"
 	var manual:=game_instance()
 	manual.character_class="Arcanist"; manual.floor_number=2; manual.farm_mode="hunt"; manual.hunt_slot="Amulet"
+	manual.world_seed=offline.world_seed
 	offline._simulate_offline_time(1200)
 	var remaining:=1200
 	while remaining>=30:
