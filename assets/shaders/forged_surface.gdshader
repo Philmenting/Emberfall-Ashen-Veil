@@ -10,6 +10,9 @@ uniform sampler2D linen_texture : source_color, filter_linear_mipmap, repeat_ena
 uniform sampler2D leather_texture : source_color, filter_linear_mipmap, repeat_enable;
 uniform sampler2D bone_texture : source_color, filter_linear_mipmap, repeat_enable;
 uniform sampler2D skin_texture : source_color, filter_linear_mipmap, repeat_enable;
+uniform sampler2D vowkeeper_texture : source_color, filter_linear_mipmap, repeat_disable;
+uniform sampler2D arcanist_texture : source_color, filter_linear_mipmap, repeat_disable;
+uniform sampler2D ranger_texture : source_color, filter_linear_mipmap, repeat_disable;
 varying vec3 local_pos;
 float hash(vec3 p) { return fract(sin(dot(p, vec3(127.1, 311.7, 74.7))) * 43758.5453); }
 void vertex() { local_pos = VERTEX; }
@@ -31,9 +34,14 @@ void fragment() {
  if (surface_metal > 0.05) { detail = texture(steel_texture, UV * 2.0).rgb; }
  if (type > 0.5 && type < 1.5) { detail = texture(leather_texture, UV * 3.0).rgb; }
  if (type > 1.5 && type < 2.5) { detail = texture(skin_texture, UV * 8.0).rgb; }
- if (type > 2.5) { detail = texture(bone_texture, UV * 2.0).rgb; }
+ if (type > 2.5 && type < 3.5) { detail = texture(bone_texture, UV * 2.0).rgb; }
+ vec2 panel_uv = vec2(UV.x, 1.0 - UV.y);
+ if (type > 3.5 && type < 4.5) { detail = texture(vowkeeper_texture, panel_uv).rgb; }
+ if (type > 4.5 && type < 5.5) { detail = texture(arcanist_texture, panel_uv).rgb; }
+ if (type > 5.5) { detail = texture(ranger_texture, panel_uv).rgb; }
  float tactile = dot(detail, vec3(0.2126, 0.7152, 0.0722));
  ALBEDO = base_tint.rgb * (0.74 + tactile * 0.70 + weave * 0.025 * fabric + scratches * 0.035 * surface_metal);
+ if (type > 3.5) { ALBEDO = detail * base_tint.rgb; }
  METALLIC = surface_metal;
  float base_roughness = mix(0.88, 0.32, surface_metal);
  if (type > 0.5 && type < 1.5) { base_roughness = 0.63; }

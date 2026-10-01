@@ -60,6 +60,9 @@ func capture() -> void:
 				quit(1)
 				return
 			if region==0 and scene_kind!="Boss":
+				for actor in world.enemies: actor.hide()
+				for effect in world.effects:
+					if is_instance_valid(effect.node): effect.node.hide()
 				world.camera.position=world.hero.position+Vector3(1.3,1.95,-3.1)
 				world.camera.look_at(world.hero.position+Vector3(0,1.23,0))
 				await process_frame

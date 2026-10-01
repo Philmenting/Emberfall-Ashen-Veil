@@ -41,7 +41,7 @@ func _ready() -> void:
 	if hostile: accent=Color(theme.enemy)
 	if kind=="bulwark": accent=Color("8d7954")
 	if kind=="elite": accent=Color("d15b2e")
-	materials.metal=_mat(Color("424c57") if not hostile else Color("403438"),0.78)
+	materials.metal=_mat(Color("808b96") if not hostile else Color("746267"),0.72)
 	materials.edge=_mat(Color("aeb8bc") if not hostile else Color("978775"),0.82)
 	materials.cloth=_mat(accent.darkened(0.42),0.0)
 	materials.trim=_mat(accent,0.7)
@@ -50,6 +50,9 @@ func _ready() -> void:
 	materials.skin=_mat(Color("c1aa95") if not hostile else Color(theme.skin),0.0,false,2.0)
 	materials.glow=_mat(Color("81d9e6") if not hostile else Color(theme.glow),0.0,true)
 	materials.hair=_mat(Color("332a27"),0.0,false,1.0)
+	materials.cuirass=_mat(Color.WHITE,0.72,false,4.0)
+	materials.arcane=_mat(Color.WHITE,0.0,false,5.0)
+	materials.woodland=_mat(Color.WHITE,0.0,false,6.0)
 	for key in materials: materials[key].resource_name=key
 	body=Node3D.new()
 	body.name="Body"
@@ -117,6 +120,8 @@ func _load_anatomy(theme: Dictionary, accent: Color) -> void:
 	material.set_shader_parameter("skin_tint",Color("c6ae9c") if not hostile else Color(theme.skin))
 	material.set_shader_parameter("cloth_tint",accent.darkened(0.62))
 	material.set_shader_parameter("all_skin",hostile and kind=="raider")
+	material.set_shader_parameter("male_face",hostile)
+	material.set_shader_parameter("face_texture",preload("res://assets/textures/faces-albedo.webp"))
 	material.set_shader_parameter("skin_texture",preload("res://assets/textures/skin-albedo.webp"))
 	material.set_shader_parameter("skin_normal",preload("res://assets/textures/skin-normal.png"))
 	material.set_shader_parameter("linen_texture",preload("res://assets/textures/linen-albedo.webp"))
@@ -145,6 +150,9 @@ func _textures(material: ShaderMaterial) -> void:
 	material.set_shader_parameter("leather_texture",preload("res://assets/textures/leather-albedo.webp"))
 	material.set_shader_parameter("bone_texture",preload("res://assets/textures/bone-albedo.webp"))
 	material.set_shader_parameter("skin_texture",preload("res://assets/textures/skin-albedo.webp"))
+	material.set_shader_parameter("vowkeeper_texture",preload("res://assets/textures/vowkeeper-regalia.webp"))
+	material.set_shader_parameter("arcanist_texture",preload("res://assets/textures/arcanist-regalia.webp"))
+	material.set_shader_parameter("ranger_texture",preload("res://assets/textures/ranger-regalia.webp"))
 
 func _panel(parent: Node3D,rings: Array,mat: Material,arc: float=1.25) -> MeshInstance3D:
 	return _mesh(parent,Vector3.ZERO,preload("res://scripts/regalia_mesh.gd").panel(rings,arc),mat)
@@ -155,7 +163,7 @@ func _curve(parent: Node3D,points: Array,radius: float,mat: Material) -> MeshIns
 func _build_cuirass(caster: bool,ranger: bool) -> void:
 	var plate_material: Material=materials.cloth if caster else materials.leather if ranger else materials.metal
 	var rings: Array=[Vector4(0.92,0.225,0.165,0),Vector4(1.04,0.235,0.185,0),Vector4(1.18,0.27,0.215,0),Vector4(1.34,0.295,0.23,0),Vector4(1.46,0.265,0.19,0),Vector4(1.56,0.19,0.135,0)]
-	_panel(body,rings,plate_material,1.35)
+	_panel(body,rings,materials.arcane if caster else materials.woodland if ranger else materials.cuirass,1.35)
 	var back:=_panel(body,rings,materials.cloth if caster else plate_material,1.35)
 	back.rotation.y=PI
 	for side in [-1.0,1.0]:
