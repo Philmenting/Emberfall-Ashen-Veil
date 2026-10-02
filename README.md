@@ -1,5 +1,11 @@
 # Emberfall: Ashen Veil
 
+## Aktuell: 0.40.0-beta.1 — gemalte Welt und kombinierbare Schwüre
+
+Der freigegebene Stilentwurf wird mit gemalten, animierten 2.5D-Figuren in der räumlichen Godot-Spielwelt umgesetzt: drei Klassen, vier Wächter, eigene Regionen und ein Lager mit Schmiede, Schwurtisch und Portal. Bis zu zwei von drei Schwüren wirken gemeinsam mit Klassenreliquien, Sets und Techniken. Jeder Wächter besitzt drei echte Gesundheitsphasen; Warnung, Ausweichen, Skip, Offline-Wiederholung und Neustart verwenden dieselben Regeln. Alte laufende Spielstände behalten ihre ursprünglichen Kampfergebnisse. Version-Code 46.
+
+[Änderungen und Spielansichten](docs/REDESIGN_040.md), [Gameplay-Clip](docs/previews/success-loop/emberfall-gameplay-040.mp4), [Regeln und Kompatibilität](docs/OATHS_AND_PHASES_040.md), [Grafik und Herkunft](docs/design/ASSET_PROVENANCE.md), [vorbereiteter Spieltest für 12–20 Personen und Pixel-Probe](docs/SUCCESS_PLAYTEST.md). Menschliche Rückkehrdaten sowie Leistung, Wärme und Akkulaufzeit auf dem Pixel sind noch nicht erhoben. Die älteren Berichte unten dokumentieren vorherige Versionen.
+
 ## Kathedralenräume: Grafikaufwertung der Beta 0.39
 
 Originale Maßwerkfenster, geschnitzte Bodenintarsien und modellierte Feuerschalen
@@ -270,6 +276,6 @@ Prüfablauf für den Einstieg, Ausrüstungswerte und echte Android-Toucheingaben
 
 ### Beta.2: Einstieg und Spielziele
 
-[Schneller Erstkampf, Schwüre und Klassenreliquien](docs/SUCCESS_LOOP.md), vier regionale Sets, Wächtersiegel und optionale Haptik. [Geschlossener Spieltest und Pixel-Probe](docs/SUCCESS_PLAYTEST.md); [Gameplay-Clip](docs/previews/success-loop/emberfall-gameplay-beta2.mp4). Aktuelle Solo-Beta: 0.39.0-beta.3, Version-Code 45.
+[Schneller Erstkampf, Schwüre und Klassenreliquien](docs/SUCCESS_LOOP.md), vier regionale Sets, Wächtersiegel und optionale Haptik. [Geschlossener Spieltest und Pixel-Probe](docs/SUCCESS_PLAYTEST.md); [Gameplay-Clip](docs/previews/success-loop/emberfall-gameplay-beta2.mp4). Historischer Stand dieser Beta.2/Beta.3-Berichte: 0.39.0-beta.3, Version-Code 45. Aktueller Kandidat: 0.40.0-beta.1, Version-Code 46.
 
 [Geschützte Ausrüstung, Taschenfilter und konkrete Hilfe nach Niederlagen](docs/GEAR_AND_RECOVERY.md). Die erste Klassenreliquie bleibt bei vollständig geschützter voller Tasche zum Abholen erhalten; der lokale Online-Integrationstest ist repariert.

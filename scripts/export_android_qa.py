@@ -36,7 +36,10 @@ def main() -> int:
         for section in list(config.sections()):
             if section not in ("preset.0", "preset.0.options"): config.remove_section(section)
         config["preset.0"]["name"] = '"Android Offline QA"'
-        config["preset.0"]["exclude_filter"] = '"build/*,docs/*,server/*,scripts/*.py"'
+        # Exercise the same runtime art/resources as the shipping preset while
+        # retaining QA scenes. Source-only legacy character models stay excluded.
+        excludes = config["preset.0"]["exclude_filter"].strip('"').split(",")
+        config["preset.0"]["exclude_filter"] = '"' + ",".join(value for value in excludes if value != "tests/*") + '"'
         options = config["preset.0.options"]
         options["architectures/arm64-v8a"] = "true" if args.architecture=="arm64-v8a" else "false"
         options["architectures/x86_64"] = "true" if args.architecture=="x86_64" else "false"

@@ -26,20 +26,20 @@ func survey() -> void:
 		var rng:=RandomNumberGenerator.new(); rng.seed=11
 		game.equipment.Amulet=Relics.attune(Loot.roll(selected,true,1,rng,"Amulet","RARE"),selected)
 		for floor_id in [2,6]:
-			for key in ["", "unmended", "cinder"]:
+			for keys in [[], ["unmended"], ["cinder"], ["hollow"], ["unmended","cinder"], ["unmended","hollow"], ["cinder","hollow"]]:
 				var wins:=0; var total_seconds:=0.0
 				for serial in range(1,17):
-					var sim: RefCounted=game._new_expedition(floor_id,serial,Contract.oath(key))
+					var sim: RefCounted=game._new_expedition(floor_id,serial,Contract.combine(keys))
 					sim.simulate_to_end()
 					if sim.won: wins+=1
 					total_seconds+=sim.elapsed
-				rows.append({"class":selected,"floor":floor_id,"oath":key if not key.is_empty() else "none","runs":16,"wins":wins,"mean_seconds":total_seconds/16})
+				rows.append({"class":selected,"floor":floor_id,"oaths":keys,"runs":16,"wins":wins,"mean_seconds":total_seconds/16})
 		game.free()
-	var report: Dictionary={"schema":1,"time_basis":"simulation_seconds","scenario":"ordinary level-1 starting gear; oath comparisons add one seeded class amulet, without level gains or upgraded equipment","first_descent":first_rows,"oaths":rows,"failures":failures}
+	var report: Dictionary={"schema":2,"time_basis":"simulation_seconds","scenario":"ordinary level-1 starting gear; oath comparisons add one seeded class amulet, without level gains or upgraded equipment","first_descent":first_rows,"oaths":rows,"new_boss_phases":true,"human_test_results":false,"failures":failures}
 	var path:="user://success-balance.json"
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--report="): path=arg.trim_prefix("--report=")
 	var output:=FileAccess.open(path,FileAccess.WRITE)
 	output.store_string(JSON.stringify(report,"\t")); output.close()
-	print("SUCCESS BALANCE SURVEY: 360 expeditions, ",failures," first-session failures, report=",path)
+	print("SUCCESS BALANCE SURVEY: 744 expeditions, ",failures," first-session failures, report=",path)
 	quit(1 if failures else 0)

@@ -1,5 +1,5 @@
 extends SceneTree
-## Asset/export contract: genuine meshes, bounded mobile geometry and reusable joints.
+## Source archive geometry plus the actual painted runtime asset/render budget.
 const Models=preload("res://scripts/authored_characters.gd")
 const Architecture=preload("res://scripts/authored_architecture.gd")
 const Actor=preload("res://scripts/dungeon_actor.gd")
@@ -48,10 +48,10 @@ func run_checks() -> void:
 		var second_parts:=second.find_children("*","MeshInstance3D",true,false)
 		var shared:=first_parts.size()==second_parts.size()
 		for index in range(first_parts.size()-1): shared=shared and first_parts[index].mesh==second_parts[index].mesh
-		check(shared and first_parts.size()==2,"guardian %d: cached appearance uses one skinned surface plus contact shadow" % region)
+		check(shared and first_parts.size()==2 and first.atlas_texture==second.atlas_texture,"guardian %d: cached runtime uses one painted pose surface plus contact shadow" % region)
 		first.strike("telegraph"); first.animate(0.2,false); first.react(); first.animate(0.06,false)
 		first.die(); first.animate(0.2,false)
-		check(first.body.position.is_finite() and first.right_arm.rotation.is_finite(),"guardian %d: attack, impact and death animation remain finite" % region)
+		check(first.body.position.is_finite() and first.pose_frame==5 and first.atlas_path.ends_with("guardian_%d.png" % region),"guardian %d: actual painted attack, impact and defeat states remain finite" % region)
 		first.free(); second.free()
 	print("AUTHORED ART SMOKE: %d checks, %d failures" % [checks,failures])
 	quit(1 if failures else 0)

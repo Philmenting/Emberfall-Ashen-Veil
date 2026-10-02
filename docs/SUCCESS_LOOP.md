@@ -1,5 +1,7 @@
 # Einstieg, Schwüre und Build-Ziele — 0.39.0-beta.2
 
+Historischer 0.39-Bericht. Aktuelle Schwur-Kombinationen und Wächterphasen stehen in [OATHS_AND_PHASES_040.md](OATHS_AND_PHASES_040.md); der neue Grafikstand ist in der [Asset-Herkunft](design/ASSET_PROVENANCE.md) beschrieben.
+
 Neue Spieler wählen einen Helden und starten auf Etage 1 direkt am ersten echten Kampf. Die erste Signatur wird dort früh eingesetzt. Alle sechs Räume, reguläre Gegnerwerte und der Wächter bleiben erhalten. Neue Läufe auf Etage 1, einschließlich Farm und Prognose, verwenden dieselben Regeln; bereits gespeicherte Expeditionen behalten ihre bisherigen Regeln.
 
 Der erste Kampagnen-Sieg auf Etage 1 garantiert einmalig eine seltene oder bessere Klassenreliquie im Amulett-Slot. Die Ergebnisansicht erklärt den Effekt und bietet direktes Anlegen vor der nächsten Expedition an. Bei einer vollen Tasche wird für diese erste Reliquie der günstigste Taschenfund verkauft; der Spieler erhält dessen Gold. Bestehende Profile oberhalb Etage 1 erhalten keine nachträgliche Erstbelohnung. Alle Klassen können alle Gegenstände tragen; ein Effekt wirkt nur für seine zugehörige Klasse. Alte Gegenstände werden nicht neu gewürfelt.

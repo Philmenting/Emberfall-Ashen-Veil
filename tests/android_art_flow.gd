@@ -46,7 +46,7 @@ func _inspect_regions() -> void:
 	if output==null:
 		print("ANDROID_ART_FAIL performance report write failed"); return
 	output.store_string(JSON.stringify(report,"\t")); output.close()
-	print("ANDROID_ART_PASS all four regions rendered with authored models and material maps")
+	print("ANDROID_ART_PASS all four regions rendered with authored models and painted materials")
 	if "--quit-after-art" in OS.get_cmdline_user_args(): get_tree().quit()
 
 func _measure_render(region: int,battery: bool) -> Dictionary:

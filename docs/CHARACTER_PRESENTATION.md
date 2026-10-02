@@ -1,5 +1,7 @@
 # Character motion, compact combat HUD and regional landmarks
 
+Historical 0.39 implementation report. The 0.40 user-approved painterly rebuild replaces the runtime character meshes with animated, calibrated pose cutouts; see [asset provenance](design/ASSET_PROVENANCE.md) and [oaths/phases](OATHS_AND_PHASES_040.md). The old captures and measurements below remain historical evidence.
+
 This pass improves the existing 0.39 Solo/AFK beta's actual Godot presentation. The primary phone reference is a Google Pixel 9 Pro Fold used closed, in landscape. Desktop GL Compatibility captures at 1200×535 approximate the outside display's 2424×1080 aspect ratio; 1040×1080 covers the almost square inside display. These are rendered game captures, not evidence of physical Pixel performance. Boss fixtures grant extra Life to reach real warning patterns reliably and are not balance or store screenshots.
 
 ## Characters and animation

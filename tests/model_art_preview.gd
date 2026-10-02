@@ -22,22 +22,22 @@ func capture_models() -> void:
 	environment.sky=preload("res://scripts/dungeon_lighting.gd").reflection_sky()
 	environment.reflected_light_source=Environment.REFLECTION_SOURCE_SKY
 	background.environment=environment; stage.add_child(background)
-	var key:=DirectionalLight3D.new(); key.rotation_degrees=Vector3(-40,-36,0)
+	var key:=DirectionalLight3D.new(); key.rotation_degrees=Vector3(-40,145,0)
 	key.light_color=Color("ffe4bb"); key.light_energy=1.1; stage.add_child(key)
-	var rim:=DirectionalLight3D.new(); rim.rotation_degrees=Vector3(-27,145,0)
-	rim.light_color=Color("94bfdf"); rim.light_energy=0.85; stage.add_child(rim)
+	var rim:=DirectionalLight3D.new(); rim.rotation_degrees=Vector3(-27,-36,0)
+	rim.light_color=Color("a9b7c4"); rim.light_energy=0.5; stage.add_child(rim)
 	var camera:=Camera3D.new(); stage.add_child(camera); camera.current=true
 	var caption:=Label.new(); caption.position=Vector2(32,757); caption.add_theme_font_size_override("font_size",21)
 	root.add_child(caption)
-	for appearance in ["Vowkeeper","Arcanist","Ranger","guardian_0","guardian_1","guardian_2","guardian_3"]:
+	for appearance in ["Vowkeeper","Arcanist","Ranger","raider","hexer","bulwark","elite","guardian_0","guardian_1","guardian_2","guardian_3"]:
 		var actor:=Actor.new()
 		actor.kind=appearance if not appearance.begins_with("guardian") else "boss"
-		actor.boss=appearance.begins_with("guardian"); actor.hostile=actor.boss
+		actor.boss=appearance.begins_with("guardian"); actor.hostile=actor.boss or appearance not in ["Vowkeeper","Arcanist","Ranger"]
 		if actor.boss: actor.region_index=int(appearance.right(1))
 		stage.add_child(actor)
 		actor.animate(0.1,false)
-		var target:=Vector3(0,1.08,0)*(1.65 if actor.boss else 1.0)
-		camera.position=target+Vector3(3.4,1.0,-5.0)*(1.45 if actor.boss else 1.0)
+		var target:=Vector3(0,actor.visual_height()*0.49,0)
+		camera.position=target+Vector3(3.4,1.0,-5.0)*(2.2 if actor.boss else 1.0)
 		camera.fov=34; camera.look_at(target)
 		caption.text="EMBERFALL · "+appearance.replace("_"," ").to_upper()+"\n3D MODEL INSPECTION · IN-GAME ASSET"
 		for frame in range(5): await process_frame

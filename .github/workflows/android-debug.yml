@@ -102,6 +102,21 @@ jobs:
           python3 scripts/check_play_release.py
           python3 -m unittest discover -s tests -p test_android_release.py -v
 
+      - name: Check combined oaths, phased bosses, legacy checkpoints and offline parity
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-phased-data" timeout 300s godot --headless --path . --script tests/combined_oaths_phases_smoke.gd
+
+      - name: Check class equipment, live portraits and phased guardian appearance
+        run: godot --headless --path . --script tests/character_equipment_smoke.gd
+
+      - name: Check real expedition factory, combined rewards and cold saves
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-combined-main" timeout 300s godot --headless --path . --script tests/main_combined_rules_smoke.gd
+
+      - name: Check spatial camp, working forge and responsive compact HUD
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-camp-hud" timeout 120s godot --headless --path . --script tests/camp_hud_smoke.gd
+
+      - name: Check complete phase warnings at closed Fold, open Fold and compact layouts
+        run: godot --headless --path . --script tests/world_framing_smoke.gd
+
       - name: Check authored model geometry, joint contracts and render budgets
         run: godot --headless --path . --script tests/authored_art_smoke.gd
 
@@ -138,7 +153,7 @@ jobs:
           "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-debug.apk
           "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-closed-beta-ci.apk
           apk_info="$("$ANDROID_HOME/build-tools/36.1.0/aapt" dump badging build/emberfall-debug.apk)"
-          grep -F "package: name='com.philmenting.emberfallashenveil.test029' versionCode='$beta_version_code' versionName='0.39.0-online-test'" <<< "$apk_info"
+          grep -F "package: name='com.philmenting.emberfallashenveil.test029' versionCode='$beta_version_code' versionName='0.40.0-online-test'" <<< "$apk_info"
           grep -F "uses-permission: name='android.permission.INTERNET'" <<< "$apk_info"
           closed_beta_info="$("$ANDROID_HOME/build-tools/36.1.0/aapt" dump badging build/emberfall-closed-beta-ci.apk)"
           grep -F "package: name='com.philmenting.emberfallashenveil.closedbeta' versionCode='$beta_version_code' versionName='$beta_version_name'" <<< "$closed_beta_info"

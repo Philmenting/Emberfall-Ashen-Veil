@@ -13,39 +13,27 @@ func check(value: bool,message: String) -> void:
 func run_checks() -> void:
 	for kind in ["Vowkeeper","Arcanist","Ranger","boss"]:
 		var actor:=Actor.new(); actor.kind=kind; actor.boss=kind=="boss"; root.add_child(actor)
-		var mesh: MeshInstance3D=actor.get_node("SkinnedCharacter")
-		check(actor.find_children("*","MeshInstance3D",true,false).size()==2,kind+": one skinned surface and one contact shadow")
-		check(mesh.skin.get_bind_count()==13 and mesh.skeleton==mesh.get_path_to(actor.rig),kind+": all 13 joints bound to the rendering skeleton")
-		var arrays: Array=mesh.mesh.surface_get_arrays(0)
-		var vertices: PackedVector3Array=arrays[Mesh.ARRAY_VERTEX]
-		var bones: PackedInt32Array=arrays[Mesh.ARRAY_BONES]
-		var weights: PackedFloat32Array=arrays[Mesh.ARRAY_WEIGHTS]
-		var uvs: PackedVector2Array=arrays[Mesh.ARRAY_TEX_UV]
-		var valid:=true; var blended:=0; var cloth_vertices:=0
-		for vertex in range(vertices.size()):
-			var total:=0.0; var rest_position:=Vector3.ZERO
-			for influence in range(4):
-				var offset:=vertex*4+influence
-				var bone:=bones[offset]; var weight:=weights[offset]
-				valid=valid and bone>=0 and bone<13 and is_finite(weight) and weight>=0.0
-				total+=weight
-				rest_position+=(actor.rig.get_bone_global_rest(bone)*mesh.skin.get_bind_pose(bone)*vertices[vertex])*weight
-			valid=valid and absf(total-1.0)<0.0001 and rest_position.distance_to(vertices[vertex])<0.0001
-			if weights[vertex*4]>0.01 and weights[vertex*4+1]>0.01: blended+=1
-			if is_equal_approx(uvs[vertex].x,1.0): cloth_vertices+=1
-		check(valid and blended>100,kind+": normalized skin weights preserve every rest vertex and blend joints")
-		check(cloth_vertices>100,kind+": woven fabric has a separate material channel")
+		var mesh: MeshInstance3D=actor.painted_model
+		check(actor.find_children("*","MeshInstance3D",true,false).size()==2,kind+": one authored cutout and one contact shadow")
+		check(mesh.mesh.get_surface_count()==1 and mesh.mesh.surface_get_arrays(0)[Mesh.ARRAY_VERTEX].size()<=2500,kind+": actual source-alpha pose geometry stays in one bounded surface")
+		check(actor.atlas_texture!=null and actor.atlas_grid==Vector2(3,2),kind+": six authored poses are loaded from the real class/guardian sheet")
+		check(mesh.material_override.get_shader_parameter("atlas_texture")==actor.atlas_texture and actor.pose_frame==0,kind+": renderer binds the actual idle atlas rather than an unused hidden rig")
 		actor.animate(0.20,true,3.0)
 		var walking_blend: float=actor.gait_blend
 		actor.animate(1.0/60.0,false,0.0)
 		check(actor.gait_blend>0.0 and actor.gait_blend<walking_blend,kind+": stopping retains a fading stride")
 		actor.animate(1.0,false)
-		var idle_arm: float=actor.right_arm.rotation.x
+		check(actor.pose_frame==0,kind+": travel recovery returns to authored idle pose")
 		actor.strike(); actor.animate(0.001,false)
-		check(absf(actor.right_arm.rotation.x-idle_arm)<0.025,kind+": attack starts without an abrupt shoulder snap")
-		actor.animate(0.18,false)
-		var elbow:=actor.rig.find_bone("ForearmR")
-		check(absf(actor.right_forearm.rotation.x)>0.20 and actor.rig.get_bone_pose_rotation(elbow).is_equal_approx(actor.right_forearm.quaternion),kind+": attack articulates and uploads the elbow pose")
+		check(actor.pose_frame==3,kind+": actual attack starts in authored windup pose")
+		actor.animate(0.28,false)
+		check(actor.pose_frame==4 and float(actor.surface_material.get_shader_parameter("pose_frame"))==4.0,kind+": committed action displays the authored strike frame")
+		actor.set_telegraph(1.4); actor.animate(0.85,false)
+		check(actor.pose_frame==3,kind+": real warning countdown holds the windup longer than a basic swing")
+		actor.strike("heavy")
+		check(actor.pose_frame==4 and is_zero_approx(actor.telegraph_left),kind+": actual heavy impact clears warning and displays strike immediately")
+		actor.die(); actor.animate(0.1,false)
+		check(actor.pose_frame==5 and actor.body.position.is_finite(),kind+": defeat selects the real collapsed figure without rotating a placeholder")
 		actor.free()
 	var budget:=Budget.new()
 	for frame in range(60*20): budget.sample(1.0/60.0,true)

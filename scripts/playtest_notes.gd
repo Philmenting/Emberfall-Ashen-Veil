@@ -1,6 +1,6 @@
 extends RefCounted
 ## Optional local notes. No identifiers, exact visit dates or network transport.
-const MILESTONES := ["first_hit","first_signature","first_clear","first_relic_equipped"]
+const MILESTONES := ["first_hit","first_signature","first_clear","first_relic_equipped","first_oath_started","first_boss_phase"]
 static func normalize(value: Variant) -> Dictionary:
 	var result: Dictionary={}
 	if value is Dictionary:

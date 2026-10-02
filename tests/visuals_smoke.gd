@@ -17,7 +17,7 @@ func attack_pose(kind: String, style: String) -> Vector3:
 	root.add_child(actor)
 	actor.strike(style)
 	actor.animate(0.08,false)
-	var result:=Vector3(actor.right_arm.rotation.x,actor.left_arm.rotation.x,actor.body.rotation.y)
+	var result:=Vector3(float(actor.pose_frame),actor.action_intensity,float(actor.surface_material.get_shader_parameter("action_intensity")))
 	actor.free()
 	return result
 func run_checks() -> void:
@@ -28,7 +28,7 @@ func run_checks() -> void:
 		var point: Vector3=arrays[Mesh.ARRAY_VERTEX][i]
 		var normal: Vector3=arrays[Mesh.ARRAY_NORMAL][i]
 		if Vector2(point.x,point.z).length()>0.5: outward=outward and Vector2(point.x,point.z).dot(Vector2(normal.x,normal.z))>0.0
-	check(outward,"sculpted character surfaces face outward")
+	check(outward,"shared architectural profile surfaces face outward")
 	var floor_mesh:=Sculpt.paver()
 	var floor_arrays:=floor_mesh.surface_get_arrays(0)
 	var up:=true
@@ -39,7 +39,7 @@ func run_checks() -> void:
 		var actor:=Actor.new()
 		actor.kind=kind; actor.hostile=kind not in ["Vowkeeper","Arcanist","Ranger"]; actor.boss=kind=="boss"
 		root.add_child(actor)
-		check(actor.find_child("ContactShadow",true,false)!=null and actor.left_knee!=null and actor.right_knee!=null,kind+": model retains shadow and articulated joints")
+		check(actor.find_child("ContactShadow",true,false)!=null and actor.atlas_texture!=null,kind+": painted actor retains contact shadow and a real pose atlas")
 		var finite:=true
 		for node in actor.find_children("*","MeshInstance3D",true,false):
 			for surface in range(node.mesh.get_surface_count()):
@@ -47,20 +47,20 @@ func run_checks() -> void:
 		actor.strike()
 		for i in range(20): actor.animate(0.016,true)
 		actor.die(); actor.animate(0.2,false)
-		check(finite and actor.body.position.is_finite(),kind+": geometry and movement stay finite")
+		check(finite and actor.body.position.is_finite(),kind+": camera-facing geometry, pose frames and movement stay finite")
 		actor.queue_free()
-	for row in [["Vowkeeper","bastion"],["Arcanist","starfall"],["Ranger","rain"]]:
+	for row in [["Vowkeeper","sunder"],["Arcanist","starfall"],["Ranger","rain"]]:
 		var basic_pose:=attack_pose(row[0],"basic")
 		var technique_pose:=attack_pose(row[0],row[1])
-		check(basic_pose.distance_to(technique_pose)>0.15,row[0]+": equipped technique uses its own anticipation pose")
+		check(basic_pose.distance_to(technique_pose)>0.15,row[0]+": actual signature style supplies stronger action emphasis")
 	var first:=Actor.new()
 	first.kind="Arcanist"
 	root.add_child(first)
-	var size_before:=Actor.merged_cache.size()
+	var size_before:=Actor.appearance_cache.size()
 	var second:=Actor.new()
 	second.kind="Arcanist"
 	root.add_child(second)
-	check(Actor.merged_cache.size()==size_before,"repeated character appearances reuse merged geometry")
+	check(Actor.appearance_cache.size()==size_before,"repeated characters share the actual authored atlas texture")
 	first.queue_free(); second.queue_free()
 	var runner:=Actor.new()
 	runner.kind="Ranger"
@@ -68,19 +68,21 @@ func run_checks() -> void:
 	var initial_phase: float=runner.gait_phase
 	runner.animate(0.2,true,3.4)
 	check(runner.gait_phase>initial_phase,"running cadence advances with actual travel speed")
-	check(is_equal_approx(runner.left_leg.rotation.x,-runner.right_leg.rotation.x),"locomotion keeps left and right steps in opposition")
+	var first_stride:=runner.pose_frame
+	runner.animate(0.30,true,3.4)
+	check(first_stride in [1,2] and runner.pose_frame in [1,2] and runner.pose_frame!=first_stride,"locomotion alternates the two authored walking strides")
 	runner.strike()
 	runner.animate(0.30,false)
-	check(runner.body.position.z< -0.05,"attack animation has a visible forward follow-through")
+	check(runner.pose_frame==4,"attack animation selects the authored forward strike silhouette")
 	runner.react()
 	runner.animate(0.06,false)
-	check(runner.impact_time>=0.0 and absf(runner.body.rotation.z)>0.01,"enemy reacts to a hit with a short flinch")
+	check(runner.impact_time>=0.0 and runner.hit_strength>0.1,"enemy reacts to an actual hit with a short painted flash and lean")
 	runner.strike(); runner.strike()
 	check(runner.attack_queued,"rapid attacks queue without restarting the current swing")
 	runner.animate(0.65,false)
 	check(runner.attack_time==0.0 and not runner.attack_queued,"queued swing begins after recovery")
 	runner.die(); runner.animate(0.16,false)
-	check(runner.body.position.y<0.0 and absf(runner.body.rotation.z)>0.01,"death animation falls with a varied lean")
+	check(runner.pose_frame==5 and runner.death_time>0.0,"death animation displays the authored collapsed figure")
 	runner.queue_free()
 	var game:=Bot.new()
 	game.character_class="Arcanist"

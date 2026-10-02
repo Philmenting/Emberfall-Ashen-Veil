@@ -44,7 +44,7 @@ def main() -> int:
         adb("logcat", "-c")
         adb("shell", "am", "start", "-n", PACKAGE + "/com.godot.game.GodotAppLauncher")
         if args.success_only:
-            await_marker("ANDROID_SUCCESS_PASS first descent, class relic and oath UI", "success-launch.log")
+            await_marker("ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI", "success-launch.log")
             for key in ["welcome", "first-fight", "first-relic", "oaths", "oath-run", "filtered-bag", "protected-gear"]:
                 capture = subprocess.run([args.adb, "exec-out", "run-as", PACKAGE, "cat", f"files/success-{key}.png"], capture_output=True, timeout=60)
                 if capture.returncode or not capture.stdout.startswith(b"\x89PNG\r\n\x1a\n"):
@@ -53,8 +53,8 @@ def main() -> int:
             adb("shell", "am", "force-stop", PACKAGE)
             adb("logcat", "-c")
             adb("shell", "am", "start", "-n", PACKAGE + "/com.godot.game.GodotAppLauncher")
-            await_marker("ANDROID_SUCCESS_PASS restart preserves oath", "success-restart.log")
-            print("ANDROID SUCCESS LOOP VERIFIED: first fight, one-time relic, gear protection, bag filters, oath and cold restart")
+            await_marker("ANDROID_SUCCESS_PASS restart preserves combined oaths", "success-restart.log")
+            print("ANDROID SUCCESS LOOP VERIFIED: first fight, one-time relic, gear protection, bag filters, combined oaths and cold restart")
             return 0
         if args.art_only:
             log = await_marker("ANDROID_ART_PASS all four regions rendered", "art-launch.log")
@@ -73,7 +73,7 @@ def main() -> int:
                 if row["frames"] != 30 or not all(math.isfinite(row[key]) and row[key] > 0 for key in ["median_frame_ms", "p95_frame_ms", "median_draw_calls"]):
                     raise RuntimeError("Android render report contains invalid measurements")
             (args.output / "android-render-performance.json").write_text(json.dumps(metrics, indent=2))
-            print("ANDROID ART VERIFIED: four guardian scenes, real GLTF geometry, PBR maps and rendered screenshots")
+            print("ANDROID ART VERIFIED: four guardian scenes, real skinned geometry, painted materials and rendered screenshots")
             return 0
         log = await_marker("ANDROID_BETA_PASS exact AFK ledger", "first-launch.log")
         if "cooperative=true" not in log: raise RuntimeError("Android launch did not select cooperative AFK recovery")

@@ -1,5 +1,5 @@
 extends "res://scripts/main.gd"
-## Render a new store composition from the game's own 3D scene, not painted gameplay.
+## Store composition from the actual Godot scene and ordinary starting gear.
 func _ready() -> void:
 	get_window().size=Vector2i(1024,500)
 	get_window().content_scale_size=Vector2i(1024,500)
@@ -15,7 +15,7 @@ func _ready() -> void:
 	for child in get_children():
 		if child!=run_arena and child is CanvasItem: child.hide()
 	run_arena.animation_enabled=false
-	run_arena.world.camera.h_offset=-7.0
+	run_arena.world.camera.h_offset=-2.5
 	var brand := PanelContainer.new()
 	brand.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	brand.anchor_right=0.49
@@ -29,7 +29,11 @@ func _ready() -> void:
 	center.alignment=BoxContainer.ALIGNMENT_CENTER
 	center.add_theme_constant_override("separation",18)
 	brand.add_child(center)
-	center.add_child(_label("✦",48,GOLD))
+	var mark:=preload("res://scripts/ui_glyph.gd").new()
+	mark.key="seals"
+	mark.ink=GOLD
+	mark.custom_minimum_size=Vector2(48,48)
+	center.add_child(mark)
 	center.add_child(_label("EMBERFALL",47,PALE,true))
 	center.add_child(_label("A S H E N   V E I L",23,GOLD,true))
 	center.add_child(_paragraph_label("Prepare your build.\nLet Nyra brave the Veil.",22,PALE))

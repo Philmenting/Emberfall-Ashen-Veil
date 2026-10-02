@@ -7,14 +7,15 @@ Dieser Plan ist für eine erste Gruppe von 12–20 Personen vorbereitet. Es wurd
 1. Den neuen Solo-Beta-Build auf einem separaten Testprofil öffnen. Einen bestehenden echten Spielstand weder löschen noch mit einem QA-Paket überschreiben.
 2. Ohne Erklärung eine Klasse wählen und die erste Expedition spielen. Beobachten: Zeit vom App-Start bis zur Auswahl, Verständnis des automatischen Kampfes, Auffälligkeit der ersten Signatur. App-Start und reale Bedienzeiten mit einer Stoppuhr messen; lokale Notizen enthalten nur Simulationszeiten.
 3. Erste Beute ansehen. Fragen: „Was verändert dieses Amulett?“ und „Was würdest du jetzt tun?“ Verständnis vor einer Erklärung notieren. Prüfen, ob die Person den Anlegen-Button selbst findet.
-4. Einen Schwur ansehen. Vor Start fragen, welches Risiko und welche Belohnung erwartet werden. Erst danach spielen lassen.
-5. Ein Farmziel wählen, App schließen und am nächsten Tag selbstständig zurückkehren lassen. Keine Erinnerung vor diesem Rückkehrversuch schicken.
+4. Zum räumlichen Lager zurückkehren. Ohne Wegbeschreibung Schmiede und Portal finden lassen. Am Tisch alle drei Schwüre ansehen. Vor Start einen einzelnen Schwur und anschließend eine Kombination aus zwei Schwüren erklären lassen: Welche beiden Risiken gelten, welcher Build profitiert, welche Belohnung wird erwartet? Erst nach der unbeeinflussten Antwort erklären.
+5. Einen Wächterkampf beobachten lassen. Wahrnehmung von Phasenbruch, Klangsignal, Warnfläche und Ausweichen getrennt notieren; automatische Bewegung muss als solche verstanden werden. Eine dritte Auswahl am Schwurtisch darf keine heimliche dritte Regel hinzufügen.
+6. Ein Farmziel wählen, App schließen und am nächsten Tag selbstständig zurückkehren lassen. Keine Erinnerung vor diesem Rückkehrversuch schicken. Rückkehrzeit nicht aus den Simulationssekunden der lokalen Notizen ableiten.
 
 Nach jeder Sitzung höchstens fünf Fragen: Was war spannend? Was war unklar? Wo wolltest du aufhören? Welche Ausrüstung würdest du als Nächstes suchen? Würdest du morgen aus eigenem Antrieb weiterspielen, und warum?
 
 Die [leere Ergebnistabelle](play/success-test-results.csv) enthält keine erfundenen Messwerte. Testkürzel statt Namen verwenden. Notizen nur mit Zustimmung sammeln; keine Wiederherstellungscodes, GitHub-Zugangsdaten oder persönlichen Angaben aufnehmen. Teilnehmer können unter Options > Beta / Privacy freiwillige lokale Notizen einschalten und einen Bericht selbst kopieren. Ausschalten löscht diese Notizen.
 
-Vorläufige Kriterien für die nächste Entscheidung, als Hypothesen: Mindestens 80 % verstehen die erste Reliquie und beide Schwur-Regeln ohne Hilfe. Der erste Sieg soll innerhalb von drei Minuten Kampfzeit möglich sein. Bei mehr als 20 % Abbrüchen an derselben Stelle wird diese Stelle vor neuen Inhalten überarbeitet. Rückkehr nach einem Tag getrennt nach freiwilligem Start und eingeladenem Test dokumentieren; eine kleine eingeladene Gruppe ist kein belastbarer Markt-Retention-Wert.
+Vorläufige Kriterien für die nächste Entscheidung, als Hypothesen: Mindestens 80 % verstehen die erste Reliquie sowie die Risiken einer Schwur-Kombination ohne Hilfe. Der erste Sieg soll innerhalb von drei Minuten Kampfzeit möglich sein. Bei mehr als 20 % Abbrüchen an derselben Stelle wird diese Stelle vor neuen Inhalten überarbeitet. Rückkehr nach einem Tag getrennt nach freiwilligem Start und eingeladenem Test dokumentieren; eine kleine eingeladene Gruppe ist kein belastbarer Markt-Retention-Wert.
 
 ## Google Pixel 9 Pro Fold, überwiegend zugeklappt
 
@@ -39,4 +40,4 @@ Für Wärme und Verbrauch anschließend mit dem **regulären Solo-Testbuild** 20
 
 ## Gameplay-Material
 
-Der [Gameplay-Clip](previews/success-loop/emberfall-gameplay-beta2.mp4) zeigt tatsächlichen Kampf und tatsächliche erste Beute mit normaler Startausrüstung. Er ist ein vorbereiteter Entwurf, noch nicht veröffentlicht. Vor Verwendung im Store aktuelle Spieloberfläche, Geräte-Aufnahme, Seitenverhältnis und Anforderungen des jeweiligen Kanals prüfen. Render-Fixtures mit erhöhtem Leben aus früheren Grafiktests gehören nicht in Werbematerial.
+Der [Gameplay-Clip](previews/success-loop/emberfall-gameplay-040.mp4) zeigt tatsächlichen Kampf und tatsächliche erste Beute mit normaler Startausrüstung. Er ist ein vorbereiteter Entwurf, noch nicht veröffentlicht. Vor Verwendung im Store aktuelle Spieloberfläche, Geräte-Aufnahme, Seitenverhältnis und Anforderungen des jeweiligen Kanals prüfen. Render-Fixtures mit erhöhtem Leben aus früheren Grafiktests gehören nicht in Werbematerial.

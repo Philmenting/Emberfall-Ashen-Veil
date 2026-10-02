@@ -11,6 +11,7 @@ var render_container: SubViewportContainer
 var budget:=preload("res://scripts/render_budget.gd").new()
 var render_viewport: SubViewport
 
+var equipment_visual: Dictionary={}
 var character_class := "Vowkeeper"
 var region_index := 0
 var world: Node3D
@@ -37,6 +38,7 @@ func _ready() -> void:
 	viewport.msaa_3d = Viewport.MSAA_2X
 	container.add_child(viewport)
 	world = DungeonWorld.new()
+	world.hero_equipment = equipment_visual.duplicate(true)
 	world.character_class = character_class
 	world.region_index = region_index
 	world.reduced_motion = reduced_motion

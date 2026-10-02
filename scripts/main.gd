@@ -1,6 +1,10 @@
 extends Control
 
 const HeroArt = preload("res://scripts/hero_art.gd")
+const CampScene = preload("res://scripts/camp_scene.gd")
+const UiGlyph = preload("res://scripts/ui_glyph.gd")
+const TITLE_FONT = preload("res://assets/fonts/Cinzel.ttf")
+const BODY_FONT = preload("res://assets/fonts/Lora.ttf")
 const BattleArt = preload("res://scripts/battle_art.gd")
 const Expedition = preload("res://scripts/expedition_simulation.gd")
 const Contract = preload("res://scripts/expedition_contract.gd")
@@ -26,7 +30,7 @@ const PANEL_LIGHT := Color("20252c")
 const EDGE := Color("41434a")
 const GOLD := Color("d2ad70")
 const PALE := Color("e7dfd2")
-const MUTED := Color("a09b95")
+const MUTED := Color("c3b9a8")
 const RED := Color("9e4239")
 const GREEN := Color("86ad91")
 
@@ -35,10 +39,10 @@ const GEAR_SLOTS := ["Weapon", "Helmet", "Chest", "Gloves", "Boots", "Amulet"]
 const ARMORED_SLOTS := ["Helmet", "Chest", "Gloves", "Boots"]
 const ENEMIES := ["Hollow Stalker", "Ashbound Warden", "Veilborn Shade", "Cinder Knight", "Grave Lantern"]
 const REGIONS := [
-	{"name": "The Veilworn Marches", "dungeon": "The Hollow Spire", "boss": "The Bell Warden", "description": "A broken watchtower where the lost still march.", "route": ["GATE", "GALLERY", "BELL TOWER", "HEART"]},
-	{"name": "The Drowned Reaches", "dungeon": "The Sunken Archive", "boss": "The Silt Abbot", "description": "A flooded library whose drowned scribes still guard its sealed vaults.", "route": ["SHORE", "CRYPT", "SUNKEN HALL", "VAULT"]},
-	{"name": "The Blackglass Frontier", "dungeon": "The Crow Ossuary", "boss": "The Mourning Queen", "description": "A glass desert split by old graves and a queen's unfinished lament.", "route": ["WASTES", "MIRROR PASS", "BONE GATE", "THRONE"]},
-	{"name": "The Ashen Crown", "dungeon": "The Last Ember Citadel", "boss": "The Cinder Sovereign", "description": "The final citadel burns above a sea of ash and restless fire.", "route": ["OUTER WALL", "FURNACE", "CROWN ROAD", "CITADEL"]}
+	{"name": "The Veilworn Marches", "dungeon": "Hollow Spire", "boss": "The Bell Warden", "description": "A broken watchtower where the lost still march.", "route": ["GATE", "GALLERY", "BELL TOWER", "HEART"]},
+	{"name": "The Drowned Reaches", "dungeon": "Drowned Archive", "boss": "The Silt Abbot", "description": "A flooded library whose drowned scribes still guard its sealed vaults.", "route": ["SHORE", "CRYPT", "SUNKEN HALL", "VAULT"]},
+	{"name": "The Blackglass Frontier", "dungeon": "Glass Ossuary", "boss": "The Mourning Queen", "description": "A glass desert split by old graves and a queen's unfinished lament.", "route": ["WASTES", "MIRROR PASS", "BONE GATE", "THRONE"]},
+	{"name": "The Ashen Crown", "dungeon": "Cinder Citadel", "boss": "The Cinder Sovereign", "description": "The final citadel burns above a sea of ash and restless fire.", "route": ["OUTER WALL", "FURNACE", "CROWN ROAD", "CITADEL"]}
 ]
 const CLASS_DATA := {
 	"Vowkeeper": {
@@ -78,6 +82,9 @@ var preferences := Preferences.DEFAULTS.duplicate()
 var audio: Node
 var menu_resume_run := false
 var last_back_frame := -1
+var camp_scene: Control
+var selected_oaths: Array[String] = []
+var responsive_refresh_pending := false
 
 var page := "camp"
 var gear_tab := "bag"
@@ -97,6 +104,7 @@ var last_run_floor := 0
 var run_floor := 1
 var farm_floor := 1
 var farm_mode := "campaign"
+var offline_repeat_rules: Dictionary = {}
 var hunt_slot := "Weapon"
 var trial_cleared := 0
 var world_tab := "campaign"
@@ -164,6 +172,11 @@ func _ready() -> void:
 	randomize()
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_PASS
+	var native_theme := Theme.new()
+	native_theme.default_font = BODY_FONT
+	native_theme.default_font_size = 14
+	theme = native_theme
+	native_theme.set_constant("separation","HBoxContainer",8)
 	_load_progress()
 	get_tree().quit_on_go_back = false
 	get_window().go_back_requested.connect(_handle_back)
@@ -194,6 +207,9 @@ func _draw() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_RESIZED:
 		queue_redraw()
+		if initialized and not responsive_refresh_pending:
+			responsive_refresh_pending = true
+			_refresh_responsive_layout.call_deferred()
 	elif initialized and (what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_WM_CLOSE_REQUEST):
 		backgrounded_at = int(clock_source.call())
 		if is_instance_valid(audio): audio.set_suspended(true)
@@ -222,9 +238,15 @@ func _region_index(target_floor: int = -1) -> int:
 func _region_data(target_floor: int = -1) -> Dictionary:
 	return REGIONS[_region_index(target_floor)]
 
+func _refresh_responsive_layout() -> void:
+	responsive_refresh_pending = false
+	if has_node("Options") or has_node("Welcome") or finish_pending: return
+	_build_ui()
+
 func _build_ui() -> void:
 	ui_revision += 1
 	forecast_jobs.clear()
+	camp_scene = null
 	for child in get_children():
 		if child == audio: continue
 		remove_child(child)
@@ -234,69 +256,250 @@ func _build_ui() -> void:
 		_build_run()
 		_show_save_notice()
 		return
+	if page == "camp":
+		_build_spatial_camp()
+		_show_save_notice()
+		if offline_job!=null: _build_offline_loading()
+		return
 	var margins := MarginContainer.new()
 	var insets := _mobile_insets()
 	margins.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	margins.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	margins.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	margins.add_theme_constant_override("margin_left", 18+int(insets.left))
-	margins.add_theme_constant_override("margin_right", 18+int(insets.right))
-	margins.add_theme_constant_override("margin_top", 13+int(insets.top))
-	margins.add_theme_constant_override("margin_bottom", 11+int(insets.bottom))
+	for edge in ["left", "right", "top", "bottom"]:
+		margins.add_theme_constant_override("margin_"+edge, 16+int(insets[edge]))
 	add_child(margins)
 	var layout := VBoxContainer.new()
-	layout.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	layout.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	layout.add_theme_constant_override("separation", 5)
+	layout.add_theme_constant_override("separation", 12)
 	margins.add_child(layout)
 	layout.add_child(_build_header())
 	layout.add_child(_build_title_row())
-	var body := HBoxContainer.new()
-	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	body.add_theme_constant_override("separation", 10)
-	layout.add_child(body)
-	if page!="loot": body.add_child(_build_hero_rail())
-	var middle := VBoxContainer.new()
-	middle.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	middle.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	body.add_child(middle)
 	var scroll := ScrollContainer.new()
 	scroll.name="PageScroll"
-	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	middle.add_child(scroll)
+	scroll.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	layout.add_child(scroll)
 	var content := VBoxContainer.new()
-	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	content.add_theme_constant_override("separation", 9)
+	content.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	content.add_theme_constant_override("separation", 12)
 	scroll.add_child(content)
 	match page:
-		"camp": _build_camp(content)
 		"gear": _build_gear(content)
 		"map": _build_map(content)
+		"camp_table": _build_camp_table(content)
+		"seals": _build_seals(content)
 		"loot": _build_loot(content)
-	if page!="loot": body.add_child(_build_stats_rail())
 	layout.add_child(_build_navigation())
 	_show_save_notice()
 	if offline_job!=null: _build_offline_loading()
 
+func _build_spatial_camp() -> void:
+	camp_scene = CampScene.new()
+	camp_scene.name = "CampScene"
+	camp_scene.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	camp_scene.configure(character_class, equipment, guardian_trophies)
+	camp_scene.reduced_motion = preferences.reduced_motion
+	camp_scene.battery_mode = preferences.battery
+	add_child(camp_scene)
+	var shade := ColorRect.new()
+	shade.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+	shade.offset_bottom=112
+	shade.color=Color(0.025, 0.025, 0.035, 0.82)
+	shade.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	add_child(shade)
+	var safe := MarginContainer.new()
+	safe.name="CampSafeArea"
+	safe.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var insets:=_mobile_insets()
+	for edge in ["left", "right", "top", "bottom"]:
+		safe.add_theme_constant_override("margin_"+edge, 18+int(insets[edge]))
+	safe.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	add_child(safe)
+	var layout := VBoxContainer.new()
+	layout.add_theme_constant_override("separation", 12)
+	layout.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	safe.add_child(layout)
+	var header := HBoxContainer.new()
+	header.add_theme_constant_override("separation", 16)
+	layout.add_child(header)
+	var title := VBoxContainer.new()
+	title.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	title.add_child(_label("ASHEN CAMP", 22, GOLD, true))
+	title.add_child(_label("Nyra · %s · Level %d" % [character_class, player_level], 12, PALE))
+	var xp:=_progress_bar(player_xp, player_level*1000, GOLD, 4)
+	xp.custom_minimum_size.x=220
+	title.add_child(xp)
+	header.add_child(title)
+	header.add_child(_label("%s Gold" % _short_number(player_gold),14,GOLD,true))
+	if player_shards>0: header.add_child(_label("%s Shards" % _short_number(player_shards),12,PALE))
+	var options:=_glyph_button("", "settings", PANEL_LIGHT, 12, _show_settings)
+	options.name="OpenSettings"
+	options.tooltip_text="Options, audio and save backup"
+	options.custom_minimum_size=Vector2(_minimum_button_height(48),_minimum_button_height(48))
+	options.size_flags_horizontal=Control.SIZE_SHRINK_END
+	header.add_child(options)
+	var air:=Control.new()
+	air.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	air.size_flags_vertical=Control.SIZE_EXPAND_FILL
+	layout.add_child(air)
+	var stations:=Control.new()
+	stations.name="CampStations"
+	stations.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	stations.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	add_child(stations)
+	for entry in [["forge","FORGE","Equipment", "CampForge"], ["hero","NYRA", "%d points" % attribute_points if attribute_points>0 else "Class & skills", "CampHero"], ["table","OATH FARM" if not offline_repeat_rules.is_empty() else "TABLE","Farms & oaths", "CampTable"], ["seals","SEALS","%d / 4 earned" % guardian_trophies.size(), "CampTrophies"]]:
+		var station:=_glyph_button(String(entry[1]),String(entry[0]),Color(0.035,0.042,0.05,0.94),12,_open_camp_station.bind(String(entry[0])))
+		station.name=String(entry[3])
+		station.set_meta("camp_station_key",String(entry[0]))
+		station.tooltip_text=String(entry[2])
+		station.custom_minimum_size=Vector2(130,_minimum_button_height(48))
+		stations.add_child(station)
+	_position_camp_stations.call_deferred()
+	var tray:=_panel(Color(0.025,0.025,0.035,0.95),Color("8e744a"),4)
+	tray.name="CampActions"
+	layout.add_child(tray)
+	var actions:=HBoxContainer.new()
+	actions.add_theme_constant_override("separation", 12)
+	tray.add_child(actions)
+	var bag:=_glyph_button("SATCHEL (%d)" % inventory.size(),"bag",PANEL_LIGHT,12,_open_camp_station.bind("bag"))
+	bag.name="CampSatchel"
+	bag.custom_minimum_size.x=175
+	bag.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+	actions.add_child(bag)
+	var desc:=VBoxContainer.new()
+	desc.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	desc.add_child(_label(String(_region_data().dungeon),15,PALE,true))
+	desc.add_child(_label("Floor %02d · next descent" % floor_number,12,MUTED))
+	var readiness:=_paragraph_label("Assessing your next descent…",11,MUTED)
+	readiness.name="CampReadiness"
+	desc.add_child(readiness)
+	_update_forecast(readiness,floor_number,false)
+	actions.add_child(desc)
+	var descend:=_glyph_button("DESCEND", "portal", RED, 16, _start_run)
+	descend.name="BeginButton"
+	descend.custom_minimum_size.x=190
+	descend.size_flags_horizontal=Control.SIZE_SHRINK_END
+	actions.add_child(descend)
+	if pending_idle_runs>0 or pending_idle_fails>0 or pending_idle_ash>0 or pending_idle_xp>0:
+		layout.add_child(_label("OFFLINE REPORT · %d cleared · %d setbacks · %d relics kept" % [pending_idle_runs,pending_idle_fails,pending_idle_gear],12,PALE))
+		var claim:=_button("CLAIM OFFLINE HAUL · %d Gold · %d XP" % [pending_idle_ash,pending_idle_xp],Color("31443a"),12,_claim_idle_cache)
+		claim.name="ClaimOfflineHaul"
+		layout.add_child(claim)
+	elif not pending_class_relic.is_empty():
+		var reserved:=_button("CLASS RELIC WAITING · OPEN SATCHEL",Color("493b30"),12,_open_camp_station.bind("bag"))
+		reserved.name="OpenReservedRelic"
+		layout.add_child(reserved)
+
+func _position_camp_stations() -> void:
+	if page!="camp" or not is_instance_valid(camp_scene): return
+	await get_tree().process_frame
+	if page!="camp" or not is_instance_valid(camp_scene): return
+	var stations:=get_node_or_null("CampStations")
+	if stations==null: return
+	var bounds:=get_viewport_rect().size
+	var insets:=_mobile_insets()
+	var action_bar:=find_child("CampActions",true,false) as Control
+	var lower_edge:=action_bar.global_position.y-10.0 if action_bar!=null else bounds.y-104.0
+	var occupied:Array[Rect2]=[]
+	for button in stations.get_children():
+		var key:String=button.get_meta("camp_station_key")
+		var at:Vector2=camp_scene.station_position(key)
+		var target:Vector2=at-Vector2(button.size.x*0.5,button.size.y*0.5)
+		if key=="hero": target.y=at.y+8.0
+		if key=="table": target.x-=35; target.y+=15
+		if key=="seals": target.x+=25; target.y+=15
+		target.x=clampf(target.x,20+int(insets.left),maxf(20,bounds.x-button.size.x-20-int(insets.right)))
+		target.y=clampf(target.y,118+int(insets.top),maxf(118,lower_edge-button.size.y))
+		var rect:=Rect2(target,button.size)
+		for previous in occupied:
+			if rect.grow(8).intersects(previous):
+				target.x=clampf(previous.end.x+10,20+int(insets.left),bounds.x-button.size.x-20-int(insets.right))
+				rect=Rect2(target,button.size)
+		button.position=target
+		occupied.append(rect)
+
+func _open_camp_station(key: String) -> void:
+	if offline_job!=null: return
+	match key:
+		"forge": gear_tab="equipment"; _navigate("gear")
+		"hero": gear_tab="build"; _navigate("gear")
+		"bag": gear_tab="bag"; _navigate("gear")
+		"table": _navigate("camp_table")
+		"seals": _navigate("seals")
+
+func _build_camp_table(parent: VBoxContainer) -> void:
+	_build_reserved_relic(parent)
+	if pending_idle_runs>0 or pending_idle_fails>0 or pending_idle_ash>0 or pending_idle_xp>0: _build_idle_report(parent)
+	if floor_number>=2:
+		_build_oaths(parent)
+		parent.add_child(_small_divider())
+	parent.add_child(_label("Offline expeditions", 20, GOLD, true))
+	parent.add_child(_paragraph_label("Your chosen floor and farm goal apply while you are away. Up to 24 hours are counted; overflow gear is sold for Gold.",12,PALE))
+	parent.add_child(_button("AFK FARM: %s" % ("ON" if farm_enabled else "OFF"),Color("31443a") if farm_enabled else PANEL_LIGHT,12,_toggle_farm))
+	var farm_context:=_offline_farm_context()
+	parent.add_child(_label("%s · FLOOR %02d" % [Contract.title(farm_context.contract),farm_context.floor],14,GREEN,true))
+	if not offline_repeat_rules.is_empty():
+		parent.add_child(_paragraph_label("These oaths stay active while you are away. Prepared %s build: %d Life, %d Mana, %d Attack. Changing equipment, attributes, class, skills or your farm goal starts a new preparation." % [farm_context["class"],farm_context.stats.max_hp,farm_context.stats.max_mana,farm_context.stats.attack],12,PALE))
+		parent.add_child(_paragraph_label(Contract.describe(farm_context.contract),12,GOLD))
+		var clear:=_button("RETURN TO SELECTED FARM",PANEL_LIGHT,12,_clear_offline_repeat)
+		clear.name="EndOathFarm"
+		parent.add_child(clear)
+	parent.add_child(_button("FARM GOAL: "+(hunt_slot.to_upper() if farm_mode=="hunt" else "ALL GEAR"),PANEL_LIGHT,12,_open_hunts))
+	var forecast:=_paragraph_label("Assessing this floor with your current gear…",12,MUTED)
+	parent.add_child(forecast)
+	_update_forecast(forecast,farm_context.floor,true,farm_context.contract,farm_context.stats)
+	var farm_actions:=HBoxContainer.new()
+	farm_actions.add_theme_constant_override("separation",8)
+	parent.add_child(farm_actions)
+	var previous:=_button("LOWER FLOOR",PANEL_LIGHT,12,_set_farm_floor.bind(-1))
+	previous.disabled=farm_floor<=1
+	farm_actions.add_child(previous)
+	var farm:=_button("START AUTO FARM",Color("314b3c"),13,_start_farming)
+	farm.name="FarmStartButton"
+	farm_actions.add_child(farm)
+	var next:=_button("HIGHER FLOOR",PANEL_LIGHT,12,_set_farm_floor.bind(1))
+	next.disabled=farm_floor>=maxi(1,floor_number-1)
+	farm_actions.add_child(next)
+	parent.add_child(_small_divider())
+	if floor_number<2: parent.add_child(_paragraph_label("Clear the first guardian to unlock expedition oaths, focused hunts and Ash Trials.",12,MUTED))
+	_build_journey_goal(parent)
+	if floor_number<=3: _build_first_steps(parent)
+
+func _build_seals(parent: VBoxContainer) -> void:
+	parent.add_child(_label("Guardian seals",22,GOLD,true))
+	parent.add_child(_paragraph_label("Each seal marks a guardian you defeated in a campaign expedition. The seals on the camp altar come from these victories.",12,PALE))
+	for region_id in range(REGIONS.size()):
+		var earned:=region_id in guardian_trophies
+		var row:=HBoxContainer.new()
+		row.add_theme_constant_override("separation",16)
+		parent.add_child(row)
+		var glyph:=UiGlyph.new()
+		glyph.key="seals"
+		glyph.ink=GOLD if earned else MUTED.darkened(0.35)
+		glyph.custom_minimum_size=Vector2(40,48)
+		row.add_child(glyph)
+		var name_stack:=VBoxContainer.new()
+		name_stack.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		name_stack.add_child(_label(String(REGIONS[region_id].boss),16,PALE if earned else MUTED,true))
+		name_stack.add_child(_label(String(REGIONS[region_id].dungeon),12,MUTED))
+		row.add_child(name_stack)
+		row.add_child(_label("EARNED" if earned else "UNCLAIMED",12,GOLD if earned else MUTED,true))
+		parent.add_child(_small_divider())
+
 func _build_header() -> Control:
 	var bar := HBoxContainer.new()
-	bar.custom_minimum_size.y = 36
-	bar.add_theme_constant_override("separation", 7)
-	bar.add_child(_label("✦", 21, GOLD, true))
-	var stack := VBoxContainer.new()
-	stack.add_theme_constant_override("separation", 0)
-	stack.add_child(_label("EMBERFALL", 16, PALE, true))
-	stack.add_child(_label("A S H E N   V E I L", 8, MUTED, true))
-	bar.add_child(stack)
-	var spacer := Control.new()
-	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	bar.add_theme_constant_override("separation", 12)
+	var back:=_glyph_button("CAMP","back",PANEL_LIGHT,12,_return_to_camp)
+	back.name="ReturnButton"
+	back.custom_minimum_size.x=126
+	back.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+	bar.add_child(back)
+	var spacer:=Control.new()
+	spacer.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	bar.add_child(spacer)
-	bar.add_child(_resource_chip("◈", "%s GOLD" % _short_number(player_gold), GOLD))
-	var options:=_button("OPTIONS",PANEL_LIGHT,10,_show_settings)
+	bar.add_child(_label("%s Gold" % _short_number(player_gold),14,GOLD,true))
+	var options:=_glyph_button("OPTIONS","settings",PANEL_LIGHT,12,_show_settings)
 	options.name="OpenSettings"
-	options.custom_minimum_size=Vector2(86,_minimum_button_height(48))
+	options.custom_minimum_size.x=146
 	options.size_flags_horizontal=Control.SIZE_SHRINK_END
 	bar.add_child(options)
 	return bar
@@ -308,6 +511,12 @@ func _build_title_row() -> Control:
 	var title := "ASHEN CAMP"
 	var subtitle := "SAFE HAVEN"
 	match page:
+		"camp_table":
+			title = "EXPEDITION TABLE"
+			subtitle = "FARMS & OATHS"
+		"seals":
+			title = "GUARDIAN SEALS"
+			subtitle = "%d / 4 EARNED" % guardian_trophies.size()
 		"gear":
 			title = "ARMORY"
 			subtitle = "POWER  %s  •  %s" % [_short_number(_hero_power()), character_class.to_upper()]
@@ -321,7 +530,7 @@ func _build_title_row() -> Control:
 			title = "DUNGEON CLEARED" if run_succeeded else "EXPEDITION ENDED"
 			var reward_floor := last_run_floor if last_run_floor > 0 else floor_number
 			subtitle = "FLOOR %02d  •  REWARDS" % reward_floor
-	var heading := _label(title, 13, GOLD, true)
+	var heading := _label(title, 19, GOLD, true)
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.add_child(heading)
 	row.add_child(_label(subtitle, 9, MUTED, true))
@@ -341,7 +550,8 @@ func _build_hero_rail() -> Control:
 	art.custom_minimum_size = Vector2(0, 218)
 	art.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	art.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	art.character_class = character_class
+	art.configure(character_class, equipment)
+	art.set_presentation(preferences.reduced_motion, preferences.battery)
 	stack.add_child(art)
 	stack.add_child(_centered_label("NYRA", 20, PALE, true))
 	stack.add_child(_centered_label("%s  •  LEVEL %02d" % [character_class.to_upper(), player_level], 9, GOLD, true))
@@ -394,61 +604,6 @@ func _build_stats_rail() -> Control:
 	content.add_child(_button("AFK FARM: %s" % ("ON" if farm_enabled else "OFF"), Color("31443a") if farm_enabled else PANEL_LIGHT, 9, Callable(self, "_toggle_farm")))
 	return rail
 
-func _build_camp(parent: VBoxContainer) -> void:
-	_build_reserved_relic(parent)
-	if pending_idle_runs>0 or pending_idle_fails>0 or pending_idle_ash>0 or pending_idle_xp>0: _build_idle_report(parent)
-	var region := _region_data()
-	var expedition := _panel(PANEL_LIGHT, Color("574039"), 17)
-	parent.add_child(expedition)
-	var stack := VBoxContainer.new()
-	stack.add_theme_constant_override("separation", 7)
-	expedition.add_child(stack)
-	var heading := HBoxContainer.new()
-	heading.add_child(_label("NEXT EXPEDITION", 10, MUTED, true))
-	var spacer := Control.new()
-	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	heading.add_child(spacer)
-	heading.add_child(_label("FLOOR %02d" % floor_number,9,Color("b2a392"),true))
-	stack.add_child(heading)
-	stack.add_child(_label(String(region.dungeon).to_upper(), 22, PALE, true))
-	stack.add_child(_paragraph_label(String(region.description),11,MUTED))
-	var challenge := _paragraph_label("Assessing this floor with your current gear…",10,MUTED)
-	stack.add_child(challenge)
-	_update_forecast(challenge,floor_number,false)
-	stack.add_child(_button("DESCEND TO FLOOR %02d   →" % floor_number, RED, 14, Callable(self, "_start_run")))
-	_build_journey_goal(stack)
-	if floor_number>=2: _build_oaths(parent)
-	if floor_number<=3: _build_first_steps(parent)
-	var farm_panel := _panel(Color("19241f"),Color("405347"),14)
-	parent.add_child(farm_panel)
-	var farm_stack := VBoxContainer.new()
-	farm_panel.add_child(farm_stack)
-	farm_stack.add_child(_label("%s  •  FLOOR %02d" % [Contract.title(_farm_contract()),farm_floor],12,GREEN,true))
-	farm_stack.add_child(_button("FARM GOAL: "+(hunt_slot.to_upper() if farm_mode=="hunt" else "ALL GEAR"),PANEL_LIGHT,11,_open_hunts))
-	farm_stack.add_child(_paragraph_label("Choose a cleared floor. Repeat runs collect gear automatically and stop after a defeat. Offline farming uses this same floor and combat rules.",10,MUTED))
-	var forecast := _paragraph_label("Assessing this floor with your current gear…",10,MUTED)
-	farm_stack.add_child(forecast)
-	_update_forecast(forecast,farm_floor,true,_farm_contract())
-	var farm_actions := HBoxContainer.new()
-	farm_stack.add_child(farm_actions)
-	var previous := _button("−",PANEL_LIGHT,14,Callable(self,"_set_farm_floor").bind(-1))
-	previous.disabled = farm_floor<=1
-	farm_actions.add_child(previous)
-	farm_actions.add_child(_button("START AUTO FARM",Color("314b3c"),11,Callable(self,"_start_farming")))
-	var next := _button("+",PANEL_LIGHT,14,Callable(self,"_set_farm_floor").bind(1))
-	next.disabled = farm_floor>=maxi(1,floor_number-1)
-	farm_actions.add_child(next)
-	var progress := _panel(PANEL, EDGE, 16)
-	parent.add_child(progress)
-	var progress_stack := VBoxContainer.new()
-	progress_stack.add_theme_constant_override("separation", 4)
-	progress.add_child(progress_stack)
-	progress_stack.add_child(_label("RUN LOOP", 9, GOLD, true))
-	progress_stack.add_child(_paragraph_label("Run duration depends on combat  •  24-hour AFK limit  •  overflow loot auto-sold", 11, PALE))
-	if pending_idle_runs==0 and pending_idle_fails==0 and pending_idle_ash==0 and pending_idle_xp==0:
-		var status := "ON — expeditions keep progressing while you are away." if farm_enabled else "OFF — offline time will not start dungeon runs."
-		parent.add_child(_empty_note("AFK FARM %s" % status))
-
 func _build_idle_report(parent: VBoxContainer) -> void:
 	var report := _panel(Color("19241f"), Color("405347"), 16)
 	parent.add_child(report)
@@ -473,6 +628,7 @@ func _build_gear(parent: VBoxContainer) -> void:
 		_: _build_inventory_list(parent)
 
 func _build_class_editor(parent: VBoxContainer) -> void:
+	_build_hero_summary(parent)
 	var classes := HBoxContainer.new()
 	classes.add_theme_constant_override("separation", 6)
 	parent.add_child(_section_heading("PLAYABLE CLASSES", "%d ATTRIBUTE POINTS" % attribute_points))
@@ -500,9 +656,38 @@ func _build_class_editor(parent: VBoxContainer) -> void:
 	parent.add_child(reset)
 
 func _build_equipment_list(parent: VBoxContainer) -> void:
+	_build_hero_summary(parent)
 	parent.add_child(_section_heading("EQUIPPED GEAR", "%d SLOTS  •  TEMPER UP TO +%d" % [GEAR_SLOTS.size(), MAX_TEMPER_RANK]))
 	for slot in GEAR_SLOTS:
 		parent.add_child(_equipped_row(slot, equipment[slot]))
+
+func _build_hero_summary(parent: VBoxContainer) -> void:
+	var row:=HBoxContainer.new()
+	row.add_theme_constant_override("separation",20)
+	parent.add_child(row)
+	var art:=HeroArt.new()
+	art.name="EquippedHeroPreview"
+	art.portrait=false
+	art.custom_minimum_size=Vector2(152,168)
+	art.configure(character_class,equipment)
+	art.set_presentation(preferences.reduced_motion,preferences.battery)
+	row.add_child(art)
+	var stats:=_combat_stats()
+	var details:=VBoxContainer.new()
+	details.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	details.add_theme_constant_override("separation",6)
+	row.add_child(details)
+	details.add_child(_label("NYRA · "+character_class.to_upper(),20,PALE,true))
+	details.add_child(_label("Level %d · Combat power %s" % [player_level,_short_number(stats.power)],14,GOLD))
+	details.add_child(_progress_bar(player_xp,player_level*1000,GOLD,5))
+	details.add_child(_label("%d / %d XP" % [player_xp,player_level*1000],12,MUTED))
+	details.add_child(_label("Life %d · Mana %d · Armor %d" % [stats.max_hp,stats.max_mana,stats.armor],13,PALE))
+	details.add_child(_label("Attack %d · Critical %.1f%%" % [stats.attack,stats.crit],13,PALE))
+	var active_set:=RegionalSets.active(equipment)
+	if active_set>=0: details.add_child(_paragraph_label(RegionalSets.DEFINITIONS[active_set].name+" · "+RegionalSets.DEFINITIONS[active_set].rule,12,GREEN))
+	var relic:=Relics.effect(equipment.Amulet,character_class)
+	if not relic.is_empty(): details.add_child(_paragraph_label(Relics.DEFINITIONS[relic].name+" · "+Relics.DEFINITIONS[relic].short,12,GOLD))
+	parent.add_child(_small_divider())
 
 func _build_inventory_list(parent: VBoxContainer) -> void:
 	parent.add_child(_section_heading("SATCHEL", "%d / %d ITEMS" % [inventory.size(), MAX_BAG_SIZE]))
@@ -594,176 +779,235 @@ func _build_map(parent: VBoxContainer) -> void:
 
 func _build_run() -> void:
 	combat_hud.clear()
-	var arena := BattleArt.new()
-	arena.name = "BattleArena"
+	var arena:=BattleArt.new()
+	arena.name="BattleArena"
 	arena.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	arena.character_class = character_class
-	arena.region_index = _region_index(run_floor)
-	arena.simulation = expedition
-	arena.animation_enabled = run_active
-	arena.battery_mode = preferences.battery
-	arena.damage_numbers = preferences.numbers
-	arena.reduced_motion = preferences.reduced_motion
+	arena.character_class=character_class
+	arena.equipment_visual=equipment.duplicate(true)
+	arena.region_index=_region_index(run_floor)
+	arena.simulation=expedition
+	arena.animation_enabled=run_active
+	arena.battery_mode=preferences.battery
+	arena.damage_numbers=preferences.numbers
+	arena.reduced_motion=preferences.reduced_motion
 	arena.simulation_advanced.connect(_on_combat_advanced)
 	arena.state_changed.connect(_on_dungeon_state_changed)
 	add_child(arena)
-	run_arena = arena
-	var safe := MarginContainer.new()
-	var insets := _mobile_insets()
+	run_arena=arena
+	var safe:=MarginContainer.new()
+	safe.name="CombatSafeArea"
 	safe.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var insets:=_mobile_insets()
 	for edge in ["left","right","top","bottom"]:
-		safe.add_theme_constant_override("margin_" + edge, 18+int(insets[edge]))
-	safe.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		safe.add_theme_constant_override("margin_"+edge,16+int(insets[edge]))
+	safe.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	add_child(safe)
-	var overlay := VBoxContainer.new()
-	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var overlay:=VBoxContainer.new()
+	overlay.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	overlay.add_theme_constant_override("separation",8)
 	safe.add_child(overlay)
-	var top := HBoxContainer.new()
-	top.add_theme_constant_override("separation",24)
-	top.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var top:=HBoxContainer.new()
+	top.add_theme_constant_override("separation",18)
+	top.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	overlay.add_child(top)
-	var hero_panel := _panel(Color(0.025,0.028,0.035,0.72),Color("756344"),4)
-	hero_panel.custom_minimum_size.x = 160
-	hero_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-	hero_panel.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	var hero_panel:=_panel(Color(0.027,0.024,0.027,0.8),Color("9c8053"),4)
+	hero_panel.custom_minimum_size.x=248
+	hero_panel.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
+	hero_panel.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
 	top.add_child(hero_panel)
-	var hero_stack := VBoxContainer.new()
-	hero_panel.add_child(hero_stack)
-	hero_stack.add_child(_label("NYRA  /  LV. %d" % player_level,15,PALE,true))
-	var hero_details := VBoxContainer.new()
+	var hero_row:=HBoxContainer.new()
+	hero_row.add_theme_constant_override("separation",10)
+	hero_panel.add_child(hero_row)
+	var portrait:=HeroArt.new()
+	portrait.name="NyraPortrait"
+	portrait.configure(character_class,equipment)
+	portrait.set_presentation(preferences.reduced_motion,preferences.battery)
+	portrait.custom_minimum_size=Vector2(57,69)
+	hero_row.add_child(portrait)
+	var hero_stack:=VBoxContainer.new()
+	hero_stack.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	hero_stack.add_theme_constant_override("separation",5)
+	hero_row.add_child(hero_stack)
+	hero_stack.add_child(_label("NYRA · %d" % player_level,16,PALE,true))
+	combat_hud.hp=_progress_bar(run_health,expedition.stats.max_hp,Color("b62c2b"),10)
+	hero_stack.add_child(combat_hud.hp)
+	combat_hud.mana=_progress_bar(run_mana,expedition.stats.max_mana,Color("438e9e"),6)
+	hero_stack.add_child(combat_hud.mana)
+	combat_hud.life=_label("",10,PALE)
+	hero_stack.add_child(combat_hud.life)
+	var boss_stack:=VBoxContainer.new()
+	boss_stack.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	boss_stack.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	boss_stack.add_theme_constant_override("separation",5)
+	var guardian_space:=VBoxContainer.new()
+	guardian_space.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	guardian_space.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	top.add_child(guardian_space)
+	var boss_ground:=_ink_ground(6,4)
+	boss_ground.name="BossTextGround"
+	guardian_space.add_child(boss_ground)
+	boss_ground.add_child(boss_stack)
+	combat_hud.boss_panel=boss_ground
+	combat_hud.boss_panel.name="BossEncounter"
+	combat_hud.boss_name=_centered_label("",16,PALE,true)
+	combat_hud.boss_name.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	boss_stack.add_child(combat_hud.boss_name)
+	combat_hud.boss_hp=_progress_bar(0,1,Color("b9382d"),12)
+	boss_stack.add_child(combat_hud.boss_hp)
+	combat_hud.boss_life=_centered_label("",10,GOLD)
+	boss_stack.add_child(combat_hud.boss_life)
+	combat_hud.boss=_centered_label("",12,Color("ffd4a1"),true)
+	combat_hud.boss.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	boss_stack.add_child(combat_hud.boss)
+	var region_panel:=_panel(Color(0.027,0.024,0.027,0.78),Color("9c8053"),4)
+	region_panel.size_flags_horizontal=Control.SIZE_SHRINK_END
+	region_panel.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
+	region_panel.custom_minimum_size.x=228
+	top.add_child(region_panel)
+	var region_row:=HBoxContainer.new()
+	region_row.add_theme_constant_override("separation",8)
+	region_panel.add_child(region_row)
+	var region:=VBoxContainer.new()
+	region.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	var dungeon_name:=_label(String(_region_data(run_floor).dungeon).replace("The ","").to_upper(),12,GOLD,true)
+	dungeon_name.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	dungeon_name.custom_minimum_size.x=132
+	region.add_child(dungeon_name)
+	region.add_child(_label("FLOOR %02d" % run_floor,12,PALE,true))
+	if Contract.mode(expedition.contract())=="trial":
+		combat_hud.trial_clock=_label("",12,Color("ddc3f4"),true)
+		combat_hud.trial_clock.name="TrialClock"
+		region.add_child(combat_hud.trial_clock)
+	region_row.add_child(region)
+	combat_hud.pause=_glyph_button("","pause",Color("292824"),12,_show_settings)
+	combat_hud.pause.name="OpenSettings"
+	combat_hud.pause.tooltip_text="Pause and open options"
+	combat_hud.pause.custom_minimum_size=Vector2(_minimum_button_height(48),_minimum_button_height(48))
+	combat_hud.pause.size_flags_horizontal=Control.SIZE_SHRINK_END
+	region_row.add_child(combat_hud.pause)
+	var air:=Control.new()
+	air.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	air.size_flags_vertical=Control.SIZE_EXPAND_FILL
+	overlay.add_child(air)
+	var bottom:=HBoxContainer.new()
+	bottom.add_theme_constant_override("separation",10)
+	bottom.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	overlay.add_child(bottom)
+	combat_hud.auto=_glyph_button("AUTO","auto",Color(0.027,0.024,0.027,0.92),13,_toggle_run_pause)
+	combat_hud.auto.name="AutoControl"
+	combat_hud.auto.custom_minimum_size.x=122
+	combat_hud.auto.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+	bottom.add_child(combat_hud.auto)
+	var state_ground:=_ink_ground(7,4)
+	state_ground.name="CombatStateGround"
+	state_ground.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	state_ground.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	bottom.add_child(state_ground)
+	combat_hud.state=_label("AUTO",12,GOLD,true)
+	combat_hud.state.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	combat_hud.state.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	combat_hud.state.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	state_ground.add_child(combat_hud.state)
+	var details:=_glyph_button("DETAILS","map",Color(0.027,0.024,0.027,0.92),11,_toggle_combat_details)
+	details.name="CombatDetailsToggle"
+	details.custom_minimum_size.x=137
+	details.size_flags_horizontal=Control.SIZE_SHRINK_END
+	combat_hud.details=details
+	bottom.add_child(details)
+	combat_hud.repeat=_glyph_button("REPEAT","repeat",Color(0.027,0.024,0.027,0.92),12,_toggle_repeat)
+	combat_hud.repeat.name="RepeatControl"
+	combat_hud.repeat.custom_minimum_size.x=142
+	combat_hud.repeat.size_flags_horizontal=Control.SIZE_SHRINK_END
+	bottom.add_child(combat_hud.repeat)
+	var loot:=_glyph_button("LOOT","loot",Color(0.027,0.024,0.027,0.92),13,_skip_run)
+	loot.name="LootControl"
+	loot.tooltip_text="Resolve this expedition with the same combat rules and collect its outcome"
+	loot.custom_minimum_size.x=123
+	loot.size_flags_horizontal=Control.SIZE_SHRINK_END
+	bottom.add_child(loot)
+	# A scrollable detail sheet preserves the world and simulation beneath it.
+	var detail_sheet:=_panel(Color(0.035,0.037,0.045,0.97),Color("9c8053"),5)
+	detail_sheet.name="CombatDetails"
+	detail_sheet.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	detail_sheet.offset_left=18+int(insets.left)
+	detail_sheet.offset_right=-18-int(insets.right)
+	detail_sheet.offset_top=126+int(insets.top)
+	detail_sheet.offset_bottom=-84-int(insets.bottom)
+	detail_sheet.visible=false
+	add_child(detail_sheet)
+	combat_hud.details_sheet=detail_sheet
+	var detail_scroll:=ScrollContainer.new()
+	detail_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	detail_sheet.add_child(detail_scroll)
+	var columns:=HBoxContainer.new()
+	columns.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	columns.add_theme_constant_override("separation",24)
+	detail_scroll.add_child(columns)
+	var hero_details:=VBoxContainer.new()
 	hero_details.name="HeroDetails"
 	hero_details.visible=false
-	hero_details.add_child(_label(character_class.to_upper(),10,GOLD,true))
+	hero_details.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	hero_details.add_theme_constant_override("separation",8)
+	columns.add_child(hero_details)
+	hero_details.add_child(_label(character_class.to_upper(),16,PALE,true))
+	var stance:Dictionary=Stances.definition(expedition.stats)
+	hero_details.add_child(_label(String(stance.name).to_upper()+" STANCE",12,Color(stance.color)))
 	if expedition.stats.has("class_relic"):
-		var relic_label:=_paragraph_label(Relics.DEFINITIONS[expedition.stats.class_relic].name,10,GOLD,true)
-		relic_label.custom_minimum_size.x=170
-		hero_details.add_child(relic_label)
-	var stance: Dictionary = Stances.definition(expedition.stats)
-	hero_details.add_child(_label(String(stance.name).to_upper()+" STANCE",9,Color(stance.color)))
-	combat_hud.hp = _progress_bar(run_health,int(_combat_stats().max_hp),RED,9)
-	hero_stack.add_child(combat_hud.hp)
-	combat_hud.mana = _progress_bar(run_mana,int(_combat_stats().max_mana),Color("5f91c4"),5)
-	hero_stack.add_child(combat_hud.mana)
-	combat_hud.life = _label("",10,MUTED)
-	hero_stack.add_child(combat_hud.life)
-	combat_hud.skill = _label("",10,GOLD)
+		hero_details.add_child(_paragraph_label(Relics.DEFINITIONS[expedition.stats.class_relic].name,13,GOLD,true))
+	var rules:Dictionary=expedition.contract()
+	if Contract.mode(rules)=="oath":
+		hero_details.add_child(_paragraph_label(Contract.describe(rules),12,GOLD))
+		var synergy:=Contract.synergy_description(rules,character_class,expedition.stats)
+		if not synergy.is_empty(): hero_details.add_child(_paragraph_label(synergy,12,GREEN))
+	combat_hud.skill=_paragraph_label("",12,GOLD)
 	hero_details.add_child(combat_hud.skill)
 	if character_class=="Arcanist" and float(expedition.stats.get("mana_guard",0.0))>0.0:
-		combat_hud.ward = _label("",9,Color("ac9bdc"))
+		combat_hud.ward=_label("",12,Color("d1bdea"))
 		hero_details.add_child(combat_hud.ward)
 	if expedition.uses_rotation():
 		combat_hud.techniques={}
 		for key in expedition.stats.skill_loadout:
-			var status := _label("",9,Color(Skills.DEFINITIONS[key].color))
+			var status:=_label("",12,Color(Skills.DEFINITIONS[key].color))
 			status.name="TechniqueStatus_"+key
 			hero_details.add_child(status)
 			combat_hud.techniques[key]=status
-		combat_hud.guard=_label("",9,GREEN)
+		combat_hud.guard=_label("",12,GREEN)
 		hero_details.add_child(combat_hud.guard)
-	hero_stack.add_child(hero_details)
 	combat_hud.hero_details=hero_details
-	var top_gap := VBoxContainer.new()
-	top_gap.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	top.add_child(top_gap)
-	combat_hud.boss_panel=_panel(Color(0.025,0.028,0.035,0.86),Color("9e6553"),4)
-	combat_hud.boss_panel.name="BossEncounter"
-	combat_hud.boss_panel.size_flags_horizontal=Control.SIZE_SHRINK_CENTER
-	combat_hud.boss_panel.custom_minimum_size.x=190
-	top_gap.add_child(combat_hud.boss_panel)
-	var boss_stack := VBoxContainer.new()
-	combat_hud.boss_panel.add_child(boss_stack)
-	combat_hud.boss_name=_centered_label("",13,PALE,true)
-	boss_stack.add_child(combat_hud.boss_name)
-	combat_hud.boss_hp=_progress_bar(0,1,Color("bd6048"),8)
-	boss_stack.add_child(combat_hud.boss_hp)
-	combat_hud.boss_life=_centered_label("",10,GOLD)
-	boss_stack.add_child(combat_hud.boss_life)
-	var objective_panel := _panel(Color(0.025,0.028,0.035,0.68),Color("756344"),4)
-	objective_panel.custom_minimum_size.x = 200
-	objective_panel.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
-	objective_panel.size_flags_horizontal = Control.SIZE_SHRINK_END
-	top.add_child(objective_panel)
-	var objective := VBoxContainer.new()
-	objective_panel.add_child(objective)
-	objective.add_child(_label(String(_region_data(run_floor).dungeon).to_upper(),13,GOLD,true))
-	objective.add_child(_label("%s • FLOOR %02d" % [Contract.title(expedition.contract()),run_floor],8,MUTED,true))
-	if Contract.mode(expedition.contract())=="trial":
-		combat_hud.trial_clock=_label("",12,Color("c5a3e6"),true)
-		combat_hud.trial_clock.name="TrialClock"
-		objective.add_child(combat_hud.trial_clock)
-	combat_hud.progress = _progress_bar(0,run_max_stages,GOLD,5)
-	objective.add_child(combat_hud.progress)
 	var route_details:=VBoxContainer.new()
 	route_details.name="RouteDetails"
 	route_details.visible=false
+	route_details.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	route_details.add_theme_constant_override("separation",8)
+	columns.add_child(route_details)
 	combat_hud.route_details=route_details
+	route_details.add_child(_label("EXPEDITION",16,PALE,true))
+	combat_hud.encounter=_label("",12,PALE,true)
+	route_details.add_child(combat_hud.encounter)
+	combat_hud.progress=_progress_bar(0,run_max_stages,GOLD,5)
+	route_details.add_child(combat_hud.progress)
 	if expedition.uses_journey():
-		var route_map := preload("res://scripts/expedition_map.gd").new()
+		var route_map:=preload("res://scripts/expedition_map.gd").new()
 		route_map.name="ExpeditionMap"
 		route_map.simulation=expedition
 		route_details.add_child(route_map)
-		combat_hud.room = _label("",11,GOLD,true)
-		objective.add_child(combat_hud.room)
-		combat_hud.objective = _label("",10,MUTED)
-		combat_hud.objective.custom_minimum_size.x=190
-		combat_hud.objective.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+		combat_hud.room=_label("",12,GOLD,true)
+		route_details.add_child(combat_hud.room)
+		combat_hud.objective=_paragraph_label("",12,MUTED)
 		route_details.add_child(combat_hud.objective)
-	combat_hud.encounter = _label("",11,PALE,true)
-	objective.add_child(combat_hud.encounter)
-	combat_hud.boss = _label("",10,Color("f3aa82"),true)
-	boss_stack.add_child(combat_hud.boss)
-	combat_hud.boss.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	combat_hud.boss.custom_minimum_size.x=190
-	objective.add_child(route_details)
-	var details:=_button("DETAILS",PANEL_LIGHT,10,_toggle_combat_details)
-	details.name="CombatDetailsToggle"
-	details.custom_minimum_size.y=_minimum_button_height(48)
-	combat_hud.details=details
-	objective.add_child(details)
-	var options:=_button("OPTIONS / PAUSE",PANEL_LIGHT,9,_show_settings)
-	options.name="OpenSettings"
-	options.custom_minimum_size.y=_minimum_button_height(48)
-	objective.add_child(options)
-	var spacer := Control.new()
-	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	overlay.add_child(spacer)
-	var bottom := HBoxContainer.new()
-	bottom.alignment = BoxContainer.ALIGNMENT_END
-	bottom.add_theme_constant_override("separation",12)
-	overlay.add_child(bottom)
-	var status_panel := _panel(Color(0.025,0.028,0.035,0.72),Color("756344"),4)
-	status_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	bottom.add_child(status_panel)
-	var status := VBoxContainer.new()
-	status_panel.add_child(status)
-	combat_hud.state = _label("AUTO • ENTERING THE DUNGEON",11,GOLD,true)
-	combat_hud.state.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	status.add_child(combat_hud.state)
-	combat_hud.enemy = _label("",11,PALE)
-	status.add_child(combat_hud.enemy)
-	combat_hud.enemy_hp = _progress_bar(enemy_health,enemy_max_health,RED,5)
-	status.add_child(combat_hud.enemy_hp)
-	combat_hud.pause = _button("Ⅱ  PAUSE",Color("26323b"),11,Callable(self,"_toggle_run_pause"))
-	combat_hud.pause.custom_minimum_size = Vector2(112,_minimum_button_height(48))
-	combat_hud.pause.size_flags_horizontal = Control.SIZE_SHRINK_END
-	bottom.add_child(combat_hud.pause)
-	combat_hud.repeat = _button("",Color("304638"),10,Callable(self,"_toggle_repeat"))
-	combat_hud.repeat.custom_minimum_size = Vector2(110,_minimum_button_height(48))
-	combat_hud.repeat.size_flags_horizontal = Control.SIZE_SHRINK_END
-	bottom.add_child(combat_hud.repeat)
-	var skip := _button("SKIP TO LOOT  »",Color("713c32"),11,Callable(self,"_skip_run"))
-	skip.custom_minimum_size = Vector2(160,_minimum_button_height(48))
-	skip.size_flags_horizontal = Control.SIZE_SHRINK_END
-	bottom.add_child(skip)
+	combat_hud.enemy=_paragraph_label("",12,PALE)
+	route_details.add_child(combat_hud.enemy)
+	combat_hud.enemy_hp=_progress_bar(enemy_health,enemy_max_health,RED,6)
+	route_details.add_child(combat_hud.enemy_hp)
 	_sync_combat_hud()
 
 func _toggle_combat_details() -> void:
-	var expanded: bool=not combat_hud.hero_details.visible
+	var expanded:bool=not combat_hud.hero_details.visible
 	combat_hud.hero_details.visible=expanded
 	combat_hud.route_details.visible=expanded
-	combat_hud.details.text="HIDE DETAILS" if expanded else "DETAILS"
-	combat_hud.details.tooltip_text="Hide character skills and route map" if expanded else "Show character skills and route map"
+	combat_hud.details_sheet.visible=expanded
+	combat_hud.details.text="CLOSE" if expanded else "DETAILS"
+	combat_hud.details.tooltip_text="Hide skills and route map" if expanded else "Show skills, oaths and route map"
 
 func _on_dungeon_state_changed(description: String) -> void:
 	if combat_hud.has("state"):
@@ -779,7 +1023,7 @@ func _sync_combat_hud() -> void:
 	combat_hud.state.text = ("AUTO • " if run_active else "PAUSED • ")+String(expedition.action).to_upper()
 	combat_hud.hp.value = run_health
 	combat_hud.mana.value = run_mana
-	combat_hud.life.text = "%d LIFE   /   %d MANA" % [run_health,run_mana]
+	combat_hud.life.text = "%d Life · %d Mana" % [run_health,run_mana]
 	combat_hud.progress.value = run_stage
 	combat_hud.encounter.text = "PACK %02d / %02d  •  %d ALIVE" % [mini(run_stage+1,run_max_stages),run_max_stages,expedition.living().size()]
 	if combat_hud.has("room"):
@@ -796,12 +1040,12 @@ func _sync_combat_hud() -> void:
 			combat_hud.boss_name.text=String(guardian.name).to_upper()
 			combat_hud.boss_hp.max_value=guardian.max_hp
 			combat_hud.boss_hp.value=guardian.hp
-			combat_hud.boss_life.text="%d%% LIFE" % ceili(100.0*guardian.hp/guardian.max_hp)
+			combat_hud.boss_life.text="PHASE %d · %d%% LIFE" % [int(guardian.get("boss_phase",1 if guardian.get("awakened",false) else 0))+1,ceili(100.0*guardian.hp/guardian.max_hp)]
 	if expedition.stage==5:
 		var boss: Dictionary=expedition.enemy_by_id(50)
 		if boss.get("hp",0)>0 and boss.has("awakened"):
 			combat_hud.boss.visible=true
-			combat_hud.boss.text="AWAKENED • STRONGER ATTACKS" if boss.awakened else "BOSS • WATCH THE GROUND"
+			combat_hud.boss.text="PHASE %d · %s" % [int(boss.get("boss_phase",1 if boss.awakened else 0))+1, BossPatterns.phase_name(_region_index(run_floor),int(boss.get("boss_phase",1 if boss.awakened else 0)))]
 			if boss.warning.has("zones"):
 				combat_hud.boss.text="%s • %.1fs" % [String(boss.warning.name).to_upper(),maxf(0.0,boss.warning.left)]
 	combat_hud.enemy.text = "%s  •  %d / %d" % [current_enemy,enemy_health,enemy_max_health]
@@ -811,20 +1055,24 @@ func _sync_combat_hud() -> void:
 		combat_hud.enemy.text=expedition.action
 		combat_hud.enemy_hp.max_value=1.2
 		combat_hud.enemy_hp.value=expedition.journey.channel
-	combat_hud.pause.text = "Ⅱ  PAUSE" if run_active else "▶  RESUME"
-	combat_hud.repeat.text = "REPEAT: ON" if auto_repeat else "REPEAT: OFF"
-	combat_hud.skill.text = "%s  /  %s" % [String(CLASS_DATA[character_class].ability),"READY" if expedition.skill_cd<=0 else "%.1fs" % expedition.skill_cd]
+	combat_hud.auto.text = "AUTO" if run_active else "RESUME"
+	combat_hud.auto.tooltip_text = "Pause automatic combat" if run_active else "Resume automatic combat"
+	combat_hud.repeat.text = "REPEAT ON" if auto_repeat else "REPEAT"
+	combat_hud.repeat.tooltip_text = "Disable repeated expeditions" if auto_repeat else "Repeat this floor until defeat"
+	var signature_status:= "READY" if expedition.skill_cd<=0 else "%.1fs" % expedition.skill_cd
+	if expedition.skill_cd<=0 and expedition.hero_mana<expedition.signature_cost(): signature_status="LOW MANA"
+	combat_hud.skill.text = "%s · %s · %d Mana" % [String(CLASS_DATA[character_class].ability),signature_status,expedition.signature_cost()]
 	if combat_hud.has("techniques"):
 		for key in combat_hud.techniques:
 			var definition: Dictionary=Skills.DEFINITIONS[key]
 			var cooldown: float=expedition.rotation.cooldowns[key]
 			var status: String="READY" if cooldown<=0.0 else "%.1fs" % cooldown
-			if cooldown<=0.0 and expedition.hero_mana<int(definition.cost): status="LOW MANA"
+			if cooldown<=0.0 and expedition.hero_mana<expedition.technique_cost(key): status="LOW MANA"
 			if expedition.pending_attack.get("ability_id","")==key: status="CASTING"
-			combat_hud.techniques[key].text="%s / %s" % [definition.short,status]
+			combat_hud.techniques[key].text="%s · %s · %d Mana" % [definition.short,status,expedition.technique_cost(key)]
 		combat_hud.guard.text="GUARD • %.1fs" % expedition.guard_time if expedition.guard_time>0.0 else "AUTO ROTATION • 3 SKILLS"
 	if combat_hud.has("ward"):
-		combat_hud.ward.text = "WARD • %d MANA AVAILABLE" % maxi(0,expedition.hero_mana-int(expedition.stats.mana_cost))
+		combat_hud.ward.text = "WARD · %d MANA AVAILABLE" % maxi(0,expedition.hero_mana-expedition.signature_cost())
 
 func _build_loot(parent: VBoxContainer) -> void:
 	var victory := _panel(Color("28261f"), Color("796746"), 17)
@@ -897,28 +1145,13 @@ func _build_loot(parent: VBoxContainer) -> void:
 			parent.add_child(_item_card(item, true))
 
 func _build_navigation() -> Control:
-	var tray := _panel(Color(0.055, 0.060, 0.072, 0.97), Color("34373d"), 15)
-	tray.custom_minimum_size.y = 46
-	var row := HBoxContainer.new()
-	row.add_theme_constant_override("separation", 6)
-	tray.add_child(row)
-	row.add_child(_nav_button("⌂", "CAMP", "camp"))
-	row.add_child(_nav_button("⚒", "GEAR", "gear"))
-	row.add_child(_nav_button("✥", "WORLD", "map"))
-	return tray
-
-func _nav_button(icon: String, caption: String, destination: String) -> Control:
-	var button := Button.new()
-	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	button.set_meta("emberfall_base_font_size",11)
-	button.add_theme_font_size_override("font_size",_scaled_font_size(11))
-	button.custom_minimum_size = Vector2(0,_minimum_button_height(40))
-	button.flat = true
-	button.focus_mode = Control.FOCUS_NONE
-	button.text = "%s   %s" % [icon, caption]
-	button.add_theme_color_override("font_color", GOLD if page == destination else MUTED)
-	button.pressed.connect(_navigate.bind(destination))
-	return button
+	var row:=HBoxContainer.new()
+	row.add_theme_constant_override("separation",8)
+	for entry in [["camp","CAMP","camp"],["forge","GEAR","gear"],["map","WORLD","map"]]:
+		var button:=_glyph_button(String(entry[1]),String(entry[0]),Color("493b30") if page==entry[2] else PANEL_LIGHT,12,_navigate.bind(String(entry[2])))
+		button.name="Navigate"+String(entry[1])
+		row.add_child(button)
+	return row
 
 func _equipped_row(slot: String, item: Dictionary) -> Control:
 	var row := _panel(PANEL, _quality_color(item.quality).darkened(0.45), 13)
@@ -928,7 +1161,7 @@ func _equipped_row(slot: String, item: Dictionary) -> Control:
 	var line := HBoxContainer.new()
 	line.add_theme_constant_override("separation", 8)
 	stack.add_child(line)
-	line.add_child(_centered_label(_slot_icon(slot), 19, _quality_color(item.quality)))
+	line.add_child(_slot_glyph(slot))
 	var info := VBoxContainer.new()
 	info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	info.add_child(_label("%s  •  T%d  •  +%d  •  %s" % [slot.to_upper(), item.tier, int(item.get("temper", 0)), _quality_label(item.quality)], 8, _quality_color(item.quality), true))
@@ -952,7 +1185,7 @@ func _item_card(item: Dictionary, show_actions: bool) -> Control:
 	stack.add_theme_constant_override("separation", 4)
 	card.add_child(stack)
 	var top := HBoxContainer.new()
-	top.add_child(_centered_label(_slot_icon(item.slot), 19, _quality_color(rarity)))
+	top.add_child(_slot_glyph(String(item.slot)))
 	var identity := VBoxContainer.new()
 	identity.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	identity.add_child(_paragraph_label(String(item.name), 12, PALE, true))
@@ -1085,9 +1318,9 @@ func _button(caption: String, fill: Color, font_size: int, action: Callable) -> 
 	button.text = caption
 	button.set_meta("emberfall_base_font_size",font_size)
 	button.add_theme_font_size_override("font_size",_scaled_font_size(font_size))
-	button.custom_minimum_size = Vector2(0,_minimum_button_height(46))
+	button.custom_minimum_size = Vector2(_minimum_button_height(48),_minimum_button_height(46))
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	button.focus_mode = Control.FOCUS_NONE
+	button.focus_mode = Control.FOCUS_ALL
 	button.add_theme_color_override("font_color", PALE)
 	button.add_theme_color_override("font_hover_color", Color.WHITE)
 	button.add_theme_color_override("font_pressed_color", GOLD)
@@ -1106,11 +1339,34 @@ func _button(caption: String, fill: Color, font_size: int, action: Callable) -> 
 	button.add_theme_stylebox_override("normal", normal)
 	button.add_theme_stylebox_override("hover", hover)
 	button.add_theme_stylebox_override("pressed", pressed)
-	button.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	var focus: StyleBoxFlat = normal.duplicate() as StyleBoxFlat
+	focus.bg_color = Color.TRANSPARENT
+	focus.border_color = Color("ffe2a2")
+	focus.set_border_width_all(2)
+	button.add_theme_stylebox_override("focus", focus)
 	button.pressed.connect(func():
 		if is_instance_valid(audio): audio.cue("ui")
 	)
 	button.pressed.connect(action)
+	return button
+
+func _glyph_button(caption: String, icon: String, fill: Color, font_size: int, action: Callable) -> Button:
+	var button:=_button(caption,fill,font_size,action)
+	for state in ["normal","hover","pressed","focus"]:
+		var box:=button.get_theme_stylebox(state).duplicate() as StyleBoxFlat
+		box.content_margin_left=42 if not caption.is_empty() else 10
+		box.content_margin_right=12
+		box.set_corner_radius_all(5)
+		button.add_theme_stylebox_override(state,box)
+	var glyph:=UiGlyph.new()
+	glyph.key=icon
+	glyph.ink=GOLD
+	glyph.set_anchors_and_offsets_preset(Control.PRESET_CENTER_LEFT)
+	glyph.offset_left=12 if not caption.is_empty() else 14
+	glyph.offset_right=glyph.offset_left+24
+	glyph.offset_top=-12
+	glyph.offset_bottom=12
+	button.add_child(glyph)
 	return button
 
 func _panel(fill: Color, edge: Color, radius: int) -> PanelContainer:
@@ -1136,7 +1392,8 @@ func _label(copy: String, font_size: int, color: Color, bold: bool = false) -> L
 	label.add_theme_font_size_override("font_size",_scaled_font_size(font_size))
 	label.add_theme_color_override("font_color", color)
 	if bold:
-		label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.25))
+		label.add_theme_font_override("font", TITLE_FONT)
+		label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.45))
 	label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	return label
 
@@ -1152,11 +1409,11 @@ func _scaled_font_size(base_size: int) -> int:
 	var scale := 1.2 if compact else 1.0
 	if preferences.get("large_text",false):
 		scale=maxf(scale,1.35 if compact else 1.15)
-	return maxi(1,roundi(float(base_size)*scale))
+	return maxi(12,roundi(float(base_size)*scale))
 
 func _minimum_button_height(base_size: int) -> int:
 	var compact:=_compact_layout()
-	var target:=base_size
+	var target:=maxi(base_size,48)
 	if compact: target=maxi(target,52)
 	if preferences.get("large_text",false): target=maxi(target,58 if compact else 48)
 	if OS.has_feature("android"):
@@ -1168,6 +1425,8 @@ func _minimum_button_height(base_size: int) -> int:
 func _refresh_font_sizes(node: Node) -> void:
 	if node is Control and node.has_meta("emberfall_base_font_size"):
 		node.add_theme_font_size_override("font_size",_scaled_font_size(int(node.get_meta("emberfall_base_font_size"))))
+	if node is BaseButton:
+		node.custom_minimum_size.y=maxf(node.custom_minimum_size.y,_minimum_button_height(48))
 	for child in node.get_children(): _refresh_font_sizes(child)
 
 func _paragraph_label(copy: String, font_size: int, color: Color, bold: bool = false) -> Label:
@@ -1306,14 +1565,27 @@ func _gear_tier() -> int:
 func _gear_tier_at_floor(target_floor: int) -> int:
 	return clampi(int(floor(float(target_floor - 1) / 10.0)) + 1, 1, 10)
 
-func _slot_icon(slot: String) -> String:
-	match slot:
-		"Weapon": return "⚔"
-		"Helmet": return "◈"
-		"Chest": return "◒"
-		"Gloves": return "⌑"
-		"Boots": return "⌁"
-		_: return "✧"
+func _slot_glyph(slot: String) -> Control:
+	var glyph:=UiGlyph.new()
+	glyph.name="SlotGlyph_"+slot
+	glyph.key=slot.to_lower()
+	glyph.ink=GOLD
+	glyph.custom_minimum_size=Vector2(28,32)
+	glyph.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	return glyph
+
+func _ink_ground(horizontal: int, vertical: int) -> PanelContainer:
+	var panel:=PanelContainer.new()
+	panel.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	var style:=StyleBoxFlat.new()
+	style.bg_color=Color("101318")
+	style.content_margin_left=horizontal
+	style.content_margin_right=horizontal
+	style.content_margin_top=vertical
+	style.content_margin_bottom=vertical
+	style.set_corner_radius_all(3)
+	panel.add_theme_stylebox_override("panel",style)
+	return panel
 
 func _short_number(value: int) -> String:
 	if value >= 1000000:
@@ -1333,7 +1605,9 @@ func _select_class(class_key: String) -> void:
 	if offline_job!=null: return
 	if not CLASS_DATA.has(class_key):
 		return
-	if character_class!=class_key: _refund_attributes()
+	if character_class!=class_key:
+		_end_offline_repeat()
+		_refund_attributes()
 	character_class = class_key
 	_save_progress()
 	_build_ui()
@@ -1342,6 +1616,7 @@ func _allocate_attribute(attribute: String) -> void:
 	if offline_job!=null: return
 	if attribute_points <= 0 or not ATTRIBUTES.has(attribute):
 		return
+	_end_offline_repeat()
 	allocated_attributes[attribute] = int(allocated_attributes.get(attribute, 0)) + 1
 	attribute_points -= 1
 	_save_progress()
@@ -1350,7 +1625,10 @@ func _allocate_attribute(attribute: String) -> void:
 func _start_run(target_floor: int = -1, rules: Dictionary = {}) -> void:
 	if offline_job!=null: return
 	if not rules.is_empty() and not Contract.valid(rules,target_floor): return
+	_end_offline_repeat()
 	if Contract.mode(rules)=="trial": auto_repeat=false
+	if Contract.mode(rules)=="oath" and rules.get("version")==2:
+		_note_playtest("first_oath_started",0.0)
 	onboarding_complete = true
 	page = "run"
 	run_floor = target_floor if Contract.mode(rules)=="trial" else clampi(floor_number if target_floor<1 else target_floor,1,maxi(1,floor_number))
@@ -1402,6 +1680,8 @@ func _on_combat_advanced(updates: Array) -> void:
 	_sync_model_state()
 	if is_instance_valid(audio): audio.combat_events(updates,character_class)
 	for event in updates:
+		if event.type=="boss_phase":
+			_note_playtest("first_boss_phase",expedition.elapsed)
 		if event.type=="hit":
 			_note_playtest("first_hit",expedition.elapsed)
 		if event.type=="hero_attack" and event.get("skill",false) and not event.has("ability_id"):
@@ -1441,6 +1721,7 @@ func _toggle_repeat() -> void:
 func _set_farm_floor(change: int) -> void:
 	_accrue_offline_time(OS.has_feature("android"))
 	idle_progress_seconds=0
+	offline_repeat_rules={}
 	farm_floor = clampi(farm_floor+change,1,maxi(1,floor_number-1))
 	_save_progress()
 	_build_ui()
@@ -1479,20 +1760,20 @@ func _grant_expedition_rewards(success: bool, target_floor: int, offline: bool, 
 	if first_trial:
 		gold+=500+int(rules.tier)*40
 		xp+=500+int(rules.tier)*50
-	if success and mode=="oath" and rules.oath=="unmended":
-		gold=int(gold*1.3)
-		xp=int(xp*1.3)
+	if success and mode=="oath":
+		gold=int(gold*Contract.reward_multiplier(rules))
+		xp=int(xp*Contract.reward_multiplier(rules))
 	if success:
 		var loot_rng := RandomNumberGenerator.new()
 		loot_rng.seed = seed_value+7919
 		var drop_count := 1 if loot_rng.randf()<0.68 else 2
 		if first_trial: drop_count=1
-		if mode=="oath" and rules.oath=="unmended": drop_count+=1
+		if mode=="oath": drop_count+=Contract.bonus_drop_count(rules)
 		for i in range(drop_count):
 			var item := _generate_item(true,target_floor,loot_rng,loot_class,String(rules.get("slot","")),"EPIC" if first_trial else "")
-			if (first_relic or (mode=="oath" and rules.oath=="cinder")) and i==0:
+			if (first_relic or Contract.guarantees_class_relic(rules)) and i==0:
 				var earned_class:=character_class if loot_class.is_empty() else loot_class
-				item=ClassLoot.roll(earned_class,true,_gear_tier_at_floor(target_floor),loot_rng,"Amulet","EPIC" if mode=="oath" and rules.oath=="cinder" else "RARE")
+				item=ClassLoot.roll(earned_class,true,_gear_tier_at_floor(target_floor),loot_rng,"Amulet","EPIC" if Contract.guarantees_class_relic(rules) else "RARE")
 				item=Relics.attune(item,earned_class)
 			item.region=_region_index(target_floor)
 			if first_relic and i==0 and inventory.size()>=MAX_BAG_SIZE:
@@ -1524,7 +1805,7 @@ func _grant_expedition_rewards(success: bool, target_floor: int, offline: bool, 
 		run_reward={"gold":gold,"xp":xp,"title":Contract.title(rules),"note":"First clear • guaranteed Epic relic" if first_trial else "Focused drops • "+String(rules.slot) if mode=="hunt" else ""}
 	if not offline and success:
 		if first_relic: run_reward.note="Your first class relic • equip it to change your signature skill"
-		elif mode=="oath": run_reward.note=Contract.OATHS[rules.oath].short
+		elif mode=="oath": run_reward.note=Contract.describe(rules)
 	if offline:
 		pending_idle_ash += gold
 		pending_idle_xp += xp
@@ -1596,6 +1877,7 @@ func _equip_item(item: Dictionary) -> void:
 	if offline_job!=null: return
 	if not inventory.has(item):
 		return
+	_end_offline_repeat()
 	var slot: String = item.slot
 	var displaced: Dictionary = equipment[slot]
 	displaced["slot"] = slot
@@ -1617,6 +1899,7 @@ func _temper_equipment(slot: String) -> void:
 	var cost := _temper_cost(item)
 	if rank >= MAX_TEMPER_RANK or player_gold < cost:
 		return
+	_end_offline_repeat()
 	player_gold -= cost
 	var tier := int(item.get("tier", 1))
 	item["temper"] = rank + 1
@@ -1668,25 +1951,65 @@ func _add_experience(amount: int) -> void:
 		player_level += 1
 		attribute_points += 2
 
+func _valid_offline_repeat(value: Variant, selected_class: String="") -> bool:
+	if not value is Dictionary: return false
+	if value.is_empty(): return true
+	if value.size()!=2 or value.get("version")!=1 or not value.get("version") is int or not value.get("template") is String: return false
+	var frozen:=Expedition.new()
+	if not frozen.restore_encoded(value.template) or frozen.finished or frozen.elapsed!=0.0 or frozen.stage!=0: return false
+	if not selected_class.is_empty() and frozen.class_key!=selected_class: return false
+	if Contract.mode(frozen.contract())!="oath" or frozen.contract().get("version")!=2: return false
+	if frozen.stats.get("oath_rules")!=1 or frozen.stats.get("boss_phases")!=1 or frozen.stats.has("relic_charge"): return false
+	var fresh:=Expedition.new()
+	fresh.setup(frozen.class_key,frozen.stats,frozen.floor_id,String(frozen.waves.back()[0].name),frozen.run_seed)
+	return fresh.snapshot()==frozen.snapshot()
+
+func _freeze_offline_repeat(current: RefCounted) -> void:
+	var frozen:=Expedition.new()
+	var values:Dictionary=current.stats.duplicate(true)
+	# This is accumulated in-run state, not an equipped relic property.
+	values.erase("relic_charge")
+	frozen.setup(current.class_key,values,current.floor_id,String(current.waves.back()[0].name),current.run_seed)
+	offline_repeat_rules={"version":1,"template":frozen.encode_snapshot()}
+
+func _end_offline_repeat() -> void:
+	if offline_repeat_rules.is_empty(): return
+	_accrue_offline_time(false)
+	offline_repeat_rules={}
+	idle_progress_seconds=0
+
+func _clear_offline_repeat() -> void:
+	if offline_job!=null: return
+	_end_offline_repeat()
+	_save_progress()
+	_build_ui()
+
+func _offline_farm_context() -> Dictionary:
+	if not offline_repeat_rules.is_empty() and _valid_offline_repeat(offline_repeat_rules,character_class):
+		var frozen:=Expedition.new()
+		frozen.restore_encoded(offline_repeat_rules.template)
+		return {"class":frozen.class_key,"floor":frozen.floor_id,"stats":frozen.stats.duplicate(true),"contract":frozen.contract(),"boss":String(frozen.waves.back()[0].name)}
+	return {"class":character_class,"floor":farm_floor,"stats":_expedition_stats(farm_floor,_farm_contract()),"contract":_farm_contract(),"boss":String(_region_data(farm_floor).boss)}
+
 func _simulate_offline_time(available_seconds: int) -> void:
-	var remaining := mini(available_seconds,MAX_OFFLINE_SECONDS)
-	# Current combat and dungeon layout share 256 reproducible pattern IDs. During one
-	# AFK batch, floor/class/equipment stay fixed, so each pattern runs once.
-	# Loot keeps its unique run seed. This is a cache, never a success estimate.
-	var outcomes: Dictionary = {}
+	var remaining:=mini(available_seconds,MAX_OFFLINE_SECONDS)
+	var context:=_offline_farm_context()
+	# Frozen build and rules share the same deterministic pattern cache as normal AFK.
+	var outcomes:Dictionary={}
 	while remaining>=30:
-		var seed_value := _run_seed_for_serial(expedition_serial)
-		var pattern := posmod(seed_value,Expedition.COMBAT_VARIANTS)
+		var seed_value:=_run_seed_for_serial(expedition_serial)
+		var pattern:=posmod(seed_value,Expedition.COMBAT_VARIANTS)
 		if not outcomes.has(pattern):
-			var simulation := _new_expedition(farm_floor,expedition_serial,_farm_contract())
+			var simulation:=Expedition.new()
+			simulation.setup(context["class"],context.stats,context.floor,context.boss,seed_value)
 			simulation.simulate_to_end()
-			outcomes[pattern] = {"duration":maxi(30,ceili(simulation.elapsed)),"won":simulation.won}
-		var outcome: Dictionary = outcomes[pattern]
+			outcomes[pattern]={"duration":maxi(30,ceili(simulation.elapsed)),"won":simulation.won}
+		var outcome:Dictionary=outcomes[pattern]
 		if outcome.duration>remaining: break
-		remaining -= outcome.duration
-		expedition_serial += 1
-		_grant_expedition_rewards(outcome.won,farm_floor,true,seed_value,"",_farm_contract())
-	idle_progress_seconds = remaining
+		remaining-=outcome.duration
+		expedition_serial+=1
+		_grant_expedition_rewards(outcome.won,context.floor,true,seed_value,context["class"],context.contract)
+	idle_progress_seconds=remaining
 
 func _accrue_offline_time(cooperative: bool=false) -> void:
 	var now := int(clock_source.call())
@@ -1714,9 +2037,12 @@ func _accrue_offline_time(cooperative: bool=false) -> void:
 		last_run_floor = run_floor
 		_grant_expedition_rewards(expedition.won,run_floor,true,expedition.run_seed,expedition.class_key,expedition.contract())
 		if auto_repeat and expedition.won and Contract.mode(expedition.contract())!="trial":
-			farm_floor = run_floor
-			farm_mode=Contract.mode(expedition.contract())
-			if farm_mode=="hunt": hunt_slot=String(expedition.contract().slot)
+			if Contract.mode(expedition.contract())=="oath" and expedition.contract().get("version")==2:
+				_freeze_offline_repeat(expedition)
+			else:
+				farm_floor = run_floor
+				farm_mode=Contract.mode(expedition.contract())
+				if farm_mode=="hunt": hunt_slot=String(expedition.contract().slot)
 		run_active = false
 		auto_repeat = false
 		page = "camp"
@@ -1730,6 +2056,7 @@ func _load_progress() -> void:
 	expedition = null
 	offline_job = null
 	pending_afk_seconds = 0
+	offline_repeat_rules = {}
 	run_active = false
 	auto_repeat = false
 	finish_pending = false
@@ -1795,6 +2122,8 @@ func _load_progress() -> void:
 	if farm_mode not in ["campaign","hunt"] or floor_number<2: farm_mode="campaign"
 	hunt_slot=String(save.get_value("idle","hunt_slot","Weapon"))
 	if hunt_slot not in GEAR_SLOTS: hunt_slot="Weapon"
+	var saved_repeat:Variant=save.get_value("idle","offline_repeat_rules",{})
+	if _valid_offline_repeat(saved_repeat,character_class): offline_repeat_rules=saved_repeat.duplicate(true)
 	trial_cleared=clampi(int(save.get_value("hero","trial_cleared",0)),0,Contract.MAX_TRIAL)
 	expedition_serial = maxi(1,int(save.get_value("hero","expedition_serial",1)))
 	var saved_world_seed: Variant=save.get_value("hero","world_seed") if save.has_section_key("hero","world_seed") else null
@@ -1845,6 +2174,7 @@ func _build_save_payload() -> ConfigFile:
 	save.set_value("hero","world_seed",world_seed)
 	save.set_value("idle","farm_floor",farm_floor)
 	save.set_value("idle","farm_mode",farm_mode)
+	save.set_value("idle","offline_repeat_rules",offline_repeat_rules)
 	save.set_value("idle","hunt_slot",hunt_slot)
 	save.set_value("hero","trial_cleared",trial_cleared)
 	save.set_value("hero", "gold", player_gold)
@@ -1963,6 +2293,7 @@ func _valid_backup_payload(save: ConfigFile) -> bool:
 	var hunt_slot: Variant=save.get_value("idle","hunt_slot",null)
 	if not mode is String or not mode in ["campaign","hunt"]: return false
 	if not hunt_slot is String or not GEAR_SLOTS.has(hunt_slot): return false
+	if not _valid_offline_repeat(save.get_value("idle","offline_repeat_rules",{}),saved_class): return false
 	var attributes: Variant=save.get_value("hero","allocated_attributes",null)
 	if not attributes is Dictionary: return false
 	for key in ATTRIBUTES:
@@ -2045,7 +2376,7 @@ func _show_save_notice() -> void:
 		save_notice = ""
 		toast.queue_free()
 	)
-	dismiss.custom_minimum_size = Vector2(36,_minimum_button_height(36))
+	dismiss.custom_minimum_size = Vector2(_minimum_button_height(48),_minimum_button_height(48))
 	dismiss.size_flags_horizontal = Control.SIZE_SHRINK_END
 	row.add_child(dismiss)
 	add_child(toast)
@@ -2060,10 +2391,10 @@ func _compare_item(item: Dictionary) -> Dictionary:
 		changes[key]=after[key]-before[key]
 	return changes
 
-func _update_forecast(label: Label,target_floor: int,farming: bool,rules: Dictionary={}) -> void:
+func _update_forecast(label: Label,target_floor: int,farming: bool,rules: Dictionary={},stats_override: Dictionary={}) -> void:
 	label.custom_minimum_size.y=44 if farming else 24
 	var revision:=ui_revision
-	var values:=_expedition_stats(target_floor,rules)
+	var values:=_expedition_stats(target_floor,rules) if stats_override.is_empty() else stats_override.duplicate(true)
 	var selected_class:=character_class
 	var boss:=String(_region_data(target_floor).boss)
 	var key:=selected_class+":"+str(target_floor)+":"+var_to_str(values)
@@ -2081,7 +2412,7 @@ func _update_forecast(label: Label,target_floor: int,farming: bool,rules: Dictio
 	while not assessment.complete():
 		await get_tree().process_frame
 		if not is_inside_tree() or revision!=ui_revision or not is_instance_valid(label): return
-		if owns_job: assessment.step_budget()
+		if owns_job: assessment.step_budget(6000)
 	var result: Dictionary=assessment.summary()
 	if forecast_cache.size()>16: forecast_cache.clear()
 	forecast_cache[key]=result
@@ -2098,6 +2429,7 @@ func _display_forecast(label: Label,result: Dictionary,farming: bool) -> void:
 		label.text+="\nAbout %.1f clears / hour with your current gear." % result.clears_per_hour
 		if result.rate<0.95: label.text+=" Choose a lower floor for steadier farming."
 	label.add_theme_color_override("font_color",GREEN if result.rate>=0.95 else GOLD if result.rate>=0.5 else Color("dc9683"))
+	if page=="camp": _position_camp_stations.call_deferred()
 
 func _show_welcome() -> void:
 	var overlay := Control.new()
@@ -2182,6 +2514,8 @@ func _refund_attributes() -> void:
 		allocated_attributes[attribute]=0
 
 func _reset_attributes() -> void:
+	if offline_job!=null: return
+	_end_offline_repeat()
 	_refund_attributes()
 	_save_progress()
 	_build_ui()
@@ -2205,6 +2539,8 @@ func _handle_back() -> void:
 		_close_settings()
 	elif has_node("Welcome"):
 		return
+	elif page=="run" and not combat_hud.is_empty() and combat_hud.hero_details.visible:
+		_toggle_combat_details()
 	elif page=="run" or page=="camp":
 		_show_settings()
 	else:
@@ -2242,6 +2578,10 @@ func _apply_preferences() -> void:
 	if is_instance_valid(audio): audio.apply_preferences(preferences)
 	if page=="run" and is_instance_valid(run_arena):
 		run_arena.apply_quality(preferences.battery,preferences.numbers,preferences.reduced_motion)
+	if is_instance_valid(camp_scene):
+		camp_scene.apply_quality(preferences.battery,preferences.reduced_motion)
+	for art in find_children("*","Control",true,false):
+		if art.has_method("set_presentation"): art.set_presentation(preferences.reduced_motion,preferences.battery)
 
 func _save_and_exit() -> void:
 	# Opening options temporarily pauses; explicit exit preserves the prior intent.
@@ -2292,12 +2632,14 @@ func _build_skill_editor(parent: VBoxContainer) -> void:
 			slots.add_child(button)
 
 func _equip_technique(key: String, slot: int) -> void:
+	if offline_job!=null: return
 	if page=="run" or slot<0 or slot>1 or not key in Skills.choices(character_class): return
 	var loadout := Skills.normalize(character_class,skill_loadouts.get(character_class))
 	var old: String=loadout[slot]
 	var other:=1-slot
 	if loadout[other]==key: loadout[other]=old
 	loadout[slot]=key
+	_end_offline_repeat()
 	skill_loadouts[character_class]=loadout
 	_save_progress()
 	_build_ui()
@@ -2331,6 +2673,7 @@ func _build_stance_editor(parent: VBoxContainer) -> void:
 func _select_combat_stance(key: String) -> void:
 	if offline_job!=null: return
 	if page=="run" or not Stances.valid(key): return
+	_end_offline_repeat()
 	combat_stances[character_class] = key
 	_save_progress()
 	_build_ui()
@@ -2350,6 +2693,7 @@ func _choose_farm_goal(slot: String) -> void:
 	if page=="run" or (not slot.is_empty() and (floor_number<2 or slot not in GEAR_SLOTS)): return
 	_accrue_offline_time(OS.has_feature("android"))
 	idle_progress_seconds=0
+	offline_repeat_rules={}
 	farm_mode="campaign" if slot.is_empty() else "hunt"
 	if not slot.is_empty(): hunt_slot=slot
 	_save_progress()
@@ -2424,9 +2768,9 @@ func _build_trials(parent: VBoxContainer) -> void:
 
 func _reconcile_farm_time(seconds: int, cooperative: bool) -> void:
 	if cooperative and seconds>=300:
-		var values := _expedition_stats(farm_floor,_farm_contract())
+		var context:=_offline_farm_context()
 		offline_job=OfflineFarm.new()
-		offline_job.setup(character_class,values,farm_floor,String(_region_data(farm_floor).boss),seconds,expedition_serial,world_seed)
+		offline_job.setup(context["class"],context.stats,context.floor,context.boss,seconds,expedition_serial,world_seed)
 		pending_afk_seconds=seconds
 		idle_progress_seconds=0
 		offline_checkpoint_clock=0.0
@@ -2438,7 +2782,7 @@ func _process(delta: float) -> void:
 	if offline_job==null: return
 	var completed: Array=offline_job.step()
 	for result in completed:
-		_grant_expedition_rewards(result.won,farm_floor,true,result.seed,character_class,_farm_contract())
+		_grant_expedition_rewards(result.won,offline_job.floor_id,true,result.seed,offline_job.class_key,offline_job.stats.get("expedition_contract",{}))
 	expedition_serial=offline_job.serial
 	pending_afk_seconds=offline_job.remaining
 	offline_checkpoint_clock+=delta
@@ -2556,15 +2900,51 @@ func _build_first_steps(parent: VBoxContainer) -> void:
 		content.add_child(_button("CHOOSE A GEAR HUNT",PANEL_LIGHT,11,_open_hunts))
 
 func _build_oaths(parent: VBoxContainer) -> void:
-	parent.add_child(_section_heading("EXPEDITION OATHS","OPTIONAL CHALLENGE"))
-	parent.add_child(_paragraph_label("An oath applies to this expedition and its repeats. Normal descent and your AFK farm keep their own rules.",11,MUTED))
-	for key in Contract.OATHS:
-		var definition: Dictionary=Contract.OATHS[key]
-		parent.add_child(_paragraph_label(definition.name,15,PALE,true))
-		parent.add_child(_paragraph_label(definition.rule,11,MUTED))
-		var button:=_button("TAKE "+String(definition.name).to_upper(),Color("493630"),11,_start_run.bind(floor_number,Contract.oath(key)))
+	parent.add_child(_label("Expedition oaths",22,GOLD,true))
+	parent.add_child(_paragraph_label("Choose one or two. Their risks and benefits apply to this expedition and its repeats; your camp farm keeps its chosen goal.",12,PALE))
+	var choices:=HBoxContainer.new()
+	choices.add_theme_constant_override("separation",8)
+	parent.add_child(choices)
+	for key in Contract.OATH_ORDER:
+		var definition:Dictionary=Contract.OATHS[key]
+		var selected:bool=key in selected_oaths
+		var short_name:String={"unmended":"UNMENDED","cinder":"CINDERS","hollow":"HOLLOW"}[key]
+		var button:=_button(short_name+(" · ON" if selected else ""),Color("493630") if selected else PANEL_LIGHT,14,_toggle_selected_oath.bind(String(key)))
 		button.name="Oath"+String(key)
-		parent.add_child(button)
+		button.disabled=selected_oaths.size()>=2 and not selected
+		button.tooltip_text=String(definition.risk)+" "+String(definition.benefit)+" "+String(definition.reward)
+		choices.add_child(button)
+	var rules:=Contract.combine(selected_oaths)
+	var start:=_button("DESCEND WITH %d OATH%s" % [selected_oaths.size(),"S" if selected_oaths.size()!=1 else ""],RED,14,_start_selected_oath)
+	start.name="StartOathExpedition"
+	start.disabled=rules.is_empty()
+	parent.add_child(start)
+	if rules.is_empty():
+		parent.add_child(_paragraph_label("Unmended: no healing, Guard boosts damage. Cinders: stronger enemies and skills. Hollow: higher Mana costs, faster skills. Select an oath to review its exact rules.",12,MUTED))
+		return
+	for key in Contract.oath_keys(rules):
+		var definition:Dictionary=Contract.OATHS[key]
+		parent.add_child(_label(String(definition.name),15,GOLD,true))
+		parent.add_child(_paragraph_label("Risk: "+String(definition.risk)+" "+String(definition.benefit)+" "+String(definition.reward),12,PALE))
+	if selected_oaths.size()==2:
+		parent.add_child(_paragraph_label("Both risks apply. Gold and XP add to +%d%%; each drop reward is awarded once." % roundi(Contract.gold_xp_bonus(rules)*100),12,GOLD))
+	var synergy:=Contract.synergy_description(rules,character_class,_combat_stats())
+	if not synergy.is_empty(): parent.add_child(_paragraph_label(synergy,12,GREEN))
+	var forecast:=_paragraph_label("Assessing these oaths with your current build…",12,MUTED)
+	parent.add_child(forecast)
+	_update_forecast(forecast,floor_number,false,rules)
+
+func _toggle_selected_oath(key: String) -> void:
+	if offline_job!=null or page=="run" or key not in Contract.OATH_ORDER: return
+	if key in selected_oaths: selected_oaths.erase(key)
+	elif selected_oaths.size()<2: selected_oaths.append(key)
+	_refresh_preserving_scroll()
+
+func _start_selected_oath() -> void:
+	if floor_number<2 or offline_job!=null: return
+	var rules:=Contract.combine(selected_oaths)
+	if rules.is_empty(): return
+	_start_run(floor_number,rules)
 
 func _build_journey_goal(parent: VBoxContainer) -> void:
 	var target_floor:=(_region_index()+1)*10+1
@@ -2584,6 +2964,8 @@ func _note_playtest(key: String, seconds: float) -> void:
 
 func _expedition_stats(target_floor: int, rules: Dictionary={}) -> Dictionary:
 	var values:=_combat_stats()
+	values.boss_phases=1
+	if rules.get("version")==2 and Contract.mode(rules)=="oath": values.oath_rules=1
 	if target_floor==1: values.first_descent=1
 	if not rules.is_empty(): values.expedition_contract=rules.duplicate(true)
 	return values
@@ -2629,7 +3011,7 @@ func _defeat_context() -> String:
 	elif run_reward.has("reached_room"):
 		copy+=" Reached room %d of %d." % [run_reward.reached_room,run_max_stages]
 	if expedition!=null and Contract.mode(expedition.contract())=="oath":
-		copy+=" "+String(Contract.OATHS[expedition.contract().oath].short)
+		copy+=" "+Contract.describe(expedition.contract())
 	return copy
 
 func _recovery_advice() -> Dictionary:

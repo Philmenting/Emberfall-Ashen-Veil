@@ -1,6 +1,6 @@
 extends RefCounted
-## Original GLTF models authored with tools/art/build_characters.py.
-## Explicit dependencies ensure all eleven appearances are present in Android exports.
+## Original Blender source archive, retained for reproducibility and source checks.
+## The 0.40 runtime uses painted pose atlases and excludes these GLBs from export.
 const MODELS = {
 	"Vowkeeper":preload("res://assets/models/vowkeeper.glb"),
 	"Arcanist":preload("res://assets/models/arcanist.glb"),

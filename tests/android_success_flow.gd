@@ -6,8 +6,8 @@ func _ready() -> void:
 	farm_enabled=false
 	var marker:=ConfigFile.new()
 	if marker.load(MARKER)==OK:
-		if page=="run" and not run_active and expedition.contract()==Contract.oath("cinder") and expedition.stats.get("class_relic")=="echo_lightning" and expedition.encode_snapshot().sha256_text()==marker.get_value("qa","snapshot_hash") and inventory.size()==marker.get_value("qa","bag_count") and equipment.Amulet.get("locked",false):
-			print("ANDROID_SUCCESS_PASS restart preserves oath, protected relic, checkpoint and rewards")
+		if page=="run" and not run_active and expedition.contract()==Contract.combine(["cinder","hollow"]) and expedition.stats.get("class_relic")=="echo_lightning" and expedition.encode_snapshot().sha256_text()==marker.get_value("qa","snapshot_hash") and inventory.size()==marker.get_value("qa","bag_count") and equipment.Amulet.get("locked",false):
+			print("ANDROID_SUCCESS_PASS restart preserves combined oaths, protected relic, checkpoint and rewards")
 		else: push_error("ANDROID_SUCCESS_FAIL checkpoint changed on restart")
 		if "--quit-after-success" in OS.get_cmdline_user_args(): get_tree().quit()
 		return
@@ -39,16 +39,19 @@ func _run_flow() -> void:
 	scroll.scroll_vertical=100000
 	await _capture("protected-gear")
 	_return_to_camp()
+	find_child("CampTable",true,false).pressed.emit()
 	await _capture("oaths")
 	find_child("Oathcinder",true,false).pressed.emit()
+	find_child("Oathhollow",true,false).pressed.emit()
+	find_child("StartOathExpedition",true,false).pressed.emit()
 	_toggle_run_pause()
-	if expedition.contract()!=Contract.oath("cinder"): push_error("ANDROID_SUCCESS_FAIL oath rule missing"); return
+	if expedition.contract()!=Contract.combine(["cinder","hollow"]): push_error("ANDROID_SUCCESS_FAIL oath rule missing"); return
 	await _capture("oath-run")
 	var marker:=ConfigFile.new()
 	marker.set_value("qa","snapshot_hash",expedition.encode_snapshot().sha256_text())
 	marker.set_value("qa","bag_count",inventory.size())
 	if marker.save(MARKER)!=OK: push_error("ANDROID_SUCCESS_FAIL marker save failed"); return
-	print("ANDROID_SUCCESS_PASS first descent, class relic and oath UI")
+	print("ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI")
 	if "--quit-after-success" in OS.get_cmdline_user_args(): get_tree().quit()
 func _capture(key: String) -> void:
 	for frame in range(3): await get_tree().process_frame
