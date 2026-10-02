@@ -1,7 +1,7 @@
 extends RefCounted
 ## Public beta identity. No account, save contents, identifiers or secrets in feedback.
-const VERSION := "0.39.0-beta.2"
-const VERSION_CODE := 44
+const VERSION := "0.39.0-beta.3"
+const VERSION_CODE := 45
 const FEEDBACK_URL := "https://github.com/Philmenting/Emberfall-Ashen-Veil/issues"
 
 static func feedback(game: Control) -> String:

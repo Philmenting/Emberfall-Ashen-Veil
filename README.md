@@ -270,4 +270,6 @@ Prüfablauf für den Einstieg, Ausrüstungswerte und echte Android-Toucheingaben
 
 ### Beta.2: Einstieg und Spielziele
 
-[Schneller Erstkampf, Schwüre und Klassenreliquien](docs/SUCCESS_LOOP.md), vier regionale Sets, Wächtersiegel und optionale Haptik. [Geschlossener Spieltest und Pixel-Probe](docs/SUCCESS_PLAYTEST.md); [Gameplay-Clip](docs/previews/success-loop/emberfall-gameplay-beta2.mp4). Aktuelle Solo-Beta: 0.39.0-beta.2, Version-Code 44.
+[Schneller Erstkampf, Schwüre und Klassenreliquien](docs/SUCCESS_LOOP.md), vier regionale Sets, Wächtersiegel und optionale Haptik. [Geschlossener Spieltest und Pixel-Probe](docs/SUCCESS_PLAYTEST.md); [Gameplay-Clip](docs/previews/success-loop/emberfall-gameplay-beta2.mp4). Aktuelle Solo-Beta: 0.39.0-beta.3, Version-Code 45.
+
+[Geschützte Ausrüstung, Taschenfilter und konkrete Hilfe nach Niederlagen](docs/GEAR_AND_RECOVERY.md). Die erste Klassenreliquie bleibt bei vollständig geschützter voller Tasche zum Abholen erhalten; der lokale Online-Integrationstest ist repariert.

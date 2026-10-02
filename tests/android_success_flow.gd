@@ -6,8 +6,8 @@ func _ready() -> void:
 	farm_enabled=false
 	var marker:=ConfigFile.new()
 	if marker.load(MARKER)==OK:
-		if page=="run" and not run_active and expedition.contract()==Contract.oath("cinder") and expedition.stats.get("class_relic")=="echo_lightning" and expedition.encode_snapshot().sha256_text()==marker.get_value("qa","snapshot_hash") and inventory.size()==marker.get_value("qa","bag_count"):
-			print("ANDROID_SUCCESS_PASS restart preserves oath, relic, checkpoint and rewards")
+		if page=="run" and not run_active and expedition.contract()==Contract.oath("cinder") and expedition.stats.get("class_relic")=="echo_lightning" and expedition.encode_snapshot().sha256_text()==marker.get_value("qa","snapshot_hash") and inventory.size()==marker.get_value("qa","bag_count") and equipment.Amulet.get("locked",false):
+			print("ANDROID_SUCCESS_PASS restart preserves oath, protected relic, checkpoint and rewards")
 		else: push_error("ANDROID_SUCCESS_FAIL checkpoint changed on restart")
 		if "--quit-after-success" in OS.get_cmdline_user_args(): get_tree().quit()
 		return
@@ -26,8 +26,18 @@ func _run_flow() -> void:
 	_skip_run()
 	if not run_succeeded or find_child("EquipClassRelic",true,false)==null: push_error("ANDROID_SUCCESS_FAIL first reward missing"); return
 	await _capture("first-relic")
+	find_child("ProtectItem",true,false).pressed.emit()
 	find_child("EquipClassRelic",true,false).pressed.emit()
 	if _combat_stats().get("class_relic")!="echo_lightning": push_error("ANDROID_SUCCESS_FAIL relic not equipped"); return
+	gear_tab="bag"; _navigate("gear")
+	find_child("BagViewFilter",true,false).item_selected.emit(3)
+	if not _filtered_inventory().is_empty() or not equipment.Amulet.get("locked",false): push_error("ANDROID_SUCCESS_FAIL protection or filter mismatch"); return
+	await _capture("filtered-bag")
+	gear_tab="equipment"; _build_ui()
+	var scroll:=find_child("PageScroll",true,false) as ScrollContainer
+	await get_tree().process_frame
+	scroll.scroll_vertical=100000
+	await _capture("protected-gear")
 	_return_to_camp()
 	await _capture("oaths")
 	find_child("Oathcinder",true,false).pressed.emit()

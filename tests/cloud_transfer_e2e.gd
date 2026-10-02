@@ -119,6 +119,16 @@ func verify_fellowship_and_chat() -> void:
 	for group in member_service.open_fellowships:
 		if String(group.get("id", "")) == group_id: discoverable = true
 	check(discoverable, "another player discovers the open fellowship through the server board")
+	var closed_name := name + "Closed"
+	var closed_group = await creator.client.create_group_async(creator.session, closed_name, "Private test group", null, "en", false, 8)
+	check(closed_group != null and not closed_group.is_exception(), "test creates a closed group for named-search coverage")
+	await member_service.refresh_fellowships(closed_name)
+	check(member_service.open_fellowships.is_empty() and member_service.status_text.contains("board ready"), "named search succeeds and excludes closed groups from the open board")
+	await member_service.refresh_fellowships()
+	discoverable=false
+	for group in member_service.open_fellowships:
+		if String(group.get("id", ""))==group_id: discoverable=true
+	check(discoverable, "unfiltered open board still discovers the same fellowship")
 	await member_service.join_fellowship(group_id)
 	check(String(member_service.current_fellowship.get("id", "")) == group_id, "second player joins the same server-backed fellowship")
 	check(member_service.members.size() == 2, "server roster reports both fellowship members")

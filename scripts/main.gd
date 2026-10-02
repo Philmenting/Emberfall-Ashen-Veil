@@ -81,6 +81,8 @@ var last_back_frame := -1
 
 var page := "camp"
 var gear_tab := "bag"
+var bag_slot := "All"
+var bag_view := "all"
 var character_class := "Vowkeeper"
 var skill_loadouts := Skills.normalize_book({})
 var combat_stances := Stances.normalize_book({})
@@ -148,6 +150,7 @@ var last_save_ok := true
 var initialized := false
 var onboarding_complete := false
 var first_relic_claimed := false
+var pending_class_relic: Dictionary = {}
 var guardian_trophies: Array = []
 var playtest_notes: Dictionary = {}
 var ui_revision := 0
@@ -392,6 +395,7 @@ func _build_stats_rail() -> Control:
 	return rail
 
 func _build_camp(parent: VBoxContainer) -> void:
+	_build_reserved_relic(parent)
 	if pending_idle_runs>0 or pending_idle_fails>0 or pending_idle_ash>0 or pending_idle_xp>0: _build_idle_report(parent)
 	var region := _region_data()
 	var expedition := _panel(PANEL_LIGHT, Color("574039"), 17)
@@ -502,11 +506,56 @@ func _build_equipment_list(parent: VBoxContainer) -> void:
 
 func _build_inventory_list(parent: VBoxContainer) -> void:
 	parent.add_child(_section_heading("SATCHEL", "%d / %d ITEMS" % [inventory.size(), MAX_BAG_SIZE]))
+	_build_reserved_relic(parent)
 	if inventory.is_empty():
 		parent.add_child(_empty_note("No spare gear. Clear a floor to find new equipment."))
-	else:
-		for item in inventory:
-			parent.add_child(_item_card(item, true))
+		return
+	var filters := HBoxContainer.new()
+	filters.add_theme_constant_override("separation", 6)
+	parent.add_child(filters)
+	var slots := ["All"] + GEAR_SLOTS
+	var slot_filter := _bag_filter("BagSlotFilter", slots.map(func(slot): return "Slot: " + String(slot)), slots.find(bag_slot))
+	slot_filter.item_selected.connect(func(index): bag_slot=slots[index]; _build_ui())
+	filters.add_child(slot_filter)
+	var views := ["all", "class", "upgrades", "protected"]
+	var view_filter := _bag_filter("BagViewFilter", ["Show: All gear", "Show: Class gear", "Show: Safe upgrades", "Show: Protected"], views.find(bag_view))
+	view_filter.item_selected.connect(func(index): bag_view=views[index]; _build_ui())
+	filters.add_child(view_filter)
+	var shown := _filtered_inventory()
+	parent.add_child(_paragraph_label("%d matching items • Protect gear to prevent selling it. Equipped protection also blocks automatic replacement." % shown.size(), 10, MUTED))
+	if shown.is_empty():
+		parent.add_child(_empty_note("No gear matches these filters. Your other items are still in the satchel."))
+		parent.add_child(_button("SHOW ALL GEAR", PANEL_LIGHT, 11, _show_all_gear))
+	for item in shown:
+		parent.add_child(_item_card(item, true))
+
+func _bag_filter(node_name: String, captions: Array, selected: int) -> OptionButton:
+	var control := OptionButton.new()
+	control.name=node_name
+	control.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	control.custom_minimum_size.y=_minimum_button_height(44)
+	control.add_theme_font_size_override("font_size", _scaled_font_size(11))
+	control.add_theme_color_override("font_color", PALE)
+	for caption in captions: control.add_item(caption)
+	control.select(maxi(0, selected))
+	control.get_popup().add_theme_font_size_override("font_size", _scaled_font_size(14))
+	control.get_popup().add_theme_constant_override("v_separation", maxi(20, _minimum_button_height(44)-_scaled_font_size(14)))
+	return control
+
+func _filtered_inventory() -> Array:
+	var shown: Array = []
+	for item in inventory:
+		if bag_slot!="All" and item.slot!=bag_slot: continue
+		if bag_view=="class" and item.get("affinity", "")!=character_class: continue
+		if bag_view=="upgrades" and not _is_safe_upgrade(item): continue
+		if bag_view=="protected" and not item.get("locked", false): continue
+		shown.append(item)
+	return shown
+
+func _show_all_gear() -> void:
+	bag_slot="All"
+	bag_view="all"
+	_build_ui()
 
 func _build_map(parent: VBoxContainer) -> void:
 	var tabs:=HBoxContainer.new()
@@ -789,7 +838,10 @@ func _build_loot(parent: VBoxContainer) -> void:
 	if not String(run_reward.get("note","")).is_empty(): stack.add_child(_paragraph_label(run_reward.note,11,GOLD,true))
 	if run_reward.has("seconds"):
 		stack.add_child(_label("%.1fs  •  %d foes defeated  •  %d skills cast  •  %d evasions" % [run_reward.seconds,run_reward.kills,run_reward.casts,run_reward.dodges],12,MUTED))
-	if not run_succeeded: stack.add_child(_paragraph_label("Your recovered Gold and XP are kept. Review your build or farm a cleared floor before trying again.",12,PALE))
+	if not run_succeeded:
+		stack.add_child(_paragraph_label(_defeat_context(),12,PALE))
+		stack.add_child(_paragraph_label(_recovery_advice().copy,12,PALE))
+	_build_reserved_relic(stack)
 	for item in run_loot:
 		if inventory.has(item) and not Relics.effect(item,character_class).is_empty() and Relics.effect(equipment.Amulet,character_class).is_empty():
 			stack.add_child(_paragraph_label(Relics.DEFINITIONS[item.relic].short,11,GOLD,true))
@@ -810,12 +862,18 @@ func _build_loot(parent: VBoxContainer) -> void:
 		advance.disabled=mode=="trial" and trial_cleared>=Contract.MAX_TRIAL
 		next.add_child(advance)
 	else:
-		var review := _button("REVIEW CLASS & BUILD",RED,12,_open_build)
+		var review := _button(_recovery_advice().caption,RED,12,_open_recovery_advice)
 		review.name="ReviewDefeatedBuild"
 		next.add_child(review)
 	var camp := _button("RETURN TO CAMP",PANEL_LIGHT,11,_return_to_camp)
 	camp.name="ReturnToCamp"
 	next.add_child(camp)
+	if not run_succeeded and floor_number>1 and last_run_floor>1:
+		var recovery_floor := mini(farm_floor, mini(floor_number-1,last_run_floor-1))
+		var farm := _button("FARM CLEARED FLOOR %02d" % recovery_floor, Color("314b3c"), 11, _start_recovery_farm)
+		farm.name="RecoveryFarm"
+		stack.add_child(farm)
+		stack.add_child(_paragraph_label("Repeats with standard rules and stops on defeat. Your offline farm goal stays as selected in camp.",10,MUTED))
 	var safe_count := 0
 	for item in run_loot:
 		if inventory.has(item) and _is_safe_upgrade(item): safe_count+=1
@@ -864,19 +922,27 @@ func _nav_button(icon: String, caption: String, destination: String) -> Control:
 
 func _equipped_row(slot: String, item: Dictionary) -> Control:
 	var row := _panel(PANEL, _quality_color(item.quality).darkened(0.45), 13)
+	var stack := VBoxContainer.new()
+	stack.add_theme_constant_override("separation",6)
+	row.add_child(stack)
 	var line := HBoxContainer.new()
 	line.add_theme_constant_override("separation", 8)
-	row.add_child(line)
+	stack.add_child(line)
 	line.add_child(_centered_label(_slot_icon(slot), 19, _quality_color(item.quality)))
 	var info := VBoxContainer.new()
 	info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	info.add_child(_label("%s  •  T%d  •  +%d  •  %s" % [slot.to_upper(), item.tier, int(item.get("temper", 0)), _quality_label(item.quality)], 8, _quality_color(item.quality), true))
-	info.add_child(_label(String(item.name), 12, PALE, true))
+	info.add_child(_paragraph_label(String(item.name), 12, PALE, true))
 	if CLASS_DATA.has(String(item.get("affinity",""))): info.add_child(_label(String(item.affinity).to_upper()+" ATTUNEMENT",8,MUTED))
 	info.add_child(_label(_item_stats_line(item), 9, MUTED))
+	if item.get("locked",false): info.add_child(_label("PROTECTED",9,GOLD,true))
 	line.add_child(info)
 	line.add_child(_label("ITEM %d" % int(item.power),10,GOLD,true))
-	line.add_child(_temper_button(slot, item))
+	var actions := HBoxContainer.new()
+	actions.add_theme_constant_override("separation",6)
+	stack.add_child(actions)
+	actions.add_child(_temper_button(slot, item))
+	actions.add_child(_protection_button(item))
 	return row
 
 func _item_card(item: Dictionary, show_actions: bool) -> Control:
@@ -889,7 +955,8 @@ func _item_card(item: Dictionary, show_actions: bool) -> Control:
 	top.add_child(_centered_label(_slot_icon(item.slot), 19, _quality_color(rarity)))
 	var identity := VBoxContainer.new()
 	identity.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	identity.add_child(_label(String(item.name), 12, PALE, true))
+	identity.add_child(_paragraph_label(String(item.name), 12, PALE, true))
+	if item.get("locked",false): identity.add_child(_label("PROTECTED",9,GOLD,true))
 	identity.add_child(_label("%s  •  T%d  •  +%d  •  %s" % [String(item.slot).to_upper(), int(item.tier), int(item.get("temper", 0)), _quality_label(rarity)], 8, _quality_color(rarity), true))
 	if _is_safe_upgrade(item): identity.add_child(_label("UPGRADE • NO STAT TRADEOFF",9,GREEN,true))
 	top.add_child(identity)
@@ -926,7 +993,10 @@ func _item_card(item: Dictionary, show_actions: bool) -> Control:
 		var actions := HBoxContainer.new()
 		actions.add_theme_constant_override("separation", 6)
 		actions.add_child(_button("EQUIP", PANEL_LIGHT, 10, Callable(self, "_equip_item").bind(item)))
-		actions.add_child(_button("SELL  +%d" % int(item.sell), Color("402f2d"), 10, Callable(self, "_sell_item").bind(item)))
+		actions.add_child(_protection_button(item))
+		var sell := _button("PROTECTED" if item.get("locked",false) else "SELL  +%d" % int(item.sell), Color("402f2d"), 10, Callable(self, "_sell_item").bind(item))
+		sell.disabled=item.get("locked",false)
+		actions.add_child(sell)
 		stack.add_child(actions)
 	return card
 
@@ -1426,10 +1496,15 @@ func _grant_expedition_rewards(success: bool, target_floor: int, offline: bool, 
 				item=Relics.attune(item,earned_class)
 			item.region=_region_index(target_floor)
 			if first_relic and i==0 and inventory.size()>=MAX_BAG_SIZE:
-				var cheapest: Dictionary=inventory[0]
+				var cheapest: Dictionary={}
 				for stored_item in inventory:
-					if int(stored_item.sell)<int(cheapest.sell): cheapest=stored_item
+					if stored_item.get("locked",false): continue
+					if cheapest.is_empty() or int(stored_item.sell)<int(cheapest.sell): cheapest=stored_item
+				if cheapest.is_empty():
+					pending_class_relic=item
+					continue
 				inventory.erase(cheapest)
+				cheapest.status="sold"
 				gold+=int(cheapest.sell)
 				if offline: pending_idle_salvaged+=1
 			if inventory.size()<MAX_BAG_SIZE:
@@ -1561,7 +1636,7 @@ func _temper_equipment(slot: String) -> void:
 
 func _sell_item(item: Dictionary) -> void:
 	if offline_job!=null: return
-	if not inventory.has(item):
+	if not inventory.has(item) or item.get("locked",false):
 		return
 	inventory.erase(item)
 	player_gold += int(item.sell)
@@ -1670,6 +1745,11 @@ func _load_progress() -> void:
 	skill_loadouts=Skills.normalize_book(save.get_value("hero","skill_loadouts",{}))
 	combat_stances=Stances.normalize_book(save.get_value("hero","combat_stances",{}))
 	first_relic_claimed=bool(save.get_value("hero","first_relic_claimed",int(save.get_value("hero","floor",1))>1))
+	pending_class_relic={}
+	var reserved: Variant=save.get_value("hero","pending_class_relic",{})
+	if _valid_reserved_relic(reserved):
+		pending_class_relic=_normalize_item(reserved,"Amulet")
+		first_relic_claimed=true
 	guardian_trophies=[]
 	var saved_trophies: Variant=save.get_value("hero","guardian_trophies",[])
 	if saved_trophies is Array:
@@ -1746,6 +1826,7 @@ func _normalize_item(item: Dictionary, default_slot: String) -> Dictionary:
 	normalized["stats"] = normalized.get("stats", {})
 	normalized["sell"] = int(normalized.get("sell", 35))
 	normalized["temper"] = clampi(int(normalized.get("temper", 0)), 0, MAX_TEMPER_RANK)
+	if normalized.has("locked") and not normalized.locked is bool: normalized.erase("locked")
 	return normalized
 
 func _build_save_payload() -> ConfigFile:
@@ -1753,6 +1834,7 @@ func _build_save_payload() -> ConfigFile:
 	save.set_value("settings","preferences",preferences)
 	save.set_value("testing","notes",playtest_notes if preferences.playtest else {})
 	save.set_value("hero","first_relic_claimed",first_relic_claimed)
+	save.set_value("hero","pending_class_relic",pending_class_relic)
 	save.set_value("hero","guardian_trophies",guardian_trophies)
 	save.set_value("hero","onboarding_complete",onboarding_complete)
 	save.set_value("hero", "class", character_class)
@@ -1846,6 +1928,10 @@ func _install_backup_payload(payload: ConfigFile) -> bool:
 
 func _valid_backup_payload(save: ConfigFile) -> bool:
 	if not save.has_section("hero") or not save.has_section("idle"): return false
+	var reserved: Variant=save.get_value("hero","pending_class_relic",{})
+	if not reserved is Dictionary: return false
+	if not reserved.is_empty() and not _valid_reserved_relic(reserved): return false
+	if not reserved.is_empty() and save.get_value("hero","first_relic_claimed",false)!=true: return false
 	if save.has_section_key("hero","first_relic_claimed") and not save.get_value("hero","first_relic_claimed") is bool: return false
 	if save.has_section_key("hero","guardian_trophies"):
 		var trophies: Variant=save.get_value("hero","guardian_trophies")
@@ -1909,8 +1995,16 @@ func _valid_backup_payload(save: ConfigFile) -> bool:
 			if not restored.restore_encoded(snapshot) or restored.finished or restored.class_key!=saved_class: return false
 	return true
 
+func _valid_reserved_relic(value: Variant) -> bool:
+	if not value is Dictionary or not _valid_backup_item(value,"Amulet"): return false
+	if value.get("slot")!="Amulet" or not value.has("relic"): return false
+	for key in ["name","quality","power","tier","armor","sell","stats"]:
+		if not value.has(key): return false
+	return not String(value.name).is_empty() and value.quality in QUALITY_ORDER
+
 func _valid_backup_item(value: Variant,default_slot: String) -> bool:
 	if not value is Dictionary: return false
+	if value.has("locked") and not value.locked is bool: return false
 	var item_slot: Variant=value.get("slot",default_slot)
 	if not item_slot is String or not item_slot in GEAR_SLOTS: return false
 	for key in ["power","tier","armor","sell","temper"]:
@@ -2395,6 +2489,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if offline_job!=null: get_viewport().set_input_as_handled()
 
 func _is_safe_upgrade(item: Dictionary) -> bool:
+	if not item.get("slot","") in GEAR_SLOTS: return false
+	if equipment[item.slot].get("locked",false): return false
 	var candidate:=equipment.duplicate(true)
 	candidate[String(item.get("slot","Weapon"))]=item
 	if RegionalSets.active(equipment)!=RegionalSets.active(candidate): return false
@@ -2423,6 +2519,11 @@ func _equip_recovered_upgrades() -> void:
 
 func _stamp_run_report() -> void:
 	run_reward.merge({"seconds":expedition.elapsed,"kills":expedition.kills,"casts":expedition.casts,"dodges":expedition.dodges})
+	if not run_succeeded:
+		run_reward.reached_room=mini(expedition.stage+1,expedition.waves.size())
+		if expedition.stage==expedition.waves.size()-1:
+			for enemy in expedition.waves.back():
+				if enemy.role=="boss": run_reward.guardian_life=int(ceil(100.0*maxi(enemy.hp,0)/maxi(enemy.max_hp,1)))
 
 func _continue_expedition() -> void:
 	if page!="loot" or not run_succeeded or offline_job!=null: return
@@ -2486,3 +2587,78 @@ func _expedition_stats(target_floor: int, rules: Dictionary={}) -> Dictionary:
 	if target_floor==1: values.first_descent=1
 	if not rules.is_empty(): values.expedition_contract=rules.duplicate(true)
 	return values
+
+func _protection_button(item: Dictionary) -> Button:
+	var button := _button("UNPROTECT" if item.get("locked",false) else "PROTECT", PANEL_LIGHT, 10, _toggle_item_protection.bind(item))
+	button.name="ProtectItem"
+	return button
+
+func _toggle_item_protection(item: Dictionary) -> void:
+	if offline_job!=null or (not inventory.has(item) and not equipment.values().has(item)): return
+	item.locked=not item.get("locked",false)
+	_save_progress()
+	_refresh_preserving_scroll()
+
+func _refresh_preserving_scroll() -> void:
+	var scroll := find_child("PageScroll",true,false) as ScrollContainer
+	var position := scroll.scroll_vertical if scroll!=null else 0
+	_build_ui()
+	var restored_scroll := find_child("PageScroll",true,false) as ScrollContainer
+	if restored_scroll!=null: restored_scroll.set_deferred("scroll_vertical",position)
+
+func _build_reserved_relic(parent: VBoxContainer) -> void:
+	if pending_class_relic.is_empty(): return
+	parent.add_child(_paragraph_label("Your first class relic is waiting: "+String(pending_class_relic.name)+". All satchel items were protected, so it was kept here for you.",11,GOLD,true))
+	var claim := _button("COLLECT CLASS RELIC" if inventory.size()<MAX_BAG_SIZE else "FREE ONE SATCHEL SLOT TO COLLECT",PANEL_LIGHT,11,_claim_reserved_relic)
+	claim.name="ClaimReservedRelic"
+	claim.disabled=inventory.size()>=MAX_BAG_SIZE
+	parent.add_child(claim)
+
+func _claim_reserved_relic() -> void:
+	if offline_job!=null or pending_class_relic.is_empty() or inventory.size()>=MAX_BAG_SIZE: return
+	inventory.append(pending_class_relic)
+	if page=="loot": run_loot.append(pending_class_relic)
+	pending_class_relic={}
+	_save_progress()
+	_build_ui()
+
+func _defeat_context() -> String:
+	var copy := "This trial earned no rewards. Your existing equipment and progress are kept." if int(run_reward.get("gold",0))==0 and int(run_reward.get("xp",0))==0 else "Your recovered Gold and XP are kept."
+	if run_reward.has("guardian_life"):
+		copy+=" Guardian Life remaining: %d%%." % int(run_reward.guardian_life)
+	elif run_reward.has("reached_room"):
+		copy+=" Reached room %d of %d." % [run_reward.reached_room,run_max_stages]
+	if expedition!=null and Contract.mode(expedition.contract())=="oath":
+		copy+=" "+String(Contract.OATHS[expedition.contract().oath].short)
+	return copy
+
+func _recovery_advice() -> Dictionary:
+	if attribute_points>0:
+		return {"action":"build", "caption":"SPEND %d ATTRIBUTE POINTS" % attribute_points, "copy":"You have %d unspent points. %s strengthens your class; Vitality adds Life. You can refund points freely." % [attribute_points,CLASS_DATA[character_class].primary]}
+	for item in inventory:
+		if _is_safe_upgrade(item):
+			return {"action":"upgrades", "caption":"REVIEW SAFE UPGRADES", "copy":"Your satchel contains an upgrade with no combat-stat tradeoff. Compare it before the next attempt."}
+	if Relics.effect(equipment.Amulet,character_class).is_empty():
+		for item in inventory:
+			if not Relics.effect(item,character_class).is_empty():
+				return {"action":"class", "caption":"REVIEW CLASS RELIC", "copy":"A matching class relic is waiting in your satchel. Equip it to change your signature skill."}
+	for slot in GEAR_SLOTS:
+		var item: Dictionary=equipment[slot]
+		if int(item.get("temper",0))<MAX_TEMPER_RANK and player_gold>=_temper_cost(item):
+			return {"action":"equipment", "caption":"REVIEW EQUIPMENT", "copy":"You can temper your %s for %d Gold. Review the improvement in Gear > Equipment." % [slot.to_lower(),_temper_cost(item)]}
+	return {"action":"build", "caption":"REVIEW CLASS & BUILD", "copy":"Review your class, attributes and skills before retrying. Changing class refunds allocated points, so you can try a different build."}
+
+func _open_recovery_advice() -> void:
+	if page!="loot" or run_succeeded or offline_job!=null: return
+	var action: String=_recovery_advice().action
+	if action in ["upgrades","class"]:
+		gear_tab="bag"
+		bag_slot="All"
+		bag_view=action
+	else: gear_tab=action
+	_navigate("gear")
+
+func _start_recovery_farm() -> void:
+	if page!="loot" or run_succeeded or offline_job!=null or floor_number<=1 or last_run_floor<=1: return
+	auto_repeat=true
+	_start_run(mini(farm_floor,mini(floor_number-1,last_run_floor-1)))

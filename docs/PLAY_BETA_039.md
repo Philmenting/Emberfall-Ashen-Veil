@@ -1,3 +1,5 @@
+> Aktueller Build: **0.39.0-beta.3 / Code 45**. [Ausrüstungsschutz und Niederlagenhilfe](GEAR_AND_RECOVERY.md) ergänzt Beta.2. Ältere Versionsangaben unten dokumentieren frühere Prüfungen.
+
 # Play-Beta-Kandidat 0.39.0-beta.1
 
 Aktueller Stand: **0.39.0-beta.2 / Version-Code 44**. Neue Funktionen und Nachweise stehen in [SUCCESS_LOOP.md](SUCCESS_LOOP.md); ältere Beta.1-Angaben unten beschreiben den ursprünglichen Vorbereitungsstand.

@@ -29,6 +29,7 @@ GODOT_SUITES = (
     "regions",
     "onboarding",
     "success_loop",
+    "recovery",
     "options",
     "skill_rotation",
     "visuals",

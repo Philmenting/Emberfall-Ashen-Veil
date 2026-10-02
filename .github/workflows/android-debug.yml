@@ -89,6 +89,9 @@ jobs:
       - name: Check per-class combat stances and saved expedition compatibility
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-combat-stances-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/combat_stances_smoke.gd
 
+      - name: Check gear protection, reserved rewards and defeat recovery
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-recovery-data" timeout 120s godot --headless --path . --script tests/recovery_smoke.gd
+
       - name: Check server-owned progression simulation
         run: |
           node --check server/modules/emberfall.js
@@ -202,7 +205,8 @@ jobs:
           fi
 
       - name: Verify transfer and shared fellowships between isolated installations
-        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-transfer-e2e" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/cloud_transfer_e2e.gd
+        # HTTP and WebSocket timeouts must follow wall time, not accelerated simulation frames.
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-transfer-e2e" timeout 120s godot --headless --path . --script tests/cloud_transfer_e2e.gd
 
       - name: Collect isolated server diagnostics on failure
         if: failure()
