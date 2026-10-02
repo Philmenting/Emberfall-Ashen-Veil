@@ -40,6 +40,9 @@ def main() -> int:
 
     try:
         if not args.skip_install: adb("install", "--no-incremental", "-r", str(args.apk), timeout=180)
+        # First-launch immersive guidance can cover the isolated fixture and
+        # steal its focus. A recorded CI capture showed this system dialog.
+        adb("shell", "settings", "put", "secure", "immersive_mode_confirmations", "confirmed")
         adb("shell", "pm", "clear", PACKAGE)  # Dedicated fixture package only.
         adb("logcat", "-c")
         adb("shell", "am", "start", "-n", PACKAGE + "/com.godot.game.GodotAppLauncher")
@@ -101,6 +104,16 @@ def main() -> int:
         print("ANDROID BETA RUNTIME VERIFIED: cooperative AFK, exact rewards and cold restart without duplicate settlement")
         return 0
     except (RuntimeError, subprocess.TimeoutExpired) as error:
+        # Preserve visible startup failures instead of leaving only a timeout.
+        # These diagnostics run against the dedicated QA installation.
+        try:
+            capture = subprocess.run([args.adb, "exec-out", "screencap", "-p"], capture_output=True, timeout=30)
+            if capture.returncode == 0 and capture.stdout.startswith(b"\x89PNG\r\n\x1a\n"):
+                (args.output / "failure-screen.png").write_bytes(capture.stdout)
+            state = adb("shell", "dumpsys", "activity", "top", timeout=30)
+            (args.output / "failure-activity.txt").write_text(state)
+        except (RuntimeError, subprocess.TimeoutExpired):
+            pass
         print(f"ANDROID BETA RUNTIME FAILED: {error}")
         return 1
 

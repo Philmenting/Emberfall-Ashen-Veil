@@ -50,6 +50,9 @@ Die bewegte Layout-Vorschau erfasst 33 echte Szenenframes auf 2424 × 1080
 Nur die späten Wächter-Fixtures verwenden zusätzliche Lebenspunkte. Das separate
 Android-QA prüft vier Wächter in jeweils 20 echten Simulationsschritten,
 Gelenkänderungen und vier unterschiedliche gerenderte Bilder je Region.
+Der isolierte Android-Test bestätigt außerdem den systemeigenen Vollbildhinweis
+vor dem Start und sichert bei Fehlern ein Diagnosebild. Damit kann ein verdeckter
+Startbildschirm von einem Skript- oder Darstellungsfehler unterschieden werden.
 
 Pro lebender Figur gibt es einen gemeinsam genutzten GPU-Skin mit 23 Knochen,
 zwölf gemalten Teilen und höchstens 6.000 Vertices sowie den Kontaktschatten.
