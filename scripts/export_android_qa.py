@@ -14,6 +14,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--scene", default="res://Main.tscn", help="A QA fixture or the actual shipping main scene")
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--architecture", choices=["x86_64","arm64-v8a"], default="x86_64", help="ARM64 for real Android phones; x86_64 for CI emulators")
     args = parser.parse_args()
     scene = ROOT / args.scene.removeprefix("res://")
     if not args.scene.startswith("res://") or not scene.resolve().is_relative_to(ROOT) or not scene.is_file():
@@ -37,8 +38,8 @@ def main() -> int:
         config["preset.0"]["name"] = '"Android Offline QA"'
         config["preset.0"]["exclude_filter"] = '"build/*,docs/*,server/*,scripts/*.py"'
         options = config["preset.0.options"]
-        options["architectures/arm64-v8a"] = "false"
-        options["architectures/x86_64"] = "true"
+        options["architectures/arm64-v8a"] = "true" if args.architecture=="arm64-v8a" else "false"
+        options["architectures/x86_64"] = "true" if args.architecture=="x86_64" else "false"
         options["package/unique_name"] = '"com.philmenting.emberfallashenveil.betaqa"'
         options["package/name"] = '"Emberfall Beta QA"'
         with (stage / "export_presets.cfg").open("w") as stream: config.write(stream, space_around_delimiters=False)

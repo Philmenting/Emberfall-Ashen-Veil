@@ -28,6 +28,7 @@ GODOT_SUITES = (
     "gear_forecast",
     "regions",
     "onboarding",
+    "success_loop",
     "options",
     "skill_rotation",
     "visuals",

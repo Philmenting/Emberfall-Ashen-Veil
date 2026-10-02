@@ -90,8 +90,8 @@ def main() -> int:
             )
         if "android.permission.INTERNET" in permission_names:
             raise RuntimeError("The Google Play bundle unexpectedly requests android.permission.INTERNET")
-        if permission_names:
-            raise RuntimeError(f"The offline beta unexpectedly requests permissions: {sorted(permission_names)}")
+        if permission_names != {"android.permission.VIBRATE"}:
+            raise RuntimeError(f"Unexpected offline beta permissions: {sorted(permission_names)}; expected VIBRATE only")
         for xpath, expected_value, label in [
             ("/manifest/application/@android:debuggable", "false", "release debuggability"),
             ("/manifest/application/@android:allowBackup", "false", "automatic data backup"),
@@ -115,7 +115,7 @@ def main() -> int:
     print("Internet permission: absent")
     print("Bundle structure and JAR signature: valid")
     print(f"ARM64 native libraries: {library_count}, all ELF LOAD segments support 16 KB pages")
-    print("Release manifest: landscape, not debuggable, OS backup disabled, no app permissions")
+    print("Release manifest: landscape, not debuggable, OS backup disabled, VIBRATE only (optional haptics)")
     return 0
 
 

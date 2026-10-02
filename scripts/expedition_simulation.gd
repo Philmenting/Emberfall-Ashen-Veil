@@ -1,6 +1,7 @@
 extends RefCounted
 ## Single deterministic authority for watched, skipped and offline expeditions.
 ## All combat and movement use fixed 100 ms steps; rendering never rolls damage.
+const Relics = preload("res://scripts/class_relics.gd")
 const Contract = preload("res://scripts/expedition_contract.gd")
 const Skills = preload("res://scripts/class_skills.gd")
 const Layout = preload("res://scripts/dungeon_layout.gd")
@@ -108,6 +109,9 @@ func setup(selected_class: String, combat_stats: Dictionary, target_floor: int, 
 		waves.append(pack)
 	if uses_procedural_generation() and int(stats.get("dungeon_generation",1))>=4:
 		_prepare_reinforcements()
+	if int(stats.get("first_descent",0))==1 and floor_id==1:
+		hero_pos=checkpoint(0)+Vector2(0,2.1 if class_key=="Vowkeeper" else 4.4)
+		phase="combat"
 	if uses_tactical_movement():
 		journey["combat_movement"]={"target":-1,"wait":rng.randf_range(0.8,1.6),"remaining":0.0,"goal":hero_pos}
 
@@ -451,6 +455,7 @@ func _auto_hero() -> void:
 	if class_key=="Vowkeeper": use_skill = use_skill and (nearby>=2 or hero_hp<int(stats.max_hp)*0.75 or target.role in ["boss","elite"])
 	elif class_key=="Arcanist": use_skill = use_skill and (nearby>=2 or target.role in ["boss","elite"])
 	elif class_key=="Ranger": use_skill = use_skill and (target.role in ["hexer","elite","boss"] or living().size()>=2)
+	if int(stats.get("first_descent",0))==1 and stage==0 and casts==0 and skill_cd<=0 and hero_mana>=int(stats.mana_cost): use_skill=true
 	if not use_skill and uses_rotation() and _try_technique(target,false): return
 	var name_value: String = ABILITIES[class_key] if use_skill else {"Vowkeeper":"Oathblade","Arcanist":"Arcane Bolt","Ranger":"Piercing Shot"}[class_key]
 	pending_attack = {"target":target.id,"skill":use_skill,"left":0.3,"name":name_value}
@@ -458,6 +463,7 @@ func _auto_hero() -> void:
 	if use_skill:
 		hero_mana -= int(stats.mana_cost)
 		skill_cd = {"Vowkeeper":5.5,"Arcanist":6.0,"Ranger":4.5}[class_key]
+		if stats.get("regional_set",-1)==3: skill_cd*=0.85
 		casts += 1
 		action = "Casting " + name_value
 	else:
@@ -512,16 +518,22 @@ func _resolve_hero_attack() -> void:
 		if class_key=="Vowkeeper":
 			guard_time = maxf(guard_time,2.8) if uses_rotation() else 2.8
 			var healed := mini(int(stats.max_hp)-hero_hp,int(float(stats.max_hp)*0.08))
+			if Contract.no_healing(contract()): healed=0
 			hero_hp += healed
 			events.append({"type":"guard","heal":healed})
 		elif class_key=="Arcanist":
 			hero_mana = mini(int(stats.max_mana),hero_mana+int(stats.mana_cost)/4)
 			events.append({"type":"nova","position":target.pos,"radius":4.5 if int(stats.get("arcane_tactics",0))==1 else 3.2})
+	if attack.skill and stats.get("regional_set",-1)==0:
+		guard_time=maxf(guard_time,3.8 if class_key=="Vowkeeper" else 1.0)
+	var stored := float(stats.get("relic_charge",0.0)) if attack.skill and stats.get("class_relic","")=="stored_ember" else 0.0
+	if stored>0.0: stats.relic_charge=0.0
 	for enemy in selected:
 		var amount := float(stats.ability_damage if attack.skill else stats.attack)
+		if enemy.id==target.id: amount+=stored
 		amount *= float(Stances.definition(stats).outgoing)
 		if attack.skill: amount *= 0.82 if class_key=="Ranger" else 0.90
-		var crit := rng.randf()*100.0 < float(stats.crit)+(12.0 if class_key=="Ranger" and attack.skill else 0.0)
+		var crit := rng.randf()*100.0 < float(stats.crit)+(12.0 if class_key=="Ranger" and attack.skill else 0.0)+(8.0 if attack.skill and stats.get("regional_set",-1)==2 else 0.0)
 		if crit: amount *= 2.15 if class_key=="Ranger" else 1.7
 		if enemy.role in ["bulwark","elite"] and class_key!="Arcanist": amount *= 0.72
 		var damage := mini(enemy.hp,maxi(1,int(amount)))
@@ -535,6 +547,7 @@ func _resolve_hero_attack() -> void:
 		if enemy.hp<=0:
 			kills += 1
 			enemy.warning = {}
+	if attack.skill: _release_relic(target,selected,stored)
 	hero_mana = mini(int(stats.max_mana),hero_mana+maxi(1,int(stats.attributes.Spirit)/4))
 
 func _safe_boss_escape() -> Vector2:
@@ -646,6 +659,9 @@ func _hurt_hero(enemy: Dictionary, raw: float) -> void:
 			hero_mana -= absorbed*2
 			damage -= absorbed
 			events.append({"type":"ward","source":enemy.id,"absorbed":absorbed,"mana_spent":absorbed*2})
+	if guard_time>0.0 and stats.get("class_relic","")=="stored_ember":
+		var prevented:=maxf(0.0,raw*(1.0-mitigation)*0.45)
+		stats.relic_charge=minf(float(stats.ability_damage)*0.6,float(stats.get("relic_charge",0.0))+prevented)
 	hero_hp = maxi(0,hero_hp-damage)
 	events.append({"type":"hero_hit","source":enemy.id,"damage":damage})
 
@@ -714,6 +730,7 @@ func _tick_journey() -> void:
 		if stage==1 and not journey.well_used:
 			journey.well_used=true
 			var restored := mini(int(stats.max_hp)-hero_hp,maxi(1,int(stats.max_hp*0.18)))
+			if Contract.no_healing(contract()): restored=0
 			hero_hp+=restored
 			events.append({"type":"well","position":hero_pos,"restored":restored})
 		elif stage==3: journey.seal_broken=true
@@ -802,6 +819,13 @@ func restore(state: Dictionary) -> bool:
 	for stat in ["max_hp","max_mana","attack","ability_damage","mana_cost","crit","armor","class_mitigation"]:
 		if not _valid_number(data.stats.get(stat)): return false
 	if data.stats.max_hp<1 or data.stats.max_mana<0 or data.stats.mana_cost<0: return false
+	if data.stats.has("first_descent") and (not data.stats.first_descent is int or data.stats.first_descent!=1 or data.floor_id!=1): return false
+	if data.stats.has("regional_set") and (not data.stats.regional_set is int or data.stats.regional_set<0 or data.stats.regional_set>=4): return false
+	if data.stats.has("class_relic"):
+		var relic: Variant=data.stats.class_relic
+		if not relic is String or not Relics.DEFINITIONS.has(relic) or Relics.DEFINITIONS[relic].class!=data.class_key: return false
+	if data.stats.has("relic_charge"):
+		if data.stats.get("class_relic","")!="stored_ember" or not _valid_number(data.stats.relic_charge) or data.stats.relic_charge<0.0 or data.stats.relic_charge>float(data.stats.ability_damage)*0.6+0.0001: return false
 	if data.stats.has("mana_guard"):
 		if not _valid_number(data.stats.mana_guard) or data.stats.mana_guard<0.0 or data.stats.mana_guard>0.5: return false
 	if data.stats.has("boss_patterns") and (not data.stats.boss_patterns is int or not data.stats.boss_patterns in [0,1]): return false
@@ -1032,3 +1056,40 @@ func contract() -> Dictionary:
 func duration_limit() -> float:
 	if Contract.mode(contract())=="trial": return Contract.TRIAL_LIMIT
 	return MAX_DURATION if uses_journey() else LEGACY_MAX_DURATION
+
+func _release_relic(target: Dictionary, signature_targets: Array, stored: float) -> void:
+	var key: String=stats.get("class_relic","")
+	var selected: Array=[]
+	var points: Array=[Vector2(target.pos)]
+	if key=="echo_lightning":
+		var origin: Vector2=signature_targets.back().pos if not signature_targets.is_empty() else target.pos
+		points=[origin]
+		for jump in range(2):
+			var next: Dictionary={}
+			var distance:=4.00001
+			for enemy in living():
+				if signature_targets.has(enemy) or selected.has(enemy): continue
+				var gap:=origin.distance_to(enemy.pos)
+				if gap<distance: next=enemy; distance=gap
+			if next.is_empty(): break
+			selected.append(next)
+			origin=next.pos
+	elif key=="returning_thorn" and target.hp>0:
+		selected.append(target)
+		points=[hero_pos]
+	elif key=="stored_ember" and stored>0.0:
+		events.append({"type":"technique","ability_id":"judgment","position":target.pos,"radius":0.0,"points":[hero_pos,Vector2(target.pos)]})
+		return
+	for enemy in selected:
+		var factor:=0.45 if key=="echo_lightning" else 0.35
+		var amount:=float(stats.ability_damage)*factor*float(Stances.definition(stats).outgoing)
+		if enemy.role in ["bulwark","elite"] and class_key!="Arcanist": amount*=0.72
+		var damage:=mini(enemy.hp,maxi(1,int(amount)))
+		enemy.hp-=damage
+		points.append(Vector2(enemy.pos))
+		events.append({"type":"hit","target":enemy.id,"damage":damage,"critical":false,"skill":true,"name":Relics.DEFINITIONS[key].name,"dead":enemy.hp<=0})
+		if enemy.hp<=0:
+			kills+=1
+			enemy.warning={}
+	if not selected.is_empty():
+		events.append({"type":"technique","ability_id":"chain" if key=="echo_lightning" else "marked","position":target.pos,"radius":4.0,"points":points})

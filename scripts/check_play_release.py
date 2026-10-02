@@ -15,7 +15,7 @@ def validate(root: Path, strict: bool = False) -> list[str]:
     presets = configparser.ConfigParser(interpolation=None)
     presets.read(root / "export_presets.cfg")
     play = presets["preset.1.options"]
-    for key, value in [("version/name", store["version_name"]), ("version/code", str(store["version_code"])), ("package/unique_name", store["package"]), ("gradle_build/min_sdk", "24"), ("gradle_build/target_sdk", "36"), ("permissions/internet", "false"), ("user_data_backup/allow", "false")]:
+    for key, value in [("version/name", store["version_name"]), ("version/code", str(store["version_code"])), ("package/unique_name", store["package"]), ("gradle_build/min_sdk", "24"), ("gradle_build/target_sdk", "36"), ("permissions/internet", "false"), ("permissions/vibrate", "true"), ("user_data_backup/allow", "false")]:
         if play.get(key, "").strip('"') != value: problems.append(f"Play preset mismatch: {key}")
     if presets["preset.1"].get("custom_features", "").strip('"'): problems.append("Play build enables custom development features")
     release = (root / "scripts/release_info.gd").read_text()

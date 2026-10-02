@@ -16,7 +16,9 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=Path("build/android-beta-runtime"))
     parser.add_argument("--skip-install", action="store_true", help="Use the already installed fixture on a slow local emulator")
     parser.add_argument("--art-only", action="store_true", help="Verify the four-region Android graphics fixture instead of AFK reconciliation")
+    parser.add_argument("--success-only", action="store_true", help="Verify the first descent, relic equip and oath checkpoint")
     args = parser.parse_args()
+    if args.art_only and args.success_only: parser.error("Choose one QA fixture")
     args.output.mkdir(parents=True, exist_ok=True)
 
     def adb(*arguments, timeout=60):
@@ -29,7 +31,7 @@ def main() -> int:
         while time.monotonic() < deadline:
             log = adb("logcat", "-d", "-s", "godot", timeout=30)
             (args.output / filename).write_text(log)
-            if "ANDROID_BETA_FAIL" in log or "ANDROID_ART_FAIL" in log: raise RuntimeError(log[-4000:])
+            if "ANDROID_BETA_FAIL" in log or "ANDROID_ART_FAIL" in log or "ANDROID_SUCCESS_FAIL" in log: raise RuntimeError(log[-4000:])
             if "ERROR:" in log or "shader failed to compile" in log.lower():
                 raise RuntimeError("Godot reported a runtime or shader error; see " + str(args.output / filename))
             if marker in log: return log
@@ -41,6 +43,19 @@ def main() -> int:
         adb("shell", "pm", "clear", PACKAGE)  # Dedicated fixture package only.
         adb("logcat", "-c")
         adb("shell", "am", "start", "-n", PACKAGE + "/com.godot.game.GodotAppLauncher")
+        if args.success_only:
+            await_marker("ANDROID_SUCCESS_PASS first descent, class relic and oath UI", "success-launch.log")
+            for key in ["welcome", "first-fight", "first-relic", "oaths", "oath-run"]:
+                capture = subprocess.run([args.adb, "exec-out", "run-as", PACKAGE, "cat", f"files/success-{key}.png"], capture_output=True, timeout=60)
+                if capture.returncode or not capture.stdout.startswith(b"\x89PNG\r\n\x1a\n"):
+                    raise RuntimeError(f"Android first-session capture {key} missing or invalid")
+                (args.output / f"android-success-{key}.png").write_bytes(capture.stdout)
+            adb("shell", "am", "force-stop", PACKAGE)
+            adb("logcat", "-c")
+            adb("shell", "am", "start", "-n", PACKAGE + "/com.godot.game.GodotAppLauncher")
+            await_marker("ANDROID_SUCCESS_PASS restart preserves oath", "success-restart.log")
+            print("ANDROID SUCCESS LOOP VERIFIED: first fight, one-time relic, oath and cold restart")
+            return 0
         if args.art_only:
             log = await_marker("ANDROID_ART_PASS all four regions rendered", "art-launch.log")
             for region in range(4):

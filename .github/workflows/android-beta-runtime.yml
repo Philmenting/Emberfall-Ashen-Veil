@@ -63,7 +63,9 @@ jobs:
         if [ "${{ inputs.graphics_only }}" != "true" ]; then
           python3 scripts/export_android_qa.py --scene res://tests/android_beta_flow.tscn --output build/emberfall-afk-qa.apk
         fi
+        python3 scripts/export_android_qa.py --scene res://tests/android_success_flow.tscn --output build/emberfall-success-qa.apk
         python3 scripts/export_android_qa.py --scene res://tests/android_art_flow.tscn --output build/emberfall-art-qa.apk
+        python3 scripts/export_android_qa.py --architecture arm64-v8a --scene res://tests/android_device_probe.tscn --output build/emberfall-pixel-probe.apk
     - name: Enable emulator hardware acceleration
       run: |-
         echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -81,6 +83,7 @@ jobs:
         script: |
           if [ "${{ inputs.graphics_only }}" != "true" ]; then python3 scripts/android_beta_smoke.py --apk build/emberfall-afk-qa.apk; fi
           adb shell wm size 1080x2424
+          python3 scripts/android_beta_smoke.py --success-only --apk build/emberfall-success-qa.apk --output build/android-success-runtime
           python3 scripts/android_beta_smoke.py --art-only --apk build/emberfall-art-qa.apk --output build/android-art-runtime
     - name: Upload QA evidence
       if: always()
@@ -90,6 +93,7 @@ jobs:
         path: |-
           build/android-beta-runtime
           build/android-art-runtime
+          build/android-success-runtime
         if-no-files-found: warn
         retention-days: 14
     - name: Upload isolated QA packages
@@ -99,4 +103,6 @@ jobs:
         path: |
           build/emberfall-afk-qa.apk
           build/emberfall-art-qa.apk
+          build/emberfall-success-qa.apk
+          build/emberfall-pixel-probe.apk
         retention-days: 14

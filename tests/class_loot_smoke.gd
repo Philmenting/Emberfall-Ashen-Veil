@@ -37,7 +37,7 @@ func run_checks() -> void:
 			affixes_ok=affixes_ok and item.stats.size()==count
 			values_ok=values_ok and item.tier==i%10+1 and item.power>0 and item.sell>0 and item.temper==0
 			for attribute in item.stats: values_ok=values_ok and item.stats[attribute]>0 and item.stats[attribute]<=3+item.tier+3
-			names_ok=names_ok and Loot.NAMES[selected][item.slot].has(item.name)
+			names_ok=names_ok and (Loot.NAMES[selected][item.slot].has(item.name) or (not Loot.Relics.effect(item,selected).is_empty() and item.name==Loot.Relics.DEFINITIONS[item.relic].name))
 			var boss_item:=Loot.roll(selected,true,i%10+1,rng)
 			boss_ok=boss_ok and boss_item.quality in ["RARE","EPIC","LEGENDARY"]
 		check(primary_ok,selected+": all 5000 finds include the class primary attribute")

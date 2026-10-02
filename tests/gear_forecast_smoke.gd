@@ -40,7 +40,7 @@ func run_checks() -> void:
 		var snapshot: Dictionary=model.snapshot()
 		var serial: int=game.expedition_serial
 		var report:=Forecast.new()
-		report.setup(selected,game._combat_stats(),1,"Guardian")
+		report.setup(selected,game._expedition_stats(1),1,"Guardian")
 		check(report.summary().is_empty(),selected+": incomplete assessment cannot present a clear rate")
 		report.step(3)
 		check(report.processed==3 and not report.complete(),selected+": assessment can yield after a bounded batch")

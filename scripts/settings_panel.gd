@@ -694,6 +694,10 @@ func _options(parent: VBoxContainer) -> void:
 	reduced_motion.name="ReducedMotion"
 	parent.add_child(reduced_motion)
 	parent.add_child(game._paragraph_label("Reduces boss camera zoom and impact shake. Auto-follow and essential combat animation remain active.",11,game.MUTED))
+	var haptics: Button=game._button("HAPTICS: "+("ON" if game.preferences.haptics else "OFF"),game.PANEL_LIGHT,11,func(): game._change_preference("haptics",not game.preferences.haptics); _build())
+	haptics.name="Haptics"
+	parent.add_child(haptics)
+	parent.add_child(game._paragraph_label("Brief vibration for warnings, received damage and critical hits. Off by default; available on Android devices with vibration support.",11,game.MUTED))
 
 func _help(parent: VBoxContainer) -> void:
 	for entry in [
@@ -720,6 +724,14 @@ func _beta(parent: VBoxContainer) -> void:
 	parent.add_child(game._label("PRIVACY",12,game.GOLD,true))
 	parent.add_child(game._paragraph_label("The offline beta contains no advertising, analytics, purchases or account registration. Your character, equipment, preferences and expedition checkpoints are saved locally. The game does not upload this progress. A recovery code contains your save: share it privately. Android manages app data and uninstalling removes it.",12,game.PALE))
 	parent.add_child(game._paragraph_label("Feedback is optional. Opening the issue tracker launches your browser; GitHub's own privacy policy applies there. Review the copied report before posting. It contains game and display settings, but no recovery code or account key.",11,game.MUTED))
+	var notes: Button=game._button("LOCAL PLAYTEST NOTES: "+("ON" if game.preferences.playtest else "OFF"),game.PANEL_LIGHT,11,func():
+		game._change_preference("playtest",not game.preferences.playtest)
+		if not game.preferences.playtest: game.playtest_notes.clear(); game._save_progress()
+		_build()
+	)
+	notes.name="LocalPlaytestNotes"
+	parent.add_child(notes)
+	parent.add_child(game._paragraph_label("Optional notes record your first fight, signature, clear, relic equip and return after a day. Kept on this device, added only to a report you copy yourself. Turning this off deletes the notes.",11,game.MUTED))
 	var status: Label=game._paragraph_label("Tell us the steps that caused a problem, your device model and what you expected.",11,game.MUTED)
 	parent.add_child(status)
 	var copy: Button=game._button("COPY FEEDBACK TEMPLATE",game.PANEL_LIGHT,11,func():

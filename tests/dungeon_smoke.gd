@@ -43,8 +43,10 @@ func run_checks() -> void:
 		threatened._auto_hero()
 		check(skipped.casts>0 and threatened.dodging and threatened.dodges==1,class_value+": uses abilities and reacts when actually threatened")
 		await create_timer(1.0).timeout
-		check(world.hero.position.distance_to(origin)>1.0,class_value+": walks through dungeon")
-		check(game.expedition.kills==0 and game.enemy_health==game.enemy_max_health,class_value+": no attacks before entering combat")
+		check(game.expedition.elapsed>0.0 and game.expedition.phase=="combat",class_value+": first floor starts in a live encounter")
+		var early_damage:=false
+		for enemy in game.expedition.waves[0]: early_damage=early_damage or enemy.hp<enemy.max_hp
+		check(game.expedition.casts>0 and early_damage,class_value+": signature lands during the first second")
 		game._toggle_run_pause()
 		var stopped: Vector3 = world.hero.position
 		var stopped_time: float = game.expedition.elapsed

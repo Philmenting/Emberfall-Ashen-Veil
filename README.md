@@ -267,3 +267,7 @@ Die kurzen Android-Vergleichsmessungen und ihre Grenzen stehen in [docs/REGIONS.
 - `tests/android_ux.tscn`: separater Android-Einstieg für Touch-Tests, Zustandsprotokolle und Screenshots.
 
 Prüfablauf für den Einstieg, Ausrüstungswerte und echte Android-Toucheingaben: [docs/HERO_AND_GEAR.md](docs/HERO_AND_GEAR.md).
+
+### Beta.2: Einstieg und Spielziele
+
+[Schneller Erstkampf, Schwüre und Klassenreliquien](docs/SUCCESS_LOOP.md), vier regionale Sets, Wächtersiegel und optionale Haptik. [Geschlossener Spieltest und Pixel-Probe](docs/SUCCESS_PLAYTEST.md); [Gameplay-Clip](docs/previews/success-loop/emberfall-gameplay-beta2.mp4). Aktuelle Solo-Beta: 0.39.0-beta.2, Version-Code 44.

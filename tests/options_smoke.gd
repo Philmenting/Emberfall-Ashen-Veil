@@ -27,7 +27,7 @@ func run_checks() -> void:
 	check(Preferences.normalize(null)==Preferences.DEFAULTS,"missing preferences retain safe defaults")
 	var normalized:=Preferences.normalize({"master":INF,"music":-9.0,"effects":99,"battery":"yes","numbers":false,"large_text":"yes","reduced_motion":"yes"})
 	check(normalized.master==0.8 and normalized.music==0.0 and normalized.effects==1.0 and not normalized.battery and not normalized.numbers and not normalized.large_text and not normalized.reduced_motion,"invalid settings are bounded and type checked")
-	for key in ["camp","dungeon","ui","swing","bolt","impact","hurt","oath","nova","volley","warning","step","ward","lightning","starfall","victory","defeat"]:
+	for key in ["camp","dungeon","ui","swing","bolt","impact","arcane_contact","arrow_contact","hurt","oath","nova","volley","warning","step","ward","lightning","starfall","victory","defeat"]:
 		var stream:=Audio.stream_for(key)
 		var peak:=0
 		var energy:=0.0

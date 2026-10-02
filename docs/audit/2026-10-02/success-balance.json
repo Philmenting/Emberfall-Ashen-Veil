@@ -1,0 +1,178 @@
+{
+	"failures": 0,
+	"first_descent": [
+		{
+			"class": "Vowkeeper",
+			"latest_first_contact_seconds": 0.9,
+			"latest_first_signature_seconds": 0.6,
+			"runs": 24,
+			"slowest_clear_seconds": 117.599999999998,
+			"wins": 24
+		},
+		{
+			"class": "Arcanist",
+			"latest_first_contact_seconds": 0.7,
+			"latest_first_signature_seconds": 0.4,
+			"runs": 24,
+			"slowest_clear_seconds": 87.4999999999993,
+			"wins": 24
+		},
+		{
+			"class": "Ranger",
+			"latest_first_contact_seconds": 1.3,
+			"latest_first_signature_seconds": 1.0,
+			"runs": 24,
+			"slowest_clear_seconds": 91.1999999999991,
+			"wins": 24
+		}
+	],
+	"oaths": [
+		{
+			"class": "Vowkeeper",
+			"floor": 2,
+			"mean_seconds": 118.518749999998,
+			"oath": "none",
+			"runs": 16,
+			"wins": 16
+		},
+		{
+			"class": "Vowkeeper",
+			"floor": 2,
+			"mean_seconds": 118.668749999998,
+			"oath": "unmended",
+			"runs": 16,
+			"wins": 16
+		},
+		{
+			"class": "Vowkeeper",
+			"floor": 2,
+			"mean_seconds": 118.462499999998,
+			"oath": "cinder",
+			"runs": 16,
+			"wins": 16
+		},
+		{
+			"class": "Vowkeeper",
+			"floor": 6,
+			"mean_seconds": 137.324999999996,
+			"oath": "none",
+			"runs": 16,
+			"wins": 15
+		},
+		{
+			"class": "Vowkeeper",
+			"floor": 6,
+			"mean_seconds": 132.143749999997,
+			"oath": "unmended",
+			"runs": 16,
+			"wins": 9
+		},
+		{
+			"class": "Vowkeeper",
+			"floor": 6,
+			"mean_seconds": 130.981249999997,
+			"oath": "cinder",
+			"runs": 16,
+			"wins": 11
+		},
+		{
+			"class": "Arcanist",
+			"floor": 2,
+			"mean_seconds": 86.0374999999994,
+			"oath": "none",
+			"runs": 16,
+			"wins": 16
+		},
+		{
+			"class": "Arcanist",
+			"floor": 2,
+			"mean_seconds": 86.0374999999994,
+			"oath": "unmended",
+			"runs": 16,
+			"wins": 16
+		},
+		{
+			"class": "Arcanist",
+			"floor": 2,
+			"mean_seconds": 86.0374999999994,
+			"oath": "cinder",
+			"runs": 16,
+			"wins": 16
+		},
+		{
+			"class": "Arcanist",
+			"floor": 6,
+			"mean_seconds": 95.9312499999988,
+			"oath": "none",
+			"runs": 16,
+			"wins": 16
+		},
+		{
+			"class": "Arcanist",
+			"floor": 6,
+			"mean_seconds": 95.9312499999988,
+			"oath": "unmended",
+			"runs": 16,
+			"wins": 16
+		},
+		{
+			"class": "Arcanist",
+			"floor": 6,
+			"mean_seconds": 95.8249999999988,
+			"oath": "cinder",
+			"runs": 16,
+			"wins": 16
+		},
+		{
+			"class": "Ranger",
+			"floor": 2,
+			"mean_seconds": 90.6374999999991,
+			"oath": "none",
+			"runs": 16,
+			"wins": 16
+		},
+		{
+			"class": "Ranger",
+			"floor": 2,
+			"mean_seconds": 90.9687499999991,
+			"oath": "unmended",
+			"runs": 16,
+			"wins": 16
+		},
+		{
+			"class": "Ranger",
+			"floor": 2,
+			"mean_seconds": 91.3437499999991,
+			"oath": "cinder",
+			"runs": 16,
+			"wins": 16
+		},
+		{
+			"class": "Ranger",
+			"floor": 6,
+			"mean_seconds": 100.287499999999,
+			"oath": "none",
+			"runs": 16,
+			"wins": 14
+		},
+		{
+			"class": "Ranger",
+			"floor": 6,
+			"mean_seconds": 100.756249999999,
+			"oath": "unmended",
+			"runs": 16,
+			"wins": 14
+		},
+		{
+			"class": "Ranger",
+			"floor": 6,
+			"mean_seconds": 99.5562499999986,
+			"oath": "cinder",
+			"runs": 16,
+			"wins": 11
+		}
+	],
+	"scenario": "ordinary level-1 starting gear; oath comparisons add one seeded class amulet, without level gains or upgraded equipment",
+	"schema": 1,
+	"time_basis": "simulation_seconds"
+}

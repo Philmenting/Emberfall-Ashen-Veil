@@ -7,6 +7,9 @@ const Contract = preload("res://scripts/expedition_contract.gd")
 const Skills = preload("res://scripts/class_skills.gd")
 const Stances = preload("res://scripts/combat_stances.gd")
 const BossPatterns = preload("res://scripts/boss_patterns.gd")
+const RegionalSets = preload("res://scripts/regional_sets.gd")
+const PlaytestNotes = preload("res://scripts/playtest_notes.gd")
+const Relics = preload("res://scripts/class_relics.gd")
 const ClassLoot = preload("res://scripts/class_loot.gd")
 const SaveStore = preload("res://scripts/save_store.gd")
 const Forecast = preload("res://scripts/farm_forecast.gd")
@@ -144,6 +147,9 @@ var save_notice := ""
 var last_save_ok := true
 var initialized := false
 var onboarding_complete := false
+var first_relic_claimed := false
+var guardian_trophies: Array = []
+var playtest_notes: Dictionary = {}
 var ui_revision := 0
 var forecast_cache: Dictionary = {}
 var forecast_jobs: Dictionary = {}
@@ -406,6 +412,8 @@ func _build_camp(parent: VBoxContainer) -> void:
 	stack.add_child(challenge)
 	_update_forecast(challenge,floor_number,false)
 	stack.add_child(_button("DESCEND TO FLOOR %02d   →" % floor_number, RED, 14, Callable(self, "_start_run")))
+	_build_journey_goal(stack)
+	if floor_number>=2: _build_oaths(parent)
 	if floor_number<=3: _build_first_steps(parent)
 	var farm_panel := _panel(Color("19241f"),Color("405347"),14)
 	parent.add_child(farm_panel)
@@ -577,6 +585,10 @@ func _build_run() -> void:
 	hero_details.name="HeroDetails"
 	hero_details.visible=false
 	hero_details.add_child(_label(character_class.to_upper(),10,GOLD,true))
+	if expedition.stats.has("class_relic"):
+		var relic_label:=_paragraph_label(Relics.DEFINITIONS[expedition.stats.class_relic].name,10,GOLD,true)
+		relic_label.custom_minimum_size.x=170
+		hero_details.add_child(relic_label)
 	var stance: Dictionary = Stances.definition(expedition.stats)
 	hero_details.add_child(_label(String(stance.name).to_upper()+" STANCE",9,Color(stance.color)))
 	combat_hud.hp = _progress_bar(run_health,int(_combat_stats().max_hp),RED,9)
@@ -778,6 +790,13 @@ func _build_loot(parent: VBoxContainer) -> void:
 	if run_reward.has("seconds"):
 		stack.add_child(_label("%.1fs  •  %d foes defeated  •  %d skills cast  •  %d evasions" % [run_reward.seconds,run_reward.kills,run_reward.casts,run_reward.dodges],12,MUTED))
 	if not run_succeeded: stack.add_child(_paragraph_label("Your recovered Gold and XP are kept. Review your build or farm a cleared floor before trying again.",12,PALE))
+	for item in run_loot:
+		if inventory.has(item) and not Relics.effect(item,character_class).is_empty() and Relics.effect(equipment.Amulet,character_class).is_empty():
+			stack.add_child(_paragraph_label(Relics.DEFINITIONS[item.relic].short,11,GOLD,true))
+			var equip_relic:=_button("EQUIP "+String(item.name).to_upper(),Color("314b3c"),11,_equip_item.bind(item))
+			equip_relic.name="EquipClassRelic"
+			stack.add_child(equip_relic)
+			break
 	var next := HBoxContainer.new()
 	next.add_theme_constant_override("separation",10)
 	stack.add_child(next)
@@ -877,7 +896,16 @@ func _item_card(item: Dictionary, show_actions: bool) -> Control:
 	top.add_child(_label("ITEM %d" % int(item.power),11,GOLD,true))
 	stack.add_child(top)
 	if CLASS_DATA.has(String(item.get("affinity",""))): stack.add_child(_paragraph_label(String(item.affinity).to_upper()+" ATTUNEMENT • Usable by all classes",8,MUTED))
+	var region: Variant=item.get("region")
+	if region is int and region>=0 and region<4:
+		stack.add_child(_paragraph_label(RegionalSets.DEFINITIONS[region].name+" • 3 worn pieces: "+RegionalSets.DEFINITIONS[region].rule,10,GREEN))
+	var relic_copy:=Relics.describe(item)
+	if not relic_copy.is_empty():
+		stack.add_child(_paragraph_label(relic_copy,11,GOLD,true))
+		if Relics.effect(item,character_class).is_empty(): stack.add_child(_paragraph_label("Effect inactive for your current class.",10,MUTED))
 	stack.add_child(_paragraph_label("%s  •  %d armor" % [_item_stats_line(item),int(item.armor)],9,MUTED))
+	if item.slot=="Amulet" and not Relics.effect(equipment.Amulet,character_class).is_empty() and Relics.effect(equipment.Amulet,character_class)!=Relics.effect(item,character_class):
+		stack.add_child(_paragraph_label("Equipping this replaces your current signature effect.",10,Color("dc9683")))
 	stack.add_child(_label("IF EQUIPPED  •  "+character_class.to_upper(),8,GOLD,true))
 	var comparison := _compare_item(item)
 	var changes := GridContainer.new()
@@ -1151,8 +1179,16 @@ func _combat_stats(loadout: Dictionary = {}) -> Dictionary:
 			ability_damage = int(attack * (1.05 + float(rank) * 0.12) + primary_value * 6 + int(attributes.Vitality) * 2)
 			mana_cost = 12 + rank * 2
 			class_mitigation = int(attributes.Vitality / 18)
+	var relic := Relics.effect(equipped.get("Amulet",{}),character_class)
 	var power := attack + armor * 2 + int(attributes.Intellect) * 3 + int(attributes.Vitality) * 2
-	return {"attributes": attributes, "attack": attack, "max_hp": max_hp, "max_mana": max_mana, "armor": armor, "crit": crit, "ability_damage": ability_damage, "mana_cost": mana_cost, "class_mitigation": class_mitigation, "mana_guard":0.35 if character_class=="Arcanist" else 0.0, "combat_stance":Stances.normalize(combat_stances.get(character_class)), "skill_rotation":1, "skill_loadout":Skills.normalize(character_class,skill_loadouts.get(character_class)), "dungeon_journey":1, "dungeon_generation":6, "route_pattern_version":4, "auto_target_variance":1, "boss_patterns":1, "arcane_tactics":1 if character_class=="Arcanist" else 0, "power": power, "gear_power": gear_power}
+	var values := {"attributes": attributes, "attack": attack, "max_hp": max_hp, "max_mana": max_mana, "armor": armor, "crit": crit, "ability_damage": ability_damage, "mana_cost": mana_cost, "class_mitigation": class_mitigation, "mana_guard":0.35 if character_class=="Arcanist" else 0.0, "combat_stance":Stances.normalize(combat_stances.get(character_class)), "skill_rotation":1, "skill_loadout":Skills.normalize(character_class,skill_loadouts.get(character_class)), "dungeon_journey":1, "dungeon_generation":6, "route_pattern_version":4, "auto_target_variance":1, "boss_patterns":1, "arcane_tactics":1 if character_class=="Arcanist" else 0, "power": power, "gear_power": gear_power}
+
+	if not relic.is_empty(): values.class_relic=relic
+	var active_set:=RegionalSets.active(equipped)
+	if active_set>=0:
+		values.regional_set=active_set
+		if active_set==1: values.mana_cost=maxi(1,int(values.mana_cost*0.8))
+	return values
 
 func _hero_power() -> int:
 	return int(_combat_stats().power)
@@ -1265,8 +1301,7 @@ func _start_run(target_floor: int = -1, rules: Dictionary = {}) -> void:
 
 func _new_expedition(target_floor: int, serial: int, rules: Dictionary = {}) -> RefCounted:
 	var simulation := Expedition.new()
-	var values:=_combat_stats()
-	if not rules.is_empty(): values.expedition_contract=rules.duplicate(true)
+	var values:=_expedition_stats(target_floor,rules)
 	simulation.setup(character_class,values,target_floor,String(_region_data(target_floor).boss),_run_seed_for_serial(serial))
 	return simulation
 
@@ -1297,6 +1332,10 @@ func _on_combat_advanced(updates: Array) -> void:
 	_sync_model_state()
 	if is_instance_valid(audio): audio.combat_events(updates,character_class)
 	for event in updates:
+		if event.type=="hit":
+			_note_playtest("first_hit",expedition.elapsed)
+		if event.type=="hero_attack" and event.get("skill",false) and not event.has("ability_id"):
+			_note_playtest("first_signature",expedition.elapsed)
 		if event.type=="hit":
 			run_events.append("%s hits for %d." % [event.name,event.damage])
 			if run_events.size()>8: run_events.pop_front()
@@ -1359,6 +1398,7 @@ func _toggle_farm() -> void:
 
 func _grant_expedition_rewards(success: bool, target_floor: int, offline: bool, seed_value: int, loot_class: String="", rules: Dictionary={}) -> void:
 	var mode:=Contract.mode(rules)
+	var first_relic:=success and target_floor==1 and mode in ["campaign","oath"] and not first_relic_claimed
 	var first_trial:=success and mode=="trial" and int(rules.tier)==trial_cleared+1
 	if mode=="trial" and not first_trial:
 		if not offline: run_reward={"gold":0,"xp":0,"title":Contract.title(rules),"note":"No reward: clear the next trial within 150 seconds."}
@@ -1369,13 +1409,29 @@ func _grant_expedition_rewards(success: bool, target_floor: int, offline: bool, 
 	if first_trial:
 		gold+=500+int(rules.tier)*40
 		xp+=500+int(rules.tier)*50
+	if success and mode=="oath" and rules.oath=="unmended":
+		gold=int(gold*1.3)
+		xp=int(xp*1.3)
 	if success:
 		var loot_rng := RandomNumberGenerator.new()
 		loot_rng.seed = seed_value+7919
 		var drop_count := 1 if loot_rng.randf()<0.68 else 2
 		if first_trial: drop_count=1
+		if mode=="oath" and rules.oath=="unmended": drop_count+=1
 		for i in range(drop_count):
 			var item := _generate_item(true,target_floor,loot_rng,loot_class,String(rules.get("slot","")),"EPIC" if first_trial else "")
+			if (first_relic or (mode=="oath" and rules.oath=="cinder")) and i==0:
+				var earned_class:=character_class if loot_class.is_empty() else loot_class
+				item=ClassLoot.roll(earned_class,true,_gear_tier_at_floor(target_floor),loot_rng,"Amulet","EPIC" if mode=="oath" and rules.oath=="cinder" else "RARE")
+				item=Relics.attune(item,earned_class)
+			item.region=_region_index(target_floor)
+			if first_relic and i==0 and inventory.size()>=MAX_BAG_SIZE:
+				var cheapest: Dictionary=inventory[0]
+				for stored_item in inventory:
+					if int(stored_item.sell)<int(cheapest.sell): cheapest=stored_item
+				inventory.erase(cheapest)
+				gold+=int(cheapest.sell)
+				if offline: pending_idle_salvaged+=1
 			if inventory.size()<MAX_BAG_SIZE:
 				inventory.append(item)
 				if offline: pending_idle_gear += 1
@@ -1383,10 +1439,17 @@ func _grant_expedition_rewards(success: bool, target_floor: int, offline: bool, 
 			else:
 				gold += int(item.sell)
 				if offline: pending_idle_salvaged += 1
-		if mode=="campaign": floor_number = maxi(floor_number,target_floor+1)
+		if first_relic: first_relic_claimed=true
+		if mode in ["campaign","oath"]:
+			var region_id:=_region_index(target_floor)
+			if region_id not in guardian_trophies: guardian_trophies.append(region_id)
+		if mode in ["campaign","oath"]: floor_number = maxi(floor_number,target_floor+1)
 		if first_trial: trial_cleared=int(rules.tier)
 	if not offline:
 		run_reward={"gold":gold,"xp":xp,"title":Contract.title(rules),"note":"First clear • guaranteed Epic relic" if first_trial else "Focused drops • "+String(rules.slot) if mode=="hunt" else ""}
+	if not offline and success:
+		if first_relic: run_reward.note="Your first class relic • equip it to change your signature skill"
+		elif mode=="oath": run_reward.note=Contract.OATHS[rules.oath].short
 	if offline:
 		pending_idle_ash += gold
 		pending_idle_xp += xp
@@ -1402,6 +1465,7 @@ func _complete_run() -> void:
 	run_stage = run_max_stages
 	run_succeeded = true
 	last_run_floor = run_floor
+	if not skipping_run: _note_playtest("first_clear",expedition.elapsed)
 	run_loot.clear()
 	_grant_expedition_rewards(true,run_floor,false,expedition.run_seed,expedition.class_key,expedition.contract())
 	_stamp_run_report()
@@ -1449,7 +1513,9 @@ func _generate_item(boss_bonus: bool = false, target_floor: int = -1, loot_rng: 
 		loot_rng = RandomNumberGenerator.new()
 		loot_rng.randomize()
 	var drop_floor := floor_number if target_floor < 1 else target_floor
-	return ClassLoot.roll(character_class if loot_class.is_empty() else loot_class,boss_bonus,_gear_tier_at_floor(drop_floor),loot_rng,focused_slot,minimum_quality)
+	var item:=ClassLoot.roll(character_class if loot_class.is_empty() else loot_class,boss_bonus,_gear_tier_at_floor(drop_floor),loot_rng,focused_slot,minimum_quality)
+	item.region=_region_index(drop_floor)
+	return item
 
 func _equip_item(item: Dictionary) -> void:
 	if offline_job!=null: return
@@ -1460,6 +1526,7 @@ func _equip_item(item: Dictionary) -> void:
 	displaced["slot"] = slot
 	displaced["status"] = ""
 	equipment[slot] = item
+	if playtest_notes.has("first_clear") and not Relics.effect(item,character_class).is_empty(): _note_playtest("first_relic_equipped",float(run_reward.get("seconds",playtest_notes.get("first_clear",0.0))))
 	item.status = "equipped"
 	inventory.erase(item)
 	inventory.append(displaced)
@@ -1552,6 +1619,7 @@ func _accrue_offline_time(cooperative: bool=false) -> void:
 		last_saved_at = now
 		return
 	var away := clampi(now-last_saved_at,0,MAX_OFFLINE_SECONDS)
+	if preferences.playtest and away>=86400: playtest_notes.returned_next_day=true
 	last_saved_at = maxi(last_saved_at,now)
 	if offline_job!=null:
 		offline_job.remaining=mini(MAX_OFFLINE_SECONDS,offline_job.remaining+away)
@@ -1597,9 +1665,16 @@ func _load_progress() -> void:
 		world_seed = _new_profile_seed()
 		last_saved_at = int(clock_source.call())
 		return
+	playtest_notes=PlaytestNotes.normalize(save.get_value("testing","notes",{}))
 	preferences = Preferences.normalize(save.get_value("settings","preferences",preferences))
 	skill_loadouts=Skills.normalize_book(save.get_value("hero","skill_loadouts",{}))
 	combat_stances=Stances.normalize_book(save.get_value("hero","combat_stances",{}))
+	first_relic_claimed=bool(save.get_value("hero","first_relic_claimed",int(save.get_value("hero","floor",1))>1))
+	guardian_trophies=[]
+	var saved_trophies: Variant=save.get_value("hero","guardian_trophies",[])
+	if saved_trophies is Array:
+		for trophy in saved_trophies:
+			if trophy is int and trophy in range(REGIONS.size()) and trophy not in guardian_trophies: guardian_trophies.append(trophy)
 	onboarding_complete = bool(save.get_value("hero","onboarding_complete",true))
 	character_class = String(save.get_value("hero", "class", character_class))
 	if not CLASS_DATA.has(character_class):
@@ -1676,6 +1751,9 @@ func _normalize_item(item: Dictionary, default_slot: String) -> Dictionary:
 func _build_save_payload() -> ConfigFile:
 	var save := ConfigFile.new()
 	save.set_value("settings","preferences",preferences)
+	save.set_value("testing","notes",playtest_notes if preferences.playtest else {})
+	save.set_value("hero","first_relic_claimed",first_relic_claimed)
+	save.set_value("hero","guardian_trophies",guardian_trophies)
 	save.set_value("hero","onboarding_complete",onboarding_complete)
 	save.set_value("hero", "class", character_class)
 	save.set_value("hero","skill_loadouts",skill_loadouts)
@@ -1768,6 +1846,12 @@ func _install_backup_payload(payload: ConfigFile) -> bool:
 
 func _valid_backup_payload(save: ConfigFile) -> bool:
 	if not save.has_section("hero") or not save.has_section("idle"): return false
+	if save.has_section_key("hero","first_relic_claimed") and not save.get_value("hero","first_relic_claimed") is bool: return false
+	if save.has_section_key("hero","guardian_trophies"):
+		var trophies: Variant=save.get_value("hero","guardian_trophies")
+		if not trophies is Array or trophies.size()>REGIONS.size(): return false
+		for trophy in trophies:
+			if not trophy is int or trophy not in range(REGIONS.size()): return false
 	var saved_class: Variant=save.get_value("hero","class",null)
 	if not saved_class is String or not CLASS_DATA.has(saved_class): return false
 	var integer_fields: Array=[
@@ -1838,6 +1922,8 @@ func _valid_backup_item(value: Variant,default_slot: String) -> bool:
 	for key in item_stats:
 		var amount: Variant=item_stats[key]
 		if not (amount is int or amount is float) or not is_finite(float(amount)) or absf(float(amount))>1000000.0: return false
+	if value.has("region") and (not value.region is int or value.region<0 or value.region>=4): return false
+	if value.has("relic") and (not value.relic is String or not Relics.DEFINITIONS.has(value.relic) or item_slot!="Amulet"): return false
 	for key in ["name","quality","status","affinity"]:
 		if value.has(key) and not value[key] is String: return false
 	return true
@@ -1883,8 +1969,7 @@ func _compare_item(item: Dictionary) -> Dictionary:
 func _update_forecast(label: Label,target_floor: int,farming: bool,rules: Dictionary={}) -> void:
 	label.custom_minimum_size.y=44 if farming else 24
 	var revision:=ui_revision
-	var values:=_combat_stats()
-	if not rules.is_empty(): values.expedition_contract=rules.duplicate(true)
+	var values:=_expedition_stats(target_floor,rules)
 	var selected_class:=character_class
 	var boss:=String(_region_data(target_floor).boss)
 	var key:=selected_class+":"+str(target_floor)+":"+var_to_str(values)
@@ -1939,7 +2024,7 @@ func _show_welcome() -> void:
 	var stack:=VBoxContainer.new()
 	stack.add_theme_constant_override("separation",12)
 	sheet.add_child(stack)
-	stack.add_child(_centered_label("CHOOSE YOUR OATH",22,PALE,true))
+	stack.add_child(_centered_label("CHOOSE YOUR HERO",22,PALE,true))
 	stack.add_child(_centered_label("Your hero fights automatically. You choose the gear and the next expedition.",11,MUTED))
 	var classes:=HBoxContainer.new()
 	classes.add_theme_constant_override("separation",10)
@@ -1955,7 +2040,7 @@ func _show_welcome() -> void:
 		card.add_child(column)
 		column.add_child(_label(key.to_upper(),13,info.color,true))
 		column.add_child(_paragraph_label(info.tagline,10,PALE))
-		column.add_child(_paragraph_label(info.passive,10,MUTED))
+		column.add_child(_paragraph_label({"Vowkeeper":"Ember Oath cleaves nearby enemies and restores Life. Guard softens incoming damage.","Arcanist":"Veil Nova bursts through groups. Mana Ward spends Mana to absorb damage.","Ranger":"Cinder Volley hits groups. Backsteps create distance from close enemies."}[key],10,MUTED))
 		var space:=Control.new()
 		space.size_flags_vertical=Control.SIZE_EXPAND_FILL
 		column.add_child(space)
@@ -1963,7 +2048,7 @@ func _show_welcome() -> void:
 		var choose:=_button("SELECTED" if key==character_class else "CHOOSE",Color("493b30") if key==character_class else PANEL,10,_choose_initial_class.bind(String(key)))
 		choose.name="Choose"+String(key)
 		column.add_child(choose)
-	stack.add_child(_paragraph_label("Walk, fight and collect automatically. After a run, compare your loot or sell it. Enable AFK farming to continue while the game is closed, for up to 24 hours.",11,PALE))
+	stack.add_child(_paragraph_label("Defeat the Bell Warden to earn your first class relic. Equip it to change your signature skill; choose tougher oaths after your first clear.",11,PALE))
 	var actions:=HBoxContainer.new()
 	actions.add_theme_constant_override("separation",12)
 	stack.add_child(actions)
@@ -2245,8 +2330,7 @@ func _build_trials(parent: VBoxContainer) -> void:
 
 func _reconcile_farm_time(seconds: int, cooperative: bool) -> void:
 	if cooperative and seconds>=300:
-		var values := _combat_stats()
-		values.expedition_contract=_farm_contract()
+		var values := _expedition_stats(farm_floor,_farm_contract())
 		offline_job=OfflineFarm.new()
 		offline_job.setup(character_class,values,farm_floor,String(_region_data(farm_floor).boss),seconds,expedition_serial,world_seed)
 		pending_afk_seconds=seconds
@@ -2311,6 +2395,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if offline_job!=null: get_viewport().set_input_as_handled()
 
 func _is_safe_upgrade(item: Dictionary) -> bool:
+	var candidate:=equipment.duplicate(true)
+	candidate[String(item.get("slot","Weapon"))]=item
+	if RegionalSets.active(equipment)!=RegionalSets.active(candidate): return false
+	if item.get("slot")=="Amulet" and Relics.effect(equipment.Amulet,character_class)!=Relics.effect(item,character_class): return false
 	if not item.get("slot","") in GEAR_SLOTS: return false
 	var changes := _compare_item(item)
 	var improved := false
@@ -2365,3 +2453,36 @@ func _build_first_steps(parent: VBoxContainer) -> void:
 	else:
 		content.add_child(_paragraph_label("Compare recovered gear in the Armory, then choose a reliable farm floor below. Focused Hunts let you work towards a specific gear slot while away.",11,PALE))
 		content.add_child(_button("CHOOSE A GEAR HUNT",PANEL_LIGHT,11,_open_hunts))
+
+func _build_oaths(parent: VBoxContainer) -> void:
+	parent.add_child(_section_heading("EXPEDITION OATHS","OPTIONAL CHALLENGE"))
+	parent.add_child(_paragraph_label("An oath applies to this expedition and its repeats. Normal descent and your AFK farm keep their own rules.",11,MUTED))
+	for key in Contract.OATHS:
+		var definition: Dictionary=Contract.OATHS[key]
+		parent.add_child(_paragraph_label(definition.name,15,PALE,true))
+		parent.add_child(_paragraph_label(definition.rule,11,MUTED))
+		var button:=_button("TAKE "+String(definition.name).to_upper(),Color("493630"),11,_start_run.bind(floor_number,Contract.oath(key)))
+		button.name="Oath"+String(key)
+		parent.add_child(button)
+
+func _build_journey_goal(parent: VBoxContainer) -> void:
+	var target_floor:=(_region_index()+1)*10+1
+	var copy:="Defeat the Bell Warden • earn a class relic that changes your signature skill." if not first_relic_claimed else "Next region: "+String(REGIONS[mini(_region_index()+1,REGIONS.size()-1)].dungeon)+" • opens at floor %02d." % target_floor
+	if _region_index()==REGIONS.size()-1 and first_relic_claimed: copy="Next challenge: Ash Trial %02d • first clear earns an Epic relic." % mini(trial_cleared+1,Contract.MAX_TRIAL)
+	parent.add_child(_paragraph_label(copy,11,GOLD,true))
+	var active_set:=RegionalSets.active(equipment)
+	if active_set>=0: parent.add_child(_paragraph_label("SET ACTIVE • "+RegionalSets.DEFINITIONS[active_set].name+" • "+RegionalSets.DEFINITIONS[active_set].rule,11,GREEN))
+	else: parent.add_child(_paragraph_label("Collect three worn pieces from one region to activate its set bonus. Use focused Hunts to fill missing slots.",10,MUTED))
+	if not guardian_trophies.is_empty():
+		var names: PackedStringArray=[]
+		for region_id in guardian_trophies: names.append(String(REGIONS[region_id].boss))
+		parent.add_child(_paragraph_label("GUARDIAN SEALS %d/%d • " % [guardian_trophies.size(),REGIONS.size()]+" / ".join(names),10,MUTED))
+
+func _note_playtest(key: String, seconds: float) -> void:
+	if preferences.playtest and key in PlaytestNotes.MILESTONES and not playtest_notes.has(key): playtest_notes[key]=seconds
+
+func _expedition_stats(target_floor: int, rules: Dictionary={}) -> Dictionary:
+	var values:=_combat_stats()
+	if target_floor==1: values.first_descent=1
+	if not rules.is_empty(): values.expedition_contract=rules.duplicate(true)
+	return values
