@@ -2,6 +2,7 @@
 
 import argparse
 from pathlib import Path
+import zipfile
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 CONFIG = PROJECT_ROOT / "android" / "build" / "config.gradle"
@@ -13,8 +14,21 @@ CENTRAL_MIRROR = "https://maven-central.storage-download.googleapis.com/maven2/"
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--template", type=Path, help="Install the official Godot 4.7.2 android_source.zip without launching an editor loop.")
     parser.add_argument("--central-mirror", choices=[CENTRAL_MIRROR], help="Use the documented Google-hosted Maven Central mirror in CI.")
     args = parser.parse_args()
+    if args.template:
+        if CONFIG.exists():
+            raise SystemExit("Android template already exists; refusing to overwrite local build configuration.")
+        with zipfile.ZipFile(args.template) as archive:
+            for entry in archive.infolist():
+                if Path(entry.filename).is_absolute() or ".." in Path(entry.filename).parts:
+                    raise SystemExit("Unexpected path in Android template.")
+            archive.extractall(CONFIG.parent)
+        CONFIG.parent.joinpath(".gdignore").touch()
+        CONFIG.parent.parent.joinpath(".build_version").write_text("4.7.2.stable\n", encoding="ascii")
+        CONFIG.parent.joinpath("gradlew").chmod(0o755)
+        print("Installed Godot 4.7.2 Android source template.")
     if not CONFIG.is_file():
         raise SystemExit("Godot Android Gradle template is missing. Install it as part of an Android export first.")
     content = CONFIG.read_text(encoding="utf-8")

@@ -11,6 +11,7 @@ var cursor := 0
 var suspended := false
 var context := ""
 var last_played: Dictionary = {}
+var last_haptic := -1000
 
 func _ready() -> void:
 	music = AudioStreamPlayer.new()
@@ -71,6 +72,12 @@ func cue(key: String) -> void:
 	if AudioServer.get_driver_name()!="Dummy": voice.play()
 
 func combat_events(events: Array,class_key: String) -> void:
+	if not suspended and preferences.haptics and OS.has_feature("android"):
+		var pulse:=haptic_duration(events)
+		var now:=Time.get_ticks_msec()
+		if pulse>0 and now-last_haptic>=180:
+			Input.vibrate_handheld(pulse,0.35)
+			last_haptic=now
 	for event in events:
 		match String(event.type):
 			"hero_attack":
@@ -79,16 +86,17 @@ func combat_events(events: Array,class_key: String) -> void:
 					cue("lightning" if key=="chain" else "starfall" if key=="starfall" else "ward" if key in ["bastion","frost_ward","smoke"] else "oath" if key in ["sunder","judgment"] else "volley")
 					continue
 				cue("oath" if class_key=="Vowkeeper" else ("nova" if class_key=="Arcanist" else "volley")) if event.skill else cue("swing" if class_key=="Vowkeeper" else "bolt")
-			"hit": cue("impact")
+			"hit": cue("impact" if class_key=="Vowkeeper" else "arcane_contact" if class_key=="Arcanist" else "arrow_contact")
 			"hero_hit": cue("hurt")
 			"warning": cue("warning")
+			"boss_phase": cue("phase_desperate" if int(event.get("phase",1))>=2 else "phase_awakened")
 			"ward": cue("ward")
 			"evade", "backstep": cue("step")
 
 static func stream_for(key: String) -> AudioStreamWAV:
 	if bank.has(key): return bank[key]
 	var ambient:=key in ["camp","dungeon"]
-	var duration:=12.0 if ambient else float({"ui":0.07,"swing":0.24,"bolt":0.22,"impact":0.18,"hurt":0.25,"oath":0.8,"nova":0.85,"volley":0.6,"warning":0.55,"step":0.12,"ward":0.3,"lightning":0.45,"starfall":0.65,"victory":1.8,"defeat":1.3}.get(key,0.2))
+	var duration:=12.0 if ambient else float({"ui":0.07,"swing":0.24,"bolt":0.22,"impact":0.18,"hurt":0.25,"oath":0.8,"nova":0.85,"volley":0.6,"warning":0.55,"step":0.12,"ward":0.3,"lightning":0.45,"starfall":0.65,"phase_awakened":1.3,"phase_desperate":1.6,"victory":1.8,"defeat":1.3}.get(key,0.2))
 	var count:=int(duration*RATE)
 	var bytes:=PackedByteArray()
 	bytes.resize(count*2)
@@ -106,9 +114,10 @@ static func stream_for(key: String) -> AudioStreamWAV:
 			var root:=55.0 if key=="camp" else 49.0
 			sample=0.19*sin(TAU*root*t)+0.09*sin(TAU*root*1.5*t)+0.06*sin(TAU*(65.5 if key=="camp" else 58.25)*t)
 			sample*=0.6+0.25*sin(TAU*t/6.0)
-			var bell_time:=fmod(t,3.0)
-			var note: float=[220.0,261.6667,293.3333,196.0][int(t/3.0)%4]
-			sample+=0.11*sin(TAU*note*t)*exp(-bell_time*2.6)*minf(1.0,bell_time*50.0)
+			var bell_time:=fmod(t,1.5)
+			var note: float=[220.0,261.6256,293.6648,329.6276,293.6648,261.6256,246.9417,220.0][int(t/1.5)%8]
+			var overtone:=2.756 if key=="dungeon" else 2.0
+			sample+=(0.11*sin(TAU*note*bell_time)+0.035*sin(TAU*note*overtone*bell_time)*exp(-bell_time*4.0))*exp(-bell_time*2.6)*minf(1.0,bell_time*50.0)
 			sample*=minf(1.0,t/0.25)*minf(1.0,(duration-t)/0.25)
 		else:
 			match key:
@@ -116,6 +125,8 @@ static func stream_for(key: String) -> AudioStreamWAV:
 				"swing", "step": sample=filtered*2.3+noise*0.12
 				"bolt", "volley": sample=0.2*sin(TAU*(500*t-180*t*t))+filtered*1.2
 				"impact": sample=0.33*sin(TAU*130*t)*exp(-t*24)+noise*0.24*exp(-t*48)
+				"arcane_contact": sample=0.22*sin(TAU*(420*t-350*t*t))*exp(-t*16)+noise*0.09*exp(-t*30)
+				"arrow_contact": sample=noise*0.3*exp(-t*60)+0.2*sin(TAU*210*t)*exp(-t*26)
 				"hurt": sample=0.27*sin(TAU*(100*t-90*t*t))+filtered*0.6
 				"oath": sample=0.24*sin(TAU*82.5*t)+0.11*sin(TAU*330*t)*exp(-t*4)+filtered*0.8
 				"nova": sample=0.2*sin(TAU*(180*t+160*t*t))+0.08*sin(TAU*523.25*t)+filtered
@@ -123,6 +134,14 @@ static func stream_for(key: String) -> AudioStreamWAV:
 				"lightning": sample=0.12*sin(TAU*780*t)*exp(-t*5)+noise*0.3*exp(-t*8)+filtered*0.4
 				"starfall": sample=0.24*sin(TAU*(130*t-80*t*t))+filtered*1.2*exp(-t*4)
 				"ward": sample=0.11*sin(TAU*392*t)*exp(-t*8)+0.05*sin(TAU*587.33*t)*exp(-t*12)
+				"phase_awakened":
+					# A low toll announces the guardian's second pattern.
+					sample=(0.22*sin(TAU*82.5*t)+0.09*sin(TAU*226.875*t)+0.035*sin(TAU*371.25*t))*exp(-t*1.5)
+				"phase_desperate":
+					# Three rising strikes remain distinct from ordinary danger warnings.
+					for strike in range(3):
+						var age:=t-strike*0.22
+						if age>=0.0: sample+=(0.17*sin(TAU*float([110.0,130.8128,164.8138][strike])*age)+0.055*sin(TAU*330.0*age))*exp(-age*2.1)*minf(1.0,age*80)
 				"victory":
 					for n in range(3):
 						var age:=t-n*0.17
@@ -139,3 +158,12 @@ static func stream_for(key: String) -> AudioStreamWAV:
 		stream.loop_end=count
 	bank[key]=stream
 	return stream
+
+static func haptic_duration(events: Array) -> int:
+	var duration:=0
+	for event in events:
+		if event.get("type")=="hero_hit": duration=maxi(duration,24)
+		elif event.get("type")=="hit" and event.get("critical",false): duration=maxi(duration,14)
+		elif event.get("type")=="warning": duration=maxi(duration,32)
+		elif event.get("type")=="boss_phase": duration=maxi(duration,48 if int(event.get("phase",1))>=2 else 36)
+	return duration

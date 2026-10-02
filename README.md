@@ -1,5 +1,39 @@
 # Emberfall: Ashen Veil
 
+## Aktuell: 0.41.0-beta.1 — fließende Figurenanimationen
+
+Der freigegebene Stilentwurf wird mit gemalten, animierten 2.5D-Figuren in der räumlichen Godot-Spielwelt umgesetzt: drei Klassen, vier Wächter, eigene Regionen und ein Lager mit Schmiede, Schwurtisch und Portal. Bis zu zwei von drei Schwüren wirken gemeinsam mit Klassenreliquien, Sets und Techniken. Jeder Wächter besitzt drei echte Gesundheitsphasen; Warnung, Ausweichen, Skip, Offline-Wiederholung und Neustart verwenden dieselben Regeln. Alte laufende Spielstände behalten ihre ursprünglichen Kampfergebnisse. Version-Code 46.
+
+[Animationen und Prüfanleitung](docs/ANIMATIONS_041.md), [aktueller Gameplay-Clip](docs/previews/animations/emberfall-gameplay-041.mp4), [Bewegungsprüfung aller Figuren](docs/previews/animations/emberfall-motion-041.mp4), [gemalte Welt](docs/REDESIGN_040.md), [Regeln und Kompatibilität](docs/OATHS_AND_PHASES_040.md), [Grafik und Herkunft](docs/design/ASSET_PROVENANCE.md), [Spieltest und Pixel-Probe](docs/SUCCESS_PLAYTEST.md). Menschliche Rückkehrdaten sowie Leistung, Wärme und Akkulaufzeit auf dem Pixel sind noch nicht erhoben. Die älteren Berichte unten dokumentieren vorherige Versionen.
+
+## Kathedralenräume: Grafikaufwertung der Beta 0.39
+
+Originale Maßwerkfenster, geschnitzte Bodenintarsien und modellierte Feuerschalen
+ergänzen die neuen Figuren. Regionale Glasfarben, Fensterlicht, verwitterter Stein
+und korrigierte Wasserreflexionen geben den vier Gebieten mehr Tiefe. Der
+Battery-Modus schaltet die zusätzliche Beleuchtung ab. [Änderungen, Technik und
+acht tatsächliche Spielansichten](docs/SANCTUARY_GRAPHICS.md).
+
+## Geschlossener Play-Beta-Kandidat 0.39
+
+Android-AFK-Rückkehr mit sichtbarem Fortschritt und wiederherstellbarem Restzeit-
+Eintrag, breiterer Beutebildschirm mit direkten Folge-Expeditionen, sichere
+Ausrüstungs-Upgrades, eigene Boss-Lebensanzeige und Display-Randabstände. Die
+Solo-/AFK-Beta enthält keine Werbung oder Käufe und speichert lokal.
+**19 Godot-Suiten / 1.401 Prüfungen bestanden**, APK und AAB lokal gebaut und
+geprüft. Play-Upload mit dauerhaftem Schlüssel und Geräte-Abnahme stehen noch aus.
+[Umfang, Store-Paket und konkrete Release-Gates](docs/PLAY_BETA_039.md).
+
+## Kampflesbarkeit und vorbereitbare Kampfstile
+
+Unter **Gear → Skills** lassen sich pro Klasse Balanced, Assault oder Bastion
+wählen: unveränderte Balance, mehr Schaden mit höherem Risiko oder mehr Schutz
+auf Kosten des Schadens. Die Auswahl gilt für neue Runs, Farm-Prognosen und AFK;
+pausierte Expeditionen behalten ihre ursprünglichen Regeln. Schraffierte
+Gefahrenflächen mit echtem Countdown, fliegende Fernangriffe und hervorgehobene
+kritische Treffer machen die Kämpfe leichter lesbar.
+[Regeln, Screenshots und Prüfungen](docs/COMBAT_CRAFT.md).
+
 **Emberfall: Ashen Veil** ist ein eigenständiger, im Querformat gestalteter Godot-Prototyp für ein düsteres Idle-Action-RPG. Gegner haben eigene Lebensleisten; Nyra kämpft in automatischen Schlägen bis ein Gegner fällt. Alle zehn Etagen wechselt die Kampagne Gebiet, Dungeon-Namen und Boss: vom Hollow Spire bis zur Last Ember Citadel. Ein Boss-Sieg garantiert mindestens ein seltenes Ausrüstungsteil und schaltet sofort die nächste Etage frei. Vowkeeper, Arcanist und Ranger haben unterschiedliche Kampfvorteile; Attribute stärken ihre Werte und Klassenfähigkeiten. Die vier Gebiete besitzen eigene Materialien, Architekturdetails, Umgebungen und Bossmerkmale; jedes Gebiet besitzt seit 0.11 einen eigenen begehbaren Grundriss. Sechs Ausrüstungsslots, fünf Qualitäten und Stufen T1–T10 bilden die Beute-Progression. Angelegte Ausrüstung kann beim Schmied bis +5 verstärkt werden.
 
 ## Seedgesteuerter Auto-Kampf und variable Dungeon-Erkundung (0.38 Closed-Beta-Kandidat)
@@ -239,3 +273,9 @@ Die kurzen Android-Vergleichsmessungen und ihre Grenzen stehen in [docs/REGIONS.
 - `tests/android_ux.tscn`: separater Android-Einstieg für Touch-Tests, Zustandsprotokolle und Screenshots.
 
 Prüfablauf für den Einstieg, Ausrüstungswerte und echte Android-Toucheingaben: [docs/HERO_AND_GEAR.md](docs/HERO_AND_GEAR.md).
+
+### Beta.2: Einstieg und Spielziele
+
+[Schneller Erstkampf, Schwüre und Klassenreliquien](docs/SUCCESS_LOOP.md), vier regionale Sets, Wächtersiegel und optionale Haptik. [Geschlossener Spieltest und Pixel-Probe](docs/SUCCESS_PLAYTEST.md); [Gameplay-Clip](docs/previews/success-loop/emberfall-gameplay-beta2.mp4). Historischer Stand dieser Beta.2/Beta.3-Berichte: 0.39.0-beta.3, Version-Code 45. Aktueller Kandidat: 0.41.0-beta.1, Version-Code 47.
+
+[Geschützte Ausrüstung, Taschenfilter und konkrete Hilfe nach Niederlagen](docs/GEAR_AND_RECOVERY.md). Die erste Klassenreliquie bleibt bei vollständig geschützter voller Tasche zum Abholen erhalten; der lokale Online-Integrationstest ist repariert.

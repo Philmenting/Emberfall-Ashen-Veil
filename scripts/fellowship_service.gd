@@ -44,7 +44,10 @@ func refresh_fellowships(name_filter: String = "") -> void:
 	state_changed.emit()
 	var filter := name_filter.strip_edges().substr(0, 48)
 	var query: Variant = filter if not filter.is_empty() else null
-	var directory = await _client.list_groups_async(_session, query, GROUP_LIMIT, null, null, null, true)
+	# Nakama's name search cannot be combined with any other group filter.
+	# Keep closed groups off the open board when filtering the named results locally.
+	var open_filter: Variant = true if query==null else null
+	var directory = await _client.list_groups_async(_session, query, GROUP_LIMIT, null, null, null, open_filter)
 	if directory == null or directory.is_exception():
 		status_text = "The fellowship board could not be reached. Try again when the test server is available."
 		busy = false
@@ -52,7 +55,7 @@ func refresh_fellowships(name_filter: String = "") -> void:
 		return
 	open_fellowships.clear()
 	for group in directory.groups:
-		if group == null or group.id.is_empty(): continue
+		if group == null or group.id.is_empty() or not group.open: continue
 		open_fellowships.append(_group_record(group))
 	var membership = await _client.list_user_groups_async(_session, _session.user_id, null, 20, null)
 	if membership == null or membership.is_exception():

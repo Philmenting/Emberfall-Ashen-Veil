@@ -1,0 +1,119 @@
+{
+  "date": "2026-10-02",
+  "godot": "4.7.2.stable.ed1daf0bf",
+  "base_commit": "d9f5b51bc0b5c8486d8360bde13468378f598865",
+  "suites": [
+    {
+      "suite": "BETA FLOW SMOKE",
+      "checks": 46
+    },
+    {
+      "suite": "COMBAT STANCES SMOKE",
+      "checks": 140
+    },
+    {
+      "suite": "COMBAT MOVEMENT SMOKE",
+      "checks": 8
+    },
+    {
+      "suite": "JOURNEY SMOKE",
+      "checks": 413
+    },
+    {
+      "suite": "DUNGEON SMOKE",
+      "checks": 55
+    },
+    {
+      "suite": "PERSISTENCE SMOKE",
+      "checks": 89
+    },
+    {
+      "suite": "ARCANE TACTICS SMOKE",
+      "checks": 29
+    },
+    {
+      "suite": "BOSS PATTERNS SMOKE",
+      "checks": 114
+    },
+    {
+      "suite": "CLASS LOOT SMOKE",
+      "checks": 29
+    },
+    {
+      "suite": "CONTRACTS SMOKE",
+      "checks": 68
+    },
+    {
+      "suite": "GEAR / FORECAST SMOKE",
+      "checks": 38
+    },
+    {
+      "suite": "REGIONS SMOKE",
+      "checks": 36
+    },
+    {
+      "suite": "ONBOARDING SMOKE",
+      "checks": 19
+    },
+    {
+      "suite": "OPTIONS SMOKE",
+      "checks": 73
+    },
+    {
+      "suite": "SKILL ROTATION SMOKE",
+      "checks": 135
+    },
+    {
+      "suite": "VISUALS SMOKE",
+      "checks": 69
+    },
+    {
+      "suite": "AUTHORED ART SMOKE",
+      "checks": 56
+    },
+    {
+      "suite": "PRESENTATION SMOKE",
+      "checks": 51
+    },
+    {
+      "suite": "FELLOWSHIP UI SMOKE",
+      "checks": 11
+    },
+    {
+      "suite": "CLOUD IDENTITY SMOKE",
+      "checks": 14
+    },
+    {
+      "suite": "MANA WARD SMOKE",
+      "checks": 27
+    }
+  ],
+  "total_checks": 1520,
+  "failures": 0,
+  "python_android_release_checks": 5,
+  "server_javascript_checks": "pass",
+  "presentation_layout_recheck": {
+    "checks": 51,
+    "failures": 0
+  },
+  "renders": {
+    "platform": "Linux / Mesa llvmpipe GL Compatibility",
+    "resolutions": [
+      "1280x720",
+      "854x480",
+      "1200x535",
+      "1040x1080"
+    ],
+    "regions": 4,
+    "hero_models": 3,
+    "script_shader_errors": 0
+  },
+  "physical_pixel_9_pro_fold_performance": "unmeasured",
+  "android_current_head": "tracked by PR Actions after publication",
+  "short_render_probe_recheck": {
+    "scenarios": 8,
+    "frames_per_scenario": 30,
+    "failures": 0,
+    "platform": "Linux / llvmpipe, not physical Android"
+  }
+}

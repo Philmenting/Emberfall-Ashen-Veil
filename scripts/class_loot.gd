@@ -1,5 +1,6 @@
 extends RefCounted
 ## Deterministic, class-attuned drops. Affinity is guidance, never an equip lock.
+const Relics = preload("res://scripts/class_relics.gd")
 const SLOTS := ["Weapon","Helmet","Chest","Gloves","Boots","Amulet"]
 const ATTRIBUTES := ["Strength","Dexterity","Intellect","Vitality","Spirit"]
 const PRIMARY := {"Vowkeeper":"Strength","Arcanist":"Intellect","Ranger":"Dexterity"}
@@ -60,4 +61,5 @@ static func roll(selected_class: String, boss_bonus: bool, requested_tier: int, 
 	if quality in ["EPIC","LEGENDARY"]: stats.Crit=rng.randi_range(1,3+tier)
 	var sell:=28+tier*12+bonus*4+rng.randi_range(0,16)
 	var names: Array=NAMES[affinity][slot]
-	return {"name":names[rng.randi()%names.size()],"slot":slot,"power":power,"quality":quality,"tier":tier,"armor":armor,"stats":stats,"sell":sell,"temper":0,"status":"","affinity":affinity}
+	var item := {"name":names[rng.randi()%names.size()],"slot":slot,"power":power,"quality":quality,"tier":tier,"armor":armor,"stats":stats,"sell":sell,"temper":0,"status":"","affinity":affinity}
+	return Relics.attune(item,affinity) if slot=="Amulet" and quality in ["EPIC","LEGENDARY"] else item

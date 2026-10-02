@@ -1,0 +1,678 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-02T20:15:00.899471+00:00",
+  "title": "Design System: Emberfall: Ashen Veil",
+  "extensions": {
+    "colorMeta": {
+      "background-top": {
+        "role": "neutral",
+        "displayName": "Background Top",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.00967 325.883)",
+          "oklch(0.264 0.00967 325.883)",
+          "oklch(0.379 0.00967 325.883)",
+          "oklch(0.493 0.00967 325.883)",
+          "oklch(0.607 0.00967 325.883)",
+          "oklch(0.721 0.00967 325.883)",
+          "oklch(0.836 0.00967 325.883)",
+          "oklch(0.950 0.00967 325.883)"
+        ]
+      },
+      "background-bottom": {
+        "role": "neutral",
+        "displayName": "Background Bottom",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.01256 254.016)",
+          "oklch(0.264 0.01256 254.016)",
+          "oklch(0.379 0.01256 254.016)",
+          "oklch(0.493 0.01256 254.016)",
+          "oklch(0.607 0.01256 254.016)",
+          "oklch(0.721 0.01256 254.016)",
+          "oklch(0.836 0.01256 254.016)",
+          "oklch(0.950 0.01256 254.016)"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Panel",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.01325 258.370)",
+          "oklch(0.264 0.01325 258.370)",
+          "oklch(0.379 0.01325 258.370)",
+          "oklch(0.493 0.01325 258.370)",
+          "oklch(0.607 0.01325 258.370)",
+          "oklch(0.721 0.01325 258.370)",
+          "oklch(0.836 0.01325 258.370)",
+          "oklch(0.950 0.01325 258.370)"
+        ]
+      },
+      "panel-light": {
+        "role": "neutral",
+        "displayName": "Panel Light",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.01502 256.799)",
+          "oklch(0.264 0.01502 256.799)",
+          "oklch(0.379 0.01502 256.799)",
+          "oklch(0.493 0.01502 256.799)",
+          "oklch(0.607 0.01502 256.799)",
+          "oklch(0.721 0.01502 256.799)",
+          "oklch(0.836 0.01502 256.799)",
+          "oklch(0.950 0.01502 256.799)"
+        ]
+      },
+      "edge": {
+        "role": "neutral",
+        "displayName": "Edge",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.01214 273.095)",
+          "oklch(0.264 0.01214 273.095)",
+          "oklch(0.379 0.01214 273.095)",
+          "oklch(0.493 0.01214 273.095)",
+          "oklch(0.607 0.01214 273.095)",
+          "oklch(0.721 0.01214 273.095)",
+          "oklch(0.836 0.01214 273.095)",
+          "oklch(0.950 0.01214 273.095)"
+        ]
+      },
+      "bronze": {
+        "role": "primary",
+        "displayName": "Bronze",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.08978 79.313)",
+          "oklch(0.264 0.08978 79.313)",
+          "oklch(0.379 0.08978 79.313)",
+          "oklch(0.493 0.08978 79.313)",
+          "oklch(0.607 0.08978 79.313)",
+          "oklch(0.721 0.08978 79.313)",
+          "oklch(0.836 0.08978 79.313)",
+          "oklch(0.950 0.08978 79.313)"
+        ]
+      },
+      "parchment": {
+        "role": "neutral",
+        "displayName": "Parchment",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.01953 80.114)",
+          "oklch(0.264 0.01953 80.114)",
+          "oklch(0.379 0.01953 80.114)",
+          "oklch(0.493 0.01953 80.114)",
+          "oklch(0.607 0.01953 80.114)",
+          "oklch(0.721 0.01953 80.114)",
+          "oklch(0.836 0.01953 80.114)",
+          "oklch(0.950 0.01953 80.114)"
+        ]
+      },
+      "muted-parchment": {
+        "role": "neutral",
+        "displayName": "Muted Parchment",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.02609 81.103)",
+          "oklch(0.264 0.02609 81.103)",
+          "oklch(0.379 0.02609 81.103)",
+          "oklch(0.493 0.02609 81.103)",
+          "oklch(0.607 0.02609 81.103)",
+          "oklch(0.721 0.02609 81.103)",
+          "oklch(0.836 0.02609 81.103)",
+          "oklch(0.950 0.02609 81.103)"
+        ]
+      },
+      "action-red": {
+        "role": "primary",
+        "displayName": "Action Red",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.12470 27.995)",
+          "oklch(0.264 0.12470 27.995)",
+          "oklch(0.379 0.12470 27.995)",
+          "oklch(0.493 0.12470 27.995)",
+          "oklch(0.607 0.12470 27.995)",
+          "oklch(0.721 0.12470 27.995)",
+          "oklch(0.836 0.12470 27.995)",
+          "oklch(0.950 0.12470 27.995)"
+        ]
+      },
+      "positive": {
+        "role": "secondary",
+        "displayName": "Positive",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.05865 153.520)",
+          "oklch(0.264 0.05865 153.520)",
+          "oklch(0.379 0.05865 153.520)",
+          "oklch(0.493 0.05865 153.520)",
+          "oklch(0.607 0.05865 153.520)",
+          "oklch(0.721 0.05865 153.520)",
+          "oklch(0.836 0.05865 153.520)",
+          "oklch(0.950 0.05865 153.520)"
+        ]
+      },
+      "selected": {
+        "role": "primary",
+        "displayName": "Selected",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.02688 59.959)",
+          "oklch(0.264 0.02688 59.959)",
+          "oklch(0.379 0.02688 59.959)",
+          "oklch(0.493 0.02688 59.959)",
+          "oklch(0.607 0.02688 59.959)",
+          "oklch(0.721 0.02688 59.959)",
+          "oklch(0.836 0.02688 59.959)",
+          "oklch(0.950 0.02688 59.959)"
+        ]
+      },
+      "selected-oath": {
+        "role": "primary",
+        "displayName": "Selected Oath",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.02934 38.247)",
+          "oklch(0.264 0.02934 38.247)",
+          "oklch(0.379 0.02934 38.247)",
+          "oklch(0.493 0.02934 38.247)",
+          "oklch(0.607 0.02934 38.247)",
+          "oklch(0.721 0.02934 38.247)",
+          "oklch(0.836 0.02934 38.247)",
+          "oklch(0.950 0.02934 38.247)"
+        ]
+      },
+      "focus": {
+        "role": "primary",
+        "displayName": "Focus",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.08707 86.292)",
+          "oklch(0.264 0.08707 86.292)",
+          "oklch(0.379 0.08707 86.292)",
+          "oklch(0.493 0.08707 86.292)",
+          "oklch(0.607 0.08707 86.292)",
+          "oklch(0.721 0.08707 86.292)",
+          "oklch(0.836 0.08707 86.292)",
+          "oklch(0.950 0.08707 86.292)"
+        ]
+      },
+      "ink-ground": {
+        "role": "neutral",
+        "displayName": "Ink Ground",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.01129 260.647)",
+          "oklch(0.264 0.01129 260.647)",
+          "oklch(0.379 0.01129 260.647)",
+          "oklch(0.493 0.01129 260.647)",
+          "oklch(0.607 0.01129 260.647)",
+          "oklch(0.721 0.01129 260.647)",
+          "oklch(0.836 0.01129 260.647)",
+          "oklch(0.950 0.01129 260.647)"
+        ]
+      },
+      "combat-control": {
+        "role": "neutral",
+        "displayName": "Combat Control",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.00278 325.743)",
+          "oklch(0.264 0.00278 325.743)",
+          "oklch(0.379 0.00278 325.743)",
+          "oklch(0.493 0.00278 325.743)",
+          "oklch(0.607 0.00278 325.743)",
+          "oklch(0.721 0.00278 325.743)",
+          "oklch(0.836 0.00278 325.743)",
+          "oklch(0.950 0.00278 325.743)"
+        ]
+      },
+      "life": {
+        "role": "secondary",
+        "displayName": "Life",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.17500 26.243)",
+          "oklch(0.264 0.17500 26.243)",
+          "oklch(0.379 0.17500 26.243)",
+          "oklch(0.493 0.17500 26.243)",
+          "oklch(0.607 0.17500 26.243)",
+          "oklch(0.721 0.17500 26.243)",
+          "oklch(0.836 0.17500 26.243)",
+          "oklch(0.950 0.17500 26.243)"
+        ]
+      },
+      "mana": {
+        "role": "secondary",
+        "displayName": "Mana",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.07767 213.612)",
+          "oklch(0.264 0.07767 213.612)",
+          "oklch(0.379 0.07767 213.612)",
+          "oklch(0.493 0.07767 213.612)",
+          "oklch(0.607 0.07767 213.612)",
+          "oklch(0.721 0.07767 213.612)",
+          "oklch(0.836 0.07767 213.612)",
+          "oklch(0.950 0.07767 213.612)"
+        ]
+      },
+      "arcanist": {
+        "role": "secondary",
+        "displayName": "Arcanist",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.10343 298.783)",
+          "oklch(0.264 0.10343 298.783)",
+          "oklch(0.379 0.10343 298.783)",
+          "oklch(0.493 0.10343 298.783)",
+          "oklch(0.607 0.10343 298.783)",
+          "oklch(0.721 0.10343 298.783)",
+          "oklch(0.836 0.10343 298.783)",
+          "oklch(0.950 0.10343 298.783)"
+        ]
+      },
+      "ranger": {
+        "role": "secondary",
+        "displayName": "Ranger",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.06952 156.982)",
+          "oklch(0.264 0.06952 156.982)",
+          "oklch(0.379 0.06952 156.982)",
+          "oklch(0.493 0.06952 156.982)",
+          "oklch(0.607 0.06952 156.982)",
+          "oklch(0.721 0.06952 156.982)",
+          "oklch(0.836 0.06952 156.982)",
+          "oklch(0.950 0.06952 156.982)"
+        ]
+      },
+      "arcane-effect": {
+        "role": "secondary",
+        "displayName": "Arcane Effect",
+        "source": "scripts/dungeon_world.gd:650",
+        "tonalRamp": [
+          "oklch(0.150 0.09259 196.384)",
+          "oklch(0.264 0.09259 196.384)",
+          "oklch(0.379 0.09259 196.384)",
+          "oklch(0.493 0.09259 196.384)",
+          "oklch(0.607 0.09259 196.384)",
+          "oklch(0.721 0.09259 196.384)",
+          "oklch(0.836 0.09259 196.384)",
+          "oklch(0.950 0.09259 196.384)"
+        ]
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Danger",
+        "source": "scripts/dungeon_world.gd:719",
+        "tonalRamp": [
+          "oklch(0.150 0.19501 40.230)",
+          "oklch(0.264 0.19501 40.230)",
+          "oklch(0.379 0.19501 40.230)",
+          "oklch(0.493 0.19501 40.230)",
+          "oklch(0.607 0.19501 40.230)",
+          "oklch(0.721 0.19501 40.230)",
+          "oklch(0.836 0.19501 40.230)",
+          "oklch(0.950 0.19501 40.230)"
+        ]
+      },
+      "danger-understroke": {
+        "role": "tertiary",
+        "displayName": "Danger Understroke",
+        "source": "assets/shaders/combat_telegraph.gdshader:21",
+        "tonalRamp": [
+          "oklch(0.150 0.01660 39.132)",
+          "oklch(0.264 0.01660 39.132)",
+          "oklch(0.379 0.01660 39.132)",
+          "oklch(0.493 0.01660 39.132)",
+          "oklch(0.607 0.01660 39.132)",
+          "oklch(0.721 0.01660 39.132)",
+          "oklch(0.836 0.01660 39.132)",
+          "oklch(0.950 0.01660 39.132)"
+        ]
+      },
+      "common": {
+        "role": "secondary",
+        "displayName": "Common",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.01794 84.591)",
+          "oklch(0.264 0.01794 84.591)",
+          "oklch(0.379 0.01794 84.591)",
+          "oklch(0.493 0.01794 84.591)",
+          "oklch(0.607 0.01794 84.591)",
+          "oklch(0.721 0.01794 84.591)",
+          "oklch(0.836 0.01794 84.591)",
+          "oklch(0.950 0.01794 84.591)"
+        ]
+      },
+      "uncommon": {
+        "role": "secondary",
+        "displayName": "Uncommon",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.06542 157.257)",
+          "oklch(0.264 0.06542 157.257)",
+          "oklch(0.379 0.06542 157.257)",
+          "oklch(0.493 0.06542 157.257)",
+          "oklch(0.607 0.06542 157.257)",
+          "oklch(0.721 0.06542 157.257)",
+          "oklch(0.836 0.06542 157.257)",
+          "oklch(0.950 0.06542 157.257)"
+        ]
+      },
+      "rare": {
+        "role": "secondary",
+        "displayName": "Rare",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.08277 253.401)",
+          "oklch(0.264 0.08277 253.401)",
+          "oklch(0.379 0.08277 253.401)",
+          "oklch(0.493 0.08277 253.401)",
+          "oklch(0.607 0.08277 253.401)",
+          "oklch(0.721 0.08277 253.401)",
+          "oklch(0.836 0.08277 253.401)",
+          "oklch(0.950 0.08277 253.401)"
+        ]
+      },
+      "epic": {
+        "role": "secondary",
+        "displayName": "Epic",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.12436 314.470)",
+          "oklch(0.264 0.12436 314.470)",
+          "oklch(0.379 0.12436 314.470)",
+          "oklch(0.493 0.12436 314.470)",
+          "oklch(0.607 0.12436 314.470)",
+          "oklch(0.721 0.12436 314.470)",
+          "oklch(0.836 0.12436 314.470)",
+          "oklch(0.950 0.12436 314.470)"
+        ]
+      },
+      "legendary": {
+        "role": "secondary",
+        "displayName": "Legendary",
+        "source": "scripts/main.gd",
+        "tonalRamp": [
+          "oklch(0.150 0.11322 68.469)",
+          "oklch(0.264 0.11322 68.469)",
+          "oklch(0.379 0.11322 68.469)",
+          "oklch(0.493 0.11322 68.469)",
+          "oklch(0.607 0.11322 68.469)",
+          "oklch(0.721 0.11322 68.469)",
+          "oklch(0.836 0.11322 68.469)",
+          "oklch(0.950 0.11322 68.469)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Representative base logical role; actual sizes pass through native scaling.",
+        "source": "scripts/main.gd"
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Representative base logical role; actual sizes pass through native scaling.",
+        "source": "scripts/main.gd"
+      },
+      "combat-title": {
+        "displayName": "Combat Title",
+        "purpose": "Representative base logical role; actual sizes pass through native scaling.",
+        "source": "scripts/main.gd"
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Representative base logical role; actual sizes pass through native scaling.",
+        "source": "scripts/main.gd"
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Representative base logical role; actual sizes pass through native scaling.",
+        "source": "scripts/main.gd"
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "attack-anticipation",
+        "value": "0.23 s",
+        "purpose": "Source pose changes to strike at this time; heavy attacks begin at strike.",
+        "source": "scripts/dungeon_actor.gd:252"
+      },
+      {
+        "name": "attack-strike-end",
+        "value": "0.47 s",
+        "purpose": "Attack returns to idle after this time.",
+        "source": "scripts/dungeon_actor.gd:253"
+      },
+      {
+        "name": "attack-cycle-end",
+        "value": "0.62 s",
+        "purpose": "Resets or starts a queued attack.",
+        "source": "scripts/dungeon_actor.gd:255"
+      },
+      {
+        "name": "hit-feedback",
+        "value": "0.24 s",
+        "purpose": "Flash envelope; lean suppressed with Reduced Motion.",
+        "source": "scripts/dungeon_actor.gd:262"
+      },
+      {
+        "name": "camera-follow",
+        "value": "1 - exp(-delta * 4.0)",
+        "purpose": "Native exponential position follow.",
+        "source": "scripts/dungeon_world.gd:564"
+      },
+      {
+        "name": "camera-impact",
+        "value": "0.18 s",
+        "purpose": "Impact shake; disabled with Reduced Motion.",
+        "source": "scripts/dungeon_world.gd:642"
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "android-compact-width",
+        "value": "960px",
+        "condition": "width <= 960 OR height <= 600 in logical viewport units"
+      },
+      {
+        "name": "android-compact-height",
+        "value": "600px",
+        "condition": "width <= 960 OR height <= 600 in logical viewport units"
+      },
+      {
+        "name": "desktop-fixture-compact-height",
+        "value": "540px",
+        "condition": "window width <= 960 OR height <= 540"
+      }
+    ],
+    "native": {
+      "platform": "godot-android",
+      "artifact": "Main.tscn",
+      "approvedReference": "docs/design/approved-spire.png",
+      "sourceFiles": [
+        "scripts/main.gd",
+        "scripts/hero_art.gd",
+        "scripts/dungeon_actor.gd",
+        "scripts/dungeon_world.gd",
+        "scripts/camp_scene.gd",
+        "scripts/ui_glyph.gd",
+        "scripts/settings_panel.gd",
+        "scripts/mobile_safe_area.gd",
+        "scripts/battle_art.gd",
+        "assets/shaders/painted_actor.gdshader",
+        "assets/shaders/combat_telegraph.gdshader",
+        "scripts/dungeon_theme.gd",
+        "project.godot"
+      ],
+      "units": "Frontmatter px are base Godot logical units; runtime scaling/density correction applies.",
+      "primaryDevice": {
+        "name": "Pixel 9 Pro Fold closed landscape",
+        "physicalResolution": [
+          2424,
+          1080
+        ]
+      },
+      "captureClasses": [
+        {
+          "size": [
+            1200,
+            535
+          ],
+          "kind": "outer-display aspect proxy"
+        },
+        {
+          "size": [
+            1040,
+            1080
+          ],
+          "kind": "unfolded near-square renderer fixture"
+        },
+        {
+          "size": [
+            854,
+            480
+          ],
+          "kind": "compact renderer fixture",
+          "appLargeText": true
+        }
+      ],
+      "fontScaling": {
+        "normal": 1.0,
+        "compact": 1.2,
+        "largeText": 1.15,
+        "compactLargeText": 1.35,
+        "minimum": 12
+      },
+      "controlMinimums": {
+        "normal": 48,
+        "compact": 52,
+        "compactLargeText": 58,
+        "androidTargetDp": 48
+      },
+      "configuredFpsCaps": {
+        "balanced": 60,
+        "battery": 30
+      },
+      "qualityBehavior": "Battery halves render resolution and removes MSAA/shadows; render pressure adjusts presentation, never simulation time.",
+      "tonalRampProvenance": "Eight OKLCH inspection swatches synthesized from each extracted color as required by the document format; not runtime palette tokens.",
+      "componentSampleBoundary": "HTML/CSS samples explain reused native controls; no browser renderer or CSS governs the shipped Godot game. Default engine field chrome is not specified by these samples.",
+      "fallback": "Fresh independent documenter used reference/document.md and reference/degraded/documenter.md because the official role definition/launcher was unavailable."
+    }
+  },
+  "components": [
+    {
+      "name": "Descent action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Base logical-size illustration of the native helper; adaptive sizing and engine behavior remain authoritative.",
+      "html": "<button class=\"ds-button-primary\">DESCEND</button>",
+      "css": ".ds-button-primary { position:relative; min-height:48px; padding:0 9px; border:1px solid rgb(66.525490% 34.776471% 31.670588%); border-radius:10px; background:#9e4239; color:#e7dfd2; font-family:Lora,serif; font-size:14px; } .ds-button-primary:hover { background:rgb(66.525490% 34.776471% 31.670588%); color:white; } .ds-button-primary:active { background:rgb(55.764706% 23.294118% 20.117647%); color:#d2ad70; } .ds-button-primary:focus-visible { outline:2px solid #ffe2a2; outline-offset:-2px; } .ds-button-primary:disabled { color:#c3b9a8; }"
+    },
+    {
+      "name": "Secondary action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Base logical-size illustration of the native helper; adaptive sizing and engine behavior remain authoritative.",
+      "html": "<button class=\"ds-button-secondary\">PREPARE YOUR BUILD</button>",
+      "css": ".ds-button-secondary { position:relative; min-height:48px; padding:0 9px; border:1px solid rgb(23.043137% 24.768627% 27.184314%); border-radius:10px; background:#20252c; color:#e7dfd2; font-family:Lora,serif; font-size:12px; } .ds-button-secondary:hover { background:rgb(23.043137% 24.768627% 27.184314%); color:white; } .ds-button-secondary:active { background:rgb(11.294118% 13.058824% 15.529412%); color:#d2ad70; } .ds-button-secondary:focus-visible { outline:2px solid #ffe2a2; outline-offset:-2px; } .ds-button-secondary:disabled { color:#c3b9a8; }"
+    },
+    {
+      "name": "Selected preparation tab",
+      "kind": "button",
+      "refersTo": "button-selected",
+      "description": "Base logical-size illustration of the native helper; adaptive sizing and engine behavior remain authoritative.",
+      "html": "<button class=\"ds-button-selected\">EQUIPMENT</button>",
+      "css": ".ds-button-selected { position:relative; min-height:48px; padding:0 9px; border:1px solid rgb(37.192157% 32.360784% 28.564706%); border-radius:10px; background:#493b30; color:#e7dfd2; font-family:Lora,serif; font-size:12px; } .ds-button-selected:hover { background:rgb(37.192157% 32.360784% 28.564706%); color:white; } .ds-button-selected:active { background:rgb(25.764706% 20.823529% 16.941176%); color:#d2ad70; } .ds-button-selected:focus-visible { outline:2px solid #ffe2a2; outline-offset:-2px; } .ds-button-selected:disabled { color:#c3b9a8; }"
+    },
+    {
+      "name": "Selected oath",
+      "kind": "button",
+      "refersTo": "button-oath-selected",
+      "description": "Base logical-size illustration of the native helper; adaptive sizing and engine behavior remain authoritative.",
+      "html": "<button class=\"ds-button-oath-selected\">UNMENDED · ON</button>",
+      "css": ".ds-button-oath-selected { position:relative; min-height:48px; padding:0 9px; border:1px solid rgb(37.192157% 30.635294% 28.564706%); border-radius:10px; background:#493630; color:#e7dfd2; font-family:Lora,serif; font-size:14px; } .ds-button-oath-selected:hover { background:rgb(37.192157% 30.635294% 28.564706%); color:white; } .ds-button-oath-selected:active { background:rgb(25.764706% 19.058824% 16.941176%); color:#d2ad70; } .ds-button-oath-selected:focus-visible { outline:2px solid #ffe2a2; outline-offset:-2px; } .ds-button-oath-selected:disabled { color:#c3b9a8; }"
+    },
+    {
+      "name": "Combat details control",
+      "kind": "button",
+      "refersTo": "combat-control",
+      "description": "Base logical-size illustration of the native helper; adaptive sizing and engine behavior remain authoritative.",
+      "html": "<button class=\"ds-combat-control\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" aria-hidden=\"true\"><path d=\"M3 5 9 3 15 5 21 3V19L15 21 9 19 3 21ZM9 3V19M15 5V21\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\"/></svg>DETAILS</button>",
+      "css": ".ds-combat-control { position:relative; min-height:48px; padding:0 12px 0 42px; border:1px solid rgb(14.376000% 14.112000% 14.376000% / 92%); border-radius:5px; background:rgb(2.7% 2.4% 2.7% / 92%); color:#e7dfd2; font-family:Lora,serif; font-size:12px; } .ds-combat-control:hover { background:rgb(14.376000% 14.112000% 14.376000% / 92%); color:white; } .ds-combat-control:active { background:rgb(2.430000% 2.160000% 2.430000% / 92%); color:#d2ad70; } .ds-combat-control:focus-visible { outline:2px solid #ffe2a2; outline-offset:-2px; } .ds-combat-control:disabled { color:#c3b9a8; } .ds-combat-control svg { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:#d2ad70; }"
+    },
+    {
+      "name": "Preparation navigation",
+      "kind": "nav",
+      "refersTo": "navigation-control",
+      "description": "Base logical-size illustration of the native helper; adaptive sizing and engine behavior remain authoritative.",
+      "html": "<button class=\"ds-navigation-control\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" aria-hidden=\"true\"><path d=\"M3 5 9 3 15 5 21 3V19L15 21 9 19 3 21ZM9 3V19M15 5V21\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\"/></svg>WORLD</button>",
+      "css": ".ds-navigation-control { position:relative; min-height:48px; padding:0 12px 0 42px; border:1px solid rgb(23.043137% 24.768627% 27.184314%); border-radius:5px; background:#20252c; color:#e7dfd2; font-family:Lora,serif; font-size:12px; } .ds-navigation-control:hover { background:rgb(23.043137% 24.768627% 27.184314%); color:white; } .ds-navigation-control:active { background:rgb(11.294118% 13.058824% 15.529412%); color:#d2ad70; } .ds-navigation-control:focus-visible { outline:2px solid #ffe2a2; outline-offset:-2px; } .ds-navigation-control:disabled { color:#c3b9a8; } .ds-navigation-control svg { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:#d2ad70; }"
+    },
+    {
+      "name": "Gear card",
+      "kind": "card",
+      "refersTo": "gear-card",
+      "description": "Representative Rare gear record; border derives from the item rarity.",
+      "html": "<article class=\"ds-gear-card\"><span>HELMET · RARE</span><p>Ashen Watch Hood</p></article>",
+      "css": ".ds-gear-card { padding:8px 11px; border:1px solid rgb(26.305882% 34.462745% 44.250980%); border-radius:13px; background:#171b21; color:#e7dfd2; font-family:Lora,serif; font-size:12px; } .ds-gear-card span { color:#81a9d9; }"
+    },
+    {
+      "name": "Backup field",
+      "kind": "input",
+      "refersTo": "backup-field",
+      "description": "Native TextEdit minimum height and inherited type only; HTML textarea chrome is illustrative, not an extracted Godot skin.",
+      "html": "<textarea class=\"ds-backup-field\" aria-label=\"Restore backup code\"></textarea>",
+      "css": ".ds-backup-field { min-height:76px; width:100%; font-family:Lora,serif; font-size:14px; white-space:pre-wrap; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Painterly monumental dark fantasy",
+    "overview": "The [user-approved Hollow Spire illustration](docs/design/approved-spire.png) establishes weathered adult figures, monumental ruins, torn plum cloth and bronze against warm stone and cool haze. The implemented world translates this into painted 2.5D actors, distant matte paintings and spatial floor, masonry, effects and camp stations in a native Godot 3D scene.\n\nThe world remains the main combat surface. Quiet ink grounds carry the portrait, life/mana, guardian phase and warning, region, pause and bottom actions. Preparation uses readable scrollable task panels. Autonomous movement and camera fitting can change the heroine/guardian relationship; the approved still is a visual authority, not a fixed gameplay camera pose.",
+    "keyCharacteristics": [
+      "Painted adult silhouettes and class-specific weapon poses.",
+      "Region-specific architecture and warm/cool material contrast.",
+      "Shared class and saved equipment quality across camp, portraits and combat.",
+      "Complete simulation-driven warnings with visible surrounding safe floor.",
+      "Native controls with adaptive text, touch sizing and safe-area offsets."
+    ],
+    "rules": [
+      {
+        "name": "The Shared Geometry Rule",
+        "body": "Draw warnings from the same `BossPatterns` zones used for damage and avoidance; improve separation through material and outline treatment, preserving their active footprint.",
+        "section": "colors"
+      },
+      {
+        "name": "The Scaled Type Rule",
+        "body": "Route label and button sizes through `_scaled_font_size`: normal scale (1.0), compact scale (1.2), Large Text scale (at least 1.15, or 1.35 when compact), rounded to integers with a minimum (12). Paragraph helpers wrap; short state labels remain concise. Bundled fonts load offline.",
+        "section": "typography"
+      },
+      {
+        "name": "The Earned State Rule",
+        "body": "Camp seals appear only for saved guardian trophies. Class, equipment, guardian phase and warning cues come from real preparation or simulation state.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do preserve the approved painted material, adult silhouettes and distinct regional architecture.",
+      "Do use the shared scaled-font, minimum-control and safe-area helpers when adding native UI.",
+      "Do keep the complete active warning and adjacent safe floor legible through the real camera.",
+      "Do use the same class and saved equipment path in portraits, camp and combat.",
+      "Do label renderer fixtures, generated references and hardware measurements by their actual source."
+    ],
+    "donts": [
+      "Don't replace the painted figures with the archived smooth character GLBs or describe them as full skeletal 3D models.",
+      "Don't add a decorative warning shape that disagrees with collision or avoidance geometry.",
+      "Don't show unearned seals or claim a unique model for every equipment item.",
+      "Don't reduce controls or text to force a compact layout; retain scrolling and adaptive sizing.",
+      "Don't infer device performance, motion quality or player retention from the static renderer gallery."
+    ]
+  }
+}

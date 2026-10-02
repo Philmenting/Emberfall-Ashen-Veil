@@ -8,8 +8,10 @@ var battery_mode := false
 var damage_numbers := true
 var reduced_motion := false
 var render_container: SubViewportContainer
+var budget:=preload("res://scripts/render_budget.gd").new()
 var render_viewport: SubViewport
 
+var equipment_visual: Dictionary={}
 var character_class := "Vowkeeper"
 var region_index := 0
 var world: Node3D
@@ -36,6 +38,7 @@ func _ready() -> void:
 	viewport.msaa_3d = Viewport.MSAA_2X
 	container.add_child(viewport)
 	world = DungeonWorld.new()
+	world.hero_equipment = equipment_visual.duplicate(true)
 	world.character_class = character_class
 	world.region_index = region_index
 	world.reduced_motion = reduced_motion
@@ -55,6 +58,7 @@ func _ready() -> void:
 
 
 func apply_quality(battery: bool,numbers: bool,motion_reduced: bool=false) -> void:
+	budget.reset()
 	battery_mode=battery
 	damage_numbers=numbers
 	reduced_motion=motion_reduced
@@ -64,3 +68,11 @@ func apply_quality(battery: bool,numbers: bool,motion_reduced: bool=false) -> vo
 	world.damage_numbers=numbers
 	world.reduced_motion=motion_reduced
 	world.set_shadows(not battery)
+
+func _process(delta: float) -> void:
+	if battery_mode or not is_instance_valid(render_viewport): return
+	var reduced: bool=budget.sample(delta,animation_enabled)
+	var shrink:=2 if reduced else 1
+	if render_container.stretch_shrink!=shrink:
+		render_container.stretch_shrink=shrink
+		render_viewport.msaa_3d=Viewport.MSAA_DISABLED if reduced else Viewport.MSAA_2X

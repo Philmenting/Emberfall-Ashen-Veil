@@ -55,7 +55,7 @@ node tests/progression_runtime_test.js
 `tests/cloud_transfer_e2e.gd` prüft gegen den echten lokalen Nakama-Server getrennte Gastkonten: serverseitige Profilinitialisierung, Ablehnung gesperrter Etagen und fremder Klassen, gültige Attributvergabe, Zurückweisung direkter Client-Schreibversuche, Backup/Transfer, zwei Spieler in derselben Gemeinschaft und persistenten Gruppenchat. Der Android-Workflow startet dafür PostgreSQL 16 und [Nakama 3.41.0](https://github.com/heroiclabs/nakama/releases/tag/v3.41.0) mit dem Servermodul aus `server/modules`. Den Integrationstest lokal nach dem Serverstart aufrufen:
 
 ```sh
-XDG_DATA_HOME=/tmp/emberfall-transfer-e2e godot --headless --path . --fixed-fps 60 --script tests/cloud_transfer_e2e.gd
+XDG_DATA_HOME=/tmp/emberfall-transfer-e2e godot --headless --path . --script tests/cloud_transfer_e2e.gd
 ```
 
 Das prüft Serverauthentifizierung, Profil- und Speicherschutz, Gruppenmitgliedschaft und Gruppenchat mit getrennten lokalen Profilen innerhalb eines Godot-Prozesses. Es prüft weder Android-Clipboard und Touchbedienung noch Deinstallation, Android-App-Daten oder einen echten Wechsel zwischen zwei physischen Geräten.
@@ -69,3 +69,5 @@ Der manuelle Cloud-Backup-Slot bleibt les- und schreibbar für seinen Gastkonto-
 Der 0.29-Transfercode wurde in dieser Umgebung noch nicht gegen zwei Android-Installationen erprobt. Ein serverseitiger Integrationstest ist im Android-CI-Workflow ergänzt, aber hier wegen gesperrter TCP-Sockets noch nicht ausführbar (`Operation not permitted`). Auch Sandbox-ADB und Gradle können hier keine lokalen Sockets erstellen. Deshalb konnte weder der Emulator installiert noch der aktuelle Google-Play-AAB gebaut werden. Siehe den Entwicklungsstand in [EARLY_ACCESS.md](EARLY_ACCESS.md).
 
 Das mitgelieferte Serverkennwort `defaultkey`, die lokale Datenbank mit Trust-Authentifizierung und der lokale Gastzugang sind ausschließlich für diesen Loopback-Entwicklungstest bestimmt. Diese Werte dürfen nicht in einem öffentlich erreichbaren Server oder Store-Build verwendet werden.
+
+Netzwerk-Integrationstests ohne `--fixed-fps` ausführen: beschleunigte Simulationszeit kann HTTP-Timeouts vor einer realen Antwort auslösen. Namenssuche und Open-Filter dürfen bei Nakama nicht kombiniert werden; geschlossene Namenssuchtreffer werden lokal ausgeschlossen.

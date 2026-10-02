@@ -1,0 +1,482 @@
+{
+  "scope": "metadata-only alpha inspection; no pixel editing",
+  "bounded_asset_pass": "initial batch plus one correction batch",
+  "reports": [
+    {
+      "guardian": 0,
+      "path": "assets/characters/guardian_0.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "fully_transparent_fraction": 0.5999,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "vertical_seam_alpha128_pixels": [
+        57,
+        60,
+        28,
+        25
+      ],
+      "horizontal_seam_alpha128_pixels": 0,
+      "frames": [
+        {
+          "frame": 0,
+          "alpha128_bbox": [
+            40,
+            76,
+            474,
+            460
+          ],
+          "margins_px": [
+            40,
+            76,
+            38,
+            52
+          ]
+        },
+        {
+          "frame": 1,
+          "alpha128_bbox": [
+            46,
+            78,
+            482,
+            463
+          ],
+          "margins_px": [
+            46,
+            78,
+            30,
+            49
+          ]
+        },
+        {
+          "frame": 2,
+          "alpha128_bbox": [
+            59,
+            74,
+            490,
+            463
+          ],
+          "margins_px": [
+            59,
+            74,
+            22,
+            49
+          ]
+        },
+        {
+          "frame": 3,
+          "alpha128_bbox": [
+            77,
+            24,
+            512,
+            436
+          ],
+          "margins_px": [
+            77,
+            24,
+            0,
+            76
+          ]
+        },
+        {
+          "frame": 4,
+          "alpha128_bbox": [
+            0,
+            88,
+            512,
+            433
+          ],
+          "margins_px": [
+            0,
+            88,
+            0,
+            79
+          ]
+        },
+        {
+          "frame": 5,
+          "alpha128_bbox": [
+            0,
+            112,
+            483,
+            443
+          ],
+          "margins_px": [
+            0,
+            112,
+            29,
+            69
+          ]
+        }
+      ]
+    },
+    {
+      "guardian": 1,
+      "path": "assets/characters/guardian_1.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "fully_transparent_fraction": 0.605,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "vertical_seam_alpha128_pixels": [
+        0,
+        0,
+        42,
+        33
+      ],
+      "horizontal_seam_alpha128_pixels": 0,
+      "frames": [
+        {
+          "frame": 0,
+          "alpha128_bbox": [
+            66,
+            71,
+            477,
+            487
+          ],
+          "margins_px": [
+            66,
+            71,
+            35,
+            25
+          ]
+        },
+        {
+          "frame": 1,
+          "alpha128_bbox": [
+            59,
+            106,
+            479,
+            484
+          ],
+          "margins_px": [
+            59,
+            106,
+            33,
+            28
+          ]
+        },
+        {
+          "frame": 2,
+          "alpha128_bbox": [
+            26,
+            113,
+            467,
+            486
+          ],
+          "margins_px": [
+            26,
+            113,
+            45,
+            26
+          ]
+        },
+        {
+          "frame": 3,
+          "alpha128_bbox": [
+            74,
+            36,
+            473,
+            425
+          ],
+          "margins_px": [
+            74,
+            36,
+            39,
+            87
+          ]
+        },
+        {
+          "frame": 4,
+          "alpha128_bbox": [
+            5,
+            91,
+            512,
+            427
+          ],
+          "margins_px": [
+            5,
+            91,
+            0,
+            85
+          ]
+        },
+        {
+          "frame": 5,
+          "alpha128_bbox": [
+            0,
+            163,
+            480,
+            432
+          ],
+          "margins_px": [
+            0,
+            163,
+            32,
+            80
+          ]
+        }
+      ]
+    },
+    {
+      "guardian": 2,
+      "path": "assets/characters/guardian_2.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "fully_transparent_fraction": 0.6302,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "vertical_seam_alpha128_pixels": [
+        71,
+        67,
+        50,
+        36
+      ],
+      "horizontal_seam_alpha128_pixels": 0,
+      "frames": [
+        {
+          "frame": 0,
+          "alpha128_bbox": [
+            47,
+            68,
+            489,
+            478
+          ],
+          "margins_px": [
+            47,
+            68,
+            23,
+            34
+          ]
+        },
+        {
+          "frame": 1,
+          "alpha128_bbox": [
+            43,
+            65,
+            474,
+            479
+          ],
+          "margins_px": [
+            43,
+            65,
+            38,
+            33
+          ]
+        },
+        {
+          "frame": 2,
+          "alpha128_bbox": [
+            13,
+            63,
+            471,
+            479
+          ],
+          "margins_px": [
+            13,
+            63,
+            41,
+            33
+          ]
+        },
+        {
+          "frame": 3,
+          "alpha128_bbox": [
+            85,
+            15,
+            512,
+            437
+          ],
+          "margins_px": [
+            85,
+            15,
+            0,
+            75
+          ]
+        },
+        {
+          "frame": 4,
+          "alpha128_bbox": [
+            0,
+            95,
+            512,
+            437
+          ],
+          "margins_px": [
+            0,
+            95,
+            0,
+            75
+          ]
+        },
+        {
+          "frame": 5,
+          "alpha128_bbox": [
+            0,
+            172,
+            476,
+            437
+          ],
+          "margins_px": [
+            0,
+            172,
+            36,
+            75
+          ]
+        }
+      ]
+    },
+    {
+      "guardian": 3,
+      "path": "assets/characters/guardian_3.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "fully_transparent_fraction": 0.6348,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "vertical_seam_alpha128_pixels": [
+        9,
+        10,
+        0,
+        0
+      ],
+      "horizontal_seam_alpha128_pixels": 0,
+      "frames": [
+        {
+          "frame": 0,
+          "alpha128_bbox": [
+            54,
+            51,
+            507,
+            473
+          ],
+          "margins_px": [
+            54,
+            51,
+            5,
+            39
+          ]
+        },
+        {
+          "frame": 1,
+          "alpha128_bbox": [
+            31,
+            63,
+            480,
+            472
+          ],
+          "margins_px": [
+            31,
+            63,
+            32,
+            40
+          ]
+        },
+        {
+          "frame": 2,
+          "alpha128_bbox": [
+            14,
+            61,
+            454,
+            470
+          ],
+          "margins_px": [
+            14,
+            61,
+            58,
+            42
+          ]
+        },
+        {
+          "frame": 3,
+          "alpha128_bbox": [
+            59,
+            29,
+            512,
+            442
+          ],
+          "margins_px": [
+            59,
+            29,
+            0,
+            70
+          ]
+        },
+        {
+          "frame": 4,
+          "alpha128_bbox": [
+            0,
+            105,
+            499,
+            435
+          ],
+          "margins_px": [
+            0,
+            105,
+            13,
+            77
+          ]
+        },
+        {
+          "frame": 5,
+          "alpha128_bbox": [
+            19,
+            162,
+            465,
+            442
+          ],
+          "margins_px": [
+            19,
+            162,
+            47,
+            70
+          ]
+        }
+      ]
+    }
+  ]
+}

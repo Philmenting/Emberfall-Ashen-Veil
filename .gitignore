@@ -8,6 +8,9 @@ build/
 # Android/Gradle output
 android/.gradle/
 android/build/
+android/.build_version
+*.jks
+__pycache__/
 *.apk
 *.aab
 *.keystore

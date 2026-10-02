@@ -6,6 +6,7 @@ import argparse
 from pathlib import Path
 import subprocess
 import sys
+from android_native_check import verify_bundle_native
 
 
 def command_output(command: list[str]) -> str:
@@ -89,8 +90,21 @@ def main() -> int:
             )
         if "android.permission.INTERNET" in permission_names:
             raise RuntimeError("The Google Play bundle unexpectedly requests android.permission.INTERNET")
+        if permission_names != {"android.permission.VIBRATE"}:
+            raise RuntimeError(f"Unexpected offline beta permissions: {sorted(permission_names)}; expected VIBRATE only")
+        for xpath, expected_value, label in [
+            ("/manifest/application/@android:debuggable", "false", "release debuggability"),
+            ("/manifest/application/@android:allowBackup", "false", "automatic data backup"),
+            ("/manifest/application/activity/@android:screenOrientation", "0", "landscape orientation"),
+        ]:
+            value = manifest_value(args.java, args.bundletool, args.bundle, xpath)
+            if label == "release debuggability" and not value:
+                continue  # Android defaults an omitted debuggable attribute to false.
+            if value != expected_value:
+                raise RuntimeError(f"Unexpected {label}: {value!r}")
+        library_count = verify_bundle_native(args.bundle)
 
-    except (OSError, RuntimeError) as error:
+    except (OSError, RuntimeError, ValueError) as error:
         print(f"ANDROID AAB VERIFICATION FAILED: {error}", file=sys.stderr)
         return 1
 
@@ -100,6 +114,8 @@ def main() -> int:
     print(f"SDK range: {actual['min SDK']}–{actual['target SDK']}")
     print("Internet permission: absent")
     print("Bundle structure and JAR signature: valid")
+    print(f"ARM64 native libraries: {library_count}, all ELF LOAD segments support 16 KB pages")
+    print("Release manifest: landscape, not debuggable, OS backup disabled, VIBRATE only (optional haptics)")
     return 0
 
 

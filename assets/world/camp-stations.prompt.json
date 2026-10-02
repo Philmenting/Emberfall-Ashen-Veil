@@ -1,0 +1,16 @@
+{
+  "generator": "image_gen",
+  "generated_original": "/workspace/generated_images/exec-826a2d6e-532f-4382-831e-052e8b783299.png",
+  "export": "assets/world/camp-stations.png",
+  "native_alpha": true,
+  "dimensions": [
+    2172,
+    724
+  ],
+  "layout": "3 × 1 equal cells; forge, expedition table, portal",
+  "references": [
+    "assets/world/camp-matte.png",
+    "docs/design/approved-spire.png"
+  ],
+  "prompt": "Create a native transparent-alpha painterly game prop atlas, exactly three equal horizontal cells in a 3 by 1 strip. Refer to the supplied gothic camp painting and approved Ashen Veil combat composition for the hand-painted weathering, warm dusk light, restrained bronze, smoke-blue stone, deep plum cloth, and fine illustrated edges. Each cell contains ONE complete independent foreground station prop, fully inside its own third with generous transparent side gutters, isolated on transparency, no background ground plane beyond a little immediate grounded foot shadow. Same front three-quarter perspective, camera at adult waist height looking slightly down, light from upper left. These are mature detailed dark-fantasy painted objects, not low-poly geometry, not toy forms or plastic.\nLEFT CELL: a compact working blacksmith forge: weathered charcoal stone furnace with glowing warm orange coals visible in its mouth, an aged bronze anvil in front, a few real smithing tools, a small tattered dark plum cloth and scattered charcoal. The furnace and anvil should read as one cohesive station; ember glow is localized.\nCENTER CELL: an expedition planning table: substantial aged wood and weathered bronze legs, open cream parchment map and one open book, a fine small bronze astrolabe, a candle and rolled scrolls, worn plum cloth draped below. Legible silhouettes but absolutely no typography.\nRIGHT CELL: a tall narrow gothic portal: uneven weathered smoke-gray stone arch, aged bronze binding and restrained carved tracery, pale cyan mist inside its open arch, a few steps and broken stones at its base. Cyan stays within the opening with restrained luminous edges; no neon ornament or overwhelming bloom.\nKeep all entire stations, including feet and top points, uncut and separated. The three props are the only content. Native alpha channel, background completely transparent, no checkerboard drawing, no opaque scenery, no text, no UI, no people. Painterly visible brush texture and hand-drawn ornament. Canvas wide landscape, exact 3:1 layout, equal thirds."
+}

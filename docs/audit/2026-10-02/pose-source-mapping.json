@@ -1,0 +1,618 @@
+{
+  "arcanist": {
+    "png_sha256": "43667781b3ec037d7be9f556e6606c2a638bceca7279bea05d90a9fc223b94e0",
+    "native_zero_alpha": 1031784,
+    "visible_alpha_pixels": 429902,
+    "declared_owned_pixels": 429902,
+    "uncovered_visible_pixels": 0,
+    "neighbor_pose_overlap_pixels": 0,
+    "mismatched_frames": [],
+    "frames": [
+      {
+        "frame": 0,
+        "expected_alpha_pixels": 83461,
+        "mapped_alpha_pixels": 83461,
+        "invalid_polygons": 0,
+        "vertices": 1948,
+        "single_body_height": 450
+      },
+      {
+        "frame": 1,
+        "expected_alpha_pixels": 79234,
+        "mapped_alpha_pixels": 79234,
+        "invalid_polygons": 0,
+        "vertices": 1932,
+        "single_body_height": 450
+      },
+      {
+        "frame": 2,
+        "expected_alpha_pixels": 78986,
+        "mapped_alpha_pixels": 78986,
+        "invalid_polygons": 0,
+        "vertices": 1769,
+        "single_body_height": 450
+      },
+      {
+        "frame": 3,
+        "expected_alpha_pixels": 77573,
+        "mapped_alpha_pixels": 77573,
+        "invalid_polygons": 0,
+        "vertices": 1804,
+        "single_body_height": 450
+      },
+      {
+        "frame": 4,
+        "expected_alpha_pixels": 72015,
+        "mapped_alpha_pixels": 72015,
+        "invalid_polygons": 0,
+        "vertices": 1910,
+        "single_body_height": 450
+      },
+      {
+        "frame": 5,
+        "expected_alpha_pixels": 38633,
+        "mapped_alpha_pixels": 38633,
+        "invalid_polygons": 0,
+        "vertices": 787,
+        "single_body_height": 450
+      }
+    ]
+  },
+  "guardian_0": {
+    "png_sha256": "fd79a72ca7a519339c29899a83cda138c096bca28021552076549957e6d0a773",
+    "native_zero_alpha": 943521,
+    "visible_alpha_pixels": 497278,
+    "declared_owned_pixels": 497278,
+    "uncovered_visible_pixels": 0,
+    "neighbor_pose_overlap_pixels": 0,
+    "mismatched_frames": [],
+    "frames": [
+      {
+        "frame": 0,
+        "expected_alpha_pixels": 88839,
+        "mapped_alpha_pixels": 88839,
+        "invalid_polygons": 0,
+        "vertices": 1901,
+        "single_body_height": 388
+      },
+      {
+        "frame": 1,
+        "expected_alpha_pixels": 85760,
+        "mapped_alpha_pixels": 85760,
+        "invalid_polygons": 0,
+        "vertices": 2111,
+        "single_body_height": 388
+      },
+      {
+        "frame": 2,
+        "expected_alpha_pixels": 80638,
+        "mapped_alpha_pixels": 80638,
+        "invalid_polygons": 0,
+        "vertices": 2183,
+        "single_body_height": 388
+      },
+      {
+        "frame": 3,
+        "expected_alpha_pixels": 84132,
+        "mapped_alpha_pixels": 84132,
+        "invalid_polygons": 0,
+        "vertices": 1819,
+        "single_body_height": 388
+      },
+      {
+        "frame": 4,
+        "expected_alpha_pixels": 89639,
+        "mapped_alpha_pixels": 89639,
+        "invalid_polygons": 0,
+        "vertices": 2223,
+        "single_body_height": 388
+      },
+      {
+        "frame": 5,
+        "expected_alpha_pixels": 68270,
+        "mapped_alpha_pixels": 68270,
+        "invalid_polygons": 0,
+        "vertices": 1141,
+        "single_body_height": 388
+      }
+    ]
+  },
+  "guardian_1": {
+    "png_sha256": "7951cd01a379852f5baf1843ed487fa20749798e9e1980f1c871cadd544337c5",
+    "native_zero_alpha": 951617,
+    "visible_alpha_pixels": 481171,
+    "declared_owned_pixels": 481171,
+    "uncovered_visible_pixels": 0,
+    "neighbor_pose_overlap_pixels": 0,
+    "mismatched_frames": [],
+    "frames": [
+      {
+        "frame": 0,
+        "expected_alpha_pixels": 84147,
+        "mapped_alpha_pixels": 84147,
+        "invalid_polygons": 0,
+        "vertices": 1714,
+        "single_body_height": 373
+      },
+      {
+        "frame": 1,
+        "expected_alpha_pixels": 83356,
+        "mapped_alpha_pixels": 83356,
+        "invalid_polygons": 0,
+        "vertices": 1755,
+        "single_body_height": 373
+      },
+      {
+        "frame": 2,
+        "expected_alpha_pixels": 85333,
+        "mapped_alpha_pixels": 85333,
+        "invalid_polygons": 0,
+        "vertices": 1938,
+        "single_body_height": 373
+      },
+      {
+        "frame": 3,
+        "expected_alpha_pixels": 80617,
+        "mapped_alpha_pixels": 80617,
+        "invalid_polygons": 0,
+        "vertices": 1715,
+        "single_body_height": 373
+      },
+      {
+        "frame": 4,
+        "expected_alpha_pixels": 83387,
+        "mapped_alpha_pixels": 83387,
+        "invalid_polygons": 0,
+        "vertices": 1875,
+        "single_body_height": 373
+      },
+      {
+        "frame": 5,
+        "expected_alpha_pixels": 64331,
+        "mapped_alpha_pixels": 64331,
+        "invalid_polygons": 0,
+        "vertices": 1071,
+        "single_body_height": 373
+      }
+    ]
+  },
+  "guardian_2": {
+    "png_sha256": "730ae5be701740d652e647c90594c0db088dcee8b94843b4c74e0f14251396ea",
+    "native_zero_alpha": 991277,
+    "visible_alpha_pixels": 434192,
+    "declared_owned_pixels": 434192,
+    "uncovered_visible_pixels": 0,
+    "neighbor_pose_overlap_pixels": 0,
+    "mismatched_frames": [],
+    "frames": [
+      {
+        "frame": 0,
+        "expected_alpha_pixels": 68790,
+        "mapped_alpha_pixels": 68790,
+        "invalid_polygons": 0,
+        "vertices": 1804,
+        "single_body_height": 415
+      },
+      {
+        "frame": 1,
+        "expected_alpha_pixels": 78934,
+        "mapped_alpha_pixels": 78934,
+        "invalid_polygons": 0,
+        "vertices": 1941,
+        "single_body_height": 415
+      },
+      {
+        "frame": 2,
+        "expected_alpha_pixels": 76494,
+        "mapped_alpha_pixels": 76494,
+        "invalid_polygons": 0,
+        "vertices": 2164,
+        "single_body_height": 415
+      },
+      {
+        "frame": 3,
+        "expected_alpha_pixels": 77188,
+        "mapped_alpha_pixels": 77188,
+        "invalid_polygons": 0,
+        "vertices": 2138,
+        "single_body_height": 415
+      },
+      {
+        "frame": 4,
+        "expected_alpha_pixels": 76394,
+        "mapped_alpha_pixels": 76394,
+        "invalid_polygons": 0,
+        "vertices": 2127,
+        "single_body_height": 415
+      },
+      {
+        "frame": 5,
+        "expected_alpha_pixels": 56392,
+        "mapped_alpha_pixels": 56392,
+        "invalid_polygons": 0,
+        "vertices": 964,
+        "single_body_height": 415
+      }
+    ]
+  },
+  "guardian_3": {
+    "png_sha256": "15b1a6a04d714368b9cc2faafea2e7df8fa8945732ad07a13e802b41392954ac",
+    "native_zero_alpha": 998479,
+    "visible_alpha_pixels": 473739,
+    "declared_owned_pixels": 473739,
+    "uncovered_visible_pixels": 0,
+    "neighbor_pose_overlap_pixels": 0,
+    "mismatched_frames": [],
+    "frames": [
+      {
+        "frame": 0,
+        "expected_alpha_pixels": 85831,
+        "mapped_alpha_pixels": 85831,
+        "invalid_polygons": 0,
+        "vertices": 1954,
+        "single_body_height": 418
+      },
+      {
+        "frame": 1,
+        "expected_alpha_pixels": 85531,
+        "mapped_alpha_pixels": 85531,
+        "invalid_polygons": 0,
+        "vertices": 1977,
+        "single_body_height": 418
+      },
+      {
+        "frame": 2,
+        "expected_alpha_pixels": 79257,
+        "mapped_alpha_pixels": 79257,
+        "invalid_polygons": 0,
+        "vertices": 2066,
+        "single_body_height": 418
+      },
+      {
+        "frame": 3,
+        "expected_alpha_pixels": 83253,
+        "mapped_alpha_pixels": 83253,
+        "invalid_polygons": 0,
+        "vertices": 1837,
+        "single_body_height": 418
+      },
+      {
+        "frame": 4,
+        "expected_alpha_pixels": 73608,
+        "mapped_alpha_pixels": 73608,
+        "invalid_polygons": 0,
+        "vertices": 2052,
+        "single_body_height": 418
+      },
+      {
+        "frame": 5,
+        "expected_alpha_pixels": 66259,
+        "mapped_alpha_pixels": 66259,
+        "invalid_polygons": 0,
+        "vertices": 1248,
+        "single_body_height": 418
+      }
+    ]
+  },
+  "hostiles": {
+    "png_sha256": "ddb6c3430d1550255a749b5839b9153c7a8a5fd52f22a5271d9e265bbf01bc01",
+    "native_zero_alpha": 894837,
+    "visible_alpha_pixels": 505594,
+    "declared_owned_pixels": 505594,
+    "uncovered_visible_pixels": 0,
+    "neighbor_pose_overlap_pixels": 0,
+    "mismatched_frames": [],
+    "frames": [
+      {
+        "frame": 0,
+        "expected_alpha_pixels": 19146,
+        "mapped_alpha_pixels": 19146,
+        "invalid_polygons": 0,
+        "vertices": 945,
+        "single_body_height": 190
+      },
+      {
+        "frame": 1,
+        "expected_alpha_pixels": 17704,
+        "mapped_alpha_pixels": 17704,
+        "invalid_polygons": 0,
+        "vertices": 778,
+        "single_body_height": 190
+      },
+      {
+        "frame": 2,
+        "expected_alpha_pixels": 18431,
+        "mapped_alpha_pixels": 18431,
+        "invalid_polygons": 0,
+        "vertices": 809,
+        "single_body_height": 190
+      },
+      {
+        "frame": 3,
+        "expected_alpha_pixels": 27299,
+        "mapped_alpha_pixels": 27299,
+        "invalid_polygons": 0,
+        "vertices": 758,
+        "single_body_height": 215
+      },
+      {
+        "frame": 4,
+        "expected_alpha_pixels": 26134,
+        "mapped_alpha_pixels": 26134,
+        "invalid_polygons": 0,
+        "vertices": 767,
+        "single_body_height": 215
+      },
+      {
+        "frame": 5,
+        "expected_alpha_pixels": 25781,
+        "mapped_alpha_pixels": 25781,
+        "invalid_polygons": 0,
+        "vertices": 767,
+        "single_body_height": 215
+      },
+      {
+        "frame": 6,
+        "expected_alpha_pixels": 19516,
+        "mapped_alpha_pixels": 19516,
+        "invalid_polygons": 0,
+        "vertices": 844,
+        "single_body_height": 190
+      },
+      {
+        "frame": 7,
+        "expected_alpha_pixels": 19727,
+        "mapped_alpha_pixels": 19727,
+        "invalid_polygons": 0,
+        "vertices": 934,
+        "single_body_height": 190
+      },
+      {
+        "frame": 8,
+        "expected_alpha_pixels": 13317,
+        "mapped_alpha_pixels": 13317,
+        "invalid_polygons": 0,
+        "vertices": 381,
+        "single_body_height": 190
+      },
+      {
+        "frame": 9,
+        "expected_alpha_pixels": 27013,
+        "mapped_alpha_pixels": 27013,
+        "invalid_polygons": 0,
+        "vertices": 939,
+        "single_body_height": 215
+      },
+      {
+        "frame": 10,
+        "expected_alpha_pixels": 24345,
+        "mapped_alpha_pixels": 24345,
+        "invalid_polygons": 0,
+        "vertices": 831,
+        "single_body_height": 215
+      },
+      {
+        "frame": 11,
+        "expected_alpha_pixels": 15713,
+        "mapped_alpha_pixels": 15713,
+        "invalid_polygons": 0,
+        "vertices": 282,
+        "single_body_height": 215
+      },
+      {
+        "frame": 12,
+        "expected_alpha_pixels": 21748,
+        "mapped_alpha_pixels": 21748,
+        "invalid_polygons": 0,
+        "vertices": 904,
+        "single_body_height": 202
+      },
+      {
+        "frame": 13,
+        "expected_alpha_pixels": 19937,
+        "mapped_alpha_pixels": 19937,
+        "invalid_polygons": 0,
+        "vertices": 928,
+        "single_body_height": 202
+      },
+      {
+        "frame": 14,
+        "expected_alpha_pixels": 19593,
+        "mapped_alpha_pixels": 19593,
+        "invalid_polygons": 0,
+        "vertices": 771,
+        "single_body_height": 202
+      },
+      {
+        "frame": 15,
+        "expected_alpha_pixels": 22582,
+        "mapped_alpha_pixels": 22582,
+        "invalid_polygons": 0,
+        "vertices": 797,
+        "single_body_height": 185
+      },
+      {
+        "frame": 16,
+        "expected_alpha_pixels": 22889,
+        "mapped_alpha_pixels": 22889,
+        "invalid_polygons": 0,
+        "vertices": 908,
+        "single_body_height": 185
+      },
+      {
+        "frame": 17,
+        "expected_alpha_pixels": 21239,
+        "mapped_alpha_pixels": 21239,
+        "invalid_polygons": 0,
+        "vertices": 772,
+        "single_body_height": 185
+      },
+      {
+        "frame": 18,
+        "expected_alpha_pixels": 19790,
+        "mapped_alpha_pixels": 19790,
+        "invalid_polygons": 0,
+        "vertices": 898,
+        "single_body_height": 202
+      },
+      {
+        "frame": 19,
+        "expected_alpha_pixels": 21432,
+        "mapped_alpha_pixels": 21432,
+        "invalid_polygons": 0,
+        "vertices": 929,
+        "single_body_height": 202
+      },
+      {
+        "frame": 20,
+        "expected_alpha_pixels": 15875,
+        "mapped_alpha_pixels": 15875,
+        "invalid_polygons": 0,
+        "vertices": 436,
+        "single_body_height": 202
+      },
+      {
+        "frame": 21,
+        "expected_alpha_pixels": 24725,
+        "mapped_alpha_pixels": 24725,
+        "invalid_polygons": 0,
+        "vertices": 838,
+        "single_body_height": 185
+      },
+      {
+        "frame": 22,
+        "expected_alpha_pixels": 26831,
+        "mapped_alpha_pixels": 26831,
+        "invalid_polygons": 0,
+        "vertices": 908,
+        "single_body_height": 185
+      },
+      {
+        "frame": 23,
+        "expected_alpha_pixels": 14827,
+        "mapped_alpha_pixels": 14827,
+        "invalid_polygons": 0,
+        "vertices": 413,
+        "single_body_height": 185
+      }
+    ]
+  },
+  "ranger": {
+    "png_sha256": "cfbe38abb8ed8b6e7cd1fbb295c62b3c1ecb6c7d1691e36ad3926b7587320de7",
+    "native_zero_alpha": 1014894,
+    "visible_alpha_pixels": 460425,
+    "declared_owned_pixels": 460425,
+    "uncovered_visible_pixels": 0,
+    "neighbor_pose_overlap_pixels": 0,
+    "mismatched_frames": [],
+    "frames": [
+      {
+        "frame": 0,
+        "expected_alpha_pixels": 82822,
+        "mapped_alpha_pixels": 82822,
+        "invalid_polygons": 0,
+        "vertices": 1616,
+        "single_body_height": 434
+      },
+      {
+        "frame": 1,
+        "expected_alpha_pixels": 81618,
+        "mapped_alpha_pixels": 81618,
+        "invalid_polygons": 0,
+        "vertices": 1686,
+        "single_body_height": 434
+      },
+      {
+        "frame": 2,
+        "expected_alpha_pixels": 81309,
+        "mapped_alpha_pixels": 81309,
+        "invalid_polygons": 0,
+        "vertices": 1724,
+        "single_body_height": 434
+      },
+      {
+        "frame": 3,
+        "expected_alpha_pixels": 80820,
+        "mapped_alpha_pixels": 80820,
+        "invalid_polygons": 0,
+        "vertices": 1761,
+        "single_body_height": 434
+      },
+      {
+        "frame": 4,
+        "expected_alpha_pixels": 83184,
+        "mapped_alpha_pixels": 83184,
+        "invalid_polygons": 0,
+        "vertices": 1942,
+        "single_body_height": 434
+      },
+      {
+        "frame": 5,
+        "expected_alpha_pixels": 50672,
+        "mapped_alpha_pixels": 50672,
+        "invalid_polygons": 0,
+        "vertices": 643,
+        "single_body_height": 434
+      }
+    ]
+  },
+  "vowkeeper": {
+    "png_sha256": "f357503de1daa196586f1550d44590c0c15d0d7c6859eafc62e55712f3805b7c",
+    "native_zero_alpha": 1029766,
+    "visible_alpha_pixels": 474699,
+    "declared_owned_pixels": 474699,
+    "uncovered_visible_pixels": 0,
+    "neighbor_pose_overlap_pixels": 0,
+    "mismatched_frames": [],
+    "frames": [
+      {
+        "frame": 0,
+        "expected_alpha_pixels": 83569,
+        "mapped_alpha_pixels": 83569,
+        "invalid_polygons": 0,
+        "vertices": 1415,
+        "single_body_height": 430
+      },
+      {
+        "frame": 1,
+        "expected_alpha_pixels": 85380,
+        "mapped_alpha_pixels": 85380,
+        "invalid_polygons": 0,
+        "vertices": 1605,
+        "single_body_height": 430
+      },
+      {
+        "frame": 2,
+        "expected_alpha_pixels": 87083,
+        "mapped_alpha_pixels": 87083,
+        "invalid_polygons": 0,
+        "vertices": 1623,
+        "single_body_height": 430
+      },
+      {
+        "frame": 3,
+        "expected_alpha_pixels": 84892,
+        "mapped_alpha_pixels": 84892,
+        "invalid_polygons": 0,
+        "vertices": 1797,
+        "single_body_height": 430
+      },
+      {
+        "frame": 4,
+        "expected_alpha_pixels": 81847,
+        "mapped_alpha_pixels": 81847,
+        "invalid_polygons": 0,
+        "vertices": 1539,
+        "single_body_height": 430
+      },
+      {
+        "frame": 5,
+        "expected_alpha_pixels": 51928,
+        "mapped_alpha_pixels": 51928,
+        "invalid_polygons": 0,
+        "vertices": 599,
+        "single_body_height": 430
+      }
+    ]
+  }
+}

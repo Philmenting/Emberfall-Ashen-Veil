@@ -83,10 +83,48 @@ jobs:
       - name: Check seed-bound combat movement and attack timing
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-combat-movement-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/combat_movement_smoke.gd
 
+      - name: Check responsive AFK recovery, loot upgrades and trial continuation
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-beta-flow-data" timeout 300s godot --headless --path . --fixed-fps 60 --script tests/beta_flow_smoke.gd
+
+      - name: Check per-class combat stances and saved expedition compatibility
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-combat-stances-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/combat_stances_smoke.gd
+
+      - name: Check gear protection, reserved rewards and defeat recovery
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-recovery-data" timeout 120s godot --headless --path . --script tests/recovery_smoke.gd
+
       - name: Check server-owned progression simulation
         run: |
           node --check server/modules/emberfall.js
           node tests/progression_runtime_test.js
+
+      - name: Check Play identity, listing limits and 16 KB verifier
+        run: |
+          python3 scripts/check_play_release.py
+          python3 -m unittest discover -s tests -p test_android_release.py -v
+
+      - name: Check combined oaths, phased bosses, legacy checkpoints and offline parity
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-phased-data" timeout 300s godot --headless --path . --script tests/combined_oaths_phases_smoke.gd
+
+      - name: Check class equipment, live portraits and phased guardian appearance
+        run: godot --headless --path . --script tests/character_equipment_smoke.gd
+
+      - name: Check continuous painted animation, grounded steps and real impact timing
+        run: timeout 120s godot --headless --path . --script tests/painted_animation_smoke.gd
+
+      - name: Check animated presentation, adaptive rendering and accessible HUD
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-presentation" timeout 120s godot --headless --path . --script tests/presentation_smoke.gd
+
+      - name: Check real expedition factory, combined rewards and cold saves
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-combined-main" timeout 300s godot --headless --path . --script tests/main_combined_rules_smoke.gd
+
+      - name: Check spatial camp, working forge and responsive compact HUD
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-camp-hud" timeout 120s godot --headless --path . --script tests/camp_hud_smoke.gd
+
+      - name: Check complete phase warnings at closed Fold, open Fold and compact layouts
+        run: godot --headless --path . --script tests/world_framing_smoke.gd
+
+      - name: Check authored model geometry, joint contracts and render budgets
+        run: godot --headless --path . --script tests/authored_art_smoke.gd
 
       - name: Create ephemeral CI-only Play signing key
         run: |
@@ -109,9 +147,10 @@ jobs:
           GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: android
         run: |
           mkdir -p build
+          beta_version_code="$(python3 -c 'import json; print(json.load(open("docs/play/store.json"))["version_code"])')"
+          beta_version_name="$(python3 -c 'import json; print(json.load(open("docs/play/store.json"))["version_name"])')"
           godot --headless --path . --editor --import --quit
-          godot --headless --path . --install-android-build-template
-          python3 scripts/prepare_android_beta_build.py --central-mirror https://maven-central.storage-download.googleapis.com/maven2/
+          python3 scripts/prepare_android_beta_build.py --template "$HOME/.local/share/godot/export_templates/4.7.2.stable/android_source.zip" --central-mirror https://maven-central.storage-download.googleapis.com/maven2/
           godot --headless --path . --export-debug 'Android Debug' 'build/emberfall-debug.apk'
           godot --headless --path . --export-release 'Android Closed Beta APK' 'build/emberfall-closed-beta-ci.apk'
           godot --headless --path . --export-release 'Google Play Beta' 'build/emberfall-beta-ci-release.aab'
@@ -120,10 +159,11 @@ jobs:
           "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-debug.apk
           "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-closed-beta-ci.apk
           apk_info="$("$ANDROID_HOME/build-tools/36.1.0/aapt" dump badging build/emberfall-debug.apk)"
-          grep -F "package: name='com.philmenting.emberfallashenveil.test029' versionCode='42' versionName='0.38.0-online-test'" <<< "$apk_info"
+          grep -F "package: name='com.philmenting.emberfallashenveil.test029' versionCode='$beta_version_code' versionName='0.41.0-online-test'" <<< "$apk_info"
           grep -F "uses-permission: name='android.permission.INTERNET'" <<< "$apk_info"
           closed_beta_info="$("$ANDROID_HOME/build-tools/36.1.0/aapt" dump badging build/emberfall-closed-beta-ci.apk)"
-          grep -F "package: name='com.philmenting.emberfallashenveil.closedbeta' versionCode='42' versionName='0.38.0-beta.1'" <<< "$closed_beta_info"
+          grep -F "package: name='com.philmenting.emberfallashenveil.closedbeta' versionCode='$beta_version_code' versionName='$beta_version_name'" <<< "$closed_beta_info"
+          grep -F "uses-permission: name='android.permission.VIBRATE'" <<< "$closed_beta_info"
           grep -F "sdkVersion:'24'" <<< "$closed_beta_info"
           grep -F "targetSdkVersion:'36'" <<< "$closed_beta_info"
           if grep -Fq 'android.permission.INTERNET' <<< "$closed_beta_info"; then echo 'Closed-beta APK must remain offline'; exit 1; fi
@@ -132,10 +172,10 @@ jobs:
             --bundle build/emberfall-beta-ci-release.aab \
             --bundletool "$RUNNER_TEMP/bundletool-all-1.18.3.jar" \
             --package com.philmenting.emberfallashenveil \
-            --version-code 42 --version-name 0.38.0-beta.1 \
+            --version-code "$beta_version_code" --version-name "$beta_version_name" \
             --min-sdk 24 --target-sdk 36
           cat > build/CI_ARTIFACT_README.txt <<'EOF'
-          CI validation artifacts only. The AAB and closed-beta APK use an ephemeral CI signing key; they cannot be uploaded to Google Play or update builds signed by another key.
+          CI validation artifacts only. The AAB and closed-beta APK use an ephemeral CI signing key. Do not upload them to Google Play. The discarded key cannot reproduce future updates; production builds must use the permanent registered upload key.
           EOF
 
       - name: Upload available Android artifacts
@@ -186,7 +226,15 @@ jobs:
           fi
 
       - name: Verify transfer and shared fellowships between isolated installations
-        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-transfer-e2e" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/cloud_transfer_e2e.gd
+        # HTTP and WebSocket timeouts must follow wall time, not accelerated simulation frames.
+        run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-transfer-e2e" timeout 120s godot --headless --path . --script tests/cloud_transfer_e2e.gd
+
+      - name: Collect isolated server diagnostics on failure
+        if: failure()
+        run: |
+          if [ -f "$RUNNER_TEMP/nakama/server.log" ]; then
+            tail -100 "$RUNNER_TEMP/nakama/server.log"
+          fi
 
       - name: Stop isolated Nakama test server
         if: always()
@@ -232,4 +280,3 @@ jobs:
 
       - name: Check sculpted graphics, regional surfaces and isolated effects
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-visuals-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/visuals_smoke.gd
-

@@ -15,6 +15,8 @@ import tempfile
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 GODOT_SUITES = (
+    "beta_flow",
+    "combat_stances",
     "combat_movement",
     "journey",
     "dungeon",
@@ -23,12 +25,21 @@ GODOT_SUITES = (
     "boss_patterns",
     "class_loot",
     "contracts",
+    "combined_oaths_phases",
+    "main_combined_rules",
     "gear_forecast",
     "regions",
     "onboarding",
+    "success_loop",
+    "recovery",
     "options",
     "skill_rotation",
     "visuals",
+    "world_framing",
+    "authored_art",
+    "character_equipment",
+    "presentation",
+    "camp_hud",
     "fellowship_ui",
     "cloud_identity",
     "mana_ward",
@@ -111,7 +122,7 @@ def main() -> int:
                 continue
             output = result.stdout + result.stderr
             matches = list(SUMMARY.finditer(output))
-            if result.returncode != 0 or not matches:
+            if result.returncode != 0 or not matches or "SCRIPT ERROR:" in output:
                 failures.append(suite)
                 report_failure(suite, output)
                 continue

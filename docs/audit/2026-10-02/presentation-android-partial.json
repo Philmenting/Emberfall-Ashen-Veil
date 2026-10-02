@@ -1,0 +1,66 @@
+{
+  "commit": "9641d054ee05d822991f1b90642914959ea51f07",
+  "run": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37010670502",
+  "platform": "Android 16 / API 36 x86_64 emulator, swangle software renderer",
+  "screen": "2424x1080",
+  "AFK_and_restart": "pass",
+  "graphics": "partial, 900-second timeout in 90-frame probe; no script/shader errors reported",
+  "measurements": [
+    {
+      "frames": 90,
+      "median_draw_calls": 364.0,
+      "median_frame_ms": 1883.673,
+      "p95_frame_ms": 3757.343,
+      "quality": "balanced",
+      "region": 0,
+      "render_height": 540,
+      "render_width": 1212,
+      "target_fps": 60
+    },
+    {
+      "frames": 90,
+      "median_draw_calls": 203.0,
+      "median_frame_ms": 650.145,
+      "p95_frame_ms": 788.434,
+      "quality": "battery",
+      "region": 0,
+      "render_height": 270,
+      "render_width": 606,
+      "target_fps": 30
+    },
+    {
+      "frames": 90,
+      "median_draw_calls": 826.0,
+      "median_frame_ms": 1983.852,
+      "p95_frame_ms": 2364.803,
+      "quality": "balanced",
+      "region": 1,
+      "render_height": 540,
+      "render_width": 1212,
+      "target_fps": 60
+    },
+    {
+      "frames": 90,
+      "median_draw_calls": 434.0,
+      "median_frame_ms": 673.848,
+      "p95_frame_ms": 800.572,
+      "quality": "battery",
+      "region": 1,
+      "render_height": 270,
+      "render_width": 606,
+      "target_fps": 30
+    },
+    {
+      "frames": 90,
+      "median_draw_calls": 415.0,
+      "median_frame_ms": 1798.444,
+      "p95_frame_ms": 4009.549,
+      "quality": "balanced",
+      "region": 2,
+      "render_height": 540,
+      "render_width": 1212,
+      "target_fps": 60
+    }
+  ],
+  "physical_Pixel_performance": "unmeasured"
+}
