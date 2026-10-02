@@ -287,7 +287,7 @@ func _build_header() -> Control:
 	bar.add_child(_resource_chip("◈", "%s GOLD" % _short_number(player_gold), GOLD))
 	var options:=_button("OPTIONS",PANEL_LIGHT,10,_show_settings)
 	options.name="OpenSettings"
-	options.custom_minimum_size=Vector2(86,_minimum_button_height(34))
+	options.custom_minimum_size=Vector2(86,_minimum_button_height(48))
 	options.size_flags_horizontal=Control.SIZE_SHRINK_END
 	bar.add_child(options)
 	return bar
@@ -566,16 +566,19 @@ func _build_run() -> void:
 	top.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	overlay.add_child(top)
 	var hero_panel := _panel(Color(0.025,0.028,0.035,0.72),Color("756344"),4)
-	hero_panel.custom_minimum_size.x = 190
+	hero_panel.custom_minimum_size.x = 160
 	hero_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	hero_panel.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
 	top.add_child(hero_panel)
 	var hero_stack := VBoxContainer.new()
 	hero_panel.add_child(hero_stack)
 	hero_stack.add_child(_label("NYRA  /  LV. %d" % player_level,15,PALE,true))
-	hero_stack.add_child(_label(character_class.to_upper(),10,GOLD,true))
+	var hero_details := VBoxContainer.new()
+	hero_details.name="HeroDetails"
+	hero_details.visible=false
+	hero_details.add_child(_label(character_class.to_upper(),10,GOLD,true))
 	var stance: Dictionary = Stances.definition(expedition.stats)
-	hero_stack.add_child(_label(String(stance.name).to_upper()+" STANCE",9,Color(stance.color)))
+	hero_details.add_child(_label(String(stance.name).to_upper()+" STANCE",9,Color(stance.color)))
 	combat_hud.hp = _progress_bar(run_health,int(_combat_stats().max_hp),RED,9)
 	hero_stack.add_child(combat_hud.hp)
 	combat_hud.mana = _progress_bar(run_mana,int(_combat_stats().max_mana),Color("5f91c4"),5)
@@ -583,19 +586,21 @@ func _build_run() -> void:
 	combat_hud.life = _label("",10,MUTED)
 	hero_stack.add_child(combat_hud.life)
 	combat_hud.skill = _label("",10,GOLD)
-	hero_stack.add_child(combat_hud.skill)
+	hero_details.add_child(combat_hud.skill)
 	if character_class=="Arcanist" and float(expedition.stats.get("mana_guard",0.0))>0.0:
 		combat_hud.ward = _label("",9,Color("ac9bdc"))
-		hero_stack.add_child(combat_hud.ward)
+		hero_details.add_child(combat_hud.ward)
 	if expedition.uses_rotation():
 		combat_hud.techniques={}
 		for key in expedition.stats.skill_loadout:
 			var status := _label("",9,Color(Skills.DEFINITIONS[key].color))
 			status.name="TechniqueStatus_"+key
-			hero_stack.add_child(status)
+			hero_details.add_child(status)
 			combat_hud.techniques[key]=status
 		combat_hud.guard=_label("",9,GREEN)
-		hero_stack.add_child(combat_hud.guard)
+		hero_details.add_child(combat_hud.guard)
+	hero_stack.add_child(hero_details)
+	combat_hud.hero_details=hero_details
 	var top_gap := VBoxContainer.new()
 	top_gap.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	top.add_child(top_gap)
@@ -613,7 +618,8 @@ func _build_run() -> void:
 	combat_hud.boss_life=_centered_label("",10,GOLD)
 	boss_stack.add_child(combat_hud.boss_life)
 	var objective_panel := _panel(Color(0.025,0.028,0.035,0.68),Color("756344"),4)
-	objective_panel.custom_minimum_size.x = 215
+	objective_panel.custom_minimum_size.x = 200
+	objective_panel.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
 	objective_panel.size_flags_horizontal = Control.SIZE_SHRINK_END
 	top.add_child(objective_panel)
 	var objective := VBoxContainer.new()
@@ -626,24 +632,36 @@ func _build_run() -> void:
 		objective.add_child(combat_hud.trial_clock)
 	combat_hud.progress = _progress_bar(0,run_max_stages,GOLD,5)
 	objective.add_child(combat_hud.progress)
+	var route_details:=VBoxContainer.new()
+	route_details.name="RouteDetails"
+	route_details.visible=false
+	combat_hud.route_details=route_details
 	if expedition.uses_journey():
 		var route_map := preload("res://scripts/expedition_map.gd").new()
 		route_map.name="ExpeditionMap"
 		route_map.simulation=expedition
-		objective.add_child(route_map)
+		route_details.add_child(route_map)
 		combat_hud.room = _label("",11,GOLD,true)
 		objective.add_child(combat_hud.room)
 		combat_hud.objective = _label("",10,MUTED)
 		combat_hud.objective.custom_minimum_size.x=190
 		combat_hud.objective.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-		objective.add_child(combat_hud.objective)
+		route_details.add_child(combat_hud.objective)
 	combat_hud.encounter = _label("",11,PALE,true)
 	objective.add_child(combat_hud.encounter)
 	combat_hud.boss = _label("",10,Color("f3aa82"),true)
-	objective.add_child(combat_hud.boss)
+	boss_stack.add_child(combat_hud.boss)
+	combat_hud.boss.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	combat_hud.boss.custom_minimum_size.x=190
+	objective.add_child(route_details)
+	var details:=_button("DETAILS",PANEL_LIGHT,10,_toggle_combat_details)
+	details.name="CombatDetailsToggle"
+	details.custom_minimum_size.y=_minimum_button_height(48)
+	combat_hud.details=details
+	objective.add_child(details)
 	var options:=_button("OPTIONS / PAUSE",PANEL_LIGHT,9,_show_settings)
 	options.name="OpenSettings"
-	options.custom_minimum_size.y=_minimum_button_height(34)
+	options.custom_minimum_size.y=_minimum_button_height(48)
 	objective.add_child(options)
 	var spacer := Control.new()
 	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -658,7 +676,8 @@ func _build_run() -> void:
 	bottom.add_child(status_panel)
 	var status := VBoxContainer.new()
 	status_panel.add_child(status)
-	combat_hud.state = _label("AUTO • ENTERING THE DUNGEON",12,GOLD,true)
+	combat_hud.state = _label("AUTO • ENTERING THE DUNGEON",11,GOLD,true)
+	combat_hud.state.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	status.add_child(combat_hud.state)
 	combat_hud.enemy = _label("",11,PALE)
 	status.add_child(combat_hud.enemy)
@@ -677,6 +696,13 @@ func _build_run() -> void:
 	skip.size_flags_horizontal = Control.SIZE_SHRINK_END
 	bottom.add_child(skip)
 	_sync_combat_hud()
+
+func _toggle_combat_details() -> void:
+	var expanded: bool=not combat_hud.hero_details.visible
+	combat_hud.hero_details.visible=expanded
+	combat_hud.route_details.visible=expanded
+	combat_hud.details.text="HIDE DETAILS" if expanded else "DETAILS"
+	combat_hud.details.tooltip_text="Hide character skills and route map" if expanded else "Show character skills and route map"
 
 func _on_dungeon_state_changed(description: String) -> void:
 	if combat_hud.has("state"):
@@ -1017,6 +1043,9 @@ func _label(copy: String, font_size: int, color: Color, bold: bool = false) -> L
 	return label
 
 func _compact_layout() -> bool:
+	if OS.has_feature("android"):
+		var logical_size:=get_viewport_rect().size
+		return logical_size.x<=960 or logical_size.y<=600
 	var window_size := DisplayServer.window_get_size()
 	return window_size.x <= 960 or window_size.y <= 540
 
@@ -1032,6 +1061,10 @@ func _minimum_button_height(base_size: int) -> int:
 	var target:=base_size
 	if compact: target=maxi(target,52)
 	if preferences.get("large_text",false): target=maxi(target,58 if compact else 48)
+	if OS.has_feature("android"):
+		var physical_height:=maxi(1,DisplayServer.window_get_size().y)
+		var density:=maxf(1.0,float(DisplayServer.screen_get_dpi())/160.0)
+		target=maxi(target,ceili(48.0*density*get_viewport_rect().size.y/physical_height))
 	return target
 
 func _refresh_font_sizes(node: Node) -> void:

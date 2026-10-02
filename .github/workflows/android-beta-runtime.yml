@@ -9,7 +9,7 @@ permissions:
 jobs:
   offline-runtime:
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    timeout-minutes: 35
     steps:
     - name: Check out repository
       uses: actions/checkout@v7
@@ -73,6 +73,7 @@ jobs:
         emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -no-snapshot -camera-back none
         script: |
           python3 scripts/android_beta_smoke.py --apk build/emberfall-afk-qa.apk
+          adb shell wm size 1080x2424
           python3 scripts/android_beta_smoke.py --art-only --apk build/emberfall-art-qa.apk --output build/android-art-runtime
     - name: Upload QA evidence
       if: always()

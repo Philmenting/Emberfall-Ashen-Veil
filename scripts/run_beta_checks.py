@@ -32,6 +32,7 @@ GODOT_SUITES = (
     "skill_rotation",
     "visuals",
     "authored_art",
+    "presentation",
     "fellowship_ui",
     "cloud_identity",
     "mana_ward",

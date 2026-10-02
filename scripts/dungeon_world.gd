@@ -60,6 +60,7 @@ func _ready() -> void:
 	_build_regional_details()
 	_build_dressed_rooms()
 	_build_sanctuary_details()
+	_build_region_landmarks()
 	_batch_static_geometry()
 	if simulation.uses_journey(): _build_journey_props()
 	if simulation.Contract.mode(simulation.contract())=="trial": _build_trial_gate()
@@ -1296,3 +1297,11 @@ func _launch_projectile(target: int, color: Color) -> void:
 		_drop_sphere(Vector3(0,0,-0.22),0.105,material,projectile)
 	if origin.distance_to(destination)>0.01: projectile.look_at(destination)
 	effects.append({"node":projectile,"age":0.0,"life":0.28,"kind":"projectile","origin":origin,"destination":destination,"target":target})
+
+func _build_region_landmarks() -> void:
+	var kind: String=["vault","library","altar","throne"][region_index]
+	for room in [3,5]:
+		var origin:=_point(Layout.center(region_index,room,simulation.layout_seed())) if simulation.uses_journey() else Vector3(0,0,4-room*11.2)
+		# Rear wall dressing stays outside the reachable floor and hazard footprints.
+		var landmark:=_authored_prop(kind,origin+Vector3(0,0,-6.3))
+		landmark.name="RegionalLandmark%d" % room

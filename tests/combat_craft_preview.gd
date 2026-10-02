@@ -17,7 +17,7 @@ func _ready() -> void:
 	_capture_cases.call_deferred()
 
 func _capture_cases() -> void:
-	for resolution in [Vector2i(1280,720),Vector2i(854,480)]:
+	for resolution in [Vector2i(1280,720),Vector2i(854,480),Vector2i(1200,535),Vector2i(1040,1080)]:
 		get_window().size=resolution
 		await get_tree().process_frame
 		character_class="Arcanist"
@@ -41,6 +41,9 @@ func _capture_cases() -> void:
 			_build_ui()
 			run_arena.animation_enabled=false
 			await _capture("boss-%d-%dx%d" % [region,resolution.x,resolution.y])
+			if region==1:
+				_toggle_combat_details()
+				await _capture("details-%dx%d" % [resolution.x,resolution.y])
 	get_tree().quit()
 
 func _capture(filename: String) -> void:

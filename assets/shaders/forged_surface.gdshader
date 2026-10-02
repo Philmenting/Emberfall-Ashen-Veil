@@ -13,7 +13,9 @@ void vertex(){ local_pos=VERTEX; surface_axis=abs(NORMAL); }
 void fragment(){
  vec4 base_tint=vertex_materials ? COLOR : tint;
  float surface_metal=vertex_materials ? UV2.x : metal;
- float surface_cloth=vertex_materials ? (1.0-UV2.x) : cloth;
+ float surface_cloth=vertex_materials ? (UV.x > 0.5 && UV.x < 1.5 ? 1.0 : 0.0) : cloth;
+ float leather=vertex_materials && UV.x > 1.5 && UV.x < 2.5 ? 1.0 : 0.0;
+ float skin=vertex_materials && UV.x > 2.5 && UV.x < 3.5 ? 1.0 : 0.0;
  // Fine woven cloth fades with pixel footprint; authored garment folds
  // carry the silhouette. Stable texture mips prevent sparkling metal.
  float frequency=110.0;
@@ -29,7 +31,7 @@ void fragment(){
  }
  ALBEDO=base_tint.rgb*(0.94+weave)*(1.0-surface_metal*0.15)+patina*base_tint.rgb*surface_metal*0.38;
  METALLIC=surface_metal;
- ROUGHNESS=mix(0.91,0.38+worn_roughness*0.26,surface_metal);
+ ROUGHNESS=mix(0.90-leather*0.13-skin*0.16,0.51+worn_roughness*0.22,surface_metal);
  EMISSION=vertex_materials ? base_tint.rgb*UV2.y*1.3 : vec3(0.0);
- SPECULAR=mix(0.25,0.6,surface_metal);
+ SPECULAR=mix(0.22+skin*0.10,0.44,surface_metal);
 }

@@ -1,5 +1,7 @@
 """Run the isolated Android AFK/restart fixture; this never clears the shipping app's data."""
 import argparse
+import json
+import math
 from pathlib import Path
 import subprocess
 import time
@@ -23,7 +25,7 @@ def main() -> int:
         return result.stdout
 
     def await_marker(marker, filename):
-        deadline = time.monotonic() + 300
+        deadline = time.monotonic() + (900 if args.art_only else 300)
         while time.monotonic() < deadline:
             log = adb("logcat", "-d", "-s", "godot", timeout=30)
             (args.output / filename).write_text(log)
@@ -48,6 +50,14 @@ def main() -> int:
                 if capture.returncode or not capture.stdout.startswith(b"\x89PNG\r\n\x1a\n"):
                     raise RuntimeError(f"Android graphics capture {region} missing or invalid")
                 (args.output / f"android-region-{region}.png").write_bytes(capture.stdout)
+            metrics = json.loads(adb("exec-out", "run-as", PACKAGE, "cat", "files/art-performance.json"))
+            expected = {(region, quality) for region in range(4) for quality in ["balanced", "battery"]}
+            if metrics.get("schema") != 1 or {(row["region"], row["quality"]) for row in metrics["measurements"]} != expected:
+                raise RuntimeError("Android render report is missing a quality/region scenario")
+            for row in metrics["measurements"]:
+                if row["frames"] != 90 or not all(math.isfinite(row[key]) and row[key] > 0 for key in ["median_frame_ms", "p95_frame_ms", "median_draw_calls"]):
+                    raise RuntimeError("Android render report contains invalid measurements")
+            (args.output / "android-render-performance.json").write_text(json.dumps(metrics, indent=2))
             print("ANDROID ART VERIFIED: four guardian scenes, real GLTF geometry, PBR maps and rendered screenshots")
             return 0
         log = await_marker("ANDROID_BETA_PASS exact AFK ledger", "first-launch.log")

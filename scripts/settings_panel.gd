@@ -678,11 +678,11 @@ func _options(parent: VBoxContainer) -> void:
 	var modes:=HBoxContainer.new()
 	parent.add_child(modes)
 	for battery in [false,true]:
-		var label: String="BATTERY  /  30 FPS" if battery else "BALANCED  /  60 FPS"
+		var label: String="BATTERY  /  30 FPS" if battery else "BALANCED  /  UP TO 60 FPS"
 		var button: Button=game._button(label,Color("31443a") if game.preferences.battery==battery else game.PANEL_LIGHT,11,func(): game._change_preference("battery",battery); _build())
 		button.name="BatteryMode" if battery else "BalancedMode"
 		modes.add_child(button)
-	parent.add_child(game._paragraph_label("Battery mode reduces 3D resolution and disables shadows. Combat and offline rewards are unchanged. Frame rates are targets, not guarantees.",11,game.MUTED))
+	parent.add_child(game._paragraph_label("Balanced mode adjusts 3D resolution after sustained slow frames and restores detail after sustained recovery. Battery mode caps at 30 FPS and disables shadows. Frame rates are targets; combat and rewards remain unchanged.",11,game.MUTED))
 	var numbers: Button=game._button("DAMAGE NUMBERS: "+("ON" if game.preferences.numbers else "OFF"),game.PANEL_LIGHT,11,func(): game._change_preference("numbers",not game.preferences.numbers); _build())
 	numbers.name="DamageNumbers"
 	parent.add_child(numbers)

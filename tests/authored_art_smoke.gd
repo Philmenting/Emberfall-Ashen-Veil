@@ -48,7 +48,7 @@ func run_checks() -> void:
 		var second_parts:=second.find_children("*","MeshInstance3D",true,false)
 		var shared:=first_parts.size()==second_parts.size()
 		for index in range(first_parts.size()-1): shared=shared and first_parts[index].mesh==second_parts[index].mesh
-		check(shared and first_parts.size()<=10,"guardian %d: cached appearance uses at most nine animated surfaces plus contact shadow" % region)
+		check(shared and first_parts.size()==2,"guardian %d: cached appearance uses one skinned surface plus contact shadow" % region)
 		first.strike("telegraph"); first.animate(0.2,false); first.react(); first.animate(0.06,false)
 		first.die(); first.animate(0.2,false)
 		check(first.body.position.is_finite() and first.right_arm.rotation.is_finite(),"guardian %d: attack, impact and death animation remain finite" % region)

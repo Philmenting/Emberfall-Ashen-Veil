@@ -17,8 +17,8 @@ TAU = PI * 2
 PARTS = defaultdict(list)
 MATS = {}
 PALETTE = {
-    'iron': ('52606b', .74, .43), 'silver': ('b4b8af', .78, .34),
-    'bronze': ('997449', .72, .45), 'gold': ('d0ab68', .76, .35),
+    'iron': ('52606b', .68, .58), 'silver': ('b4b8af', .72, .48),
+    'bronze': ('997449', .66, .59), 'gold': ('d0ab68', .70, .49),
     'patina': ('487e78', .36, .72), 'leather': ('3e2e28', .0, .87),
     'wine': ('703947', .0, .92), 'violet': ('514267', .0, .89),
     'sage': ('354f46', .0, .91), 'linen': ('aea38b', .0, .93),
@@ -202,14 +202,15 @@ def limbs(armor='iron', cloth='wine', monstrous=False, slender=False):
         loft(arm,'skin' if monstrous else cloth,[(-.55,.067*width,.07,0),(-.42,.081*width,.083,0),(-.27,.08*width,.09,0),(-.12,.097*width,.105,0),(.025,.12*width,.125,0)])
         if not monstrous:
             for layer in range(2 if slender else 3):
-                reach=.17 if slender else .24
+                reach=.15 if slender else .19
                 leaf(arm,'bronze' if armor=='bronze' else armor,[(side*.02,.12-layer*.047,.035),(side*.10,.10-layer*.055,-.01),(side*reach,.015-layer*.08,-.03)],(.102 if slender else .15)-layer*.018,.029 if slender else .047)
             loft(arm,armor,[(-.55,.078*width,.075,-.018),(-.50,.10*width,.09,-.018),(-.32,.105*width,.10,-.01),(-.28,.076*width,.078,0)],sides=24)
             for y in [-.48,-.33]: ring(arm,'gold',(0,y,-.015),.102*width,.096,.011)
-        ellipsoid(arm,'skin' if monstrous else 'leather',(0,-.59,-.01),(.072,.085,.048))
+        ellipsoid(arm,'skin' if monstrous else 'leather',(0,-.59,-.01),(.059,.070,.043))
         for f in range(4):
-            x=(f-1.5)*.035
-            tube(arm,'bone' if monstrous else 'leather',[(x,-.59,-.035),(x,-.65,-.063),(x,-.68,-.02)], [.018,.016,.006],6,3)
+            x=(f-1.5)*.028
+            tube(arm,'bone' if monstrous else 'leather',[(x,-.60,-.038),(x,-.644-(.009 if f in [1,2] else 0),-.065),(x,-.665,-.018)], [.014,.012,.005],6,3)
+        tube(arm,'skin' if monstrous else 'leather',[(side*.051,-.565,-.006),(side*.077,-.603,-.039),(side*.040,-.636,-.057)], [.023,.020,.010],8,4)
         loft(leg,cloth,[(-.37,.084*width,.08,0),(-.19,.11*width,.11,0),(.045,.14*width,.13,0)])
         boot(knee,armor)
 
@@ -230,15 +231,15 @@ def torso(armor='iron', cloth='wine', slender=False):
 def face(part='Body', skull=False, hood=False):
     skin='bone' if skull else 'skin'
     loft(part,skin,[(1.54,.058,.063,0),(1.65,.062,.068,-.01),(1.71,.065,.070,-.02)],sides=20)
-    ellipsoid(part,skin,(0,1.795,-.015),(.12,.155,.12))
-    ellipsoid(part,skin,(0,1.691,-.064),(.075,.043,.065))
+    ellipsoid(part,skin,(0,1.795,-.015),(.112,.159,.111))
+    ellipsoid(part,skin,(0,1.694,-.058),(.072,.049,.064))
     leaf(part,skin,[(0,1.86,-.117),(0,1.80,-.164),(0,1.766,-.13)],.028,.018)
     for side in [-1,1]:
         ellipsoid(part,skin,(side*.074,1.767,-.084),(.027,.028,.032))
-        ellipsoid(part,'dark',(side*.052,1.821,-.122),(.032,.02 if skull else .008,.014))
+        ellipsoid(part,'dark',(side*.047,1.813,-.119),(.026,.020 if skull else .005,.009))
         if skull: gem(part,(side*.051,1.822,-.134),.009)
-        tube(part,skin,[(side*.012,1.853,-.12),(side*.055,1.854,-.132),(side*.092,1.836,-.095)],.010,6,3)
-    tube(part,'dark',[(-.039,1.711,-.12),(0,1.704,-.132),(.039,1.711,-.12)],.005,6,4)
+        tube(part,skin,[(side*.014,1.843,-.117),(side*.052,1.846,-.129),(side*.086,1.831,-.093)],.007,6,3)
+    tube(part,'dark',[(-.030,1.722,-.120),(0,1.719,-.130),(.030,1.722,-.120)],.003,6,4)
     if not skull:
         # Fuse the anatomical forms into one continuous facial surface. Voxel
         # remeshing removes the visible sphere intersections at cheek/jaw/nose.
@@ -247,11 +248,11 @@ def face(part='Body', skull=False, hood=False):
         for obj in objects: obj.select_set(True)
         bpy.context.view_layer.objects.active=objects[0]
         bpy.ops.object.join()
-        head=objects[0]; head.data.remesh_voxel_size=.006
+        head=objects[0]; head.data.remesh_voxel_size=.0045
         bpy.ops.object.voxel_remesh()
         smooth=head.modifiers.new('Facial anatomy smoothing','SMOOTH');smooth.factor=.6;smooth.iterations=3
         bpy.ops.object.modifier_apply(modifier=smooth.name)
-        decimate=head.modifiers.new('Mobile facial topology','DECIMATE');decimate.ratio=.20
+        decimate=head.modifiers.new('Mobile facial topology','DECIMATE');decimate.ratio=.16
         bpy.ops.object.modifier_apply(modifier=decimate.name)
         for poly in head.data.polygons: poly.use_smooth=True
         PARTS[(part,skin)]=[head]
@@ -463,7 +464,7 @@ def export(name, build):
     PARTS=defaultdict(list); MATS={}
     build()
     # Join by animated part and material. Blender evaluates sewn garment
-    # thickness before export. Godot merges these material surfaces per joint.
+    # thickness before export. Godot bakes these parts into one GPU-skinned surface per actor.
     for (part, mat), objects in PARTS.items():
         bpy.ops.object.select_all(action='DESELECT')
         for obj in objects:
