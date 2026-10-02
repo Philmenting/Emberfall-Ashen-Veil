@@ -123,6 +123,8 @@ jobs:
           GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: android
         run: |
           mkdir -p build
+          beta_version_code="$(python3 -c 'import json; print(json.load(open("docs/play/store.json"))["version_code"])')"
+          beta_version_name="$(python3 -c 'import json; print(json.load(open("docs/play/store.json"))["version_name"])')"
           godot --headless --path . --editor --import --quit
           python3 scripts/prepare_android_beta_build.py --template "$HOME/.local/share/godot/export_templates/4.7.2.stable/android_source.zip" --central-mirror https://maven-central.storage-download.googleapis.com/maven2/
           godot --headless --path . --export-debug 'Android Debug' 'build/emberfall-debug.apk'
@@ -133,10 +135,11 @@ jobs:
           "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-debug.apk
           "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-closed-beta-ci.apk
           apk_info="$("$ANDROID_HOME/build-tools/36.1.0/aapt" dump badging build/emberfall-debug.apk)"
-          grep -F "package: name='com.philmenting.emberfallashenveil.test029' versionCode='43' versionName='0.39.0-online-test'" <<< "$apk_info"
+          grep -F "package: name='com.philmenting.emberfallashenveil.test029' versionCode='$beta_version_code' versionName='0.39.0-online-test'" <<< "$apk_info"
           grep -F "uses-permission: name='android.permission.INTERNET'" <<< "$apk_info"
           closed_beta_info="$("$ANDROID_HOME/build-tools/36.1.0/aapt" dump badging build/emberfall-closed-beta-ci.apk)"
-          grep -F "package: name='com.philmenting.emberfallashenveil.closedbeta' versionCode='43' versionName='0.39.0-beta.1'" <<< "$closed_beta_info"
+          grep -F "package: name='com.philmenting.emberfallashenveil.closedbeta' versionCode='$beta_version_code' versionName='$beta_version_name'" <<< "$closed_beta_info"
+          grep -F "uses-permission: name='android.permission.VIBRATE'" <<< "$closed_beta_info"
           grep -F "sdkVersion:'24'" <<< "$closed_beta_info"
           grep -F "targetSdkVersion:'36'" <<< "$closed_beta_info"
           if grep -Fq 'android.permission.INTERNET' <<< "$closed_beta_info"; then echo 'Closed-beta APK must remain offline'; exit 1; fi
@@ -145,7 +148,7 @@ jobs:
             --bundle build/emberfall-beta-ci-release.aab \
             --bundletool "$RUNNER_TEMP/bundletool-all-1.18.3.jar" \
             --package com.philmenting.emberfallashenveil \
-            --version-code 43 --version-name 0.39.0-beta.1 \
+            --version-code "$beta_version_code" --version-name "$beta_version_name" \
             --min-sdk 24 --target-sdk 36
           cat > build/CI_ARTIFACT_README.txt <<'EOF'
           CI validation artifacts only. The AAB and closed-beta APK use an ephemeral CI signing key. Do not upload them to Google Play. The discarded key cannot reproduce future updates; production builds must use the permanent registered upload key.

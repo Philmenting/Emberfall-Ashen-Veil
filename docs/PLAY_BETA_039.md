@@ -1,5 +1,7 @@
 # Play-Beta-Kandidat 0.39.0-beta.1
 
+Aktueller Stand: **0.39.0-beta.2 / Version-Code 44**. Neue Funktionen und Nachweise stehen in [SUCCESS_LOOP.md](SUCCESS_LOOP.md); ältere Beta.1-Angaben unten beschreiben den ursprünglichen Vorbereitungsstand.
+
 Diese Version bereitet einen geschlossenen **Solo-/AFK-Test** vor. Nyra bewegt
 sich, kämpft, wirkt Fähigkeiten und weicht automatisch aus. Die Entscheidungen
 liegen bei Klasse, Attributen, Ausrüstung, Techniken, Kampfstil und Farm-Ziel.

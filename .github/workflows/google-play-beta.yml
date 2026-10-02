@@ -88,11 +88,13 @@ jobs:
     - name: Build and verify upload-signed beta artifacts
       run: |-
         mkdir -p build
+        beta_version_code="$(python3 -c 'import json; print(json.load(open("docs/play/store.json"))["version_code"])')"
+        beta_version_name="$(python3 -c 'import json; print(json.load(open("docs/play/store.json"))["version_name"])')"
         python3 scripts/prepare_android_beta_build.py --template "$HOME/.local/share/godot/export_templates/4.7.2.stable/android_source.zip" --central-mirror https://maven-central.storage-download.googleapis.com/maven2/
         godot --headless --path . --export-release 'Android Closed Beta APK' build/emberfall-closed-beta.apk
         godot --headless --path . --export-release 'Google Play Beta' build/emberfall-play-beta.aab
         curl --fail --location --retry 3 --output "$RUNNER_TEMP/bundletool.jar" https://github.com/google/bundletool/releases/download/1.18.3/bundletool-all-1.18.3.jar
-        python3 scripts/verify_android_aab.py --bundle build/emberfall-play-beta.aab --bundletool "$RUNNER_TEMP/bundletool.jar" --package com.philmenting.emberfallashenveil --version-code 43 --version-name 0.39.0-beta.1 --min-sdk 24 --target-sdk 36
+        python3 scripts/verify_android_aab.py --bundle build/emberfall-play-beta.aab --bundletool "$RUNNER_TEMP/bundletool.jar" --package com.philmenting.emberfallashenveil --version-code "$beta_version_code" --version-name "$beta_version_name" --min-sdk 24 --target-sdk 36
         "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-closed-beta.apk
         "$ANDROID_HOME/build-tools/36.1.0/zipalign" -c -P 16 4 build/emberfall-closed-beta.apk
         java -jar "$RUNNER_TEMP/bundletool.jar" build-apks --bundle=build/emberfall-play-beta.aab --output=build/emberfall-play-beta.apks --mode=universal --ks="$GODOT_ANDROID_KEYSTORE_RELEASE_PATH" --ks-key-alias="$GODOT_ANDROID_KEYSTORE_RELEASE_USER" --ks-pass="file:$RUNNER_TEMP/emberfall-play-upload.password" --key-pass="file:$RUNNER_TEMP/emberfall-play-upload.password"
