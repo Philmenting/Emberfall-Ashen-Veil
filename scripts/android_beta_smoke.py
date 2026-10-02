@@ -17,8 +17,11 @@ def main() -> int:
     parser.add_argument("--skip-install", action="store_true", help="Use the already installed fixture on a slow local emulator")
     parser.add_argument("--art-only", action="store_true", help="Verify the four-region Android graphics fixture instead of AFK reconciliation")
     parser.add_argument("--success-only", action="store_true", help="Verify the first descent, relic equip and oath checkpoint")
+    parser.add_argument("--timeout-seconds", type=int, help="Override the per-launch marker deadline for slow software emulators")
     args = parser.parse_args()
     if args.art_only and args.success_only: parser.error("Choose one QA fixture")
+    if args.timeout_seconds is not None and not 1 <= args.timeout_seconds <= 1800:
+        parser.error("--timeout-seconds must be between 1 and 1800")
     args.output.mkdir(parents=True, exist_ok=True)
 
     def adb(*arguments, timeout=60):
@@ -27,7 +30,7 @@ def main() -> int:
         return result.stdout
 
     def await_marker(marker, filename):
-        deadline = time.monotonic() + (900 if args.art_only else 300)
+        deadline = time.monotonic() + (args.timeout_seconds or (900 if args.art_only else 300))
         while time.monotonic() < deadline:
             log = adb("logcat", "-d", "-s", "godot", timeout=30)
             (args.output / filename).write_text(log)

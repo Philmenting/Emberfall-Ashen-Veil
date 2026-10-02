@@ -33,6 +33,16 @@ it contains editorial cuts and the game's existing score. The diagnostic stage
 and gameplay export are separately identified. Their sampling rates do not
 establish a physical-device frame rate.
 
+Separate Android 16 qualification passed on animation commit `2280dc10`: all
+four native guardian skins changed over twenty real simulation steps, with four
+distinct rendered frames each. Eight actual Android frames (0 and 17 per region)
+were opened to confirm native skin movement, connected anatomy/weapon parts and
+painted rendering. No cosmetic correction followed. First-session relic/oath
+coverage and its cold restart also passed. Subsequent changes affect only the
+CI harness, its diagnosed software-emulator AFK deadline and documentation.
+Hashes and scope are recorded in
+`docs/audit/2026-10-02/animation-android-graphics.json`.
+
 ## Verified limits
 
 The automated motion suite passes 98 checks, including rigid weapon geometry,
@@ -43,6 +53,6 @@ and three viewport sizes. Those framing fixtures also raise damage and guardian
 Life to keep the review independent of late-game progression balance.
 
 Manual disposition: **reviewed for the requested animation scope**. Remaining
-acceptance is the exact-head Android CI and physical Pixel 9 Pro Fold playback,
+acceptance is the current-head full Android CI and physical Pixel 9 Pro Fold playback,
 touch, sustained performance, heat and battery measurement. This does not approve
 a main-branch merge or Play publication. Previous 0.40 reports remain historical.

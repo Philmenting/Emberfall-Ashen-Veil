@@ -53,6 +53,15 @@ Gelenkänderungen und vier unterschiedliche gerenderte Bilder je Region.
 Der isolierte Android-Test bestätigt außerdem den systemeigenen Vollbildhinweis
 vor dem Start und sichert bei Fehlern ein Diagnosebild. Damit kann ein verdeckter
 Startbildschirm von einem Skript- oder Darstellungsfehler unterschieden werden.
+Die bewegte Prüfung auf Android 16 hat für alle vier Wächter bestanden:
+20 Gelenkänderungen und vier unterschiedliche Bilder pro Region. Der isolierte
+Erststart mit Klassenrelikt, kombinierten Eiden und Neustart hat ebenfalls bestanden.
+Der vollständige Offline-Test erreichte beim bisherigen Fünf-Minuten-Limit etwa
+90 Prozent der Abrechnung. Deshalb erhält ausschließlich dieser CI-Aufruf auf
+dem Software-Emulator 900 Sekunden; die exakte Stundenabrechnung und der
+Neustart ohne doppelte Belohnungen bleiben unverändert Pflicht.
+Die geprüften Android-Bilder und ihr genauer Quellstand sind im
+[Android-Nachweis](audit/2026-10-02/animation-android-graphics.json) dokumentiert.
 
 Pro lebender Figur gibt es einen gemeinsam genutzten GPU-Skin mit 23 Knochen,
 zwölf gemalten Teilen und höchstens 6.000 Vertices sowie den Kontaktschatten.

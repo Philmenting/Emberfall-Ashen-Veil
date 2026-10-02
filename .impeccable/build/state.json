@@ -47,5 +47,6 @@
     "physical Android touch/dp/system inset behavior",
     "human comprehension and retention"
   ],
-  "androidCurrentHeadCI": "pending exact published commit verification"
+  "androidGraphicsVerification": "docs/audit/2026-10-02/animation-android-graphics.json",
+  "androidCurrentHeadCI": "Current-head results are recorded in draft PR #3 / Actions. Committed Android graphics evidence identifies its exact animation source head; later edits are CI harness and documentation only."
 }

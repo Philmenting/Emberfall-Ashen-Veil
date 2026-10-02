@@ -81,7 +81,10 @@ jobs:
         disable-animations: true
         emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -no-snapshot -camera-back none
         script: |
-          if [ "${{ inputs.graphics_only }}" != "true" ]; then python3 scripts/android_beta_smoke.py --apk build/emberfall-afk-qa.apk; fi
+          # The software renderer reached about 90% of the exact one-hour AFK
+          # ledger at the previous 300-second deadline. Keep all assertions and
+          # cold-restart coverage; allow this CI-only replay more wall time.
+          if [ "${{ inputs.graphics_only }}" != "true" ]; then python3 scripts/android_beta_smoke.py --timeout-seconds 900 --apk build/emberfall-afk-qa.apk; fi
           adb shell wm size 1080x2424
           python3 scripts/android_beta_smoke.py --success-only --apk build/emberfall-success-qa.apk --output build/android-success-runtime
           python3 scripts/android_beta_smoke.py --art-only --apk build/emberfall-art-qa.apk --output build/android-art-runtime
