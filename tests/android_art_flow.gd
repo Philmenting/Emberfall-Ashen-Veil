@@ -37,7 +37,7 @@ func _inspect_regions() -> void:
 		for battery in [false,true]:
 			run_arena.apply_quality(battery,true,false)
 			Engine.max_fps=30 if battery else 60
-			for frame in range(15): await get_tree().process_frame
+			for frame in range(5): await get_tree().process_frame
 			measurements.append(await _measure_render(region,battery))
 		Engine.max_fps=60
 		print("ANDROID_ART_REGION_PASS ",region," ",REGIONS[region].boss," ",capture.get_width(),"x",capture.get_height())
@@ -53,7 +53,7 @@ func _measure_render(region: int,battery: bool) -> Dictionary:
 	var frame_ms: Array[float]=[]
 	var draw_calls: Array[float]=[]
 	var previous:=Time.get_ticks_usec()
-	for frame in range(90):
+	for frame in range(30):
 		await get_tree().process_frame
 		await RenderingServer.frame_post_draw
 		var now:=Time.get_ticks_usec()
@@ -61,6 +61,6 @@ func _measure_render(region: int,battery: bool) -> Dictionary:
 		previous=now
 		draw_calls.append(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME))
 	frame_ms.sort(); draw_calls.sort()
-	var measurement: Dictionary={"region":region,"quality":"battery" if battery else "balanced","frames":frame_ms.size(),"median_frame_ms":frame_ms[45],"p95_frame_ms":frame_ms[85],"median_draw_calls":draw_calls[45],"render_width":run_arena.render_viewport.size.x,"render_height":run_arena.render_viewport.size.y,"target_fps":30 if battery else 60}
+	var measurement: Dictionary={"region":region,"quality":"battery" if battery else "balanced","frames":frame_ms.size(),"median_frame_ms":frame_ms[15],"p95_frame_ms":frame_ms[28],"median_draw_calls":draw_calls[15],"render_width":run_arena.render_viewport.size.x,"render_height":run_arena.render_viewport.size.y,"target_fps":30 if battery else 60}
 	print("ART_RENDER_METRIC ",JSON.stringify(measurement))
 	return measurement

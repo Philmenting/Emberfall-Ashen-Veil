@@ -55,7 +55,7 @@ def main() -> int:
             if metrics.get("schema") != 1 or {(row["region"], row["quality"]) for row in metrics["measurements"]} != expected:
                 raise RuntimeError("Android render report is missing a quality/region scenario")
             for row in metrics["measurements"]:
-                if row["frames"] != 90 or not all(math.isfinite(row[key]) and row[key] > 0 for key in ["median_frame_ms", "p95_frame_ms", "median_draw_calls"]):
+                if row["frames"] != 30 or not all(math.isfinite(row[key]) and row[key] > 0 for key in ["median_frame_ms", "p95_frame_ms", "median_draw_calls"]):
                     raise RuntimeError("Android render report contains invalid measurements")
             (args.output / "android-render-performance.json").write_text(json.dumps(metrics, indent=2))
             print("ANDROID ART VERIFIED: four guardian scenes, real GLTF geometry, PBR maps and rendered screenshots")

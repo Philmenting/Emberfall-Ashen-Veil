@@ -109,5 +109,11 @@
     "script_shader_errors": 0
   },
   "physical_pixel_9_pro_fold_performance": "unmeasured",
-  "android_current_head": "tracked by PR Actions after publication"
+  "android_current_head": "tracked by PR Actions after publication",
+  "short_render_probe_recheck": {
+    "scenarios": 8,
+    "frames_per_scenario": 30,
+    "failures": 0,
+    "platform": "Linux / llvmpipe, not physical Android"
+  }
 }

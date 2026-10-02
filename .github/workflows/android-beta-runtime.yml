@@ -3,7 +3,12 @@ name: Android Beta Runtime
   pull_request:
     branches:
     - main
-  workflow_dispatch: null
+  workflow_dispatch:
+    inputs:
+      graphics_only:
+        description: Run only graphics QA when AFK code is unchanged
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -55,7 +60,9 @@ jobs:
         GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
         GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: android
       run: |
-        python3 scripts/export_android_qa.py --scene res://tests/android_beta_flow.tscn --output build/emberfall-afk-qa.apk
+        if [ "${{ inputs.graphics_only }}" != "true" ]; then
+          python3 scripts/export_android_qa.py --scene res://tests/android_beta_flow.tscn --output build/emberfall-afk-qa.apk
+        fi
         python3 scripts/export_android_qa.py --scene res://tests/android_art_flow.tscn --output build/emberfall-art-qa.apk
     - name: Enable emulator hardware acceleration
       run: |-
@@ -72,7 +79,9 @@ jobs:
         disable-animations: true
         emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -no-snapshot -camera-back none
         script: |
-          python3 scripts/android_beta_smoke.py --apk build/emberfall-afk-qa.apk
+          if [ "${{ inputs.graphics_only }}" != "true" ]; then
+            python3 scripts/android_beta_smoke.py --apk build/emberfall-afk-qa.apk
+          fi
           adb shell wm size 1080x2424
           python3 scripts/android_beta_smoke.py --art-only --apk build/emberfall-art-qa.apk --output build/android-art-runtime
     - name: Upload QA evidence
