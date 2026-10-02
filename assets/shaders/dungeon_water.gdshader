@@ -22,10 +22,14 @@ void fragment() {
   ROUGHNESS=0.92;
  } else {
   float ripple=sin(p.x*1.8+p.y*0.35+noise2(p*0.5)*3.0+TIME*0.5);
-  float glint=pow(max(0.0,ripple),12.0)*0.12;
+  float cross_wave=sin(p.y*2.3-p.x*0.28-TIME*0.38);
+  float glint=pow(max(0.0,ripple*0.7+cross_wave*0.3),10.0)*0.12;
   ALBEDO=mix(water_color.rgb,crest_color.rgb,noise2(p*0.3)*0.16+glint);
-  NORMAL=normalize(vec3(ripple*0.055,0.0,1.0));
-  ROUGHNESS=0.3;
-  METALLIC=0.24;
+  // NORMAL is in view space. A world-up wave keeps reflections attached
+  // to the water as the camera moves, rather than tilting toward the lens.
+  vec3 wave_normal=normalize(vec3(ripple*0.07,1.0,cross_wave*0.055));
+  NORMAL=normalize((VIEW_MATRIX*vec4(wave_normal,0.0)).xyz);
+  ROUGHNESS=0.26+noise2(p*0.4)*0.08;
+  METALLIC=0.16;
  }
 }

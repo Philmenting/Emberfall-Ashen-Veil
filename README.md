@@ -1,5 +1,13 @@
 # Emberfall: Ashen Veil
 
+## Kathedralenräume: Grafikaufwertung der Beta 0.39
+
+Originale Maßwerkfenster, geschnitzte Bodenintarsien und modellierte Feuerschalen
+ergänzen die neuen Figuren. Regionale Glasfarben, Fensterlicht, verwitterter Stein
+und korrigierte Wasserreflexionen geben den vier Gebieten mehr Tiefe. Der
+Battery-Modus schaltet die zusätzliche Beleuchtung ab. [Änderungen, Technik und
+acht tatsächliche Spielansichten](docs/SANCTUARY_GRAPHICS.md).
+
 ## Geschlossener Play-Beta-Kandidat 0.39
 
 Android-AFK-Rückkehr mit sichtbarem Fortschritt und wiederherstellbarem Restzeit-

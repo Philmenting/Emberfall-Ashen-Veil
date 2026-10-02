@@ -1,6 +1,9 @@
 extends RefCounted
 ## Modular original cathedral meshes, shared by every chamber.
 const MODELS = {
+	"brazier":preload("res://assets/models/ceremonial_brazier.glb"),
+	"lancet":preload("res://assets/models/leaded_lancet.glb"),
+	"intarsia":preload("res://assets/models/sanctuary_intarsia.glb"),
 	"pillar":preload("res://assets/models/pillar.glb"),
 	"broken_pillar":preload("res://assets/models/broken_pillar.glb"),
 	"arch":preload("res://assets/models/gothic_arch.glb"),

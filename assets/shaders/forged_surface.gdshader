@@ -29,7 +29,7 @@ void fragment(){
  }
  ALBEDO=base_tint.rgb*(0.94+weave)*(1.0-surface_metal*0.15)+patina*base_tint.rgb*surface_metal*0.38;
  METALLIC=surface_metal;
- ROUGHNESS=mix(0.91,0.34+worn_roughness*0.24,surface_metal);
+ ROUGHNESS=mix(0.91,0.38+worn_roughness*0.26,surface_metal);
  EMISSION=vertex_materials ? base_tint.rgb*UV2.y*1.3 : vec3(0.0);
  SPECULAR=mix(0.25,0.6,surface_metal);
 }

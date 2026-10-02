@@ -95,6 +95,26 @@ func run_checks() -> void:
 		check(sim.encode_snapshot()==before,"region %d: visual setup does not alter combat or RNG" % region)
 		check(world.find_child("LowCryptMist",true,false)!=null and world.find_child("DungeonDust",true,false)!=null,"region %d: mist and dust are present" % region)
 		check((world.find_child("FloodedArchive",true,false)!=null)==(region==1) and (world.find_child("LavaBasin",true,false)!=null)==(region==3),"region %d: animated regional surfaces retained" % region)
+		var carved_floor_count:=0
+		var carved_floor_unshadowed:=true
+		for batch in world.find_children("*","MultiMeshInstance3D",true,false):
+			if batch.material_override==world.materials.intarsia:
+				carved_floor_count+=batch.multimesh.instance_count
+				carved_floor_unshadowed=carved_floor_unshadowed and batch.cast_shadow==GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		check(carved_floor_count==6 and carved_floor_unshadowed,"region %d: batched flush floors keep shadows disabled" % region)
+		world.reduced_motion=true
+		world.set_shadows(false)
+		var battery_hidden:=not world.sun.shadow_enabled
+		for beam in world.sanctuary_beams: battery_hidden=battery_hidden and not beam.visible
+		for light in world.sanctuary_lights: battery_hidden=battery_hidden and not light.visible
+		check(battery_hidden and sim.encode_snapshot()==before,"region %d: Battery removes decorative lighting without changing combat" % region)
+		world.set_shadows(true)
+		var quality_restored:=world.sun.shadow_enabled
+		for beam in world.sanctuary_beams: quality_restored=quality_restored and beam.visible
+		for light in world.sanctuary_lights: quality_restored=quality_restored and light.visible
+		check(quality_restored and is_zero_approx(world.sanctuary_beam_material.get_shader_parameter("motion")),"region %d: quality returns while reduced motion freezes beam drift" % region)
+		world.reduced_motion=false
+		world.set_shadows(true)
 		var pattern: Dictionary=world.BossPatterns.create(region,sim.checkpoint(0),sim.hero_pos,false)
 		var warning_visual: Node3D=world._pattern_visual(pattern.zones,Color("f05f40"),0.32,true)
 		var bounds: AABB=warning_visual.get_child(0).mesh.get_aabb()

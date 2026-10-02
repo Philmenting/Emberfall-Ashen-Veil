@@ -44,6 +44,11 @@ var last_description := ""
 var journey_props: Dictionary = {}
 var recovered_drops: Array[Dictionary] = []
 var sanctum_gate: Node3D
+var sanctuary_beams: Array[MeshInstance3D] = []
+var sanctuary_lights: Array[SpotLight3D] = []
+var sanctuary_glass: ShaderMaterial
+var sanctuary_beam_material: ShaderMaterial
+var sanctuary_gold: StandardMaterial3D
 
 func _ready() -> void:
 	region_index = clampi(region_index,0,3)
@@ -54,6 +59,7 @@ func _ready() -> void:
 	_build_dungeon()
 	_build_regional_details()
 	_build_dressed_rooms()
+	_build_sanctuary_details()
 	_batch_static_geometry()
 	if simulation.uses_journey(): _build_journey_props()
 	if simulation.Contract.mode(simulation.contract())=="trial": _build_trial_gate()
@@ -104,7 +110,7 @@ func _ready() -> void:
 	_position_camera()
 	var lantern := OmniLight3D.new()
 	lantern.light_color = Color("cad8e5")
-	lantern.light_energy = 1.15
+	lantern.light_energy = 0.90
 	lantern.omni_range = 6.0
 	lantern.position = Vector3(0,2.8,0)
 	hero.add_child(lantern)
@@ -124,6 +130,8 @@ func _build_materials() -> void:
 		mat.shader = preload("res://assets/shaders/aged_stone.gdshader")
 		mat.set_shader_parameter("stone_tint", Color(theme.stone).darkened(float(i)*0.055))
 		mat.set_shader_parameter("roughness",theme.roughness)
+		mat.set_shader_parameter("weathering",0.65 if region_index==1 else 0.25)
+		mat.set_shader_parameter("mineral_tint",Color(["384746","294d40","52435f","503a2c"][region_index]))
 		_set_stone_textures(mat)
 		floor_materials.append(mat)
 	materials.stone = floor_materials[2]
@@ -132,6 +140,8 @@ func _build_materials() -> void:
 	edge_mat.set_shader_parameter("stone_tint", Color(theme.edge))
 	_set_stone_textures(edge_mat)
 	materials.edge = edge_mat
+	materials.intarsia=floor_materials[4].duplicate()
+	materials.intarsia.set_shader_parameter("stone_tint",Color(theme.stone).darkened(0.34))
 
 func _set_stone_textures(mat: ShaderMaterial) -> void:
 	mat.set_shader_parameter("stone_color",preload("res://assets/materials/stone/Rock030_1K-JPG_Color.jpg"))
@@ -156,7 +166,7 @@ func _build_environment() -> void:
 	env.background_color = Color(theme.background)
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	env.ambient_light_color = Color(theme.ambient)
-	env.ambient_light_energy = 0.32
+	env.ambient_light_energy = 0.26
 	env.sky=preload("res://scripts/dungeon_lighting.gd").reflection_sky()
 	env.reflected_light_source=Environment.REFLECTION_SOURCE_SKY
 	env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
@@ -169,7 +179,7 @@ func _build_environment() -> void:
 	sun = moon
 	moon.rotation_degrees = Vector3(-52,-32,0)
 	moon.light_color = Color(theme.moon)
-	moon.light_energy = 0.95
+	moon.light_energy = 0.82
 	moon.shadow_enabled = true
 	moon.directional_shadow_max_distance = 32.0
 	add_child(moon)
@@ -276,7 +286,11 @@ func _authored_prop(kind: String, pos: Vector3, angle: float=0.0, parent: Node3D
 		match original.resource_name.get_slice(".",0):
 			"stone": piece.material_override=materials.stone
 			"edge": piece.material_override=materials.edge
-			"recess": piece.material_override=materials.dark
+			"recess": piece.material_override=materials.intarsia if kind=="intarsia" else materials.dark
+			"glass": piece.material_override=sanctuary_glass
+			"glass_gold": piece.material_override=sanctuary_gold
+			"bronze":
+				piece.material_override=materials.metal if kind=="intarsia" else original
 			_: piece.material_override=original
 	return prop
 
@@ -296,8 +310,7 @@ func _banner(pos: Vector3) -> void:
 		sigil.rotation.z = side*0.7
 
 func _torch(pos: Vector3) -> void:
-	_box(pos+Vector3(0,-0.55,0),Vector3(0.16,1.1,0.16),materials.metal)
-	_box(pos,Vector3(0.48,0.12,0.48),materials.dark)
+	_authored_prop("brazier",pos)
 	var flame := QuadMesh.new()
 	flame.size=Vector2(0.7,1.1)
 	var fire := MeshInstance3D.new()
@@ -324,7 +337,10 @@ func _batch_static_geometry() -> void:
 	for node in find_children("*","MeshInstance3D",true,false):
 		var mesh_node: MeshInstance3D = node
 		var source: Mesh = mesh_node.mesh
-		if mesh_node.name in ["FloodedArchive","LavaBasin","LowCryptMist"]: continue
+		# Godot renames duplicate sibling names. Keep dynamic planes by identity,
+		# otherwise later room beams are batched, freed and lose quality control.
+		if sanctuary_beams.has(mesh_node): continue
+		if mesh_node.name in ["FloodedArchive","LavaBasin","LowCryptMist","SanctuaryBeam"]: continue
 		var signature := ""
 		var transform: Transform3D = mesh_node.global_transform
 		if source is BoxMesh:
@@ -343,16 +359,17 @@ func _batch_static_geometry() -> void:
 		else: continue
 		var mat: Material = mesh_node.material_override
 		var room := floori(mesh_node.global_position.z/11.0)
-		var key := str(mat.get_instance_id())+":"+str(room)+":"+signature
+		var casts_shadow: bool=mesh_node.cast_shadow!=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		var key := str(mat.get_instance_id())+":"+str(room)+":"+signature+":"+str(casts_shadow)
 		if not groups.has(key):
 			var mesh: Mesh = BoxMesh.new() if source is BoxMesh else source
 			if mesh is BoxMesh: mesh.size = Vector3.ONE
-			groups[key] = {"material":mat,"transforms":[],"mesh":mesh}
+			groups[key] = {"material":mat,"transforms":[],"mesh":mesh,"casts_shadow":casts_shadow}
 		groups[key].transforms.append(transform)
 		mesh_node.get_parent().remove_child(mesh_node)
 		mesh_node.queue_free()
 	for group in groups.values():
-		_batch_mesh(group.transforms,group.material,group.mesh)
+		_batch_mesh(group.transforms,group.material,group.mesh,group.casts_shadow)
 
 func _batch_boxes(transforms: Array, mat: Material) -> void:
 	var mesh := BoxMesh.new()
@@ -844,6 +861,10 @@ func _furnace(pos: Vector3,side: float) -> void:
 
 func set_shadows(enabled: bool) -> void:
 	if is_instance_valid(sun): sun.shadow_enabled=enabled
+	for beam in sanctuary_beams: beam.visible=enabled
+	for light in sanctuary_lights: light.visible=enabled
+	if sanctuary_beam_material!=null:
+		sanctuary_beam_material.set_shader_parameter("motion",0.0 if reduced_motion else 1.0)
 
 func _build_journey_floor() -> void:
 	var cells: Dictionary={}
@@ -888,8 +909,7 @@ func _build_journey_floor() -> void:
 		for i in range(12):
 			var rubble := _box(origin+Vector3((-1.0 if i%2==0 else 1.0)*rng.randf_range(4.8,5.3),0.07,rng.randf_range(-3.8,3.8)),Vector3(0.2,0.14,0.3),materials.stone)
 			rubble.rotation.y=rng.randf()*TAU
-		if room in [0,3] and region_index in [0,3]:
-			_box(origin+Vector3(0,0.012,0),Vector3(2.8,0.015,5.2),materials.cloth)
+		# Carved regional medallions dress the chambers in _build_sanctuary_details.
 		if room>0:
 			var previous := Layout.center(region_index,room-1,simulation.layout_seed())
 			var current := Layout.center(region_index,room,simulation.layout_seed())
@@ -913,9 +933,9 @@ func _build_journey_details() -> void:
 			match region_index:
 				0:
 					_sarcophagus(origin+Vector3(side*4.9,0,2.5))
-					if side<0: _banner(origin+Vector3(-5.4,3.4,0))
+					if side<0: _banner(origin+Vector3(-5.4,3.4,-3.0))
 				1:
-					_bookshelf(origin+Vector3(side*5.0,0,1),side)
+					_bookshelf(origin+Vector3(side*5.0,0,3),side)
 					_box(origin+Vector3(side*4.7,0.025,3.3),Vector3(1.6,0.025,1.2),materials.moss)
 				2:
 					_rib_arch(origin+Vector3(side*5.4,0,1.2),side)
@@ -1118,9 +1138,8 @@ func _build_dressed_rooms() -> void:
 				_box(origin+Vector3(side*5.5,0.35,z),Vector3(0.9,0.7,1.1),materials.dark)
 				if side<0 and region_index!=2:
 					_pillar(origin+Vector3(-6.1,0,z),true)
-					_box(origin+Vector3(-6.55,1.8,z),Vector3(0.25,3.6,2.9),materials.dark)
-					for bar in range(4):
-						_box(origin+Vector3(-6.37,1.7,z-0.75+bar*0.5),Vector3(0.07,2.4,0.07),materials.metal)
+					if z!=0.0:
+						_sarcophagus(origin+Vector3(-5.8,0,z))
 		if region_index in [0,1]:
 			_arch(origin+Vector3(-6.6,-0.15,0),PI/2)
 			for far in [-1.0,1.0]:
@@ -1178,6 +1197,54 @@ func _build_dressed_rooms() -> void:
 	dust.mesh=mote
 	dust.material_override=_material(Color("b49a73"),0,true)
 	add_child(dust)
+
+func _build_sanctuary_details() -> void:
+	# Original shared GLTF carvings, outside the combat/simulation layer.
+	sanctuary_glass=ShaderMaterial.new()
+	sanctuary_glass.shader=preload("res://assets/shaders/sanctuary_glass.gdshader")
+	var window_color:=Color(["78b8da","67cdb5","b8a0d9","eaa16a"][region_index])
+	sanctuary_glass.set_shader_parameter("glass_tint",window_color)
+	sanctuary_gold=_material(Color("c9ad76"),0.25,true)
+	sanctuary_beam_material=ShaderMaterial.new()
+	sanctuary_beam_material.shader=preload("res://assets/shaders/sanctuary_beam.gdshader")
+	sanctuary_beam_material.set_shader_parameter("beam_tint",Color(window_color,0.075))
+	for room in range(6):
+		var origin:=_point(Layout.center(region_index,room,simulation.layout_seed())) if simulation.uses_journey() else Vector3(0,0,4-room*11.2)
+		var medallion:=_authored_prop("intarsia",origin+Vector3(0,0.035,0))
+		medallion.name="SanctuaryIntarsia"
+		for part in medallion.find_children("*","MeshInstance3D",true,false):
+			part.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		# Rear wall remains tall; the foreground and all doorways stay open.
+		var window:=_authored_prop("lancet",origin+Vector3(-6.7,0.2,0),-PI/2)
+		window.name="LeadedLancet"
+		if region_index==2: window.rotation.z=0.12
+		for side in [-1.0,1.0]:
+			# Low inlaid borders guide the eye along the room rather than hiding feet.
+			for segment in range(7):
+				_box(origin+Vector3(side*3.5,0.02,-3.0+segment),Vector3(0.12,0.035,0.70),materials.metal)
+		var beam:=MeshInstance3D.new()
+		beam.name="SanctuaryBeam%d" % room
+		var quad:=QuadMesh.new()
+		quad.size=Vector2(2.0,7.2)
+		beam.mesh=quad
+		beam.material_override=sanctuary_beam_material
+		beam.position=origin+Vector3(-3.3,2.1,0)
+		beam.rotation=Vector3(0,0,0.92)
+		beam.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		add_child(beam)
+		sanctuary_beams.append(beam)
+		var light:=SpotLight3D.new()
+		light.name="WindowLight"
+		light.light_color=window_color
+		light.light_energy=1.8
+		light.spot_range=10.0
+		light.spot_angle=34.0
+		light.spot_attenuation=1.4
+		light.shadow_enabled=false
+		add_child(light)
+		light.position=origin+Vector3(-5.9,3.6,0)
+		light.look_at(origin+Vector3(0,0,-0.8))
+		sanctuary_lights.append(light)
 
 func _impact_sparks(origin: Vector3,color: Color) -> void:
 	for i in range(5):
