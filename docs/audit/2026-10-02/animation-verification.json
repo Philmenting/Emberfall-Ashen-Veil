@@ -1,0 +1,369 @@
+{
+  "schema": 1,
+  "version": "0.41.0-beta.1",
+  "version_code": 47,
+  "recorded_at_utc": "2026-10-02T22:48:20.822743+00:00",
+  "local_relevant_suites": {
+    "painted_animation_smoke": {
+      "checks": 98,
+      "failures": 0,
+      "log_sha256": "a602955da460068374b5a4f0a0d03a34a974fc8ecc3d05d0df0b2213a33a29e9"
+    },
+    "world_framing_smoke": {
+      "checks": 900,
+      "failures": 0,
+      "log_sha256": "75b456128ff057e93a31efa44b1291a658df69671bb79b0d75978c71b23802c6"
+    },
+    "character_equipment_smoke": {
+      "checks": 27,
+      "failures": 0,
+      "log_sha256": "ab01f67acbac0ec2269aeb958567101d08643984a4d2e8b5756b71aa5c66a994"
+    },
+    "presentation_smoke": {
+      "checks": 71,
+      "failures": 0,
+      "log_sha256": "ee71b80eb987c3e2eec0e5ef5e21d14a6062b859b03d694545f2bc466e520498"
+    },
+    "visuals_smoke": {
+      "checks": 73,
+      "failures": 0,
+      "log_sha256": "90b863760ea497157a3d4a741439b8f73b0d8fef25d250029adba1559f994ce9"
+    }
+  },
+  "total_relevant_checks": 1169,
+  "native_import": "passed without script errors",
+  "simulation_source_unchanged": {
+    "sha256": "ed4cabb75e65486aa277632ad2d25700bfca4d60e79b7e7fc0a28bbffe6c649b",
+    "byte_identical_to_parent": true
+  },
+  "motion_stage": {
+    "frames": 720,
+    "sampling_fps": 30,
+    "groups": [
+      "three classes",
+      "four hostiles",
+      "four guardians"
+    ],
+    "purpose": "native diagnostic actor inspection, not marketing"
+  },
+  "layout_captures": [
+    {
+      "file": "boss-0-contact-1040x1080.png",
+      "physical_size": [
+        1040,
+        1080
+      ],
+      "sha256": "2f0bbec9f36a39f89671d5bc4d57e8486b16904eae5c4eb037b874b8c4865153"
+    },
+    {
+      "file": "boss-0-contact-2424x1080.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "f07189db3fc28b045baef72923e5429296328cc1de891c58dfc7e9c4d2750fc7"
+    },
+    {
+      "file": "boss-0-contact-854x480.png",
+      "physical_size": [
+        854,
+        480
+      ],
+      "sha256": "b712ad38071347eec4270dfb98fa109983d5b112ce9869c16a3d0b8bdb07762a"
+    },
+    {
+      "file": "boss-0-windup-1040x1080.png",
+      "physical_size": [
+        1040,
+        1080
+      ],
+      "sha256": "a375b1b5de0c4f46fdd4b19ea5546c7e2845632e5b388e2915e79ee29ce865da"
+    },
+    {
+      "file": "boss-0-windup-2424x1080.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "7b80a07f0b2a42c144f871064621c2893ff666ea69171e793fc058bbdc4442db"
+    },
+    {
+      "file": "boss-0-windup-854x480.png",
+      "physical_size": [
+        854,
+        480
+      ],
+      "sha256": "b7edbf237f1d6b669f709fd52ed2dec42840816f469dc425130338062216a1d4"
+    },
+    {
+      "file": "boss-1-contact-1040x1080.png",
+      "physical_size": [
+        1040,
+        1080
+      ],
+      "sha256": "ab78ec10e57a42e97bed4c1d1021acd24d3f14cd69ba9480de1b7cabb74fa32c"
+    },
+    {
+      "file": "boss-1-contact-2424x1080.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "dfbd0a7bb87a68cc89018ed22bc47d25b0abc810b6962a6228fd2d8df20b3c23"
+    },
+    {
+      "file": "boss-1-contact-854x480.png",
+      "physical_size": [
+        854,
+        480
+      ],
+      "sha256": "bd35573a9904149cdbd4bf95dfe47e7f131ddf1b91bf5fe18cce19f5e481aa3e"
+    },
+    {
+      "file": "boss-1-windup-1040x1080.png",
+      "physical_size": [
+        1040,
+        1080
+      ],
+      "sha256": "cbd9e6499f6a3f4d0c895c905e9e7624fb3c100e1108e18c9994f780edb0dcae"
+    },
+    {
+      "file": "boss-1-windup-2424x1080.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "588e3ffc5393231c69422a8977042e9003c51e382d7ce201d1d5ef4587656416"
+    },
+    {
+      "file": "boss-1-windup-854x480.png",
+      "physical_size": [
+        854,
+        480
+      ],
+      "sha256": "4c4f0946dcdd4186434bde13ea13926ab420bad212a2fbb6911effd86f87c4bf"
+    },
+    {
+      "file": "boss-2-contact-1040x1080.png",
+      "physical_size": [
+        1040,
+        1080
+      ],
+      "sha256": "aa59a5d03f4559950a1797560430d091b58699781cdedd17f241052920bdf69c"
+    },
+    {
+      "file": "boss-2-contact-2424x1080.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "332f5787a1a06d65ef5a45595e2fdf8141e2321140b2ea9dcc878c50a421c57a"
+    },
+    {
+      "file": "boss-2-contact-854x480.png",
+      "physical_size": [
+        854,
+        480
+      ],
+      "sha256": "1e17fbcb6d3c367619c3f92cb7898ef02ac3d3985712e3b7f887081b2df0231b"
+    },
+    {
+      "file": "boss-2-windup-1040x1080.png",
+      "physical_size": [
+        1040,
+        1080
+      ],
+      "sha256": "aae54c86dca5361ff10d3d0dba75e0849861192ca3411d709e461798035c277a"
+    },
+    {
+      "file": "boss-2-windup-2424x1080.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "8fe611f2241e78571ab88c58efe873dc1a442fb56ce114f91e69d92629cd640a"
+    },
+    {
+      "file": "boss-2-windup-854x480.png",
+      "physical_size": [
+        854,
+        480
+      ],
+      "sha256": "09d7124ba9414993119e024a8548f6e28c258e73c7d73f75e20b0050d0a00970"
+    },
+    {
+      "file": "boss-3-contact-1040x1080.png",
+      "physical_size": [
+        1040,
+        1080
+      ],
+      "sha256": "ba3892d9a9a5a584dc7c51f10b1eca5fa0d921d43f3b6b4c9a61923a9a4e97d8"
+    },
+    {
+      "file": "boss-3-contact-2424x1080.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "a43a4c147829c5d004797c1ea2ac416e3257887e4327a3604917893f4b67f187"
+    },
+    {
+      "file": "boss-3-contact-854x480.png",
+      "physical_size": [
+        854,
+        480
+      ],
+      "sha256": "ad9a3f21632c6d97a339ed5c3ffd7f5b57a85429e60e990897557cc6f54995e3"
+    },
+    {
+      "file": "boss-3-windup-1040x1080.png",
+      "physical_size": [
+        1040,
+        1080
+      ],
+      "sha256": "d97201e48f17a641fd2aa30e5c58e3abaaa0352326137c70eea6a5dad59c99b7"
+    },
+    {
+      "file": "boss-3-windup-2424x1080.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "206403a7a748474a8bb08f4fcecc5c3935de94bbece0e55ed1383c94f7151b30"
+    },
+    {
+      "file": "boss-3-windup-854x480.png",
+      "physical_size": [
+        854,
+        480
+      ],
+      "sha256": "563416eaa8bae01bb3d71773ab4bc569177d4d83ded071cef9b0a2107ac5cf68"
+    },
+    {
+      "file": "hero-Arcanist-1040x1080.png",
+      "physical_size": [
+        1040,
+        1080
+      ],
+      "sha256": "4f73eaf828b8bdd881672d93b75d419f805495810d98602f68bae372fd5afbca"
+    },
+    {
+      "file": "hero-Arcanist-2424x1080.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "19de7cf7bdcfa8a47478d1e4e2095dfea05eb73bec7e89602440fdd10688818b"
+    },
+    {
+      "file": "hero-Arcanist-854x480.png",
+      "physical_size": [
+        854,
+        480
+      ],
+      "sha256": "bd7621aa8a1fae875a5b440481fc3c9acf33af4ceb54a15e197297cc5413627f"
+    },
+    {
+      "file": "hero-Ranger-1040x1080.png",
+      "physical_size": [
+        1040,
+        1080
+      ],
+      "sha256": "484a21730a79f30f9dd3268a60c7b06bc0c28a5eaf3a250c9852470b6d5ef149"
+    },
+    {
+      "file": "hero-Ranger-2424x1080.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "f7a37c247053a183f89941da4d8b6858484830040f8902146df043fc2b9dcea7"
+    },
+    {
+      "file": "hero-Ranger-854x480.png",
+      "physical_size": [
+        854,
+        480
+      ],
+      "sha256": "e68bfceba41961f30f79d7c8057fd616b3ea9a49fd9a7f15151821276a3adae7"
+    },
+    {
+      "file": "hero-Vowkeeper-1040x1080.png",
+      "physical_size": [
+        1040,
+        1080
+      ],
+      "sha256": "b046a63184170f1a77684357f14d19bad5537ed0abbe0450e442736c5c69a09b"
+    },
+    {
+      "file": "hero-Vowkeeper-2424x1080.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "85dbdc630d3d48e54195702113def5ebdadf463a611ce7c73ef5b598f94101c8"
+    },
+    {
+      "file": "hero-Vowkeeper-854x480.png",
+      "physical_size": [
+        854,
+        480
+      ],
+      "sha256": "21987b51a12be69b30c4cd85d67bdd9519e5dbb4d040743f31bfca8843930f3a"
+    }
+  ],
+  "retained_captures": [
+    "boss-0-contact-2424x1080.png",
+    "boss-2-contact-2424x1080.png",
+    "boss-3-contact-1040x1080.png",
+    "hero-Ranger-1040x1080.png",
+    "boss-1-contact-854x480.png",
+    "boss-2-contact-854x480.png"
+  ],
+  "manual_review": ".impeccable/review/animation-finish-041.md",
+  "android_exact_head_ci": "See draft PR #3 checks for the published commit; do not reuse prior 0.40 evidence.",
+  "physical_pixel_performance_measured": false,
+  "videos": [
+    {
+      "file": "docs/previews/animations/emberfall-motion-041.mp4",
+      "sha256": "0e8b03aff9f40a9bb4de2756bd7f2db14d4601430168eb39b86b2edf19f62a6f",
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720,
+          "r_frame_rate": "30/1",
+          "duration": "24.000000",
+          "nb_frames": "720"
+        }
+      ]
+    },
+    {
+      "file": "docs/previews/animations/emberfall-gameplay-041.mp4",
+      "sha256": "0d257dd38906f7263de5ae378e6db55bcc4ac6b1a2f147e8b5b5192c4f193045",
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 1200,
+          "height": 536,
+          "r_frame_rate": "30/1",
+          "duration": "16.000000",
+          "nb_frames": "480"
+        },
+        {
+          "codec_type": "audio",
+          "r_frame_rate": "0/0",
+          "duration": "16.000000",
+          "nb_frames": "174"
+        }
+      ]
+    }
+  ],
+  "android_fixture_desktop_rehearsal": {
+    "four_regions_passed": true,
+    "changed_bone_samples_per_region": 20,
+    "distinct_native_frames_per_region": 4,
+    "platform": "Linux GL Compatibility; not Android or physical Pixel evidence",
+    "log_sha256": "3b009482bde762b890cec74236d7774dc998d89b5973f3b8ecca0919aa06844e"
+  }
+}

@@ -1,5 +1,5 @@
 extends SceneTree
-## Actual painted-pose, equipment accent and portrait contract; no obsolete rig.
+## Actual painted layers, visible GPU rig, equipment and portrait contract.
 const Actor=preload("res://scripts/dungeon_actor.gd")
 const HeroArt=preload("res://scripts/hero_art.gd")
 var checks:=0
@@ -16,8 +16,8 @@ func run_checks() -> void:
 	var hero:=Actor.new(); hero.configure_equipment(gear,"Arcanist"); root.add_child(hero)
 	check(hero.kind=="Arcanist" and hero.equipment_grades.Helmet==2,"pending real class and Helmet data configure when actor enters tree")
 	check(hero.atlas_path.ends_with("arcanist.png") and hero.atlas_grid==Vector2(3,2),"Arcanist renders its real six-pose class atlas")
-	check(hero.painted_model.mesh.get_surface_count()==1 and hero.painted_model.mesh.surface_get_arrays(0)[Mesh.ARRAY_VERTEX].size()<=2500,"live figure uses one bounded source-alpha polygon surface")
-	check(hero.find_children("*","Skeleton3D",true,false).is_empty() and hero.find_children("*","MeshInstance3D",true,false).size()==2,"runtime contains the visible painting and contact shadow without a hidden obsolete model")
+	check(hero.painted_model.mesh.get_surface_count()==1 and hero.painted_model.mesh.surface_get_arrays(0)[Mesh.ARRAY_VERTEX].size()<=6000,"complete anatomical painting uses one bounded GPU-skinned surface")
+	check(hero.find_children("*","Skeleton3D",true,false).size()==1 and hero.painted_model.skin!=null and hero.find_children("*","MeshInstance3D",true,false).size()==2,"one native skeleton animates the visible painting with its contact shadow")
 	check(hero.equipment_grades.size()==6 and Actor.EQUIPMENT_REGIONS.size()==6,"all six equipped qualities have defined physical accent regions")
 	var slots: Dictionary={"Weapon":"weapon","Helmet":"helm","Chest":"chest","Gloves":"gloves","Boots":"boots","Amulet":"accent"}
 	var six_bound:=true
@@ -39,9 +39,9 @@ func run_checks() -> void:
 	hero.set_telegraph(1.5); hero.animate(0.9,false)
 	check(hero.pose_frame==3,"warning longer than a swing holds the authored windup")
 	hero.strike("heavy")
-	check(hero.pose_frame==4 and is_zero_approx(hero.telegraph_left),"heavy impact immediately selects the real strike pose")
-	hero.die(); hero.animate(0.2,false)
-	check(hero.pose_frame==5,"defeat renders the authored fallen figure")
+	check(hero.pose_frame==4 and is_zero_approx(hero.telegraph_left),"heavy impact immediately reaches the actual contact state")
+	hero.die(); hero.animate(0.7,false)
+	check(hero.pose_frame==5,"staged collapse settles into the original authored fallen figure")
 	for enemy_kind in Actor.HOSTILE_BLOCKS:
 		var enemy:=Actor.new(); enemy.kind=enemy_kind; enemy.hostile=true; root.add_child(enemy)
 		check(enemy.atlas_path.ends_with("hostiles.png") and enemy.atlas_grid==Vector2(6,4) and enemy.atlas_origin==Actor.HOSTILE_BLOCKS[enemy_kind],enemy_kind+": correct six-pose block is bound in shared hostile atlas")
@@ -50,7 +50,7 @@ func run_checks() -> void:
 	var other_boss:=Actor.new(); other_boss.boss=true; other_boss.hostile=true; other_boss.kind="boss"; root.add_child(other_boss)
 	boss.set_boss_phase(2)
 	check(boss.boss_phase==2 and float(boss.surface_material.get_shader_parameter("boss_phase"))==2.0 and other_boss.boss_phase==0,"actual phase emphasis stays independent per guardian")
-	check(is_equal_approx(boss.figure_height,4.6) and is_equal_approx(boss.pose_bounds().position.y,0.0),"monumental guardian uses a 4.6-unit idle body scale and actual authored ground anchor")
+	check(is_equal_approx(boss.figure_height,4.6) and absf(boss.pose_bounds().position.y)<.035,"monumental guardian keeps a 4.6-unit body scale and grounded sole geometry")
 	for actor in [peer,boss]:
 		actor._set_pose(0)
 		var idle_scale: float=actor.pixels_per_world_unit
@@ -59,7 +59,7 @@ func run_checks() -> void:
 		var finite:=true
 		for pose in range(6):
 			actor._set_pose(pose)
-			mapped=mapped and is_equal_approx(actor.pixels_per_world_unit,idle_scale) and is_equal_approx(actor.pose_bounds().position.y,0.0)
+			mapped=mapped and is_equal_approx(actor.pixels_per_world_unit,idle_scale) and absf(actor.pose_bounds().position.y)<.035
 			var arrays: Array=actor.painted_model.mesh.surface_get_arrays(0)
 			for vertex in arrays[Mesh.ARRAY_VERTEX]: finite=finite and vertex.is_finite()
 			for uv in arrays[Mesh.ARRAY_TEX_UV]: finite=finite and uv.is_finite() and uv.x>=0.0 and uv.y>=0.0 and uv.x<=1.0 and uv.y<=1.0

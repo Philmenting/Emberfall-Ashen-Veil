@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "generator": "image_gen.imagegen",
+  "purpose": "Complete painted anatomical pieces for native skeletal 2.5D animation; preserve the approved character identity.",
+  "pixels": "Unchanged copies of generated transparent RGBA PNGs. Calibration writes UV geometry only.",
+  "shared_prompt": "shared-parts.prompt.txt",
+  "shared_prompt_applies_to": [
+    "arcanist",
+    "ranger",
+    "raider",
+    "bulwark",
+    "hexer",
+    "elite",
+    "guardian_1",
+    "guardian_2",
+    "guardian_3"
+  ],
+  "prompt_limit": "The initial Vowkeeper/Bell Warden prompts and per-character suffixes are not archived in full; this manifest does not reconstruct them.",
+  "references": "The corresponding approved pose atlas supplies identity; the Vowkeeper parts atlas supplies the 4x3 packing reference for later sheets.",
+  "sources": [
+    {
+      "file": "vowkeeper.png",
+      "sha256": "791530df903334f80c3a239db367e65226753ee131e596daa86f1c389f86716b",
+      "identity_reference": "assets/characters/vowkeeper.png",
+      "identity_reference_sha256": "f357503de1daa196586f1550d44590c0c15d0d7c6859eafc62e55712f3805b7c"
+    },
+    {
+      "file": "arcanist.png",
+      "sha256": "0dee6e71f9d1af782c4af1395c87e4923654a07fdb3eb249f2d787e60b60323d",
+      "identity_reference": "assets/characters/arcanist.png",
+      "identity_reference_sha256": "43667781b3ec037d7be9f556e6606c2a638bceca7279bea05d90a9fc223b94e0"
+    },
+    {
+      "file": "ranger.png",
+      "sha256": "86e49053daea0ce287ad39c18051380760fe3c738ba16f2b91386ce1078a6d7d",
+      "identity_reference": "assets/characters/ranger.png",
+      "identity_reference_sha256": "cfbe38abb8ed8b6e7cd1fbb295c62b3c1ecb6c7d1691e36ad3926b7587320de7"
+    },
+    {
+      "file": "raider.png",
+      "sha256": "c61fda081eaa05aeb9e7321c26ecf5f09adb1b43fe468422ce846fd7111eb870",
+      "identity_reference": "assets/characters/hostiles.png",
+      "identity_reference_sha256": "ddb6c3430d1550255a749b5839b9153c7a8a5fd52f22a5271d9e265bbf01bc01"
+    },
+    {
+      "file": "bulwark.png",
+      "sha256": "00a024e786bceab7e541fc2710b640dc2a444bdf7e975edd6bf28706e6c3c5c8",
+      "identity_reference": "assets/characters/hostiles.png",
+      "identity_reference_sha256": "ddb6c3430d1550255a749b5839b9153c7a8a5fd52f22a5271d9e265bbf01bc01"
+    },
+    {
+      "file": "hexer.png",
+      "sha256": "fc6f3191c6388255fbc9784188f38ced8001516c31acfecf6c7b8633180be541",
+      "identity_reference": "assets/characters/hostiles.png",
+      "identity_reference_sha256": "ddb6c3430d1550255a749b5839b9153c7a8a5fd52f22a5271d9e265bbf01bc01"
+    },
+    {
+      "file": "elite.png",
+      "sha256": "cfb046adb6343460f0039f25bd6795490a8b1e9e2a3d2124b316c8ff1bd8b492",
+      "identity_reference": "assets/characters/hostiles.png",
+      "identity_reference_sha256": "ddb6c3430d1550255a749b5839b9153c7a8a5fd52f22a5271d9e265bbf01bc01"
+    },
+    {
+      "file": "guardian_0.png",
+      "sha256": "a7125822e09f09cfcaa075949e79fb75f910b89d2df601af9b6a4a141614236c",
+      "identity_reference": "assets/characters/guardian_0.png",
+      "identity_reference_sha256": "fd79a72ca7a519339c29899a83cda138c096bca28021552076549957e6d0a773"
+    },
+    {
+      "file": "guardian_1.png",
+      "sha256": "b4bd0868cd4bf7c979d1f874c0a2fd23e2fe612779c685b664550f440e6f5bfe",
+      "identity_reference": "assets/characters/guardian_1.png",
+      "identity_reference_sha256": "7951cd01a379852f5baf1843ed487fa20749798e9e1980f1c871cadd544337c5"
+    },
+    {
+      "file": "guardian_2.png",
+      "sha256": "f0cdd5624b6954e20dddd3bfbdc51b3f29e95ef18977e7f9e5c1109364b3e7c6",
+      "identity_reference": "assets/characters/guardian_2.png",
+      "identity_reference_sha256": "730ae5be701740d652e647c90594c0db088dcee8b94843b4c74e0f14251396ea"
+    },
+    {
+      "file": "guardian_3.png",
+      "sha256": "c71b895a8b0a96907c61c41da43b0a4ba4464be992d612bbbcb77969c6b6e736",
+      "identity_reference": "assets/characters/guardian_3.png",
+      "identity_reference_sha256": "15b1a6a04d714368b9cc2faafea2e7df8fa8945732ad07a13e802b41392954ac"
+    }
+  ]
+}

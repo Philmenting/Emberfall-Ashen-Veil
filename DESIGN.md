@@ -168,13 +168,13 @@ Combat overlays reserve top information and bottom actions while Details opens t
 
 ## Elevation & Depth
 
-UI depth comes from tonal layering, fine borders and translucent or opaque ink grounds. Reusable panels and buttons do not establish a drop-shadow vocabulary. Cinzel labels request a subtle native black shadow color; the world uses actual lighting/fog, painted horizons, textured ground and actor contact shadows. The 2.5D figure shader faces the camera while preserving world position; it is not a skeletal 3D rig.
+UI depth comes from tonal layering, fine borders and translucent or opaque ink grounds. Reusable panels and buttons do not establish a drop-shadow vocabulary. Cinzel labels request a subtle native black shadow color; the world uses actual lighting/fog, painted horizons, textured ground and actor contact shadows. The 2.5D figure shader faces the camera while preserving world position. A native Skeleton3D animates painted layers within this plane.
 
 Hollow Spire uses ash stone, a rose window and suspended bell; Drowned Archive uses stepped galleries, jade waterlight and an astrolabe; Glass Ossuary uses rib vaults, ivory and violet glass; Cinder Citadel uses angular basalt, foundry doors, a crown and molten distance. Regional identity lives in architecture and material as well as color.
 
 ## Shapes
 
-Controls have gently rounded native corners; glyph controls and HUD grounds are tighter than equipment and overview cards. Panel border widths are (1), and focus borders are (2). The panel helper applies content margins (11 horizontal, 8 vertical). Calibrated silhouette polygons and UV regions select complete authored poses from unchanged PNGs; they do not rely on equal atlas cells or a hidden legacy character mesh.
+Controls have gently rounded native corners; glyph controls and HUD grounds are tighter than equipment and overview cards. Panel border widths are (1), and focus borders are (2). The panel helper applies content margins (11 horizontal, 8 vertical). Calibrated alpha contours select twelve complete anatomical pieces from each unchanged animation painting. GPU skinning moves their shared surface; the original fallen pose remains the final death state. No hidden legacy character mesh supplies the figure.
 
 ## Components
 
@@ -196,9 +196,11 @@ Life/mana/guardian bars use a dark native track and a softly rounded fill. Backu
 
 ### Actors, phases and motion
 
-Eleven painted figures comprise three Nyra classes, four hostile kinds and four region guardians, each with six authored poses (66 total): idle, two gait poses, anticipation, strike and defeat. Hit feedback overlays a brief flash/lean instead of introducing a seventh pose. Attack presentation uses anticipation up to (0.23 s), strike up to (0.47 s) and returns to idle by (0.62 s). Phase state selects actual warning patterns and metal accents; it does not supply three separate character models.
+Eleven painted figures comprise three Nyra classes, four hostile kinds and four region guardians. Each living figure uses twelve painted pieces, twenty-three native bones and one cached skinned surface (at most 6,000 vertices), plus the contact shadow. Joint transforms interpolate continuously. Distance-driven alternating steps use leg IK to hold supporting soles on the floor, including backward travel; chest/head counter-motion and delayed cloth add weight. The original six-pose atlases remain the source archive and supply settled fallen poses.
 
-Reduced Motion removes camera shake, impact lean and ambient camp/portrait animation while retaining combat pose changes, hit flash, countdown and warning information. Battery mode caps the engine at (30 FPS), reduces render resolution and removes MSAA/shadows; Balanced caps at (60 FPS). Those are configured limits, not measured sustained device results.
+Sword, staff, bow, shield and guardian actions have separate curves. Hero windup follows the simulation's actual pending cast; the visible contact pose is released once on its real hit event. Guardian windup follows its complete warning duration, including restored checkpoints. Bowstring geometry and the drawing hand move together. Recovery lasts (0.32 s), or (0.46 s) for heavy/guardian attacks. Retreat cancels an uncommitted cast; defeat buckles the joints over (0.58 s) before settling into the fallen painting. Animated head/weapon/cloth bounds guide the camera. Phase state selects actual warning patterns and metal accents.
+
+Reduced Motion removes camera shake, impact displacement and ambient sway while retaining essential steps, windups, contacts, falls, hit flash, countdown and warning information. Battery mode caps the engine at (30 FPS), reduces render resolution and removes MSAA/shadows; Balanced caps at (60 FPS). Those are configured limits, not measured sustained device results.
 
 **The Earned State Rule.** Camp seals appear only for saved guardian trophies. Class, equipment, guardian phase and warning cues come from real preparation or simulation state.
 

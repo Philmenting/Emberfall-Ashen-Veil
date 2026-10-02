@@ -1,5 +1,6 @@
 extends Node3D
-## Painterly six-pose cutouts driven by the live 3D simulation. No hidden GLB rig.
+## Continuously skinned approved paintings, driven by live simulation events.
+const MotionRig=preload("res://scripts/painted_motion_rig.gd")
 static var appearance_cache: Dictionary = {}
 static var pose_mesh_cache: Dictionary = {}
 static var metadata_cache: Dictionary = {}
@@ -40,6 +41,21 @@ var equipped_items: Dictionary = {}
 var equipment_grades: Dictionary = {}
 var health_bar: MeshInstance3D
 var materials: Dictionary = {}
+var motion_rig: RefCounted
+var joint_angles:=PackedFloat32Array()
+var facing_sign:=1.0
+var attack_duration:=0.3
+var release_time:=-1.0
+var external_release:=false
+var telegraph_duration:=0.0
+var retreat_time:=-1.0
+var anticipation:=0.0
+var motion_offset:=Vector3.ZERO
+var cloth_follow:=0.0
+var corpse_shift:=0.0
+var gait_axis:=1.0
+var anticipated_blend:=0.0
+const COLLAPSE_DURATION:=0.58
 
 const HEROES: Array[String] = ["Vowkeeper", "Arcanist", "Ranger"]
 const ATLAS_TEXTURES = {
@@ -62,6 +78,7 @@ func _ready() -> void:
 	body.name="PaintedBody"
 	add_child(body)
 	death_lean=-1.0 if (kind.hash()+region_index)%2==0 else 1.0
+	gait_axis=-1.0 if hostile or boss else 1.0
 	_load_appearance()
 	_contact_shadow()
 	if not hostile and not boss: configure_equipment(equipped_items,kind)
@@ -104,7 +121,21 @@ func _load_appearance() -> void:
 	surface_material.set_shader_parameter("atlas_texture",atlas_texture)
 	surface_material.set_shader_parameter("atlas_grid",atlas_grid)
 	surface_material.set_shader_parameter("atlas_origin",atlas_origin)
+	_load_motion_rig()
 	_set_pose(pose_frame)
+
+func _load_motion_rig() -> void:
+	if motion_rig!=null and is_instance_valid(motion_rig.skeleton): motion_rig.skeleton.free()
+	var idle_index:=int(atlas_origin.y)*int(atlas_grid.x)+int(atlas_origin.x)
+	var idle: Dictionary=atlas_data.frames[idle_index]
+	var key: String="guardian_%d" % region_index if boss else kind
+	motion_rig=MotionRig.new()
+	motion_rig.build(key,idle,float(idle.body_height)/figure_height)
+	body.add_child(motion_rig.skeleton)
+	painted_model.skeleton=painted_model.get_path_to(motion_rig.skeleton)
+	joint_angles.resize(MotionRig.NAMES.size()); joint_angles.fill(0.0)
+	motion_rig.pose(joint_angles)
+	surface_material.set_shader_parameter("animated_bow",kind=="Ranger" and not boss and not hostile)
 
 func configure_equipment(equipment: Dictionary,class_key: String="") -> void:
 	equipped_items=equipment.duplicate(true)
@@ -136,9 +167,34 @@ func visual_height() -> float:
 	return maxf(0.0,pose_bounds().end.y+body.position.y)*scale.y if painted_model!=null else figure_height*scale.y
 
 func pose_bounds() -> AABB:
-	return painted_model.mesh.get_aabb() if painted_model!=null else AABB()
+	if painted_model==null: return AABB()
+	var bounds: AABB=motion_rig.bounds if motion_rig!=null and painted_model.mesh==motion_rig.mesh else painted_model.mesh.get_aabb()
+	if painted_model.mesh!=motion_rig.mesh: bounds.position.x+=corpse_shift
+	if facing_sign<0.0: bounds.position.x=-bounds.end.x
+	return bounds
+
+func face_toward(direction: Vector3,camera_position: Vector3) -> void:
+	if death_time>=0.0: return
+	var right:=Vector3.UP.cross(((camera_position-position)*Vector3(1,0,1)).normalized())
+	var projected:=direction.dot(right)
+	# A dead zone prevents shoulder-to-shoulder opponents flickering left/right.
+	if absf(projected)<0.22: return
+	var authored_direction: float=-1.0 if hostile or boss else 1.0
+	facing_sign=signf(projected)*authored_direction
+	surface_material.set_shader_parameter("facing_sign",facing_sign)
+
+func weapon_world_position(camera_position: Vector3) -> Vector3:
+	var right:=Vector3.UP.cross(((camera_position-position)*Vector3(1,0,1)).normalized())
+	var tip: Vector3=motion_rig.weapon_tip()
+	return position+right*tip.x*facing_sign*scale.x+Vector3.UP*tip.y*scale.y
+
+func follow_travel(displacement: Vector3,camera_position: Vector3) -> void:
+	if displacement.length()<.001: return
+	var right:=Vector3.UP.cross(((camera_position-position)*Vector3(1,0,1)).normalized())
+	gait_axis=displacement.normalized().dot(right)/facing_sign
 
 func portrait_anchor() -> Vector3:
+	if motion_rig!=null and painted_model.mesh==motion_rig.mesh: return motion_rig.skeleton.get_bone_global_pose(2).origin
 	if atlas_data.is_empty(): return Vector3(0,figure_height*.87,0)
 	var idle_index:=int(atlas_origin.y)*int(atlas_grid.x)+int(atlas_origin.x)
 	var idle: Dictionary=atlas_data.frames[idle_index]
@@ -158,32 +214,53 @@ func _contact_shadow() -> void:
 	shadow.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(shadow)
 
-func strike(style: String="basic") -> void:
+func strike(style: String="basic",windup_seconds: float=0.3,wait_for_hit: bool=false) -> void:
 	if death_time>=0.0: return
 	var requested_style:=style if not style.is_empty() else "basic"
 	if requested_style=="heavy":
 		telegraph_left=0.0
 		attack_queued=false
-		attack_time=0.23; attack_style=requested_style
-		_set_pose(4)
+		attack_time=0.23; attack_style=requested_style; release_time=0.0
+		external_release=false; pose_frame=4
+		_apply_motion()
 		return
 	if attack_time>=0.0:
 		attack_queued=true; queued_attack_style=requested_style
 	else:
-		attack_time=0.0; attack_style=requested_style
-		_set_pose(3)
+		attack_time=0.0; attack_style=requested_style; release_time=-1.0
+		attack_duration=maxf(0.06,windup_seconds); external_release=wait_for_hit
+		pose_frame=3
+
+func sync_attack(remaining: float) -> void:
+	if external_release and attack_time>=0.0 and release_time<0.0:
+		attack_time=maxf(0.0,attack_duration-remaining)
+
+func release_attack() -> bool:
+	if death_time>=0.0 or attack_time<0.0 or release_time>=0.0: return false
+	release_time=0.0; pose_frame=4
+	_apply_motion()
+	return true
+
+func cancel_attack() -> void:
+	if release_time<0.0:
+		attack_time=-1.0; attack_queued=false; external_release=false
+
+func retreat() -> void:
+	cancel_attack(); retreat_time=0.0
 
 func react() -> void:
 	if death_time<0.0 and impact_time<0.0: impact_time=0.0
 
-func set_telegraph(remaining_seconds: float) -> void:
+func set_telegraph(remaining_seconds: float,total_seconds: float=-1.0) -> void:
+	if total_seconds>0.0: telegraph_duration=total_seconds
+	elif remaining_seconds>telegraph_left+0.05: telegraph_duration=remaining_seconds
 	telegraph_left=maxf(remaining_seconds,0.0)
-	if telegraph_left>0.0 and death_time<0.0: _set_pose(3)
+	if telegraph_left>0.0 and death_time<0.0: pose_frame=3
 
 func die() -> void:
+	if death_time>=0.0: return
 	death_time=0.0
-	attack_queued=false; attack_time=-1.0
-	_set_pose(5)
+	attack_queued=false; attack_time=-1.0; release_time=-1.0; telegraph_left=0.0
 
 func _set_pose(frame: int) -> void:
 	pose_frame=clampi(frame,0,5)
@@ -194,11 +271,28 @@ func _set_pose(frame: int) -> void:
 	var rect: Array=frame_data.region
 	source_region=Rect2(float(rect[0]),float(rect[1]),float(rect[2]),float(rect[3]))
 	var cache_key:=atlas_path+":"+str(index)+":"+str(figure_height)
-	if not pose_mesh_cache.has(cache_key):
+	if pose_frame==0 and motion_rig!=null:
+		painted_model.mesh=motion_rig.mesh
+		painted_model.skin=motion_rig.skin
+	else:
+		painted_model.skin=null
+	if pose_frame!=0 and not pose_mesh_cache.has(cache_key):
 		pose_mesh_cache[cache_key]=_build_pose_mesh(frame_data)
-	painted_model.mesh=pose_mesh_cache[cache_key]
+	if pose_frame!=0: painted_model.mesh=pose_mesh_cache[cache_key]
+	corpse_shift=0.0
+	if pose_frame==5:
+		var bounds: AABB=painted_model.mesh.get_aabb()
+		corpse_shift=-bounds.get_center().x+death_lean*figure_height*.18
+	surface_material.set_shader_parameter("sprite_offset",Vector2(corpse_shift,0))
 	var texture_size:=Vector2(float(atlas_texture.get_width()),float(atlas_texture.get_height()))
-	surface_material.set_shader_parameter("frame_region",Vector4(source_region.position.x/texture_size.x,source_region.position.y/texture_size.y,source_region.size.x/texture_size.x,source_region.size.y/texture_size.y))
+	if pose_frame==0 and motion_rig!=null:
+		surface_material.set_shader_parameter("atlas_texture",motion_rig.texture)
+		surface_material.set_shader_parameter("frame_region",Vector4(0,0,1,1))
+		surface_material.set_shader_parameter("layered_parts",true)
+	else:
+		surface_material.set_shader_parameter("atlas_texture",atlas_texture)
+		surface_material.set_shader_parameter("frame_region",Vector4(source_region.position.x/texture_size.x,source_region.position.y/texture_size.y,source_region.size.x/texture_size.x,source_region.size.y/texture_size.y))
+		surface_material.set_shader_parameter("layered_parts",false)
 	surface_material.set_shader_parameter("pose_frame",float(pose_frame))
 
 func _build_pose_mesh(data: Dictionary) -> ArrayMesh:
@@ -227,42 +321,204 @@ func _build_pose_mesh(data: Dictionary) -> ArrayMesh:
 
 func animate(delta: float,walking: bool,horizontal_speed: float=-1.0) -> void:
 	if body==null: return
+	delta=maxf(0.0,delta)
 	moving=walking
 	if not reduced_motion: clock+=delta
 	if death_time>=0.0:
 		death_time+=delta
-		body.position=Vector3.ZERO
-		surface_material.set_shader_parameter("lean",0.0)
-		_set_pose(5)
+		if death_time>=COLLAPSE_DURATION:
+			if painted_model.mesh==motion_rig.mesh: _set_pose(5)
+			surface_material.set_shader_parameter("hit_flash",0.0)
+		else: _apply_motion(delta)
 		return
 	var speed:=clampf(horizontal_speed,0.0,6.0) if horizontal_speed>=0.0 else 3.2
 	gait_blend=lerpf(gait_blend,1.0 if walking else 0.0,1.0-exp(-delta*12.0))
-	if walking: gait_phase+=delta*speed*3.25
-	var frame:=1+int(floor(gait_phase/PI))%2 if gait_blend>0.22 else 0
-	body.position=Vector3.ZERO
+	anticipated_blend=lerpf(anticipated_blend,anticipation,1.0-exp(-delta*12.0))
+	if walking: gait_phase+=delta*speed*(2.6 if boss else 3.5)
+	pose_frame=1+int(floor(gait_phase/PI))%2 if gait_blend>0.22 else 0
 	action_intensity=1.0
 	if telegraph_left>0.0:
-		frame=3
+		pose_frame=3
 	elif attack_time>=0.0:
-		attack_time+=delta
+		if release_time>=0.0: release_time+=delta
+		elif not external_release:
+			attack_time+=delta
+			if attack_time>=attack_duration: release_time=maxf(0.0,attack_time-attack_duration)
 		var empowered:=attack_style in ["signature","sunder","judgment","chain","starfall","rain","marked"]
 		action_intensity=1.2 if empowered else 1.0
-		if attack_style=="telegraph":
-			frame=3
-		elif attack_time<0.23: frame=3
-		elif attack_time<0.47: frame=4
-		else: frame=0
-		if attack_time>=0.62:
+		pose_frame=3 if release_time<0.0 else (4 if release_time<0.16 else 0)
+		var recovery:=0.46 if boss or attack_style=="heavy" else 0.32
+		if release_time>=recovery:
 			if attack_queued:
-				attack_time=0.0; attack_queued=false; attack_style=queued_attack_style; frame=3
-			else: attack_time=-1.0
+				attack_time=0.0; release_time=-1.0; attack_queued=false; attack_style=queued_attack_style; pose_frame=3
+			else: attack_time=-1.0; release_time=-1.0; external_release=false
 	hit_strength=0.0
 	if impact_time>=0.0:
 		impact_time+=delta
 		hit_strength=sin(clampf(impact_time/0.24,0.0,1.0)*PI)*exp(-impact_time*2.6)
 		if impact_time>=0.24: impact_time=-1.0; hit_strength=0.0
-		if not reduced_motion: body.position.x=death_lean*0.045*hit_strength
+	if retreat_time>=0.0:
+		retreat_time+=delta
+		if retreat_time>=0.38: retreat_time=-1.0
 	surface_material.set_shader_parameter("hit_flash",hit_strength)
-	surface_material.set_shader_parameter("lean",death_lean*0.025*hit_strength if not reduced_motion else 0.0)
 	surface_material.set_shader_parameter("action_intensity",action_intensity)
-	_set_pose(frame)
+	_apply_motion(delta)
+
+func _apply_motion(delta: float=0.0) -> void:
+	if motion_rig==null: return
+	if painted_model.mesh!=motion_rig.mesh and death_time<COLLAPSE_DURATION:
+		var semantic:=pose_frame; _set_pose(0); pose_frame=semantic
+	joint_angles.fill(0.0)
+	motion_offset=Vector3.ZERO
+	var breath:=sin(clock*1.8+float(kind.hash()%13)) if not reduced_motion else 0.0
+	joint_angles[1]=breath*0.012; joint_angles[2]=-breath*0.010
+	var stride:=sin(gait_phase)*gait_blend
+	joint_angles[3]=stride*0.12; joint_angles[7]=-stride*0.16
+	joint_angles[1]+=-stride*0.025; joint_angles[2]+=stride*0.022
+	var windup:=0.0
+	var release:=0.0
+	var recovery:=1.0
+	if telegraph_left>0.0:
+		var progress:=clampf(1.0-telegraph_left/maxf(telegraph_duration,.001),0,1)
+		windup=_ease(minf(progress/.78,1.0))
+		release=_ease(clampf((progress-.90)/.10,0,1))
+	elif attack_time>=0.0:
+		if release_time<0.0:
+			var progress:=clampf(attack_time/maxf(attack_duration,.001),0,1)
+			windup=_ease(minf(progress/.72,1.0))
+			release=_ease(clampf((progress-.72)/.28,0,1))
+		else:
+			# Contact is immediate on the real hit. Follow-through adds weight;
+			# a slow cubic recovery returns to stance without a pose pop.
+			windup=1.0; release=1.0
+			var duration:=0.46 if boss or attack_style=="heavy" else 0.32
+			recovery=1.0-_ease(clampf((release_time-.055)/(duration-.055),0,1))
+	elif anticipated_blend>0.0: windup=anticipated_blend*.65
+	if windup>0.0:
+		var poses:=_action_poses()
+		var prepared: Array=poses[0]; var contact: Array=poses[1]
+		var influence:=windup*recovery
+		joint_angles[3]=lerpf(float(prepared[0]),float(contact[0]),release)*influence
+		joint_angles[4]=lerpf(float(prepared[1]),float(contact[1]),release)*influence
+		joint_angles[7]=lerpf(float(prepared[3]),float(contact[3]),release)*influence
+		joint_angles[8]=lerpf(float(prepared[4]),float(contact[4]),release)*influence
+		joint_angles[1]=lerpf(float(prepared[5]),float(contact[5]),release)*influence
+		joint_angles[2]=-joint_angles[1]*.55
+		var weapon_angle:=lerpf(float(prepared[2]),float(contact[2]),release)*influence
+		joint_angles[6]=weapon_angle-joint_angles[1]-joint_angles[3]-joint_angles[4]
+		motion_offset.x=(.018 if hostile else -.018)*figure_height*windup*recovery*(1.0-release*2.4)
+		motion_offset.y=-figure_height*.012*influence
+	if not reduced_motion:
+		joint_angles[1]+=death_lean*hit_strength*.09
+		joint_angles[2]-=death_lean*hit_strength*.07
+		motion_offset.x+=death_lean*hit_strength*figure_height*.022
+		cloth_follow=lerpf(cloth_follow,-joint_angles[1]*.32+stride*.025,1.0-exp(-delta*7.0))
+		var cloth_strength:=0.007+gait_blend*.01
+		joint_angles[16]=cloth_follow+sin(clock*2.1)*cloth_strength
+		joint_angles[17]=cloth_follow*1.3+sin(clock*2.1-.55)*cloth_strength*1.4
+		joint_angles[18]=cloth_follow*1.6+sin(clock*2.1-1.1)*cloth_strength*1.6
+		joint_angles[19]=sin(clock*2.1-.4)*.012
+	if retreat_time>=0.0:
+		var lean:=sin(clampf(retreat_time/.38,0,1)*PI)
+		joint_angles[1]+=(.12 if hostile else -.12)*lean
+		joint_angles[3]-=lean*.14; joint_angles[7]+=lean*.2
+		motion_offset.y-=figure_height*.028*lean
+	if death_time>=0.0:
+		var collapse:=_ease(clampf(death_time/COLLAPSE_DURATION,0,1))
+		joint_angles[0]=death_lean*collapse*.80
+		joint_angles[1]=-death_lean*collapse*.18
+		joint_angles[2]=death_lean*collapse*.2
+		joint_angles[3]=collapse*.45; joint_angles[7]=-collapse*.35
+		motion_offset.y=-figure_height*.28*collapse
+		motion_offset.x=death_lean*figure_height*.20*collapse
+	# Two-joint leg IK keeps stance soles on the floor while the pelvis breathes,
+	# winds up or recoils. Swing feet lift; foot orientation stays level.
+	var leg_targets: Array[Vector3]=[]
+	for pair in range(2):
+		var phase_value:=gait_phase+float(pair)*PI
+		var contact_phase:=fposmod(phase_value,TAU)/TAU
+		var swing:=contact_phase>=.5
+		var amplitude:=PI/(2.0*(2.6 if boss else 3.5))
+		var u: float=(contact_phase-.5)*2.0
+		# Stance moves backwards at exactly projected travel speed. Hermite
+		# swing shares its endpoint velocities and lifts without a foot snap.
+		var step_x: float=amplitude*(1.0-4.0*contact_phase) if not swing else amplitude*(-1.0-2.0*u+12.0*u*u-8.0*u*u*u)
+		var lift: float=pow(sin(u*PI),2)*.065*figure_height if swing else 0.0
+		var limb:=10 if pair==0 else 13
+		var target: Vector3=motion_rig.rest[limb+2]
+		target.x=lerpf(target.x,motion_rig.rest[limb].x,gait_blend)
+		target+=Vector3(step_x*gait_axis*gait_blend/maxf(scale.x,.01),lift*gait_blend,0)
+		leg_targets.append(target)
+	if death_time<0.0:
+		var lower_pelvis:=0.0
+		for pair in range(2):
+			var limb:=10 if pair==0 else 13
+			var hip: Vector3=motion_rig.rest[limb]+motion_offset
+			var reach: float=motion_rig.local_rest[limb+1].length()+motion_rig.local_rest[limb+2].length()-.004
+			var horizontal: float=absf(leg_targets[pair].x-hip.x)
+			var vertical:=sqrt(maxf(0,reach*reach-horizontal*horizontal))
+			lower_pelvis=maxf(lower_pelvis,hip.y-leg_targets[pair].y-vertical)
+		motion_offset.y-=maxf(0,lower_pelvis)
+	for pair in range(2): _leg_ik(10 if pair==0 else 13,leg_targets[pair])
+	motion_rig.pose(joint_angles,motion_offset)
+	if kind=="Ranger" and not hostile and death_time<0.0:
+		var pull:=figure_height*.12*windup*recovery*(1.0-release)
+		var string_point: Vector3=motion_rig.set_bow_draw(pull)
+		if windup*recovery>.02:
+			var initial_hand: Vector3=motion_rig.skeleton.get_bone_global_pose(9).origin
+			var approach:=_ease(clampf(windup*recovery/.55,0,1))
+			_reach_arm(7,initial_hand.lerp(string_point+Vector3(-.015,0,0),approach))
+			motion_rig.pose(joint_angles,motion_offset)
+			motion_rig.set_bow_draw(pull)
+	surface_material.set_shader_parameter("pose_frame",float(pose_frame))
+
+func _reach_arm(first: int,target: Vector3) -> void:
+	var parent: Transform3D=motion_rig.skeleton.get_bone_global_pose(1)
+	var goal: Vector3=parent.affine_inverse()*target-motion_rig.local_rest[first]
+	var upper: Vector3=motion_rig.local_rest[first+1]
+	var lower: Vector3=motion_rig.local_rest[first+2]
+	var distance:=clampf(goal.length(),absf(upper.length()-lower.length())+.001,upper.length()+lower.length()-.001)
+	var shoulder:=atan2(goal.y,goal.x)-acos(clampf((upper.length_squared()+distance*distance-lower.length_squared())/(2.0*upper.length()*distance),-1,1))
+	var elbow:=Vector3(cos(shoulder),sin(shoulder),0)*upper.length()
+	var forearm:=atan2(goal.y-elbow.y,goal.x-elbow.x)
+	joint_angles[first]=wrapf(shoulder-atan2(upper.y,upper.x),-PI,PI)
+	joint_angles[first+1]=wrapf(forearm-atan2(lower.y,lower.x)-joint_angles[first],-PI,PI)
+
+func _leg_ik(first: int,target: Vector3) -> void:
+	var root_anchor: Vector3=motion_rig.rest[0]
+	var relative: Vector3=Basis(Vector3.BACK,-joint_angles[0])*(target-root_anchor-motion_offset)+root_anchor
+	var hip: Vector3=motion_rig.rest[first]
+	var upper: Vector3=motion_rig.rest[first+1]-hip
+	var lower: Vector3=motion_rig.rest[first+2]-motion_rig.rest[first+1]
+	var goal:=relative-hip
+	var distance:=clampf(goal.length(),absf(upper.length()-lower.length())+.001,upper.length()+lower.length()-.001)
+	var rest_cross:=upper.x*lower.y-upper.y*lower.x
+	var bend:=1.0 if rest_cross<0.0 else -1.0
+	var hip_angle:=atan2(goal.y,goal.x)+bend*acos(clampf((upper.length_squared()+distance*distance-lower.length_squared())/(2.0*upper.length()*distance),-1,1))
+	var knee: Vector3=hip+Vector3(cos(hip_angle),sin(hip_angle),0)*upper.length()
+	var shin_angle:=atan2(relative.y-knee.y,relative.x-knee.x)
+	joint_angles[first]=hip_angle-atan2(upper.y,upper.x)
+	joint_angles[first+1]=shin_angle-atan2(lower.y,lower.x)-joint_angles[first]
+	joint_angles[first+2]=-joint_angles[0]-joint_angles[first]-joint_angles[first+1]
+
+func _action_poses() -> Array:
+	# upper arm, elbow, absolute blade/staff angle, off arm/elbow, chest.
+	if boss:
+		var weapon_windup: float=[-.85,-.25,-1.65,-1.60][region_index]
+		var weapon_contact: float=[.35,.75,-.3,-.45][region_index]
+		return [[-.62,-1.05,weapon_windup,.24,-.22,-.09],[-.18,-.42,weapon_contact,-.18,.1,.14]]
+	if kind=="Vowkeeper" and attack_style in ["guard","aegis"]:
+		return [[-.15,-.4,.9,-.4,-.55,.04],[.15,-.3,.6,-.6,-.45,-.06]]
+	if kind=="Arcanist" and attack_style in ["starfall","signature"]:
+		return [[.1,-.5,.4,-.5,-.55,.08],[.9,.5,.5,.7,-.3,-.10]]
+	if kind=="Ranger" and attack_style=="rain":
+		return [[.9,.5,1.4,-.48,-1.15,-.08],[.94,.5,1.42,-.05,-.7,-.06]]
+	match kind:
+		"Vowkeeper": return [[-.40,-1.20,2.60,-.12,-.20,.10],[1.10,.65,.70,.12,-.25,-.16]]
+		"Arcanist": return [[.18,-.65,.24,-.32,-.50,.07],[.75,.42,-.58,.38,-.35,-.12]]
+		"Ranger": return [[.70,.42,.85,-.48,-1.15,-.08],[.74,.46,.91,-.05,-.70,-.06]]
+		"hexer": return [[-.35,-.45,-.32,.15,-.50,-.06],[-.15,-.55,.66,-.30,-.20,.10]]
+		_: return [[-.48,-.65,-1.30,.25,-.2,-.10],[-.15,-.38,-.32,-.25,-.3,.14]]
+
+static func _ease(t: float) -> float:
+	return t*t*(3.0-2.0*t)

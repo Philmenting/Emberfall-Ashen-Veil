@@ -25,11 +25,20 @@ uniform float boss_phase = 0.0;
 uniform bool boss_surface = false;
 uniform float lean = 0.0;
 uniform float sprite_opacity = 1.0;
+uniform float facing_sign = 1.0;
+uniform vec2 sprite_offset = vec2(0.0);
+uniform bool layered_parts = false;
+uniform bool animated_bow = false;
+uniform vec4 bow_string_source = vec4(1297.0,60.0,1283.0,409.0);
 
 varying vec2 cell_uv;
+varying vec2 equipment_uv;
+varying float string_part;
 
 void vertex() {
     cell_uv = UV;
+    equipment_uv = layered_parts ? COLOR.rg : UV;
+    string_part = layered_parts ? COLOR.b : 0.0;
     // A vertical cutout stays grounded while its horizontal axis faces the
     // live 3D camera. Simulation yaw never turns the painting into a thin card.
     vec3 forward = normalize(vec3(INV_VIEW_MATRIX[3].x - MODEL_MATRIX[3].x, 0.0, INV_VIEW_MATRIX[3].z - MODEL_MATRIX[3].z));
@@ -41,6 +50,8 @@ void vertex() {
     float x = VERTEX.x;
     VERTEX.x = cos(lean) * x - sin(lean) * VERTEX.y;
     VERTEX.y = sin(lean) * x + cos(lean) * VERTEX.y;
+    VERTEX.xy += sprite_offset;
+    VERTEX.x *= facing_sign;
 }
 
 void fragment() {
@@ -48,6 +59,14 @@ void fragment() {
     // map the original PNG without cutting weapons at nominal atlas seams.
     vec2 source_uv = frame_region.xy + cell_uv * frame_region.zw;
     vec4 painting = texture(atlas_texture, source_uv);
+    if (animated_bow && layered_parts && string_part < 0.5) {
+        vec2 pixel = source_uv * vec2(textureSize(atlas_texture, 0));
+        vec2 segment = bow_string_source.zw - bow_string_source.xy;
+        float progress = dot(pixel - bow_string_source.xy, segment) / dot(segment, segment);
+        float distance_to_string = length(pixel - bow_string_source.xy - segment * clamp(progress, 0.0, 1.0));
+        if (progress > 0.0 && progress < 1.0 && distance_to_string < 3.4) painting.a = 0.0;
+    }
+    if (string_part > 0.5) painting = vec4(0.64, 0.52, 0.33, 1.0);
     vec3 color = painting.rgb;
     float edge = 0.0;
     if (equipment_enabled) {
@@ -58,15 +77,15 @@ void fragment() {
         // regions. These communicate grade; they do not claim item-mesh swaps.
         float rank = chest_rank;
         vec3 accent = chest_tint.rgb;
-        if (cell_uv.y < 0.24 && cell_uv.x > 0.31 && cell_uv.x < 0.68) { rank = helm_rank; accent = helm_tint.rgb; }
-        else if (cell_uv.y > 0.76) { rank = boots_rank; accent = boots_tint.rgb; }
-        else if (cell_uv.y > 0.40 && cell_uv.y < 0.68 && (cell_uv.x < 0.31 || cell_uv.x > 0.70)) { rank = gloves_rank; accent = gloves_tint.rgb; }
-        else if (cell_uv.x > 0.70 || (cell_uv.x < 0.31 && cell_uv.y < 0.40)) { rank = weapon_rank; accent = weapon_tint.rgb; }
-        if (distance(cell_uv, vec2(0.51, 0.40)) < 0.057) { rank = accent_rank; accent = accent_tint.rgb; }
+        if (equipment_uv.y < 0.24 && equipment_uv.x > 0.31 && equipment_uv.x < 0.68) { rank = helm_rank; accent = helm_tint.rgb; }
+        else if (equipment_uv.y > 0.76) { rank = boots_rank; accent = boots_tint.rgb; }
+        else if (equipment_uv.y > 0.40 && equipment_uv.y < 0.68 && (equipment_uv.x < 0.31 || equipment_uv.x > 0.70)) { rank = gloves_rank; accent = gloves_tint.rgb; }
+        else if (equipment_uv.x > 0.70 || (equipment_uv.x < 0.31 && equipment_uv.y < 0.40)) { rank = weapon_rank; accent = weapon_tint.rgb; }
+        if (distance(equipment_uv, vec2(0.51, 0.40)) < 0.057) { rank = accent_rank; accent = accent_tint.rgb; }
         float bronze = smoothstep(0.08, 0.24, color.r - color.b) * smoothstep(0.16, 0.42, dot(color, vec3(0.299, 0.587, 0.114)));
         // Only weathered bronze highlights receive a small grade tint; skin,
         // white hair, plum cloth and the painted anatomy retain their values.
-        if (cell_uv.y > 0.24 || cell_uv.y < 0.15) color = mix(color, color * mix(vec3(1.0), accent * 1.35, 0.12), bronze * rank * 0.11);
+        if (equipment_uv.y > 0.24 || equipment_uv.y < 0.15) color = mix(color, color * mix(vec3(1.0), accent * 1.35, 0.12), bronze * rank * 0.11);
         color = mix(color, accent, edge * rank * 0.11);
         edge *= min(rank * 0.12, 0.42);
     }

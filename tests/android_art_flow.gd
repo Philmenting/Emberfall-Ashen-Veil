@@ -13,7 +13,8 @@ func _ready() -> void:
 
 func _inspect_regions() -> void:
 	var measurements: Array=[]
-	print("ANDROID_ART_READY actual GLTF assets, renderer=",RenderingServer.get_current_rendering_method())
+	var motion: Array=[]
+	print("ANDROID_ART_READY native painted skeletons, renderer=",RenderingServer.get_current_rendering_method())
 	for region in range(4):
 		character_class=["Vowkeeper","Arcanist","Ranger","Arcanist"][region]
 		floor_number=region*10+1
@@ -40,14 +41,42 @@ func _inspect_regions() -> void:
 			for frame in range(5): await get_tree().process_frame
 			measurements.append(await _measure_render(region,battery))
 		Engine.max_fps=60
+		motion.append(await _inspect_motion(region))
 		print("ANDROID_ART_REGION_PASS ",region," ",REGIONS[region].boss," ",capture.get_width(),"x",capture.get_height())
-	var report: Dictionary={"schema":1,"scenario":"frozen guardian render workload","platform":OS.get_name(),"device":OS.get_model_name(),"renderer":RenderingServer.get_current_rendering_method(),"resolution":{"width":get_viewport().get_visible_rect().size.x,"height":get_viewport().get_visible_rect().size.y},"measurements":measurements}
+	var report: Dictionary={"schema":1,"scenario":"frozen guardian render workload; separately stepped real combat animation","platform":OS.get_name(),"device":OS.get_model_name(),"renderer":RenderingServer.get_current_rendering_method(),"resolution":{"width":get_viewport().get_visible_rect().size.x,"height":get_viewport().get_visible_rect().size.y},"measurements":measurements,"motion":motion}
 	var output:=FileAccess.open("user://art-performance.json",FileAccess.WRITE)
 	if output==null:
 		print("ANDROID_ART_FAIL performance report write failed"); return
 	output.store_string(JSON.stringify(report,"\t")); output.close()
 	print("ANDROID_ART_PASS all four regions rendered with authored models and painted materials")
 	if "--quit-after-art" in OS.get_cmdline_user_args(): get_tree().quit()
+
+func _inspect_motion(region: int) -> Dictionary:
+	run_arena.apply_quality(false,true,false)
+	var world: Node3D=run_arena.world
+	world.set_process(false); world.active=true
+	var guardian: Node3D=world.actor_by_id[50]
+	var previous: Transform3D=guardian.motion_rig.skeleton.get_bone_global_pose(3)
+	var changed:=0; var hashes: Array=[]
+	var before: float=expedition.elapsed
+	for frame in range(20):
+		world._process(.05)
+		var pose: Transform3D=guardian.motion_rig.skeleton.get_bone_global_pose(3)
+		if not pose.is_equal_approx(previous): changed+=1
+		previous=pose
+		await get_tree().process_frame
+		await RenderingServer.frame_post_draw
+		if frame in [0,5,11,17]:
+			var capture:=get_viewport().get_texture().get_image()
+			hashes.append(hash(capture.get_data()))
+			if capture.save_png("user://motion-region-%d-%02d.png" % [region,frame])!=OK:
+				print("ANDROID_ART_FAIL motion screenshot write failed")
+	world.active=false
+	var unique: Dictionary={}
+	for value in hashes: unique[value]=true
+	var valid: bool=changed>=6 and unique.size()==4 and expedition.elapsed>before+.8 and guardian.painted_model.skin!=null
+	print("ANDROID_MOTION_REGION_PASS " if valid else "ANDROID_ART_FAIL motion ",region," bone_changes=",changed," unique_frames=",unique.size())
+	return {"region":region,"frames":20,"simulation_step_seconds":.05,"bone_changes":changed,"unique_rendered_frames":unique.size(),"captures":[0,5,11,17],"passed":valid,"physical_device_performance":false}
 
 func _measure_render(region: int,battery: bool) -> Dictionary:
 	var frame_ms: Array[float]=[]

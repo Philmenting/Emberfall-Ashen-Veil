@@ -73,6 +73,20 @@ def main() -> int:
                 if row["frames"] != 30 or not all(math.isfinite(row[key]) and row[key] > 0 for key in ["median_frame_ms", "p95_frame_ms", "median_draw_calls"]):
                     raise RuntimeError("Android render report contains invalid measurements")
             (args.output / "android-render-performance.json").write_text(json.dumps(metrics, indent=2))
+            # Moving native skins advance with actual combat. These are not
+            # physical-device frame-rate measurements.
+            motion = metrics.get("motion", [])
+            if {row.get("region") for row in motion} != set(range(4)):
+                raise RuntimeError("Android motion evidence is missing a guardian")
+            for row in motion:
+                if not row["passed"] or row["frames"] != 20 or row["bone_changes"] < 6 or row["unique_rendered_frames"] != 4:
+                    raise RuntimeError("Native animation failed to advance or render")
+                for frame in row["captures"]:
+                    filename = f"motion-region-{row['region']}-{frame:02d}.png"
+                    capture = subprocess.run([args.adb, "exec-out", "run-as", PACKAGE, "cat", "files/"+filename], capture_output=True, timeout=60)
+                    if capture.returncode or not capture.stdout.startswith(b"\x89PNG\r\n\x1a\n"):
+                        raise RuntimeError("Android moving frame missing: "+filename)
+                    (args.output / ("android-"+filename)).write_bytes(capture.stdout)
             print("ANDROID ART VERIFIED: four guardian scenes, real skinned geometry, painted materials and rendered screenshots")
             return 0
         log = await_marker("ANDROID_BETA_PASS exact AFK ledger", "first-launch.log")

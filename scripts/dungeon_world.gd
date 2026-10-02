@@ -54,6 +54,7 @@ var hero_equipment: Dictionary={}
 var dressing_room: int=-1
 var occluder_batches: Array[Dictionary]=[]
 var framing_scale := 1.0
+var projectile_emitted := false
 
 func _ready() -> void:
 	region_index = clampi(region_index,0,3)
@@ -77,7 +78,10 @@ func _ready() -> void:
 	if hero.has_method("configure_equipment"): hero.configure_equipment(hero_equipment,character_class)
 	if not simulation.pending_attack.is_empty():
 		var pending_style:=String(simulation.pending_attack.get("ability_id","signature" if simulation.pending_attack.get("skill",false) else "basic"))
-		hero.strike(pending_style)
+		var duration: float=Skills.DEFINITIONS.get(pending_style,{}).get("cast",0.3)
+		hero.strike(pending_style,duration,true)
+		hero.sync_attack(float(simulation.pending_attack.left))
+		hero.animate(0,false,0)
 	if character_class=="Arcanist":
 		ward_shell = MeshInstance3D.new()
 		var shell_mesh := SphereMesh.new()
@@ -474,7 +478,8 @@ func _ensure_wave(wave_index: int) -> void:
 			actor.die()
 			actor.animate(0.8,false)
 		if not enemy.warning.is_empty():
-			actor.set_telegraph(float(enemy.warning.get("left",0.0)))
+			actor.set_telegraph(float(enemy.warning.get("left",0.0)),float(enemy.warning.get("total",0.0)))
+			actor.animate(0,false,0)
 			_show_event(_warning_event(enemy))
 
 func _warning_event(enemy: Dictionary) -> Dictionary:
@@ -519,13 +524,15 @@ func _process(delta: float) -> void:
 	hero.position = hero.position.lerp(_point(simulation.hero_pos),minf(1.0,delta*18.0))
 	var direction := hero.position-previous
 	var walking := direction.length()>0.002
-	if not walking:
+	var hero_speed:=direction.length()/maxf(delta,0.0001)
+	if not walking or simulation.dodging or String(simulation.action)=="Creating spell distance":
 		var target: Dictionary = simulation.enemy_by_id(simulation.target_id)
 		if not target.is_empty(): direction = _point(target.pos)-hero.position
 	if direction.length()>0.01:
 		hero.rotation.y = lerp_angle(hero.rotation.y,atan2(-direction.x,-direction.z),minf(delta*12.0,1.0))
 	hero.reduced_motion=reduced_motion
-	hero.animate(delta,walking,direction.length()/maxf(delta,0.0001))
+	hero.face_toward(direction,camera.position)
+	var actor_speeds: Dictionary={}
 	for id_value in actor_by_id:
 		var enemy: Dictionary = simulation.enemy_by_id(id_value)
 		var actor: Node3D = actor_by_id[id_value]
@@ -534,11 +541,13 @@ func _process(delta: float) -> void:
 		if enemy.hp>0:
 			var facing: Vector3 = hero.position-actor.position
 			actor.rotation.y = lerp_angle(actor.rotation.y,atan2(-facing.x,-facing.z),minf(delta*7.0,1.0))
-		if enemy.hp<=0 and actor.death_time<0: actor.die()
+			actor.face_toward(facing,camera.position)
 		var actor_displacement:=actor.position.distance_to(old_position)
+		actor.follow_travel(actor.position-old_position,camera.position)
+		actor_speeds[id_value]=actor_displacement/maxf(delta,0.0001)
 		actor.reduced_motion=reduced_motion
-		actor.set_telegraph(float(enemy.warning.get("left",0.0)))
-		actor.animate(delta,actor_displacement>0.002,actor_displacement/maxf(delta,0.0001))
+		actor.set_telegraph(maxf(0.0,float(enemy.warning.get("left",0.0))-simulation.accumulator),float(enemy.warning.get("total",0.0)))
+		actor.anticipation=clampf(1.0-float(enemy.cooldown)/.24,0.0,1.0) if actor.position.distance_to(hero.position)<1.8 and enemy.hp>0 else 0.0
 		if not enemy.warning.is_empty() and not warnings.has(id_value):
 			_show_event(_warning_event(enemy))
 		var bar: MeshInstance3D = bars[id_value]
@@ -546,6 +555,22 @@ func _process(delta: float) -> void:
 		bar.position = actor.position+Vector3(0,3.8 if enemy.role=="boss" else 2.5,0)
 		bar.scale.x = maxf(0.01,float(enemy.hp)/float(enemy.max_hp))
 	for event in updates: _show_event(event)
+	if not simulation.pending_attack.is_empty(): hero.sync_attack(maxf(0.0,float(simulation.pending_attack.left)-simulation.accumulator))
+	elif hero.external_release and hero.release_time<0.0: hero.cancel_attack()
+	hero.follow_travel(hero.position-previous,camera.position)
+	hero.animate(delta,walking,hero_speed)
+	if not simulation.pending_attack.is_empty() and not projectile_emitted and character_class!="Vowkeeper":
+		var pending: Dictionary=simulation.pending_attack
+		var remaining:=maxf(0.0,float(pending.left)-simulation.accumulator)
+		if not pending.has("ability_id") and remaining<=0.085 and actor_by_id.has(pending.target):
+			var color: Color=Color("79dbdc") if character_class=="Arcanist" else Color("84e3b4")
+			_launch_projectile(int(pending.target),color,maxf(0.016,remaining))
+			projectile_emitted=true
+	for id_value in actor_by_id:
+		var actor: Node3D=actor_by_id[id_value]
+		if simulation.enemy_by_id(id_value).hp<=0: actor.die()
+		var speed: float=actor_speeds[id_value]
+		actor.animate(delta,speed>.12,speed)
 	if simulation.uses_journey(): _sync_journey_props(delta)
 	for id_value in warnings.keys():
 		var enemy: Dictionary = simulation.enemy_by_id(id_value)
@@ -655,6 +680,7 @@ func _show_event(event: Dictionary) -> void:
 				var marker := _ring(_point(event.position)+Vector3(0,0.07,0),float(event.radius),_material(Color(definition.color),0.0,true))
 				effects.append({"node":marker,"age":0.0,"life":float(event.duration)+0.1,"kind":"cast_mark","ability_id":event.ability_id})
 		"technique":
+			hero.release_attack()
 			_show_technique(event)
 		"well":
 			_float_text(hero.position+Vector3(0,2.6,0),"LIFE +"+str(event.restored),Color("91d1ae"))
@@ -673,10 +699,12 @@ func _show_event(event: Dictionary) -> void:
 		"hero_attack":
 			var style:=String(event.get("ability_id",""))
 			if style.is_empty(): style="signature" if event.get("skill",false) else "basic"
-			hero.strike(style)
-			if character_class!="Vowkeeper" and not event.has("ability_id") and actor_by_id.has(event.target):
-				_launch_projectile(int(event.target),color)
+			var duration: float=Skills.DEFINITIONS.get(style,{}).get("cast",0.3)
+			hero.strike(style,duration,true)
+			if actor_by_id.has(event.target): hero.face_toward(actor_by_id[event.target].position-hero.position,camera.position)
+			projectile_emitted=false
 		"hit":
+			hero.release_attack()
 			if not actor_by_id.has(event.target): return
 			var actor: Node3D = actor_by_id[event.target]
 			actor.react()
@@ -700,7 +728,7 @@ func _show_event(event: Dictionary) -> void:
 				var enemy_kind:=String(attacker.get("kind"))
 				var heavy: bool=enemy_kind in ["bulwark","elite","boss"]
 				heavy_hit=heavy
-				attacker.strike("heavy" if heavy else "enemy")
+				attacker.strike("heavy")
 			_kick_camera(0.070 if heavy_hit else 0.034)
 			_float_text(hero.position+Vector3(0,2.3,0),"−"+str(event.damage),Color("f89583"))
 		"ward":
@@ -730,7 +758,7 @@ func _show_event(event: Dictionary) -> void:
 			warnings[event.source] = zone
 			var source: Dictionary = simulation.enemy_by_id(int(event.source))
 			if not source.is_empty() and not source.warning.is_empty(): _update_warning(zone,source.warning)
-			if actor_by_id.has(event.source): actor_by_id[event.source].set_telegraph(float(event.get("duration",1.3)))
+			if actor_by_id.has(event.source): actor_by_id[event.source].set_telegraph(float(event.get("duration",1.3)),float(source.warning.get("total",event.get("duration",1.3))))
 		"impact":
 			if actor_by_id.has(event.get("source",-1)): actor_by_id[event.source].strike("heavy")
 			_kick_camera(0.055)
@@ -753,6 +781,9 @@ func _show_event(event: Dictionary) -> void:
 		"guard":
 			_float_text(hero.position+Vector3(0,2.6,0),"GUARD +"+str(event.heal),Color("91d1ae"))
 		"evade", "backstep":
+			hero.retreat()
+			for effect in effects:
+				if effect.kind=="projectile": effect.age=effect.life
 			_float_text(hero.position+Vector3(0,2.3,0),"EVADE",Color("adcbe0"))
 		"finished":
 			if not event.won: hero.die()
@@ -1340,8 +1371,8 @@ func _update_warning(node: Node3D, warning: Dictionary) -> void:
 	var timer := node.get_node_or_null("ImpactCountdown") as Label3D
 	if timer!=null: timer.text="%.1fs" % maxf(0.0,float(warning.left))
 
-func _launch_projectile(target: int, color: Color) -> void:
-	var origin := hero.position+Vector3(0,1.3,0)
+func _launch_projectile(target: int, color: Color,flight_seconds: float=0.085) -> void:
+	var origin: Vector3=hero.weapon_world_position(camera.position)
 	var destination: Vector3 = actor_by_id[target].position+Vector3(0,1.15,0)
 	var projectile := Node3D.new()
 	projectile.name = "SpellBolt" if character_class=="Arcanist" else "CinderArrow"
@@ -1353,7 +1384,7 @@ func _launch_projectile(target: int, color: Color) -> void:
 	if character_class=="Arcanist":
 		_drop_sphere(Vector3(0,0,-0.22),0.105,material,projectile)
 	if origin.distance_to(destination)>0.01: projectile.look_at(destination)
-	effects.append({"node":projectile,"age":0.0,"life":0.28,"kind":"projectile","origin":origin,"destination":destination,"target":target})
+	effects.append({"node":projectile,"age":0.0,"life":flight_seconds,"kind":"projectile","origin":origin,"destination":destination,"target":target})
 
 func _build_region_landmarks() -> void:
 	for room in [3,5]:

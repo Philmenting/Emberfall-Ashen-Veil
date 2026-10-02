@@ -50,7 +50,7 @@ func run_checks() -> void:
 		for index in range(first_parts.size()-1): shared=shared and first_parts[index].mesh==second_parts[index].mesh
 		check(shared and first_parts.size()==2 and first.atlas_texture==second.atlas_texture,"guardian %d: cached runtime uses one painted pose surface plus contact shadow" % region)
 		first.strike("telegraph"); first.animate(0.2,false); first.react(); first.animate(0.06,false)
-		first.die(); first.animate(0.2,false)
+		first.die(); first.animate(0.7,false)
 		check(first.body.position.is_finite() and first.pose_frame==5 and first.atlas_path.ends_with("guardian_%d.png" % region),"guardian %d: actual painted attack, impact and defeat states remain finite" % region)
 		first.free(); second.free()
 	print("AUTHORED ART SMOKE: %d checks, %d failures" % [checks,failures])
