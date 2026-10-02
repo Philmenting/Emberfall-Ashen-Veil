@@ -36,6 +36,7 @@ Das frische vollständige [Finish Review](../.impeccable/review/finish-review-04
 | Godot-Baseline | 28 Suites · 2396 Checks · 0 Fehler |
 | Begrenzte Grafikbestätigung | 6 Suites · 491 Checks · 0 Fehler; davon 228 Framing-Checks einschließlich Waffenbegrenzungen |
 | Letzte Warnungs-/Help-Bestätigung | 3 Suites · 213 Checks · 0 Fehler |
+| Wiederhergestellte Bosswarnungen | 122 Checks · 0 Fehler; Füllung, dunkle Unterkontur und orange Kontur einschließlich altem Spielstand geprüft |
 | Atlas-Quellabbildung | 66 Posen · 0 ausgelassene sichtbare Pixel · 0 Überlappung mit Nachbarposen · 8 PNG-SHA256-Nachweise |
 
 Die [Verifikationsdatei](audit/2026-10-02/redesign-verification.json) und [Atlasabbildung](audit/2026-10-02/pose-source-mapping.json) enthalten die maschinenlesbaren Nachweise. [Asset-Provenienz](design/ASSET_PROVENANCE.md) hält die genauen Prompts, PNG-Metadaten, unveränderten Pixelinhalte und Schriftlizenzen fest. Oath-Interaktionen und Offline-Parität beruhen auf Code-/Regressionstests, nicht auf den angehaltenen Galeriebildern.

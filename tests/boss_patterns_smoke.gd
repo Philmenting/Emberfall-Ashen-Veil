@@ -141,7 +141,25 @@ func run_checks() -> void:
 		game._sync_model_state()
 		game._build_ui()
 		var world: Node=game.run_arena.world
-		check(world.warnings.has(50) and world.warnings[50].find_children("*","MeshInstance3D",false,false).size()==2,"region %d: restored shape has fill and outline" % region)
+		var warning_meshes: Array[Node]=world.warnings[50].find_children("*","MeshInstance3D",false,false) if world.warnings.has(50) else []
+		var complete_geometry:=warning_meshes.size()==3
+		var contrast_roles:=complete_geometry
+		var roles: Array=[[false,false],[true,true],[true,false]]
+		for layer in range(warning_meshes.size()):
+			var visual:=warning_meshes[layer] as MeshInstance3D
+			complete_geometry=complete_geometry and visual.mesh!=null and visual.mesh.get_surface_count()==1 and visual.mesh.surface_get_array_len(0)>0
+			var shader:=visual.material_override as ShaderMaterial
+			contrast_roles=contrast_roles and layer<roles.size() and shader!=null
+			if shader!=null and layer<roles.size():
+				contrast_roles=contrast_roles and shader.get_shader_parameter("border")==roles[layer][0] and shader.get_shader_parameter("ink_ground")==roles[layer][1]
+		check(complete_geometry,"region %d: restored warning has complete fill, dark backing and orange contour geometry" % region)
+		check(contrast_roles,"region %d: restored warning retains its distinct fill, backing and contour materials" % region)
+		var backing_extends_contour:=false
+		if complete_geometry:
+			var backing: AABB=(warning_meshes[1] as MeshInstance3D).mesh.get_aabb()
+			var contour: AABB=(warning_meshes[2] as MeshInstance3D).mesh.get_aabb()
+			backing_extends_contour=backing.size.x>contour.size.x and backing.size.z>contour.size.z
+		check(backing_extends_contour,"region %d: dark backing extends beyond the orange danger contour" % region)
 		var countdown := world.warnings[50].get_node_or_null("ImpactCountdown") as Label3D
 		check(countdown!=null and not countdown.text.is_empty(),"region %d: restored warning immediately displays its countdown" % region)
 		check(game.combat_hud.boss.visible and game.combat_hud.boss.text.contains(Patterns.NAMES[region].to_upper()),"region %d: HUD names the current boss attack" % region)

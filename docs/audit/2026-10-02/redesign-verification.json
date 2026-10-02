@@ -230,6 +230,12 @@
     "checks": 213,
     "failures": 0
   },
+  "restored_warning_confirmation": {
+    "suite": "boss_patterns",
+    "checks": 122,
+    "failures": 0,
+    "scope": "Saved warnings retain fill, broader dark backing, orange contour, countdown and deterministic legacy combat. The pre-existing two-mesh assertion was updated for the reviewed three-layer warning."
+  },
   "visual_review": {
     "full_review": ".impeccable/review/finish-review-040.md",
     "full_disposition": "fix",
