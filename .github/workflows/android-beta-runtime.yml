@@ -79,9 +79,7 @@ jobs:
         disable-animations: true
         emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -no-snapshot -camera-back none
         script: |
-          if [ "${{ inputs.graphics_only }}" != "true" ]; then
-            python3 scripts/android_beta_smoke.py --apk build/emberfall-afk-qa.apk
-          fi
+          if [ "${{ inputs.graphics_only }}" != "true" ]; then python3 scripts/android_beta_smoke.py --apk build/emberfall-afk-qa.apk; fi
           adb shell wm size 1080x2424
           python3 scripts/android_beta_smoke.py --art-only --apk build/emberfall-art-qa.apk --output build/android-art-runtime
     - name: Upload QA evidence
