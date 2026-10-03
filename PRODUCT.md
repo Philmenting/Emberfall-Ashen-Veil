@@ -10,7 +10,13 @@ On 3 October 2026 the user explicitly requested fully animated spatial 3D charac
 
 The primary device is a Google Pixel 9 Pro Fold, usually closed, in landscape. Design for its 2424×1080 outer display first, then the unfolded near-square display and compact landscape phones. Maintain native safe areas, Android Back, large text, reduced motion and usable touch targets.
 
+Later on 3 October 2026 the user authorized a complete graphics overhaul and specified Diablo Immortal as the visual reference. This supersedes the bright painterly environment treatment: use mature dark fantasy, believable worn materials, a grounded isometric combat view and deliberate localized lighting. Emberfall's own characters, regions and assets remain original; fully animated spatial 3D figures and the steady combat camera remain required.
+
 ## Product boundaries
+
+The user's subsequent face critique explicitly adds a facial overhaul. Nyra's
+adult face, eyes, lips and hairline must be coherent across the three class
+portraits and the actual camp/combat model. Native 3D remains authoritative.
 
 - Three classes: Vowkeeper, Arcanist and Ranger. Four regions: Hollow Spire, Drowned Archive, Glass Ossuary and Cinder Citadel.
 - Up to two of three oaths combine real risks and rewards with class and regional-set synergies. Class relics, regional sets and equipped techniques provide earned build choices. All four guardians have three simulation-driven phases. No new currency or mandatory daily tasks are required for this redesign.

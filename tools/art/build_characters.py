@@ -7,6 +7,7 @@ their anatomical pivots; there are no billboards, pose sheets or downloaded mode
 """
 import bpy
 import math
+import sys
 from mathutils import Vector
 from pathlib import Path
 from collections import defaultdict
@@ -18,17 +19,18 @@ TAU = PI * 2
 PARTS = defaultdict(list)
 MATS = {}
 PALETTE = {
-    'iron': ('52606b', .68, .58), 'silver': ('b4b8af', .72, .48),
-    'bronze': ('997449', .66, .59), 'gold': ('d0ab68', .70, .49),
-    'patina': ('487e78', .36, .72), 'leather': ('3e2e28', .0, .87),
-    'wine': ('703947', .0, .92), 'violet': ('514267', .0, .89),
-    'sage': ('354f46', .0, .91), 'linen': ('aea38b', .0, .93),
-    'bone': ('c4b99d', .0, .69), 'skin': ('c9afa0', .0, .78),
+    'iron': ('657381', .74, .46), 'silver': ('b4bdc0', .78, .35),
+    'bronze': ('78664f', .67, .58), 'gold': ('b09c79', .74, .43),
+    'patina': ('50736b', .52, .68), 'leather': ('382b27', .0, .83),
+    'wine': ('50272f', .0, .94), 'violet': ('343c55', .0, .92),
+    'sage': ('304039', .0, .93), 'linen': ('b1a58f', .0, .94),
+    'bone': ('b8b09a', .0, .81), 'skin': ('bea495', .0, .81),
     'ash': ('655f59', .0, .96), 'dark': ('171d23', .06, .89),
-    'soul': ('85e0d7', .0, .33), 'ember': ('ff9a50', .0, .45),
-    'hair': ('c8c9c2', .0, .73), 'hair_shadow': ('858e91', .0, .82),
+    'soul': ('78bfb5', .0, .29), 'ember': ('ef984e', .0, .44),
+    'hair': ('c0c4bd', .0, .77), 'hair_shadow': ('686f72', .0, .87),
     'eye': ('c4bbb1', .0, .48), 'iris': ('4c807d', .0, .40),
     'lip': ('9e6d68', .0, .82),
+    'lip_shadow': ('674d46', .0, .87),
 }
 
 def xyz(p):
@@ -237,6 +239,11 @@ def torso(armor='iron', cloth='wine', slender=False):
             tube('Body','silver' if armor=='iron' else 'bronze',[(side*.05,1.40-i*.075,-.196),(side*.14,1.42-i*.075,-.204),(side*.24,1.40-i*.075,-.16)],.008,6,4)
 
 def face(part='Body', skull=False, hood=False, nyra=False):
+    if nyra:
+        sys.path.insert(0,str(Path(__file__).parent))
+        import build_faces
+        build_faces.build(sys.modules[__name__],part)
+        return
     skin='bone' if skull else 'skin'
     loft(part,skin,[(1.54,.058,.063,0),(1.65,.062,.068,-.01),(1.71,.065,.070,-.02)],sides=20)
     if nyra:
@@ -363,9 +370,11 @@ def shield():
 
 def hero(kind):
     cloth={'Vowkeeper':'wine','Arcanist':'violet','Ranger':'sage'}[kind]
-    torso('bronze',cloth,True); limbs('bronze',cloth,slender=True,nyra=True)
+    armor='iron' if kind=='Vowkeeper' else 'silver' if kind=='Arcanist' else 'bronze'
+    torso(armor,cloth,True); limbs(armor,cloth,slender=True,nyra=True)
     cape(cloth); skirt(cloth,kind=='Arcanist')
     face(hood=kind=='Ranger',nyra=True)
+    field_equipment(kind,armor)
     if kind=='Vowkeeper':
         # Open oath circlet and fitted armor preserve the adult heroine's face.
         ring('Body','bronze',(0,1.906,-.010),.123,.126,.010)
@@ -382,7 +391,7 @@ def hero(kind):
         for row in range(len(rows)-1):
             for i in range(columns-1):
                 k=row*columns+i; faces.append((k,k+1,k+columns+1,k+columns))
-        plate=mesh('Body','bronze',vertices,faces)
+        plate=mesh('Body','iron',vertices,faces)
         thickness=plate.modifiers.new('Forged plate thickness','SOLIDIFY');thickness.thickness=.009
         for side in [-1,1]:
             tube('Body','gold',[(side*.06,1.15,-.169),(side*.14,1.32,-.173),(side*.075,1.48,-.152)],.0045,6,5)
@@ -413,6 +422,36 @@ def hero(kind):
                 x=.13+i*.025
                 tube('Body','bone',[(x,1.20,.25),(x,1.74+(i%2)*.045,.25)],.005,6,2)
                 leaf('Body','linen',[(x,1.67,.25),(x+.013,1.72,.25),(x,1.79,.25)],.014,.012)
+
+def field_equipment(kind, armor):
+    # Layered construction reads at the actual game scale. Rivets and rolled
+    # edges belong to the same anatomical part, so every piece follows the rig.
+    for side in [-1,1]:
+        arm='ArmL' if side<0 else 'ArmR'
+        if kind=='Vowkeeper':
+            for row in range(3):
+                leaf(arm,'iron',[(side*.01,.14-row*.045,.025),
+                    (side*.10,.12-row*.066,-.015),(side*(.20-row*.026),.014-row*.07,-.02)],.115-row*.017,.032)
+                tube(arm,'silver',[(side*.01,.14-row*.045,-.015),
+                    (side*.10,.13-row*.066,-.054),(side*(.20-row*.026),.014-row*.07,-.057)],.006,6,3)
+            for row in range(3):
+                leaf('Body','iron',[(side*.08,1.13-row*.082,-.166),
+                    (side*.17,1.10-row*.082,-.17),(side*.22,1.04-row*.082,-.15)],.090,.020)
+            tube('Body','silver',[(side*.07,1.55,-.108),(side*.17,1.52,-.122),(side*.24,1.44,-.139)],.009,8,4)
+        elif kind=='Arcanist':
+            leaf('Body','iron',[(side*.06,1.61,-.07),(side*.11,1.48,-.133),(side*.15,1.29,-.17)],.034,.016)
+            for y in [-.45,-.35]:
+                ring(arm,'silver',(0,y,-.01),.088,.079,.008)
+        else:
+            tube('Body','leather',[(side*.18,1.55,-.10),(-side*.05,1.30,-.194),(-side*.17,1.04,-.16)],.019,8,5)
+            for i in range(4):
+                t=i/3
+                ellipsoid('Body','gold',(side*(.14-.20*t),1.49-.33*t,-.158-.024*t),(.008,.008,.006),8,4)
+        # Worn belt pouches and a forged clasp, rather than a single color band.
+        ellipsoid('Body','leather',(side*.195,.93,-.048),(.044,.062,.043),16,8)
+        for y in [-.43,-.31]:
+            ellipsoid(arm,'silver',(side*.07,y,-.063),(.009,.009,.005),8,4)
+    leaf('Body','silver',[(0,1.025,-.165),(0,.96,-.181),(0,.906,-.166)],.034,.007)
 
 def bell_head(part, base, radius, ornament=True):
     # A real hollow bell: flared rolled lip, shoulder, crown, inner wall.
@@ -558,7 +597,7 @@ def export(name, build):
         objects[0].name=part+'__'+mat
         if name in ('vowkeeper','arcanist','ranger') and len(objects[0].data.polygons)>150:
             mobile=objects[0].modifiers.new('Mobile silhouette preserving topology','DECIMATE')
-            mobile.ratio=.76
+            mobile.ratio=.94 if mat in ['skin','lip','lip_shadow','eye','iris'] else (.61 if name=='vowkeeper' else .565)
             bpy.ops.object.modifier_apply(modifier=mobile.name)
     OUT.mkdir(parents=True,exist_ok=True)
     bpy.ops.export_scene.gltf(filepath=str(OUT/(name+'.glb')),export_format='GLB',

@@ -1,6 +1,21 @@
 # Emberfall: Ashen Veil
 
-## Aktuell: 0.44.0-beta.1 · Fähigkeiten sichtbar und Kampf in Ruhe verstehen
+## Aktuell: 0.45.0-beta.1 · Neue Gesichter, räumliche Ruinen und Materialien
+
+Die Grafik folgt einer düsteren isometrischen ARPG-Richtung: eigene regionale
+Umgebungen, verwitterter Stein, geschichtete Rüstung und örtliche Lichtquellen.
+Schmiede, Expeditionstisch mit Karte und Portal sind echte 3D-Objekte. Eine
+steilere feste Kampfperspektive hält Warnflächen und Fähigkeiten sichtbar.
+Nyra erhält in allen drei Klassen eine neue zusammenhängende Gesichtsgeometrie,
+geformte Augenlider, natürliche Lippen und feinere Haare. Die Live-Porträts
+zeigen dieselben Modelle wie Lager und Kampf. Alle elf Figuren behalten ihre
+nativen Skelettanimationen. Version-Code **51**.
+
+[Umsetzung, native Ansichten und Prüfgrenzen](docs/GRAPHICS_OVERHAUL_045.md),
+[Gameplay mit Lesepause](docs/previews/graphics-overhaul/emberfall-graphics-045.mp4),
+[Review und Testbuild](https://github.com/Philmenting/Emberfall-Ashen-Veil/pull/5).
+
+## Vorheriger Ausbau: 0.44.0-beta.1 · Fähigkeiten sichtbar und Kampf in Ruhe verstehen
 
 Die drei tatsächlich ausgerüsteten Fähigkeiten stehen während des Kampfes in
 einer kompakten Leiste: bereit, am Wirken, Abklingzeit oder zu wenig Mana.

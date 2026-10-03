@@ -54,6 +54,7 @@ func build(parent: Node3D,appearance: String) -> void:
 
 func _bake(authored: Node3D) -> Dictionary:
 	var surface:=SurfaceTool.new(); surface.begin(Mesh.PRIMITIVE_TRIANGLES)
+	surface.set_custom_format(0,SurfaceTool.CUSTOM_RGB_FLOAT)
 	var limits: Array[AABB]=[]; var populated: Array[bool]=[]
 	for i in NAMES.size(): limits.append(AABB()); populated.append(false)
 	var height:=0.0; var count:=0
@@ -79,6 +80,7 @@ func _bake(authored: Node3D) -> Dictionary:
 				var color:=material.albedo_color.srgb_to_linear()
 				color.a=category/8.0
 				surface.set_color(color)
+				surface.set_custom(0,Color(vertex.x,vertex.y,vertex.z,1.0))
 				surface.set_uv(Vector2(equipment_slot,material.roughness))
 				surface.set_uv2(Vector2(material.metallic,1.0 if material.emission_enabled else 0.0))
 				surface.set_bones(PackedInt32Array([int(weights.x),int(weights.y),0,0]))
@@ -152,9 +154,12 @@ func _equipment_slot(part: String,p: Vector3,mat: String) -> float:
 	return -1.0
 
 func _category(mat: String) -> float:
+	if key in ["Vowkeeper","Arcanist","Ranger"]:
+		if mat=="skin": return 6.0
+		if mat in ["lip","lip_shadow"]: return 7.0
 	if mat in ["wine","violet","sage","linen","ash"]: return 1.0
 	if mat=="leather": return 2.0
-	if mat in ["skin","lip","eye","iris"]: return 3.0
+	if mat in ["skin","lip","lip_shadow","eye","iris"]: return 3.0
 	if mat in ["hair","hair_shadow"]: return 4.0
 	if mat=="bone": return 5.0
 	return 0.0

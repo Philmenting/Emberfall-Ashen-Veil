@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "asset_set": "ashen-realms",
+  "created_utc": "2026-10-03T18:52:41.017925+00:00",
+  "purpose": "Original AI-generated distant environment plates behind live isometric 3D game geometry; not gameplay captures.",
+  "direction": "User reference: Diablo Immortal material realism and value hierarchy; original enclosed dark fantasy architecture.",
+  "tool": "image_gen.imagegen",
+  "model": null,
+  "model_note": "The image generation tool did not expose a model identifier.",
+  "requested_aspect_ratio": 2.24,
+  "pixel_edits": false,
+  "assets": [
+    {
+      "id": "spire",
+      "path": "assets/world/ashen-realms/spire.png",
+      "width": 1877,
+      "height": 838,
+      "bytes": 2352401,
+      "sha256": "cddadbd727227b0d3d08b9949586399cb6af149ac2cc6e4162cead77173c371e",
+      "prompt_sidecar": "spire.prompt.txt",
+      "origin_sidecar": "spire.json"
+    },
+    {
+      "id": "archive",
+      "path": "assets/world/ashen-realms/archive.png",
+      "width": 1877,
+      "height": 838,
+      "bytes": 2346400,
+      "sha256": "a737fa4f8fd8d287fdc36d656756511916540ee529092f08354864ef4e1804d9",
+      "prompt_sidecar": "archive.prompt.txt",
+      "origin_sidecar": "archive.json"
+    },
+    {
+      "id": "ossuary",
+      "path": "assets/world/ashen-realms/ossuary.png",
+      "width": 1876,
+      "height": 838,
+      "bytes": 2391525,
+      "sha256": "eed19b39745e59242d5321b7b835448fdc608e18016b78154636683f5a6df8fc",
+      "prompt_sidecar": "ossuary.prompt.txt",
+      "origin_sidecar": "ossuary.json"
+    },
+    {
+      "id": "citadel",
+      "path": "assets/world/ashen-realms/citadel.png",
+      "width": 1877,
+      "height": 838,
+      "bytes": 2295911,
+      "sha256": "27076fadc09c46d8bb9bc99e4f7fa0728d6210d7b3999eb49c95c911298ebaa8",
+      "prompt_sidecar": "citadel.prompt.txt",
+      "origin_sidecar": "citadel.json"
+    },
+    {
+      "id": "camp",
+      "path": "assets/world/ashen-realms/camp.png",
+      "width": 1877,
+      "height": 838,
+      "bytes": 2391566,
+      "sha256": "a981e16743427f8ef19c89e5ca9c263f3c1261477b456787ef76f39676342bdf",
+      "prompt_sidecar": "camp.prompt.txt",
+      "origin_sidecar": "camp.json"
+    }
+  ]
+}

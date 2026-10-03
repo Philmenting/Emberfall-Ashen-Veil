@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).parent))
 from build_characters import *
+import build_characters as author
 PALETTE.update({'stone':('626b71',0,.88),'edge':('919991',0,.79),'recess':('242e35',0,.96)})
 
 def block(mat,at,size):
@@ -13,7 +14,9 @@ def block(mat,at,size):
     bpy.ops.object.transform_apply(location=False,rotation=False,scale=True)
     bevel=obj.modifiers.new('Worn carved edges','BEVEL');bevel.width=.035;bevel.segments=2
     bpy.ops.object.modifier_apply(modifier=bevel.name)
-    obj.data.materials.append(material(mat));PARTS[('Body',mat)].append(obj)
+    # export() replaces the registry for every model. Resolve it on the module,
+    # otherwise these blocks miss material joining after the first reset.
+    obj.data.materials.append(material(mat));author.PARTS[('Body',mat)].append(obj)
 
 def ruined_vault():
     for z in [-.5,.5]:

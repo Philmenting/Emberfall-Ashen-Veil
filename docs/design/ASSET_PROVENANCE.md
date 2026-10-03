@@ -1,5 +1,53 @@
 # Redesign asset provenance
 
+## Current world and material overhaul · 0.45
+
+The user authorized a complete graphics overhaul and explicitly named Diablo
+Immortal as the direction reference. Five original generated distant plates in
+`assets/world/ashen-realms/` replace the prior painted atlas and camp backdrop.
+Each PNG carries its exact generation prompt and origin in ancillary metadata;
+the matching TXT/JSON sidecars and `manifest.json` record origin and SHA-256.
+No Blizzard image, model, UI, name, or animation was copied. These are environment
+assets behind live geometry, never presented as gameplay captures.
+
+The character generator rebuilds all eleven original GLBs with the new palette
+and adds class-specific layered armor, pouches, straps and clasps. The original
+29-bone / nine-clip system remains authoritative. Rest-space material detail uses
+the existing ambientCG Metal063 texture set plus the original four-cell
+`assets/materials/field-surfaces/material-atlas.png` for dark oak, weathered
+leather, linen and forged steel. The new atlas retains its exact generation
+prompt, origin and SHA-256 in sidecars and PNG metadata; its pixel chunks are
+unmodified. Mirrored sampling stays inside each cell; runtime shading derives
+color/roughness variation without claiming a separately authored normal map.
+Stone uses the existing ambientCG
+Rock030 color, roughness and normal maps. Both sets retain their existing CC0
+origin. RGTC/EAC normal Z is reconstructed from the compressed red/green channels.
+
+Following the user's explicit face critique, `tools/art/build_faces.py` authors
+Nyra's continuous head, orbital recesses, nose, fitted eyelids/lips and swept
+hair. `assets/materials/nyra-face/nyra-face-albedo.png` is an original generated
+diffuse facial patch, not a portrait replacing the 3D model or a scanned likeness.
+Its exact initial/correction prompts, provenance, SHA-256 and observed facial
+landmarks are retained in sidecars and PNG metadata. Runtime projection uses
+those measured landmarks in immutable mesh rest coordinates. The image retains
+subtle anatomical shading; it is not claimed to be a captured PBR skin scan.
+Pixel chunks are unchanged. The existing Head bone and body clips animate the
+new surface; no separate facial-expression rig or lip-sync system is claimed.
+
+`tools/art/build_camp_furniture.py` authors three original GLBs from geometry:
+`expedition_table.glb` has pegged trestles, iron straps, a rolled map with a route,
+folio and candle; `field_forge.glb` has an open hearth, coals, flue, anvil, hammer,
+tongs and bellows; `seal_shrine.glb` has four empty carved mounts. The portal
+instantiates the existing original Gothic arch. Regional masonry shells and
+lower paving aprons are authored directly in the native world builder.
+`tools/art/build_landmarks.py` regenerates the four original regional GLBs with
+the current palette and a corrected per-export material registry; library blocks
+now join into eight material meshes. No external geometry was introduced.
+The veil and protective surfaces are native shaders. The old world atlas, camp
+backdrop, painted stone and station atlas stay in the source history and are
+excluded from Android exports. Capture provenance for 0.45 is recorded beside
+the native frames and clip in `docs/previews/graphics-overhaul/`.
+
 ## Current figures · 0.43
 
 On 3 October 2026 the user explicitly chose fully animated 3D figures. All eleven

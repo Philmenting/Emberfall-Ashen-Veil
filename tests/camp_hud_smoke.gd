@@ -35,15 +35,18 @@ func run_checks() -> void:
 	await settle()
 	check(game.camp_scene.world.get_node_or_null("CampHeroModel")!=null,"camp renders the real hero model")
 	check(game.camp_scene.hero.equipped_items==game.equipment,"camp model uses the actual equipped gear")
-	var station_texture:Texture2D=game.camp_scene.STATION_ATLAS
-	var atlas_image:Image=station_texture.get_image()
-	check(atlas_image.detect_alpha()!=Image.ALPHA_NONE and station_texture.get_width()==station_texture.get_height()*3,"painted station atlas has native transparency and three equal cells")
-	var painted_stations:=true
+	var spatial_stations:=true
+	var depth_present:=true
 	for station in ["forge","table","portal"]:
-		var art:Sprite3D=game.camp_scene.station_art[station]
-		painted_stations=painted_stations and art.visible and art.texture is AtlasTexture and art.texture.atlas==station_texture
-	check(painted_stations,"forge, table and portal render their shipped painted cutouts at real station anchors")
-	check(game.camp_scene.world.get_node("CampStonePlatform").material_override is ShaderMaterial,"hero's physical platform uses the painted stone material")
+		var art:Node3D=game.camp_scene.station_art[station]
+		var pieces:=art.find_children("*","MeshInstance3D",true,false)
+		spatial_stations=spatial_stations and art.visible and not pieces.is_empty() and art.position.is_equal_approx(game.camp_scene.station_anchors[station])
+		var bounds:=AABB()
+		for piece:MeshInstance3D in pieces: bounds=bounds.merge(piece.transform*piece.mesh.get_aabb())
+		depth_present=depth_present and bounds.size.z>0.3
+	check(spatial_stations,"forge, table and portal use visible 3D geometry at real station anchors")
+	check(depth_present,"camp stations have physical depth rather than camera-facing cutouts")
+	check(game.camp_scene.world.get_node("CampStonePlatform").material_override is ShaderMaterial,"hero's physical platform uses the weathered stone material")
 	check(game.camp_scene.world.find_children("EarnedGuardianSeal*","Node3D",true,false).is_empty(),"unearned guardians have no camp trophies")
 	game.find_child("CampForge",true,false).pressed.emit()
 	await settle()
@@ -143,7 +146,7 @@ func run_checks() -> void:
 	game.find_child("ClaimOfflineHaul",true,false).pressed.emit()
 	check(game.pending_idle_fails==0,"offline setback report can be acknowledged")
 	game._change_preference("reduced_motion",true,false)
-	check(game.camp_scene.reduced_motion and not game.camp_scene.is_processing() and game.camp_scene.station_art.portal.visible,"reduced motion stops ambient animation while the painted portal and stations stay visible")
+	check(game.camp_scene.reduced_motion and not game.camp_scene.is_processing() and game.camp_scene.station_art.portal.visible,"reduced motion stops ambient animation while the spatial portal and stations stay visible")
 	game.free()
 	await process_frame
 	print("CAMP HUD SMOKE: %d checks, %d failures" % [checks,failures])

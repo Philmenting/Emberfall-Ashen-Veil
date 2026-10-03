@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "asset_id": "camp",
+  "image": "camp.png",
+  "prompt_file": "camp.prompt.txt",
+  "prompt": "Create one original shipping background plate for Emberfall: Ashen Veil, a mature dark fantasy action RPG. Native very wide landscape, requested 2240 x 1000 pixels, 2.24:1 aspect ratio, opaque full frame. This is a DISTANT ENVIRONMENT BACKDROP behind live isometric 3D game geometry, not a whole gameplay screenshot, not a concept-art poster. Believable high-end real-time game material rendering: physically convincing aged masonry, careful roughness, restrained cinematic light, cold deep shadows with readable midtones, moderate exposure, low saturation. Use the grounded material realism and disciplined value hierarchy of Diablo Immortal as a high-level visual reference, while inventing original architecture and never copying Blizzard locations, symbols, characters, or buildings.\n\nComposition: a wide view from slightly above floor height into a deep enclosed architectural volume, with strong depth formed by receding side aisles. Crisp stone details at upper and far side edges. Keep the CENTER and LOWER HALF quiet, relatively dark, low-detail and low-contrast, suitable for foreground game geometry and animated characters placed later. Broad shadowed stone floor recedes gently into darkness. The upper architecture supplies atmosphere; no central hero prop or giant bright focal point. The room feels physically enclosed, oppressive and threatening, never like a floating stage. Small localized light sources only, clear directional lighting, no broad bloom, no huge bright windows or overexposed light shafts.\n\nRUINED CLOISTER CAMP. A sheltered medieval camp inside an abandoned enclosed stone cloister, with heavy aged gray masonry arches, dark timber repair beams and improvised practical shelter built into side recesses. Along the far left and right edges only, modest work benches, stacked plain travel crates, weathered canvas bundles and a small forge make the place feel temporarily inhabited, but there are no people. A few practical candles and the very dim side forge give localized warm amber light. A single narrow small shaft of pale moonlight falls from a crack in the high vault onto a distant side pillar, not into the center and never overexposed. The central passage and broad lower half remain open, quiet and dark for later game geometry. Protective enclosure amid threatening ruins, believable wear, modest working materials, restrained cold-warm balance. No festive market, banners, decorative lights, bright blue sky, central bonfire or circular stone platform.\n\nNo text, lettering, runes, labels, UI, border, logo, watermark, people, characters, monsters, animals, weapons, foreground hero, ornate gold ribbons, gilded ornamental framing, bright fantasy clouds, purple fog spectacle, candy colors, painterly brush strokes, cartoon styling, photographic film grain, or floating structures. Fill the whole image with the environment. Only the original environment plate.\n",
+  "origin": {
+    "kind": "original_ai_generated_environment_plate",
+    "tool": "image_gen.imagegen",
+    "model": null,
+    "model_note": "Not exposed by tool response.",
+    "source_file": "/workspace/generated_images/exec-9f4c8faf-394e-4bb8-87b7-dd739b511f06.png",
+    "source_sha256": "c14a8485595b65845a50fd8c6be55b043e701baf631d3a9ccd5bf60d2278d6a6",
+    "reference_images": [],
+    "transparent_background": false,
+    "gameplay_capture": false
+  },
+  "width": 1877,
+  "height": 838,
+  "aspect_ratio": 2.239856801909308,
+  "bit_depth": 8,
+  "color_type": 2,
+  "visual_inspection": {
+    "count": 1,
+    "result": "Pass: sheltered cloister; practical edge workstations, dark timber and warm candles; small side moonlight shaft; open central passage."
+  },
+  "metadata_embedding": "Lossless PNG iTXt insertion before IEND; all original chunks and compressed pixel bytes preserved.",
+  "metadata_keywords": [
+    "Prompt",
+    "impeccable:prompt",
+    "Origin"
+  ],
+  "sha256": "a981e16743427f8ef19c89e5ca9c263f3c1261477b456787ef76f39676342bdf",
+  "idat_sha256": "bad6e10b9625db52fc816a5a472a606708fbd7f5accc31c3a517c5d67d3cf222",
+  "bytes": 2391566
+}

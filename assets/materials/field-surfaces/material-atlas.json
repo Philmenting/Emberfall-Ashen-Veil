@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "asset_id": "material-atlas",
+  "image": "material-atlas.png",
+  "prompt_file": "material-atlas.prompt.txt",
+  "prompt": "Create ONE original square 2-by-2 material texture atlas for actual 3D surface sampling in Emberfall: Ashen Veil, a mature dark fantasy action RPG. Requested output 2048 by 2048 pixels, square 1:1 aspect ratio, highest supported square resolution, opaque full frame. This is a FLAT SURFACE MATERIAL ASSET, never a gameplay screenshot, concept-art scene or object presentation.\n\nEXACT ATLAS LAYOUT: four equally sized square quadrants meet directly at the exact horizontal and vertical midlines. TOP LEFT is dark oak timber. TOP RIGHT is charcoal-brown leather. BOTTOM LEFT is muted gray linen. BOTTOM RIGHT is cool forged steel. Each material completely fills its own quadrant edge to edge. There are NO gutters, borders, margins, labels, text, swatches, dividing strokes, cast shadows between cells or rounded corners. Only direct sharp changes from one material to the next at the two central boundaries. Do not blend the materials or change this cell order.\n\nAll four patches are seen perfectly perpendicular to their flat surfaces, orthographic macro material photography, with uniform scale and neutral even diffuse lighting. No perspective, directional highlights, vignetting, glossy hotspots, depth of field, folds, objects, silhouettes, protrusions or recognizable props. Each patch is a homogeneous repeatable material field with richly believable fine microtexture. Aim for seamless edge behavior inside each individual material; all cell interiors must remain uniformly usable for repeating UV sampling. Avoid large distinctive shapes, isolated marks, major cracks, large stains or focal features that would make repetition obvious. Authentic high-end game material realism and restrained value hierarchy inspired at a high level by Diablo Immortal, with completely original material content and no copied intellectual property.\n\nTOP LEFT: worn very dark desaturated oak timber, cool brown heartwood with subtle fine longitudinal grain running vertically. Realistic restrained shallow fibrous grain, tiny compressed pores, gentle irregular wear, occasional tiny subdued knot traces. Matte aged wood, no boards, joints, nails, plank gaps or carved details; no orange varnish and no oversized black crevices. Dark but fine wood grain stays readable.\n\nTOP RIGHT: weathered charcoal-brown leather, matte and supple-looking flat hide surface with fine close pores, restrained shallow irregular creased grain and subtle rubbed wear. No stitching, seams, straps, buckles, holes, rivets, logos or decorative embossing. No crocodile scales or large wrinkles. Uniform dark leather with readable fine pores.\n\nBOTTOM LEFT: coarse tightly woven linen in a neutral muted medium gray, with visible crosswise interlacing natural fibers and slightly irregular thread thickness. Flat cloth microtexture only, evenly woven at consistent scale; no fabric folds, stitch seams, frayed edges, embroidery, labels or saturated pigment. Neutral luminance suitable for multiplying by different garment colors later. Crisp realistic fibers without moire or synthetic shine.\n\nBOTTOM RIGHT: worn cool forged steel in a restrained medium-dark slate gray, fine shallow hairline scratches, tiny scattered pitting, faint dark oxidation and subtle irregular metal grain. Flat matte-satin surface, no bright mirror glints or directional reflections. No large hammer dents, huge glowing veins, orange rust islands, plates, seams, rivets, weapons or objects. The material should feel weighty and physically plausible with modest variation and usable diffuse value.\n\nNo text, letters, numbers, UI, logos, watermarks, diagrams, color charts, characters, weapons, buildings, game screenshots, painted brush marks, stylized cartoon texture, metallic gold, neon color, supernatural glow or excessive contrast. Precisely four square flat material patches in the specified order, filling a single square atlas.\n",
+  "origin": {
+    "kind": "original_ai_generated_flat_material_atlas",
+    "tool": "image_gen.imagegen",
+    "model": null,
+    "model_note": "The image generation tool did not expose a model identifier.",
+    "source_file": "/workspace/generated_images/exec-eec5bd75-9f1c-42bc-807e-32f946972dbe.png",
+    "source_sha256": "b3c1afb529571982b3067b5e014c29a01597312f4b82dc9cbb52324f487b68e6",
+    "reference_images": [],
+    "transparent_background": false,
+    "gameplay_capture": false
+  },
+  "created_utc": "2026-10-03T19:27:07.735536+00:00",
+  "width": 1254,
+  "height": 1254,
+  "bit_depth": 8,
+  "color_type": 2,
+  "bytes": 3536245,
+  "sha256": "489b3e2c651d58de41e80cbde655731a45f676bce10143d5d174b5c2ebfa07db",
+  "idat_sha256": "8a866adeac97cb8ad0afd54fe23c78f7fbbd06a2ba5913dccbe34d26f46e20c6",
+  "cells": [
+    {
+      "id": "oak",
+      "position": "top_left",
+      "uv_rect": [
+        0.0,
+        0.0,
+        0.5,
+        0.5
+      ],
+      "material": "Worn dark oak timber"
+    },
+    {
+      "id": "leather",
+      "position": "top_right",
+      "uv_rect": [
+        0.5,
+        0.0,
+        0.5,
+        0.5
+      ],
+      "material": "Weathered charcoal-brown leather"
+    },
+    {
+      "id": "linen",
+      "position": "bottom_left",
+      "uv_rect": [
+        0.0,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material": "Coarse muted gray linen weave"
+    },
+    {
+      "id": "steel",
+      "position": "bottom_right",
+      "uv_rect": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material": "Worn cool forged steel"
+    }
+  ],
+  "uv_coordinate_convention": "Normalized texture coordinates, origin top left; uv_rect is x, y, width, height.",
+  "sampling_note": "Repeat the interior of each material cell; inset UV sampling from cell boundaries to avoid atlas bleed. Generation provides usable uniform interiors, not an exact mathematical seam guarantee.",
+  "visual_inspection": {
+    "count": 1,
+    "result": "Pass: four equal flat square material patches in the specified cell order; no gutters, labels, objects or perspective; neutral diffuse lighting and distinct believable microtexture."
+  },
+  "metadata_embedding": "Lossless PNG iTXt insertion before IEND; all original chunks and compressed pixel bytes preserved.",
+  "metadata_keywords": [
+    "Prompt",
+    "impeccable:prompt",
+    "Origin"
+  ],
+  "pixel_edits": false
+}

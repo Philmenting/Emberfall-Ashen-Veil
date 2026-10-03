@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "asset_set": "nyra-face",
+  "purpose": "Original adult heroine facial diffuse patch for projection onto continuous 3D geometry; not a gameplay capture or real-person photograph.",
+  "tool": "image_gen.imagegen",
+  "model": null,
+  "model_note": "Not exposed by tool response.",
+  "image": "assets/materials/nyra-face/nyra-face-albedo.png",
+  "width": 1254,
+  "height": 1254,
+  "bytes": 2335474,
+  "sha256": "0ecf1f03fba454bd7bdae406c1ff0ef3b0ce6ade59a9e662b04a0559de010b5c",
+  "prompt_sidecar": "nyra-face.prompt.txt",
+  "origin_sidecar": "nyra-face-albedo.json",
+  "initial_generation_prompt_sidecar": "source-generation.prompt.txt",
+  "observed_landmarks": {
+    "coordinate_convention": "Approximate manually inspected normalized image coordinates; origin top left. These describe the rendered asset, rather than claiming exact prompt adherence.",
+    "left_visible_eye_center": [
+      0.264,
+      0.354
+    ],
+    "right_visible_eye_center": [
+      0.735,
+      0.354
+    ],
+    "nose_lower_edge": [
+      0.5,
+      0.665
+    ],
+    "nostril_centers": [
+      [
+        0.441,
+        0.638
+      ],
+      [
+        0.556,
+        0.638
+      ]
+    ],
+    "closed_mouth_seam_center": [
+      0.5,
+      0.8
+    ],
+    "mouth_corners": [
+      [
+        0.323,
+        0.802
+      ],
+      [
+        0.679,
+        0.802
+      ]
+    ],
+    "nose_tip_center": [
+      0.5,
+      0.6
+    ]
+  },
+  "pixel_edits": false,
+  "observed_landmarks_pixels": {
+    "coordinate_convention": "Approximate manually inspected pixel coordinates; origin top left; image 1254 by 1254 pixels.",
+    "left_visible_eye_center": [
+      331,
+      444
+    ],
+    "right_visible_eye_center": [
+      922,
+      444
+    ],
+    "nose_tip_center": [
+      627,
+      752
+    ],
+    "nose_base_lower_edge": [
+      627,
+      834
+    ],
+    "nostril_centers": [
+      [
+        553,
+        800
+      ],
+      [
+        697,
+        800
+      ]
+    ],
+    "closed_mouth_seam_center": [
+      627,
+      1003
+    ],
+    "mouth_corners": [
+      [
+        405,
+        1006
+      ],
+      [
+        851,
+        1006
+      ]
+    ],
+    "upper_forehead_crop_anchor": [
+      627,
+      0
+    ],
+    "chin_crop_anchor": [
+      627,
+      1253
+    ],
+    "crop_anchor_note": "Forehead and chin anchors describe the patch crop, not a visible external head silhouette. Fit continuous geometry using piecewise mapping to these observed locations."
+  }
+}

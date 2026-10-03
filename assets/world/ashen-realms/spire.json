@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "asset_id": "spire",
+  "image": "spire.png",
+  "prompt_file": "spire.prompt.txt",
+  "prompt": "Create one original shipping background plate for Emberfall: Ashen Veil, a mature dark fantasy action RPG. Native very wide landscape, requested 2240 x 1000 pixels, 2.24:1 aspect ratio, opaque full frame. This is a DISTANT ENVIRONMENT BACKDROP behind live isometric 3D game geometry, not a whole gameplay screenshot, not a concept-art poster. Believable high-end real-time game material rendering: physically convincing aged masonry, careful roughness, restrained cinematic light, cold deep shadows with readable midtones, moderate exposure, low saturation. Use the grounded material realism and disciplined value hierarchy of Diablo Immortal as a high-level visual reference, while inventing original architecture and never copying Blizzard locations, symbols, characters, or buildings.\n\nComposition: a wide view from slightly above floor height into a deep enclosed architectural volume, with strong depth formed by receding side aisles. Crisp stone details at upper and far side edges. Keep the CENTER and LOWER HALF quiet, relatively dark, low-detail and low-contrast, suitable for foreground game geometry and animated characters placed later. Broad shadowed stone floor recedes gently into darkness. The upper architecture supplies atmosphere; no central hero prop or giant bright focal point. The room feels physically enclosed, oppressive and threatening, never like a floating stage. Small localized light sources only, clear directional lighting, no broad bloom, no huge bright windows or overexposed light shafts.\n\nHOLLOW SPIRE. A ruined soot-covered cathedral interior in cold slate and charcoal masonry. Monumental blunt gothic ribs cross high overhead, irregular weathered ash-gray piers line both sides, and half-collapsed side galleries disappear into the gloom. Ancient fire has blackened the vaults and left flaking mineral streaks and cracked dusty stone. Far back, a very small cluster of dull amber votive candles provides a weak warm accent, less than three percent of the image. No luminous window: the remote apse remains dark. Subtle cold reflected light reveals the worn masonry at the top and edges. The center aisle is empty, flat and understated, its lower floor fading quietly into shadow. Dense air, gravity, mass, dread.\n\nNo text, lettering, runes, labels, UI, border, logo, watermark, people, characters, monsters, animals, weapons, foreground hero, ornate gold ribbons, gilded ornamental framing, bright fantasy clouds, purple fog spectacle, candy colors, painterly brush strokes, cartoon styling, photographic film grain, or floating structures. Fill the whole image with the environment. Only the original environment plate.\n",
+  "origin": {
+    "kind": "original_ai_generated_environment_plate",
+    "tool": "image_gen.imagegen",
+    "model": null,
+    "model_note": "Not exposed by tool response.",
+    "source_file": "/workspace/generated_images/exec-c60b95c0-a2d4-48c3-bcaf-d5eaeb0d145b.png",
+    "source_sha256": "dc484bcd5c39d969a53e550f86e7d8c58d18a8d7845437b1913eac883e462788",
+    "reference_images": [],
+    "transparent_background": false,
+    "gameplay_capture": false
+  },
+  "width": 1877,
+  "height": 838,
+  "aspect_ratio": 2.239856801909308,
+  "bit_depth": 8,
+  "color_type": 2,
+  "visual_inspection": {
+    "count": 1,
+    "result": "Pass: enclosed soot-dark cathedral; crisp piers and vaults; tiny amber votives; quiet open central floor."
+  },
+  "metadata_embedding": "Lossless PNG iTXt insertion before IEND; all original chunks and compressed pixel bytes preserved.",
+  "metadata_keywords": [
+    "Prompt",
+    "impeccable:prompt",
+    "Origin"
+  ],
+  "sha256": "cddadbd727227b0d3d08b9949586399cb6af149ac2cc6e4162cead77173c371e",
+  "idat_sha256": "d83ed1f74bb0cf02361bb7f4aa0bcb393c511e419ec15a2b7cb556ab695e8b96",
+  "bytes": 2352401
+}

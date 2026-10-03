@@ -85,6 +85,10 @@ func _load_appearance() -> void:
 		model.ignore_occlusion_culling=true
 		surface_material=ShaderMaterial.new()
 		surface_material.shader=preload("res://assets/shaders/character_surface.gdshader")
+		surface_material.set_shader_parameter("face_albedo",preload("res://assets/materials/nyra-face/nyra-face-albedo.png"))
+		surface_material.set_shader_parameter("field_surfaces",preload("res://assets/materials/field-surfaces/material-atlas.png"))
+		surface_material.set_shader_parameter("metal_grain",preload("res://assets/materials/metal/Metal063_1K-JPG_Color.jpg"))
+		surface_material.set_shader_parameter("metal_roughness",preload("res://assets/materials/metal/Metal063_1K-JPG_Roughness.jpg"))
 		model.material_override=surface_material
 	model.mesh=motion_rig.mesh; model.skin=motion_rig.skin
 	model.skeleton=model.get_path_to(motion_rig.skeleton)
