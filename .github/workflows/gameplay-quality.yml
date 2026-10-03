@@ -1,0 +1,53 @@
+name: Gameplay Quality
+
+on:
+  push:
+    branches: [main, release/google-play-beta-039]
+    paths:
+      - 'scripts/**'
+      - 'tests/**'
+      - 'server/**'
+      - 'assets/**'
+      - 'project.godot'
+      - 'Main.tscn'
+      - '.github/workflows/gameplay-quality.yml'
+  pull_request:
+    branches: [main, release/google-play-beta-039]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gameplay-quality-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Check out game
+        uses: actions/checkout@v7
+      - name: Install Godot 4.7.2
+        run: |
+          mkdir -p "$RUNNER_TEMP/godot"
+          curl --fail --location --retry 3 --output "$RUNNER_TEMP/godot/godot.zip" \
+            https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          unzip -q "$RUNNER_TEMP/godot/godot.zip" -d "$RUNNER_TEMP/godot"
+          sudo install -m 0755 "$RUNNER_TEMP/godot/Godot_v4.7.2-stable_linux.x86_64" /usr/local/bin/godot
+      - name: Import native assets
+        run: godot --headless --path . --editor --import --quit
+      - name: Check gameplay, saves, AFK, presentation and server rules
+        shell: bash
+        run: |
+          mkdir -p build/reports
+          python3 scripts/run_beta_checks.py 2>&1 | tee build/reports/gameplay-quality.log
+      - name: Retain regression report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: emberfall-gameplay-quality
+          path: build/reports/gameplay-quality.log
+          if-no-files-found: ignore
+          retention-days: 14
