@@ -20,6 +20,7 @@ var skin: Skin
 var profile: Dictionary
 var scale_pixels := 1.0
 var bounds := AABB()
+var floor_probes: Array = []
 
 # pelvis, chest, head, shoulder/elbow/wrist, opposite shoulder/elbow/wrist,
 # left hip/knee/ankle, right hip/knee/ankle; polygons keep weapons rigid.
@@ -94,11 +95,27 @@ func build(character_key: String, data: Dictionary, pixels_per_unit: float) -> v
   mesh=cache[cache_key].mesh; skin=cache[cache_key].skin
   bone_boxes.assign(cache[cache_key].boxes); bone_box_valid.assign(cache[cache_key].valid)
  bounds=mesh.get_aabb()
+ # A bounded set of real silhouette vertices is used ONLY while falling.
+ # Bone AABBs are conservative camera bounds, not physical floor contacts.
+ if not cache[cache_key].has("floor_probes"):
+  var arrays:=mesh.surface_get_arrays(0)
+  var vertices: PackedVector3Array=arrays[Mesh.ARRAY_VERTEX]
+  var bones: PackedInt32Array=arrays[Mesh.ARRAY_BONES]
+  var weights: PackedFloat32Array=arrays[Mesh.ARRAY_WEIGHTS]
+  for i in range(0,vertices.size(),8):
+   floor_probes.append([vertices[i],bones.slice(i*4,i*4+4),weights.slice(i*4,i*4+4)])
+  cache[cache_key]["floor_probes"]=floor_probes
+ else: floor_probes=cache[cache_key].floor_probes
 
-func pose(angles: PackedFloat32Array, pelvis_offset: Vector3=Vector3.ZERO) -> void:
+func pose(angles: PackedFloat32Array, pelvis_offset: Vector3=Vector3.ZERO, chest_yaw: float=0.0, head_yaw: float=0.0) -> void:
  for i in range(NAMES.size()):
   skeleton.set_bone_pose_position(i,local_rest[i]+(pelvis_offset if i==0 else Vector3.ZERO))
-  skeleton.set_bone_pose_rotation(i,Quaternion(Vector3.BACK,angles[i]))
+  var rotation:=Basis(Vector3.BACK,angles[i])
+  # A small physical turn foreshortens the complete torso painting. Weapons
+  # remain rigid and the head counter-turns to keep its attention on the foe.
+  if i==1: rotation=rotation*Basis(Vector3.UP,chest_yaw)
+  if i==2: rotation=rotation*Basis(Vector3.UP,head_yaw)
+  skeleton.set_bone_pose_rotation(i,rotation.get_rotation_quaternion())
  skeleton.force_update_all_bone_transforms()
  _update_bounds()
 
@@ -113,6 +130,17 @@ func _update_bounds() -> void:
 
 func bone_point(index: int, point: Vector3) -> Vector3:
  return skeleton.get_bone_global_pose(index)*(point-rest[index])
+
+func contact_floor() -> float:
+ var transforms: Array[Transform3D]=[]
+ for i in range(NAMES.size()): transforms.append(skeleton.get_bone_global_pose(i)*Transform3D(Basis.IDENTITY,-rest[i]))
+ var lowest:=INF
+ for probe: Array in floor_probes:
+  var point:=Vector3.ZERO
+  for n in range(4):
+   if probe[2][n]>0.0: point+=(transforms[probe[1][n]]*probe[0])*probe[2][n]
+  lowest=minf(lowest,point.y)
+ return lowest
 
 func weapon_tip() -> Vector3:
  if key=="Ranger": return skeleton.get_bone_global_pose(6).origin

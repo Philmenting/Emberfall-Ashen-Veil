@@ -1,5 +1,19 @@
 # Emberfall: Ashen Veil
 
+## Aktuell: 0.42.0-beta.1 · Ganzkörperbewegung und lesbarerer Kampf
+
+Alle elf Figuren verlagern bei Angriffen Gewicht zwischen Hüfte, Rumpf und
+Beinen. Dreidimensionale Rumpfdrehung, ein klarer geladener Moment und
+Nachschwingen geben Schwert, Stab und Bogen mehr Körperlichkeit. Anhalten setzt
+die Füße nacheinander auf; Treffer folgen Richtung und Stärke, beim Fallen geben
+zuerst die Knie nach. Nyra und ihr tatsächliches Ziel werden hervorgehoben,
+Hintergrundkämpfer und gefallene Figuren treten zurück. Die Kampfsimulation
+bleibt unverändert. Android-Version-Code **48**.
+
+[Vorher/Nachher-Video](docs/previews/animation-craft/emberfall-motion-comparison.mp4),
+[neuer Gameplay-Clip](docs/previews/animation-craft/emberfall-gameplay-042.mp4),
+[Umsetzung, Prüfungen und Geräte-Grenzen](docs/ANIMATION_CRAFT_042.md).
+
 ## Neu im Entwicklungsbranch: klare Set-Ziele und geprüfte Beuteverwaltung
 
 Die Schmiede zeigt regionale Set-Fortschritte, vorhandene Taschenfunde und
@@ -10,11 +24,11 @@ geschützt. Sichere Sammel-Upgrades erhalten Mana-Rückgewinnung und rechnen
 eingefrorene Schwur-AFK-Regeln vor dem Anlegen korrekt ab.
 [Bedienung, Regeln und native Ansichten](docs/GEAR_GOALS.md).
 
-## Aktuell: 0.41.0-beta.1 — fließende Figurenanimationen
+## Vorheriger Ausbau: 0.41.0-beta.1 — fließende Figurenanimationen
 
 Der freigegebene Stilentwurf wird mit gemalten, animierten 2.5D-Figuren in der räumlichen Godot-Spielwelt umgesetzt: drei Klassen, vier Wächter, eigene Regionen und ein Lager mit Schmiede, Schwurtisch und Portal. Bis zu zwei von drei Schwüren wirken gemeinsam mit Klassenreliquien, Sets und Techniken. Jeder Wächter besitzt drei echte Gesundheitsphasen; Warnung, Ausweichen, Skip, Offline-Wiederholung und Neustart verwenden dieselben Regeln. Alte laufende Spielstände behalten ihre ursprünglichen Kampfergebnisse. Version-Code 46.
 
-[Animationen und Prüfanleitung](docs/ANIMATIONS_041.md), [aktueller Gameplay-Clip](docs/previews/animations/emberfall-gameplay-041.mp4), [Bewegungsprüfung aller Figuren](docs/previews/animations/emberfall-motion-041.mp4), [gemalte Welt](docs/REDESIGN_040.md), [Regeln und Kompatibilität](docs/OATHS_AND_PHASES_040.md), [Grafik und Herkunft](docs/design/ASSET_PROVENANCE.md), [Spieltest und Pixel-Probe](docs/SUCCESS_PLAYTEST.md). Menschliche Rückkehrdaten sowie Leistung, Wärme und Akkulaufzeit auf dem Pixel sind noch nicht erhoben. Die älteren Berichte unten dokumentieren vorherige Versionen.
+[Animationen und Prüfanleitung](docs/ANIMATIONS_041.md), [Gameplay-Clip 0.41](docs/previews/animations/emberfall-gameplay-041.mp4), [Bewegungsprüfung aller Figuren](docs/previews/animations/emberfall-motion-041.mp4), [gemalte Welt](docs/REDESIGN_040.md), [Regeln und Kompatibilität](docs/OATHS_AND_PHASES_040.md), [Grafik und Herkunft](docs/design/ASSET_PROVENANCE.md), [Spieltest und Pixel-Probe](docs/SUCCESS_PLAYTEST.md). Menschliche Rückkehrdaten sowie Leistung, Wärme und Akkulaufzeit auf dem Pixel sind noch nicht erhoben. Die älteren Berichte unten dokumentieren vorherige Versionen.
 
 ## Kathedralenräume: Grafikaufwertung der Beta 0.39
 

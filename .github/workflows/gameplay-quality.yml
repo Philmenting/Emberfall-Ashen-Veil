@@ -12,7 +12,7 @@ on:
       - 'Main.tscn'
       - '.github/workflows/gameplay-quality.yml'
   pull_request:
-    branches: [main, release/google-play-beta-039]
+    branches: [main, release/google-play-beta-039, improve/expedition-quality]
   workflow_dispatch:
 
 permissions:

@@ -27,6 +27,9 @@ uniform float lean = 0.0;
 uniform float sprite_opacity = 1.0;
 uniform float facing_sign = 1.0;
 uniform vec2 sprite_offset = vec2(0.0);
+uniform float readability = 1.0;
+uniform float silhouette_focus = 0.0;
+uniform vec4 focus_tint : source_color = vec4(0.94, 0.86, 0.67, 1.0);
 uniform bool layered_parts = false;
 uniform bool animated_bow = false;
 uniform vec4 bow_string_source = vec4(1297.0,60.0,1283.0,409.0);
@@ -68,6 +71,16 @@ void fragment() {
     }
     if (string_part > 0.5) painting = vec4(0.64, 0.52, 0.33, 1.0);
     vec3 color = painting.rgb;
+    // An inward, restrained contour separates the heroine/actual target from
+    // adjacent paintings. It adds no surface, glow shell or screen-wide pass.
+    if (silhouette_focus > 0.01 && string_part < 0.5) {
+        vec2 texel = 1.6 / vec2(textureSize(atlas_texture, 0));
+        float inside = min(min(texture(atlas_texture, source_uv + vec2(texel.x, 0.0)).a, texture(atlas_texture, source_uv - vec2(texel.x, 0.0)).a), min(texture(atlas_texture, source_uv + vec2(0.0, texel.y)).a, texture(atlas_texture, source_uv - vec2(0.0, texel.y)).a));
+        float contour = smoothstep(0.15, 0.65, painting.a - inside);
+        color = mix(color, focus_tint.rgb, contour * silhouette_focus * 0.65);
+    }
+    float luminance = dot(color, vec3(0.299, 0.587, 0.114));
+    color = mix(vec3(luminance), color, 0.55 + readability * 0.45) * (0.65 + readability * 0.35);
     float edge = 0.0;
     if (equipment_enabled) {
         vec2 texel = 2.0 / vec2(textureSize(atlas_texture, 0));

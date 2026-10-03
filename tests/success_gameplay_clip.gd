@@ -3,13 +3,15 @@ extends "res://scripts/main.gd"
 ## Cuts omit intervening travel; playback retains actual combat speed (30 FPS).
 var output_dir:="/tmp/emberfall-gameplay"
 var frame_index:=0
+var capture_class:="Arcanist"
 func _ready() -> void:
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--capture-dir="): output_dir=argument.trim_prefix("--capture-dir=")
+		if argument.begins_with("--class=") and argument.trim_prefix("--class=") in ["Vowkeeper","Arcanist","Ranger"]: capture_class=argument.trim_prefix("--class=")
 	DirAccess.make_dir_recursive_absolute(output_dir)
 	save_store=SaveStore.new("user://gameplay-clip-"+str(Time.get_ticks_usec()))
 	super._ready()
-	set_process(false); farm_enabled=false; world_seed=1979; character_class="Arcanist"
+	set_process(false); farm_enabled=false; world_seed=1979; character_class=capture_class
 	_record.call_deferred()
 func _record() -> void:
 	get_window().size=Vector2i(1200,536)

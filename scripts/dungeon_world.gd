@@ -7,6 +7,7 @@ var bars: Dictionary = {}
 var warnings: Dictionary = {}
 var last_stage := -1
 var target_ring: MeshInstance3D
+var hero_marker: MeshInstance3D
 signal state_changed(description: String)
 const Skills = preload("res://scripts/class_skills.gd")
 const Layout = preload("res://scripts/dungeon_layout.gd")
@@ -114,6 +115,9 @@ func _ready() -> void:
 	_ensure_wave(mini(simulation.stage,5)+1)
 	target_ring = _ring(Vector3.ZERO,0.65,_material(Color("e8cb8f"),0.0,true))
 	target_ring.visible = false
+	hero_marker=_ring(hero.position+Vector3(0,.075,0),.47,_material(Color("a8d6d0"),0.0,true))
+	hero_marker.name="HeroFootprint"
+	hero_marker.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	camera = Camera3D.new()
 	camera.projection = Camera3D.PROJECTION_PERSPECTIVE
 	camera.fov = 38.0
@@ -581,6 +585,7 @@ func _process(delta: float) -> void:
 			_update_warning(warnings[id_value],enemy.warning)
 	target_ring.visible = phase=="combat" and actor_by_id.has(simulation.target_id)
 	if target_ring.visible: target_ring.position = actor_by_id[simulation.target_id].position+Vector3(0,0.07,0)
+	_update_combat_readability(delta)
 	for i in range(torches.size()): torches[i].light_energy = 3.1+sin(elapsed*8.0+i*2.1)*0.22
 	var camera_anchor:=_camera_anchor()
 	var boss_focus:=_boss_is_active()
@@ -590,6 +595,25 @@ func _process(delta: float) -> void:
 	_position_camera()
 	_set_description("AUTO • " + String(simulation.action).to_upper())
 	simulation_advanced.emit(updates)
+
+func _update_combat_readability(delta: float) -> void:
+	hero_marker.visible=phase=="combat" and hero.death_time<0.0
+	hero_marker.position=hero.position+Vector3(0,.075,0)
+	if hero.death_time<0.0: hero.set_readability(1.0,.62)
+	var hero_screen:=camera.unproject_position(hero.position+Vector3.UP*hero.figure_height*.55)
+	var viewport_width:=maxf(1.0,get_viewport().get_visible_rect().size.x)
+	for id_value in actor_by_id:
+		var actor: Node3D=actor_by_id[id_value]
+		if actor.death_time>=0.0 or not actor.visible: continue
+		var enemy: Dictionary=simulation.enemy_by_id(id_value)
+		var important: bool=id_value==simulation.target_id or not enemy.warning.is_empty() or actor.boss
+		var actor_screen:=camera.unproject_position(actor.position+Vector3.UP*actor.figure_height*.55)
+		var crowded:=actor_screen.distance_to(hero_screen)/viewport_width<.095
+		# Never move a painted actor away from its real collision/warning floor.
+		# Only nearby background combatants recede; warnings remain prominent.
+		var goal:=.62 if crowded and not important else 1.0
+		var focus:=.44 if id_value==simulation.target_id else 0.0
+		actor.set_readability(lerpf(actor.emphasis,goal,1.0-exp(-delta*9.0)),focus)
 
 func _position_camera() -> void:
 	var shake:=Vector3.ZERO
@@ -707,28 +731,28 @@ func _show_event(event: Dictionary) -> void:
 			hero.release_attack()
 			if not actor_by_id.has(event.target): return
 			var actor: Node3D = actor_by_id[event.target]
-			actor.react()
+			actor.react_from(hero.position,camera.position,1.25 if event.critical else .80)
 			var impact_color: Color = Color("ffe1a2") if event.critical else color
 			_float_text(actor.position+Vector3(0,2.5,0),str(event.damage)+("!" if event.critical else ""),impact_color)
 			if event.critical: _kick_camera(0.025)
-			var mat := _material(color,0.0,true)
-			var ring := _ring(actor.position+Vector3(0,0.08,0),0.6,mat)
-			effects.append({"node":ring,"age":0.0,"life":0.4,"kind":"ring"})
-			_impact_sparks(actor.position+Vector3(0,1.0,0),color)
+			# Actual damage is communicated at the body contact. Repeated ground
+			# rings looked like targets and obscured Nyra's support feet in crowds.
+			_impact_sparks(actor.position+Vector3(0,1.25,0),impact_color)
 			if character_class=="Vowkeeper": _slash_arc(hero.position,color)
 			if event.dead:
 				actor.die()
 				var loot := _box(actor.position+Vector3(0,0.5,0),Vector3(0.12,0.5,0.12),materials.soul)
 				effects.append({"node":loot,"age":0.0,"life":0.9,"kind":"loot"})
 		"hero_hit":
-			hero.react()
 			var heavy_hit:=false
 			if actor_by_id.has(event.source):
 				var attacker: Node3D=actor_by_id[event.source]
 				var enemy_kind:=String(attacker.get("kind"))
 				var heavy: bool=enemy_kind in ["bulwark","elite","boss"]
 				heavy_hit=heavy
+				hero.react_from(attacker.position,camera.position,1.15 if heavy else .65)
 				attacker.strike("heavy")
+			else: hero.react(0,.8)
 			_kick_camera(0.070 if heavy_hit else 0.034)
 			_float_text(hero.position+Vector3(0,2.3,0),"−"+str(event.damage),Color("f89583"))
 		"ward":
@@ -1341,26 +1365,33 @@ func _impact_sparks(origin: Vector3,color: Color) -> void:
 		spark.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		effects.append({"node":spark,"age":0.0,"life":0.22+rng.randf()*0.15,"kind":"spark","velocity":Vector3(rng.randf_range(-2.5,2.5),rng.randf_range(0.6,2.2),rng.randf_range(-2.5,2.5))})
 
-func _slash_arc(origin: Vector3,color: Color) -> void:
+func _slash_arc(_origin: Vector3,color: Color) -> void:
+	# A narrow painted-plane ribbon follows the actual blade, rather than a
+	# generic horizontal sector that can miss its apparent contact entirely.
+	var forward:=((camera.position-hero.position)*Vector3(1,0,1)).normalized()
+	var right:=Vector3.UP.cross(forward)
+	var grip_local: Vector3=hero.motion_rig.skeleton.get_bone_global_pose(6).origin
+	var grip: Vector3=hero.position+right*grip_local.x*hero.facing_sign+Vector3.UP*grip_local.y+forward*grip_local.z
+	var blade: Vector3=hero.weapon_world_position(camera.position)-grip
 	var mesh:=SurfaceTool.new()
 	mesh.begin(Mesh.PRIMITIVE_TRIANGLES)
 	for i in range(12):
-		var a:=hero.rotation.y-1.2+i*0.2
-		var b:=a+0.2
-		for point in [Vector2(a,1.1),Vector2(b,1.1),Vector2(a,1.9),Vector2(b,1.1),Vector2(b,1.9),Vector2(a,1.9)]:
-			mesh.add_vertex(Vector3(-sin(point.x)*point.y,0.9+sin(point.x)*0.25,-cos(point.x)*point.y))
+		var a: float=(-.55+float(i)*.55/12.0)*hero.facing_sign
+		var b: float=a+.55/12.0*hero.facing_sign
+		for point in [Vector2(a,.84),Vector2(b,.84),Vector2(a,1.0),Vector2(b,.84),Vector2(b,1.0),Vector2(a,1.0)]:
+			mesh.add_vertex(Basis(forward,point.x)*blade*point.y)
 	mesh.generate_normals()
 	var arc:=MeshInstance3D.new()
 	arc.mesh=mesh.commit()
-	var mat:=_material(Color(color,0.45),0,true)
+	var mat:=_material(Color(color,0.30),0,true)
 	mat.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA
 	mat.cull_mode=BaseMaterial3D.CULL_DISABLED
 	mat.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED
 	arc.material_override=mat
-	arc.position=origin
+	arc.position=grip
 	arc.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(arc)
-	effects.append({"node":arc,"age":0.0,"life":0.16,"kind":"slash"})
+	effects.append({"node":arc,"age":0.0,"life":0.12,"kind":"slash"})
 
 func _update_warning(node: Node3D, warning: Dictionary) -> void:
 	# Temporal feedback never shrinks or moves the actual hazard footprint.

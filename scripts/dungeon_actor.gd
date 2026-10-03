@@ -1,6 +1,7 @@
 extends Node3D
 ## Continuously skinned approved paintings, driven by live simulation events.
 const MotionRig=preload("res://scripts/painted_motion_rig.gd")
+const ActionCraft=preload("res://scripts/painted_action_craft.gd")
 static var appearance_cache: Dictionary = {}
 static var pose_mesh_cache: Dictionary = {}
 static var metadata_cache: Dictionary = {}
@@ -55,6 +56,22 @@ var cloth_follow:=0.0
 var corpse_shift:=0.0
 var gait_axis:=1.0
 var anticipated_blend:=0.0
+var chest_yaw:=0.0
+var head_yaw:=0.0
+var travel_velocity:=0.0
+var acceleration_lean:=0.0
+var recoil_direction:=1.0
+var recoil_intensity:=1.0
+var recoil_duration:=.24
+var emphasis:=1.0
+var silhouette_focus:=0.0
+var stop_time:=-1.0
+var stop_support:=0
+var stop_targets: Array[Vector3]=[]
+var transition_time:=-1.0
+var transition_angles:=PackedFloat32Array()
+var transition_offset:=Vector3.ZERO
+var transition_yaw:=Vector2.ZERO
 const COLLAPSE_DURATION:=0.58
 
 const HEROES: Array[String] = ["Vowkeeper", "Arcanist", "Ranger"]
@@ -83,6 +100,7 @@ func _ready() -> void:
 	_contact_shadow()
 	if not hostile and not boss: configure_equipment(equipped_items,kind)
 	set_boss_phase(boss_phase)
+	set_readability(1.0,0.55 if not hostile and not boss else 0.0)
 	_set_pose(0)
 
 func _load_appearance() -> void:
@@ -184,9 +202,10 @@ func face_toward(direction: Vector3,camera_position: Vector3) -> void:
 	surface_material.set_shader_parameter("facing_sign",facing_sign)
 
 func weapon_world_position(camera_position: Vector3) -> Vector3:
-	var right:=Vector3.UP.cross(((camera_position-position)*Vector3(1,0,1)).normalized())
+	var forward:=((camera_position-position)*Vector3(1,0,1)).normalized()
+	var right:=Vector3.UP.cross(forward)
 	var tip: Vector3=motion_rig.weapon_tip()
-	return position+right*tip.x*facing_sign*scale.x+Vector3.UP*tip.y*scale.y
+	return position+right*tip.x*facing_sign*scale.x+Vector3.UP*tip.y*scale.y+forward*tip.z*scale.z
 
 func follow_travel(displacement: Vector3,camera_position: Vector3) -> void:
 	if displacement.length()<.001: return
@@ -224,6 +243,12 @@ func strike(style: String="basic",windup_seconds: float=0.3,wait_for_hit: bool=f
 		external_release=false; pose_frame=4
 		_apply_motion()
 		return
+	if wait_for_hit and release_time>=0.0:
+		# A real new cast may begin during the old action's recovery. Match its
+		# countdown immediately; a queued decorative swing must not eat its hit.
+		transition_angles=joint_angles.duplicate(); transition_offset=motion_offset
+		transition_yaw=Vector2(chest_yaw,head_yaw); transition_time=0.0
+		attack_time=-1.0; attack_queued=false
 	if attack_time>=0.0:
 		attack_queued=true; queued_attack_style=requested_style
 	else:
@@ -237,7 +262,7 @@ func sync_attack(remaining: float) -> void:
 
 func release_attack() -> bool:
 	if death_time>=0.0 or attack_time<0.0 or release_time>=0.0: return false
-	release_time=0.0; pose_frame=4
+	release_time=0.0; pose_frame=4; transition_time=-1.0
 	_apply_motion()
 	return true
 
@@ -248,8 +273,25 @@ func cancel_attack() -> void:
 func retreat() -> void:
 	cancel_attack(); retreat_time=0.0
 
-func react() -> void:
-	if death_time<0.0 and impact_time<0.0: impact_time=0.0
+func react(direction: float=0.0,intensity: float=1.0) -> void:
+	if death_time>=0.0: return
+	# Retrigger only for a stronger hit; a crowd cannot pin the hero in flinch.
+	if impact_time<0.0 or intensity>recoil_intensity+.15:
+		impact_time=0.0
+		recoil_direction=signf(direction) if absf(direction)>.05 else death_lean
+		recoil_intensity=clampf(intensity,.35,1.5)
+		recoil_duration=lerpf(.18,.30,clampf((recoil_intensity-.35)/1.15,0,1))
+
+func react_from(source: Vector3,camera_position: Vector3,intensity: float=1.0) -> void:
+	var right:=Vector3.UP.cross(((camera_position-position)*Vector3(1,0,1)).normalized())
+	react((position-source).dot(right)/facing_sign,intensity)
+
+func set_readability(value: float,focus: float=0.0) -> void:
+	emphasis=clampf(value,.55,1.0); silhouette_focus=clampf(focus,0.0,1.0)
+	if surface_material!=null:
+		surface_material.set_shader_parameter("readability",emphasis)
+		surface_material.set_shader_parameter("silhouette_focus",silhouette_focus)
+		surface_material.set_shader_parameter("focus_tint",Color("f1dbac") if not hostile else Color("dcba80"))
 
 func set_telegraph(remaining_seconds: float,total_seconds: float=-1.0) -> void:
 	if total_seconds>0.0: telegraph_duration=total_seconds
@@ -260,6 +302,7 @@ func set_telegraph(remaining_seconds: float,total_seconds: float=-1.0) -> void:
 func die() -> void:
 	if death_time>=0.0: return
 	death_time=0.0
+	death_lean=recoil_direction if impact_time>=0.0 else death_lean
 	attack_queued=false; attack_time=-1.0; release_time=-1.0; telegraph_left=0.0
 
 func _set_pose(frame: int) -> void:
@@ -322,16 +365,34 @@ func _build_pose_mesh(data: Dictionary) -> ArrayMesh:
 func animate(delta: float,walking: bool,horizontal_speed: float=-1.0) -> void:
 	if body==null: return
 	delta=maxf(0.0,delta)
+	if moving and not walking and gait_blend>.05 and death_time<0.0:
+		stop_time=0.0
+		stop_support=0 if fposmod(gait_phase,TAU)<PI else 1
+		stop_targets=[motion_rig.skeleton.get_bone_global_pose(12).origin,motion_rig.skeleton.get_bone_global_pose(15).origin]
+	elif walking or gait_blend<=.05: stop_time=-1.0
+	if stop_time>=0.0:
+		stop_time+=delta
+		if stop_time>=.32: stop_time=-1.0
 	moving=walking
 	if not reduced_motion: clock+=delta
+	if transition_time>=0.0:
+		transition_time+=delta
+		if transition_time>=.07: transition_time=-1.0
 	if death_time>=0.0:
 		death_time+=delta
 		if death_time>=COLLAPSE_DURATION:
 			if painted_model.mesh==motion_rig.mesh: _set_pose(5)
 			surface_material.set_shader_parameter("hit_flash",0.0)
+			# Fallen silhouettes settle into the floor instead of competing with
+			# the living group. Keep the actual defeated figure visible.
+			set_readability(lerpf(1.0,.60,smoothstep(.65,1.4,death_time)),0.0)
 		else: _apply_motion(delta)
 		return
 	var speed:=clampf(horizontal_speed,0.0,6.0) if horizontal_speed>=0.0 else 3.2
+	var desired_speed:=speed if walking else 0.0
+	var acceleration: float=(desired_speed-travel_velocity)/maxf(delta,.001) if delta>0.0 else 0.0
+	acceleration_lean=lerpf(acceleration_lean,clampf(acceleration*.008,-.085,.085),1.0-exp(-delta*10.0))
+	travel_velocity=lerpf(travel_velocity,desired_speed,1.0-exp(-delta*10.0))
 	gait_blend=lerpf(gait_blend,1.0 if walking else 0.0,1.0-exp(-delta*12.0))
 	anticipated_blend=lerpf(anticipated_blend,anticipation,1.0-exp(-delta*12.0))
 	if walking: gait_phase+=delta*speed*(2.6 if boss else 3.5)
@@ -355,8 +416,8 @@ func animate(delta: float,walking: bool,horizontal_speed: float=-1.0) -> void:
 	hit_strength=0.0
 	if impact_time>=0.0:
 		impact_time+=delta
-		hit_strength=sin(clampf(impact_time/0.24,0.0,1.0)*PI)*exp(-impact_time*2.6)
-		if impact_time>=0.24: impact_time=-1.0; hit_strength=0.0
+		hit_strength=sin(clampf(impact_time/recoil_duration,0.0,1.0)*PI)*exp(-impact_time*2.6)*recoil_intensity
+		if impact_time>=recoil_duration: impact_time=-1.0; hit_strength=0.0
 	if retreat_time>=0.0:
 		retreat_time+=delta
 		if retreat_time>=0.38: retreat_time=-1.0
@@ -370,29 +431,35 @@ func _apply_motion(delta: float=0.0) -> void:
 		var semantic:=pose_frame; _set_pose(0); pose_frame=semantic
 	joint_angles.fill(0.0)
 	motion_offset=Vector3.ZERO
+	chest_yaw=0.0; head_yaw=0.0
 	var breath:=sin(clock*1.8+float(kind.hash()%13)) if not reduced_motion else 0.0
 	joint_angles[1]=breath*0.012; joint_angles[2]=-breath*0.010
 	var stride:=sin(gait_phase)*gait_blend
 	joint_angles[3]=stride*0.12; joint_angles[7]=-stride*0.16
-	joint_angles[1]+=-stride*0.025; joint_angles[2]+=stride*0.022
+	# Pelvis and shoulders counter each other; the support leg carries weight.
+	joint_angles[0]=stride*.035
+	joint_angles[1]+=-stride*.070-acceleration_lean*gait_axis*gait_blend
+	joint_angles[2]+=stride*.042+acceleration_lean*gait_axis*gait_blend*.45
+	chest_yaw=stride*.075; head_yaw=-chest_yaw*.55
+	motion_offset.y-=figure_height*.012*(1.0-cos(gait_phase*2.0))*gait_blend
 	var windup:=0.0
 	var release:=0.0
 	var recovery:=1.0
 	if telegraph_left>0.0:
 		var progress:=clampf(1.0-telegraph_left/maxf(telegraph_duration,.001),0,1)
-		windup=_ease(minf(progress/.78,1.0))
-		release=_ease(clampf((progress-.90)/.10,0,1))
+		var phrase:=ActionCraft.phrase(progress)
+		windup=phrase.x; release=phrase.y
 	elif attack_time>=0.0:
 		if release_time<0.0:
 			var progress:=clampf(attack_time/maxf(attack_duration,.001),0,1)
-			windup=_ease(minf(progress/.72,1.0))
-			release=_ease(clampf((progress-.72)/.28,0,1))
+			var phrase:=ActionCraft.phrase(progress)
+			windup=phrase.x; release=phrase.y
 		else:
 			# Contact is immediate on the real hit. Follow-through adds weight;
 			# a slow cubic recovery returns to stance without a pose pop.
 			windup=1.0; release=1.0
 			var duration:=0.46 if boss or attack_style=="heavy" else 0.32
-			recovery=1.0-_ease(clampf((release_time-.055)/(duration-.055),0,1))
+			recovery=ActionCraft.recovery(release_time,duration)
 	elif anticipated_blend>0.0: windup=anticipated_blend*.65
 	if windup>0.0:
 		var poses:=_action_poses()
@@ -402,17 +469,23 @@ func _apply_motion(delta: float=0.0) -> void:
 		joint_angles[4]=lerpf(float(prepared[1]),float(contact[1]),release)*influence
 		joint_angles[7]=lerpf(float(prepared[3]),float(contact[3]),release)*influence
 		joint_angles[8]=lerpf(float(prepared[4]),float(contact[4]),release)*influence
-		joint_angles[1]=lerpf(float(prepared[5]),float(contact[5]),release)*influence
-		joint_angles[2]=-joint_angles[1]*.55
+		var key: String="guardian_%d" % region_index if boss else kind
+		var whole:=ActionCraft.sample(key,attack_style,windup,release,recovery)
+		joint_angles[0]=whole[0]; joint_angles[1]=whole[1]
+		chest_yaw=whole[2]; head_yaw=whole[3]
+		joint_angles[2]=-joint_angles[1]*.45-joint_angles[0]*.4
 		var weapon_angle:=lerpf(float(prepared[2]),float(contact[2]),release)*influence
-		joint_angles[6]=weapon_angle-joint_angles[1]-joint_angles[3]-joint_angles[4]
-		motion_offset.x=(.018 if hostile else -.018)*figure_height*windup*recovery*(1.0-release*2.4)
-		motion_offset.y=-figure_height*.012*influence
+		joint_angles[6]=weapon_angle-joint_angles[0]-joint_angles[1]-joint_angles[3]-joint_angles[4]
+		motion_offset.x=whole[4]*figure_height
+		motion_offset.y+=(whole[5]-whole[7]*.3)*figure_height
 	if not reduced_motion:
-		joint_angles[1]+=death_lean*hit_strength*.09
-		joint_angles[2]-=death_lean*hit_strength*.07
-		motion_offset.x+=death_lean*hit_strength*figure_height*.022
-		cloth_follow=lerpf(cloth_follow,-joint_angles[1]*.32+stride*.025,1.0-exp(-delta*7.0))
+		joint_angles[0]+=recoil_direction*hit_strength*.045
+		joint_angles[1]+=recoil_direction*hit_strength*.16
+		joint_angles[2]-=recoil_direction*hit_strength*.10
+		joint_angles[3]+=recoil_direction*hit_strength*.12
+		motion_offset.x+=recoil_direction*hit_strength*figure_height*.040
+		motion_offset.y-=hit_strength*figure_height*.018
+		cloth_follow=lerpf(cloth_follow,-(joint_angles[0]+joint_angles[1])*.48+stride*.035,1.0-exp(-delta*7.0))
 		var cloth_strength:=0.007+gait_blend*.01
 		joint_angles[16]=cloth_follow+sin(clock*2.1)*cloth_strength
 		joint_angles[17]=cloth_follow*1.3+sin(clock*2.1-.55)*cloth_strength*1.4
@@ -424,13 +497,26 @@ func _apply_motion(delta: float=0.0) -> void:
 		joint_angles[3]-=lean*.14; joint_angles[7]+=lean*.2
 		motion_offset.y-=figure_height*.028*lean
 	if death_time>=0.0:
-		var collapse:=_ease(clampf(death_time/COLLAPSE_DURATION,0,1))
-		joint_angles[0]=death_lean*collapse*.80
-		joint_angles[1]=-death_lean*collapse*.18
-		joint_angles[2]=death_lean*collapse*.2
-		joint_angles[3]=collapse*.45; joint_angles[7]=-collapse*.35
-		motion_offset.y=-figure_height*.28*collapse
-		motion_offset.x=death_lean*figure_height*.20*collapse
+		# The knees give way first, then the shoulder drops and the weapon arm
+		# follows. No uniform rotation of an otherwise rigid standing figure.
+		var buckle:=smoothstep(0.0,.30,death_time)
+		var fall:=smoothstep(.13,COLLAPSE_DURATION,death_time)
+		joint_angles[0]=death_lean*(buckle*.11+fall*1.20)
+		joint_angles[1]=death_lean*(buckle*.28-fall*.16)
+		joint_angles[2]=-death_lean*buckle*.20+death_lean*fall*.48
+		joint_angles[3]=buckle*.32+fall*.60; joint_angles[4]=-buckle*.55
+		joint_angles[7]=-buckle*.28-fall*.45; joint_angles[8]=buckle*.38
+		chest_yaw=death_lean*fall*.16; head_yaw=-chest_yaw*.6
+		motion_offset.y=-figure_height*(buckle*.20+fall*.18)
+		motion_offset.x=death_lean*figure_height*fall*.30
+	if transition_time>=0.0 and death_time<0.0 and transition_angles.size()==joint_angles.size():
+		var blend:=smoothstep(0.0,.07,transition_time)
+		# Blend the upper-body transition, then solve the planted feet under
+		# the resulting pelvis. Blending finished IK would make soles slide.
+		for n in range(10): joint_angles[n]=lerp_angle(transition_angles[n],joint_angles[n],blend)
+		motion_offset=transition_offset.lerp(motion_offset,blend)
+		chest_yaw=lerpf(transition_yaw.x,chest_yaw,blend)
+		head_yaw=lerpf(transition_yaw.y,head_yaw,blend)
 	# Two-joint leg IK keeps stance soles on the floor while the pelvis breathes,
 	# winds up or recoils. Swing feet lift; foot orientation stays level.
 	var leg_targets: Array[Vector3]=[]
@@ -448,6 +534,18 @@ func _apply_motion(delta: float=0.0) -> void:
 		var target: Vector3=motion_rig.rest[limb+2]
 		target.x=lerpf(target.x,motion_rig.rest[limb].x,gait_blend)
 		target+=Vector3(step_x*gait_axis*gait_blend/maxf(scale.x,.01),lift*gait_blend,0)
+		if stop_time>=0.0 and stop_targets.size()==2:
+			# Set down the swing foot, then bring the old support into guard.
+			# One sole stays planted during each half; stopping never drags both.
+			var u_stop:=clampf((stop_time-(.16 if pair==stop_support else 0.0))/.16,0,1)
+			target=stop_targets[pair].lerp(motion_rig.rest[limb+2],_ease(u_stop))
+			target.y+=sin(u_stop*PI)*figure_height*.025
+		if windup>0.0 and death_time<0.0:
+			var key: String="guardian_%d" % region_index if boss else kind
+			var whole:=ActionCraft.sample(key,attack_style,windup,release,recovery)
+			target.x+=(-1.0 if pair==0 else 1.0)*whole[6]*figure_height
+		if death_time>=0.0:
+			target.x+=death_lean*figure_height*.12*smoothstep(.13,COLLAPSE_DURATION,death_time)
 		leg_targets.append(target)
 	if death_time<0.0:
 		var lower_pelvis:=0.0
@@ -460,7 +558,12 @@ func _apply_motion(delta: float=0.0) -> void:
 			lower_pelvis=maxf(lower_pelvis,hip.y-leg_targets[pair].y-vertical)
 		motion_offset.y-=maxf(0,lower_pelvis)
 	for pair in range(2): _leg_ik(10 if pair==0 else 13,leg_targets[pair])
-	motion_rig.pose(joint_angles,motion_offset)
+	motion_rig.pose(joint_angles,motion_offset,chest_yaw,head_yaw)
+	if death_time>=0.0:
+		# Catch the falling shoulder/weapon on the floor rather than allowing
+		# a tilted painting to pass through the stone before the settled pose.
+		motion_offset.y+=.015-motion_rig.contact_floor()
+		motion_rig.pose(joint_angles,motion_offset,chest_yaw,head_yaw)
 	if kind=="Ranger" and not hostile and death_time<0.0:
 		var pull:=figure_height*.12*windup*recovery*(1.0-release)
 		var string_point: Vector3=motion_rig.set_bow_draw(pull)
@@ -468,7 +571,7 @@ func _apply_motion(delta: float=0.0) -> void:
 			var initial_hand: Vector3=motion_rig.skeleton.get_bone_global_pose(9).origin
 			var approach:=_ease(clampf(windup*recovery/.55,0,1))
 			_reach_arm(7,initial_hand.lerp(string_point+Vector3(-.015,0,0),approach))
-			motion_rig.pose(joint_angles,motion_offset)
+			motion_rig.pose(joint_angles,motion_offset,chest_yaw,head_yaw)
 			motion_rig.set_bow_draw(pull)
 	surface_material.set_shader_parameter("pose_frame",float(pose_frame))
 

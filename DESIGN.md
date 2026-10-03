@@ -221,3 +221,7 @@ Reduced Motion removes camera shake, impact displacement and ambient sway while 
 - **Don't** show unearned seals or claim a unique model for every equipment item.
 - **Don't** reduce controls or text to force a compact layout; retain scrolling and adaptive sizing.
 - **Don't** infer device performance, motion quality or player retention from the static renderer gallery.
+
+## Animation craft · 0.42
+
+Whole-body loading and contact poses drive pelvis roll, chest roll/yaw, head counter-turn and planted leg IK for all eleven figures. A loaded hold precedes acceleration; slight follow-through settles into guard. A real next cast blends out of recovery, then commits contact on its own hit. Stopping plants feet sequentially. Source direction and damage strength govern recoil; knees buckle before the shoulder falls, with bounded cached contour probes catching the floor. The approved paintings and one-surface GPU skin remain unchanged. Nyra/current target receive a restrained inward contour; crowded background combatants and corpses recede without moving collision positions. A distinct heroine footprint and blade-aligned ribbon replace repeated damage rings. See [0.42 implementation](docs/ANIMATION_CRAFT_042.md).

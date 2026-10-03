@@ -41,6 +41,7 @@ GODOT_SUITES = (
     "character_equipment",
     "presentation",
     "painted_animation",
+    "animation_craft",
     "camp_hud",
     "fellowship_ui",
     "cloud_identity",

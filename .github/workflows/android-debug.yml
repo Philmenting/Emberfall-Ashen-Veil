@@ -159,7 +159,7 @@ jobs:
           "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-debug.apk
           "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-closed-beta-ci.apk
           apk_info="$("$ANDROID_HOME/build-tools/36.1.0/aapt" dump badging build/emberfall-debug.apk)"
-          grep -F "package: name='com.philmenting.emberfallashenveil.test029' versionCode='$beta_version_code' versionName='0.41.0-online-test'" <<< "$apk_info"
+          grep -F "package: name='com.philmenting.emberfallashenveil.test029' versionCode='$beta_version_code' versionName='0.42.0-online-test'" <<< "$apk_info"
           grep -F "uses-permission: name='android.permission.INTERNET'" <<< "$apk_info"
           closed_beta_info="$("$ANDROID_HOME/build-tools/36.1.0/aapt" dump badging build/emberfall-closed-beta-ci.apk)"
           grep -F "package: name='com.philmenting.emberfallashenveil.closedbeta' versionCode='$beta_version_code' versionName='$beta_version_name'" <<< "$closed_beta_info"

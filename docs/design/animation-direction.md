@@ -25,3 +25,15 @@ Verification includes continuous pose sampling, simulation-event timing,
 interruption/resume, source UV and rigid weapon checks, native moving captures,
 and complete animated figure bounds at closed Fold, open Fold and compact sizes.
 Renderer/emulator evidence is not a measurement of physical Pixel performance.
+
+## 0.42 whole-body craft
+
+The focal action transfers force through pelvis, chest, head and planted legs.
+Each figure has a loaded/contact body pair with a restrained torso turn;
+preparation holds before acceleration, and follow-through settles into guard.
+Continuity includes swing-foot-first stopping and recovery interrupted by a real
+following cast. Direction and strength govern recoil; knees, shoulder and weapon
+fall in stages. Bounded source-contour probes catch the fall on the floor.
+Nyra and her actual target receive a restrained semantic silhouette accent;
+nearby background fighters recede without moving their real floor positions.
+Original paintings, shared GPU geometry and Reduced Motion remain intact.
