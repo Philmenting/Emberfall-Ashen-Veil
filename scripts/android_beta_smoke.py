@@ -50,8 +50,10 @@ def main() -> int:
         adb("logcat", "-c")
         adb("shell", "am", "start", "-n", PACKAGE + "/com.godot.game.GodotAppLauncher")
         if args.success_only:
-            await_marker("ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI", "success-launch.log")
-            for key in ["welcome", "first-fight", "first-relic", "oaths", "oath-run", "filtered-bag", "protected-gear"]:
+            log = await_marker("ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI", "success-launch.log")
+            if "ANDROID_READABILITY_PASS" not in log:
+                raise RuntimeError("Android skill inspection did not verify pause and resume")
+            for key in ["welcome", "first-fight", "skill-reading", "first-relic", "oaths", "oath-run", "filtered-bag", "protected-gear"]:
                 capture = subprocess.run([args.adb, "exec-out", "run-as", PACKAGE, "cat", f"files/success-{key}.png"], capture_output=True, timeout=60)
                 if capture.returncode or not capture.stdout.startswith(b"\x89PNG\r\n\x1a\n"):
                     raise RuntimeError(f"Android first-session capture {key} missing or invalid")
@@ -60,7 +62,7 @@ def main() -> int:
             adb("logcat", "-c")
             adb("shell", "am", "start", "-n", PACKAGE + "/com.godot.game.GodotAppLauncher")
             await_marker("ANDROID_SUCCESS_PASS restart preserves combined oaths", "success-restart.log")
-            print("ANDROID SUCCESS LOOP VERIFIED: first fight, one-time relic, gear protection, bag filters, combined oaths and cold restart")
+            print("ANDROID SUCCESS LOOP VERIFIED: first fight, skill inspection and resume, one-time relic, gear protection, bag filters, combined oaths and cold restart")
             return 0
         if args.art_only:
             log = await_marker("ANDROID_ART_PASS all four regions rendered", "art-launch.log")

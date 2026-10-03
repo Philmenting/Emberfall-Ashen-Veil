@@ -200,6 +200,16 @@ Three native buttons select zero, one or two oaths. Selection changes fill and a
 
 Life/mana/guardian bars use a dark native track and a softly rounded fill. Backup fields are native wrapping `TextEdit` controls with a minimum height (76), inherited Lora and engine default field chrome. They do not establish an additional branded input treatment.
 
+### Combat readouts and inspection
+
+The permanent lower row exposes the equipped signature and actual techniques from the frozen expedition. Each skill shows its name, CASTING / remaining cooldown / LOW MANA / READY and an actual cooldown track. Existing class and technique colors identify the tracks; words carry state independently of color. The same 48-unit minimum touch and scaled-font helpers apply. Tapping a skill opens its rule in Details and pauses live combat. Closing or Back restores the prior active/manual-pause state. Resume explicitly continues. The reading state survives layout rebuilds; a save preserves the underlying active intent, so cold restart cannot accidentally turn a manual pause into play.
+
+Chamber progress and its current objective remain visible alongside the skills. Living reinforcements count as foes remaining, and completing the guardian still requires recovering the reliquary. Guard duration and Mana Ward's active/reserve state appear under Nyra's meters. Life values update immediately; lost Life leaves a bronze trace for 0.18 seconds and settles over 0.42 seconds. Healing clears the trace, inspection pauses it, and Reduced Motion removes its movement. No screen flash or camera impulse accompanies it.
+
+The renderer reserves the actual laid-out readout height. Unlaid-out container positions never participate in framing; the fixed-height objective avoids camera changes between status strings. All room and warning geometry must remain above that reserved edge. Reading opens the existing scrollable two-column sheet and keeps skill selection, Close and Resume reachable.
+
+**The Combat Inspection Rule.** Show automatic skill state in words and cooldown tracks from the frozen expedition. Reading temporarily pauses live time: Close or Back restores the player's prior active/manual-pause intent, while Resume explicitly continues. Layout rebuilds and saves must preserve that intent.
+
 ### Actors, phases and motion
 
 Eleven spatial figures comprise three Nyra classes, four hostile kinds and four region guardians. Each figure uses twenty-nine native bones, nine AnimationPlayer clips and one cached opaque skinned surface (at most 40,000 triangles), plus the contact shadow. Original geometry is rebuilt from `tools/art/build_characters.py`; meshes, skin bindings and clip libraries are shared per appearance. Distance-driven alternating steps use leg IK to hold supporting soles on the floor, including backward travel; chest/head counter-motion and delayed cloth add weight. Older painted actor assets remain historical source archives and are excluded from Android exports.

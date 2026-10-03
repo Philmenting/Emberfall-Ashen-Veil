@@ -1,6 +1,20 @@
 # Emberfall: Ashen Veil
 
-## Aktuell: 0.43.0-beta.1 · Vollständig animierte 3D-Figuren und ruhige Kamera
+## Aktuell: 0.44.0-beta.1 · Fähigkeiten sichtbar und Kampf in Ruhe verstehen
+
+Die drei tatsächlich ausgerüsteten Fähigkeiten stehen während des Kampfes in
+einer kompakten Leiste: bereit, am Wirken, Abklingzeit oder zu wenig Mana.
+Antippen erklärt die jeweilige Regel und pausiert den Kampf. Schließen oder
+Android-Zurück stellt den vorherigen Spielzustand wieder her; eine manuelle
+Pause bleibt erhalten. Guard, Mana Ward, Lebensverlust und der Fortschritt
+durch die Kammern sind direkt sichtbar. Kamera und Warnungsgeometrie halten
+den Platz für die Leiste frei. Android-Version-Code **50**.
+
+[Native Ansichten und Umsetzung](docs/COMBAT_READABILITY_044.md),
+[Gameplay und echte Lesepause](docs/previews/combat-readability/emberfall-combat-044.mp4),
+[Review und Testbuild](https://github.com/Philmenting/Emberfall-Ashen-Veil/pull/5).
+
+## Vorheriger Ausbau: 0.43.0-beta.1 · Vollständig animierte 3D-Figuren und ruhige Kamera
 
 Alle elf Figuren verwenden echte beleuchtete 3D-Modelle, 29 Skelettknochen und
 neun native Animationsclips. Nyra hat erwachsene Proportionen, ein durchgehendes

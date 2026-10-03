@@ -43,6 +43,7 @@ GODOT_SUITES = (
     "character_3d",
     "animation_craft",
     "camp_hud",
+    "combat_readability",
     "fellowship_ui",
     "cloud_identity",
     "mana_ward",

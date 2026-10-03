@@ -23,6 +23,8 @@ const MobileSafeArea = preload("res://scripts/mobile_safe_area.gd")
 const Preferences = preload("res://scripts/game_preferences.gd")
 const AudioDirector = preload("res://scripts/audio_director.gd")
 const SettingsPanel = preload("res://scripts/settings_panel.gd")
+const CombatReadout = preload("res://scripts/combat_readout.gd")
+const CombatHealthBar = preload("res://scripts/combat_health_bar.gd")
 
 const BG_TOP := Color("201c20")
 const BG_BOTTOM := Color("090d12")
@@ -154,6 +156,9 @@ var run_events: Array[String] = []
 var current_enemy := ENEMIES[0]
 var run_arena: Control
 var combat_hud: Dictionary = {}
+var combat_details_open := false
+var details_resume_run := false
+var inspected_skill := "signature"
 var finish_pending := false
 var skipping_run := false
 var backgrounded_at := 0
@@ -249,6 +254,9 @@ func _refresh_responsive_layout() -> void:
 	_build_ui()
 
 func _build_ui() -> void:
+	if page != "run":
+		combat_details_open = false
+		details_resume_run = false
 	ui_revision += 1
 	forecast_jobs.clear()
 	camp_scene = null
@@ -855,12 +863,15 @@ func _build_run() -> void:
 	hero_stack.add_theme_constant_override("separation",5)
 	hero_row.add_child(hero_stack)
 	hero_stack.add_child(_label("NYRA · %d" % player_level,16,PALE,true))
-	combat_hud.hp=_progress_bar(run_health,expedition.stats.max_hp,Color("b62c2b"),10)
+	combat_hud.hp=_progress_bar(run_health,expedition.stats.max_hp,Color("b62c2b"),10,true)
 	hero_stack.add_child(combat_hud.hp)
 	combat_hud.mana=_progress_bar(run_mana,expedition.stats.max_mana,Color("438e9e"),6)
 	hero_stack.add_child(combat_hud.mana)
 	combat_hud.life=_label("",10,PALE)
 	hero_stack.add_child(combat_hud.life)
+	combat_hud.protection=_label("",10,Color("79dbdc"))
+	combat_hud.protection.name="ProtectionStatus"
+	hero_stack.add_child(combat_hud.protection)
 	var boss_stack:=VBoxContainer.new()
 	boss_stack.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	boss_stack.size_flags_horizontal=Control.SIZE_EXPAND_FILL
@@ -878,7 +889,7 @@ func _build_run() -> void:
 	combat_hud.boss_name=_centered_label("",16,PALE,true)
 	combat_hud.boss_name.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	boss_stack.add_child(combat_hud.boss_name)
-	combat_hud.boss_hp=_progress_bar(0,1,Color("b9382d"),12)
+	combat_hud.boss_hp=_progress_bar(0,1,Color("b9382d"),12,true)
 	boss_stack.add_child(combat_hud.boss_hp)
 	combat_hud.boss_life=_centered_label("",10,GOLD)
 	boss_stack.add_child(combat_hud.boss_life)
@@ -915,6 +926,7 @@ func _build_run() -> void:
 	air.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	air.size_flags_vertical=Control.SIZE_EXPAND_FILL
 	overlay.add_child(air)
+	_build_combat_readouts(overlay)
 	var bottom:=HBoxContainer.new()
 	bottom.add_theme_constant_override("separation",10)
 	bottom.mouse_filter=Control.MOUSE_FILTER_IGNORE
@@ -950,6 +962,7 @@ func _build_run() -> void:
 	loot.tooltip_text="Resolve this expedition with the same combat rules and collect its outcome"
 	loot.custom_minimum_size.x=123
 	loot.size_flags_horizontal=Control.SIZE_SHRINK_END
+	combat_hud.loot=loot
 	bottom.add_child(loot)
 	# A scrollable detail sheet preserves the world and simulation beneath it.
 	var detail_sheet:=_panel(Color(0.035,0.037,0.045,0.97),Color("9c8053"),5)
@@ -959,10 +972,11 @@ func _build_run() -> void:
 	detail_sheet.offset_right=-18-int(insets.right)
 	detail_sheet.offset_top=126+int(insets.top)
 	detail_sheet.offset_bottom=-84-int(insets.bottom)
-	detail_sheet.visible=false
+	detail_sheet.visible=combat_details_open
 	add_child(detail_sheet)
 	combat_hud.details_sheet=detail_sheet
 	var detail_scroll:=ScrollContainer.new()
+	detail_scroll.name="CombatDetailScroll"
 	detail_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
 	detail_sheet.add_child(detail_scroll)
 	var columns:=HBoxContainer.new()
@@ -971,10 +985,17 @@ func _build_run() -> void:
 	detail_scroll.add_child(columns)
 	var hero_details:=VBoxContainer.new()
 	hero_details.name="HeroDetails"
-	hero_details.visible=false
+	hero_details.visible=combat_details_open
 	hero_details.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	hero_details.add_theme_constant_override("separation",8)
 	columns.add_child(hero_details)
+	hero_details.add_child(_label("PAUSED WHILE READING",12,GOLD,true))
+	combat_hud.inspected_title=_paragraph_label("",14,PALE,true)
+	hero_details.add_child(combat_hud.inspected_title)
+	combat_hud.inspected_rule=_paragraph_label("",12,PALE)
+	hero_details.add_child(combat_hud.inspected_rule)
+	hero_details.add_child(_paragraph_label("Skills cast automatically when their conditions are met. Ready means enough Mana and no cooldown; Nyra still needs a suitable target and range.",11,MUTED))
+	hero_details.add_child(_small_divider())
 	hero_details.add_child(_label(character_class.to_upper(),16,PALE,true))
 	var stance:Dictionary=Stances.definition(expedition.stats)
 	hero_details.add_child(_label(String(stance.name).to_upper()+" STANCE",12,Color(stance.color)))
@@ -1002,7 +1023,7 @@ func _build_run() -> void:
 	combat_hud.hero_details=hero_details
 	var route_details:=VBoxContainer.new()
 	route_details.name="RouteDetails"
-	route_details.visible=false
+	route_details.visible=combat_details_open
 	route_details.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	route_details.add_theme_constant_override("separation",8)
 	columns.add_child(route_details)
@@ -1026,18 +1047,132 @@ func _build_run() -> void:
 	combat_hud.enemy_hp=_progress_bar(enemy_health,enemy_max_health,RED,6)
 	route_details.add_child(combat_hud.enemy_hp)
 	_sync_combat_hud()
+	_sync_combat_clearance.call_deferred()
+
+func _build_combat_readouts(parent: VBoxContainer) -> void:
+	var readouts:=HBoxContainer.new()
+	readouts.name="CombatReadouts"
+	readouts.add_theme_constant_override("separation",8)
+	readouts.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	parent.add_child(readouts)
+	combat_hud.readouts=readouts
+	combat_hud.skill_tiles={}
+	for entry in CombatReadout.skills(expedition):
+		var tile:=_button("",Color(0.027,0.024,0.027,0.96),10,_inspect_combat_skill.bind(String(entry.key)))
+		tile.name="CombatSkill_"+String(entry.key)
+		tile.custom_minimum_size=Vector2(156,_minimum_button_height(54))
+		tile.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+		tile.tooltip_text="Inspect %s · casts automatically · %d Mana" % [entry.title,entry.cost]
+		readouts.add_child(tile)
+		var margin:=MarginContainer.new()
+		margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		margin.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		for edge in ["left","right"]: margin.add_theme_constant_override("margin_"+edge,9)
+		for edge in ["top","bottom"]: margin.add_theme_constant_override("margin_"+edge,4)
+		tile.add_child(margin)
+		var stack:=VBoxContainer.new()
+		stack.add_theme_constant_override("separation",2)
+		stack.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		margin.add_child(stack)
+		var title:=_label(entry.title,10,PALE,true)
+		title.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		stack.add_child(title)
+		var status:=_label("",10,PALE)
+		status.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		stack.add_child(status)
+		var cooldown:=_progress_bar(0,1,entry.color,3)
+		stack.add_child(cooldown)
+		combat_hud.skill_tiles[entry.key]={"button":tile,"status":status,"bar":cooldown}
+	var route_ground:=_ink_ground(9,4)
+	route_ground.name="CombatRouteReadout"
+	route_ground.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	readouts.add_child(route_ground)
+	var route:=VBoxContainer.new()
+	route.add_theme_constant_override("separation",2)
+	route_ground.add_child(route)
+	combat_hud.route_summary=_label("",10,GOLD,true)
+	route.add_child(combat_hud.route_summary)
+	combat_hud.route_objective=_label("",10,PALE)
+	combat_hud.route_objective.clip_text=true
+	combat_hud.route_objective.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+	route.add_child(combat_hud.route_objective)
+	combat_hud.route_progress=_progress_bar(0,6,GOLD,3)
+	route.add_child(combat_hud.route_progress)
+	readouts.item_rect_changed.connect(func(): _sync_combat_clearance.call_deferred())
+
+func _sync_combat_clearance() -> void:
+	if page!="run" or not is_instance_valid(run_arena) or not combat_hud.has("readouts"): return
+	var top: float=combat_hud.readouts.global_position.y-global_position.y
+	# Containers briefly report their unlaid-out origin. Reserving it would
+	# permanently widen a monotonic room shot before the first visible frame.
+	if top<size.y*0.55 or combat_hud.readouts.size.x<=0.0: return
+	var bottom_ratio:=clampf((top-10.0)/maxf(1.0,size.y),0.60,0.86)
+	if not is_equal_approx(run_arena.world.hud_bottom_ratio,bottom_ratio):
+		run_arena.world.hud_bottom_ratio=bottom_ratio
+		run_arena.world.shot_stage=-1
+		run_arena.world._position_camera()
+	combat_hud.details_sheet.offset_bottom=top-size.y-8.0
+
+func _inspect_combat_skill(key: String) -> void:
+	if page!="run" or finish_pending: return
+	inspected_skill=key
+	if not combat_details_open: _toggle_combat_details()
+	else: _sync_combat_hud()
+	var scroll:=find_child("CombatDetailScroll",true,false) as ScrollContainer
+	if scroll!=null: scroll.scroll_vertical=0
 
 func _toggle_combat_details() -> void:
-	var expanded:bool=not combat_hud.hero_details.visible
+	if page!="run" or finish_pending: return
+	var expanded:bool=not combat_details_open
+	if expanded:
+		details_resume_run=run_active
+		run_active=false
+	else:
+		run_active=details_resume_run
+		details_resume_run=false
+	combat_details_open=expanded
+	run_arena.animation_enabled=run_active
 	combat_hud.hero_details.visible=expanded
 	combat_hud.route_details.visible=expanded
 	combat_hud.details_sheet.visible=expanded
-	combat_hud.details.text="CLOSE" if expanded else "DETAILS"
-	combat_hud.details.tooltip_text="Hide skills and route map" if expanded else "Show skills, oaths and route map"
+	_sync_combat_hud()
+	_save_progress()
+	if not expanded: combat_hud.details.grab_focus()
 
 func _on_dungeon_state_changed(description: String) -> void:
-	if combat_hud.has("state"):
+	if combat_hud.has("state") and not combat_details_open:
 		combat_hud.state.text = description
+
+func _sync_combat_readouts() -> void:
+	if not combat_hud.has("skill_tiles"): return
+	combat_hud.life.add_theme_color_override("font_color",Color("ff6a2e") if run_health<=expedition.stats.max_hp*0.25 else PALE)
+	combat_hud.hp.set_feedback_active(run_active)
+	combat_hud.boss_hp.set_feedback_active(run_active)
+	combat_hud.protection.text=CombatReadout.protection(expedition)
+	combat_hud.protection.visible=not combat_hud.protection.text.is_empty()
+	combat_hud.details.text="CLOSE" if combat_details_open else "DETAILS"
+	combat_hud.details.tooltip_text="Close reading view" if combat_details_open else "Pause and inspect skills, oaths and route map"
+	combat_hud.loot.disabled=combat_details_open
+	if combat_details_open: combat_hud.state.text="READING · COMBAT PAUSED"
+	for entry in CombatReadout.skills(expedition):
+		var tile: Dictionary=combat_hud.skill_tiles[entry.key]
+		tile.status.text=entry.status
+		tile.status.add_theme_color_override("font_color",GOLD if entry.state=="casting" else GREEN if entry.state=="ready" else Color("ff6a2e") if entry.state=="mana" else PALE)
+		tile.bar.value=entry.progress
+		tile.button.accessibility_name="%s, %s. Inspect automatic skill." % [entry.title,entry.status]
+	var route:=CombatReadout.route(expedition)
+	combat_hud.route_summary.text=route.label
+	combat_hud.route_objective.text=route.objective
+	combat_hud.route_objective.tooltip_text=route.objective
+	combat_hud.route_progress.max_value=route.total
+	combat_hud.route_progress.value=route.completed
+	if inspected_skill=="signature" or not Skills.DEFINITIONS.has(inspected_skill):
+		combat_hud.inspected_title.text=String(CLASS_DATA[character_class].ability).to_upper()+" · %d MANA" % expedition.signature_cost()
+		combat_hud.inspected_rule.text=CLASS_DATA[character_class].passive
+	else:
+		var definition: Dictionary=Skills.DEFINITIONS[inspected_skill]
+		combat_hud.inspected_title.text=String(definition.name).to_upper()+" · %d MANA" % expedition.technique_cost(inspected_skill)
+		combat_hud.inspected_rule.text=definition.rule
 
 func _sync_combat_hud() -> void:
 	if page != "run" or combat_hud.is_empty(): return
@@ -1050,6 +1185,7 @@ func _sync_combat_hud() -> void:
 	combat_hud.hp.value = run_health
 	combat_hud.mana.value = run_mana
 	combat_hud.life.text = "%d Life · %d Mana" % [run_health,run_mana]
+	_sync_combat_readouts()
 	combat_hud.progress.value = run_stage
 	combat_hud.encounter.text = "PACK %02d / %02d  •  %d ALIVE" % [mini(run_stage+1,run_max_stages),run_max_stages,expedition.living().size()]
 	if combat_hud.has("room"):
@@ -1472,8 +1608,9 @@ func _small_divider() -> Control:
 	divider.custom_minimum_size.y = 1
 	return divider
 
-func _progress_bar(value: float, maximum: float, color: Color, height: int) -> ProgressBar:
-	var bar := ProgressBar.new()
+func _progress_bar(value: float, maximum: float, color: Color, height: int, health_feedback: bool=false) -> ProgressBar:
+	var bar: ProgressBar = CombatHealthBar.new() if health_feedback else ProgressBar.new()
+	if health_feedback: bar.set_presentation(preferences.reduced_motion,preferences.battery)
 	bar.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	bar.custom_minimum_size.y = height
 	bar.max_value = maximum
@@ -1659,6 +1796,9 @@ func _start_run(target_floor: int = -1, rules: Dictionary = {}) -> void:
 		_note_playtest("first_oath_started",0.0)
 	onboarding_complete = true
 	page = "run"
+	combat_details_open=false
+	details_resume_run=false
+	inspected_skill="signature"
 	run_floor = target_floor if Contract.mode(rules)=="trial" else clampi(floor_number if target_floor<1 else target_floor,1,maxi(1,floor_number))
 	run_active = true
 	run_stage = 0
@@ -1760,6 +1900,10 @@ func _start_farming() -> void:
 
 func _toggle_run_pause() -> void:
 	if finish_pending: return
+	if combat_details_open:
+		details_resume_run=true
+		_toggle_combat_details()
+		return
 	run_active = not run_active
 	if is_instance_valid(run_arena):
 		run_arena.animation_enabled = run_active
@@ -2057,7 +2201,7 @@ func _accrue_offline_time(cooperative: bool=false) -> void:
 		return
 	if page=="run" and expedition!=null:
 		# Pausing is persistent: no second copy of the same hero farms in parallel.
-		if not run_active: return
+		if not _run_intends_progress(): return
 		expedition.advance(float(away))
 		_sync_model_state()
 		if not expedition.finished: return
@@ -2186,6 +2330,11 @@ func _normalize_item(item: Dictionary, default_slot: String) -> Dictionary:
 	if normalized.has("locked") and not normalized.locked is bool: normalized.erase("locked")
 	return normalized
 
+func _run_intends_progress() -> bool:
+	# Inspection freezes the foreground scene, not an active hero's AFK intent.
+	# Use the same intent for warm resume and a freshly loaded checkpoint.
+	return run_active or (combat_details_open and details_resume_run)
+
 func _build_save_payload() -> ConfigFile:
 	var save := ConfigFile.new()
 	save.set_value("settings","preferences",preferences)
@@ -2228,7 +2377,8 @@ func _build_save_payload() -> ConfigFile:
 	save.set_value("idle", "saved_at", last_saved_at)
 	if page=="run" and expedition!=null and not expedition.finished:
 		save.set_value("run","snapshot",expedition.encode_snapshot())
-		save.set_value("run","active",run_active)
+		# Reading temporarily stops live time; it preserves the player's run intent.
+		save.set_value("run","active",_run_intends_progress())
 		save.set_value("run","repeat",auto_repeat)
 	return save
 

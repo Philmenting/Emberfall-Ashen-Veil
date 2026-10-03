@@ -21,6 +21,7 @@ var region_index := 0
 var active := true
 var damage_numbers := true
 var reduced_motion := false
+var hud_bottom_ratio := 0.84
 var sun: DirectionalLight3D
 var ward_shell: MeshInstance3D
 var ward_flash := 0.0
@@ -650,7 +651,7 @@ func _position_camera(delta: float=0.0) -> void:
 		for point in points:
 			var screen:=camera.unproject_position(point)/viewport_size
 			factor=maxf(factor,absf(screen.x-0.5)/0.43)
-			factor=maxf(factor,(screen.y-0.50)/0.34 if screen.y>0.5 else (0.50-screen.y)/top_clearance)
+			factor=maxf(factor,(screen.y-0.50)/maxf(0.1,hud_bottom_ratio-0.50) if screen.y>0.5 else (0.50-screen.y)/top_clearance)
 		if factor<=1.01: break
 		var growth:=minf(factor*1.015,1.32)
 		offset*=growth

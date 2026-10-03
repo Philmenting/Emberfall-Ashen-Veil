@@ -765,6 +765,11 @@
         "section": "typography"
       },
       {
+        "name": "The Combat Inspection Rule",
+        "body": "Show automatic skill state in words and cooldown tracks from the frozen expedition. Reading temporarily pauses live time: Close or Back restores the player's prior active/manual-pause intent, while Resume explicitly continues. Layout rebuilds and saves must preserve that intent.",
+        "section": "components"
+      },
+      {
         "name": "The Earned State Rule",
         "body": "Camp seals appear only for saved guardian trophies. Class, equipment, guardian phase and warning cues come from real preparation or simulation state.",
         "section": "components"
