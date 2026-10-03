@@ -23,7 +23,7 @@ func _run_flow() -> void:
 	_on_combat_advanced(updates)
 	if expedition.casts<1: push_error("ANDROID_SUCCESS_FAIL signature did not fire early"); return
 	await _capture("first-fight")
-	var before_reading:=expedition.encode_snapshot()
+	var before_reading: String=expedition.encode_snapshot()
 	find_child("CombatSkill_chain",true,false).pressed.emit()
 	await _capture("skill-reading")
 	if run_active or not combat_details_open or expedition.encode_snapshot()!=before_reading:

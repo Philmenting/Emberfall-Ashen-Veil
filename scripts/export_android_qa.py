@@ -47,8 +47,13 @@ def main() -> int:
         options["package/name"] = '"Emberfall Beta QA"'
         with (stage / "export_presets.cfg").open("w") as stream: config.write(stream, space_around_delimiters=False)
         for arguments in [["--editor", "--import", "--quit"], ["--export-debug", "Android Offline QA", str(output)]]:
-            result = subprocess.run([godot, "--headless", "--path", str(stage), *arguments], check=False, timeout=300)
-            if result.returncode: return result.returncode
+            result = subprocess.run([godot, "--headless", "--path", str(stage), *arguments], check=False, timeout=300,
+                                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+            print(result.stdout, end="", flush=True)
+            # Godot can report script/import errors while still exiting zero.
+            # Stop before spending emulator time on an unloadable QA scene.
+            if result.returncode or "SCRIPT ERROR:" in result.stdout or "\nERROR:" in result.stdout:
+                return result.returncode or 1
         if not output.is_file(): raise RuntimeError("QA export returned without producing an APK")
     print(f"Offline QA artifact only: {output}")
     return 0
