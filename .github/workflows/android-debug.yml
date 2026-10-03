@@ -149,6 +149,7 @@ jobs:
           mkdir -p build
           beta_version_code="$(python3 -c 'import json; print(json.load(open("docs/play/store.json"))["version_code"])')"
           beta_version_name="$(python3 -c 'import json; print(json.load(open("docs/play/store.json"))["version_name"])')"
+          online_version_name="${beta_version_name%%-*}-online-test"
           godot --headless --path . --editor --import --quit
           python3 scripts/prepare_android_beta_build.py --template "$HOME/.local/share/godot/export_templates/4.7.2.stable/android_source.zip" --central-mirror https://maven-central.storage-download.googleapis.com/maven2/
           godot --headless --path . --export-debug 'Android Debug' 'build/emberfall-debug.apk'
@@ -159,7 +160,7 @@ jobs:
           "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-debug.apk
           "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose build/emberfall-closed-beta-ci.apk
           apk_info="$("$ANDROID_HOME/build-tools/36.1.0/aapt" dump badging build/emberfall-debug.apk)"
-          grep -F "package: name='com.philmenting.emberfallashenveil.test029' versionCode='$beta_version_code' versionName='0.43.0-online-test'" <<< "$apk_info"
+          grep -F "package: name='com.philmenting.emberfallashenveil.test029' versionCode='$beta_version_code' versionName='$online_version_name'" <<< "$apk_info"
           grep -F "uses-permission: name='android.permission.INTERNET'" <<< "$apk_info"
           closed_beta_info="$("$ANDROID_HOME/build-tools/36.1.0/aapt" dump badging build/emberfall-closed-beta-ci.apk)"
           grep -F "package: name='com.philmenting.emberfallashenveil.closedbeta' versionCode='$beta_version_code' versionName='$beta_version_name'" <<< "$closed_beta_info"
