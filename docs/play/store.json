@@ -1,6 +1,6 @@
 {
-  "version_name": "0.42.0-beta.1",
-  "version_code": 48,
+  "version_name": "0.43.0-beta.1",
+  "version_code": 49,
   "package": "com.philmenting.emberfallashenveil",
   "track": "closed",
   "game_languages": [
@@ -16,7 +16,7 @@
       "title": "Emberfall: Ashen Veil",
       "short_description": "Düsteres AFK-RPG: Plane deinen Build, besiege Wächter und sammle Relikte.",
       "full_description": "Durchschreite mit Nyra den Ashen Veil. Bereite deinen Build vor, erkunde verwitterte Dungeons und kehre mit neuen Relikten zurück. Nyra bewegt sich, kämpft, wirkt Fähigkeiten und weicht Gefahren automatisch aus. Du entscheidest über Ausrüstung, Kampfstil und das nächste Ziel.\n\nDREI KLASSEN, DEIN BUILD\nWähle Vowkeeper, Arcanist oder Ranger. Kombiniere Attribute, sechs Ausrüstungsslots und zwei automatische Techniken mit deiner Klassenfähigkeit. Balanced, Assault und Bastion verändern das Verhältnis von Angriff und Schutz. Vergleiche konkrete Werte, bevor du deine Ausrüstung wechselst, und verstärke wichtige Gegenstände beim Schmied.\n\nDUNGEONS UND WÄCHTER\nErkunde vier Regionen mit eigener Architektur und Wächtern in drei Kampfphasen. Wege, Gegnergruppen und Kampfmuster variieren zwischen Expeditionen. Bodenmarkierungen und Countdowns kündigen Bossangriffe an. Gezielte Hunts helfen dir, einen bestimmten Ausrüstungsslot zu verbessern. Ash Trials stellen deinen Build in separaten Herausforderungen mit 150 Sekunden Zeitlimit auf die Probe.\n\nSCHWÜRE UND DEIN LAGER\nKombiniere bis zu zwei von drei Schwüren: veränderte Heilung, gefährlichere Gegner oder höhere Manakosten treffen auf stärkere Signaturen, Reliquien und gezielte Belohnungen. Bereite den nächsten Lauf am Schwurtisch vor. Schmiede, Portal und verdiente Wächtersiegel machen deine Entwicklung im Lager sichtbar.\n\nFORTSCHRITT IN DEINEM TEMPO\nWähle eine Farm-Etage und aktiviere AFK. Wenn du zurückkehrst, berechnet das Spiel bis zu 24 Stunden Abwesenheit mit denselben Kampfregeln. Siege, Niederlagen und deine Ausrüstung bestimmen die Belohnungen. Eine pausierte Expedition bleibt pausiert. Behalte gesammelte Relikte, lege eindeutige Verbesserungen an und starte die nächste Expedition.\n\nGESCHLOSSENE BETA\nDiese Version ist ein Solo-Spiel im Querformat. Die Spieloberfläche ist derzeit Englisch. Kein Konto erforderlich, keine Werbung und keine In-App-Käufe. Fortschritt wird lokal gespeichert. Erstelle unter Options > Save Backup einen Wiederherstellungscode, bevor du App-Daten löschst oder das Gerät wechselst. Online-Gruppen und Cloud-Fortschritt gehören nicht zum Umfang dieser Beta.\n\nTeile Fehler und Feedback über Options > Beta / Privacy. Die Beta wird anhand der Rückmeldungen weiterentwickelt.",
-      "release_notes": "Neue Ganzkörperanimationen für alle Klassen, Gegner und Wächter: sichtbare Gewichtsverlagerung, Rumpfdrehung, zweistufiges Anhalten sowie Trefferreaktionen nach Richtung und Stärke. Knie geben vor dem Fallen nach. Nyra und das aktuelle Ziel bleiben in Gruppen deutlicher erkennbar. Set-Ziele und geprüfte Duplikatverkäufe sind enthalten."
+      "release_notes": "Nyra, Gegner und alle vier Wächter besitzen jetzt räumliche 3D-Körper mit vollständigen Skelettanimationen. Die Kampfkameras bleiben ruhig. Laufen, Waffenhaltung, Bogensehne, Treffer und Zusammenbrechen wurden überarbeitet; Ausrüstung und Porträts verwenden dieselben Modelle. Set-Ziele und geprüfte Duplikatverkäufe sind enthalten."
     },
     "en-US": {
       "title": "Emberfall: Ashen Veil",

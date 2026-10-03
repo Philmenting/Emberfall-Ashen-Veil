@@ -56,6 +56,11 @@ var dressing_room: int=-1
 var occluder_batches: Array[Dictionary]=[]
 var framing_scale := 1.0
 var projectile_emitted := false
+var shot_stage := -1
+var shot_aspect := -1.0
+var shot_scale := 1.0
+var shot_points: Array[Vector3] = []
+var shot_travel := false
 
 func _ready() -> void:
 	region_index = clampi(region_index,0,3)
@@ -497,9 +502,8 @@ func _point(point: Vector2) -> Vector3:
 func _process(delta: float) -> void:
 	if not active or simulation==null: return
 	elapsed += delta
-	# Warning geometry can require a prompt retreat; recovery is deliberately
-	# slower so the camera does not snap inward between consecutive attacks.
-	framing_scale=move_toward(framing_scale,1.0,delta*0.22)
+	# A combat shot never breathes with a swing, hit, target change or warning.
+	# Reserve the room/action envelope once; hold it until the next chamber.
 	guard_visual.visible=simulation.guard_time>0.0
 	guard_visual.rotation.y=elapsed*0.4
 	ward_flash=maxf(0.0,ward_flash-delta)
@@ -529,11 +533,9 @@ func _process(delta: float) -> void:
 	var direction := hero.position-previous
 	var walking := direction.length()>0.002
 	var hero_speed:=direction.length()/maxf(delta,0.0001)
-	if not walking or simulation.dodging or String(simulation.action)=="Creating spell distance":
+	if simulation.phase!="travel":
 		var target: Dictionary = simulation.enemy_by_id(simulation.target_id)
 		if not target.is_empty(): direction = _point(target.pos)-hero.position
-	if direction.length()>0.01:
-		hero.rotation.y = lerp_angle(hero.rotation.y,atan2(-direction.x,-direction.z),minf(delta*12.0,1.0))
 	hero.reduced_motion=reduced_motion
 	hero.face_toward(direction,camera.position)
 	var actor_speeds: Dictionary={}
@@ -544,7 +546,6 @@ func _process(delta: float) -> void:
 		actor.position = actor.position.lerp(_point(enemy.pos),minf(1.0,delta*15.0))
 		if enemy.hp>0:
 			var facing: Vector3 = hero.position-actor.position
-			actor.rotation.y = lerp_angle(actor.rotation.y,atan2(-facing.x,-facing.z),minf(delta*7.0,1.0))
 			actor.face_toward(facing,camera.position)
 		var actor_displacement:=actor.position.distance_to(old_position)
 		actor.follow_travel(actor.position-old_position,camera.position)
@@ -568,6 +569,9 @@ func _process(delta: float) -> void:
 		var remaining:=maxf(0.0,float(pending.left)-simulation.accumulator)
 		if not pending.has("ability_id") and remaining<=0.085 and actor_by_id.has(pending.target):
 			var color: Color=Color("79dbdc") if character_class=="Arcanist" else Color("84e3b4")
+			# The weapon/string releases with the visible flight; impact follows
+			# on the unchanged simulation damage frame a few milliseconds later.
+			hero.release_attack()
 			_launch_projectile(int(pending.target),color,maxf(0.016,remaining))
 			projectile_emitted=true
 	for id_value in actor_by_id:
@@ -588,11 +592,12 @@ func _process(delta: float) -> void:
 	_update_combat_readability(delta)
 	for i in range(torches.size()): torches[i].light_energy = 3.1+sin(elapsed*8.0+i*2.1)*0.22
 	var camera_anchor:=_camera_anchor()
-	var boss_focus:=_boss_is_active()
-	var zoom_target:=0.86 if boss_focus else 0.94
-	camera_zoom=lerpf(camera_zoom,zoom_target,1.0-exp(-delta*1.35))
+	var zoom_target:=0.86 if simulation.stage==5 else 0.94
+	camera_zoom=lerpf(camera_zoom,zoom_target,1.0-exp(-delta*2.0))
+	if absf(camera_zoom-zoom_target)<.0001: camera_zoom=zoom_target
 	camera_target = camera_target.lerp(camera_anchor,1.0-exp(-delta*4.0))
-	_position_camera()
+	if camera_target.distance_to(camera_anchor)<.001: camera_target=camera_anchor
+	_position_camera(delta)
 	_set_description("AUTO • " + String(simulation.action).to_upper())
 	simulation_advanced.emit(updates)
 
@@ -609,31 +614,36 @@ func _update_combat_readability(delta: float) -> void:
 		var important: bool=id_value==simulation.target_id or not enemy.warning.is_empty() or actor.boss
 		var actor_screen:=camera.unproject_position(actor.position+Vector3.UP*actor.figure_height*.55)
 		var crowded:=actor_screen.distance_to(hero_screen)/viewport_width<.095
-		# Never move a painted actor away from its real collision/warning floor.
+		# Never move a figure away from its real collision/warning floor.
 		# Only nearby background combatants recede; warnings remain prominent.
 		var goal:=.62 if crowded and not important else 1.0
 		var focus:=.44 if id_value==simulation.target_id else 0.0
 		actor.set_readability(lerpf(actor.emphasis,goal,1.0-exp(-delta*9.0)),focus)
 
-func _position_camera() -> void:
-	var shake:=Vector3.ZERO
-	if not reduced_motion and camera_shake_time>0.0:
-		var envelope:=clampf(camera_shake_time/0.18,0.0,1.0)
-		var phase:=elapsed*73.0
-		shake=Vector3(sin(phase),cos(phase*1.17+0.6),sin(phase*0.83+1.7))*camera_shake_strength*envelope
+func _position_camera(delta: float=0.0) -> void:
 	var viewport_size: Vector2=get_viewport().get_visible_rect().size
 	var aspect: float=viewport_size.x/maxf(viewport_size.y,1.0)
-	# A low three-quarter stage keeps the painted heroine on the left and the
+	var traveling: bool=simulation.phase=="travel"
+	if shot_stage!=simulation.stage or absf(shot_aspect-aspect)>.01 or shot_travel!=traveling:
+		shot_stage=simulation.stage; shot_aspect=aspect
+		shot_travel=traveling
+		shot_scale=1.0; shot_points=_travel_shot_points() if traveling else _room_shot_points()
+	# A low three-quarter stage keeps the spatial heroine on the left and the
 	# monumental guardian on the right. Fold-open view widens the view rather
 	# than putting the camera over the arena.
 	var fit: float=1.50 if aspect<1.3 else 1.0
-	var offset:=Vector3(10.2,5.3,7.1)*camera_zoom*fit*framing_scale
-	var aim:=camera_target+Vector3(0,1.95 if _boss_is_active() else 1.55,0)
-	camera.position=camera_target+offset+shake
+	var offset:=Vector3(10.2,5.3,7.1)*camera_zoom*fit*shot_scale
+	var aim:=camera_target+Vector3(0,1.95 if simulation.stage==5 else 1.55,0)
+	camera.position=camera_target+offset
 	camera.look_at(aim)
 	# Keep the *real* warning outline above the bottom controls. Framing may
 	# retreat for a wide late-phase pattern, never change its collision zones.
-	var points: Array[Vector3]=_framing_points()
+	var points: Array[Vector3]=shot_points.duplicate()
+	if traveling:
+		# Travel envelopes move with the camera anchor. Cached world-space room
+		# points must not drag a tracked shot away from Nyra between chambers.
+		for i in points.size(): points[i]+=camera_target
+	else: _append_warning_bounds(points)
 	for pass_index in range(5):
 		var factor:=1.0
 		var top_clearance:=0.26 if aspect>1.3 else 0.35
@@ -644,10 +654,57 @@ func _position_camera() -> void:
 		if factor<=1.01: break
 		var growth:=minf(factor*1.015,1.32)
 		offset*=growth
-		framing_scale*=growth
-		camera.position=camera_target+offset+shake
+		shot_scale*=growth
+		camera.position=camera_target+offset
 		camera.look_at(aim)
+	# Geometry can ask for one wider shot; it can never zoom back in between
+	# repeated warnings. Runtime pulls back smoothly; direct layout checks snap.
+	framing_scale=shot_scale if delta<=0.0 else move_toward(framing_scale,shot_scale,delta*1.5)
+	camera.position=camera_target+Vector3(10.2,5.3,7.1)*camera_zoom*fit*framing_scale
+	camera.look_at(aim)
 	_update_region_matte()
+
+func _room_shot_points() -> Array[Vector3]:
+	var points: Array[Vector3]=[]
+	var center:=_point(simulation.checkpoint(clampi(simulation.stage,0,5)))
+	for x in [-5.8,5.8]:
+		for z in [-5.0,5.0]: points.append(center+Vector3(x,0,z))
+	for enemy in simulation.waves[clampi(simulation.stage,0,simulation.waves.size()-1)]:
+		var foot:=_point(enemy.spawn)
+		var h:=4.6 if enemy.role=="boss" else 2.3
+		for x in [-h*.70,h*.70]:
+			for z in [-h*.70,h*.70]:
+				for y in [0.0,h*1.35]: points.append(foot+Vector3(x,y,z))
+	for x in [-1.8,1.8]:
+		for z in [-1.8,1.8]:
+			for y in [0.0,3.45]: points.append(hero.position+Vector3(x,y,z))
+	if simulation.stage==5:
+		var boss: Dictionary=simulation.enemy_by_id(50)
+		if not boss.is_empty():
+			for phase_index in range(3):
+				for variant in range(2):
+					var warning:=BossPatterns.create_phased(region_index,boss.pos,simulation.hero_pos,phase_index,variant)
+					for zone in warning.zones:
+						for outline in BossPatterns.outlines(zone):
+							for point in outline: points.append(_point(point))
+	return points
+
+func _travel_shot_points() -> Array[Vector3]:
+	var points: Array[Vector3]=[]
+	for x in [-4.8,4.8]:
+		for z in [-4.0,4.0]: points.append(Vector3(x,0,z))
+	for x in [-1.8,1.8]:
+		for z in [-.5,2.2]:
+			for y in [0.0,3.45]: points.append(Vector3(x,y,z))
+	return points
+
+func _append_warning_bounds(points: Array[Vector3]) -> void:
+	for wave in simulation.waves:
+		for enemy in wave:
+			if enemy.hp<=0 or not enemy.get("spawned",true) or enemy.warning.is_empty(): continue
+			for zone in enemy.warning.get("zones",[]):
+				for outline in BossPatterns.outlines(zone):
+					for point in outline: points.append(_point(point))
 
 func _framing_points() -> Array[Vector3]:
 	var points: Array[Vector3]=[hero.position,hero.position+Vector3(0,2.25,0)]
@@ -672,11 +729,9 @@ func _framing_points() -> Array[Vector3]:
 
 func _append_actor_bounds(points: Array[Vector3],actor: Node3D) -> void:
 	var bounds: AABB=actor.pose_bounds()
-	var forward: Vector3=(camera.position-actor.position)*Vector3(1,0,1)
-	var right:=Vector3.UP.cross(forward.normalized())
 	for x in [bounds.position.x,bounds.end.x]:
 		for y in [bounds.position.y,bounds.end.y]:
-			points.append(actor.position+right*x*actor.scale.x+Vector3.UP*y*actor.scale.y)
+			for z in [bounds.position.z,bounds.end.z]: points.append(actor.to_global(Vector3(x,y,z)))
 
 func _boss_is_active() -> bool:
 	if simulation==null or simulation.waves.is_empty(): return false
@@ -685,10 +740,9 @@ func _boss_is_active() -> bool:
 		if enemy.get("role","")=="boss" and int(enemy.get("hp",0))>0 and enemy.get("spawned",true): return true
 	return false
 
-func _kick_camera(intensity: float) -> void:
-	if reduced_motion: return
-	camera_shake_strength=maxf(camera_shake_strength,clampf(intensity,0.0,0.085))
-	camera_shake_time=maxf(camera_shake_time,0.18)
+func _kick_camera(_intensity: float) -> void:
+	# Hits belong to the affected body and contact effect, not the whole world.
+	camera_shake_strength=0.0; camera_shake_time=0.0
 
 func _set_description(value: String) -> void:
 	if value != last_description:
@@ -721,11 +775,11 @@ func _show_event(event: Dictionary) -> void:
 			effects.append({"node":arrival,"age":0.0,"life":0.48,"kind":"nova"})
 			_float_text(arrival_position+Vector3(0,2.55,0),"AMBUSH",Color("f29b68"))
 		"hero_attack":
+			if actor_by_id.has(event.target): hero.face_toward(actor_by_id[event.target].position-hero.position,camera.position,true)
 			var style:=String(event.get("ability_id",""))
 			if style.is_empty(): style="signature" if event.get("skill",false) else "basic"
 			var duration: float=Skills.DEFINITIONS.get(style,{}).get("cast",0.3)
 			hero.strike(style,duration,true)
-			if actor_by_id.has(event.target): hero.face_toward(actor_by_id[event.target].position-hero.position,camera.position)
 			projectile_emitted=false
 		"hit":
 			hero.release_attack()
@@ -1366,20 +1420,17 @@ func _impact_sparks(origin: Vector3,color: Color) -> void:
 		effects.append({"node":spark,"age":0.0,"life":0.22+rng.randf()*0.15,"kind":"spark","velocity":Vector3(rng.randf_range(-2.5,2.5),rng.randf_range(0.6,2.2),rng.randf_range(-2.5,2.5))})
 
 func _slash_arc(_origin: Vector3,color: Color) -> void:
-	# A narrow painted-plane ribbon follows the actual blade, rather than a
-	# generic horizontal sector that can miss its apparent contact entirely.
-	var forward:=((camera.position-hero.position)*Vector3(1,0,1)).normalized()
-	var right:=Vector3.UP.cross(forward)
-	var grip_local: Vector3=hero.motion_rig.skeleton.get_bone_global_pose(6).origin
-	var grip: Vector3=hero.position+right*grip_local.x*hero.facing_sign+Vector3.UP*grip_local.y+forward*grip_local.z
+	# The ribbon follows the spatial blade in its actual sweep plane.
+	var grip: Vector3=hero.weapon_grip_position()
 	var blade: Vector3=hero.weapon_world_position(camera.position)-grip
+	var normal: Vector3=hero.global_basis.x.normalized()
 	var mesh:=SurfaceTool.new()
 	mesh.begin(Mesh.PRIMITIVE_TRIANGLES)
 	for i in range(12):
-		var a: float=(-.55+float(i)*.55/12.0)*hero.facing_sign
-		var b: float=a+.55/12.0*hero.facing_sign
+		var a: float=-.55+float(i)*.55/12.0
+		var b: float=a+.55/12.0
 		for point in [Vector2(a,.84),Vector2(b,.84),Vector2(a,1.0),Vector2(b,.84),Vector2(b,1.0),Vector2(a,1.0)]:
-			mesh.add_vertex(Basis(forward,point.x)*blade*point.y)
+			mesh.add_vertex(Basis(normal,point.x)*blade*point.y)
 	mesh.generate_normals()
 	var arc:=MeshInstance3D.new()
 	arc.mesh=mesh.commit()
@@ -1470,9 +1521,7 @@ func _update_occluder_visibility() -> void:
 		entry.node.visible=int(entry.chamber)==chamber or (simulation.phase=="travel" and int(entry.chamber)==chamber-1)
 
 func _camera_anchor() -> Vector3:
+	if simulation.phase!="travel":
+		return _point(simulation.checkpoint(clampi(simulation.stage,0,5)))+Vector3(0,0,1.35)
 	var anchor: Vector3=hero.position+Vector3(0,0,-1.3)
-	var target: Dictionary=simulation.enemy_by_id(simulation.target_id)
-	if not target.is_empty():
-		var weight: float=0.48 if target.get("role","")=="boss" else 0.14
-		anchor=anchor.lerp(_point(target.pos),weight)
 	return anchor

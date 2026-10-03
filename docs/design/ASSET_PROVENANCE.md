@@ -1,5 +1,27 @@
 # Redesign asset provenance
 
+## Current figures · 0.43
+
+On 3 October 2026 the user explicitly chose fully animated 3D figures. All eleven
+shipping character GLBs in `assets/models/` are original authored geometry from
+`tools/art/build_characters.py`, rebuilt with adult Nyra proportions, continuous
+facial planes, pale swept hair/braids, fitted armor and class weapons. No external
+model or animation pack is used. `character_rig.gd` binds source volumes to a
+native 29-bone Skeleton3D and one cached GPU surface; `character_animation.gd`
+authors nine native clips per appearance. `character_surface.gdshader` supplies
+opaque lighting, material roughness, metal reflection and equipment accents.
+Camp, portrait and combat instantiate the same live class/equipment path.
+
+The painted actor source below is historical and excluded from all Android
+exports in 0.43. It supplies neither the live figure nor its final corpse.
+Monumental world paintings, floors, architecture, camp stations, fonts and UI
+retain the provenance below. Figure color conversion is measured from imported
+Godot material values; no source PNG pixels were altered in this replacement.
+The 0.43 clips use native Godot/Mesa frames at 30 FPS, an export timing rather
+than a physical phone benchmark. Their opening preparation segment is Armory.
+
+## Historical painted figures and retained world assets
+
 The user approved `approved-spire.png`, a generated design illustration. It is a reference, not a substitute gameplay screen. Its exact prompt is retained beside it and in PNG metadata.
 
 `assets/world/region-atlas.png`, `camp-matte.png` and `painted-stone.png` were generated using that reference. Their exact prompts are retained in `.prompt.txt` sidecars and embedded as PNG metadata. The region atlas supplies four distinct distant environments. The live Godot scene supplies the authoritative walking floor, interactive props, combat positions and actual warning geometry. The shared stone albedo dresses the floor and low masonry; it is tinted per region.
@@ -14,7 +36,7 @@ Exact initial and final correction prompts remain in sidecars where a correction
 
 `tools/art/calibrate_pose_atlases.py` reads source alpha with NumPy, Pillow, SciPy and scikit-image, then writes only the eight `.atlas.json` geometry maps. It never writes or edits PNG pixels. The maps trace all 66 authored poses, use a single idle body scale per actor and retain complete weapons across irregular nominal cell boundaries. `docs/audit/2026-10-02/pose-source-mapping.json` records final PNG SHA-256 and exact visible-alpha coverage; runtime geometry was separately instantiated and triangulated without failures.
 
-Original Blender character GLBs, their generator and skinning source remain in the source archive for reproducibility. They are excluded from the 0.40 shipping/QA runtime. Original authored Blender architecture supplies low carved remnants, braziers, medallions, wells and altars. No rejected smooth character mesh is hidden underneath the new figure.
+Original Blender character GLBs, their generator and skinning source were excluded from the 0.40 shipping/QA runtime. Their authored geometry was revised and made live in 0.43 as documented above. Original authored Blender architecture supplies low carved remnants, braziers, medallions, wells and altars.
 
 Cinzel and Lora come from Google Fonts' `ofl/cinzel` and `ofl/lora` directories. Their SIL Open Font License files ship in `assets/fonts`. The original generated score and authored bronze UiGlyph icons retain their existing provenance.
 

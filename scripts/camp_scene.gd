@@ -89,6 +89,8 @@ func _build_environment() -> void:
 	values.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	values.ambient_light_color = Color("b7c4c9")
 	values.ambient_light_energy = 0.38
+	values.sky=preload("res://scripts/dungeon_lighting.gd").reflection_sky()
+	values.reflected_light_source=Environment.REFLECTION_SOURCE_SKY
 	values.tonemap_mode = Environment.TONE_MAPPER_FILMIC
 	values.fog_enabled = true
 	values.fog_light_color = Color("344047")

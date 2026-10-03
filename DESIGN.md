@@ -1,6 +1,6 @@
 ---
 name: "Emberfall: Ashen Veil"
-description: "Painted dark fantasy in a simulation-driven Android expedition world."
+description: "Monumental dark fantasy with animated 3D figures in a simulation-driven Android expedition world."
 colors:
   background-top: "#201c20"
   background-bottom: "#090d12"
@@ -29,6 +29,12 @@ colors:
   rare: "#81a9d9"
   epic: "#bb86d4"
   legendary: "#e0a35d"
+  figure-plum: "#703947"
+  figure-violet: "#514267"
+  figure-sage: "#354f46"
+  figure-bronze: "#997449"
+  nyra-hair: "#c8c9c2"
+  nyra-skin: "#c9afa0"
 typography:
   display:
     fontFamily: "Cinzel"
@@ -107,23 +113,23 @@ components:
 
 **Creative North Star: "Painterly monumental dark fantasy"**
 
-The [user-approved Hollow Spire illustration](docs/design/approved-spire.png) establishes weathered adult figures, monumental ruins, torn plum cloth and bronze against warm stone and cool haze. The implemented world translates this into painted 2.5D actors, distant matte paintings and spatial floor, masonry, effects and camp stations in a native Godot 3D scene.
+The [user-approved Hollow Spire illustration](docs/design/approved-spire.png) establishes weathered adult figures, monumental ruins, torn plum cloth and bronze against warm stone and cool haze. On 3 October 2026 the user explicitly requested fully animated spatial 3D figures. Eleven authored, lit character volumes now share native skeletal animation across combat, camp and portraits; distant matte paintings, spatial floors, masonry, effects and camp stations retain the established world. No separate 3D composition approval is inferred.
 
-The world remains the main combat surface. Quiet ink grounds carry the portrait, life/mana, guardian phase and warning, region, pause and bottom actions. Preparation uses readable scrollable task panels. Autonomous movement and camera fitting can change the heroine/guardian relationship; the approved still is a visual authority, not a fixed gameplay camera pose.
+The world remains the main combat surface. Quiet ink grounds carry the portrait, life/mana, guardian phase and warning, region, pause and bottom actions. Preparation uses readable scrollable task panels. The camera holds a reserved combat-room shot, follows the travel anchor between chambers and widens smoothly when a complete warning needs more space. Hits and target changes do not shake or breathe the shot.
 
 **Key Characteristics:**
 
-- Painted adult silhouettes and class-specific weapon poses.
+- Spatial adult silhouettes, fitted armor and class-specific weapon poses.
 - Region-specific architecture and warm/cool material contrast.
 - Shared class and saved equipment quality across camp, portraits and combat.
 - Complete simulation-driven warnings with visible surrounding safe floor.
 - Native controls with adaptive text, touch sizing and safe-area offsets.
 
-This file records the current implementation, extracted on 2 October 2026. Frontmatter pixels are Godot logical UI units at the base scale. Source authority is [main.gd](scripts/main.gd), [DungeonActor](scripts/dungeon_actor.gd), [HeroArt](scripts/hero_art.gd), [DungeonWorld](scripts/dungeon_world.gd), [CampScene](scripts/camp_scene.gd), [UiGlyph](scripts/ui_glyph.gd) and their shaders. Native behavior takes precedence over the sidecar's illustrative HTML samples.
+This file records the current implementation, updated on 3 October 2026. Frontmatter pixels are Godot logical UI units at the base scale. Source authority is [main.gd](scripts/main.gd), [DungeonActor](scripts/dungeon_actor.gd), [CharacterRig](scripts/character_rig.gd), [CharacterAnimation](scripts/character_animation.gd), [HeroArt](scripts/hero_art.gd), [DungeonWorld](scripts/dungeon_world.gd), [CampScene](scripts/camp_scene.gd), [UiGlyph](scripts/ui_glyph.gd) and their shaders. Native behavior takes precedence over the sidecar's illustrative HTML samples. The task's FORM identifier is `native-volumetric-character-animation`.
 
 ## Colors
 
-The interface pairs warm bronze and parchment with layered charcoal; class, equipment and combat colors communicate actual state. Painted plum cloth is carried by source art and has no single runtime color token.
+The interface pairs warm bronze and parchment with layered charcoal; class, equipment and combat colors communicate actual state. Character materials use figure plum/violet/sage, figure bronze, Nyra hair and Nyra skin from the original Blender generator. Authored roughness and metallic values distinguish cloth, leather, skin, hair and forged metal under real scene lighting. These figure colors do not replace the interface palette.
 
 ### Primary
 
@@ -160,21 +166,21 @@ The base hierarchy uses display for camp, oaths and seals, title for preparation
 
 ## Layout
 
-`project.godot` uses an expanding logical canvas (960 × 540) in landscape. The primary product device is the Pixel 9 Pro Fold closed outer display (2424 × 1080); the current renderer gallery uses an outer-aspect proxy (1200 × 535), unfolded near-square (1040 × 1080) and compact Large Text (854 × 480). These are capture classes, not three hard-coded responsive breakpoints.
+`project.godot` uses an expanding logical canvas (960 × 540) in landscape. The primary product device is the Pixel 9 Pro Fold closed outer display (2424 × 1080); the current renderer gallery uses that size, unfolded near-square (1040 × 1080) and compact Large Text (854 × 480). Ordinary gameplay clips use an outer-aspect proxy (1200 × 536). These are capture classes, not three hard-coded responsive breakpoints.
 
 Preparation pages use vertical scrolling, page inset plus translated Android safe-area offsets, and persistent navigation. Reused spacing steps are in the frontmatter. Native compact sizing activates when logical width is at most (960) or height at most (600); desktop fixture sizing instead checks window width (960) or height (540). `_minimum_button_height` starts at (48), increases to (52) when compact and (58) with compact Large Text, and applies an Android density correction for the (48 dp) target. Physical touch and system-inset behavior still require device verification.
 
-Combat overlays reserve top information and bottom actions while Details opens the build and route sheet on demand. The perspective camera follows real positions, adapts to aspect ratio and retreats to contain complete warning outlines and calibrated actor/weapon bounds. Camp buttons project from the same world anchors as the forge, expedition table, Nyra and earned seal shelf; their positions are clamped above the bottom tray.
+Combat overlays reserve top information and bottom actions while Details opens the build and route sheet on demand. The perspective camera reserves spatial actor/weapon envelopes and all guardian phase warnings for a steady room shot. Travel uses a relative envelope attached to the current anchor, preventing stale room geometry from pulling the heroine off-screen. A changing aspect ratio refits the shot; warning widening is monotonic within a shot. Camp buttons project from the same world anchors as the forge, expedition table, Nyra and earned seal shelf; their positions are clamped above the bottom tray.
 
 ## Elevation & Depth
 
-UI depth comes from tonal layering, fine borders and translucent or opaque ink grounds. Reusable panels and buttons do not establish a drop-shadow vocabulary. Cinzel labels request a subtle native black shadow color; the world uses actual lighting/fog, painted horizons, textured ground and actor contact shadows. The 2.5D figure shader faces the camera while preserving world position. A native Skeleton3D animates painted layers within this plane.
+UI depth comes from tonal layering, fine borders and translucent or opaque ink grounds. Reusable panels and buttons do not establish a drop-shadow vocabulary. Cinzel labels request a subtle native black shadow color; the world uses actual lighting/fog, painted horizons, textured ground and actor contact shadows. Opaque 3D characters have spatial normals, depth, cast shadows and material reflections. They turn continuously around their own vertical axis; no character surface faces the camera automatically.
 
 Hollow Spire uses ash stone, a rose window and suspended bell; Drowned Archive uses stepped galleries, jade waterlight and an astrolabe; Glass Ossuary uses rib vaults, ivory and violet glass; Cinder Citadel uses angular basalt, foundry doors, a crown and molten distance. Regional identity lives in architecture and material as well as color.
 
 ## Shapes
 
-Controls have gently rounded native corners; glyph controls and HUD grounds are tighter than equipment and overview cards. Panel border widths are (1), and focus borders are (2). The panel helper applies content margins (11 horizontal, 8 vertical). Calibrated alpha contours select twelve complete anatomical pieces from each unchanged animation painting. GPU skinning moves their shared surface; the original fallen pose remains the final death state. No hidden legacy character mesh supplies the figure.
+Controls have gently rounded native corners; glyph controls and HUD grounds are tighter than equipment and overview cards. Panel border widths are (1), and focus borders are (2). The panel helper applies content margins (11 horizontal, 8 vertical). Authored anatomical volumes, tapered boots, continuous facial planes, fitted armor, swept pale hair and class weapons form Nyra's silhouette. The same GPU-skinned mesh remains visible through the complete articulated fall and settled corpse.
 
 ## Components
 
@@ -196,11 +202,11 @@ Life/mana/guardian bars use a dark native track and a softly rounded fill. Backu
 
 ### Actors, phases and motion
 
-Eleven painted figures comprise three Nyra classes, four hostile kinds and four region guardians. Each living figure uses twelve painted pieces, twenty-three native bones and one cached skinned surface (at most 6,000 vertices), plus the contact shadow. Joint transforms interpolate continuously. Distance-driven alternating steps use leg IK to hold supporting soles on the floor, including backward travel; chest/head counter-motion and delayed cloth add weight. The original six-pose atlases remain the source archive and supply settled fallen poses.
+Eleven spatial figures comprise three Nyra classes, four hostile kinds and four region guardians. Each figure uses twenty-nine native bones, nine AnimationPlayer clips and one cached opaque skinned surface (at most 40,000 triangles), plus the contact shadow. Original geometry is rebuilt from `tools/art/build_characters.py`; meshes, skin bindings and clip libraries are shared per appearance. Distance-driven alternating steps use leg IK to hold supporting soles on the floor, including backward travel; chest/head counter-motion and delayed cloth add weight. Older painted actor assets remain historical source archives and are excluded from Android exports.
 
-Sword, staff, bow, shield and guardian actions have separate curves. Hero windup follows the simulation's actual pending cast; the visible contact pose is released once on its real hit event. Guardian windup follows its complete warning duration, including restored checkpoints. Bowstring geometry and the drawing hand move together. Recovery lasts (0.32 s), or (0.46 s) for heavy/guardian attacks. Retreat cancels an uncommitted cast; defeat buckles the joints over (0.58 s) before settling into the fallen painting. Animated head/weapon/cloth bounds guide the camera. Phase state selects actual warning patterns and metal accents.
+Sword, staff, bow, shield and guardian actions have separate spatial poses. Hero windup follows the simulation's actual pending cast. Melee contact follows the real hit; a ranged weapon releases when its visible projectile starts, up to (0.085 s) before the unchanged damage event. Guardian windup follows its complete warning duration, including restored checkpoints. The left hand holds the bow and the right hand reaches the real moving nock. Recovery lasts (0.34 s). Retreat cancels an uncommitted cast; defeat buckles the knee, folds one leg and turns pelvis, shoulder and head before cloth settles over (0.90 s). Bone-derived spatial bounds include head, weapon and cloth. Phase state supplies actual warning patterns and restrained emissive cues.
 
-Reduced Motion removes camera shake, impact displacement and ambient sway while retaining essential steps, windups, contacts, falls, hit flash, countdown and warning information. Battery mode caps the engine at (30 FPS), reduces render resolution and removes MSAA/shadows; Balanced caps at (60 FPS). Those are configured limits, not measured sustained device results.
+The camera has no impact shake in either mode. Reduced Motion freezes decorative idle sway and suppresses displacement reactions while retaining essential steps, windups, contacts, falls, hit flash, countdown and warning information. Battery mode caps the engine at (30 FPS), reduces render resolution and removes MSAA/shadows; Balanced caps at (60 FPS). Those are configured limits, not measured sustained device results.
 
 **The Earned State Rule.** Camp seals appear only for saved guardian trophies. Class, equipment, guardian phase and warning cues come from real preparation or simulation state.
 
@@ -208,7 +214,7 @@ Reduced Motion removes camera shake, impact displacement and ambient sway while 
 
 ### Do:
 
-- **Do** preserve the approved painted material, adult silhouettes and distinct regional architecture.
+- **Do** preserve the monumental world, adult silhouettes, pale-haired Nyra and distinct regional architecture while using the user-requested animated 3D figures.
 - **Do** use the shared scaled-font, minimum-control and safe-area helpers when adding native UI.
 - **Do** keep the complete active warning and adjacent safe floor legible through the real camera.
 - **Do** use the same class and saved equipment path in portraits, camp and combat.
@@ -216,12 +222,12 @@ Reduced Motion removes camera shake, impact displacement and ambient sway while 
 
 ### Don't:
 
-- **Don't** replace the painted figures with the archived smooth character GLBs or describe them as full skeletal 3D models.
+- **Don't** restore painted billboards or mirror a character to change its direction; maintain authored spatial anatomy, lighting and continuous turns.
 - **Don't** add a decorative warning shape that disagrees with collision or avoidance geometry.
 - **Don't** show unearned seals or claim a unique model for every equipment item.
 - **Don't** reduce controls or text to force a compact layout; retain scrolling and adaptive sizing.
 - **Don't** infer device performance, motion quality or player retention from the static renderer gallery.
 
-## Animation craft · 0.42
+## Previous animation craft · 0.42
 
-Whole-body loading and contact poses drive pelvis roll, chest roll/yaw, head counter-turn and planted leg IK for all eleven figures. A loaded hold precedes acceleration; slight follow-through settles into guard. A real next cast blends out of recovery, then commits contact on its own hit. Stopping plants feet sequentially. Source direction and damage strength govern recoil; knees buckle before the shoulder falls, with bounded cached contour probes catching the floor. The approved paintings and one-surface GPU skin remain unchanged. Nyra/current target receive a restrained inward contour; crowded background combatants and corpses recede without moving collision positions. A distinct heroine footprint and blade-aligned ribbon replace repeated damage rings. See [0.42 implementation](docs/ANIMATION_CRAFT_042.md).
+The previous release used painted layers and contour-based fall support. Its archived implementation and captures are documented in [0.42 implementation](docs/ANIMATION_CRAFT_042.md). The user rejected that motion finish and requested the 3D replacement above. Nyra/current-target emphasis, real warning relationships and a blade-aligned ribbon carry forward. See [0.43 implementation and evidence](docs/CHARACTERS_3D_043.md).

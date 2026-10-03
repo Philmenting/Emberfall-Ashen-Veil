@@ -6,6 +6,8 @@ Emberfall is a landscape Android idle action RPG: choose Nyra's class, equip ear
 
 The user approved [this new art direction](docs/design/approved-spire.png) on 2 October 2026 and requested implementation across the game. It replaces the previous presentation with painterly dark fantasy: readable adult heroes, monumental region-specific ruins, bronze and plum accents, turquoise arcane magic and a compact HUD. The image is a generated design reference, not a gameplay capture.
 
+On 3 October 2026 the user explicitly requested fully animated spatial 3D characters. This supersedes the painted figure implementation: Nyra, hostile figures and guardians now use lit volumetric models, native skeletons and complete clips. The monumental painted rooms, camp stations, palette and native HUD retain their approved direction. Combat room cameras must stay steady during hits and actions.
+
 The primary device is a Google Pixel 9 Pro Fold, usually closed, in landscape. Design for its 2424×1080 outer display first, then the unfolded near-square display and compact landscape phones. Maintain native safe areas, Android Back, large text, reduced motion and usable touch targets.
 
 ## Product boundaries

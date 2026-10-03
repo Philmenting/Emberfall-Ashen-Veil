@@ -37,7 +37,7 @@ def main() -> int:
             if section not in ("preset.0", "preset.0.options"): config.remove_section(section)
         config["preset.0"]["name"] = '"Android Offline QA"'
         # Exercise the same runtime art/resources as the shipping preset while
-        # retaining QA scenes. Source-only legacy character models stay excluded.
+        # retaining QA scenes. Historical painted actor resources stay excluded.
         excludes = config["preset.0"]["exclude_filter"].strip('"').split(",")
         config["preset.0"]["exclude_filter"] = '"' + ",".join(value for value in excludes if value != "tests/*") + '"'
         options = config["preset.0.options"]

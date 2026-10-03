@@ -1,6 +1,6 @@
 extends SceneTree
-## Physical presentation contracts: support, whole-body force, directional
-## reactions, interruption and exact simulation parity across all classes.
+## Regression contracts for steady room shots, continuous orientation, physical
+## action support and identical simulation across all three live 3D classes.
 const Actor=preload("res://scripts/dungeon_actor.gd")
 const Sim=preload("res://scripts/expedition_simulation.gd")
 const World=preload("res://scripts/dungeon_world.gd")
@@ -11,91 +11,81 @@ func _initialize() -> void: run_checks.call_deferred()
 func check(value: bool,label: String) -> void:
 	checks+=1
 	if not value: failures+=1; push_error("FAIL: "+label)
-func make_actor(key: String) -> Node3D:
-	var actor:=Actor.new(); actor.boss=key.begins_with("guardian_")
-	actor.hostile=actor.boss or key not in Actor.HEROES
-	actor.kind="boss" if actor.boss else key
-	if actor.boss: actor.region_index=int(key.right(1))
-	root.add_child(actor)
-	return actor
 func run_checks() -> void:
-	for key in ["Vowkeeper","Arcanist","Ranger","raider","bulwark","hexer","elite","guardian_0","guardian_1","guardian_2","guardian_3"]:
-		var actor:=make_actor(key)
-		actor.strike("basic",.4,true); actor.sync_attack(.12); actor.animate(.016,false)
-		var loaded_hip: Vector3=actor.motion_rig.skeleton.get_bone_global_pose(0).origin
-		var loaded_chest: Basis=actor.motion_rig.skeleton.get_bone_global_pose(1).basis
-		var loaded: PackedFloat32Array=actor.joint_angles.duplicate()
-		check(absf(actor.chest_yaw)>.05 and absf(actor.joint_angles[0])>.015,key+": windup loads pelvis and turns the chest")
-		actor.release_attack()
-		check(loaded_chest!=actor.motion_rig.skeleton.get_bone_global_pose(1).basis and loaded_hip.distance_to(actor.motion_rig.skeleton.get_bone_global_pose(0).origin)>.025,key+": contact transfers real torso/hip weight")
-		check(absf(loaded[10]-actor.joint_angles[10])+absf(loaded[13]-actor.joint_angles[13])>.025,key+": legs respond to the loaded body and contact")
-		var finite:=true; var grounded:=true; var continuity:=true
-		var last: Vector3=actor.motion_rig.skeleton.get_bone_global_pose(0).origin
-		for frame in range(40):
-			actor.animate(1.0/120.0,false,0)
-			var hip: Vector3=actor.motion_rig.skeleton.get_bone_global_pose(0).origin
-			continuity=continuity and hip.distance_to(last)<actor.figure_height*.035
-			last=hip
-			finite=finite and actor.pose_bounds().position.is_finite() and actor.pose_bounds().size.is_finite()
-			for foot in [12,15]: grounded=grounded and absf(actor.motion_rig.skeleton.get_bone_global_pose(foot).origin.y-actor.motion_rig.rest[foot].y)<.045
-		check(finite and continuity,key+": follow-through settles without a root-position pop")
-		check(grounded,key+": support ankles stay at the physical floor during contact and recovery")
-		actor.animate(.6,false); actor.reduced_motion=true; actor.animate(.4,false)
-		var quiet: PackedFloat32Array=actor.joint_angles.duplicate(); var quiet_yaw: float=actor.chest_yaw
-		actor.animate(.3,false)
-		check(actor.joint_angles==quiet and actor.chest_yaw==quiet_yaw,key+": Reduced Motion leaves idle completely stationary")
-		actor.reduced_motion=false
-		actor.react(-1,.5); actor.animate(.05,false)
-		var weak: float=absf(actor.motion_offset.x)
-		actor.impact_time=-1; actor.react(1,1.4); actor.animate(.05,false)
-		check(actor.motion_offset.x>0 and absf(actor.motion_offset.x)>weak,key+": stronger directional damage has a stronger recoil")
-		actor.die()
-		var above_floor:=true; var staged:=false
-		for frame in range(32):
-			actor.animate(1.0/60.0,false)
-			above_floor=above_floor and absf(actor.motion_rig.contact_floor()-.015)<.003
-			if frame==8: staged=absf(actor.joint_angles[1])>.10 and absf(actor.joint_angles[10])>.05
-		check(staged and above_floor,key+": knees and torso collapse in stages without sinking through the floor")
-		actor.animate(.2,false)
-		check(actor.pose_frame==5 and actor.silhouette_focus==0 and actor.emphasis<1.0,key+": settled corpses recede from live combat")
-		actor.free()
-	var walker:=make_actor("Vowkeeper"); walker.gait_blend=1.0
-	for frame in range(24): walker.animate(1.0/60.0,true,3)
-	var support:=12 if fposmod(walker.gait_phase,TAU)<PI else 15
-	var planted: Vector3=walker.motion_rig.skeleton.get_bone_global_pose(support).origin
-	var locked:=true
-	for frame in range(8):
-		walker.animate(1.0/60.0,false,0)
-		locked=locked and walker.motion_rig.skeleton.get_bone_global_pose(support).origin.distance_to(planted)<.006
-	check(locked,"stopping plants one foot while the swing foot returns to guard")
-	walker.free()
-	var fast:=make_actor("Vowkeeper")
-	fast.strike("basic",.12,true); fast.sync_attack(.01); fast.animate(.01,false); fast.release_attack()
-	fast.animate(.06,false)
-	var old_root: Vector3=fast.motion_offset
-	fast.strike("sunder",.10,true); fast.sync_attack(.09); fast.animate(.008,false)
-	check(fast.external_release and fast.release_time<0.0 and fast.motion_offset.distance_to(old_root)<.02,"a fast real cast blends out of recovery and retains its own countdown")
-	check(fast.release_attack() and fast.transition_time<0.0 and fast.joint_angles[0]>.10,"the following real impact reaches its contact pose immediately during the recovery blend")
-	fast.free()
+	var hero:=Actor.new(); root.add_child(hero); hero.animate(.15,false)
+	var before_yaw: float=hero.rotation.y
+	hero.face_toward(Vector3(1,0,0)); hero.animate(1.0/60.0,false)
+	check(absf(angle_difference(before_yaw,hero.rotation.y))<.30 and hero.scale.x>0,"direction changes turn a real volume continuously without a mirrored silhouette")
+	hero.strike("basic",.5,true); hero.sync_attack(.22); hero.animate(.10,false)
+	var cast_yaw: float=hero.desired_yaw
+	hero.face_toward(Vector3(-1,0,0))
+	check(hero.desired_yaw==cast_yaw,"an in-flight cast holds its target orientation")
+	var feet: Array[Vector3]=[]
+	for bone in [14,17]: feet.append(hero.motion_rig.skeleton.get_bone_global_pose(bone).origin)
+	hero.sync_attack(.015); hero.animate(.15,false); hero.release_attack()
+	var supported:=true
+	for i in range(2): supported=supported and feet[i].distance_to(hero.motion_rig.skeleton.get_bone_global_pose(14 if i==0 else 17).origin)<.012
+	check(supported,"loaded body and weapon transfer weight while support ankles stay planted")
+	hero.animate(.07,false); hero.strike("sunder",.10,true); hero.sync_attack(.085); hero.animate(.008,false)
+	check(hero.external_release and hero.release_time<0.0 and hero.release_attack(),"a following real cast owns its countdown even during recovery")
+	hero.animate(.5,false); hero.strike("basic",.4,true); hero.retreat(); hero.animate(.15,true,2.0)
+	check(hero.attack_time<0.0 and hero.retreat_time>=0.0,"a real retreat cancels an unreleased cast")
+	hero.free()
 	var bot:=Bot.new()
+	for resolution in [Vector2i(2424,1080),Vector2i(1040,1080),Vector2i(854,480)]:
+		root.size=resolution
+		for region in range(4):
+			var sim:=Sim.new(); bot.character_class="Vowkeeper"
+			sim.setup("Vowkeeper",bot._combat_stats(),1+region*10,"Guardian",1979)
+			sim.phase="combat"
+			var world:=World.new(); world.simulation=sim; world.region_index=region; world.active=false
+			root.add_child(world); world.set_process(false)
+			world.camera_target=world._camera_anchor(); world.camera_zoom=.94; world._position_camera()
+			var transform: Transform3D=world.camera.transform; var zoom: float=world.framing_scale
+			var state: String=sim.encode_snapshot(); var old_target: int=sim.target_id; var stable:=true
+			for sample in range(24):
+				world.hero.strike("heavy"); world.hero.animate(float(sample)/60.0,false)
+				world.hero.position.x=sin(sample)*.45
+				sim.target_id=int(sim.waves[0][sample%sim.waves[0].size()].id)
+				world._kick_camera(3.0); world._position_camera()
+				stable=stable and world.camera.transform.is_equal_approx(transform) and world.framing_scale==zoom and world.camera_shake_strength==0.0
+			check(stable,"%dx%d region %d: hits, weapon poses, hero shifts and target switches never move or breathe the room camera" % [resolution.x,resolution.y,region])
+			sim.target_id=old_target
+			check(sim.encode_snapshot()==state,"camera and native animation do not modify simulation state")
+			world.free()
+		for class_key in Actor.HEROES:
+			var sim:=Sim.new(); bot.character_class=class_key
+			sim.setup(class_key,bot._combat_stats(),1,"Guardian",1979)
+			sim.phase="travel"
+			var world:=World.new(); world.simulation=sim; world.character_class=class_key; world.active=false
+			root.add_child(world); world.set_process(false)
+			var visible:=true; var scale:=0.0
+			for sample in range(24):
+				world.hero.position=Vector3(.4*sin(sample*.2),0,-sample*1.5)
+				world.camera_target=world._camera_anchor(); world._position_camera()
+				if sample==0: scale=world.framing_scale
+				visible=visible and absf(world.framing_scale-scale)<.0001
+				var points: Array[Vector3]=[]; world._append_actor_bounds(points,world.hero)
+				for point in points:
+					var screen: Vector2=world.camera.unproject_position(point)/Vector2(resolution)
+					visible=visible and screen.x>.07 and screen.x<.93 and screen.y>.13 and screen.y<.86
+			check(visible,"%dx%d %s: every travel anchor retains the complete spatial figure without accumulating camera retreat" % [resolution.x,resolution.y,class_key])
+			world.free()
 	for class_key in Actor.HEROES:
 		bot.character_class=class_key
 		var sim:=Sim.new(); var reference:=Sim.new()
-		sim.setup(class_key,bot._combat_stats(),1,"Guardian",1979)
-		reference.setup(class_key,bot._combat_stats(),1,"Guardian",1979)
+		sim.setup(class_key,bot._combat_stats(),1,"Guardian",1979); reference.setup(class_key,bot._combat_stats(),1,"Guardian",1979)
 		var world:=World.new(); world.simulation=sim; world.character_class=class_key; world.active=false
 		root.add_child(world); world.set_process(false); world.active=true
 		var same:=true
 		for frame in range(420):
 			world._process(1.0/60.0); reference.advance(1.0/60.0)
 			same=same and sim.encode_snapshot()==reference.encode_snapshot()
-		check(same,class_key+": rendered attacks/reactions/readability never change simulation or RNG")
-		var before: String=sim.encode_snapshot()
-		world._update_combat_readability(.2)
-		check(sim.encode_snapshot()==before and world.hero.silhouette_focus>.5,class_key+": focus is visual only and the heroine stays emphasized")
-		world.hero.die(); world.hero.animate(1.5,false)
-		world._update_combat_readability(.2)
-		check(world.hero.silhouette_focus==0.0 and world.hero.emphasis<.7 and not world.hero_marker.visible,class_key+": combat focus does not restore the defeated heroine's live emphasis")
+		check(same,class_key+": rendered 3D actions never change simulation or RNG")
+		var before: String=sim.encode_snapshot(); world._update_combat_readability(.2)
+		check(sim.encode_snapshot()==before and world.hero.silhouette_focus>.5,class_key+": heroine emphasis is visual only")
+		world.hero.die(); world.hero.animate(1.5,false); world._update_combat_readability(.2)
+		check(world.hero.silhouette_focus==0 and world.hero.emphasis<.7 and not world.hero_marker.visible,class_key+": the defeated heroine retains corpse treatment")
 		world.free()
 	bot.free()
 	print("ANIMATION CRAFT SMOKE: %d checks, %d failures" % [checks,failures])

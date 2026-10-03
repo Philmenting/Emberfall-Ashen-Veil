@@ -1,6 +1,27 @@
 # Emberfall: Ashen Veil
 
-## Aktuell: 0.42.0-beta.1 · Ganzkörperbewegung und lesbarerer Kampf
+## Aktuell: 0.43.0-beta.1 · Vollständig animierte 3D-Figuren und ruhige Kamera
+
+Alle elf Figuren verwenden echte beleuchtete 3D-Modelle, 29 Skelettknochen und
+neun native Animationsclips. Nyra hat erwachsene Proportionen, ein durchgehendes
+Gesicht, helle Haare und eng anliegende Rüstung. Schritte halten die Standsohle
+am Boden; Schwert, Stab und Bogen laden, treffen und schwingen unterschiedlich
+nach. Beim Fallen geben Knie, Hüfte und Schulter nacheinander nach, bevor Kopf
+und Mantel ruhen. Lager, Porträts und Kampf teilen dieselben Figuren.
+
+Die Kampfkamera wackelt bei Treffern und Zielwechseln nicht mehr. Unterwegs
+bleibt Nyra auch auf dem aufgeklappten Bildschirm im Bild. Bogen und Zauber
+lassen genau beim Start des sichtbaren Geschosses los; der tatsächliche Schaden
+bleibt unverändert. Android-Version-Code **49**.
+
+[Gameplay mit Schwert](docs/previews/characters-3d/emberfall-vowkeeper-043.mp4),
+[Stab](docs/previews/characters-3d/emberfall-arcanist-043.mp4),
+[Bogen](docs/previews/characters-3d/emberfall-ranger-043.mp4),
+[Bewegungsprüfung aller Figuren](docs/previews/characters-3d/emberfall-motion-043.mp4),
+[Umsetzung und Prüfgrenzen](docs/CHARACTERS_3D_043.md),
+[Review und Android-Pakete](https://github.com/Philmenting/Emberfall-Ashen-Veil/pull/5).
+
+## Vorheriger Ausbau: 0.42.0-beta.1 · Ganzkörperbewegung und lesbarerer Kampf
 
 Alle elf Figuren verlagern bei Angriffen Gewicht zwischen Hüfte, Rumpf und
 Beinen. Dreidimensionale Rumpfdrehung, ein klarer geladener Moment und

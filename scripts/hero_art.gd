@@ -1,5 +1,5 @@
 extends Control
-## Face crop or full figure from the exact class pose atlas used in battle.
+## Live lit portrait of the same equipped, skinned 3D heroine used in battle.
 
 const Actor = preload("res://scripts/dungeon_actor.gd")
 var character_class := "Vowkeeper"
@@ -97,11 +97,9 @@ func _resize() -> void:
 	viewport.size=Vector2i(mini(render_size.x,720),mini(render_size.y,720))
 	var aspect:=float(viewport.size.x)/float(viewport.size.y)
 	var anchor: Vector3=actor.portrait_anchor() if actor!=null else Vector3(0,1.87,0)
-	# The front-facing billboard's source x axis maps to negative world x.
-	# Crop the actual calibrated face, including on class changes and tall HUDs.
-	var target:=Vector3(-anchor.x,anchor.y-0.11,0) if portrait else Vector3(0,1.05,0)
-	camera.size=maxf(0.67,0.62/aspect) if portrait else maxf(2.45,2.20/aspect)
-	camera.position=target+Vector3(0,0,-12.0)
+	var target:=anchor+Vector3(0,.045,0) if portrait else Vector3(0,1.25,0)
+	camera.size=maxf(0.72,0.66/aspect) if portrait else maxf(3.20,2.70/aspect)
+	camera.position=target+Vector3(-1.5,.2,-12.0)
 	camera.look_at(target)
 	if battery or reduced_motion: viewport.render_target_update_mode=SubViewport.UPDATE_ONCE
 

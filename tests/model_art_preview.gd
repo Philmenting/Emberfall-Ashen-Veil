@@ -36,9 +36,21 @@ func capture_models() -> void:
 		if actor.boss: actor.region_index=int(appearance.right(1))
 		stage.add_child(actor)
 		actor.animate(0.1,false)
-		var target:=Vector3(0,actor.visual_height()*0.49,0)
+		var target:=Vector3(0,actor.pose_bounds().get_center().y,0)
 		camera.position=target+Vector3(3.4,1.0,-5.0)*(2.2 if actor.boss else 1.0)
 		camera.fov=34; camera.look_at(target)
+		for pass_index in range(3):
+			var growth:=1.0
+			var bounds: AABB=actor.pose_bounds()
+			for x in [bounds.position.x,bounds.end.x]:
+				for y in [bounds.position.y,bounds.end.y]:
+					for z in [bounds.position.z,bounds.end.z]:
+						var screen:=camera.unproject_position(actor.to_global(Vector3(x,y,z)))/Vector2(root.size)
+						growth=maxf(growth,absf(screen.x-.50)/.43)
+						growth=maxf(growth,(screen.y-.50)/.35 if screen.y>.50 else (.50-screen.y)/.42)
+			if growth<=1.0: break
+			camera.position=target+(camera.position-target)*growth*1.015
+			camera.look_at(target)
 		caption.text="EMBERFALL · "+appearance.replace("_"," ").to_upper()+"\n3D MODEL INSPECTION · IN-GAME ASSET"
 		for frame in range(5): await process_frame
 		await RenderingServer.frame_post_draw

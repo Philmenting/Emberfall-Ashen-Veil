@@ -17,7 +17,7 @@ func _record() -> void:
 	get_window().size=Vector2i(1200,536)
 	await get_tree().process_frame
 	_finish_welcome(false)
-	print("GAMEPLAY_CLIP actual camp")
+	print("GAMEPLAY_CLIP actual Armory preparation")
 	for frame in range(60): await _frame()
 	_start_run(1)
 	_prepare_manual_world()

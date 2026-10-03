@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-02T20:15:00.899471+00:00",
+  "generatedAt": "2026-10-03T12:54:41.711750+00:00",
   "title": "Design System: Emberfall: Ashen Veil",
   "extensions": {
     "colorMeta": {
@@ -408,6 +408,96 @@
           "oklch(0.836 0.11322 68.469)",
           "oklch(0.950 0.11322 68.469)"
         ]
+      },
+      "figure-plum": {
+        "role": "figure material",
+        "displayName": "Figure Plum",
+        "source": "tools/art/build_characters.py",
+        "tonalRamp": [
+          "oklch(0.150 0.07893 4.834)",
+          "oklch(0.264 0.07893 4.834)",
+          "oklch(0.379 0.07893 4.834)",
+          "oklch(0.493 0.07893 4.834)",
+          "oklch(0.607 0.07893 4.834)",
+          "oklch(0.721 0.07893 4.834)",
+          "oklch(0.836 0.07893 4.834)",
+          "oklch(0.950 0.07893 4.834)"
+        ]
+      },
+      "figure-violet": {
+        "role": "figure material",
+        "displayName": "Figure Violet",
+        "source": "tools/art/build_characters.py",
+        "tonalRamp": [
+          "oklch(0.150 0.06308 302.332)",
+          "oklch(0.264 0.06308 302.332)",
+          "oklch(0.379 0.06308 302.332)",
+          "oklch(0.493 0.06308 302.332)",
+          "oklch(0.607 0.06308 302.332)",
+          "oklch(0.721 0.06308 302.332)",
+          "oklch(0.836 0.06308 302.332)",
+          "oklch(0.950 0.06308 302.332)"
+        ]
+      },
+      "figure-sage": {
+        "role": "figure material",
+        "displayName": "Figure Sage",
+        "source": "tools/art/build_characters.py",
+        "tonalRamp": [
+          "oklch(0.150 0.03517 170.935)",
+          "oklch(0.264 0.03517 170.935)",
+          "oklch(0.379 0.03517 170.935)",
+          "oklch(0.493 0.03517 170.935)",
+          "oklch(0.607 0.03517 170.935)",
+          "oklch(0.721 0.03517 170.935)",
+          "oklch(0.836 0.03517 170.935)",
+          "oklch(0.950 0.03517 170.935)"
+        ]
+      },
+      "figure-bronze": {
+        "role": "figure material",
+        "displayName": "Figure Bronze",
+        "source": "tools/art/build_characters.py",
+        "tonalRamp": [
+          "oklch(0.150 0.07521 69.664)",
+          "oklch(0.264 0.07521 69.664)",
+          "oklch(0.379 0.07521 69.664)",
+          "oklch(0.493 0.07521 69.664)",
+          "oklch(0.607 0.07521 69.664)",
+          "oklch(0.721 0.07521 69.664)",
+          "oklch(0.836 0.07521 69.664)",
+          "oklch(0.950 0.07521 69.664)"
+        ]
+      },
+      "nyra-hair": {
+        "role": "figure material",
+        "displayName": "Nyra Hair",
+        "source": "tools/art/build_characters.py",
+        "tonalRamp": [
+          "oklch(0.150 0.00965 113.196)",
+          "oklch(0.264 0.00965 113.196)",
+          "oklch(0.379 0.00965 113.196)",
+          "oklch(0.493 0.00965 113.196)",
+          "oklch(0.607 0.00965 113.196)",
+          "oklch(0.721 0.00965 113.196)",
+          "oklch(0.836 0.00965 113.196)",
+          "oklch(0.950 0.00965 113.196)"
+        ]
+      },
+      "nyra-skin": {
+        "role": "figure material",
+        "displayName": "Nyra Skin",
+        "source": "tools/art/build_characters.py",
+        "tonalRamp": [
+          "oklch(0.150 0.03684 51.876)",
+          "oklch(0.264 0.03684 51.876)",
+          "oklch(0.379 0.03684 51.876)",
+          "oklch(0.493 0.03684 51.876)",
+          "oklch(0.607 0.03684 51.876)",
+          "oklch(0.721 0.03684 51.876)",
+          "oklch(0.836 0.03684 51.876)",
+          "oklch(0.950 0.03684 51.876)"
+        ]
       }
     },
     "typographyMeta": {
@@ -440,40 +530,46 @@
     "shadows": [],
     "motion": [
       {
-        "name": "attack-anticipation",
-        "value": "0.23 s",
-        "purpose": "Source pose changes to strike at this time; heavy attacks begin at strike.",
-        "source": "scripts/dungeon_actor.gd:252"
+        "name": "windup",
+        "value": "simulation pending-cast fraction",
+        "purpose": "Native load/contact tracks follow the actual cast or guardian warning countdown.",
+        "source": "scripts/character_animation.gd"
       },
       {
-        "name": "attack-strike-end",
-        "value": "0.47 s",
-        "purpose": "Attack returns to idle after this time.",
-        "source": "scripts/dungeon_actor.gd:253"
+        "name": "recovery",
+        "value": "0.34 s",
+        "purpose": "Authored follow-through returns to guard; a following real cast may interrupt.",
+        "source": "scripts/character_animation.gd"
       },
       {
-        "name": "attack-cycle-end",
-        "value": "0.62 s",
-        "purpose": "Resets or starts a queued attack.",
-        "source": "scripts/dungeon_actor.gd:255"
+        "name": "collapse",
+        "value": "0.90 s",
+        "purpose": "Knee, pelvis, shoulder, head and cloth settle as one retained skinned volume.",
+        "source": "scripts/character_animation.gd"
       },
       {
         "name": "hit-feedback",
         "value": "0.24 s",
-        "purpose": "Flash envelope; lean suppressed with Reduced Motion.",
-        "source": "scripts/dungeon_actor.gd:262"
+        "purpose": "Flash and restrained chest reaction; displacement suppressed with Reduced Motion.",
+        "source": "scripts/dungeon_actor.gd"
       },
       {
         "name": "camera-follow",
         "value": "1 - exp(-delta * 4.0)",
-        "purpose": "Native exponential position follow.",
-        "source": "scripts/dungeon_world.gd:564"
+        "purpose": "Travel anchor follow; fixed combat-room anchor. Relative travel envelope avoids stale-room drift.",
+        "source": "scripts/dungeon_world.gd"
       },
       {
         "name": "camera-impact",
-        "value": "0.18 s",
-        "purpose": "Impact shake; disabled with Reduced Motion.",
-        "source": "scripts/dungeon_world.gd:642"
+        "value": "0",
+        "purpose": "Hits never move the camera in either mode.",
+        "source": "scripts/dungeon_world.gd"
+      },
+      {
+        "name": "ranged-flight-release",
+        "value": "up to 0.085 s before damage",
+        "purpose": "Actual string/weapon release starts visible flight; arrival retains the simulation damage event.",
+        "source": "scripts/dungeon_world.gd"
       }
     ],
     "breakpoints": [
@@ -507,10 +603,14 @@
         "scripts/settings_panel.gd",
         "scripts/mobile_safe_area.gd",
         "scripts/battle_art.gd",
-        "assets/shaders/painted_actor.gdshader",
         "assets/shaders/combat_telegraph.gdshader",
         "scripts/dungeon_theme.gd",
-        "project.godot"
+        "project.godot",
+        "scripts/character_rig.gd",
+        "scripts/character_animation.gd",
+        "scripts/authored_characters.gd",
+        "assets/shaders/character_surface.gdshader",
+        "tools/art/build_characters.py"
       ],
       "units": "Frontmatter px are base Godot logical units; runtime scaling/density correction applies.",
       "primaryDevice": {
@@ -523,10 +623,10 @@
       "captureClasses": [
         {
           "size": [
-            1200,
-            535
+            2424,
+            1080
           ],
-          "kind": "outer-display aspect proxy"
+          "kind": "closed Fold renderer fixture"
         },
         {
           "size": [
@@ -564,7 +664,17 @@
       "qualityBehavior": "Battery halves render resolution and removes MSAA/shadows; render pressure adjusts presentation, never simulation time.",
       "tonalRampProvenance": "Eight OKLCH inspection swatches synthesized from each extracted color as required by the document format; not runtime palette tokens.",
       "componentSampleBoundary": "HTML/CSS samples explain reused native controls; no browser renderer or CSS governs the shipped Godot game. Default engine field chrome is not specified by these samples.",
-      "fallback": "Fresh independent documenter used reference/document.md and reference/degraded/documenter.md because the official role definition/launcher was unavailable."
+      "fallback": "Fresh independent documenter used reference/document.md and reference/degraded/documenter.md because the official role definition/launcher was unavailable.",
+      "figureDirection": {
+        "authorizedAt": "2026-10-03",
+        "instruction": "Auf vollständig animierte 3D-Figuren umstellen",
+        "formIdentifier": "native-volumetric-character-animation",
+        "separate3DCompApproved": false,
+        "bones": 29,
+        "clips": 9,
+        "maxTrianglesPerAppearance": 40000,
+        "surfaceCount": 1
+      }
     }
   },
   "components": [
@@ -635,9 +745,9 @@
   ],
   "narrative": {
     "northStar": "Painterly monumental dark fantasy",
-    "overview": "The [user-approved Hollow Spire illustration](docs/design/approved-spire.png) establishes weathered adult figures, monumental ruins, torn plum cloth and bronze against warm stone and cool haze. The implemented world translates this into painted 2.5D actors, distant matte paintings and spatial floor, masonry, effects and camp stations in a native Godot 3D scene.\n\nThe world remains the main combat surface. Quiet ink grounds carry the portrait, life/mana, guardian phase and warning, region, pause and bottom actions. Preparation uses readable scrollable task panels. Autonomous movement and camera fitting can change the heroine/guardian relationship; the approved still is a visual authority, not a fixed gameplay camera pose.",
+    "overview": "The [user-approved Hollow Spire illustration](docs/design/approved-spire.png) establishes weathered adult figures, monumental ruins, torn plum cloth and bronze against warm stone and cool haze. On 3 October 2026 the user explicitly requested fully animated spatial 3D figures. Eleven authored, lit character volumes now share native skeletal animation across combat, camp and portraits; distant matte paintings, spatial floors, masonry, effects and camp stations retain the established world. No separate 3D composition approval is inferred.\n\nThe world remains the main combat surface. Quiet ink grounds carry the portrait, life/mana, guardian phase and warning, region, pause and bottom actions. Preparation uses readable scrollable task panels. The camera holds a reserved combat-room shot, follows the travel anchor between chambers and widens smoothly when a complete warning needs more space. Hits and target changes do not shake or breathe the shot.",
     "keyCharacteristics": [
-      "Painted adult silhouettes and class-specific weapon poses.",
+      "Spatial adult silhouettes, fitted armor and class-specific weapon poses.",
       "Region-specific architecture and warm/cool material contrast.",
       "Shared class and saved equipment quality across camp, portraits and combat.",
       "Complete simulation-driven warnings with visible surrounding safe floor.",
@@ -661,14 +771,14 @@
       }
     ],
     "dos": [
-      "Do preserve the approved painted material, adult silhouettes and distinct regional architecture.",
+      "Do preserve the monumental world, adult silhouettes, pale-haired Nyra and distinct regional architecture while using the user-requested animated 3D figures.",
       "Do use the shared scaled-font, minimum-control and safe-area helpers when adding native UI.",
       "Do keep the complete active warning and adjacent safe floor legible through the real camera.",
       "Do use the same class and saved equipment path in portraits, camp and combat.",
       "Do label renderer fixtures, generated references and hardware measurements by their actual source."
     ],
     "donts": [
-      "Don't replace the painted figures with the archived smooth character GLBs or describe them as full skeletal 3D models.",
+      "Don't restore painted billboards or mirror a character to change its direction; maintain authored spatial anatomy, lighting and continuous turns.",
       "Don't add a decorative warning shape that disagrees with collision or avoidance geometry.",
       "Don't show unearned seals or claim a unique model for every equipment item.",
       "Don't reduce controls or text to force a compact layout; retain scrolling and adaptive sizing.",
