@@ -1,5 +1,15 @@
 # Emberfall: Ashen Veil
 
+## Neu im Entwicklungsbranch: klare Set-Ziele und geprüfte Beuteverwaltung
+
+Die Schmiede zeigt regionale Set-Fortschritte, vorhandene Taschenfunde und
+gezielte Jagden auf fehlende Slots. Beutevergleiche erklären Set- und
+Signaturwechsel. Unterlegene Duplikate lassen sich mit einer konkreten
+Verkaufsvorschau gesammelt verkaufen; wertvolle Build-Optionen bleiben
+geschützt. Sichere Sammel-Upgrades erhalten Mana-Rückgewinnung und rechnen
+eingefrorene Schwur-AFK-Regeln vor dem Anlegen korrekt ab.
+[Bedienung, Regeln und native Ansichten](docs/GEAR_GOALS.md).
+
 ## Aktuell: 0.41.0-beta.1 — fließende Figurenanimationen
 
 Der freigegebene Stilentwurf wird mit gemalten, animierten 2.5D-Figuren in der räumlichen Godot-Spielwelt umgesetzt: drei Klassen, vier Wächter, eigene Regionen und ein Lager mit Schmiede, Schwurtisch und Portal. Bis zu zwei von drei Schwüren wirken gemeinsam mit Klassenreliquien, Sets und Techniken. Jeder Wächter besitzt drei echte Gesundheitsphasen; Warnung, Ausweichen, Skip, Offline-Wiederholung und Neustart verwenden dieselben Regeln. Alte laufende Spielstände behalten ihre ursprünglichen Kampfergebnisse. Version-Code 46.

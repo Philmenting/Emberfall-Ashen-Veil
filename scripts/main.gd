@@ -12,6 +12,7 @@ const Skills = preload("res://scripts/class_skills.gd")
 const Stances = preload("res://scripts/combat_stances.gd")
 const BossPatterns = preload("res://scripts/boss_patterns.gd")
 const RegionalSets = preload("res://scripts/regional_sets.gd")
+const GearAdvisor = preload("res://scripts/gear_advisor.gd")
 const PlaytestNotes = preload("res://scripts/playtest_notes.gd")
 const Relics = preload("res://scripts/class_relics.gd")
 const ClassLoot = preload("res://scripts/class_loot.gd")
@@ -90,6 +91,10 @@ var page := "camp"
 var gear_tab := "bag"
 var bag_slot := "All"
 var bag_view := "all"
+var bag_region := -1
+var cleanup_preview: Array = []
+var cleanup_class := ""
+var cleanup_notice := ""
 var character_class := "Vowkeeper"
 var skill_loadouts := Skills.normalize_book({})
 var combat_stances := Stances.normalize_book({})
@@ -620,11 +625,13 @@ func _build_gear(parent: VBoxContainer) -> void:
 	tabs.add_theme_constant_override("separation",6)
 	parent.add_child(tabs)
 	for tab in [["bag","BAG (%d)" % inventory.size()],["equipment","EQUIPMENT"],["build","CLASS & STATS"],["skills","SKILLS"]]:
-		tabs.add_child(_button(tab[1],Color("493b30") if gear_tab==tab[0] else PANEL_LIGHT,10,_select_gear_tab.bind(String(tab[0]))))
+		var selected: bool=gear_tab==tab[0] or (gear_tab=="sets" and tab[0]=="equipment")
+		tabs.add_child(_button(tab[1],Color("493b30") if selected else PANEL_LIGHT,10,_select_gear_tab.bind(String(tab[0]))))
 	match gear_tab:
 		"build": _build_class_editor(parent)
 		"skills": _build_skill_editor(parent)
 		"equipment": _build_equipment_list(parent)
+		"sets": _build_set_progress(parent)
 		_: _build_inventory_list(parent)
 
 func _build_class_editor(parent: VBoxContainer) -> void:
@@ -657,6 +664,9 @@ func _build_class_editor(parent: VBoxContainer) -> void:
 
 func _build_equipment_list(parent: VBoxContainer) -> void:
 	_build_hero_summary(parent)
+	var sets:=_button("REGIONAL SETS & HUNT GOALS",PANEL_LIGHT,12,_select_gear_tab.bind("sets"))
+	sets.name="ReviewRegionalSets"
+	parent.add_child(sets)
 	parent.add_child(_section_heading("EQUIPPED GEAR", "%d SLOTS  •  TEMPER UP TO +%d" % [GEAR_SLOTS.size(), MAX_TEMPER_RANK]))
 	for slot in GEAR_SLOTS:
 		parent.add_child(_equipped_row(slot, equipment[slot]))
@@ -692,9 +702,18 @@ func _build_hero_summary(parent: VBoxContainer) -> void:
 func _build_inventory_list(parent: VBoxContainer) -> void:
 	parent.add_child(_section_heading("SATCHEL", "%d / %d ITEMS" % [inventory.size(), MAX_BAG_SIZE]))
 	_build_reserved_relic(parent)
+	if bag_view=="cleanup":
+		_build_cleanup_preview(parent)
+		return
+	if not cleanup_notice.is_empty(): parent.add_child(_paragraph_label(cleanup_notice,11,GOLD))
 	if inventory.is_empty():
 		parent.add_child(_empty_note("No spare gear. Clear a floor to find new equipment."))
 		return
+	var obsolete:=_obsolete_gear()
+	if not obsolete.is_empty():
+		var review:=_button("REVIEW DUPLICATE SALES (%d)" % obsolete.size(),PANEL_LIGHT,11,_review_cleanup)
+		review.name="ReviewDuplicateSales"
+		parent.add_child(review)
 	var filters := HBoxContainer.new()
 	filters.add_theme_constant_override("separation", 6)
 	parent.add_child(filters)
@@ -703,7 +722,11 @@ func _build_inventory_list(parent: VBoxContainer) -> void:
 	slot_filter.item_selected.connect(func(index): bag_slot=slots[index]; _build_ui())
 	filters.add_child(slot_filter)
 	var views := ["all", "class", "upgrades", "protected"]
-	var view_filter := _bag_filter("BagViewFilter", ["Show: All gear", "Show: Class gear", "Show: Safe upgrades", "Show: Protected"], views.find(bag_view))
+	var captions := ["Show: All gear", "Show: Class gear", "Show: Safe upgrades", "Show: Protected"]
+	if bag_region>=0 and bag_region<RegionalSets.DEFINITIONS.size():
+		views.append("set")
+		captions.append("Set: "+String(RegionalSets.DEFINITIONS[bag_region].name))
+	var view_filter := _bag_filter("BagViewFilter", captions, views.find(bag_view))
 	view_filter.item_selected.connect(func(index): bag_view=views[index]; _build_ui())
 	filters.add_child(view_filter)
 	var shown := _filtered_inventory()
@@ -734,12 +757,15 @@ func _filtered_inventory() -> Array:
 		if bag_view=="class" and item.get("affinity", "")!=character_class: continue
 		if bag_view=="upgrades" and not _is_safe_upgrade(item): continue
 		if bag_view=="protected" and not item.get("locked", false): continue
+		if bag_view=="set" and item.get("region",-1)!=bag_region: continue
 		shown.append(item)
 	return shown
 
 func _show_all_gear() -> void:
+	cleanup_preview.clear()
 	bag_slot="All"
 	bag_view="all"
+	bag_region=-1
 	_build_ui()
 
 func _build_map(parent: VBoxContainer) -> void:
@@ -1129,7 +1155,7 @@ func _build_loot(parent: VBoxContainer) -> void:
 		var equip := _button("EQUIP SAFE UPGRADES (%d)" % safe_count,Color("314b3c"),11,_equip_recovered_upgrades)
 		equip.name="EquipRecoveredUpgrades"
 		stack.add_child(equip)
-		stack.add_child(_paragraph_label("Only equips relics that improve a combat stat without lowering another stat or increasing skill Mana cost. Displaced gear stays in your bag.",11,MUTED))
+		stack.add_child(_paragraph_label("Improves combat stats or activates a set without stat losses, higher Mana cost, or replacing an active set or signature effect. Protected equipment stays equipped; displaced gear stays in your bag.",11,MUTED))
 	if run_succeeded and run_boss_defeated:
 		var boss_name := String(_region_data(reward_floor).boss)
 		stack.add_child(_label("%s's seal guarantees at least a Rare relic." % boss_name, 10, Color("e0a35d")))
@@ -1191,7 +1217,7 @@ func _item_card(item: Dictionary, show_actions: bool) -> Control:
 	identity.add_child(_paragraph_label(String(item.name), 12, PALE, true))
 	if item.get("locked",false): identity.add_child(_label("PROTECTED",9,GOLD,true))
 	identity.add_child(_label("%s  •  T%d  •  +%d  •  %s" % [String(item.slot).to_upper(), int(item.tier), int(item.get("temper", 0)), _quality_label(rarity)], 8, _quality_color(rarity), true))
-	if _is_safe_upgrade(item): identity.add_child(_label("UPGRADE • NO STAT TRADEOFF",9,GREEN,true))
+	if _is_safe_upgrade(item): identity.add_child(_label("UPGRADE • NO BUILD TRADEOFF",9,GREEN,true))
 	top.add_child(identity)
 	top.add_child(_label("ITEM %d" % int(item.power),11,GOLD,true))
 	stack.add_child(top)
@@ -1204,8 +1230,8 @@ func _item_card(item: Dictionary, show_actions: bool) -> Control:
 		stack.add_child(_paragraph_label(relic_copy,11,GOLD,true))
 		if Relics.effect(item,character_class).is_empty(): stack.add_child(_paragraph_label("Effect inactive for your current class.",10,MUTED))
 	stack.add_child(_paragraph_label("%s  •  %d armor" % [_item_stats_line(item),int(item.armor)],9,MUTED))
-	if item.slot=="Amulet" and not Relics.effect(equipment.Amulet,character_class).is_empty() and Relics.effect(equipment.Amulet,character_class)!=Relics.effect(item,character_class):
-		stack.add_child(_paragraph_label("Equipping this replaces your current signature effect.",10,Color("dc9683")))
+	for effect_change in _gear_effect_changes(item):
+		stack.add_child(_paragraph_label(effect_change.copy,11,Color("dc9683") if effect_change.loss else GREEN))
 	stack.add_child(_label("IF EQUIPPED  •  "+character_class.to_upper(),8,GOLD,true))
 	var comparison := _compare_item(item)
 	var changes := GridContainer.new()
@@ -1598,6 +1624,8 @@ func _navigate(destination: String) -> void:
 	if offline_job!=null: return
 	if page == "run" and destination != "run":
 		return
+	cleanup_preview.clear()
+	if bag_view=="cleanup": bag_view="all"
 	page = destination
 	_build_ui()
 
@@ -2537,6 +2565,8 @@ func _handle_back() -> void:
 	last_back_frame=frame
 	if has_node("Options"):
 		_close_settings()
+	elif page=="gear" and gear_tab=="bag" and bag_view=="cleanup":
+		_show_all_gear()
 	elif has_node("Welcome"):
 		return
 	elif page=="run" and not combat_hud.is_empty() and combat_hud.hero_details.visible:
@@ -2837,11 +2867,17 @@ func _is_safe_upgrade(item: Dictionary) -> bool:
 	if equipment[item.slot].get("locked",false): return false
 	var candidate:=equipment.duplicate(true)
 	candidate[String(item.get("slot","Weapon"))]=item
-	if RegionalSets.active(equipment)!=RegionalSets.active(candidate): return false
+	var before_set:=RegionalSets.active(equipment)
+	var after_set:=RegionalSets.active(candidate)
+	if before_set>=0 and before_set!=after_set: return false
 	if item.get("slot")=="Amulet" and Relics.effect(equipment.Amulet,character_class)!=Relics.effect(item,character_class): return false
-	if not item.get("slot","") in GEAR_SLOTS: return false
 	var changes := _compare_item(item)
-	var improved := false
+	var before_stats:=_combat_stats()
+	var after_stats:=_combat_stats(candidate)
+	# Spirit governs Mana recovery on contact; a larger Mana pool alone can hide its loss.
+	for attribute in ATTRIBUTES:
+		if int(after_stats.attributes[attribute])<int(before_stats.attributes[attribute]): return false
+	var improved := before_set<0 and after_set>=0
 	for key in ["attack","ability_damage","max_hp","armor","max_mana","crit"]:
 		if float(changes[key])<0.0: return false
 		if float(changes[key])>0.0: improved=true
@@ -2849,6 +2885,12 @@ func _is_safe_upgrade(item: Dictionary) -> bool:
 
 func _equip_recovered_upgrades() -> void:
 	if page!="loot" or offline_job!=null: return
+	# Reconcile the frozen oath repeat before changing the equipped build, as manual equip does.
+	var has_upgrade:=false
+	for item in run_loot:
+		if inventory.has(item) and _is_safe_upgrade(item): has_upgrade=true; break
+	if not has_upgrade: return
+	_end_offline_repeat()
 	for item in run_loot.duplicate():
 		if not inventory.has(item) or not _is_safe_upgrade(item): continue
 		var slot: String=item.slot
@@ -2953,7 +2995,15 @@ func _build_journey_goal(parent: VBoxContainer) -> void:
 	parent.add_child(_paragraph_label(copy,11,GOLD,true))
 	var active_set:=RegionalSets.active(equipment)
 	if active_set>=0: parent.add_child(_paragraph_label("SET ACTIVE • "+RegionalSets.DEFINITIONS[active_set].name+" • "+RegionalSets.DEFINITIONS[active_set].rule,11,GREEN))
-	else: parent.add_child(_paragraph_label("Collect three worn pieces from one region to activate its set bonus. Use focused Hunts to fill missing slots.",10,MUTED))
+	else:
+		var worn:=RegionalSets.counts(equipment)
+		var closest:=_region_index()
+		for region in range(worn.size()):
+			if worn[region]>worn[closest]: closest=region
+		parent.add_child(_paragraph_label("SET GOAL • %s • %d/3 worn. Review held pieces and prepare a hunt for a missing slot." % [RegionalSets.DEFINITIONS[closest].name,worn[closest]],11,GOLD))
+	var sets:=_button("REVIEW SET GOALS",PANEL_LIGHT,11,_open_set_goals)
+	sets.name="OpenSetGoals"
+	parent.add_child(sets)
 	if not guardian_trophies.is_empty():
 		var names: PackedStringArray=[]
 		for region_id in guardian_trophies: names.append(String(REGIONS[region_id].boss))
@@ -3044,3 +3094,163 @@ func _start_recovery_farm() -> void:
 	if page!="loot" or run_succeeded or offline_job!=null or floor_number<=1 or last_run_floor<=1: return
 	auto_repeat=true
 	_start_run(mini(farm_floor,mini(floor_number-1,last_run_floor-1)))
+
+func _gear_effect_changes(item: Dictionary) -> Array[Dictionary]:
+	var changes: Array[Dictionary]=[]
+	if item.get("slot","") not in GEAR_SLOTS: return changes
+	var proposed:=equipment.duplicate()
+	proposed[item.slot]=item
+	var before_set:=RegionalSets.active(equipment)
+	var after_set:=RegionalSets.active(proposed)
+	if before_set!=after_set:
+		if before_set>=0:
+			changes.append({"copy":"SET LOST • "+RegionalSets.DEFINITIONS[before_set].name+": "+RegionalSets.DEFINITIONS[before_set].rule,"loss":true})
+		if after_set>=0:
+			changes.append({"copy":"SET ACTIVATED • "+RegionalSets.DEFINITIONS[after_set].name+": "+RegionalSets.DEFINITIONS[after_set].rule,"loss":false})
+	var before_relic:=Relics.effect(equipment.Amulet,character_class)
+	var after_relic:=Relics.effect(proposed.Amulet,character_class)
+	if before_relic!=after_relic:
+		if not before_relic.is_empty():
+			changes.append({"copy":"SIGNATURE LOST • "+Relics.DEFINITIONS[before_relic].short,"loss":true})
+		if not after_relic.is_empty():
+			changes.append({"copy":"SIGNATURE ACTIVATED • "+Relics.DEFINITIONS[after_relic].short,"loss":false})
+	return changes
+
+func _open_set_goals() -> void:
+	gear_tab="sets"
+	_navigate("gear")
+
+func _set_hunt_goal(region: int) -> Dictionary:
+	if region<0 or region>=RegionalSets.DEFINITIONS.size(): return {}
+	var missing:=RegionalSets.missing_slots(equipment,region)
+	var held: Array[String]=[]
+	for slot in missing:
+		for item in inventory:
+			if item.slot==slot and item.get("region",-1)==region:
+				held.append(slot)
+				break
+	var target_slot:=""
+	for slot in missing:
+		if slot not in held: target_slot=slot; break
+	# Start with the easiest cleared floor of the region; the hunt forecast shows its actual risk.
+	var target_floor:=region*10+1
+	return {"region":region,"worn":RegionalSets.counts(equipment)[region],"held":held,"slot":target_slot,"floor":target_floor,"unlocked":floor_number>target_floor}
+
+func _build_set_progress(parent: VBoxContainer) -> void:
+	parent.add_child(_section_heading("REGIONAL SETS","3 WORN PIECES"))
+	parent.add_child(_paragraph_label("One set bonus can be active. The set with the most worn pieces wins; equal counts use region order. Bag items count only after equipping them.",12,PALE))
+	var worn:=RegionalSets.counts(equipment)
+	var active_set:=RegionalSets.active(equipment)
+	for region in range(RegionalSets.DEFINITIONS.size()):
+		var definition: Dictionary=RegionalSets.DEFINITIONS[region]
+		var goal:=_set_hunt_goal(region)
+		var card:=_panel(PANEL,Color("405347") if active_set==region else EDGE,13)
+		parent.add_child(card)
+		var stack:=VBoxContainer.new()
+		stack.add_theme_constant_override("separation",6)
+		card.add_child(stack)
+		stack.add_child(_paragraph_label(String(definition.name)+" • %d/3 worn%s" % [worn[region]," • ACTIVE" if active_set==region else " • READY, OTHER SET ACTIVE" if worn[region]>=3 else ""],15,GREEN if active_set==region else GOLD,true))
+		stack.add_child(_progress_bar(mini(3,worn[region]),3,GREEN,6))
+		stack.add_child(_paragraph_label(definition.rule,12,PALE))
+		stack.add_child(_paragraph_label(String(REGIONS[region].dungeon)+" • region %d" % (region+1),11,MUTED))
+		if not goal.held.is_empty():
+			stack.add_child(_paragraph_label("Already in your bag: "+", ".join(goal.held)+". Review their stat and effect tradeoffs before equipping.",11,GOLD))
+			var review:=_button("REVIEW SET PIECES IN BAG",PANEL_LIGHT,11,_review_set_pieces.bind(region))
+			review.name="ReviewSetPieces_"+str(region)
+			stack.add_child(review)
+		if worn[region]>=3: continue
+		if not goal.unlocked:
+			stack.add_child(_paragraph_label("Clear campaign floor %02d to unlock this region's hunts." % goal.floor,11,MUTED))
+		elif not String(goal.slot).is_empty():
+			stack.add_child(_paragraph_label("Next missing slot: %s • focused hunt on cleared floor %02d. Selecting this updates your watched and offline farm goal; review the forecast before starting." % [goal.slot,goal.floor],11,PALE))
+			var hunt:=_button("PREPARE "+String(goal.slot).to_upper()+" HUNT",Color("314b3c"),11,_prepare_set_hunt.bind(region))
+			hunt.name="PrepareSetHunt_"+str(region)
+			stack.add_child(hunt)
+	var back:=_button("RETURN TO EQUIPMENT",PANEL_LIGHT,12,_select_gear_tab.bind("equipment"))
+	back.name="ReturnToEquipment"
+	parent.add_child(back)
+
+func _review_set_pieces(region: int) -> void:
+	if offline_job!=null or page=="run" or region<0 or region>=RegionalSets.DEFINITIONS.size(): return
+	bag_region=region
+	bag_view="set"
+	bag_slot="All"
+	gear_tab="bag"
+	_navigate("gear")
+
+func _prepare_set_hunt(region: int) -> void:
+	if offline_job!=null or page=="run": return
+	var goal:=_set_hunt_goal(region)
+	if goal.is_empty() or not goal.unlocked or goal.worn>=3 or String(goal.slot).is_empty(): return
+	# Settle elapsed time under the old farm rules before changing the next farm goal.
+	_accrue_offline_time(OS.has_feature("android"))
+	while offline_job!=null: await get_tree().process_frame
+	if page=="run": return
+	goal=_set_hunt_goal(region)
+	if goal.is_empty() or not goal.unlocked or goal.worn>=3 or String(goal.slot).is_empty(): return
+	idle_progress_seconds=0
+	offline_repeat_rules={}
+	farm_floor=goal.floor
+	farm_mode="hunt"
+	hunt_slot=goal.slot
+	world_tab="hunts"
+	_save_progress()
+	_navigate("map")
+
+func _obsolete_gear() -> Array:
+	return inventory.filter(func(item): return GearAdvisor.is_obsolete(item,equipment,character_class))
+
+func _review_cleanup() -> void:
+	if offline_job!=null or page!="gear" or gear_tab!="bag": return
+	cleanup_preview.clear()
+	cleanup_notice=""
+	cleanup_class=character_class
+	for item in _obsolete_gear():
+		cleanup_preview.append({"item":item,"snapshot":item.duplicate(true)})
+	bag_view="cleanup"
+	_refresh_preserving_scroll()
+
+func _build_cleanup_preview(parent: VBoxContainer) -> void:
+	parent.add_child(_label("REVIEW DUPLICATE SALES",16,GOLD,true))
+	parent.add_child(_paragraph_label("These items match the region of your equipped slot and have no stronger stats, tier or quality. Protected gear, class relics, Epic/Legendary items, tempered gear and other-class items are kept. This review covers the entire bag.",12,PALE))
+	var total:=0
+	for entry in cleanup_preview:
+		var item: Dictionary=entry.snapshot
+		total+=int(item.sell)
+		parent.add_child(_paragraph_label("%s • %s • %d Gold" % [item.name,item.slot,item.sell],12,PALE))
+	if cleanup_preview.is_empty(): parent.add_child(_empty_note("No duplicate gear is eligible for this sale."))
+	var confirm:=_button("SELL %d ITEM%s • +%d GOLD" % [cleanup_preview.size(),"" if cleanup_preview.size()==1 else "S",total],RED,12,_confirm_cleanup)
+	confirm.name="ConfirmDuplicateSales"
+	confirm.disabled=cleanup_preview.is_empty()
+	parent.add_child(confirm)
+	var cancel:=_button("KEEP GEAR & RETURN",PANEL_LIGHT,12,_show_all_gear)
+	cancel.name="CancelDuplicateSales"
+	parent.add_child(cancel)
+
+func _confirm_cleanup() -> void:
+	if offline_job!=null or page!="gear" or gear_tab!="bag" or bag_view!="cleanup" or cleanup_preview.is_empty(): return
+	# All-or-nothing validation: a changed item or build requires a fresh review.
+	var valid:=cleanup_class==character_class
+	for entry in cleanup_preview:
+		var still_present:=false
+		for stored in inventory:
+			if is_same(stored,entry.item): still_present=true; break
+		valid=valid and still_present and entry.item==entry.snapshot and GearAdvisor.is_obsolete(entry.item,equipment,character_class)
+	if not valid:
+		cleanup_preview.clear()
+		bag_view="all"
+		cleanup_notice="Your gear changed. Nothing was sold; review duplicate sales again."
+		_refresh_preserving_scroll()
+		return
+	var count:=cleanup_preview.size()
+	var total:=0
+	for entry in cleanup_preview:
+		inventory.erase(entry.item)
+		entry.item.status="sold"
+		total+=int(entry.item.sell)
+	player_gold+=total
+	cleanup_preview.clear()
+	bag_view="all"
+	cleanup_notice="Sold %d reviewed duplicates for %d Gold. %d/%d satchel slots available." % [count,total,MAX_BAG_SIZE-inventory.size(),MAX_BAG_SIZE]
+	_save_progress()
+	_refresh_preserving_scroll()
