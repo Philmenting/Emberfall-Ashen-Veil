@@ -38,6 +38,13 @@ func _capture(key: String) -> void:
 		push_error("Review content overflows horizontally: "+key)
 		get_tree().quit(1)
 		return
+	if key.begins_with("duplicate-sales"):
+		for node_name in ["ConfirmDuplicateSales","CancelDuplicateSales"]:
+			var action:=find_child(node_name,true,false) as Control
+			if action==null or not scroll.get_global_rect().encloses(action.get_global_rect()):
+				push_error("Short sale review hides an action: "+key+"/"+node_name)
+				get_tree().quit(1)
+				return
 	await RenderingServer.frame_post_draw
 	get_viewport().get_texture().get_image().save_png(capture_dir+"/"+key+".png")
 	print("GEAR_GOALS_CAPTURE ",key," actual_size=",get_viewport_rect().size)

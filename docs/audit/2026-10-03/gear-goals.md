@@ -63,6 +63,11 @@ Verkaufsvorschau und nahezu quadratische Set-Ansicht wurden visuell geöffnet
 und geprüft; die anderen Ansichten wurden automatisch auf Überlaufen geprüft.
 Die zuletzt gespeicherten Bilder enthalten auch die korrekte Auswahl der
 Equipment-Registerkarte und den Singular bei einem einzelnen Verkauf.
+Der abschließende UI-Feinschliff ordnet Verkaufen und Abbrechen in einer
+gemeinsamen Zeile an. Die neue Suite und alle sechs nativen Renderansichten
+wurden danach wiederholt; bei der kurzen Verkaufsliste liegen jetzt beide
+Aktionen in allen drei Größen vollständig innerhalb der sichtbaren
+Scrollfläche, auch bei kompakter Large-Text-Darstellung.
 
 ## Grenzen
 

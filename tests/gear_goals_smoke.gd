@@ -169,7 +169,10 @@ func check_ui() -> void:
 		game.inventory=[item]; game._build_ui()
 		game.find_child("ReviewDuplicateSales",true,false).pressed.emit()
 		for frame in range(5): await process_frame
-		check(game.find_child("ConfirmDuplicateSales",true,false)!=null and game.find_child("CancelDuplicateSales",true,false)!=null,"native sale preview exposes confirm and cancel "+str(resolution))
+		var confirm: Control=game.find_child("ConfirmDuplicateSales",true,false)
+		var cancel: Control=game.find_child("CancelDuplicateSales",true,false)
+		scroll=game.find_child("PageScroll",true,false)
+		check(confirm!=null and cancel!=null and scroll.get_global_rect().encloses(confirm.get_global_rect()) and scroll.get_global_rect().encloses(cancel.get_global_rect()),"short native sale preview keeps confirm and cancel visible "+str(resolution))
 		game.find_child("CancelDuplicateSales",true,false).pressed.emit()
 		check(game.inventory.size()==1 and game.bag_view=="all","actual cancel control keeps inventory "+str(resolution))
 	game.free()

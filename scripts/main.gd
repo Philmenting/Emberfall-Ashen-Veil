@@ -3219,13 +3219,16 @@ func _build_cleanup_preview(parent: VBoxContainer) -> void:
 		total+=int(item.sell)
 		parent.add_child(_paragraph_label("%s • %s • %d Gold" % [item.name,item.slot,item.sell],12,PALE))
 	if cleanup_preview.is_empty(): parent.add_child(_empty_note("No duplicate gear is eligible for this sale."))
+	var actions:=HBoxContainer.new()
+	actions.add_theme_constant_override("separation",8)
+	parent.add_child(actions)
 	var confirm:=_button("SELL %d ITEM%s • +%d GOLD" % [cleanup_preview.size(),"" if cleanup_preview.size()==1 else "S",total],RED,12,_confirm_cleanup)
 	confirm.name="ConfirmDuplicateSales"
 	confirm.disabled=cleanup_preview.is_empty()
-	parent.add_child(confirm)
+	actions.add_child(confirm)
 	var cancel:=_button("KEEP GEAR & RETURN",PANEL_LIGHT,12,_show_all_gear)
 	cancel.name="CancelDuplicateSales"
-	parent.add_child(cancel)
+	actions.add_child(cancel)
 
 func _confirm_cleanup() -> void:
 	if offline_job!=null or page!="gear" or gear_tab!="bag" or bag_view!="cleanup" or cleanup_preview.is_empty(): return
