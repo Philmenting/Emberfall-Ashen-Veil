@@ -23,6 +23,18 @@ func _run_flow() -> void:
 	_on_combat_advanced(updates)
 	if expedition.casts<1: push_error("ANDROID_SUCCESS_FAIL signature did not fire early"); return
 	await _capture("first-fight")
+	var before_reading: String=expedition.encode_snapshot()
+	find_child("CombatSkill_chain",true,false).pressed.emit()
+	await _capture("skill-reading")
+	if run_active or not combat_details_open or expedition.encode_snapshot()!=before_reading:
+		push_error("ANDROID_SUCCESS_FAIL reading did not freeze combat"); return
+	if not _build_save_payload().get_value("run","active",false):
+		push_error("ANDROID_SUCCESS_FAIL reading lost resume intent"); return
+	last_back_frame=-1; _handle_back()
+	if combat_details_open or not run_active:
+		push_error("ANDROID_SUCCESS_FAIL Back did not resume after reading"); return
+	run_arena.animation_enabled=false
+	print("ANDROID_READABILITY_PASS real skill inspection pauses and Back resumes")
 	_skip_run()
 	if not run_succeeded or find_child("EquipClassRelic",true,false)==null: push_error("ANDROID_SUCCESS_FAIL first reward missing"); return
 	await _capture("first-relic")

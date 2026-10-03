@@ -14,7 +14,7 @@ func _ready() -> void:
 func _inspect_regions() -> void:
 	var measurements: Array=[]
 	var motion: Array=[]
-	print("ANDROID_ART_READY native painted skeletons, renderer=",RenderingServer.get_current_rendering_method())
+	print("ANDROID_ART_READY native spatial 3D skeletons, renderer=",RenderingServer.get_current_rendering_method())
 	for region in range(4):
 		character_class=["Vowkeeper","Arcanist","Ranger","Arcanist"][region]
 		floor_number=region*10+1
@@ -48,7 +48,7 @@ func _inspect_regions() -> void:
 	if output==null:
 		print("ANDROID_ART_FAIL performance report write failed"); return
 	output.store_string(JSON.stringify(report,"\t")); output.close()
-	print("ANDROID_ART_PASS all four regions rendered with authored models and painted materials")
+	print("ANDROID_ART_PASS all four regions rendered with authored 3D models and lit materials")
 	if "--quit-after-art" in OS.get_cmdline_user_args(): get_tree().quit()
 
 func _inspect_motion(region: int) -> Dictionary:
@@ -74,9 +74,12 @@ func _inspect_motion(region: int) -> Dictionary:
 	world.active=false
 	var unique: Dictionary={}
 	for value in hashes: unique[value]=true
-	var valid: bool=changed>=6 and unique.size()==4 and expedition.elapsed>before+.8 and guardian.painted_model.skin!=null
+	var bones: int=guardian.motion_rig.skeleton.get_bone_count()
+	var clips: int=guardian.motion_rig.library.get_animation_list().size()
+	var depth: float=guardian.model.mesh.get_aabb().size.z
+	var valid: bool=changed>=6 and unique.size()==4 and expedition.elapsed>before+.8 and guardian.model.skin!=null and bones==29 and clips==9 and depth>.30
 	print("ANDROID_MOTION_REGION_PASS " if valid else "ANDROID_ART_FAIL motion ",region," bone_changes=",changed," unique_frames=",unique.size())
-	return {"region":region,"frames":20,"simulation_step_seconds":.05,"bone_changes":changed,"unique_rendered_frames":unique.size(),"captures":[0,5,11,17],"passed":valid,"physical_device_performance":false}
+	return {"region":region,"frames":20,"simulation_step_seconds":.05,"bone_changes":changed,"unique_rendered_frames":unique.size(),"skeleton_bones":bones,"native_clips":clips,"source_depth":depth,"captures":[0,5,11,17],"passed":valid,"physical_device_performance":false}
 
 func _measure_render(region: int,battery: bool) -> Dictionary:
 	var frame_ms: Array[float]=[]

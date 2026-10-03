@@ -19,6 +19,8 @@ func run_checks() -> void:
 		root.size=size
 		await process_frame
 		var logical_size:=root.get_visible_rect().size
+		# Include the permanent skill row plus controls and large-text spacing.
+		var readout_edge:=1.0-146.0/logical_size.y
 		for class_key in ["Vowkeeper","Arcanist","Ranger"]:
 			game.character_class=class_key
 			for region in range(4):
@@ -41,6 +43,7 @@ func run_checks() -> void:
 				var world:=World.new()
 				world.simulation=sim; world.region_index=region
 				world.character_class=class_key; world.active=false
+				world.hud_bottom_ratio=readout_edge-0.02
 				root.add_child(world)
 				for phase in range(3):
 					for variant in range(2):
@@ -56,20 +59,20 @@ func run_checks() -> void:
 							for outline in Patterns.outlines(zone):
 								for point in outline:
 									var screen: Vector2=world.camera.unproject_position(Vector3(point.x,0,point.y))/logical_size
-									visible=visible and screen.x>=0.065 and screen.x<=0.935 and screen.y>=0.15 and screen.y<=0.85
+									visible=visible and screen.x>=0.065 and screen.x<=0.935 and screen.y>=0.15 and screen.y<=readout_edge
 						check(visible,"%dx%d region %d phase %d variant %d: complete collision outline stays inside the quiet play area" % [size.x,size.y,region,phase,variant])
 						var figures_clear:=true
 						var top_margin:=0.235 if logical_size.x/logical_size.y>1.3 else 0.145
 						for point in world._framing_points():
 							var screen: Vector2=world.camera.unproject_position(point)/logical_size
-							figures_clear=figures_clear and screen.x>=0.065 and screen.x<=0.935 and screen.y>=top_margin and screen.y<=0.85
+							figures_clear=figures_clear and screen.x>=0.065 and screen.x<=0.935 and screen.y>=top_margin and screen.y<=readout_edge
 						check(figures_clear,"actual complete figure and raised weapon bounds clear the HUD as well as the warning" )
 						check(sim.encode_snapshot()==before,"camera framing never changes simulation, warning geometry or RNG")
 						guardian.strike("heavy"); world.hero.release_attack(); world._position_camera()
 						var contact_clear:=true
 						for point in world._framing_points():
 							var screen: Vector2=world.camera.unproject_position(point)/logical_size
-							contact_clear=contact_clear and screen.x>=.065 and screen.x<=.935 and screen.y>=top_margin and screen.y<=.85
+							contact_clear=contact_clear and screen.x>=.065 and screen.x<=.935 and screen.y>=top_margin and screen.y<=readout_edge
 						check(contact_clear,class_key+": fully extended contact poses remain inside the quiet play area")
 				world.free()
 	game.free()

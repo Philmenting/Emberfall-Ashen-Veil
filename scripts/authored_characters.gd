@@ -1,6 +1,5 @@
 extends RefCounted
-## Original Blender source archive, retained for reproducibility and source checks.
-## The 0.40 runtime uses painted pose atlases and excludes these GLBs from export.
+## Original volumetric Blender models used by the live 3D character runtime.
 const MODELS = {
 	"Vowkeeper":preload("res://assets/models/vowkeeper.glb"),
 	"Arcanist":preload("res://assets/models/arcanist.glb"),

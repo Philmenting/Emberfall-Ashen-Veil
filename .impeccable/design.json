@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-02T20:15:00.899471+00:00",
+  "generatedAt": "2026-10-03T20:36:03.515201+00:00",
   "title": "Design System: Emberfall: Ashen Veil",
   "extensions": {
     "colorMeta": {
@@ -408,6 +408,1398 @@
           "oklch(0.836 0.11322 68.469)",
           "oklch(0.950 0.11322 68.469)"
         ]
+      },
+      "figure-violet": {
+        "role": "neutral",
+        "displayName": "Figure Violet",
+        "canonical": "#343c55",
+        "tonalRamp": [
+          "oklch(15.00% 0.04481 270.38)",
+          "oklch(26.43% 0.04481 270.38)",
+          "oklch(37.86% 0.04481 270.38)",
+          "oklch(49.29% 0.04481 270.38)",
+          "oklch(60.71% 0.04481 270.38)",
+          "oklch(72.14% 0.04481 270.38)",
+          "oklch(83.57% 0.04481 270.38)",
+          "oklch(95.00% 0.04481 270.38)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "figure-sage": {
+        "role": "neutral",
+        "displayName": "Figure Sage",
+        "canonical": "#304039",
+        "tonalRamp": [
+          "oklch(15.00% 0.02400 166.46)",
+          "oklch(26.43% 0.02400 166.46)",
+          "oklch(37.86% 0.02400 166.46)",
+          "oklch(49.29% 0.02400 166.46)",
+          "oklch(60.71% 0.02400 166.46)",
+          "oklch(72.14% 0.02400 166.46)",
+          "oklch(83.57% 0.02400 166.46)",
+          "oklch(95.00% 0.02400 166.46)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "figure-bronze": {
+        "role": "neutral",
+        "displayName": "Figure Bronze",
+        "canonical": "#78664f",
+        "tonalRamp": [
+          "oklch(15.00% 0.04127 73.52)",
+          "oklch(26.43% 0.04127 73.52)",
+          "oklch(37.86% 0.04127 73.52)",
+          "oklch(49.29% 0.04127 73.52)",
+          "oklch(60.71% 0.04127 73.52)",
+          "oklch(72.14% 0.04127 73.52)",
+          "oklch(83.57% 0.04127 73.52)",
+          "oklch(95.00% 0.04127 73.52)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "nyra-hair": {
+        "role": "neutral",
+        "displayName": "Nyra Hair",
+        "canonical": "#c0c4bd",
+        "tonalRamp": [
+          "oklch(15.00% 0.01060 131.38)",
+          "oklch(26.43% 0.01060 131.38)",
+          "oklch(37.86% 0.01060 131.38)",
+          "oklch(49.29% 0.01060 131.38)",
+          "oklch(60.71% 0.01060 131.38)",
+          "oklch(72.14% 0.01060 131.38)",
+          "oklch(83.57% 0.01060 131.38)",
+          "oklch(95.00% 0.01060 131.38)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "nyra-skin": {
+        "role": "neutral",
+        "displayName": "Nyra Skin",
+        "canonical": "#bea495",
+        "tonalRamp": [
+          "oklch(15.00% 0.03729 51.84)",
+          "oklch(26.43% 0.03729 51.84)",
+          "oklch(37.86% 0.03729 51.84)",
+          "oklch(49.29% 0.03729 51.84)",
+          "oklch(60.71% 0.03729 51.84)",
+          "oklch(72.14% 0.03729 51.84)",
+          "oklch(83.57% 0.03729 51.84)",
+          "oklch(95.00% 0.03729 51.84)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "figure-iron": {
+        "role": "neutral",
+        "displayName": "Figure Iron",
+        "canonical": "#657381",
+        "tonalRamp": [
+          "oklch(15.00% 0.02759 248.33)",
+          "oklch(26.43% 0.02759 248.33)",
+          "oklch(37.86% 0.02759 248.33)",
+          "oklch(49.29% 0.02759 248.33)",
+          "oklch(60.71% 0.02759 248.33)",
+          "oklch(72.14% 0.02759 248.33)",
+          "oklch(83.57% 0.02759 248.33)",
+          "oklch(95.00% 0.02759 248.33)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "figure-silver": {
+        "role": "neutral",
+        "displayName": "Figure Silver",
+        "canonical": "#b4bdc0",
+        "tonalRamp": [
+          "oklch(15.00% 0.01089 219.61)",
+          "oklch(26.43% 0.01089 219.61)",
+          "oklch(37.86% 0.01089 219.61)",
+          "oklch(49.29% 0.01089 219.61)",
+          "oklch(60.71% 0.01089 219.61)",
+          "oklch(72.14% 0.01089 219.61)",
+          "oklch(83.57% 0.01089 219.61)",
+          "oklch(95.00% 0.01089 219.61)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "figure-gold": {
+        "role": "neutral",
+        "displayName": "Figure Gold",
+        "canonical": "#b09c79",
+        "tonalRamp": [
+          "oklch(15.00% 0.05377 81.46)",
+          "oklch(26.43% 0.05377 81.46)",
+          "oklch(37.86% 0.05377 81.46)",
+          "oklch(49.29% 0.05377 81.46)",
+          "oklch(60.71% 0.05377 81.46)",
+          "oklch(72.14% 0.05377 81.46)",
+          "oklch(83.57% 0.05377 81.46)",
+          "oklch(95.00% 0.05377 81.46)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "figure-patina": {
+        "role": "neutral",
+        "displayName": "Figure Patina",
+        "canonical": "#50736b",
+        "tonalRamp": [
+          "oklch(15.00% 0.04197 178.79)",
+          "oklch(26.43% 0.04197 178.79)",
+          "oklch(37.86% 0.04197 178.79)",
+          "oklch(49.29% 0.04197 178.79)",
+          "oklch(60.71% 0.04197 178.79)",
+          "oklch(72.14% 0.04197 178.79)",
+          "oklch(83.57% 0.04197 178.79)",
+          "oklch(95.00% 0.04197 178.79)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "figure-leather": {
+        "role": "neutral",
+        "displayName": "Figure Leather",
+        "canonical": "#382b27",
+        "tonalRamp": [
+          "oklch(15.00% 0.02069 37.79)",
+          "oklch(26.43% 0.02069 37.79)",
+          "oklch(37.86% 0.02069 37.79)",
+          "oklch(49.29% 0.02069 37.79)",
+          "oklch(60.71% 0.02069 37.79)",
+          "oklch(72.14% 0.02069 37.79)",
+          "oklch(83.57% 0.02069 37.79)",
+          "oklch(95.00% 0.02069 37.79)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "figure-wine": {
+        "role": "neutral",
+        "displayName": "Figure Wine",
+        "canonical": "#50272f",
+        "tonalRamp": [
+          "oklch(15.00% 0.06179 8.61)",
+          "oklch(26.43% 0.06179 8.61)",
+          "oklch(37.86% 0.06179 8.61)",
+          "oklch(49.29% 0.06179 8.61)",
+          "oklch(60.71% 0.06179 8.61)",
+          "oklch(72.14% 0.06179 8.61)",
+          "oklch(83.57% 0.06179 8.61)",
+          "oklch(95.00% 0.06179 8.61)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "figure-linen": {
+        "role": "neutral",
+        "displayName": "Figure Linen",
+        "canonical": "#b1a58f",
+        "tonalRamp": [
+          "oklch(15.00% 0.03379 82.73)",
+          "oklch(26.43% 0.03379 82.73)",
+          "oklch(37.86% 0.03379 82.73)",
+          "oklch(49.29% 0.03379 82.73)",
+          "oklch(60.71% 0.03379 82.73)",
+          "oklch(72.14% 0.03379 82.73)",
+          "oklch(83.57% 0.03379 82.73)",
+          "oklch(95.00% 0.03379 82.73)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "figure-bone": {
+        "role": "neutral",
+        "displayName": "Figure Bone",
+        "canonical": "#b8b09a",
+        "tonalRamp": [
+          "oklch(15.00% 0.03184 90.37)",
+          "oklch(26.43% 0.03184 90.37)",
+          "oklch(37.86% 0.03184 90.37)",
+          "oklch(49.29% 0.03184 90.37)",
+          "oklch(60.71% 0.03184 90.37)",
+          "oklch(72.14% 0.03184 90.37)",
+          "oklch(83.57% 0.03184 90.37)",
+          "oklch(95.00% 0.03184 90.37)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "figure-ash": {
+        "role": "neutral",
+        "displayName": "Figure Ash",
+        "canonical": "#655f59",
+        "tonalRamp": [
+          "oklch(15.00% 0.01217 67.54)",
+          "oklch(26.43% 0.01217 67.54)",
+          "oklch(37.86% 0.01217 67.54)",
+          "oklch(49.29% 0.01217 67.54)",
+          "oklch(60.71% 0.01217 67.54)",
+          "oklch(72.14% 0.01217 67.54)",
+          "oklch(83.57% 0.01217 67.54)",
+          "oklch(95.00% 0.01217 67.54)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "figure-dark": {
+        "role": "neutral",
+        "displayName": "Figure Dark",
+        "canonical": "#171d23",
+        "tonalRamp": [
+          "oklch(15.00% 0.01471 248.47)",
+          "oklch(26.43% 0.01471 248.47)",
+          "oklch(37.86% 0.01471 248.47)",
+          "oklch(49.29% 0.01471 248.47)",
+          "oklch(60.71% 0.01471 248.47)",
+          "oklch(72.14% 0.01471 248.47)",
+          "oklch(83.57% 0.01471 248.47)",
+          "oklch(95.00% 0.01471 248.47)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "figure-soul": {
+        "role": "tertiary",
+        "displayName": "Figure Soul",
+        "canonical": "#78bfb5",
+        "tonalRamp": [
+          "oklch(15.00% 0.07316 184.52)",
+          "oklch(26.43% 0.07316 184.52)",
+          "oklch(37.86% 0.07316 184.52)",
+          "oklch(49.29% 0.07316 184.52)",
+          "oklch(60.71% 0.07316 184.52)",
+          "oklch(72.14% 0.07316 184.52)",
+          "oklch(83.57% 0.07316 184.52)",
+          "oklch(95.00% 0.07316 184.52)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "figure-ember": {
+        "role": "tertiary",
+        "displayName": "Figure Ember",
+        "canonical": "#ef984e",
+        "tonalRamp": [
+          "oklch(15.00% 0.13724 58.73)",
+          "oklch(26.43% 0.13724 58.73)",
+          "oklch(37.86% 0.13724 58.73)",
+          "oklch(49.29% 0.13724 58.73)",
+          "oklch(60.71% 0.13724 58.73)",
+          "oklch(72.14% 0.13724 58.73)",
+          "oklch(83.57% 0.13724 58.73)",
+          "oklch(95.00% 0.13724 58.73)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "nyra-hair-shadow": {
+        "role": "neutral",
+        "displayName": "Nyra Hair Shadow",
+        "canonical": "#686f72",
+        "tonalRamp": [
+          "oklch(15.00% 0.00977 225.20)",
+          "oklch(26.43% 0.00977 225.20)",
+          "oklch(37.86% 0.00977 225.20)",
+          "oklch(49.29% 0.00977 225.20)",
+          "oklch(60.71% 0.00977 225.20)",
+          "oklch(72.14% 0.00977 225.20)",
+          "oklch(83.57% 0.00977 225.20)",
+          "oklch(95.00% 0.00977 225.20)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "nyra-eye": {
+        "role": "neutral",
+        "displayName": "Nyra Eye",
+        "canonical": "#c4bbb1",
+        "tonalRamp": [
+          "oklch(15.00% 0.01725 70.49)",
+          "oklch(26.43% 0.01725 70.49)",
+          "oklch(37.86% 0.01725 70.49)",
+          "oklch(49.29% 0.01725 70.49)",
+          "oklch(60.71% 0.01725 70.49)",
+          "oklch(72.14% 0.01725 70.49)",
+          "oklch(83.57% 0.01725 70.49)",
+          "oklch(95.00% 0.01725 70.49)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "nyra-iris": {
+        "role": "neutral",
+        "displayName": "Nyra Iris",
+        "canonical": "#4c807d",
+        "tonalRamp": [
+          "oklch(15.00% 0.05606 190.97)",
+          "oklch(26.43% 0.05606 190.97)",
+          "oklch(37.86% 0.05606 190.97)",
+          "oklch(49.29% 0.05606 190.97)",
+          "oklch(60.71% 0.05606 190.97)",
+          "oklch(72.14% 0.05606 190.97)",
+          "oklch(83.57% 0.05606 190.97)",
+          "oklch(95.00% 0.05606 190.97)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "nyra-lip": {
+        "role": "neutral",
+        "displayName": "Nyra Lip",
+        "canonical": "#9e6d68",
+        "tonalRamp": [
+          "oklch(15.00% 0.06356 25.67)",
+          "oklch(26.43% 0.06356 25.67)",
+          "oklch(37.86% 0.06356 25.67)",
+          "oklch(49.29% 0.06356 25.67)",
+          "oklch(60.71% 0.06356 25.67)",
+          "oklch(72.14% 0.06356 25.67)",
+          "oklch(83.57% 0.06356 25.67)",
+          "oklch(95.00% 0.06356 25.67)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "nyra-lip-shadow": {
+        "role": "neutral",
+        "displayName": "Nyra Lip Shadow",
+        "canonical": "#674d46",
+        "tonalRamp": [
+          "oklch(15.00% 0.03727 35.58)",
+          "oklch(26.43% 0.03727 35.58)",
+          "oklch(37.86% 0.03727 35.58)",
+          "oklch(49.29% 0.03727 35.58)",
+          "oklch(60.71% 0.03727 35.58)",
+          "oklch(72.14% 0.03727 35.58)",
+          "oklch(83.57% 0.03727 35.58)",
+          "oklch(95.00% 0.03727 35.58)"
+        ],
+        "source": "tools/art/build_characters.py:PALETTE"
+      },
+      "spire-stone": {
+        "role": "neutral",
+        "displayName": "Spire Stone",
+        "canonical": "#747a80",
+        "tonalRamp": [
+          "oklch(15.00% 0.01170 248.03)",
+          "oklch(26.43% 0.01170 248.03)",
+          "oklch(37.86% 0.01170 248.03)",
+          "oklch(49.29% 0.01170 248.03)",
+          "oklch(60.71% 0.01170 248.03)",
+          "oklch(72.14% 0.01170 248.03)",
+          "oklch(83.57% 0.01170 248.03)",
+          "oklch(95.00% 0.01170 248.03)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "spire-edge": {
+        "role": "neutral",
+        "displayName": "Spire Edge",
+        "canonical": "#9d9990",
+        "tonalRamp": [
+          "oklch(15.00% 0.01378 86.85)",
+          "oklch(26.43% 0.01378 86.85)",
+          "oklch(37.86% 0.01378 86.85)",
+          "oklch(49.29% 0.01378 86.85)",
+          "oklch(60.71% 0.01378 86.85)",
+          "oklch(72.14% 0.01378 86.85)",
+          "oklch(83.57% 0.01378 86.85)",
+          "oklch(95.00% 0.01378 86.85)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "spire-dark": {
+        "role": "neutral",
+        "displayName": "Spire Dark",
+        "canonical": "#20272d",
+        "tonalRamp": [
+          "oklch(15.00% 0.01502 244.23)",
+          "oklch(26.43% 0.01502 244.23)",
+          "oklch(37.86% 0.01502 244.23)",
+          "oklch(49.29% 0.01502 244.23)",
+          "oklch(60.71% 0.01502 244.23)",
+          "oklch(72.14% 0.01502 244.23)",
+          "oklch(83.57% 0.01502 244.23)",
+          "oklch(95.00% 0.01502 244.23)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "spire-metal": {
+        "role": "neutral",
+        "displayName": "Spire Metal",
+        "canonical": "#82715a",
+        "tonalRamp": [
+          "oklch(15.00% 0.04000 75.16)",
+          "oklch(26.43% 0.04000 75.16)",
+          "oklch(37.86% 0.04000 75.16)",
+          "oklch(49.29% 0.04000 75.16)",
+          "oklch(60.71% 0.04000 75.16)",
+          "oklch(72.14% 0.04000 75.16)",
+          "oklch(83.57% 0.04000 75.16)",
+          "oklch(95.00% 0.04000 75.16)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "spire-cloth": {
+        "role": "neutral",
+        "displayName": "Spire Cloth",
+        "canonical": "#40262b",
+        "tonalRamp": [
+          "oklch(15.00% 0.03998 7.19)",
+          "oklch(26.43% 0.03998 7.19)",
+          "oklch(37.86% 0.03998 7.19)",
+          "oklch(49.29% 0.03998 7.19)",
+          "oklch(60.71% 0.03998 7.19)",
+          "oklch(72.14% 0.03998 7.19)",
+          "oklch(83.57% 0.03998 7.19)",
+          "oklch(95.00% 0.03998 7.19)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "spire-fire": {
+        "role": "tertiary",
+        "displayName": "Spire Fire",
+        "canonical": "#ec843b",
+        "tonalRamp": [
+          "oklch(15.00% 0.15314 52.35)",
+          "oklch(26.43% 0.15314 52.35)",
+          "oklch(37.86% 0.15314 52.35)",
+          "oklch(49.29% 0.15314 52.35)",
+          "oklch(60.71% 0.15314 52.35)",
+          "oklch(72.14% 0.15314 52.35)",
+          "oklch(83.57% 0.15314 52.35)",
+          "oklch(95.00% 0.15314 52.35)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "spire-light": {
+        "role": "tertiary",
+        "displayName": "Spire Light",
+        "canonical": "#eaa36c",
+        "tonalRamp": [
+          "oklch(15.00% 0.11034 57.96)",
+          "oklch(26.43% 0.11034 57.96)",
+          "oklch(37.86% 0.11034 57.96)",
+          "oklch(49.29% 0.11034 57.96)",
+          "oklch(60.71% 0.11034 57.96)",
+          "oklch(72.14% 0.11034 57.96)",
+          "oklch(83.57% 0.11034 57.96)",
+          "oklch(95.00% 0.11034 57.96)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "spire-moon": {
+        "role": "neutral",
+        "displayName": "Spire Moon",
+        "canonical": "#cad4de",
+        "tonalRamp": [
+          "oklch(15.00% 0.01762 248.03)",
+          "oklch(26.43% 0.01762 248.03)",
+          "oklch(37.86% 0.01762 248.03)",
+          "oklch(49.29% 0.01762 248.03)",
+          "oklch(60.71% 0.01762 248.03)",
+          "oklch(72.14% 0.01762 248.03)",
+          "oklch(83.57% 0.01762 248.03)",
+          "oklch(95.00% 0.01762 248.03)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "spire-ambient": {
+        "role": "neutral",
+        "displayName": "Spire Ambient",
+        "canonical": "#9aaeba",
+        "tonalRamp": [
+          "oklch(15.00% 0.02825 234.13)",
+          "oklch(26.43% 0.02825 234.13)",
+          "oklch(37.86% 0.02825 234.13)",
+          "oklch(49.29% 0.02825 234.13)",
+          "oklch(60.71% 0.02825 234.13)",
+          "oklch(72.14% 0.02825 234.13)",
+          "oklch(83.57% 0.02825 234.13)",
+          "oklch(95.00% 0.02825 234.13)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "spire-fog": {
+        "role": "neutral",
+        "displayName": "Spire Fog",
+        "canonical": "#15212a",
+        "tonalRamp": [
+          "oklch(15.00% 0.02417 241.39)",
+          "oklch(26.43% 0.02417 241.39)",
+          "oklch(37.86% 0.02417 241.39)",
+          "oklch(49.29% 0.02417 241.39)",
+          "oklch(60.71% 0.02417 241.39)",
+          "oklch(72.14% 0.02417 241.39)",
+          "oklch(83.57% 0.02417 241.39)",
+          "oklch(95.00% 0.02417 241.39)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "spire-background": {
+        "role": "neutral",
+        "displayName": "Spire Background",
+        "canonical": "#080f15",
+        "tonalRamp": [
+          "oklch(15.00% 0.01687 244.46)",
+          "oklch(26.43% 0.01687 244.46)",
+          "oklch(37.86% 0.01687 244.46)",
+          "oklch(49.29% 0.01687 244.46)",
+          "oklch(60.71% 0.01687 244.46)",
+          "oklch(72.14% 0.01687 244.46)",
+          "oklch(83.57% 0.01687 244.46)",
+          "oklch(95.00% 0.01687 244.46)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "spire-mineral": {
+        "role": "neutral",
+        "displayName": "Spire Mineral",
+        "canonical": "#384746",
+        "tonalRamp": [
+          "oklch(15.00% 0.01926 191.37)",
+          "oklch(26.43% 0.01926 191.37)",
+          "oklch(37.86% 0.01926 191.37)",
+          "oklch(49.29% 0.01926 191.37)",
+          "oklch(60.71% 0.01926 191.37)",
+          "oklch(72.14% 0.01926 191.37)",
+          "oklch(83.57% 0.01926 191.37)",
+          "oklch(95.00% 0.01926 191.37)"
+        ],
+        "source": "scripts/dungeon_world.gd:_build_materials"
+      },
+      "archive-stone": {
+        "role": "neutral",
+        "displayName": "Archive Stone",
+        "canonical": "#697f78",
+        "tonalRamp": [
+          "oklch(15.00% 0.02775 174.04)",
+          "oklch(26.43% 0.02775 174.04)",
+          "oklch(37.86% 0.02775 174.04)",
+          "oklch(49.29% 0.02775 174.04)",
+          "oklch(60.71% 0.02775 174.04)",
+          "oklch(72.14% 0.02775 174.04)",
+          "oklch(83.57% 0.02775 174.04)",
+          "oklch(95.00% 0.02775 174.04)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "archive-edge": {
+        "role": "neutral",
+        "displayName": "Archive Edge",
+        "canonical": "#8e9d92",
+        "tonalRamp": [
+          "oklch(15.00% 0.02336 153.91)",
+          "oklch(26.43% 0.02336 153.91)",
+          "oklch(37.86% 0.02336 153.91)",
+          "oklch(49.29% 0.02336 153.91)",
+          "oklch(60.71% 0.02336 153.91)",
+          "oklch(72.14% 0.02336 153.91)",
+          "oklch(83.57% 0.02336 153.91)",
+          "oklch(95.00% 0.02336 153.91)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "archive-dark": {
+        "role": "neutral",
+        "displayName": "Archive Dark",
+        "canonical": "#192c2d",
+        "tonalRamp": [
+          "oklch(15.00% 0.02483 200.06)",
+          "oklch(26.43% 0.02483 200.06)",
+          "oklch(37.86% 0.02483 200.06)",
+          "oklch(49.29% 0.02483 200.06)",
+          "oklch(60.71% 0.02483 200.06)",
+          "oklch(72.14% 0.02483 200.06)",
+          "oklch(83.57% 0.02483 200.06)",
+          "oklch(95.00% 0.02483 200.06)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "archive-metal": {
+        "role": "neutral",
+        "displayName": "Archive Metal",
+        "canonical": "#708276",
+        "tonalRamp": [
+          "oklch(15.00% 0.02776 156.27)",
+          "oklch(26.43% 0.02776 156.27)",
+          "oklch(37.86% 0.02776 156.27)",
+          "oklch(49.29% 0.02776 156.27)",
+          "oklch(60.71% 0.02776 156.27)",
+          "oklch(72.14% 0.02776 156.27)",
+          "oklch(83.57% 0.02776 156.27)",
+          "oklch(95.00% 0.02776 156.27)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "archive-cloth": {
+        "role": "neutral",
+        "displayName": "Archive Cloth",
+        "canonical": "#243d3c",
+        "tonalRamp": [
+          "oklch(15.00% 0.03100 192.57)",
+          "oklch(26.43% 0.03100 192.57)",
+          "oklch(37.86% 0.03100 192.57)",
+          "oklch(49.29% 0.03100 192.57)",
+          "oklch(60.71% 0.03100 192.57)",
+          "oklch(72.14% 0.03100 192.57)",
+          "oklch(83.57% 0.03100 192.57)",
+          "oklch(95.00% 0.03100 192.57)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "archive-fire": {
+        "role": "tertiary",
+        "displayName": "Archive Fire",
+        "canonical": "#6bbfad",
+        "tonalRamp": [
+          "oklch(15.00% 0.08671 178.33)",
+          "oklch(26.43% 0.08671 178.33)",
+          "oklch(37.86% 0.08671 178.33)",
+          "oklch(49.29% 0.08671 178.33)",
+          "oklch(60.71% 0.08671 178.33)",
+          "oklch(72.14% 0.08671 178.33)",
+          "oklch(83.57% 0.08671 178.33)",
+          "oklch(95.00% 0.08671 178.33)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "archive-light": {
+        "role": "tertiary",
+        "displayName": "Archive Light",
+        "canonical": "#83c8b7",
+        "tonalRamp": [
+          "oklch(15.00% 0.07413 177.00)",
+          "oklch(26.43% 0.07413 177.00)",
+          "oklch(37.86% 0.07413 177.00)",
+          "oklch(49.29% 0.07413 177.00)",
+          "oklch(60.71% 0.07413 177.00)",
+          "oklch(72.14% 0.07413 177.00)",
+          "oklch(83.57% 0.07413 177.00)",
+          "oklch(95.00% 0.07413 177.00)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "archive-moon": {
+        "role": "neutral",
+        "displayName": "Archive Moon",
+        "canonical": "#abc8c4",
+        "tonalRamp": [
+          "oklch(15.00% 0.03170 186.43)",
+          "oklch(26.43% 0.03170 186.43)",
+          "oklch(37.86% 0.03170 186.43)",
+          "oklch(49.29% 0.03170 186.43)",
+          "oklch(60.71% 0.03170 186.43)",
+          "oklch(72.14% 0.03170 186.43)",
+          "oklch(83.57% 0.03170 186.43)",
+          "oklch(95.00% 0.03170 186.43)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "archive-ambient": {
+        "role": "neutral",
+        "displayName": "Archive Ambient",
+        "canonical": "#72988f",
+        "tonalRamp": [
+          "oklch(15.00% 0.04402 178.65)",
+          "oklch(26.43% 0.04402 178.65)",
+          "oklch(37.86% 0.04402 178.65)",
+          "oklch(49.29% 0.04402 178.65)",
+          "oklch(60.71% 0.04402 178.65)",
+          "oklch(72.14% 0.04402 178.65)",
+          "oklch(83.57% 0.04402 178.65)",
+          "oklch(95.00% 0.04402 178.65)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "archive-fog": {
+        "role": "neutral",
+        "displayName": "Archive Fog",
+        "canonical": "#122728",
+        "tonalRamp": [
+          "oklch(15.00% 0.02704 199.57)",
+          "oklch(26.43% 0.02704 199.57)",
+          "oklch(37.86% 0.02704 199.57)",
+          "oklch(49.29% 0.02704 199.57)",
+          "oklch(60.71% 0.02704 199.57)",
+          "oklch(72.14% 0.02704 199.57)",
+          "oklch(83.57% 0.02704 199.57)",
+          "oklch(95.00% 0.02704 199.57)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "archive-background": {
+        "role": "neutral",
+        "displayName": "Archive Background",
+        "canonical": "#071316",
+        "tonalRamp": [
+          "oklch(15.00% 0.01860 215.11)",
+          "oklch(26.43% 0.01860 215.11)",
+          "oklch(37.86% 0.01860 215.11)",
+          "oklch(49.29% 0.01860 215.11)",
+          "oklch(60.71% 0.01860 215.11)",
+          "oklch(72.14% 0.01860 215.11)",
+          "oklch(83.57% 0.01860 215.11)",
+          "oklch(95.00% 0.01860 215.11)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "archive-mineral": {
+        "role": "neutral",
+        "displayName": "Archive Mineral",
+        "canonical": "#294d40",
+        "tonalRamp": [
+          "oklch(15.00% 0.04768 168.54)",
+          "oklch(26.43% 0.04768 168.54)",
+          "oklch(37.86% 0.04768 168.54)",
+          "oklch(49.29% 0.04768 168.54)",
+          "oklch(60.71% 0.04768 168.54)",
+          "oklch(72.14% 0.04768 168.54)",
+          "oklch(83.57% 0.04768 168.54)",
+          "oklch(95.00% 0.04768 168.54)"
+        ],
+        "source": "scripts/dungeon_world.gd:_build_materials"
+      },
+      "ossuary-stone": {
+        "role": "neutral",
+        "displayName": "Ossuary Stone",
+        "canonical": "#807d7e",
+        "tonalRamp": [
+          "oklch(15.00% 0.00392 354.78)",
+          "oklch(26.43% 0.00392 354.78)",
+          "oklch(37.86% 0.00392 354.78)",
+          "oklch(49.29% 0.00392 354.78)",
+          "oklch(60.71% 0.00392 354.78)",
+          "oklch(72.14% 0.00392 354.78)",
+          "oklch(83.57% 0.00392 354.78)",
+          "oklch(95.00% 0.00392 354.78)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "ossuary-edge": {
+        "role": "neutral",
+        "displayName": "Ossuary Edge",
+        "canonical": "#b5ae9e",
+        "tonalRamp": [
+          "oklch(15.00% 0.02376 87.17)",
+          "oklch(26.43% 0.02376 87.17)",
+          "oklch(37.86% 0.02376 87.17)",
+          "oklch(49.29% 0.02376 87.17)",
+          "oklch(60.71% 0.02376 87.17)",
+          "oklch(72.14% 0.02376 87.17)",
+          "oklch(83.57% 0.02376 87.17)",
+          "oklch(95.00% 0.02376 87.17)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "ossuary-dark": {
+        "role": "neutral",
+        "displayName": "Ossuary Dark",
+        "canonical": "#27242b",
+        "tonalRamp": [
+          "oklch(15.00% 0.01351 304.86)",
+          "oklch(26.43% 0.01351 304.86)",
+          "oklch(37.86% 0.01351 304.86)",
+          "oklch(49.29% 0.01351 304.86)",
+          "oklch(60.71% 0.01351 304.86)",
+          "oklch(72.14% 0.01351 304.86)",
+          "oklch(83.57% 0.01351 304.86)",
+          "oklch(95.00% 0.01351 304.86)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "ossuary-metal": {
+        "role": "neutral",
+        "displayName": "Ossuary Metal",
+        "canonical": "#9b917c",
+        "tonalRamp": [
+          "oklch(15.00% 0.03230 85.55)",
+          "oklch(26.43% 0.03230 85.55)",
+          "oklch(37.86% 0.03230 85.55)",
+          "oklch(49.29% 0.03230 85.55)",
+          "oklch(60.71% 0.03230 85.55)",
+          "oklch(72.14% 0.03230 85.55)",
+          "oklch(83.57% 0.03230 85.55)",
+          "oklch(95.00% 0.03230 85.55)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "ossuary-cloth": {
+        "role": "neutral",
+        "displayName": "Ossuary Cloth",
+        "canonical": "#452d3c",
+        "tonalRamp": [
+          "oklch(15.00% 0.04247 341.70)",
+          "oklch(26.43% 0.04247 341.70)",
+          "oklch(37.86% 0.04247 341.70)",
+          "oklch(49.29% 0.04247 341.70)",
+          "oklch(60.71% 0.04247 341.70)",
+          "oklch(72.14% 0.04247 341.70)",
+          "oklch(83.57% 0.04247 341.70)",
+          "oklch(95.00% 0.04247 341.70)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "ossuary-fire": {
+        "role": "tertiary",
+        "displayName": "Ossuary Fire",
+        "canonical": "#a99ab9",
+        "tonalRamp": [
+          "oklch(15.00% 0.04744 307.03)",
+          "oklch(26.43% 0.04744 307.03)",
+          "oklch(37.86% 0.04744 307.03)",
+          "oklch(49.29% 0.04744 307.03)",
+          "oklch(60.71% 0.04744 307.03)",
+          "oklch(72.14% 0.04744 307.03)",
+          "oklch(83.57% 0.04744 307.03)",
+          "oklch(95.00% 0.04744 307.03)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "ossuary-light": {
+        "role": "tertiary",
+        "displayName": "Ossuary Light",
+        "canonical": "#c1afcb",
+        "tonalRamp": [
+          "oklch(15.00% 0.04386 313.63)",
+          "oklch(26.43% 0.04386 313.63)",
+          "oklch(37.86% 0.04386 313.63)",
+          "oklch(49.29% 0.04386 313.63)",
+          "oklch(60.71% 0.04386 313.63)",
+          "oklch(72.14% 0.04386 313.63)",
+          "oklch(83.57% 0.04386 313.63)",
+          "oklch(95.00% 0.04386 313.63)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "ossuary-moon": {
+        "role": "neutral",
+        "displayName": "Ossuary Moon",
+        "canonical": "#c8c3d5",
+        "tonalRamp": [
+          "oklch(15.00% 0.02544 298.53)",
+          "oklch(26.43% 0.02544 298.53)",
+          "oklch(37.86% 0.02544 298.53)",
+          "oklch(49.29% 0.02544 298.53)",
+          "oklch(60.71% 0.02544 298.53)",
+          "oklch(72.14% 0.02544 298.53)",
+          "oklch(83.57% 0.02544 298.53)",
+          "oklch(95.00% 0.02544 298.53)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "ossuary-ambient": {
+        "role": "neutral",
+        "displayName": "Ossuary Ambient",
+        "canonical": "#958e9d",
+        "tonalRamp": [
+          "oklch(15.00% 0.02332 306.68)",
+          "oklch(26.43% 0.02332 306.68)",
+          "oklch(37.86% 0.02332 306.68)",
+          "oklch(49.29% 0.02332 306.68)",
+          "oklch(60.71% 0.02332 306.68)",
+          "oklch(72.14% 0.02332 306.68)",
+          "oklch(83.57% 0.02332 306.68)",
+          "oklch(95.00% 0.02332 306.68)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "ossuary-fog": {
+        "role": "neutral",
+        "displayName": "Ossuary Fog",
+        "canonical": "#202029",
+        "tonalRamp": [
+          "oklch(15.00% 0.01697 285.09)",
+          "oklch(26.43% 0.01697 285.09)",
+          "oklch(37.86% 0.01697 285.09)",
+          "oklch(49.29% 0.01697 285.09)",
+          "oklch(60.71% 0.01697 285.09)",
+          "oklch(72.14% 0.01697 285.09)",
+          "oklch(83.57% 0.01697 285.09)",
+          "oklch(95.00% 0.01697 285.09)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "ossuary-background": {
+        "role": "neutral",
+        "displayName": "Ossuary Background",
+        "canonical": "#101017",
+        "tonalRamp": [
+          "oklch(15.00% 0.01438 284.83)",
+          "oklch(26.43% 0.01438 284.83)",
+          "oklch(37.86% 0.01438 284.83)",
+          "oklch(49.29% 0.01438 284.83)",
+          "oklch(60.71% 0.01438 284.83)",
+          "oklch(72.14% 0.01438 284.83)",
+          "oklch(83.57% 0.01438 284.83)",
+          "oklch(95.00% 0.01438 284.83)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "ossuary-mineral": {
+        "role": "neutral",
+        "displayName": "Ossuary Mineral",
+        "canonical": "#52435f",
+        "tonalRamp": [
+          "oklch(15.00% 0.04951 308.68)",
+          "oklch(26.43% 0.04951 308.68)",
+          "oklch(37.86% 0.04951 308.68)",
+          "oklch(49.29% 0.04951 308.68)",
+          "oklch(60.71% 0.04951 308.68)",
+          "oklch(72.14% 0.04951 308.68)",
+          "oklch(83.57% 0.04951 308.68)",
+          "oklch(95.00% 0.04951 308.68)"
+        ],
+        "source": "scripts/dungeon_world.gd:_build_materials"
+      },
+      "citadel-stone": {
+        "role": "neutral",
+        "displayName": "Citadel Stone",
+        "canonical": "#666464",
+        "tonalRamp": [
+          "oklch(15.00% 0.00252 17.24)",
+          "oklch(26.43% 0.00252 17.24)",
+          "oklch(37.86% 0.00252 17.24)",
+          "oklch(49.29% 0.00252 17.24)",
+          "oklch(60.71% 0.00252 17.24)",
+          "oklch(72.14% 0.00252 17.24)",
+          "oklch(83.57% 0.00252 17.24)",
+          "oklch(95.00% 0.00252 17.24)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "citadel-edge": {
+        "role": "neutral",
+        "displayName": "Citadel Edge",
+        "canonical": "#968576",
+        "tonalRamp": [
+          "oklch(15.00% 0.03017 63.68)",
+          "oklch(26.43% 0.03017 63.68)",
+          "oklch(37.86% 0.03017 63.68)",
+          "oklch(49.29% 0.03017 63.68)",
+          "oklch(60.71% 0.03017 63.68)",
+          "oklch(72.14% 0.03017 63.68)",
+          "oklch(83.57% 0.03017 63.68)",
+          "oklch(95.00% 0.03017 63.68)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "citadel-dark": {
+        "role": "neutral",
+        "displayName": "Citadel Dark",
+        "canonical": "#272324",
+        "tonalRamp": [
+          "oklch(15.00% 0.00627 0.54)",
+          "oklch(26.43% 0.00627 0.54)",
+          "oklch(37.86% 0.00627 0.54)",
+          "oklch(49.29% 0.00627 0.54)",
+          "oklch(60.71% 0.00627 0.54)",
+          "oklch(72.14% 0.00627 0.54)",
+          "oklch(83.57% 0.00627 0.54)",
+          "oklch(95.00% 0.00627 0.54)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "citadel-metal": {
+        "role": "neutral",
+        "displayName": "Citadel Metal",
+        "canonical": "#88705a",
+        "tonalRamp": [
+          "oklch(15.00% 0.04440 64.24)",
+          "oklch(26.43% 0.04440 64.24)",
+          "oklch(37.86% 0.04440 64.24)",
+          "oklch(49.29% 0.04440 64.24)",
+          "oklch(60.71% 0.04440 64.24)",
+          "oklch(72.14% 0.04440 64.24)",
+          "oklch(83.57% 0.04440 64.24)",
+          "oklch(95.00% 0.04440 64.24)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "citadel-cloth": {
+        "role": "neutral",
+        "displayName": "Citadel Cloth",
+        "canonical": "#472820",
+        "tonalRamp": [
+          "oklch(15.00% 0.04907 35.27)",
+          "oklch(26.43% 0.04907 35.27)",
+          "oklch(37.86% 0.04907 35.27)",
+          "oklch(49.29% 0.04907 35.27)",
+          "oklch(60.71% 0.04907 35.27)",
+          "oklch(72.14% 0.04907 35.27)",
+          "oklch(83.57% 0.04907 35.27)",
+          "oklch(95.00% 0.04907 35.27)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "citadel-fire": {
+        "role": "tertiary",
+        "displayName": "Citadel Fire",
+        "canonical": "#e47732",
+        "tonalRamp": [
+          "oklch(15.00% 0.15697 49.34)",
+          "oklch(26.43% 0.15697 49.34)",
+          "oklch(37.86% 0.15697 49.34)",
+          "oklch(49.29% 0.15697 49.34)",
+          "oklch(60.71% 0.15697 49.34)",
+          "oklch(72.14% 0.15697 49.34)",
+          "oklch(83.57% 0.15697 49.34)",
+          "oklch(95.00% 0.15697 49.34)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "citadel-light": {
+        "role": "tertiary",
+        "displayName": "Citadel Light",
+        "canonical": "#e89553",
+        "tonalRamp": [
+          "oklch(15.00% 0.12927 57.42)",
+          "oklch(26.43% 0.12927 57.42)",
+          "oklch(37.86% 0.12927 57.42)",
+          "oklch(49.29% 0.12927 57.42)",
+          "oklch(60.71% 0.12927 57.42)",
+          "oklch(72.14% 0.12927 57.42)",
+          "oklch(83.57% 0.12927 57.42)",
+          "oklch(95.00% 0.12927 57.42)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "citadel-moon": {
+        "role": "neutral",
+        "displayName": "Citadel Moon",
+        "canonical": "#cdbdae",
+        "tonalRamp": [
+          "oklch(15.00% 0.02757 65.60)",
+          "oklch(26.43% 0.02757 65.60)",
+          "oklch(37.86% 0.02757 65.60)",
+          "oklch(49.29% 0.02757 65.60)",
+          "oklch(60.71% 0.02757 65.60)",
+          "oklch(72.14% 0.02757 65.60)",
+          "oklch(83.57% 0.02757 65.60)",
+          "oklch(95.00% 0.02757 65.60)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "citadel-ambient": {
+        "role": "neutral",
+        "displayName": "Citadel Ambient",
+        "canonical": "#988f8b",
+        "tonalRamp": [
+          "oklch(15.00% 0.01228 45.65)",
+          "oklch(26.43% 0.01228 45.65)",
+          "oklch(37.86% 0.01228 45.65)",
+          "oklch(49.29% 0.01228 45.65)",
+          "oklch(60.71% 0.01228 45.65)",
+          "oklch(72.14% 0.01228 45.65)",
+          "oklch(83.57% 0.01228 45.65)",
+          "oklch(95.00% 0.01228 45.65)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "citadel-fog": {
+        "role": "neutral",
+        "displayName": "Citadel Fog",
+        "canonical": "#251b18",
+        "tonalRamp": [
+          "oklch(15.00% 0.01696 37.34)",
+          "oklch(26.43% 0.01696 37.34)",
+          "oklch(37.86% 0.01696 37.34)",
+          "oklch(49.29% 0.01696 37.34)",
+          "oklch(60.71% 0.01696 37.34)",
+          "oklch(72.14% 0.01696 37.34)",
+          "oklch(83.57% 0.01696 37.34)",
+          "oklch(95.00% 0.01696 37.34)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "citadel-background": {
+        "role": "neutral",
+        "displayName": "Citadel Background",
+        "canonical": "#110d0c",
+        "tonalRamp": [
+          "oklch(15.00% 0.00720 34.32)",
+          "oklch(26.43% 0.00720 34.32)",
+          "oklch(37.86% 0.00720 34.32)",
+          "oklch(49.29% 0.00720 34.32)",
+          "oklch(60.71% 0.00720 34.32)",
+          "oklch(72.14% 0.00720 34.32)",
+          "oklch(83.57% 0.00720 34.32)",
+          "oklch(95.00% 0.00720 34.32)"
+        ],
+        "source": "scripts/dungeon_theme.gd:THEMES"
+      },
+      "citadel-mineral": {
+        "role": "neutral",
+        "displayName": "Citadel Mineral",
+        "canonical": "#503a2c",
+        "tonalRamp": [
+          "oklch(15.00% 0.03880 53.64)",
+          "oklch(26.43% 0.03880 53.64)",
+          "oklch(37.86% 0.03880 53.64)",
+          "oklch(49.29% 0.03880 53.64)",
+          "oklch(60.71% 0.03880 53.64)",
+          "oklch(72.14% 0.03880 53.64)",
+          "oklch(83.57% 0.03880 53.64)",
+          "oklch(95.00% 0.03880 53.64)"
+        ],
+        "source": "scripts/dungeon_world.gd:_build_materials"
+      },
+      "camp-stone": {
+        "role": "neutral",
+        "displayName": "Camp Stone",
+        "canonical": "#727575",
+        "tonalRamp": [
+          "oklch(15.00% 0.00366 197.05)",
+          "oklch(26.43% 0.00366 197.05)",
+          "oklch(37.86% 0.00366 197.05)",
+          "oklch(49.29% 0.00366 197.05)",
+          "oklch(60.71% 0.00366 197.05)",
+          "oklch(72.14% 0.00366 197.05)",
+          "oklch(83.57% 0.00366 197.05)",
+          "oklch(95.00% 0.00366 197.05)"
+        ],
+        "source": "scripts/camp_scene.gd"
+      },
+      "camp-background": {
+        "role": "neutral",
+        "displayName": "Camp Background",
+        "canonical": "#29333e",
+        "tonalRamp": [
+          "oklch(15.00% 0.02402 251.03)",
+          "oklch(26.43% 0.02402 251.03)",
+          "oklch(37.86% 0.02402 251.03)",
+          "oklch(49.29% 0.02402 251.03)",
+          "oklch(60.71% 0.02402 251.03)",
+          "oklch(72.14% 0.02402 251.03)",
+          "oklch(83.57% 0.02402 251.03)",
+          "oklch(95.00% 0.02402 251.03)"
+        ],
+        "source": "scripts/camp_scene.gd"
+      },
+      "camp-ambient": {
+        "role": "neutral",
+        "displayName": "Camp Ambient",
+        "canonical": "#b7c4c9",
+        "tonalRamp": [
+          "oklch(15.00% 0.01596 222.72)",
+          "oklch(26.43% 0.01596 222.72)",
+          "oklch(37.86% 0.01596 222.72)",
+          "oklch(49.29% 0.01596 222.72)",
+          "oklch(60.71% 0.01596 222.72)",
+          "oklch(72.14% 0.01596 222.72)",
+          "oklch(83.57% 0.01596 222.72)",
+          "oklch(95.00% 0.01596 222.72)"
+        ],
+        "source": "scripts/camp_scene.gd"
+      },
+      "camp-fog": {
+        "role": "neutral",
+        "displayName": "Camp Fog",
+        "canonical": "#344047",
+        "tonalRamp": [
+          "oklch(15.00% 0.01985 233.67)",
+          "oklch(26.43% 0.01985 233.67)",
+          "oklch(37.86% 0.01985 233.67)",
+          "oklch(49.29% 0.01985 233.67)",
+          "oklch(60.71% 0.01985 233.67)",
+          "oklch(72.14% 0.01985 233.67)",
+          "oklch(83.57% 0.01985 233.67)",
+          "oklch(95.00% 0.01985 233.67)"
+        ],
+        "source": "scripts/camp_scene.gd"
+      },
+      "camp-key": {
+        "role": "neutral",
+        "displayName": "Camp Key",
+        "canonical": "#d6c3a7",
+        "tonalRamp": [
+          "oklch(15.00% 0.04351 77.57)",
+          "oklch(26.43% 0.04351 77.57)",
+          "oklch(37.86% 0.04351 77.57)",
+          "oklch(49.29% 0.04351 77.57)",
+          "oklch(60.71% 0.04351 77.57)",
+          "oklch(72.14% 0.04351 77.57)",
+          "oklch(83.57% 0.04351 77.57)",
+          "oklch(95.00% 0.04351 77.57)"
+        ],
+        "source": "scripts/camp_scene.gd"
+      },
+      "camp-fill": {
+        "role": "neutral",
+        "displayName": "Camp Fill",
+        "canonical": "#87a2c2",
+        "tonalRamp": [
+          "oklch(15.00% 0.05598 252.91)",
+          "oklch(26.43% 0.05598 252.91)",
+          "oklch(37.86% 0.05598 252.91)",
+          "oklch(49.29% 0.05598 252.91)",
+          "oklch(60.71% 0.05598 252.91)",
+          "oklch(72.14% 0.05598 252.91)",
+          "oklch(83.57% 0.05598 252.91)",
+          "oklch(95.00% 0.05598 252.91)"
+        ],
+        "source": "scripts/camp_scene.gd"
+      },
+      "camp-hearth-light": {
+        "role": "neutral",
+        "displayName": "Camp Hearth Light",
+        "canonical": "#e2a16a",
+        "tonalRamp": [
+          "oklch(15.00% 0.10518 60.49)",
+          "oklch(26.43% 0.10518 60.49)",
+          "oklch(37.86% 0.10518 60.49)",
+          "oklch(49.29% 0.10518 60.49)",
+          "oklch(60.71% 0.10518 60.49)",
+          "oklch(72.14% 0.10518 60.49)",
+          "oklch(83.57% 0.10518 60.49)",
+          "oklch(95.00% 0.10518 60.49)"
+        ],
+        "source": "scripts/camp_scene.gd"
+      },
+      "camp-table-light": {
+        "role": "neutral",
+        "displayName": "Camp Table Light",
+        "canonical": "#ead0a5",
+        "tonalRamp": [
+          "oklch(15.00% 0.06351 80.17)",
+          "oklch(26.43% 0.06351 80.17)",
+          "oklch(37.86% 0.06351 80.17)",
+          "oklch(49.29% 0.06351 80.17)",
+          "oklch(60.71% 0.06351 80.17)",
+          "oklch(72.14% 0.06351 80.17)",
+          "oklch(83.57% 0.06351 80.17)",
+          "oklch(95.00% 0.06351 80.17)"
+        ],
+        "source": "scripts/camp_scene.gd"
+      },
+      "portrait-ambient": {
+        "role": "neutral",
+        "displayName": "Portrait Ambient",
+        "canonical": "#b5c0d0",
+        "tonalRamp": [
+          "oklch(15.00% 0.02567 257.65)",
+          "oklch(26.43% 0.02567 257.65)",
+          "oklch(37.86% 0.02567 257.65)",
+          "oklch(49.29% 0.02567 257.65)",
+          "oklch(60.71% 0.02567 257.65)",
+          "oklch(72.14% 0.02567 257.65)",
+          "oklch(83.57% 0.02567 257.65)",
+          "oklch(95.00% 0.02567 257.65)"
+        ],
+        "source": "scripts/hero_art.gd"
+      },
+      "portrait-key": {
+        "role": "neutral",
+        "displayName": "Portrait Key",
+        "canonical": "#e5d5bd",
+        "tonalRamp": [
+          "oklch(15.00% 0.03671 78.10)",
+          "oklch(26.43% 0.03671 78.10)",
+          "oklch(37.86% 0.03671 78.10)",
+          "oklch(49.29% 0.03671 78.10)",
+          "oklch(60.71% 0.03671 78.10)",
+          "oklch(72.14% 0.03671 78.10)",
+          "oklch(83.57% 0.03671 78.10)",
+          "oklch(95.00% 0.03671 78.10)"
+        ],
+        "source": "scripts/hero_art.gd"
+      },
+      "portrait-rim": {
+        "role": "neutral",
+        "displayName": "Portrait Rim",
+        "canonical": "#a2b2bd",
+        "tonalRamp": [
+          "oklch(15.00% 0.02385 237.76)",
+          "oklch(26.43% 0.02385 237.76)",
+          "oklch(37.86% 0.02385 237.76)",
+          "oklch(49.29% 0.02385 237.76)",
+          "oklch(60.71% 0.02385 237.76)",
+          "oklch(72.14% 0.02385 237.76)",
+          "oklch(83.57% 0.02385 237.76)",
+          "oklch(95.00% 0.02385 237.76)"
+        ],
+        "source": "scripts/hero_art.gd"
+      },
+      "world-rim": {
+        "role": "neutral",
+        "displayName": "World Rim",
+        "canonical": "#82bed4",
+        "tonalRamp": [
+          "oklch(15.00% 0.06920 222.94)",
+          "oklch(26.43% 0.06920 222.94)",
+          "oklch(37.86% 0.06920 222.94)",
+          "oklch(49.29% 0.06920 222.94)",
+          "oklch(60.71% 0.06920 222.94)",
+          "oklch(72.14% 0.06920 222.94)",
+          "oklch(83.57% 0.06920 222.94)",
+          "oklch(95.00% 0.06920 222.94)"
+        ],
+        "source": "scripts/dungeon_world.gd"
+      },
+      "hero-lantern": {
+        "role": "neutral",
+        "displayName": "Hero Lantern",
+        "canonical": "#cad8e5",
+        "tonalRamp": [
+          "oklch(15.00% 0.02351 246.07)",
+          "oklch(26.43% 0.02351 246.07)",
+          "oklch(37.86% 0.02351 246.07)",
+          "oklch(49.29% 0.02351 246.07)",
+          "oklch(60.71% 0.02351 246.07)",
+          "oklch(72.14% 0.02351 246.07)",
+          "oklch(83.57% 0.02351 246.07)",
+          "oklch(95.00% 0.02351 246.07)"
+        ],
+        "source": "scripts/dungeon_world.gd"
+      },
+      "reflection-sky-top": {
+        "role": "neutral",
+        "displayName": "Reflection Sky Top",
+        "canonical": "#354450",
+        "tonalRamp": [
+          "oklch(15.00% 0.02826 242.64)",
+          "oklch(26.43% 0.02826 242.64)",
+          "oklch(37.86% 0.02826 242.64)",
+          "oklch(49.29% 0.02826 242.64)",
+          "oklch(60.71% 0.02826 242.64)",
+          "oklch(72.14% 0.02826 242.64)",
+          "oklch(83.57% 0.02826 242.64)",
+          "oklch(95.00% 0.02826 242.64)"
+        ],
+        "source": "scripts/dungeon_lighting.gd:reflection_sky"
+      },
+      "reflection-sky-horizon": {
+        "role": "neutral",
+        "displayName": "Reflection Sky Horizon",
+        "canonical": "#a4aaab",
+        "tonalRamp": [
+          "oklch(15.00% 0.00698 208.78)",
+          "oklch(26.43% 0.00698 208.78)",
+          "oklch(37.86% 0.00698 208.78)",
+          "oklch(49.29% 0.00698 208.78)",
+          "oklch(60.71% 0.00698 208.78)",
+          "oklch(72.14% 0.00698 208.78)",
+          "oklch(83.57% 0.00698 208.78)",
+          "oklch(95.00% 0.00698 208.78)"
+        ],
+        "source": "scripts/dungeon_lighting.gd:reflection_sky"
+      },
+      "reflection-ground-bottom": {
+        "role": "neutral",
+        "displayName": "Reflection Ground Bottom",
+        "canonical": "#172029",
+        "tonalRamp": [
+          "oklch(15.00% 0.02169 248.75)",
+          "oklch(26.43% 0.02169 248.75)",
+          "oklch(37.86% 0.02169 248.75)",
+          "oklch(49.29% 0.02169 248.75)",
+          "oklch(60.71% 0.02169 248.75)",
+          "oklch(72.14% 0.02169 248.75)",
+          "oklch(83.57% 0.02169 248.75)",
+          "oklch(95.00% 0.02169 248.75)"
+        ],
+        "source": "scripts/dungeon_lighting.gd:reflection_sky"
+      },
+      "reflection-ground-horizon": {
+        "role": "neutral",
+        "displayName": "Reflection Ground Horizon",
+        "canonical": "#535351",
+        "tonalRamp": [
+          "oklch(15.00% 0.00322 106.53)",
+          "oklch(26.43% 0.00322 106.53)",
+          "oklch(37.86% 0.00322 106.53)",
+          "oklch(49.29% 0.00322 106.53)",
+          "oklch(60.71% 0.00322 106.53)",
+          "oklch(72.14% 0.00322 106.53)",
+          "oklch(83.57% 0.00322 106.53)",
+          "oklch(95.00% 0.00322 106.53)"
+        ],
+        "source": "scripts/dungeon_lighting.gd:reflection_sky"
       }
     },
     "typographyMeta": {
@@ -440,40 +1832,82 @@
     "shadows": [],
     "motion": [
       {
-        "name": "attack-anticipation",
-        "value": "0.23 s",
-        "purpose": "Source pose changes to strike at this time; heavy attacks begin at strike.",
-        "source": "scripts/dungeon_actor.gd:252"
+        "name": "windup",
+        "value": "simulation pending-cast fraction",
+        "purpose": "Native load/contact tracks follow the actual cast or guardian warning countdown.",
+        "source": "scripts/character_animation.gd"
       },
       {
-        "name": "attack-strike-end",
-        "value": "0.47 s",
-        "purpose": "Attack returns to idle after this time.",
-        "source": "scripts/dungeon_actor.gd:253"
+        "name": "recovery",
+        "value": "0.34 s",
+        "purpose": "Authored follow-through returns to guard; a following real cast may interrupt.",
+        "source": "scripts/character_animation.gd"
       },
       {
-        "name": "attack-cycle-end",
-        "value": "0.62 s",
-        "purpose": "Resets or starts a queued attack.",
-        "source": "scripts/dungeon_actor.gd:255"
+        "name": "collapse",
+        "value": "0.90 s",
+        "purpose": "Knee, pelvis, shoulder, head and cloth settle as one retained skinned volume.",
+        "source": "scripts/character_animation.gd"
       },
       {
         "name": "hit-feedback",
         "value": "0.24 s",
-        "purpose": "Flash envelope; lean suppressed with Reduced Motion.",
-        "source": "scripts/dungeon_actor.gd:262"
+        "purpose": "Flash and restrained chest reaction; displacement suppressed with Reduced Motion.",
+        "source": "scripts/dungeon_actor.gd"
       },
       {
         "name": "camera-follow",
         "value": "1 - exp(-delta * 4.0)",
-        "purpose": "Native exponential position follow.",
-        "source": "scripts/dungeon_world.gd:564"
+        "purpose": "Travel anchor follow; fixed combat-room anchor. Relative travel envelope avoids stale-room drift.",
+        "source": "scripts/dungeon_world.gd"
       },
       {
         "name": "camera-impact",
+        "value": "0",
+        "purpose": "Hits never move the camera in either mode.",
+        "source": "scripts/dungeon_world.gd"
+      },
+      {
+        "name": "ranged-flight-release",
+        "value": "up to 0.085 s before damage",
+        "purpose": "Actual string/weapon release starts visible flight; arrival retains the simulation damage event.",
+        "source": "scripts/dungeon_world.gd"
+      },
+      {
+        "name": "camera-zoom-follow",
+        "value": "1 - exp(-delta * 2.0)",
+        "purpose": "Smooth ordinary/guardian-room zoom changes.",
+        "source": "scripts/dungeon_world.gd"
+      },
+      {
+        "name": "camera-warning-widen",
+        "value": "1.5 scale units/s",
+        "purpose": "Monotonic pullback within the reserved shot; no repeated warning zoom-in.",
+        "source": "scripts/dungeon_world.gd"
+      },
+      {
+        "name": "life-loss-hold",
         "value": "0.18 s",
-        "purpose": "Impact shake; disabled with Reduced Motion.",
-        "source": "scripts/dungeon_world.gd:642"
+        "purpose": "Retain the bronze lost-Life trace before settling.",
+        "source": "scripts/combat_health_bar.gd"
+      },
+      {
+        "name": "life-loss-settle",
+        "value": "0.42 s",
+        "purpose": "Settle the lost-Life trace; reading pauses it, healing clears it, Reduced Motion removes motion.",
+        "source": "scripts/combat_health_bar.gd"
+      },
+      {
+        "name": "portrait-sample",
+        "value": "1 / 24 s",
+        "purpose": "Live portrait idle sampling; Battery and Reduced Motion render once.",
+        "source": "scripts/hero_art.gd"
+      },
+      {
+        "name": "portal-curl",
+        "value": "TIME * motion * 0.7",
+        "purpose": "Localized camp veil motion; zero with Reduced Motion.",
+        "source": "assets/shaders/veil_gate.gdshader"
       }
     ],
     "breakpoints": [
@@ -496,7 +1930,6 @@
     "native": {
       "platform": "godot-android",
       "artifact": "Main.tscn",
-      "approvedReference": "docs/design/approved-spire.png",
       "sourceFiles": [
         "scripts/main.gd",
         "scripts/hero_art.gd",
@@ -507,10 +1940,32 @@
         "scripts/settings_panel.gd",
         "scripts/mobile_safe_area.gd",
         "scripts/battle_art.gd",
-        "assets/shaders/painted_actor.gdshader",
         "assets/shaders/combat_telegraph.gdshader",
         "scripts/dungeon_theme.gd",
-        "project.godot"
+        "project.godot",
+        "scripts/character_rig.gd",
+        "scripts/character_animation.gd",
+        "scripts/authored_characters.gd",
+        "assets/shaders/character_surface.gdshader",
+        "tools/art/build_characters.py",
+        "scripts/dungeon_lighting.gd",
+        "scripts/authored_architecture.gd",
+        "scripts/combat_health_bar.gd",
+        "scripts/render_budget.gd",
+        "scripts/dungeon_layout.gd",
+        "tools/art/build_faces.py",
+        "tools/art/build_landmarks.py",
+        "tools/art/build_camp_furniture.py",
+        "assets/shaders/weathered_stone.gdshader",
+        "assets/shaders/crafted_surface.gdshader",
+        "assets/shaders/dungeon_court.gdshader",
+        "assets/shaders/region_matte.gdshader",
+        "assets/shaders/camp_paving.gdshader",
+        "assets/shaders/veil_gate.gdshader",
+        "assets/shaders/ward_surface.gdshader",
+        "tests/authored_art_smoke.gd",
+        "tests/graphics_overhaul_preview.gd",
+        "tests/character_portrait_preview.gd"
       ],
       "units": "Frontmatter px are base Godot logical units; runtime scaling/density correction applies.",
       "primaryDevice": {
@@ -523,10 +1978,10 @@
       "captureClasses": [
         {
           "size": [
-            1200,
-            535
+            2424,
+            1080
           ],
-          "kind": "outer-display aspect proxy"
+          "kind": "closed Fold renderer fixture"
         },
         {
           "size": [
@@ -561,10 +2016,890 @@
         "balanced": 60,
         "battery": 30
       },
-      "qualityBehavior": "Battery halves render resolution and removes MSAA/shadows; render pressure adjusts presentation, never simulation time.",
+      "qualityBehavior": "Battery applies a 2× viewport stretch shrink (half resolution on each axis), disables MSAA and main shadows, sets stone relief to zero, and hides world sanctuary beams/extra sanctuary lights. Portraits render once. Render pressure changes presentation, never simulation time.",
       "tonalRampProvenance": "Eight OKLCH inspection swatches synthesized from each extracted color as required by the document format; not runtime palette tokens.",
       "componentSampleBoundary": "HTML/CSS samples explain reused native controls; no browser renderer or CSS governs the shipped Godot game. Default engine field chrome is not specified by these samples.",
-      "fallback": "Fresh independent documenter used reference/document.md and reference/degraded/documenter.md because the official role definition/launcher was unavailable."
+      "fallback": "Fresh delegated documenter used impeccable/reference/document.md and impeccable/reference/degraded/documenter.md because a shipped impeccable_documenter role/launcher was not exposed by this harness.",
+      "figureDirection": {
+        "authorizedAt": "2026-10-03",
+        "instruction": "Auf vollständig animierte 3D-Figuren umstellen",
+        "appearances": 11,
+        "bones": 29,
+        "clips": 9,
+        "maxTrianglesPerAppearance": 40000,
+        "surfaceCount": 1,
+        "extraGeometry": "Contact shadow remains separate from the opaque actor surface.",
+        "nativeClipNames": [
+          "idle",
+          "walk",
+          "windup_basic",
+          "windup_skill",
+          "windup_heavy",
+          "recover_basic",
+          "recover_skill",
+          "recover_heavy",
+          "death"
+        ],
+        "geometrySources": [
+          "tools/art/build_characters.py",
+          "tools/art/build_faces.py"
+        ],
+        "animationSource": "scripts/character_animation.gd",
+        "clipOrigin": "Original existing native authored clips reused for the material and face overhaul.",
+        "facialExpressionRig": false,
+        "lipSync": false,
+        "figureHeightsMeters": {
+          "heroAndOrdinaryHostiles": 2.15,
+          "bulwarkAndElite": 2.3,
+          "guardian": 4.6
+        }
+      },
+      "implementationVersion": "0.45.0-beta.1",
+      "direction": {
+        "authority": [
+          "PRODUCT.md",
+          "docs/design/graphics-direction-045.md"
+        ],
+        "reference": "Diablo Immortal",
+        "referenceScope": "Mature worn-material realism, isometric spatial clarity and localized lighting; original Emberfall assets and content.",
+        "supersedes": "Prior bright painterly environment authority; docs/design/approved-spire.png remains historical.",
+        "form": "User-selected dark fantasy ARPG canon, specifically Diablo Immortal; native code-led realization with original generated environment plates and authored 3D geometry.",
+        "conceptSeed": {
+          "available": false,
+          "reportedLauncherExit": 127
+        },
+        "separateApproved045Comp": false,
+        "latestSteering": "Rework Nyra’s faces across class portraits and actual camp/combat geometry."
+      },
+      "world": {
+        "source": "scripts/dungeon_world.gd",
+        "regions": [
+          {
+            "id": "spire",
+            "name": "Hollow Spire",
+            "backdrop": "assets/world/ashen-realms/spire.png",
+            "colors": {
+              "stone": "{colors.spire-stone}",
+              "edge": "{colors.spire-edge}",
+              "dark": "{colors.spire-dark}",
+              "metal": "{colors.spire-metal}",
+              "cloth": "{colors.spire-cloth}",
+              "fire": "{colors.spire-fire}",
+              "light": "{colors.spire-light}",
+              "moon": "{colors.spire-moon}",
+              "ambient": "{colors.spire-ambient}",
+              "fog": "{colors.spire-fog}",
+              "background": "{colors.spire-background}",
+              "mineral": "{colors.spire-mineral}"
+            },
+            "stoneRoughness": 0.86,
+            "fogDensity": 0.006,
+            "floorWeathering": 0.08
+          },
+          {
+            "id": "archive",
+            "name": "Drowned Archive",
+            "backdrop": "assets/world/ashen-realms/archive.png",
+            "colors": {
+              "stone": "{colors.archive-stone}",
+              "edge": "{colors.archive-edge}",
+              "dark": "{colors.archive-dark}",
+              "metal": "{colors.archive-metal}",
+              "cloth": "{colors.archive-cloth}",
+              "fire": "{colors.archive-fire}",
+              "light": "{colors.archive-light}",
+              "moon": "{colors.archive-moon}",
+              "ambient": "{colors.archive-ambient}",
+              "fog": "{colors.archive-fog}",
+              "background": "{colors.archive-background}",
+              "mineral": "{colors.archive-mineral}"
+            },
+            "stoneRoughness": 0.61,
+            "fogDensity": 0.007,
+            "floorWeathering": 0.24
+          },
+          {
+            "id": "ossuary",
+            "name": "Glass Ossuary",
+            "backdrop": "assets/world/ashen-realms/ossuary.png",
+            "colors": {
+              "stone": "{colors.ossuary-stone}",
+              "edge": "{colors.ossuary-edge}",
+              "dark": "{colors.ossuary-dark}",
+              "metal": "{colors.ossuary-metal}",
+              "cloth": "{colors.ossuary-cloth}",
+              "fire": "{colors.ossuary-fire}",
+              "light": "{colors.ossuary-light}",
+              "moon": "{colors.ossuary-moon}",
+              "ambient": "{colors.ossuary-ambient}",
+              "fog": "{colors.ossuary-fog}",
+              "background": "{colors.ossuary-background}",
+              "mineral": "{colors.ossuary-mineral}"
+            },
+            "stoneRoughness": 0.84,
+            "fogDensity": 0.007,
+            "floorWeathering": 0.08
+          },
+          {
+            "id": "citadel",
+            "name": "Cinder Citadel",
+            "backdrop": "assets/world/ashen-realms/citadel.png",
+            "colors": {
+              "stone": "{colors.citadel-stone}",
+              "edge": "{colors.citadel-edge}",
+              "dark": "{colors.citadel-dark}",
+              "metal": "{colors.citadel-metal}",
+              "cloth": "{colors.citadel-cloth}",
+              "fire": "{colors.citadel-fire}",
+              "light": "{colors.citadel-light}",
+              "moon": "{colors.citadel-moon}",
+              "ambient": "{colors.citadel-ambient}",
+              "fog": "{colors.citadel-fog}",
+              "background": "{colors.citadel-background}",
+              "mineral": "{colors.citadel-mineral}"
+            },
+            "stoneRoughness": 0.89,
+            "fogDensity": 0.008,
+            "floorWeathering": 0.08
+          }
+        ],
+        "floorVariants": {
+          "count": 5,
+          "tintDarkenPerIndex": 0.055,
+          "mainStoneVariantIndex": 2,
+          "intarsiaDarken": 0.34
+        },
+        "distantPlate": {
+          "distanceMeters": 75.0,
+          "heightFromFovMultiplier": 1.02,
+          "minimumAspect": 2.244,
+          "cameraFacing": true,
+          "unshaded": true,
+          "fogDisabled": true,
+          "foregroundAuthority": "Live floor, figures, props and simulation warnings."
+        },
+        "court": {
+          "roughness": 0.94,
+          "specular": 0.12,
+          "alphaDistanceFadeMeters": [
+            23.0,
+            48.0
+          ],
+          "centerFollowsCameraAnchor": true
+        },
+        "dressingClearance": {
+          "source": "scripts/dungeon_world.gd:_prepare_dressing_clearance, _dressing_footprint_clear, _keep_clear_dressing, _build_ruin_depth",
+          "layoutSource": "scripts/dungeon_layout.gd:floor_rects",
+          "marginMeters": 0.2,
+          "propStandingBandMeters": [
+            0.5,
+            2.8
+          ],
+          "bounds": "Actual exported bounds after global rotation/scale; explicit BoxMesh bounds before static batching.",
+          "wallPolicy": "Skip each full-height wall column footprint inside the grown floor/passages.",
+          "propPolicy": "Remove complete props when any standing-height part intrudes.",
+          "lowPaving": "Continuous court and lower aprons remain under warnings.",
+          "legacyFloorRect": [
+            -5.8,
+            -58.0,
+            11.6,
+            68.0
+          ]
+        },
+        "chamberVisibility": {
+          "combat": "Current chamber tall dressing.",
+          "travel": "Current and preceding chamber tall dressing.",
+          "purpose": "Occlusion management after spatial clearance."
+        },
+        "landmarkMeshes": {
+          "source": "tools/art/build_landmarks.py:block and build_characters.py:export",
+          "registry": "author.PARTS resolves the current module registry after each export reset.",
+          "join": "Material groups before GLB export.",
+          "counts": {
+            "ruined_vault": 3,
+            "drowned_library": 8,
+            "reliquary_altar": 6,
+            "furnace_throne": 5
+          },
+          "testMeshLimitInclusive": 12
+        }
+      },
+      "materials": {
+        "figures": {
+          "iron": {
+            "color": "{colors.figure-iron}",
+            "metallic": 0.74,
+            "roughness": 0.46
+          },
+          "silver": {
+            "color": "{colors.figure-silver}",
+            "metallic": 0.78,
+            "roughness": 0.35
+          },
+          "bronze": {
+            "color": "{colors.figure-bronze}",
+            "metallic": 0.67,
+            "roughness": 0.58
+          },
+          "gold": {
+            "color": "{colors.figure-gold}",
+            "metallic": 0.74,
+            "roughness": 0.43
+          },
+          "patina": {
+            "color": "{colors.figure-patina}",
+            "metallic": 0.52,
+            "roughness": 0.68
+          },
+          "leather": {
+            "color": "{colors.figure-leather}",
+            "metallic": 0.0,
+            "roughness": 0.83
+          },
+          "wine": {
+            "color": "{colors.figure-wine}",
+            "metallic": 0.0,
+            "roughness": 0.94
+          },
+          "violet": {
+            "color": "{colors.figure-violet}",
+            "metallic": 0.0,
+            "roughness": 0.92
+          },
+          "sage": {
+            "color": "{colors.figure-sage}",
+            "metallic": 0.0,
+            "roughness": 0.93
+          },
+          "linen": {
+            "color": "{colors.figure-linen}",
+            "metallic": 0.0,
+            "roughness": 0.94
+          },
+          "bone": {
+            "color": "{colors.figure-bone}",
+            "metallic": 0.0,
+            "roughness": 0.81
+          },
+          "skin": {
+            "color": "{colors.nyra-skin}",
+            "metallic": 0.0,
+            "roughness": 0.81
+          },
+          "ash": {
+            "color": "{colors.figure-ash}",
+            "metallic": 0.0,
+            "roughness": 0.96
+          },
+          "dark": {
+            "color": "{colors.figure-dark}",
+            "metallic": 0.06,
+            "roughness": 0.89
+          },
+          "soul": {
+            "color": "{colors.figure-soul}",
+            "metallic": 0.0,
+            "roughness": 0.29
+          },
+          "ember": {
+            "color": "{colors.figure-ember}",
+            "metallic": 0.0,
+            "roughness": 0.44
+          },
+          "hair": {
+            "color": "{colors.nyra-hair}",
+            "metallic": 0.0,
+            "roughness": 0.77
+          },
+          "hair_shadow": {
+            "color": "{colors.nyra-hair-shadow}",
+            "metallic": 0.0,
+            "roughness": 0.87
+          },
+          "eye": {
+            "color": "{colors.nyra-eye}",
+            "metallic": 0.0,
+            "roughness": 0.48
+          },
+          "iris": {
+            "color": "{colors.nyra-iris}",
+            "metallic": 0.0,
+            "roughness": 0.4
+          },
+          "lip": {
+            "color": "{colors.nyra-lip}",
+            "metallic": 0.0,
+            "roughness": 0.82
+          },
+          "lip_shadow": {
+            "color": "{colors.nyra-lip-shadow}",
+            "metallic": 0.0,
+            "roughness": 0.87
+          }
+        },
+        "figureSurface": {
+          "source": "assets/shaders/character_surface.gdshader",
+          "opacity": "Opaque shared skinned surface",
+          "coordinates": "CUSTOM0.xyz immutable rest position",
+          "grainUv": "object_position.xy * 1.35 + object_position.zy * 0.34",
+          "atlasMirrorInset": 0.045,
+          "atlasCellSpan": 0.91,
+          "roughnessClamp": [
+            0.4,
+            0.98
+          ],
+          "specularSkin": 0.25,
+          "specularOther": 0.48,
+          "metalGrain": "assets/materials/metal/Metal063_1K-JPG_Color.jpg",
+          "metalRoughness": "assets/materials/metal/Metal063_1K-JPG_Roughness.jpg",
+          "fieldSurfaces": "assets/materials/field-surfaces/material-atlas.png"
+        },
+        "face": {
+          "source": "assets/shaders/character_surface.gdshader:face_v and fragment",
+          "geometry": "tools/art/build_faces.py",
+          "albedo": "assets/materials/nyra-face/nyra-face-albedo.png",
+          "skinColorRef": "{colors.nyra-skin}",
+          "lipColorRef": "{colors.nyra-lip}",
+          "restXSpanMeters": 0.1894,
+          "restLandmarkYMeters": {
+            "eye": 1.94306,
+            "noseTip": 1.90522,
+            "noseBase": 1.89748,
+            "mouth": 1.86738,
+            "foreheadCrop": 2.051,
+            "chinCrop": 1.796
+          },
+          "imageLandmarkYPixels": {
+            "eye": 444,
+            "noseTip": 752,
+            "noseBase": 834,
+            "mouth": 1003,
+            "height": 1254
+          },
+          "frontMaskMeters": [
+            0.045,
+            0.095
+          ],
+          "cheekMaskMeters": [
+            0.09,
+            0.113
+          ],
+          "headMaskMeters": [
+            1.782,
+            1.822
+          ],
+          "originBoundary": "Original generated diffuse patch with subtle anatomical shading; not a captured PBR scan, downloaded head or replacement portrait."
+        },
+        "stone": {
+          "source": "assets/shaders/weathered_stone.gdshader",
+          "projection": "World-space triplanar",
+          "projectionScale": 0.72,
+          "blendExponent": 5.0,
+          "roughnessDefault": 0.84,
+          "roughnessClamp": [
+            0.34,
+            0.97
+          ],
+          "weatheringDefault": 0.12,
+          "relief": {
+            "balanced": 0.32,
+            "battery": 0.0
+          },
+          "specular": 0.38,
+          "normalDecode": "Reconstruct Z = sqrt(max(0, 1 - dot(xy, xy))) from compressed red/green.",
+          "textures": {
+            "color": "assets/materials/stone/Rock030_1K-JPG_Color.jpg",
+            "normal": "assets/materials/stone/Rock030_1K-JPG_NormalGL.jpg",
+            "roughness": "assets/materials/stone/Rock030_1K-JPG_Roughness.jpg"
+          }
+        },
+        "crafted": {
+          "source": "scripts/authored_architecture.gd:crafted and assets/shaders/crafted_surface.gdshader",
+          "atlas": "assets/materials/field-surfaces/material-atlas.png",
+          "cells": {
+            "oak": [
+              0,
+              0
+            ],
+            "leather": [
+              1,
+              0
+            ],
+            "linen": [
+              0,
+              1
+            ],
+            "steel": [
+              1,
+              1
+            ]
+          },
+          "projection": "Local-space triplanar",
+          "blendExponent": 4.0,
+          "scale": {
+            "oak": 1.4,
+            "other": 2.1
+          },
+          "mirrorInset": 0.045,
+          "cellSpan": 0.91,
+          "roughnessSourceFloor": 0.5,
+          "roughnessClamp": [
+            0.4,
+            0.98
+          ],
+          "specular": 0.35,
+          "derivedDetail": "Color and roughness variation sampled from atlas; no authored atlas normal map."
+        },
+        "ward": {
+          "source": "assets/shaders/ward_surface.gdshader",
+          "blend": "Additive, depth_draw_never, no cast shadow",
+          "rimExponent": 2.4,
+          "alphaBase": 0.025,
+          "alphaRim": 0.27,
+          "manaWardRadiusMeters": 0.88,
+          "manaWardHeightMeters": 2.3,
+          "guardSegments": 6,
+          "visibleState": "Actual guard_time or active Arcanist ward."
+        }
+      },
+      "camera": {
+        "source": "scripts/dungeon_world.gd:_position_camera, _camera_anchor",
+        "projection": "perspective",
+        "fovDegrees": 38.0,
+        "nearMeters": 0.2,
+        "farMeters": 125.0,
+        "boomMeters": [
+          10.2,
+          9.3,
+          9.3
+        ],
+        "zoom": {
+          "ordinary": 0.94,
+          "guardianRoom": 0.86,
+          "smoothing": "1 - exp(-delta * 2.0)"
+        },
+        "aspectThreshold": 1.3,
+        "nearSquareFitMultiplier": 1.5,
+        "aimHeightMeters": {
+          "landscapeOrdinary": -0.85,
+          "landscapeGuardian": 0.25,
+          "nearSquareOrdinary": 0.15,
+          "nearSquareGuardian": 0.6
+        },
+        "anchorOffsetMeters": {
+          "room": [
+            0,
+            0,
+            1.35
+          ],
+          "travel": [
+            0,
+            0,
+            -1.3
+          ]
+        },
+        "anchorFollow": "1 - exp(-delta * 4.0)",
+        "reservedHorizontalHalfWidthRatio": 0.43,
+        "reservedTopHalfHeightRatio": {
+          "landscape": 0.26,
+          "nearSquare": 0.35
+        },
+        "bottomReserve": "Actual hud_bottom_ratio from laid-out fixed-height readouts.",
+        "fitIterations": 5,
+        "fitTolerance": 1.01,
+        "fitPaddingMultiplier": 1.015,
+        "fitMaxGrowthPerPass": 1.32,
+        "framingWidenRatePerSecond": 1.5,
+        "roomEnvelopeMeters": {
+          "floorHalfWidth": 4.0,
+          "floorHalfDepth": 3.5,
+          "heroHorizontalHalfExtent": 1.8,
+          "heroTop": 3.45,
+          "hostileHeight": 2.3,
+          "guardianHeight": 4.6,
+          "warningReserve": "All three guardian phases and both variants, plus actual active outlines."
+        },
+        "travelEnvelopeMeters": {
+          "floorHalfWidth": 4.8,
+          "floorHalfDepth": 4.0,
+          "heroHalfWidth": 1.8,
+          "heroDepthRange": [
+            -0.5,
+            2.2
+          ],
+          "heroTop": 3.45
+        },
+        "shotRefit": "Stage/travel transition or aspect change greater than 0.01; widening is monotonic within a shot.",
+        "hitShake": 0
+      },
+      "portrait": {
+        "source": "scripts/hero_art.gd and scripts/dungeon_actor.gd:portrait_anchor",
+        "actor": "Shared DungeonActor class and saved equipment",
+        "projection": "orthographic",
+        "transparentViewport": true,
+        "anchor": "Animated Head global pose * Vector3(0, 0.10, -0.035), transformed by body scale.",
+        "faceTargetOffsetMeters": [
+          0,
+          -0.025,
+          0
+        ],
+        "cameraOffsetMeters": [
+          -1.5,
+          0.2,
+          -12.0
+        ],
+        "faceSizeFormula": "max(0.50, 0.48 / aspect)",
+        "fullBodyTargetMeters": [
+          0,
+          1.25,
+          0
+        ],
+        "fullBodySizeFormula": "max(3.20, 2.70 / aspect)",
+        "renderScale": 1.5,
+        "renderSizeClampPixels": [
+          64,
+          720
+        ],
+        "animationIntervalSeconds": "1 / 24",
+        "msaa": {
+          "balanced": "2x",
+          "battery": "disabled"
+        },
+        "updateMode": {
+          "ordinary": "always",
+          "batteryOrReducedMotion": "once on configure/resize"
+        },
+        "portraitWeaponCrop": "Only portrait_crop discards weapon-slot geometry (UV.x >= 0 and UV.x < 0.5).",
+        "facialExpressionRig": false,
+        "lipSync": false
+      },
+      "lighting": {
+        "reflection": {
+          "source": "scripts/dungeon_lighting.gd",
+          "skyTop": "{colors.reflection-sky-top}",
+          "skyHorizon": "{colors.reflection-sky-horizon}",
+          "groundBottom": "{colors.reflection-ground-bottom}",
+          "groundHorizon": "{colors.reflection-ground-horizon}",
+          "skyCurve": 0.3,
+          "groundCurve": 0.3,
+          "sunAngleMaxDegrees": 12.0
+        },
+        "world": {
+          "source": "scripts/dungeon_world.gd:_build_environment",
+          "tonemap": "filmic",
+          "ambientEnergy": 0.18,
+          "ambientAndFogColors": "extensions.native.world.regions",
+          "moon": {
+            "rotationDegrees": [
+              -52,
+              -36,
+              0
+            ],
+            "energy": 0.92,
+            "color": "Region moon token",
+            "shadowMaxDistanceMeters": 32.0
+          },
+          "rim": {
+            "rotationDegrees": [
+              -24,
+              145,
+              0
+            ],
+            "color": "{colors.world-rim}",
+            "energy": 0.48
+          },
+          "heroLantern": {
+            "color": "{colors.hero-lantern}",
+            "energy": 1.18,
+            "rangeMeters": 6.0,
+            "positionMeters": [
+              0,
+              2.8,
+              0
+            ]
+          },
+          "torchEnergyFormula": "2.1 + sin(elapsed * 4.0 + index * 2.1) * 0.10"
+        },
+        "camp": {
+          "source": "scripts/camp_scene.gd:_build_environment, _build_stations, _process",
+          "tonemap": "filmic",
+          "background": "{colors.camp-background}",
+          "ambient": "{colors.camp-ambient}",
+          "ambientEnergy": 0.2,
+          "fog": "{colors.camp-fog}",
+          "fogDensity": 0.008,
+          "key": {
+            "color": "{colors.camp-key}",
+            "energy": 0.85,
+            "rotationDegrees": [
+              -38,
+              -48,
+              0
+            ]
+          },
+          "fill": {
+            "color": "{colors.camp-fill}",
+            "energy": 0.25,
+            "rotationDegrees": [
+              -28,
+              135,
+              0
+            ]
+          },
+          "hearth": {
+            "color": "{colors.camp-hearth-light}",
+            "rangeMeters": 5.4,
+            "initialEnergy": 2.4,
+            "animatedEnergyFormula": "0.7 + sin(clock * 2.4) * 0.04"
+          },
+          "table": {
+            "color": "{colors.camp-table-light}",
+            "energy": 0.85,
+            "rangeMeters": 7.0
+          }
+        },
+        "portrait": {
+          "source": "scripts/hero_art.gd",
+          "tonemap": "filmic",
+          "ambient": "{colors.portrait-ambient}",
+          "ambientEnergy": 0.28,
+          "key": {
+            "color": "{colors.portrait-key}",
+            "energy": 1.35,
+            "rotationDegrees": [
+              -32,
+              115,
+              0
+            ]
+          },
+          "rim": {
+            "color": "{colors.portrait-rim}",
+            "energy": 0.32,
+            "rotationDegrees": [
+              -18,
+              -35,
+              0
+            ]
+          }
+        }
+      },
+      "camp": {
+        "source": "scripts/camp_scene.gd",
+        "camera": {
+          "projection": "perspective",
+          "fovDegrees": 52.0,
+          "nearMeters": 0.2,
+          "farMeters": 65.0,
+          "positionMeters": [
+            0.4,
+            4.6,
+            11.6
+          ],
+          "targetMeters": [
+            0,
+            1.2,
+            -0.5
+          ]
+        },
+        "stationSpreadFormula": "clamp(aspect / 1.65, 0.72, 1.2)",
+        "stations": {
+          "forge": {
+            "model": "assets/models/field_forge.glb",
+            "positionMeters": [
+              -5.0,
+              0.08,
+              -1.0
+            ],
+            "scale": 1.05,
+            "yawRadians": -0.2
+          },
+          "table": {
+            "model": "assets/models/expedition_table.glb",
+            "positionMeters": [
+              -2.7,
+              0.08,
+              2.15
+            ],
+            "scale": 0.9,
+            "yawRadians": 0.2
+          },
+          "portal": {
+            "model": "assets/models/gothic_arch.glb",
+            "positionMeters": [
+              3.7,
+              0.08,
+              -3.0
+            ],
+            "scale": 0.82
+          },
+          "seals": {
+            "model": "assets/models/seal_shrine.glb",
+            "positionMeters": [
+              3.25,
+              0,
+              2.15
+            ],
+            "mountCount": 4,
+            "visibility": "Saved earned_seals only"
+          }
+        },
+        "stone": {
+          "color": "{colors.camp-stone}",
+          "weathering": 0.55
+        },
+        "paving": {
+          "roughness": 0.9,
+          "specular": 0.15
+        },
+        "backdrop": {
+          "path": "assets/world/ashen-realms/camp.png",
+          "distanceMeters": 45.0,
+          "widthFromFovMultiplier": 2.4,
+          "heightFromFovMultiplier": 1.2
+        },
+        "portal": {
+          "shader": "assets/shaders/veil_gate.gdshader",
+          "sizeMeters": [
+            3.0,
+            4.6
+          ],
+          "motion": {
+            "normal": 1.0,
+            "reducedMotion": 0.0
+          },
+          "curlSpeed": 0.7
+        }
+      },
+      "assets": {
+        "provenance": "docs/design/ASSET_PROVENANCE.md",
+        "environmentPlates": {
+          "count": 5,
+          "manifest": "assets/world/ashen-realms/manifest.json",
+          "origin": "Original image_gen.imagegen output; exact prompts/origin/SHA-256 in sidecars and PNG metadata.",
+          "role": "Distant environments behind live 3D geometry, not gameplay captures."
+        },
+        "materialAtlas": {
+          "manifest": "assets/materials/field-surfaces/manifest.json",
+          "origin": "Original image_gen.imagegen four-cell oak/leather/linen/steel atlas.",
+          "pixelEdits": false,
+          "derivedShading": "Runtime color/roughness variation; no separately authored normal map."
+        },
+        "facialPatch": {
+          "manifest": "assets/materials/nyra-face/manifest.json",
+          "origin": "Original image_gen.imagegen diffuse patch with initial/correction prompts and measured landmarks.",
+          "pixelEdits": false,
+          "scan": false
+        },
+        "retainedMaterials": {
+          "Rock030": "ambientCG CC0 color, normal and roughness maps.",
+          "Metal063": "ambientCG CC0 color and roughness maps."
+        },
+        "geometry": "Original project-authored character, face, camp furniture, masonry and landmark generators; no external character/animation pack.",
+        "fonts": "Bundled Cinzel and Lora with SIL Open Font License files.",
+        "historicalExcluded": "Prior painted character atlases and old region/camp/stone/station paintings are historical sources excluded from Android export."
+      },
+      "evidence": {
+        "documentationScope": "Current source and asset scan after the last passage/workload correction; this is not final visual acceptance.",
+        "captureProtocol": {
+          "source": "tests/graphics_overhaul_preview.gd",
+          "stills": 31,
+          "sizes": [
+            [
+              2424,
+              1080
+            ],
+            [
+              1040,
+              1080
+            ],
+            [
+              854,
+              480
+            ]
+          ],
+          "compactLargeText": true,
+          "coverage": [
+            "camp",
+            "all three classes",
+            "reading pause",
+            "ward reserve",
+            "all four guardians",
+            "six class/equipment portraits"
+          ],
+          "guardianFixture": "Life raised to reach warning states; not balance or ordinary-equipment marketing evidence.",
+          "clip": {
+            "class": "Arcanist",
+            "equipment": "Normal starting gear",
+            "dimensions": [
+              1200,
+              536
+            ],
+            "frames": 450,
+            "exportFps": 30,
+            "durationSeconds": 15,
+            "readingPauseSeconds": [
+              5,
+              8
+            ],
+            "endpoint": "First passage through arrival at Pilgrim’s Well",
+            "timing": "Native simulation advances by 1/30; no accelerated simulation.",
+            "audio": false,
+            "status": "Corrected 450-frame/15-second MP4 complete and fully decoded by the parent capture pass; consult graphics-review-045-final.md for scored acceptance."
+          }
+        },
+        "geometryVerification": {
+          "source": "tests/authored_art_smoke.gd",
+          "sessionLog": "/workspace/scratch/emberfall-045-clearance-regression.log",
+          "regions": 4,
+          "seeds": [
+            1979,
+            1042,
+            7351
+          ],
+          "standingBoundsTestCountPerCase": "> 20",
+          "auditMarginMeters": 0.199,
+          "intersections": 0,
+          "observedStaticBatchMaximum": 325,
+          "archiveSeed1979StaticBatches": 315,
+          "testStaticBatchLimitExclusive": 450,
+          "scope": "Actual new standing-height geometry before batching and runtime batch counts; 99 checks, 0 failures in inspected log.",
+          "physicalFpsClaim": false
+        },
+        "unmeasured": [
+          "physical Pixel Fold frame pacing",
+          "heat",
+          "battery use",
+          "physical touch/safe-area/system-Back acceptance",
+          "human playtest results"
+        ],
+        "claimsExcluded": [
+          "AAA production equivalence",
+          "Diablo Immortal production equivalence",
+          "beta-ready acceptance from these captures",
+          "Google Play publication"
+        ],
+        "correctedCapturePacket": {
+          "status": "Complete native renderer packet; consult graphics-review-045-final.md for scored acceptance.",
+          "source": "docs/previews/graphics-overhaul/provenance.json",
+          "directStills": 31,
+          "selectedMotionFrames": 11,
+          "verificationAttribution": "Parent capture pass personally opened all corrected direct stills and selected motion frames and fully decoded the MP4; documenter inspected source and metadata, not this full image packet.",
+          "clipArrival": "First passage through arrival and subsequent combat at Pilgrim’s Well.",
+          "exportFrames": 450,
+          "durationSeconds": 15
+        },
+        "historicalFullReview": {
+          "path": "docs/design/graphics-review-045-final.md",
+          "dispositionAtInitialFullReview": "fix",
+          "packet": "31 stills and the earlier 360-frame clip, before the final passage/landmark correction.",
+          "sourceCorrections": "Implemented; current source and regenerated GLB mesh counts checked during documentation.",
+          "scope": "Historical initial full review before the final passage/landmark corrections; not a current scored verdict."
+        },
+        "authoritativeScoredVerdict": {
+          "path": "docs/design/graphics-review-045-final.md",
+          "instruction": "Read this file for the authoritative current scored verdict. This design record does not assert acceptance."
+        }
+      }
     }
   },
   "components": [
@@ -634,19 +2969,24 @@
     }
   ],
   "narrative": {
-    "northStar": "Painterly monumental dark fantasy",
-    "overview": "The [user-approved Hollow Spire illustration](docs/design/approved-spire.png) establishes weathered adult figures, monumental ruins, torn plum cloth and bronze against warm stone and cool haze. The implemented world translates this into painted 2.5D actors, distant matte paintings and spatial floor, masonry, effects and camp stations in a native Godot 3D scene.\n\nThe world remains the main combat surface. Quiet ink grounds carry the portrait, life/mana, guardian phase and warning, region, pause and bottom actions. Preparation uses readable scrollable task panels. Autonomous movement and camera fitting can change the heroine/guardian relationship; the approved still is a visual authority, not a fixed gameplay camera pose.",
+    "northStar": "Inhabited dark fantasy ruins",
+    "overview": "The user's complete graphics overhaul and explicit Diablo Immortal reference, recorded in [PRODUCT.md](PRODUCT.md) and the [0.45 direction contract](docs/design/graphics-direction-045.md), establish mature worn materials, a grounded isometric fight and localized light. Soot-dark iron, worn silver, oxblood cloth, wet slate and aged ivory surround original Emberfall characters and regional architecture. The earlier bright painterly illustration is historical authority; it no longer governs this world. No separate approved 0.45 composition or successful concept seed is inferred.\n\nLive floors, masonry, props and eleven lit skeletal figures carry the foreground. Five original generated distant plates supply camp and regional depth. Nyra's rebuilt continuous adult face, fitted eyes and lips, and pale swept hair use the same class/equipment model in portrait, camp and combat. The facial albedo is a generated diffuse patch on authored geometry; the Head bone and existing body clips animate it, with no separate facial-expression or lip-sync rig.\n\nThe fight owns the image. Quiet native ink grounds carry readable state, preparation remains scrollable, and the combat-room camera stays anchored through hits and target changes. Travel follows the actual route; widening preserves complete simulation-driven warning geometry. Warm hearths, jade waterlight and muted spectral accents reveal worn surfaces without turning all armor into polished bronze.",
     "keyCharacteristics": [
-      "Painted adult silhouettes and class-specific weapon poses.",
-      "Region-specific architecture and warm/cool material contrast.",
-      "Shared class and saved equipment quality across camp, portraits and combat.",
-      "Complete simulation-driven warnings with visible surrounding safe floor.",
-      "Native controls with adaptive text, touch sizing and safe-area offsets."
+      "Original spatial adult figures with shared class, face and saved equipment identity.",
+      "Worn metal, cloth, leather and stone tied to the moving geometry.",
+      "Regional live masonry and props joined to quiet distant environment plates.",
+      "Clear authoritative passages, complete danger footprints and a steady room camera.",
+      "Native scaled text, touch sizing, safe-area offsets and a real reading pause."
     ],
     "rules": [
       {
         "name": "The Shared Geometry Rule",
-        "body": "Draw warnings from the same `BossPatterns` zones used for damage and avoidance; improve separation through material and outline treatment, preserving their active footprint.",
+        "body": "Draw warnings from the same BossPatterns zones used for damage and avoidance; improve separation through material and outline treatment, preserving their active footprint.",
+        "section": "colors"
+      },
+      {
+        "name": "The Material Attachment Rule",
+        "body": "Sample character finish and Nyra's facial patch in immutable mesh rest coordinates; the material must stay attached to the animated surface.",
         "section": "colors"
       },
       {
@@ -655,24 +2995,44 @@
         "section": "typography"
       },
       {
+        "name": "The Clear Passage Rule",
+        "body": "Derive tall dressing clearance from the generated floor and passage envelope, including its margin; keep openings full height and remove whole obstructing props before static batching.",
+        "section": "layout"
+      },
+      {
+        "name": "The Steady Shot Rule",
+        "body": "Hold the combat-room anchor through hits, casts and target changes; follow travel smoothly and widen only to preserve the complete reserved geometry.",
+        "section": "layout"
+      },
+      {
+        "name": "The Shared Face Rule",
+        "body": "Use the same live class/equipment geometry for portrait, camp and combat; inspect the lit head as well as its texture, and preserve the adult face through all three class views.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Combat Inspection Rule",
+        "body": "Show automatic skill state in words and cooldown tracks from the frozen expedition. Reading temporarily pauses live time: Close or Back restores the player's prior active/manual-pause intent, while Resume explicitly continues. Layout rebuilds and saves must preserve that intent.",
+        "section": "components"
+      },
+      {
         "name": "The Earned State Rule",
         "body": "Camp seals appear only for saved guardian trophies. Class, equipment, guardian phase and warning cues come from real preparation or simulation state.",
         "section": "components"
       }
     ],
     "dos": [
-      "Do preserve the approved painted material, adult silhouettes and distinct regional architecture.",
-      "Do use the shared scaled-font, minimum-control and safe-area helpers when adding native UI.",
-      "Do keep the complete active warning and adjacent safe floor legible through the real camera.",
-      "Do use the same class and saved equipment path in portraits, camp and combat.",
-      "Do label renderer fixtures, generated references and hardware measurements by their actual source."
+      "Do use the authorized worn dark-fantasy material world, original regional assets and shared adult 3D Nyra identity.",
+      "Do derive complete warning geometry and tall-dressing clearance from the authoritative simulation and generated route.",
+      "Do keep camera, portrait, stage-light and material values aligned with their native source tokens.",
+      "Do use shared scaled-font, minimum-control and safe-area helpers, preserving the real reading-pause intent.",
+      "Do record generated asset origins, native renderer fixtures and measured device evidence by their actual source."
     ],
     "donts": [
-      "Don't replace the painted figures with the archived smooth character GLBs or describe them as full skeletal 3D models.",
-      "Don't add a decorative warning shape that disagrees with collision or avoidance geometry.",
-      "Don't show unearned seals or claim a unique model for every equipment item.",
-      "Don't reduce controls or text to force a compact layout; retain scrolling and adaptive sizing.",
-      "Don't infer device performance, motion quality or player retention from the static renderer gallery."
+      "Don't restore the superseded bright painterly world or replace live faces with painted portrait substitutes.",
+      "Don't place tall masonry or sliced props across the authoritative passage, or use visibility culling as its repair.",
+      "Don't add camera shake or a decorative warning footprint that disagrees with damage and avoidance geometry.",
+      "Don't show unearned seals, imply a unique model for every item, or claim facial-expression/lip-sync animation that is absent.",
+      "Don't reduce text or controls to force a compact layout, or infer physical-device performance or release acceptance from renderer captures."
     ]
   }
 }

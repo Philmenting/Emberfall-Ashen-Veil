@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "asset_id": "nyra-face-albedo",
+  "image": "nyra-face-albedo.png",
+  "prompt_file": "nyra-face.prompt.txt",
+  "prompt": "Edit the supplied original facial texture into a strictly FLAT DIFFUSE FACIAL ALBEDO PATCH for projection onto a 3D heroine. Preserve this original adult woman's identity, realistic anatomy, light neutral-warm complexion, faint freckles, delicate pores, natural brow hairs, fine under-eye skin texture, gray-green irises and muted fully closed lips. Keep a perfectly square opaque output of the same resolution. This is a material texture, not a lit portrait.\n\nCORRECT THE FEATURE PLACEMENT to these image coordinates, origin at top left: left eye center x=0.28, y=0.38; right eye center x=0.72, y=0.38. Both eyes must share exactly the same horizontal level and look calmly straight forward. Place the bottom of the nose at y=0.61. Place the horizontal CLOSED LIP SEAM at y=0.76. The top portion must become taller forehead skin to accommodate lowering the eyes. Subtly remap the facial proportions in a anatomically plausible way, without a head turn, tilt or perspective. Preserve a serious neutral expression. Natural eyebrows remain just above the eye sockets, roughly y=.28.\n\nCRITICAL CROP: the entire image remains FILLED with the central front surface of the face, skin continuing to every edge and every corner. The top border is upper forehead skin with no scalp or hairline. The bottom border is chin skin, without neck. Left and right borders crop through the outer temples and outer cheeks, with NO visible ears, face silhouette, head outline or background. No hair except anatomically normal eyebrows and minimal eyelashes. No objects, jewelry, clothes, shoulders, text, watermarks or labels.\n\nDE-LIGHT THE SURFACE. Remove all reflected catchlights and bright specular marks from the eyes, iris, pupils, skin, nose and lips. The irises should remain gray-green diffuse color with small round dark pupils but absolutely no reflected window, white glint, glass shine or wet highlight. Remove directional shading, nose cast shadow, lip shadow and dark eye-socket or ambient-occlusion shading. Use completely even neutral diffuse illumination over the entire face, retaining fine skin microtexture and subtle NATURAL COLOR variation but no lighting gradients. Bring the heavily shaded nostrils to restrained natural brown rather than black holes. Do not flatten or blur the skin texture while removing lighting. No beauty retouching, lipstick, glossy pink skin, makeup, airbrushing, toy texture, painterly strokes or oversized doll eyes.\n\nDeliver only the original realistic adult facial albedo patch, tightly cropped and edge-to-edge skin, with the specified landmark placement and no baked specular or cast-shadow effects. Actual 3D geometry and runtime lighting will supply the facial depth later.\n",
+  "initial_generation_prompt_file": "source-generation.prompt.txt",
+  "initial_generation_prompt": "Create ONE original square facial ALBEDO PATCH for projection onto the continuous 3D facial geometry of Nyra, an adult heroine in a mature dark fantasy action RPG. Requested size approximately 1024 by 1024 pixels, highest supported square resolution, opaque 1:1 square. This is a flat front-orthographic facial base-color texture asset for 3D material sampling, not a beauty portrait, character illustration, head render, photograph with background, or game screenshot. Create an entirely original face, never a recognizable existing person or branded game character.\n\nCROP AND ALIGNMENT ARE CRITICAL. Show only the central FRONT SURFACE OF THE FACE. The face fills the ENTIRE square edge to edge. The top edge cuts across the UPPER FOREHEAD and contains only forehead skin, never a hairline. The bottom edge cuts exactly at the bottom of the chin, with NO NECK. The left and right edges cut through the outer temples and outer cheeks, so skin continues all the way to both image borders; no ears and absolutely no background or head silhouette are visible anywhere. No scalp, hair, hairline, shoulders, clothing, jewelry, framing, alpha, border or margin. Frontal orthographic view with no head turn, tilt, roll, perspective distortion or lens effect.\n\nPrecise feature layout in normalized image coordinates with origin at the top left: the center of the left visible eye is approximately (0.28, 0.38), and the center of the right visible eye approximately (0.72, 0.38). Both eyes lie at the same height and look directly forward neutrally. The lower edge of the nose is approximately y=0.61. The center of the fully CLOSED mouth is approximately y=0.76. The chin touches the bottom edge. Upper forehead occupies the top portion naturally; fine subdued natural eyebrows sit directly above the eyes in anatomically normal positions, never near the top border. Keep the face straight and geometrically balanced, with only subtle realistic organic variation in skin microdetail.\n\nSUBJECT: believable adult woman around 30 to 35 years old, mature calm serious expression. Light neutral-warm skin with a restrained natural beige-peach undertone, subtle realistic pores, faint scattered freckles, delicate fine under-eye skin detail and very mild natural complexion variation. Realistic original adult anatomy; average proportions, softly defined cheek structure, natural nose and relaxed jaw. Gray-green irises with small dark pupils and restrained non-glossy appearance. Naturally muted closed lips, soft desaturated rose-brown base color, no lip gloss or lipstick. Fine natural brow detail and minimal natural lashes, no eyeliner or eyeshadow. No glamour retouching, waxy airbrushing, doll face, baby face, anime features, exaggerated symmetry, theatrical makeup, scars, wounds, dirt or fantasy markings.\n\nLIGHTING / MATERIAL REQUIREMENT: flat neutral even diffuse illumination over the whole facial patch, like a carefully de-lit scanned facial albedo/base-color texture. The face must read through anatomy, surface color and fine detail rather than studio lighting. NO cast shadows, directional key light, rim light, strong nose or eye-socket shading, vignette, gradients from a background, dramatic modeling, ambient-occlusion halos, beauty lighting, specular highlights, glossy skin, wet eyes or catchlights. Keep nostril color natural and restrained; do not bake in black holes or harsh nose shadows. No rendered volume outside the facial features. Preserve diffuse realistic skin color in the entire image so actual 3D geometry and engine lighting can provide its depth later.\n\nTexture fidelity: realistic fine photographic skin detail suitable for a close-up game face, crisp without oversharpening, low contrast, no cinematic color grade, no brush strokes, no stylization, no toy-like or plastic surface. No text, labels, symbols, UI, watermark or logo. Only the tightly cropped face-surface albedo patch, fully filling the square.\n",
+  "origin": {
+    "kind": "original_ai_generated_facial_albedo_patch",
+    "tool": "image_gen.imagegen",
+    "model": null,
+    "model_note": "Model identifier was not exposed by the image generation tool.",
+    "source_file": "/workspace/generated_images/exec-350eb7c2-1688-4403-a41d-1656ad4e44a1.png",
+    "source_sha256": "9cf9afa1307bbe8e181cc21ddeae43f2c9ff0a318fee4a08fc8aeb91566deb77",
+    "reference_images": [
+      {
+        "path": "/workspace/generated_images/exec-17a4dbe2-a4f6-4bfe-8679-d4e3e38057f8.png",
+        "sha256": "b242317cb083edb26772f15c0788e2780ab13c82fe015bb87a63710b799871ce",
+        "origin": "Original image_gen generation within this task.",
+        "prompt_file": "source-generation.prompt.txt"
+      }
+    ],
+    "generation_passes": 2,
+    "transparent_background": false,
+    "gameplay_capture": false,
+    "real_person_likeness": false
+  },
+  "created_utc": "2026-10-03T19:50:43.427129+00:00",
+  "width": 1254,
+  "height": 1254,
+  "bit_depth": 8,
+  "color_type": 2,
+  "bytes": 2335474,
+  "sha256": "0ecf1f03fba454bd7bdae406c1ff0ef3b0ce6ade59a9e662b04a0559de010b5c",
+  "idat_sha256": "204991da687385d769759270a764ba762e870e5edd7961c0451713512870244d",
+  "observed_landmarks": {
+    "coordinate_convention": "Approximate manually inspected normalized image coordinates; origin top left. These describe the rendered asset, rather than claiming exact prompt adherence.",
+    "left_visible_eye_center": [
+      0.264,
+      0.354
+    ],
+    "right_visible_eye_center": [
+      0.735,
+      0.354
+    ],
+    "nose_lower_edge": [
+      0.5,
+      0.665
+    ],
+    "nostril_centers": [
+      [
+        0.441,
+        0.638
+      ],
+      [
+        0.556,
+        0.638
+      ]
+    ],
+    "closed_mouth_seam_center": [
+      0.5,
+      0.8
+    ],
+    "mouth_corners": [
+      [
+        0.323,
+        0.802
+      ],
+      [
+        0.679,
+        0.802
+      ]
+    ],
+    "nose_tip_center": [
+      0.5,
+      0.6
+    ]
+  },
+  "visual_inspection": {
+    "final_image_count": 1,
+    "initial_image_count": 1,
+    "result": "Usable original adult facial patch: edge-to-edge face crop, no scalp hair/ears/neck/background, restrained warm skin and pores, gray-green forward eyes, closed muted lips. One imagegen correction lowered the eyes and removed eye catchlights.",
+    "material_note": "Generated diffuse albedo approximation; subtle anatomical value shading remains. Align actual geometry/UVs to the observed landmark coordinates."
+  },
+  "metadata_embedding": "Lossless PNG iTXt insertion before IEND; all original chunks and compressed pixel bytes preserved.",
+  "metadata_keywords": [
+    "Prompt",
+    "impeccable:prompt",
+    "Origin"
+  ],
+  "pixel_edits": false,
+  "observed_landmarks_pixels": {
+    "coordinate_convention": "Approximate manually inspected pixel coordinates; origin top left; image 1254 by 1254 pixels.",
+    "left_visible_eye_center": [
+      331,
+      444
+    ],
+    "right_visible_eye_center": [
+      922,
+      444
+    ],
+    "nose_tip_center": [
+      627,
+      752
+    ],
+    "nose_base_lower_edge": [
+      627,
+      834
+    ],
+    "nostril_centers": [
+      [
+        553,
+        800
+      ],
+      [
+        697,
+        800
+      ]
+    ],
+    "closed_mouth_seam_center": [
+      627,
+      1003
+    ],
+    "mouth_corners": [
+      [
+        405,
+        1006
+      ],
+      [
+        851,
+        1006
+      ]
+    ],
+    "upper_forehead_crop_anchor": [
+      627,
+      0
+    ],
+    "chin_crop_anchor": [
+      627,
+      1253
+    ],
+    "crop_anchor_note": "Forehead and chin anchors describe the patch crop, not a visible external head silhouette. Fit continuous geometry using piecewise mapping to these observed locations."
+  }
+}

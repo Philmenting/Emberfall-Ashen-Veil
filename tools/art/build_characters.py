@@ -2,10 +2,12 @@
 
 All forms, garment patterns, ornaments and weapons are authored here. No downloaded
 models. Coordinates below use the game's Y-up space; GLTF converts via Blender.
-The exported parts use the existing animation pivots, so combat and saves are untouched.
+The runtime binds these volumes to its native 29-bone skeleton. Source parts keep
+their anatomical pivots; there are no billboards, pose sheets or downloaded models.
 """
 import bpy
 import math
+import sys
 from mathutils import Vector
 from pathlib import Path
 from collections import defaultdict
@@ -17,14 +19,18 @@ TAU = PI * 2
 PARTS = defaultdict(list)
 MATS = {}
 PALETTE = {
-    'iron': ('52606b', .68, .58), 'silver': ('b4b8af', .72, .48),
-    'bronze': ('997449', .66, .59), 'gold': ('d0ab68', .70, .49),
-    'patina': ('487e78', .36, .72), 'leather': ('3e2e28', .0, .87),
-    'wine': ('703947', .0, .92), 'violet': ('514267', .0, .89),
-    'sage': ('354f46', .0, .91), 'linen': ('aea38b', .0, .93),
-    'bone': ('c4b99d', .0, .69), 'skin': ('b99f89', .0, .85),
+    'iron': ('657381', .74, .46), 'silver': ('b4bdc0', .78, .35),
+    'bronze': ('78664f', .67, .58), 'gold': ('b09c79', .74, .43),
+    'patina': ('50736b', .52, .68), 'leather': ('382b27', .0, .83),
+    'wine': ('50272f', .0, .94), 'violet': ('343c55', .0, .92),
+    'sage': ('304039', .0, .93), 'linen': ('b1a58f', .0, .94),
+    'bone': ('b8b09a', .0, .81), 'skin': ('bea495', .0, .81),
     'ash': ('655f59', .0, .96), 'dark': ('171d23', .06, .89),
-    'soul': ('85e0d7', .0, .33), 'ember': ('ff9a50', .0, .45),
+    'soul': ('78bfb5', .0, .29), 'ember': ('ef984e', .0, .44),
+    'hair': ('c0c4bd', .0, .77), 'hair_shadow': ('686f72', .0, .87),
+    'eye': ('c4bbb1', .0, .48), 'iris': ('4c807d', .0, .40),
+    'lip': ('9e6d68', .0, .82),
+    'lip_shadow': ('674d46', .0, .87),
 }
 
 def xyz(p):
@@ -35,8 +41,8 @@ def material(name):
         return MATS[name]
     hx, metal, rough = PALETTE[name]
     color = tuple(int(hx[i:i+2], 16)/255 for i in (0, 2, 4))
-    # Blender stores linear color, glTF preserves it. Godot's material getter
-    # returns that color; the game shader uses the same linear vertex channel.
+    # Blender stores linear color and glTF preserves it. Godot exposes the
+    # imported material as sRGB; the runtime converts it for its vertex channel.
     color = tuple(((c+.055)/1.055)**2.4 if c > .04045 else c/12.92 for c in color)
     mat = bpy.data.materials.new(name)
     mat.diffuse_color = (*color, 1)
@@ -186,14 +192,18 @@ def drape(part, mat, top, bottom, rx0, rx1, rz0, rz1, arc=TAU, folds=12, torn=Fa
 def gem(part, center, size=.06, mat='soul'):
     return loft(part,mat,[(-size*1.3,.002,.002,0),(-size*.4,size,size*.65,0),(size*.35,size,size*.65,0),(size*1.4,.001,.001,0)],center,6)
 
-def boot(part, armor='iron'):
-    ellipsoid(part,'leather',(0,-.38,-.09),(.11,.09,.215))
-    loft(part,armor,[(-.32,.092,.095,0),(-.17,.095,.085,0),(-.07,.117,.1,-.015),(.025,.09,.08,0)],sides=24)
-    leaf(part,'silver',[(0,.075,-.13),(0,-.045,-.145),(0,-.14,-.11)],.10,.026)
+def boot(part, armor='iron', nyra=False):
+    if nyra:
+        # A fitted sole, toe box and ankle, rather than a spherical shoe.
+        loft(part,'leather',[(-.47,.081,.135,-.050),(-.444,.101,.162,-.065),(-.361,.094,.153,-.058),(-.305,.075,.102,-.010)],sides=24)
+    else: ellipsoid(part,'leather',(0,-.38,-.09),(.11,.09,.215))
+    width=.84 if nyra else 1.0
+    loft(part,armor,[(-.32,.092*width,.095,0),(-.17,.095*width,.085,0),(-.07,.117*width,.1,-.015),(.025,.09*width,.08,0)],sides=24)
+    leaf(part,'silver',[(0,.075,-.13),(0,-.045,-.145),(0,-.14,-.11)],.074 if nyra else .10,.019 if nyra else .026)
     for y in [-.22,-.15,-.08]:
-        leaf(part,armor,[(0,y+.04,-.06),(0,y,-.14),(0,y-.06,-.19)],.10,.028)
+        leaf(part,armor,[(0,y+.04,-.06),(0,y,-.14),(0,y-.06,-.19)],.08 if nyra else .10,.020 if nyra else .028)
 
-def limbs(armor='iron', cloth='wine', monstrous=False, slender=False):
+def limbs(armor='iron', cloth='wine', monstrous=False, slender=False, nyra=False):
     for side in [-1,1]:
         arm='ArmL' if side<0 else 'ArmR'
         leg='LegL' if side<0 else 'LegR'
@@ -201,9 +211,9 @@ def limbs(armor='iron', cloth='wine', monstrous=False, slender=False):
         width=.82 if slender else 1
         loft(arm,'skin' if monstrous else cloth,[(-.55,.067*width,.07,0),(-.42,.081*width,.083,0),(-.27,.08*width,.09,0),(-.12,.097*width,.105,0),(.025,.12*width,.125,0)])
         if not monstrous:
-            for layer in range(2 if slender else 3):
-                reach=.15 if slender else .19
-                leaf(arm,'bronze' if armor=='bronze' else armor,[(side*.02,.12-layer*.047,.035),(side*.10,.10-layer*.055,-.01),(side*reach,.015-layer*.08,-.03)],(.102 if slender else .15)-layer*.018,.029 if slender else .047)
+            for layer in range(1 if nyra else 2 if slender else 3):
+                reach=.11 if nyra else .15 if slender else .19
+                leaf(arm,'bronze' if armor=='bronze' else armor,[(side*.02,.12-layer*.047,.035),(side*.075,.10-layer*.055,-.01),(side*reach,.015-layer*.08,-.03)],(.069 if nyra else .102 if slender else .15)-layer*.018,.021 if nyra else .029 if slender else .047)
             loft(arm,armor,[(-.55,.078*width,.075,-.018),(-.50,.10*width,.09,-.018),(-.32,.105*width,.10,-.01),(-.28,.076*width,.078,0)],sides=24)
             for y in [-.48,-.33]: ring(arm,'gold',(0,y,-.015),.102*width,.096,.011)
         ellipsoid(arm,'skin' if monstrous else 'leather',(0,-.59,-.01),(.059,.070,.043))
@@ -212,7 +222,7 @@ def limbs(armor='iron', cloth='wine', monstrous=False, slender=False):
             tube(arm,'bone' if monstrous else 'leather',[(x,-.60,-.038),(x,-.644-(.009 if f in [1,2] else 0),-.065),(x,-.665,-.018)], [.014,.012,.005],6,3)
         tube(arm,'skin' if monstrous else 'leather',[(side*.051,-.565,-.006),(side*.077,-.603,-.039),(side*.040,-.636,-.057)], [.023,.020,.010],8,4)
         loft(leg,cloth,[(-.37,.084*width,.08,0),(-.19,.11*width,.11,0),(.045,.14*width,.13,0)])
-        boot(knee,armor)
+        boot(knee,armor,nyra)
 
 def torso(armor='iron', cloth='wine', slender=False):
     w=.86 if slender else 1
@@ -228,18 +238,39 @@ def torso(armor='iron', cloth='wine', slender=False):
         for i in range(3):
             tube('Body','silver' if armor=='iron' else 'bronze',[(side*.05,1.40-i*.075,-.196),(side*.14,1.42-i*.075,-.204),(side*.24,1.40-i*.075,-.16)],.008,6,4)
 
-def face(part='Body', skull=False, hood=False):
+def face(part='Body', skull=False, hood=False, nyra=False):
+    if nyra:
+        sys.path.insert(0,str(Path(__file__).parent))
+        import build_faces
+        build_faces.build(sys.modules[__name__],part)
+        return
     skin='bone' if skull else 'skin'
     loft(part,skin,[(1.54,.058,.063,0),(1.65,.062,.068,-.01),(1.71,.065,.070,-.02)],sides=20)
-    ellipsoid(part,skin,(0,1.795,-.015),(.112,.159,.111))
-    ellipsoid(part,skin,(0,1.694,-.058),(.072,.049,.064))
+    if nyra:
+        # Continuous chin, jaw, cheek and cranial planes. The cheek contour is
+        # part of the head, rather than separate inflated spherical pieces.
+        loft(part,skin,[(1.654,.030,.037,-.044),(1.679,.054,.057,-.034),
+            (1.708,.072,.080,-.023),(1.742,.096,.098,-.025),
+            (1.790,.105,.105,-.024),(1.835,.106,.108,-.019),
+            (1.883,.101,.101,-.009),(1.924,.075,.072,.008),
+            (1.952,.014,.022,.010)],sides=32)
+    else:
+        ellipsoid(part,skin,(0,1.795,-.015),(.112,.159,.111))
+        ellipsoid(part,skin,(0,1.694,-.058),(.072,.049,.064))
     leaf(part,skin,[(0,1.86,-.117),(0,1.80,-.164),(0,1.766,-.13)],.028,.018)
     for side in [-1,1]:
-        ellipsoid(part,skin,(side*.074,1.767,-.084),(.027,.028,.032))
-        ellipsoid(part,'dark',(side*.047,1.813,-.119),(.026,.020 if skull else .005,.009))
+        if not nyra: ellipsoid(part,skin,(side*.074,1.767,-.084),(.027,.028,.032))
+        ellipsoid(part,'dark',(side*.047,1.813,-.119),(.026,.020 if skull else .011,.009))
+        if nyra:
+            ellipsoid(part,'eye',(side*.047,1.813,-.126),(.022,.008,.007),20,8)
+            ellipsoid(part,'iris',(side*.047,1.813,-.133),(.008,.0075,.004),16,8)
+            ellipsoid(part,'dark',(side*.047,1.813,-.136),(.003,.0045,.002),12,6)
+            tube(part,'hair_shadow',[(side*.020,1.849,-.127),(side*.050,1.851,-.137),(side*.080,1.841,-.113)],.0035,6,3)
+            ellipsoid(part,skin,(side*.110,1.795,.005),(.017,.035,.024),16,8)
         if skull: gem(part,(side*.051,1.822,-.134),.009)
         tube(part,skin,[(side*.014,1.843,-.117),(side*.052,1.846,-.129),(side*.086,1.831,-.093)],.007,6,3)
-    tube(part,'dark',[(-.030,1.722,-.120),(0,1.719,-.130),(.030,1.722,-.120)],.003,6,4)
+    tube(part,'lip' if nyra else 'dark',[(-.030,1.726,-.121),(-.010,1.727,-.130),(0,1.724,-.132),(.010,1.727,-.130),(.030,1.726,-.121)],.0035,8,3)
+    if nyra: tube(part,'lip',[(-.023,1.721,-.123),(0,1.718,-.132),(.023,1.721,-.123)],.004,8,3)
     if not skull:
         # Fuse the anatomical forms into one continuous facial surface. Voxel
         # remeshing removes the visible sphere intersections at cheek/jaw/nose.
@@ -248,16 +279,37 @@ def face(part='Body', skull=False, hood=False):
         for obj in objects: obj.select_set(True)
         bpy.context.view_layer.objects.active=objects[0]
         bpy.ops.object.join()
-        head=objects[0]; head.data.remesh_voxel_size=.0045
+        head=objects[0]; head.data.remesh_voxel_size=.003 if nyra else .0045
         bpy.ops.object.voxel_remesh()
-        smooth=head.modifiers.new('Facial anatomy smoothing','SMOOTH');smooth.factor=.6;smooth.iterations=3
+        smooth=head.modifiers.new('Facial anatomy smoothing','SMOOTH');smooth.factor=.55;smooth.iterations=5 if nyra else 3
         bpy.ops.object.modifier_apply(modifier=smooth.name)
-        decimate=head.modifiers.new('Mobile facial topology','DECIMATE');decimate.ratio=.16
+        decimate=head.modifiers.new('Mobile facial topology','DECIMATE');decimate.ratio=.12 if nyra else .16
         bpy.ops.object.modifier_apply(modifier=decimate.name)
         for poly in head.data.polygons: poly.use_smooth=True
         PARTS[(part,skin)]=[head]
     if skull:
         for i in range(6): ellipsoid(part,'bone',((i-2.5)*.016,1.718,-.125),(.007,.018,.009),12,6)
+    elif nyra:
+        # A continuous swept cranial cap, fine relief locks and two articulated
+        # braids: Nyra stays recognizable in armor, robe and ranger hood.
+        drape(part,'hair_shadow',1.949,1.748,.073,.126,.070,.124,arc=PI*1.62,folds=9,offset=(0,0,.010))
+        ellipsoid(part,'hair',(0,1.929,.013),(.107,.041,.102),32,10)
+        for i in range(15):
+            a=-PI*.79+i*PI*1.58/14
+            tube(part,'hair',[(math.sin(a)*.040,1.967,math.cos(a)*.044+.015),
+                (math.sin(a)*.118,1.911,math.cos(a)*.115+.013),
+                (math.sin(a)*.126,1.798,math.cos(a)*.125+.023)], [.016,.014,.004],8,5)
+        for side in [-1,1]:
+            tube(part,'hair',[(side*.010,1.960,-.050),(side*.065,1.926,-.104),(side*.114,1.846,-.068)], [.017,.021,.006],10,6)
+            braid='HairL' if side<0 else 'HairR'
+            tube(braid,'hair_shadow',[(side*.116,1.836,.031),(side*.143,1.671,.038),(side*.130,1.494,.054)], [.022,.021,.009],10,6)
+            for strand in range(3):
+                points=[]
+                for j in range(17):
+                    t=j/16; a=t*TAU*3+strand*TAU/3
+                    points.append((side*(.116+.028*math.sin(t*PI))+.012*math.cos(a),1.836-.342*t,.033+.020*t+.012*math.sin(a)))
+                tube(braid,'hair',points,[.008,.007,.003],6,2)
+            ring(braid,'gold',(side*.131,1.518,.054),.018,.017,.006)
     elif not hood:
         # Swept hair locks and two dangling braids, each built from a continuous curve.
         for i in range(11):
@@ -318,15 +370,33 @@ def shield():
 
 def hero(kind):
     cloth={'Vowkeeper':'wine','Arcanist':'violet','Ranger':'sage'}[kind]
-    torso('iron',cloth,kind!='Vowkeeper'); limbs('iron',cloth,slender=kind!='Vowkeeper')
+    armor='iron' if kind=='Vowkeeper' else 'silver' if kind=='Arcanist' else 'bronze'
+    torso(armor,cloth,True); limbs(armor,cloth,slender=True,nyra=True)
     cape(cloth); skirt(cloth,kind=='Arcanist')
+    face(hood=kind=='Ranger',nyra=True)
+    field_equipment(kind,armor)
     if kind=='Vowkeeper':
-        loft('Body','iron',[(1.68,.135,.13,0),(1.74,.155,.15,0),(1.88,.158,.148,0),(1.98,.086,.085,0),(2.035,.008,.02,0)],sides=32)
-        tube('Body','gold',[(0,1.70,-.157),(0,1.84,-.162),(0,2.03,-.035)],.012,8,5)
-        for side in [-1,1]: tube('Body','dark',[(0,1.838,-.158),(side*.065,1.838,-.145),(side*.13,1.83,-.10)],.014,8,4)
+        # Open oath circlet and fitted armor preserve the adult heroine's face.
+        ring('Body','bronze',(0,1.906,-.010),.123,.126,.010)
+        gem('Body',(0,1.905,-.144),.026)
+        # One fitted front shell: waist, rib cage and neckline follow the
+        # underlying torso. Small chased edges carry detail without soft lobes.
+        rows=[(1.10,.197,.160),(1.23,.231,.189),(1.37,.258,.190),
+              (1.46,.258,.171),(1.525,.187,.123)]
+        vertices=[]; faces=[]; columns=17
+        for y,rx,rz in rows:
+            for i in range(columns):
+                a=PI-.99+1.98*i/(columns-1)
+                vertices.append((rx*math.sin(a),y,rz*math.cos(a)-.006))
+        for row in range(len(rows)-1):
+            for i in range(columns-1):
+                k=row*columns+i; faces.append((k,k+1,k+columns+1,k+columns))
+        plate=mesh('Body','iron',vertices,faces)
+        thickness=plate.modifiers.new('Forged plate thickness','SOLIDIFY');thickness.thickness=.009
+        for side in [-1,1]:
+            tube('Body','gold',[(side*.06,1.15,-.169),(side*.14,1.32,-.173),(side*.075,1.48,-.152)],.0045,6,5)
         sword(); shield()
     else:
-        face(hood=kind=='Ranger')
         if kind=='Arcanist':
             ring('Body','gold',(0,1.905,-.015),.139,.13,.012)
             gem('Body',(0,1.905,-.145),.029)
@@ -338,15 +408,50 @@ def hero(kind):
                 leaf('Body','silver',[(side*.06,1.56,-.1),(side*.24,1.48,-.1),(side*.31,1.41,-.015)],.048,.021)
         else:
             hood()
-            tube('Weapon','leather',[(0,-.64,-.04),(0,-.43,-.27),(0,0,-.38),(0,.44,-.26),(0,.64,-.04)], [.016,.03,.041,.03,.016],12,8)
-            tube('Weapon','linen',[(0,-.64,-.04),(0,0,-.012),(0,.64,-.04)],.004,6,3)
-            for side in [-1,1]: tube('Weapon','gold',[(0,side*.46,-.25),(.012,side*.57,-.16),(0,side*.62,-.08)],.008,6,5)
+            # The grip is the bone origin. Separate string/arrow geometry binds
+            # to draw bones instead of making the right hand pull empty space.
+            tube('Weapon','leather',[(0,-.60,.34),(0,-.40,.10),(0,0,0),(0,.40,.10),(0,.60,.34)], [.015,.025,.036,.025,.015],12,8)
+            tube('BowString','linen',[(0,-.60,.34),(0,0,.34),(0,.60,.34)],.0035,6,3)
+            for side in [-1,1]: tube('Weapon','gold',[(0,side*.43,.13),(.012,side*.54,.25),(0,side*.59,.32)],.007,6,5)
+            tube('Arrow','leather',[(0,0,.35),(0,0,-.54)],.005,8,2)
+            leaf('Arrow','silver',[(0,0,-.48),(0,0,-.55),(0,0,-.63)],.024,.009)
+            for side in [-1,1]: leaf('Arrow','linen',[(0,0,.20),(side*.022,.018,.28),(0,0,.32)],.018,.008)
             loft('Body','leather',[(1.03,.09,.065,0),(1.16,.085,.07,0),(1.58,.10,.075,0)],center=(.18,0,.23),sides=24)
             ring('Body','gold',(.18,1.56,.23),.11,.084,.012)
             for i in range(5):
                 x=.13+i*.025
                 tube('Body','bone',[(x,1.20,.25),(x,1.74+(i%2)*.045,.25)],.005,6,2)
                 leaf('Body','linen',[(x,1.67,.25),(x+.013,1.72,.25),(x,1.79,.25)],.014,.012)
+
+def field_equipment(kind, armor):
+    # Layered construction reads at the actual game scale. Rivets and rolled
+    # edges belong to the same anatomical part, so every piece follows the rig.
+    for side in [-1,1]:
+        arm='ArmL' if side<0 else 'ArmR'
+        if kind=='Vowkeeper':
+            for row in range(3):
+                leaf(arm,'iron',[(side*.01,.14-row*.045,.025),
+                    (side*.10,.12-row*.066,-.015),(side*(.20-row*.026),.014-row*.07,-.02)],.115-row*.017,.032)
+                tube(arm,'silver',[(side*.01,.14-row*.045,-.015),
+                    (side*.10,.13-row*.066,-.054),(side*(.20-row*.026),.014-row*.07,-.057)],.006,6,3)
+            for row in range(3):
+                leaf('Body','iron',[(side*.08,1.13-row*.082,-.166),
+                    (side*.17,1.10-row*.082,-.17),(side*.22,1.04-row*.082,-.15)],.090,.020)
+            tube('Body','silver',[(side*.07,1.55,-.108),(side*.17,1.52,-.122),(side*.24,1.44,-.139)],.009,8,4)
+        elif kind=='Arcanist':
+            leaf('Body','iron',[(side*.06,1.61,-.07),(side*.11,1.48,-.133),(side*.15,1.29,-.17)],.034,.016)
+            for y in [-.45,-.35]:
+                ring(arm,'silver',(0,y,-.01),.088,.079,.008)
+        else:
+            tube('Body','leather',[(side*.18,1.55,-.10),(-side*.05,1.30,-.194),(-side*.17,1.04,-.16)],.019,8,5)
+            for i in range(4):
+                t=i/3
+                ellipsoid('Body','gold',(side*(.14-.20*t),1.49-.33*t,-.158-.024*t),(.008,.008,.006),8,4)
+        # Worn belt pouches and a forged clasp, rather than a single color band.
+        ellipsoid('Body','leather',(side*.195,.93,-.048),(.044,.062,.043),16,8)
+        for y in [-.43,-.31]:
+            ellipsoid(arm,'silver',(side*.07,y,-.063),(.009,.009,.005),8,4)
+    leaf('Body','silver',[(0,1.025,-.165),(0,.96,-.181),(0,.906,-.166)],.034,.007)
 
 def bell_head(part, base, radius, ornament=True):
     # A real hollow bell: flared rolled lip, shoulder, crown, inner wall.
@@ -463,6 +568,22 @@ def export(name, build):
     bpy.ops.object.select_all(action='SELECT'); bpy.ops.object.delete(use_global=False)
     PARTS=defaultdict(list); MATS={}
     build()
+    if name in ('vowkeeper','arcanist','ranger'):
+        # Adult proportions: longer anatomical legs and arms, a smaller head,
+        # fitted shoulder plates. Rig rests and authored hand targets use the
+        # same measurements (see CharacterRig / CharacterAnimation).
+        for (part, _), objects in PARTS.items():
+            for obj in objects:
+                for vertex in obj.data.vertices:
+                    x,z,y=vertex.co.x,-vertex.co.y,vertex.co.z
+                    if part in ('Body','HairL','HairR'):
+                        if y<=.90: y*=1.17
+                        elif y<1.60: y+=.153
+                        else: y=1.753+(y-1.60)*.86; x*=.95
+                    elif part.startswith('Arm'): y*=1.14
+                    elif part.startswith('Leg') or part.startswith('Knee'): y*=1.17
+                    vertex.co=xyz((x,y,z))
+                obj.data.update()
     # Join by animated part and material. Blender evaluates sewn garment
     # thickness before export. Godot bakes these parts into one GPU-skinned surface per actor.
     for (part, mat), objects in PARTS.items():
@@ -474,6 +595,10 @@ def export(name, build):
         bpy.context.view_layer.objects.active=objects[0]
         if len(objects)>1: bpy.ops.object.join()
         objects[0].name=part+'__'+mat
+        if name in ('vowkeeper','arcanist','ranger') and len(objects[0].data.polygons)>150:
+            mobile=objects[0].modifiers.new('Mobile silhouette preserving topology','DECIMATE')
+            mobile.ratio=.94 if mat in ['skin','lip','lip_shadow','eye','iris'] else (.61 if name=='vowkeeper' else .565)
+            bpy.ops.object.modifier_apply(modifier=mobile.name)
     OUT.mkdir(parents=True,exist_ok=True)
     bpy.ops.export_scene.gltf(filepath=str(OUT/(name+'.glb')),export_format='GLB',
         export_yup=True,export_texcoords=False,export_normals=True,export_materials='EXPORT',

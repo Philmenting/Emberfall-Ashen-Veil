@@ -113,7 +113,7 @@ func run_checks() -> void:
 	game._change_preference("reduced_motion",false)
 	check(Engine.max_fps==60 and game.run_arena.render_container.stretch_shrink==1 and game.run_arena.world.sun.shadow_enabled,"balanced mode restores rendering immediately")
 	game.run_arena.world._kick_camera(0.08)
-	check(game.run_arena.world.camera_shake_time>0.0,"impact feedback is available when reduced motion is off")
+	check(game.run_arena.world.camera_shake_time==0.0,"balanced mode keeps the combat camera steady on impact")
 	check(game.expedition.snapshot()==checkpoint and game.expedition_serial==serial and game.player_gold==gold,"graphics changes cannot affect simulation, runs or rewards")
 	game.get_window().go_back_requested.emit()
 	check(game.run_active and not game.has_node("Options"),"Back closes menu and resumes previously active run")

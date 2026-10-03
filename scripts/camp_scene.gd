@@ -1,8 +1,7 @@
 extends Control
-## Painted stations occupy real camp anchors; equipment and seals come from the save.
+## Spatial stations occupy real camp anchors; equipment and seals come from the save.
 const Actor = preload("res://scripts/dungeon_actor.gd")
-const STATION_ATLAS = preload("res://assets/world/camp-stations.png")
-const STATION_CELLS := 3
+const Architecture = preload("res://scripts/authored_architecture.gd")
 var character_class := "Vowkeeper"
 var equipment: Dictionary = {}
 var earned_seals: Array = []
@@ -19,6 +18,7 @@ var fire_lights: Array[OmniLight3D] = []
 var motes: Array[MeshInstance3D] = []
 var materials: Dictionary = {}
 var clock := 0.0
+var portal_material: ShaderMaterial
 
 func configure(class_key: String, items: Dictionary, seals: Array) -> void:
 	character_class = class_key
@@ -69,14 +69,16 @@ func _ready() -> void:
 
 func _build_materials() -> void:
 	var stone := ShaderMaterial.new()
-	stone.shader = preload("res://assets/shaders/painted_stone.gdshader")
-	stone.set_shader_parameter("stone_color", preload("res://assets/world/painted-stone.png"))
-	stone.set_shader_parameter("stone_tint", Color("6d6860"))
+	stone.shader = preload("res://assets/shaders/weathered_stone.gdshader")
+	stone.set_shader_parameter("stone_color", preload("res://assets/materials/stone/Rock030_1K-JPG_Color.jpg"))
+	stone.set_shader_parameter("stone_normal", preload("res://assets/materials/stone/Rock030_1K-JPG_NormalGL.jpg"))
+	stone.set_shader_parameter("stone_roughness", preload("res://assets/materials/stone/Rock030_1K-JPG_Roughness.jpg"))
+	stone.set_shader_parameter("stone_tint", Color("727575"))
 	stone.set_shader_parameter("weathering", 0.55)
 	materials.stone = stone
 	materials.paving = ShaderMaterial.new()
 	materials.paving.shader = preload("res://assets/shaders/camp_paving.gdshader")
-	materials.paving.set_shader_parameter("stone_color", preload("res://assets/world/painted-stone.png"))
+	materials.paving.set_shader_parameter("stone_color", preload("res://assets/materials/stone/Rock030_1K-JPG_Color.jpg"))
 	materials.metal = _material(Color("8e7047"), 0.58)
 	materials.rune = _material(Color("c2a071"), 0.35)
 	materials.fire = _material(Color("dc9760"), 0.0, true)
@@ -88,7 +90,9 @@ func _build_environment() -> void:
 	values.background_color = Color("29333e")
 	values.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	values.ambient_light_color = Color("b7c4c9")
-	values.ambient_light_energy = 0.38
+	values.ambient_light_energy = 0.20
+	values.sky=preload("res://scripts/dungeon_lighting.gd").reflection_sky()
+	values.reflected_light_source=Environment.REFLECTION_SOURCE_SKY
 	values.tonemap_mode = Environment.TONE_MAPPER_FILMIC
 	values.fog_enabled = true
 	values.fog_light_color = Color("344047")
@@ -97,19 +101,19 @@ func _build_environment() -> void:
 	world.add_child(environment)
 	var sun := DirectionalLight3D.new()
 	sun.name = "EveningSun"
-	sun.light_color = Color("ffd7aa")
-	sun.light_energy = 0.9
+	sun.light_color = Color("d6c3a7")
+	sun.light_energy = 0.85
 	sun.rotation_degrees = Vector3(-38, -48, 0)
 	sun.shadow_enabled = not battery_mode
 	world.add_child(sun)
 	var fill := DirectionalLight3D.new()
 	fill.light_color = Color("87a2c2")
-	fill.light_energy = 0.35
+	fill.light_energy = 0.25
 	fill.rotation_degrees = Vector3(-28, 135, 0)
 	world.add_child(fill)
 
 func _build_haven() -> void:
-	# A painted stone floor recedes into the courtyard painting without a raised edge.
+	# A physical stone floor recedes into the distant courtyard without a raised edge.
 	var floor := PlaneMesh.new()
 	floor.size = Vector2(22.0, 18.0)
 	_mesh(Vector3(0, 0.015, 1.0), floor, materials.paving).name = "CampStoneCourt"
@@ -117,16 +121,29 @@ func _build_haven() -> void:
 	platform.name = "CampStonePlatform"
 
 func _build_stations() -> void:
-	_painted_station("forge", "PaintedForge", 0, Vector3(-5.2, 0.08, -1.2), 3.45)
-	_painted_station("table", "ExpeditionTable", 1, Vector3(-2.7, 0.08, 2.15), 2.75)
-	_painted_station("portal", "VeilGate", 2, Vector3(3.7, 0.08, -3.0), 4.55)
-	fire_lights.append(_light(world, Vector3(-4.8, 1.1, -0.8), Color("d9a374"), 0.7, 3.6))
+	_spatial_station("forge", "SpatialForge", "field_forge", Vector3(-5.0, 0.08, -1.0), 1.05)
+	station_art.forge.rotation.y=-0.20
+	_spatial_station("table", "ExpeditionTable", "field_table", Vector3(-2.7, 0.08, 2.15), 0.90)
+	station_art.table.rotation.y=0.20
+	_spatial_station("portal", "VeilGate", "arch", Vector3(3.7, 0.08, -3.0), 0.82)
+	var opening:=MeshInstance3D.new()
+	opening.name="VeilMembrane"
+	var gate_quad:=QuadMesh.new(); gate_quad.size=Vector2(3.0,4.6)
+	opening.mesh=gate_quad; opening.position=Vector3(0,2.45,0.04)
+	portal_material=ShaderMaterial.new(); portal_material.shader=preload("res://assets/shaders/veil_gate.gdshader")
+	opening.material_override=portal_material
+	opening.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	station_art.portal.add_child(opening)
+	fire_lights.append(_light(world, Vector3(-4.8, 1.6, 0.1), Color("e2a16a"), 2.4, 5.4))
+	_light(world,Vector3(-1.4,3.3,2.0),Color("ead0a5"),0.85,7.0)
 	# The low stone shelf stays empty until the corresponding guardian is defeated.
 	var altar := Node3D.new()
 	altar.name = "GuardianSealAltar"
 	altar.position = Vector3(3.25, 0.0, 2.15)
 	world.add_child(altar)
-	_box(Vector3(0, 0.22, 0), Vector3(2.18, 0.42, 0.66), materials.stone, altar)
+	var shrine: Node3D=Architecture.MODELS.seal_shrine.instantiate()
+	altar.add_child(shrine)
+	_style_prop(shrine)
 	for region in range(4):
 		var at := Vector3(-0.81 + region * 0.54, 0.465, 0.02)
 		_cylinder(at, 0.18, 0.045, materials.stone, altar).name = "SealStand%d" % region
@@ -151,36 +168,34 @@ func _build_stations() -> void:
 		mote.name = "ForgeEmber%d" % i
 		motes.append(mote)
 
-func _painted_station(key: String, node_name: String, cell: int, at: Vector3, height: float) -> void:
-	var atlas := AtlasTexture.new()
-	atlas.atlas = STATION_ATLAS
-	var edge := float(STATION_ATLAS.get_width()) / STATION_CELLS
-	atlas.region = Rect2(float(cell) * edge, 0, edge, STATION_ATLAS.get_height())
-	var art := Sprite3D.new()
+func _spatial_station(key: String, node_name: String, model_key: String, at: Vector3, scale_factor: float) -> void:
+	var art: Node3D=Architecture.MODELS[model_key].instantiate()
 	art.name = node_name
-	art.texture = atlas
-	art.pixel_size = height / STATION_ATLAS.get_height()
-	art.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	art.alpha_cut = SpriteBase3D.ALPHA_CUT_OPAQUE_PREPASS
-	art.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
-	art.shaded = false
-	art.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	art.position = at + camera.basis.y * height * 0.5
-	art.set_meta("station_height", height)
+	art.scale=Vector3.ONE*scale_factor
+	art.position = at
 	art.set_meta("station_base", at)
 	world.add_child(art)
+	_style_prop(art)
 	station_art[key] = art
 	station_anchors[key] = at
+
+func _style_prop(art: Node3D) -> void:
+	for piece: MeshInstance3D in art.find_children("*","MeshInstance3D",true,false):
+		var original: StandardMaterial3D=piece.mesh.surface_get_material(0)
+		var material_name:=String(original.resource_name).get_slice(".",0)
+		if material_name in ["stone","edge","recess"]: piece.material_override=materials.stone
+		elif material_name=="glass_gold": piece.material_override=materials.metal
+		else: piece.material_override=Architecture.crafted(original)
 
 func _update_composition() -> void:
 	if not is_instance_valid(camera): return
 	var aspect := size.x / maxf(size.y, 1.0)
 	var spread := clampf(aspect / 1.65, 0.72, 1.2)
 	for key in station_art:
-		var art: Sprite3D = station_art[key]
+		var art: Node3D = station_art[key]
 		var at: Vector3 = art.get_meta("station_base")
 		at.x *= spread
-		art.position = at + camera.basis.y * float(art.get_meta("station_height")) * 0.5
+		art.position = at
 		station_anchors[key] = at
 	world.get_node("GuardianSealAltar").position.x = 3.25 * spread
 	station_anchors.seals = world.get_node("GuardianSealAltar").position + Vector3(0, 0.45, 0)
@@ -227,7 +242,7 @@ func _build_distant_painting() -> void:
 	matte.mesh = quad
 	var material := ShaderMaterial.new()
 	material.shader = preload("res://assets/shaders/camp_matte.gdshader")
-	material.set_shader_parameter("painting", preload("res://assets/world/camp-matte.png"))
+	material.set_shader_parameter("painting", preload("res://assets/world/ashen-realms/camp.png"))
 	matte.material_override = material
 	matte.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	matte.extra_cull_margin = 80.0
@@ -250,6 +265,8 @@ func apply_quality(battery: bool, motion_reduced: bool) -> void:
 	render_container.stretch_shrink = 2 if battery else 1
 	render_viewport.msaa_3d = Viewport.MSAA_DISABLED if battery else Viewport.MSAA_2X
 	world.get_node("EveningSun").shadow_enabled = not battery
+	materials.stone.set_shader_parameter("relief",0.0 if battery else 0.32)
+	if portal_material!=null: portal_material.set_shader_parameter("motion",0.0 if reduced_motion else 1.0)
 	set_process(not reduced_motion)
 
 func station_position(key: String) -> Vector2:

@@ -50,8 +50,10 @@ def main() -> int:
         adb("logcat", "-c")
         adb("shell", "am", "start", "-n", PACKAGE + "/com.godot.game.GodotAppLauncher")
         if args.success_only:
-            await_marker("ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI", "success-launch.log")
-            for key in ["welcome", "first-fight", "first-relic", "oaths", "oath-run", "filtered-bag", "protected-gear"]:
+            log = await_marker("ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI", "success-launch.log")
+            if "ANDROID_READABILITY_PASS" not in log:
+                raise RuntimeError("Android skill inspection did not verify pause and resume")
+            for key in ["welcome", "first-fight", "skill-reading", "first-relic", "oaths", "oath-run", "filtered-bag", "protected-gear"]:
                 capture = subprocess.run([args.adb, "exec-out", "run-as", PACKAGE, "cat", f"files/success-{key}.png"], capture_output=True, timeout=60)
                 if capture.returncode or not capture.stdout.startswith(b"\x89PNG\r\n\x1a\n"):
                     raise RuntimeError(f"Android first-session capture {key} missing or invalid")
@@ -60,7 +62,7 @@ def main() -> int:
             adb("logcat", "-c")
             adb("shell", "am", "start", "-n", PACKAGE + "/com.godot.game.GodotAppLauncher")
             await_marker("ANDROID_SUCCESS_PASS restart preserves combined oaths", "success-restart.log")
-            print("ANDROID SUCCESS LOOP VERIFIED: first fight, one-time relic, gear protection, bag filters, combined oaths and cold restart")
+            print("ANDROID SUCCESS LOOP VERIFIED: first fight, skill inspection and resume, one-time relic, gear protection, bag filters, combined oaths and cold restart")
             return 0
         if args.art_only:
             log = await_marker("ANDROID_ART_PASS all four regions rendered", "art-launch.log")
@@ -85,7 +87,7 @@ def main() -> int:
             if {row.get("region") for row in motion} != set(range(4)):
                 raise RuntimeError("Android motion evidence is missing a guardian")
             for row in motion:
-                if not row["passed"] or row["frames"] != 20 or row["bone_changes"] < 6 or row["unique_rendered_frames"] != 4:
+                if not row["passed"] or row["frames"] != 20 or row["bone_changes"] < 6 or row["unique_rendered_frames"] != 4 or row.get("skeleton_bones") != 29 or row.get("native_clips") != 9 or not math.isfinite(row.get("source_depth", 0)) or row.get("source_depth", 0) <= .30:
                     raise RuntimeError("Native animation failed to advance or render")
                 for frame in row["captures"]:
                     filename = f"motion-region-{row['region']}-{frame:02d}.png"
@@ -93,7 +95,7 @@ def main() -> int:
                     if capture.returncode or not capture.stdout.startswith(b"\x89PNG\r\n\x1a\n"):
                         raise RuntimeError("Android moving frame missing: "+filename)
                     (args.output / ("android-"+filename)).write_bytes(capture.stdout)
-            print("ANDROID ART VERIFIED: four guardian scenes, real skinned geometry, painted materials and rendered screenshots")
+            print("ANDROID ART VERIFIED: four guardian scenes, native 29-bone 3D skins, lit materials and moving screenshots")
             return 0
         log = await_marker("ANDROID_BETA_PASS exact AFK ledger", "first-launch.log")
         if "cooperative=true" not in log: raise RuntimeError("Android launch did not select cooperative AFK recovery")

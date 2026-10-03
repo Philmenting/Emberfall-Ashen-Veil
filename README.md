@@ -1,5 +1,69 @@
 # Emberfall: Ashen Veil
 
+## Aktuell: 0.45.0-beta.1 · Neue Gesichter, räumliche Ruinen und Materialien
+
+Die Grafik folgt einer düsteren isometrischen ARPG-Richtung: eigene regionale
+Umgebungen, verwitterter Stein, geschichtete Rüstung und örtliche Lichtquellen.
+Schmiede, Expeditionstisch mit Karte und Portal sind echte 3D-Objekte. Eine
+steilere feste Kampfperspektive hält Warnflächen und Fähigkeiten sichtbar.
+Nyra erhält in allen drei Klassen eine neue zusammenhängende Gesichtsgeometrie,
+geformte Augenlider, natürliche Lippen und feinere Haare. Die Live-Porträts
+zeigen dieselben Modelle wie Lager und Kampf. Alle elf Figuren behalten ihre
+nativen Skelettanimationen. Version-Code **51**.
+
+[Umsetzung, native Ansichten und Prüfgrenzen](docs/GRAPHICS_OVERHAUL_045.md),
+[Gameplay mit Lesepause](docs/previews/graphics-overhaul/emberfall-graphics-045.mp4),
+[Review und Testbuild](https://github.com/Philmenting/Emberfall-Ashen-Veil/pull/5).
+
+## Vorheriger Ausbau: 0.44.0-beta.1 · Fähigkeiten sichtbar und Kampf in Ruhe verstehen
+
+Die drei tatsächlich ausgerüsteten Fähigkeiten stehen während des Kampfes in
+einer kompakten Leiste: bereit, am Wirken, Abklingzeit oder zu wenig Mana.
+Antippen erklärt die jeweilige Regel und pausiert den Kampf. Schließen oder
+Android-Zurück stellt den vorherigen Spielzustand wieder her; eine manuelle
+Pause bleibt erhalten. Guard, Mana Ward, Lebensverlust und der Fortschritt
+durch die Kammern sind direkt sichtbar. Kamera und Warnungsgeometrie halten
+den Platz für die Leiste frei. Android-Version-Code **50**.
+
+[Native Ansichten und Umsetzung](docs/COMBAT_READABILITY_044.md),
+[Gameplay und echte Lesepause](docs/previews/combat-readability/emberfall-combat-044.mp4),
+[Review und Testbuild](https://github.com/Philmenting/Emberfall-Ashen-Veil/pull/5).
+
+## Vorheriger Ausbau: 0.43.0-beta.1 · Vollständig animierte 3D-Figuren und ruhige Kamera
+
+Alle elf Figuren verwenden echte beleuchtete 3D-Modelle, 29 Skelettknochen und
+neun native Animationsclips. Nyra hat erwachsene Proportionen, ein durchgehendes
+Gesicht, helle Haare und eng anliegende Rüstung. Schritte halten die Standsohle
+am Boden; Schwert, Stab und Bogen laden, treffen und schwingen unterschiedlich
+nach. Beim Fallen geben Knie, Hüfte und Schulter nacheinander nach, bevor Kopf
+und Mantel ruhen. Lager, Porträts und Kampf teilen dieselben Figuren.
+
+Die Kampfkamera wackelt bei Treffern und Zielwechseln nicht mehr. Unterwegs
+bleibt Nyra auch auf dem aufgeklappten Bildschirm im Bild. Bogen und Zauber
+lassen genau beim Start des sichtbaren Geschosses los; der tatsächliche Schaden
+bleibt unverändert. Android-Version-Code **49**.
+
+[Gameplay mit Schwert](docs/previews/characters-3d/emberfall-vowkeeper-043.mp4),
+[Stab](docs/previews/characters-3d/emberfall-arcanist-043.mp4),
+[Bogen](docs/previews/characters-3d/emberfall-ranger-043.mp4),
+[Bewegungsprüfung aller Figuren](docs/previews/characters-3d/emberfall-motion-043.mp4),
+[Umsetzung und Prüfgrenzen](docs/CHARACTERS_3D_043.md),
+[Review und Android-Pakete](https://github.com/Philmenting/Emberfall-Ashen-Veil/pull/5).
+
+## Vorheriger Ausbau: 0.42.0-beta.1 · Ganzkörperbewegung und lesbarerer Kampf
+
+Alle elf Figuren verlagern bei Angriffen Gewicht zwischen Hüfte, Rumpf und
+Beinen. Dreidimensionale Rumpfdrehung, ein klarer geladener Moment und
+Nachschwingen geben Schwert, Stab und Bogen mehr Körperlichkeit. Anhalten setzt
+die Füße nacheinander auf; Treffer folgen Richtung und Stärke, beim Fallen geben
+zuerst die Knie nach. Nyra und ihr tatsächliches Ziel werden hervorgehoben,
+Hintergrundkämpfer und gefallene Figuren treten zurück. Die Kampfsimulation
+bleibt unverändert. Android-Version-Code **48**.
+
+[Vorher/Nachher-Video](docs/previews/animation-craft/emberfall-motion-comparison.mp4),
+[neuer Gameplay-Clip](docs/previews/animation-craft/emberfall-gameplay-042.mp4),
+[Umsetzung, Prüfungen und Geräte-Grenzen](docs/ANIMATION_CRAFT_042.md).
+
 ## Neu im Entwicklungsbranch: klare Set-Ziele und geprüfte Beuteverwaltung
 
 Die Schmiede zeigt regionale Set-Fortschritte, vorhandene Taschenfunde und
@@ -10,11 +74,11 @@ geschützt. Sichere Sammel-Upgrades erhalten Mana-Rückgewinnung und rechnen
 eingefrorene Schwur-AFK-Regeln vor dem Anlegen korrekt ab.
 [Bedienung, Regeln und native Ansichten](docs/GEAR_GOALS.md).
 
-## Aktuell: 0.41.0-beta.1 — fließende Figurenanimationen
+## Vorheriger Ausbau: 0.41.0-beta.1 — fließende Figurenanimationen
 
 Der freigegebene Stilentwurf wird mit gemalten, animierten 2.5D-Figuren in der räumlichen Godot-Spielwelt umgesetzt: drei Klassen, vier Wächter, eigene Regionen und ein Lager mit Schmiede, Schwurtisch und Portal. Bis zu zwei von drei Schwüren wirken gemeinsam mit Klassenreliquien, Sets und Techniken. Jeder Wächter besitzt drei echte Gesundheitsphasen; Warnung, Ausweichen, Skip, Offline-Wiederholung und Neustart verwenden dieselben Regeln. Alte laufende Spielstände behalten ihre ursprünglichen Kampfergebnisse. Version-Code 46.
 
-[Animationen und Prüfanleitung](docs/ANIMATIONS_041.md), [aktueller Gameplay-Clip](docs/previews/animations/emberfall-gameplay-041.mp4), [Bewegungsprüfung aller Figuren](docs/previews/animations/emberfall-motion-041.mp4), [gemalte Welt](docs/REDESIGN_040.md), [Regeln und Kompatibilität](docs/OATHS_AND_PHASES_040.md), [Grafik und Herkunft](docs/design/ASSET_PROVENANCE.md), [Spieltest und Pixel-Probe](docs/SUCCESS_PLAYTEST.md). Menschliche Rückkehrdaten sowie Leistung, Wärme und Akkulaufzeit auf dem Pixel sind noch nicht erhoben. Die älteren Berichte unten dokumentieren vorherige Versionen.
+[Animationen und Prüfanleitung](docs/ANIMATIONS_041.md), [Gameplay-Clip 0.41](docs/previews/animations/emberfall-gameplay-041.mp4), [Bewegungsprüfung aller Figuren](docs/previews/animations/emberfall-motion-041.mp4), [gemalte Welt](docs/REDESIGN_040.md), [Regeln und Kompatibilität](docs/OATHS_AND_PHASES_040.md), [Grafik und Herkunft](docs/design/ASSET_PROVENANCE.md), [Spieltest und Pixel-Probe](docs/SUCCESS_PLAYTEST.md). Menschliche Rückkehrdaten sowie Leistung, Wärme und Akkulaufzeit auf dem Pixel sind noch nicht erhoben. Die älteren Berichte unten dokumentieren vorherige Versionen.
 
 ## Kathedralenräume: Grafikaufwertung der Beta 0.39
 

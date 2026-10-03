@@ -1,5 +1,75 @@
 # Redesign asset provenance
 
+## Current world and material overhaul · 0.45
+
+The user authorized a complete graphics overhaul and explicitly named Diablo
+Immortal as the direction reference. Five original generated distant plates in
+`assets/world/ashen-realms/` replace the prior painted atlas and camp backdrop.
+Each PNG carries its exact generation prompt and origin in ancillary metadata;
+the matching TXT/JSON sidecars and `manifest.json` record origin and SHA-256.
+No Blizzard image, model, UI, name, or animation was copied. These are environment
+assets behind live geometry, never presented as gameplay captures.
+
+The character generator rebuilds all eleven original GLBs with the new palette
+and adds class-specific layered armor, pouches, straps and clasps. The original
+29-bone / nine-clip system remains authoritative. Rest-space material detail uses
+the existing ambientCG Metal063 texture set plus the original four-cell
+`assets/materials/field-surfaces/material-atlas.png` for dark oak, weathered
+leather, linen and forged steel. The new atlas retains its exact generation
+prompt, origin and SHA-256 in sidecars and PNG metadata; its pixel chunks are
+unmodified. Mirrored sampling stays inside each cell; runtime shading derives
+color/roughness variation without claiming a separately authored normal map.
+Stone uses the existing ambientCG
+Rock030 color, roughness and normal maps. Both sets retain their existing CC0
+origin. RGTC/EAC normal Z is reconstructed from the compressed red/green channels.
+
+Following the user's explicit face critique, `tools/art/build_faces.py` authors
+Nyra's continuous head, orbital recesses, nose, fitted eyelids/lips and swept
+hair. `assets/materials/nyra-face/nyra-face-albedo.png` is an original generated
+diffuse facial patch, not a portrait replacing the 3D model or a scanned likeness.
+Its exact initial/correction prompts, provenance, SHA-256 and observed facial
+landmarks are retained in sidecars and PNG metadata. Runtime projection uses
+those measured landmarks in immutable mesh rest coordinates. The image retains
+subtle anatomical shading; it is not claimed to be a captured PBR skin scan.
+Pixel chunks are unchanged. The existing Head bone and body clips animate the
+new surface; no separate facial-expression rig or lip-sync system is claimed.
+
+`tools/art/build_camp_furniture.py` authors three original GLBs from geometry:
+`expedition_table.glb` has pegged trestles, iron straps, a rolled map with a route,
+folio and candle; `field_forge.glb` has an open hearth, coals, flue, anvil, hammer,
+tongs and bellows; `seal_shrine.glb` has four empty carved mounts. The portal
+instantiates the existing original Gothic arch. Regional masonry shells and
+lower paving aprons are authored directly in the native world builder.
+`tools/art/build_landmarks.py` regenerates the four original regional GLBs with
+the current palette and a corrected per-export material registry; library blocks
+now join into eight material meshes. No external geometry was introduced.
+The veil and protective surfaces are native shaders. The old world atlas, camp
+backdrop, painted stone and station atlas stay in the source history and are
+excluded from Android exports. Capture provenance for 0.45 is recorded beside
+the native frames and clip in `docs/previews/graphics-overhaul/`.
+
+## Current figures · 0.43
+
+On 3 October 2026 the user explicitly chose fully animated 3D figures. All eleven
+shipping character GLBs in `assets/models/` are original authored geometry from
+`tools/art/build_characters.py`, rebuilt with adult Nyra proportions, continuous
+facial planes, pale swept hair/braids, fitted armor and class weapons. No external
+model or animation pack is used. `character_rig.gd` binds source volumes to a
+native 29-bone Skeleton3D and one cached GPU surface; `character_animation.gd`
+authors nine native clips per appearance. `character_surface.gdshader` supplies
+opaque lighting, material roughness, metal reflection and equipment accents.
+Camp, portrait and combat instantiate the same live class/equipment path.
+
+The painted actor source below is historical and excluded from all Android
+exports in 0.43. It supplies neither the live figure nor its final corpse.
+Monumental world paintings, floors, architecture, camp stations, fonts and UI
+retain the provenance below. Figure color conversion is measured from imported
+Godot material values; no source PNG pixels were altered in this replacement.
+The 0.43 clips use native Godot/Mesa frames at 30 FPS, an export timing rather
+than a physical phone benchmark. Their opening preparation segment is Armory.
+
+## Historical painted figures and retained world assets
+
 The user approved `approved-spire.png`, a generated design illustration. It is a reference, not a substitute gameplay screen. Its exact prompt is retained beside it and in PNG metadata.
 
 `assets/world/region-atlas.png`, `camp-matte.png` and `painted-stone.png` were generated using that reference. Their exact prompts are retained in `.prompt.txt` sidecars and embedded as PNG metadata. The region atlas supplies four distinct distant environments. The live Godot scene supplies the authoritative walking floor, interactive props, combat positions and actual warning geometry. The shared stone albedo dresses the floor and low masonry; it is tinted per region.
@@ -14,7 +84,7 @@ Exact initial and final correction prompts remain in sidecars where a correction
 
 `tools/art/calibrate_pose_atlases.py` reads source alpha with NumPy, Pillow, SciPy and scikit-image, then writes only the eight `.atlas.json` geometry maps. It never writes or edits PNG pixels. The maps trace all 66 authored poses, use a single idle body scale per actor and retain complete weapons across irregular nominal cell boundaries. `docs/audit/2026-10-02/pose-source-mapping.json` records final PNG SHA-256 and exact visible-alpha coverage; runtime geometry was separately instantiated and triangulated without failures.
 
-Original Blender character GLBs, their generator and skinning source remain in the source archive for reproducibility. They are excluded from the 0.40 shipping/QA runtime. Original authored Blender architecture supplies low carved remnants, braziers, medallions, wells and altars. No rejected smooth character mesh is hidden underneath the new figure.
+Original Blender character GLBs, their generator and skinning source were excluded from the 0.40 shipping/QA runtime. Their authored geometry was revised and made live in 0.43 as documented above. Original authored Blender architecture supplies low carved remnants, braziers, medallions, wells and altars.
 
 Cinzel and Lora come from Google Fonts' `ofl/cinzel` and `ofl/lora` directories. Their SIL Open Font License files ship in `assets/fonts`. The original generated score and authored bronze UiGlyph icons retain their existing provenance.
 

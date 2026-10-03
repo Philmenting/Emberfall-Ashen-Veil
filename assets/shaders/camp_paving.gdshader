@@ -6,8 +6,8 @@ void vertex() {
   world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 }
 void fragment() {
-  vec3 paint = texture(stone_color, world_pos.xz * 0.23).rgb;
-  ALBEDO = paint * vec3(0.76, 0.72, 0.66);
+  vec3 paint = texture(stone_color, world_pos.xz * 0.62).rgb;
+  ALBEDO = paint * vec3(0.63, 0.65, 0.64);
   ROUGHNESS = 0.9;
   SPECULAR = 0.15;
   // The distant court joins the painting with atmospheric edges, not a display plinth.

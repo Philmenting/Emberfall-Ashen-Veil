@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "asset_set": "field-surfaces",
+  "purpose": "Original flat 2x2 material atlas for genuine 3D surface UV sampling; not a gameplay capture.",
+  "tool": "image_gen.imagegen",
+  "model": null,
+  "model_note": "Not exposed by tool response.",
+  "image": "assets/materials/field-surfaces/material-atlas.png",
+  "width": 1254,
+  "height": 1254,
+  "cell_width": 627.0,
+  "cell_height": 627.0,
+  "cells": [
+    {
+      "id": "oak",
+      "position": "top_left",
+      "uv_rect": [
+        0.0,
+        0.0,
+        0.5,
+        0.5
+      ],
+      "material": "Worn dark oak timber"
+    },
+    {
+      "id": "leather",
+      "position": "top_right",
+      "uv_rect": [
+        0.5,
+        0.0,
+        0.5,
+        0.5
+      ],
+      "material": "Weathered charcoal-brown leather"
+    },
+    {
+      "id": "linen",
+      "position": "bottom_left",
+      "uv_rect": [
+        0.0,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material": "Coarse muted gray linen weave"
+    },
+    {
+      "id": "steel",
+      "position": "bottom_right",
+      "uv_rect": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material": "Worn cool forged steel"
+    }
+  ],
+  "sha256": "489b3e2c651d58de41e80cbde655731a45f676bce10143d5d174b5c2ebfa07db",
+  "bytes": 3536245,
+  "prompt_sidecar": "material-atlas.prompt.txt",
+  "origin_sidecar": "material-atlas.json",
+  "pixel_edits": false
+}
