@@ -12,10 +12,17 @@ image seed. Spatial 3D, the adult shared Nyra face, original guardian emblems,
 Diablo Immortal-oriented dark fantasy and Emberfall's own setting remain.
 
 **Working status:** room construction and cast/bow support are integrated.
-The initial Flare figure sample was rejected after native inspection; its
-source geometry and textures are not product assets. A bounded MPFB/MakeHuman
-anatomy sample is being assessed before any figure-family adoption. Combined
-captures, final rendering measurements and a fresh finish verdict are pending.
+Both the Flare costume sample and the MPFB/MakeHuman costume sample were
+rejected after native inspection. The latter establishes a usable continuous
+anatomical source, but its clothing does not meet the visual target. Neither
+sample's geometry or textures are product assets; the eleven 0.47 figures are
+unchanged. The [source assessment](figure-source-assessment-048.md) records
+the decision and the remaining work. The [controlled render comparison](../audit/2026-10-04/render-048/README.md)
+is complete: median frame time fell 44.0–51.1% in Balanced and 11.8–18.1% in
+Battery on the same software renderer, without a physical-phone claim.
+The complete [native capture packet](../previews/constructed-world/README.md)
+and [Android emulator evidence](../audit/2026-10-04/android-048/README.md) are
+packaged. A fresh finish verdict is pending.
 
 ## Construction commitments
 

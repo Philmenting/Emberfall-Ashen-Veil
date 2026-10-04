@@ -1,0 +1,519 @@
+{
+  "version": "0.48.0-beta.1",
+  "version_code": 54,
+  "verified_source_commit": "850721fd010dd62ddbf1a6c681f73955ffddc8b3",
+  "scope": "Technical packaging and Android emulator behavior; not visual approval or physical-device performance.",
+  "runs": [
+    {
+      "run": 37212951293,
+      "name": "Gameplay Quality",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37212951293",
+      "head": "850721fd010dd62ddbf1a6c681f73955ffddc8b3"
+    },
+    {
+      "run": 37214678280,
+      "name": "Android Debug APK",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37214678280",
+      "head": "850721fd010dd62ddbf1a6c681f73955ffddc8b3"
+    },
+    {
+      "run": 37214680237,
+      "name": "Android Beta Runtime",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37214680237",
+      "head": "850721fd010dd62ddbf1a6c681f73955ffddc8b3"
+    }
+  ],
+  "artifacts": {
+    "quality": [
+      {
+        "id": 11307696582,
+        "node_id": "MDg6QXJ0aWZhY3QxMTMwNzY5NjU4Mg==",
+        "name": "emberfall-gameplay-quality",
+        "size_in_bytes": 1068,
+        "url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/actions/artifacts/11307696582",
+        "archive_download_url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/actions/artifacts/11307696582/zip",
+        "expired": false,
+        "digest": "sha256:930663ce746f86e900eafbd14b4ff81190c385cf89c8bf33c97e7b3e255f030b",
+        "created_at": "2026-10-04T15:34:09Z",
+        "updated_at": "2026-10-04T15:34:09Z",
+        "expires_at": "2026-10-18T15:34:09Z",
+        "workflow_run": {
+          "id": 37212951293,
+          "repository_id": 1386053457,
+          "head_repository_id": 1386053457,
+          "head_branch": "improve/animation-craft",
+          "head_sha": "850721fd010dd62ddbf1a6c681f73955ffddc8b3"
+        }
+      }
+    ],
+    "build": [
+      {
+        "id": 11307604661,
+        "node_id": "MDg6QXJ0aWZhY3QxMTMwNzYwNDY2MQ==",
+        "name": "emberfall-ashen-veil-android-ci-validation-only",
+        "size_in_bytes": 186566012,
+        "url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/actions/artifacts/11307604661",
+        "archive_download_url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/actions/artifacts/11307604661/zip",
+        "expired": false,
+        "digest": "sha256:904b765500dc06e1c5d3c846d1bf869277d3b0832045cbf3867d76acd3301ceb",
+        "created_at": "2026-10-04T16:00:21Z",
+        "updated_at": "2026-10-04T16:00:21Z",
+        "expires_at": "2026-10-18T16:00:15Z",
+        "workflow_run": {
+          "id": 37214678280,
+          "repository_id": 1386053457,
+          "head_repository_id": 1386053457,
+          "head_branch": "improve/animation-craft",
+          "head_sha": "850721fd010dd62ddbf1a6c681f73955ffddc8b3"
+        }
+      }
+    ],
+    "runtime": [
+      {
+        "id": 11308571628,
+        "node_id": "MDg6QXJ0aWZhY3QxMTMwODU3MTYyOA==",
+        "name": "emberfall-isolated-android-qa-packages",
+        "size_in_bytes": 197165802,
+        "url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/actions/artifacts/11308571628",
+        "archive_download_url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/actions/artifacts/11308571628/zip",
+        "expired": false,
+        "digest": "sha256:5a2f38354b64db2997beef7ade22b4c6550dcd446d748d67bcbc770f9d0a54fa",
+        "created_at": "2026-10-04T16:15:10Z",
+        "updated_at": "2026-10-04T16:15:10Z",
+        "expires_at": "2026-10-18T16:15:03Z",
+        "workflow_run": {
+          "id": 37214680237,
+          "repository_id": 1386053457,
+          "head_repository_id": 1386053457,
+          "head_branch": "improve/animation-craft",
+          "head_sha": "850721fd010dd62ddbf1a6c681f73955ffddc8b3"
+        }
+      },
+      {
+        "id": 11307984396,
+        "node_id": "MDg6QXJ0aWZhY3QxMTMwNzk4NDM5Ng==",
+        "name": "emberfall-android-beta-runtime-evidence",
+        "size_in_bytes": 57047639,
+        "url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/actions/artifacts/11307984396",
+        "archive_download_url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/actions/artifacts/11307984396/zip",
+        "expired": false,
+        "digest": "sha256:80186495429a4fd95741e636fb84ade9907995069255d3ba0bc718b019d2ba76",
+        "created_at": "2026-10-04T16:15:03Z",
+        "updated_at": "2026-10-04T16:15:03Z",
+        "expires_at": "2026-10-18T16:15:00Z",
+        "workflow_run": {
+          "id": 37214680237,
+          "repository_id": 1386053457,
+          "head_repository_id": 1386053457,
+          "head_branch": "improve/animation-craft",
+          "head_sha": "850721fd010dd62ddbf1a6c681f73955ffddc8b3"
+        }
+      }
+    ]
+  },
+  "downloaded_zip_sha256": {
+    "quality": "930663ce746f86e900eafbd14b4ff81190c385cf89c8bf33c97e7b3e255f030b",
+    "build": "904b765500dc06e1c5d3c846d1bf869277d3b0832045cbf3867d76acd3301ceb",
+    "runtime": "80186495429a4fd95741e636fb84ade9907995069255d3ba0bc718b019d2ba76"
+  },
+  "packages": [
+    {
+      "file": "emberfall-beta-ci-release.aab",
+      "bytes": 61775436,
+      "sha256": "f34e37d6c2a990bceda75eb257ac8af5608e1894e7d89e294241fdce1b890ff6"
+    },
+    {
+      "file": "emberfall-closed-beta-ci.apk",
+      "bytes": 62425096,
+      "sha256": "a61e3f6f9652d96270bfd58d4a57f543636c29c4a67b511547958443a61e937b"
+    },
+    {
+      "file": "emberfall-debug.apk",
+      "bytes": 64240103,
+      "sha256": "1bbfa0ef2144e500d093fe1aaa94d2622b28cc4d9186d547915cdeeed0eb9f97"
+    }
+  ],
+  "pending": [],
+  "signing": "CI-only ephemeral keys; no Google Play publication or compatibility with another signing key is established.",
+  "regression": {
+    "godot_suites": 34,
+    "checks": 3642,
+    "failures": 0,
+    "server_rules": "passed"
+  },
+  "android_runtime": {
+    "os": "Android 16 / API 36",
+    "device": "Pixel 6 profile, sdk_gphone64_x86_64 emulator",
+    "gpu": "swangle software renderer",
+    "graphics_only": true,
+    "afk_reconciliation_rerun": false,
+    "coverage": [
+      "first fight",
+      "actual skill reading pauses and Back resumes",
+      "one-time class relic",
+      "gear protection",
+      "bag filters",
+      "combined oaths",
+      "cold restart preserves checkpoint and rewards",
+      "four guardian scenes",
+      "Balanced and Battery rendering in all regions",
+      "native 29-bone / nine-clip figures advance in separately stepped real combat"
+    ],
+    "performance_report": "render-performance.json",
+    "performance_report_sha256": "de200653ea7a26ca8264f232b5fc999f2af14feb5432d5943602f100460a2c8c",
+    "performance_limits": "Software emulator finite rendering measurements; not achievement of 60/30 fps. No physical-phone pacing, heat, battery or touch acceptance was measured. Cross-run emulator comparisons do not establish a performance gain.",
+    "motion": [
+      {
+        "bone_changes": 17,
+        "captures": [
+          0,
+          5,
+          11,
+          17
+        ],
+        "frames": 20,
+        "native_clips": 9,
+        "passed": true,
+        "physical_device_performance": false,
+        "region": 0,
+        "simulation_step_seconds": 0.05,
+        "skeleton_bones": 29,
+        "source_depth": 0.756339430809021,
+        "unique_rendered_frames": 4
+      },
+      {
+        "bone_changes": 17,
+        "captures": [
+          0,
+          5,
+          11,
+          17
+        ],
+        "frames": 20,
+        "native_clips": 9,
+        "passed": true,
+        "physical_device_performance": false,
+        "region": 1,
+        "simulation_step_seconds": 0.05,
+        "skeleton_bones": 29,
+        "source_depth": 0.660642623901367,
+        "unique_rendered_frames": 4
+      },
+      {
+        "bone_changes": 12,
+        "captures": [
+          0,
+          5,
+          11,
+          17
+        ],
+        "frames": 20,
+        "native_clips": 9,
+        "passed": true,
+        "physical_device_performance": false,
+        "region": 2,
+        "simulation_step_seconds": 0.05,
+        "skeleton_bones": 29,
+        "source_depth": 0.739483594894409,
+        "unique_rendered_frames": 4
+      },
+      {
+        "bone_changes": 17,
+        "captures": [
+          0,
+          5,
+          11,
+          17
+        ],
+        "frames": 20,
+        "native_clips": 9,
+        "passed": true,
+        "physical_device_performance": false,
+        "region": 3,
+        "simulation_step_seconds": 0.05,
+        "skeleton_bones": 29,
+        "source_depth": 0.714139461517334,
+        "unique_rendered_frames": 4
+      }
+    ],
+    "native_images": [
+      {
+        "file": "android-art-runtime/android-motion-region-0-00.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "4eb04357ea871db38761e1d54f0043ce6a85c3898abf03581a94395f786acb1e",
+        "pixel_sha256": "9d7904a7038358e351fe1e55a049841a5779a51d6ba4affb540cbd08b40bb1d3",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-motion-region-0-05.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "860731d1d2b1b34e634c6acd004d7d4b30911dfd7af484b5919cc8dc50dfa074",
+        "pixel_sha256": "b9bc6b18deeadc562d485aa36b737231c5c57c5531d65a7af6cff9ed9992e6d1",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-motion-region-0-11.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "41181c55ac8a9108bd4d7741a395a9c97895331625f6a63fa56671ab9076f203",
+        "pixel_sha256": "d4609c382629e0fc5e2473643bac2a8a6a6a93ec283118b57b1e02d8d0a07ad3",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-motion-region-0-17.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "d5550ed7791f7780f7373b30dcdbb345cc06d59faeaa8c9a8662084887d7e722",
+        "pixel_sha256": "675de07eb36501c7174cadb037553cdd0358ffc0f7884ce94da13d851d970bf8",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-motion-region-1-00.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "9e1f9cc1d9c3c6b59d10cb0de09652fc678495b0eea78b30da206d3f14829350",
+        "pixel_sha256": "bf545051d7ae1aa34913ef12311cd95e8334d0a8c1ea8562f9a527f4d5c7ec31",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-motion-region-1-05.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "a30b7ba9800b5e3c0d3c135cfac91835926a46a5200c71fac203fc37639a529d",
+        "pixel_sha256": "713e6f3bd5d91549e4520a7f58d78af2967a4435106e68adf784909cf0e8f9fa",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-motion-region-1-11.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "519be70b8501283df6590609b7aea9204e4406c38c5c3edc5105d0a19921f3c6",
+        "pixel_sha256": "3add84518d6e2e5341c5777a4ca953822b8d3727db6ffa0d81d5bb3f753ba421",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-motion-region-1-17.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "0f472931ce123e6f67faa5189462142f5ea650dada6873e4207672ff3c35b9e7",
+        "pixel_sha256": "e3793198bf6a6e9d1d11540eac52f711434bceada7e78173d26d1723e04713ab",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-motion-region-2-00.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "2ef0c6ad9c87950eee397b9b250a61a02d8b980db318626056bf9b6034a60eb2",
+        "pixel_sha256": "7549caaad879215499c81fe254bdf326d00d12f4d2a0277fcfb703faf679d209",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-motion-region-2-05.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "87798cc4f0c9244f273c3454aaf6bbb91bc5668e82a8dbdd37eac5d72d2f823c",
+        "pixel_sha256": "91b073e8e28530aca7c3588be94ffd2e717be3fb71e4ab636b86cf099db784cf",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-motion-region-2-11.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "6d60f54a09b83eb4b3f5e232f47f6da81e05c949958ca1377aa58a5b86d827ea",
+        "pixel_sha256": "c7e54b5bc47e43ec421676f473b22fdad251034c1eaa9ddb2f1784ef693f164f",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-motion-region-2-17.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "24790421117eecbf72d1f80a02100bc7e5368148154d30d763658bf8460b7de8",
+        "pixel_sha256": "ff5c3479a0deb9bc581cc30cf602861b6c398eb65c017a1176d47a1723abf569",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-motion-region-3-00.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "7f883bfdad87a390a155ae4b6e315dd98c4f8fc31fe6977beeffb62886acf1ec",
+        "pixel_sha256": "3dede043b3c16f628280c017821140e3917cb89c2721709724abb24312a0639e",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-motion-region-3-05.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "b890b99dfbaa09d95b1b2cc3694f86a36682d86f73cc3f51524204aaadbcaced",
+        "pixel_sha256": "397ab2a3add829a91aacc67168bfff068fc9ecd6dcb5c19aece9bdbfbcc9bfc4",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-motion-region-3-11.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "7a7074aeb0a25344f3e99d8b6edf0f0bb308a79de3e9fae4e772d13f37aa49e3",
+        "pixel_sha256": "5cedf173ae5bce54d62fad450163b72b9346477b3d1c49048e74e0fbb98bdb64",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-motion-region-3-17.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "ca4c1f912ad1f078de860d6a7e9e1965fdfda794affe24ebbd00ebc12c4bdf04",
+        "pixel_sha256": "3de3d28668ff5279abf60eabf0f87ebea23afb3339021bea681a0401155194bd",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-region-0.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "6d77ef8645aff171b8b95c3e7a66317a4855f93d3f13655515757aca14b84785",
+        "pixel_sha256": "c9f1e70cf3c8105ae7353429ac4ae1fb4f37e51628f0a8220dd91601ea391f34",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-region-1.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "0213317e906ccffbd1706663695f555f976036d175cee3f16ef2877cdf2fa812",
+        "pixel_sha256": "e6d926c98c80c80449353a28175eea216f7f4a11eeab163848cbbb1a644bf1eb",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-region-2.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "ea0ad5fd65215fae06c3816d3d3f6e12116b88e16255d583b041f9029ec71b6b",
+        "pixel_sha256": "5a92d1ddc7bad74108854d3bccc1faa5054760f0e85fb674aacaaca5a927d178",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-art-runtime/android-region-3.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "038d5d0d51e351706c612691daa5f97c9415e88d5fee7e1cb0208d1bea612adf",
+        "pixel_sha256": "884616170c390ca86243ce17bc11a37725034b1101ccab16b1f7b57fbf98383f",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-success-runtime/android-success-filtered-bag.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "54d455dfeea8a30f3fe3765d6ed5d9dfd8a6e022c73b910c7f84100025cc2393",
+        "pixel_sha256": "9b0c54f7632f61c20ab4237a5ce022f52e1591ed6a47703fd423e3281e08e475",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-success-runtime/android-success-first-fight.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "7a124cb6632a21f52bf238727b15ce0d93c2be940111b22fb28da07778e52456",
+        "pixel_sha256": "4944c8f19bed4d79fef028f133356c8edc075114c395b1f0adef1df72b79b25b",
+        "archived_in_repository": "android-success-first-fight.png",
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration.",
+        "archived_sha256": "0bd81b6d7bee59113fe548fbceb5ebceaafbc8f5e8fcd2d180e0e8aff9095209",
+        "origin_embedded": true
+      },
+      {
+        "file": "android-success-runtime/android-success-first-relic.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "209996b6def6f51190961b51741b8078acf704a100f63aac3bc9dea165ea8c84",
+        "pixel_sha256": "6f96abbd67ad7029ea16a0bf671d92ba25d9c6aaf59eba7ba27d43ac3d88053a",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-success-runtime/android-success-oath-run.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "81ad2954470e9b7fd3ff8d437916ba49eccf115d539bd78ce668a601ee7dd8c1",
+        "pixel_sha256": "052db6498c247db977e1f59b590dc6e5edd85f4290448dbb1235591724faad1e",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-success-runtime/android-success-oaths.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "f565f2c915b8823e2a8bf9e2a750576ee505141e367813d4099e896f4ccf7093",
+        "pixel_sha256": "398841b1b5433684a73c2380a21de587d7b7defa2a5d0734a287b946eb4f5312",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-success-runtime/android-success-protected-gear.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "e445f096008e30716cd578650b9b5b8e17bf546f30f9c894637ea2d7e6827b39",
+        "pixel_sha256": "ee9e59b6b7cbd4686682332b6168126db3ed516063591c50ad5523b1e9960eec",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      },
+      {
+        "file": "android-success-runtime/android-success-skill-reading.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "b4f08adbb9390b1d50994fed6a64651f9f63a8aa80e2e44b69097e51ea6cc768",
+        "pixel_sha256": "6ef2126f0e33cd20c78babd6b96514360fc3f651b47e29da77d07805453aef37",
+        "archived_in_repository": "android-success-skill-reading.png",
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration.",
+        "archived_sha256": "1225f6bbae783a8a7bb765c6229e63abf49516f3a3aeb89766642e637df2efeb",
+        "origin_embedded": true
+      },
+      {
+        "file": "android-success-runtime/android-success-welcome.png",
+        "width": 2424,
+        "height": 1080,
+        "source_sha256": "beec0b0891c5df1d2f88939a61ebca5efb33a7a39ea5ca66ab950d4a815cfcd6",
+        "pixel_sha256": "e669dffac461381b519c676306fd6123dc172a7717588647602b73737fd60424",
+        "archived_in_repository": null,
+        "origin": "Original native Android capture from runtime artifact 11307984396; no pixel editing or regeneration."
+      }
+    ],
+    "attempt_history": [
+      {
+        "attempt": 1,
+        "result": "exporter exited 250 after asset import; final message: cannot connect to daemon at tcp:5037: Connection refused; emulator checks did not run"
+      },
+      {
+        "attempt": 2,
+        "result": "same source retried; final successful run verified by collector"
+      }
+    ]
+  },
+  "inspection": {
+    "decoded_native_images": 28,
+    "archived_native_images": 2,
+    "inspection": "All 28 native Android stills inspected in labelled contact sets; first-fight and actual reading pause also opened at their original source path. No continuous Android playback claimed."
+  }
+}

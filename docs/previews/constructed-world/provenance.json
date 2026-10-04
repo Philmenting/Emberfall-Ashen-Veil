@@ -1,0 +1,636 @@
+{
+  "version": "0.48.0-beta.1",
+  "version_code": 54,
+  "engine": "Godot4.7.2 stable",
+  "renderer": "Native OpenGL compatibility / Mesa llvmpipe / Linux Xvfb",
+  "pixel_changes": "None in native stills; origin metadata only. MP4 is H.264 encoded from native frame sequences.",
+  "limits": "Native source-size layouts and fixed simulation steps establish scene and animation evidence, not physical phone FPS, input latency or thermal performance. Guardian stills raise Life; actual attack/travel clips use ordinary equipment.",
+  "source_sha256": {
+    "scripts/audio_director.gd": "5e66981ee4481718aeae0921c7e1f481ae09d50f0118c11dabf15ce2832ca871",
+    "scripts/authored_architecture.gd": "e68d8d835cafe1f3b0e24e46060a5ce4add3d9cf9ddeef5e5bce4a934529d899",
+    "scripts/authored_characters.gd": "5d4c4e3b90c25c16643ddb5ca41ff9ad15e535d1b2cc3862553b6feeae227767",
+    "scripts/battle_art.gd": "7d54a95db37801ee603e4aa5be5cde221cba908e23884edd134b0cf46aa74830",
+    "scripts/boss_patterns.gd": "8a808f6fc59ae0619b19488d2fe4753f0f19ea6b6d0dc31bf98dbd58be87d4bb",
+    "scripts/camp_scene.gd": "30ede3a1073e9605bcf1308096adf01005ac83e16da554c0437d9768686f52ff",
+    "scripts/character_animation.gd": "c1fc396359752e550466f8b2fa2d94cc08a80aaaddd8d4bb77523d3bbe03aeb2",
+    "scripts/character_rig.gd": "42f63c2bbeb1bc4d57fbcf10bb17105c4948cbc0b9a4958ece6a0c6c4d425d0e",
+    "scripts/class_loot.gd": "a8d593dc6af163e92298ad8fc627e5004b43646ea99c674c601c119c106e4b76",
+    "scripts/class_relics.gd": "18c540965b7e4f80a0e45ad7d01dfe28d376702d1f3d53b9775b85f9972821e9",
+    "scripts/class_skills.gd": "25e37394f53126478b955108f9d604505e83a8c7fff7e50ef446b34407f06898",
+    "scripts/cloud_save.gd": "50b796e146d93404031828592ce4de5a836b54e48e40ab0241466be2715fea23",
+    "scripts/combat_health_bar.gd": "86cf42d3009ce34ca94059a61d654b09c2b2435b8820c23ce73d50be83726f75",
+    "scripts/combat_readout.gd": "8c3563909c6100ccb034cef1c61589a218e71bf4d9b36424de2de5e68e466a55",
+    "scripts/combat_stances.gd": "d3f7d2a7d16574681ef40bd2bf763595bef7fb3532dbb2cd3c753ddee2855371",
+    "scripts/dungeon_actor.gd": "08edfc1d937edf74c2856168989b6061c98ed657e0117d5668630fe7f3fc66ce",
+    "scripts/dungeon_layout.gd": "fd66656086e248dd8c42d345351e2a1e22f58ddc6cef4dbfea177d5b70332df7",
+    "scripts/dungeon_lighting.gd": "995b2d8dfcfd0875a94f6f08ce5f06cbcd9b9bb2a5e9315cf62e4f4da6caa563",
+    "scripts/dungeon_theme.gd": "55232beaa65ccaad0da265d78f0506a00c4451a9be0b622627bf6bfe4d96d91b",
+    "scripts/dungeon_world.gd": "8ed8134ab2552ef062d7c655d3d939b26efa919e2f8bbede45be6c1d0629e645",
+    "scripts/expedition_contract.gd": "05db36bebc7e0231b977ca0b0f33b2cd4967683913479fcfc3a6c2fc86adf837",
+    "scripts/expedition_map.gd": "f2f5febcddc6bb6d06f746c4b803a797b8d8386af8b4ee3ec66cc3caf034a9bf",
+    "scripts/expedition_simulation.gd": "ed4cabb75e65486aa277632ad2d25700bfca4d60e79b7e7fc0a28bbffe6c649b",
+    "scripts/farm_forecast.gd": "a1506505e3da2195d58026ef59fba30a8fe0aaa130cd5de5647fbf5802a8b083",
+    "scripts/fellowship_service.gd": "c8f33d6bf1cb39cd82ac8d2551132e7851e1906b92f699dd7e7dffd2a411601b",
+    "scripts/frame_metrics.gd": "20e0aa3a71a218957dbee8161e4706cebeffdee49d35bb86bc6dedddafb7555d",
+    "scripts/game_preferences.gd": "a7179eea97cb59cb689bdda398a7b8cc712a1cff3296a52533b2000341027cbf",
+    "scripts/gear_advisor.gd": "6dea2eae02252c95fd57b73711e2ae86bf4bf26f5a304f4149d29110cdde2e24",
+    "scripts/hero_art.gd": "ce7a6c4ef5cb52ce870440d0b0494264c4f4091c57608b063eee19a1c0acfcdd",
+    "scripts/main.gd": "697d2a487fd30ed2bf7b1cb74976db7ef1791d454d6affb78283e5820ef36af5",
+    "scripts/mobile_safe_area.gd": "6fc90d1a94100fdde4b8ab06928b92a729069394ce7d80b172bfe733e7e75df3",
+    "scripts/oath_combat_rules.gd": "c0b5f85c487237963cdff96b5f2002f03eac65c17dbda483c3393a402c4fd1b2",
+    "scripts/offline_farm.gd": "ee3930fffd691813a7094e1f820cf9e1b0a3d2bd08d0e7a896b2817640844548",
+    "scripts/painted_action_craft.gd": "495f16b7bf9c4a27e31913ac5580856f7f49e0a85d811f0a4aadb17bcdd82c28",
+    "scripts/painted_motion_layers.gd": "4d1cd31ef3b926044fd5a89e72efa5435b385e7601cfbec6918fc6a3d4688282",
+    "scripts/painted_motion_rig.gd": "d8e177331ddfdd0630b8ada2f9558f9895d23342455f65eb3aa4cb9ca22a4138",
+    "scripts/playtest_notes.gd": "9c3a611afdbf524ff2271892985d7c6bc1afdd70ae5fd0ad73db4ea0c734ac44",
+    "scripts/progression_service.gd": "0c3e7387579a3d90077cd1042595ed939487b7cd3524e5b92869e4f4e7f841f4",
+    "scripts/regional_sets.gd": "32236ab325cab5d7ab11dd5b45dfca25cc4b56cd7d5b6dbb3986f3f96bfcbb22",
+    "scripts/regional_stage.gd": "c68d128bed523b771bdde459cf12db91bdde665a5af27d0cc0581ad0f4a61669",
+    "scripts/release_info.gd": "b8723513c5434fae9b587cec073d0dd20d7ba77f99cfe5ebe8d162cd1d2bd3ce",
+    "scripts/render_budget.gd": "99a1f816371991937dabf4cc5830d9cc90990f20214736da218f4921899ac09b",
+    "scripts/room_ground.gd": "2a4b3b1ef37064d0932aed30feb7eddf362a3030b6ba52bfb8ca39702c8a0c93",
+    "scripts/ruin_architecture.gd": "1add6989254d3ea88cbe9124f659b81ede2a175c06d1893d343502e2735f6eac",
+    "scripts/save_store.gd": "97f5c641866ba935a3467495531008da7459665798867f7c22c11db4121aabfa",
+    "scripts/sculpted_mesh.gd": "57df0f7444b2bd930031069efc7d83edb20750f058f628f7535e7d1a0dc283a1",
+    "scripts/settings_panel.gd": "6d3d5cf798a442893eaeca9494305faebd0fe4a3c5dcf8a8b986bc6a019fe9b5",
+    "scripts/skill_glyph.gd": "0df2f5cdd5ae234ef593ad42f57266c292dddd95da7be3f1b3f1b73064f8d7be",
+    "scripts/ui_glyph.gd": "e24e98966ab6050a5dcac576a05096c41f8fe6ad671e74253263a9cbc439d406",
+    "assets/shaders/aged_stone.gdshader": "81a6675a552598a4735072a0e713ae17494e6603db0e93b5f216d863b1e48041",
+    "assets/shaders/camp_matte.gdshader": "543c89236729d0596031f60144efac898ed596196b383949596b353b7240f338",
+    "assets/shaders/camp_paving.gdshader": "fb4d21ce1f2aade7f3fdd1962130aed60490712105eb2b78119371e0f3c8e7c7",
+    "assets/shaders/character_surface.gdshader": "30dc5a0e52485fcaa5ca2f548ee0823570a3c889146c614e1f4b10a1e9f649f1",
+    "assets/shaders/combat_telegraph.gdshader": "444b2ebb46ee39a6130babeacdc5401ad6e33039f1c14ea78542ce901501f601",
+    "assets/shaders/crafted_surface.gdshader": "fabbfddacac14fd5b243c189da50601374ebb462ca2d493aa93660b359b7a99b",
+    "assets/shaders/crypt_mist.gdshader": "4d7523594f8499015b843e9b5c122bcbf90357a1b6796f620b418501d458a728",
+    "assets/shaders/dungeon_atmosphere.gdshader": "b99a857627f57e4a68d7b56e18c42f39cee5b4b058fef3eaa82679f6d6211ca3",
+    "assets/shaders/dungeon_court.gdshader": "9b621f1d77ed363979dc4d2b6d9b75160c5488d422b93493a54040aedf450bcc",
+    "assets/shaders/dungeon_water.gdshader": "3beefed1c6f9e8fd557eba31d3a826d033475d5af25b34e9295b6753adcf2e9b",
+    "assets/shaders/ember_flame.gdshader": "90ceceebe9b628e347b8b191e60f587be490784c8f230aeabf58aa8f660c8d0e",
+    "assets/shaders/environment_basin.gdshader": "d3b3d42bbc5eed526317cafee7ce22be0b93879c7542374c68e56dffddf46fbf",
+    "assets/shaders/forged_surface.gdshader": "08a29ecba1e8185c4060a3f94978e686cff85ace623b23afa3fabca422f842c6",
+    "assets/shaders/ground_grime.gdshader": "cfdf0f549359c652c1affff94ea5bb2029aec3f12f5e9a81bde3ba3f90a058c8",
+    "assets/shaders/masonry_surface.gdshader": "d73e6e2cd3fcc94ecaaf8899afafcfb3f42301162df985e5054b212173165b13",
+    "assets/shaders/painted_actor.gdshader": "6a26a281e7c2018bc51180275230380ca842aeb264a08d3eec5f372b4f9f4f65",
+    "assets/shaders/painted_stone.gdshader": "6bfa423bf4b4dceee12bffce2964d955a42e6eca0464fca104c070fd22945eef",
+    "assets/shaders/region_matte.gdshader": "6846637c65266d9ca1c2074128692e3708c3d84372acb0da22c47558d473fe10",
+    "assets/shaders/ruin_deposit.gdshader": "aeacef77c5a3165038c0ab4c647a97afd31cfc649495e69e517497f9ada1d513",
+    "assets/shaders/ruin_floor.gdshader": "1f26defac45ef200fef39a32896188b475f832705b2fb46a2dc658ada233d102",
+    "assets/shaders/sanctuary_beam.gdshader": "dace078f60919fc5e396d44e7cbd7c842c0f6734bf2417d38e2052d0532014ff",
+    "assets/shaders/sanctuary_glass.gdshader": "7e5eddfb48c07d23008852e0f08b1083271673193aebc1ed03d25c319c79060a",
+    "assets/shaders/veil_gate.gdshader": "41ed87f890fa53e214914abe57b2959157d212d1d1882abc5b8ac7e49319068b",
+    "assets/shaders/ward_surface.gdshader": "5a42adf6e77e88142c5fab64bf07a412226368f96adff302f2ba7a15d2524480",
+    "assets/shaders/weathered_stone.gdshader": "a05dd8129d9b51b95d944c3af2766494bab25c75336f3d13573a6febb805fed9",
+    "assets/models/arcanist.glb": "2d20d4f79f650383e0370c00c0debf628dad0926509cb79bccff622a8797b749",
+    "assets/models/bone_arch.glb": "2cca35fb9cf63a75078e2ce8e7aad1fa68d7d5c905d2a8a82ba73ebf6dd2c6b6",
+    "assets/models/broken_pillar.glb": "280ef66c2414030851d42daff0f9846461d8991b39bdbba6ccf6909424ec231a",
+    "assets/models/bulwark.glb": "ff786ffdbf7778baf360e0f8e0f5f5ee33bb9381fdb8426b8ec6cdc15808fcd7",
+    "assets/models/carved_tomb.glb": "691e24da8cdf054401740929636c04afbc5b05a30aacf4f7b0d6946963e0e047",
+    "assets/models/ceremonial_brazier.glb": "de35c9f917ec4b33cedfc8efe49de993cb674a6f8da854a8b842e519534b1979",
+    "assets/models/drowned_library.glb": "f0cb0c3005c6aff9370760294870b4a0d8aba11d2a2eb8b26876b08eb0d9b0ba",
+    "assets/models/elite.glb": "7b141bbda58a091cb93e25a33a8d747e63a6aaedc82897fe42699cb64914e31d",
+    "assets/models/environment/archive_bay.glb": "c5376a4ae0a85a97e3aad7346d335a6a3bd24731cc21172f10a2a788b0177576",
+    "assets/models/environment/archive_bay_broken.glb": "8d0069ba5af0b5884a6db3cabe78de90236aa41ee3eec8a040dac5e6ffd10405",
+    "assets/models/environment/archive_return.glb": "083f9a77a3f2d96ce352d8f3b4f75fe8014c1eb16d34c9fdaf458722b29e09bb",
+    "assets/models/environment/archive_solid.glb": "938ae77771a5a0546dd5a180c1772db580d01ba0cd0562ad3b069cf9956c387f",
+    "assets/models/environment/citadel_bay.glb": "179d5c63e69e8ac5afa6b008adc7e77a94cfa3241ecd131ab4761e18df9fa6d6",
+    "assets/models/environment/citadel_bay_broken.glb": "a68247c3c2cceb4358e759cf4a5b133e12442808beb0f605b528aa94d39f2027",
+    "assets/models/environment/citadel_return.glb": "ba2f27609f85a1a4fe9c1c94ab135e312ab76e88cb78b0b3542c31bbec0ed4cc",
+    "assets/models/environment/citadel_solid.glb": "c6e6f002d3fc263b7a531d20cf54db5a20354b775e7baf02bc46af116335b334",
+    "assets/models/environment/ossuary_bay.glb": "fd16053b1108b12a7d08e8a0dea44c9e84699607a682256f3f5c5e06385ab2ed",
+    "assets/models/environment/ossuary_bay_broken.glb": "a9c074c37c35f5772d9d3ca08ae509af0917bac2e0431efdef94d5f43b6da901",
+    "assets/models/environment/ossuary_return.glb": "bc081cf4a9640c6f6396c1b2385ffd164f50a1152cc21d90b7d9f86a7d798e84",
+    "assets/models/environment/ossuary_solid.glb": "6571a7b8a66f3d468ba2e19abe4aa95268627c97f07ad8224c4d65786bc416af",
+    "assets/models/environment/spire_bay.glb": "284be2d2bf8c3459e180c131534eac7428cb7f3377cfd609be7c3974398bcd7a",
+    "assets/models/environment/spire_bay_broken.glb": "1ea7a3f5c8b562e82a5d461cfad82778f0e66470ea23871f9db99a32c1f4f4b9",
+    "assets/models/environment/spire_return.glb": "00ede670cbebbcbea2195757db109628ace33cae3cf7c54f5dcab61067020a94",
+    "assets/models/environment/spire_solid.glb": "d45c918d7e607babfbb258d79024469caed0a045700faeb6a19691e58b73d186",
+    "assets/models/expedition_table.glb": "7709ec4ff594917c45cb31fb0ab76b6f4ca92cbde20a3c4c2b11460c95bb1320",
+    "assets/models/field_forge.glb": "59c30f79d5c3af7cc62f322295404678df499acde4050a41365d5ea98a6f15ff",
+    "assets/models/furnace.glb": "38468753c8d06f8018be4a92f7c5bc76d037acb89ff310d13b25355e441a846a",
+    "assets/models/furnace_throne.glb": "fec7da39352509db0727de72947f65b6ca6921af4ea9446f54b4a993bdd75d75",
+    "assets/models/gothic_arch.glb": "5d260b7a40aa91d1227878790f6fa30b8259d77fb2f900c7e91b141e540d4b3d",
+    "assets/models/guardian_0.glb": "7de00eef14fe8d0fae29b6e970246bca11c12a3bf06e994d2ef76982d58896ee",
+    "assets/models/guardian_1.glb": "1daa250cc71f41b8247546ad26ae71b42d09a4810efe776a2680961269b183af",
+    "assets/models/guardian_2.glb": "d4bb78e8232e072b29aa86150d79dcbae0072d9d2fa58f9513b5cdac9576d150",
+    "assets/models/guardian_3.glb": "a2c8758fd2746d009acd1daeb433988781c1959391c39bccc7e5e4cd5bce590e",
+    "assets/models/hanging_bell.glb": "5422935a955881704ad8da6d5a4445792e2ecc2c3106a73b19197d7959cdcb0f",
+    "assets/models/hexer.glb": "c48900e153631c55625dcfabf9f372e8c9cc228c84b5b35a256694a2d1769d9c",
+    "assets/models/leaded_lancet.glb": "bf4dcbb0959853d53adbdf32c9f979fa17759ad542695951c745c914b5bb3e4c",
+    "assets/models/pilgrim_well.glb": "3982edea5472d0280f5cc20be14e8963041aebeeed7940fe09c19e963d93f471",
+    "assets/models/pillar.glb": "e764c2643e8cc91cb06e763413933f5ec61e2141438d8f5afc10054d9247805c",
+    "assets/models/raider.glb": "3279fd8ed48228e55dbf406f362e82aa59b0b9e6ada2214446de4f22e6159d4e",
+    "assets/models/ranger.glb": "4124fc68843557c82a081ea16bddb379a87ebaa55893e9b899eb19cb22ab0f33",
+    "assets/models/reliquary_altar.glb": "b717c36ca847242c5faa4e15e3bcc1e9a560a3927ce7e62bd19d793bb0598cfe",
+    "assets/models/ruined_vault.glb": "3b2f8400c5887dc50f7c1100f9218c7d56796222cd7f9a12f8e303356a9b5e27",
+    "assets/models/sanctuary_intarsia.glb": "ebc30c10957645239ea734d518f7e46d4e74492bcfe697e4a24f69cc1a376ec2",
+    "assets/models/seal_shrine.glb": "0d8d584c32dba088b6cee34b3ec5a72939dc219739a7be63ba9c180f362598ff",
+    "assets/models/vowkeeper.glb": "aa65795d2770b6738db553a170db1bf8445a3e2820f62db35133b023a65e8d0b",
+    "assets/animations/vowkeeper_sword_foundation.gd": "24752b70abf54435c23b60428fab54acc18352d5d61340f9afe254bb80d7f3a1",
+    "assets/materials/field-surfaces/material-atlas.png": "489b3e2c651d58de41e80cbde655731a45f676bce10143d5d174b5c2ebfa07db",
+    "assets/materials/masonry/Bricks096_1K-PNG_Color.png": "ff324d0e4043852c9bf5cef08941d408829252d603216859cee86d8a6159e59d",
+    "assets/materials/masonry/Bricks096_1K-PNG_NormalGL.png": "3ca81a59672fd67c682386743e93dadaeee077c84a6703d1604e68629416a5b4",
+    "assets/materials/masonry/Bricks096_1K-PNG_Roughness.png": "510ecdbe96d9ef05420bdf3a2473a1548c68b1dc97816f6bf180f9d625c97dba",
+    "assets/materials/nyra-face/nyra-face-albedo.png": "0ecf1f03fba454bd7bdae406c1ff0ef3b0ce6ade59a9e662b04a0559de010b5c",
+    "assets/materials/ruin-floor/ruin-floor-albedo.png": "22ee5f0802a34e1f2f53d0f4da2f273fd3510f9b76d4797f617cfe0af1f2138e",
+    "assets/materials/metal/Metal063_1K-JPG_Color.jpg": "d4122954971c26b529614f39fb12310de00005d44ce103430c35132f61fca077",
+    "assets/materials/metal/Metal063_1K-JPG_Roughness.jpg": "e83993283739d0a5d350ecd15cf82969aa59ec6e2293bcc6a14aea8a92ba283d",
+    "assets/materials/stone/Rock030_1K-JPG_Color.jpg": "1dca8a336518ce0adca4b5cbe2ab30819c8769388f1c15278082a99f022c615a",
+    "assets/materials/stone/Rock030_1K-JPG_NormalGL.jpg": "8fd1d22eb6c7b6e4a374196c0de791f724538b8b86eb9c7a946fec1f5834cb94",
+    "assets/materials/stone/Rock030_1K-JPG_Roughness.jpg": "f37850f72994458994716d084683d80611528d1685264bde3071569e8ca53489",
+    "assets/world/ashen-realms/archive.png": "a737fa4f8fd8d287fdc36d656756511916540ee529092f08354864ef4e1804d9",
+    "assets/world/ashen-realms/camp.png": "a981e16743427f8ef19c89e5ca9c263f3c1261477b456787ef76f39676342bdf",
+    "assets/world/ashen-realms/citadel.png": "27076fadc09c46d8bb9bc99e4f7fa0728d6210d7b3999eb49c95c911298ebaa8",
+    "assets/world/ashen-realms/ossuary.png": "eed19b39745e59242d5321b7b835448fdc608e18016b78154636683f5a6df8fc",
+    "assets/world/ashen-realms/spire.png": "cddadbd727227b0d3d08b9949586399cb6af149ac2cc6e4162cead77173c371e",
+    "tests/android_preview.gd": "837b1e3e76e725a77c3e3c9c4647d55481c4e9d11e67073144692c232f36d326",
+    "tests/animation_layout_preview.gd": "ef9921632615cfc927a63a72f1881f1ddfb0f55522d0b5e3b005e6d6a8852b4b",
+    "tests/attack_gameplay_preview.gd": "12333afd1d7694b13939e48ac67c095f6f832d4eb959d5ef74bf230988748fdc",
+    "tests/beta_preview.gd": "bb59717b94cb56ddcc60f2f9a25716fe61961023e6e00347a3b7252cb09bd407",
+    "tests/character_motion_preview.gd": "6cca163b813e3883dc8dcb2ed51c614ba7037eff1bdec68c95926868cb2d5d6c",
+    "tests/character_portrait_preview.gd": "17a364389b3b54b0913dfaa6b0f6c7d1c92b9d782a6754a11f72e4f34a68bef8",
+    "tests/combat_craft_preview.gd": "01c1e7dd1bcc80f1e09ab256054402b91be6e84b8e215b25780bc479cef30295",
+    "tests/combat_readability_preview.gd": "1558df6152dd5cc65aa79029a146d72f3794ce8c8a5ea15dbeb8725df57c7bd2",
+    "tests/gear_goals_preview.gd": "afae02ec258cb63839c2d142d2fec0edd07a2914d6a7d3366cf7dc479c5303a7",
+    "tests/graphics_overhaul_preview.gd": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809",
+    "tests/model_art_preview.gd": "f8cc474dfe34da268769db3a97b7539c2a9a34ab876328a9969bbb7feae19159",
+    "tests/painted_motion_preview.gd": "b7b956c62a9faf92705a755b7ad9a37a8ee716bda995380f2e39f82e6ca507eb",
+    "tests/recovery_preview.gd": "f47d81456a03d47418024786bd5ec223ba5872012927b48c6331d864e83f4bca",
+    "tests/redesign_preview.gd": "18b6f2a2bef0d6e0201e3be7b8a0f20b8c328d1a940f64cf193dddeb39ddbd2c",
+    "tests/success_loop_preview.gd": "b71b5e586883297db7ffadd2f90e1004a84e30d7f74416701060fb6911ffa712",
+    "project.godot": "06443ae1339db92383984483104457c9b085bd80a8772d0b3ce9b923a9c906f1",
+    "Main.tscn": "e2c97bd36e4f81713f36208f513abc7cef049282dd8861b721a5b5217d2df56b"
+  },
+  "stills": [
+    {
+      "file": "camp-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "da83df562b77f0255e87b275100a92501643cb5158a74bbaa95081e30cccc2ed",
+      "pixel_sha256": "baf2b18b4c87e2a0ec2cdf733d15a55bd06c2f25e3d823731473c08627c231fd",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "camp-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "14bd6e9539f916ec7678dd6853ab82eef60b2f2483ff4c645937c58b953e6292",
+      "pixel_sha256": "8b3763431e19642990ede9b3e7c679bcf4b1c5ff0245a3f7a292a1a0e8f95643",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "camp-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "fe6dbaff43a76ec31548fc9aa9ed91ceece78e6dab5a5a42244099a330d9908a",
+      "pixel_sha256": "4664fe411101d5779ca7045bcbb86994a7778191ee81ed2c13caa25844c87aba",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "guardian-0-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "719c31a69eb87f71ff0cadaca1beed52f2daea7525bdb8aed2feb74ac29daebb",
+      "pixel_sha256": "55d103fc59352f30f17264b4420faec401225c400956cc7d20380137a3c633b1",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "guardian-0-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "d7e832f7ba10fb4ac893935d94dc5f9f39d57bf70d532b85ea1c71908ccdc62e",
+      "pixel_sha256": "308a5286cb45618fadfec409740583afdb7ae43eaf81ada006fc4899f5436eeb",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "guardian-0-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "bfcd80276a56fb2aba7c71e4f22d6843ef65eb08b8d42e7c960b12ecf6d68fe0",
+      "pixel_sha256": "d75f9d7e0e6abf1588c231995183da57ef97ff6e20d8aee1aaf94aae313d9d6d",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "guardian-1-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "aeb222acee2cd4491e20c332605a65efef9f81c018fc31399858e84cfebc7da8",
+      "pixel_sha256": "ef6aa38d1e6490860f546a1e7437409df8c14fcb99ec25555f45205e4aa5319e",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "guardian-1-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "88728f8dd7eb6a5b3896b1c38fd35a5c09e2ca5eca77118f78e2dad89df16e2b",
+      "pixel_sha256": "03ab27d51a5f7dc3cd2c3781658f447a07c5be098239cebc964b709dec6fd75f",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "guardian-1-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "e34cc809b53486e1bf4bd074695d5daf86ce10fbd95ed31da61a755ef69c1072",
+      "pixel_sha256": "90a639d7a4c852bc38f12934adec214b443c4e3607cbb340f926833e918a6111",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "guardian-2-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "d1a734b1ae2bdf2c154d85fd46ad90cdb44adc78b5b874f0d893db9a88b4fa2e",
+      "pixel_sha256": "cd5c80f652aea160f311720ebd951ab5e0e5bbf4a16b8cf6f786602953d61b2b",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "guardian-2-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "c0336f188f96928772ce76aecca837c8ccb11de747213fa7975f2a354c281231",
+      "pixel_sha256": "daeb0f1ea8f877aeb638439c6bdc1b5b3f23d205a6513aa272bcc71884cfdc0d",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "guardian-2-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "04bde71084502b2d0b639c147118f3bf1b743f0a40068a49097459541e23c0ef",
+      "pixel_sha256": "08156ae23e137130a216476a97663c9593e4214f58a94e1a315ee2f97ce71fcf",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "guardian-3-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "39fdd3b41dafeecdc49d69fc0cb9b3ffce1420dcaf4b6881c73cff4259d0e1f1",
+      "pixel_sha256": "3aaea8121e0091d0cd40d04d96fa16d504dc574f2e9b5cb369f7c6b2b4808f54",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "guardian-3-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "fe0076708a293b315c53b02b4c285f425fb42b6c3ac14949338816bfec72204e",
+      "pixel_sha256": "8a7cc7290a0dbcca00e6af4763e423d6b10be7b3f10ca62236af4ea72e0a9b55",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "guardian-3-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "26d4b848a558b19733cbf674cb1988dc05f4659b4dcc4c863d89d7990b7b522f",
+      "pixel_sha256": "c5f901babcdce81f6291a754c4a780e16a06bbf7568e658c511ace791dd04153",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "performance-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "fb6a23bf5aa0fcceb265eea1f37a6cc59d263de7b7523f436ce99a42ae2596f4",
+      "pixel_sha256": "b1875c0732a2d7450e3d9ae74f81028a2168dee3f29533890ba8339f50b72973",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "performance-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "d434c008d957c0e6dfb8b4e61135449a30c2e654c4b473a7348b24e87c5fd51d",
+      "pixel_sha256": "dee068127cab5df2b00cfaa4cef16be7a10bd29fdddaf892f79759375c696dea",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "performance-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "0fe798d47e4f4c3bece86374d5ff79ffe676a7c9709961da14b2eddc97264854",
+      "pixel_sha256": "8e7d8aac4615ae765a50b2f0f800b00113510e35c4ac06da130a81b521408f8c",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "portraits.png",
+      "dimensions": [
+        1000,
+        550
+      ],
+      "sha256": "fc32fe4341f74adf876c5d48e22f121e315f9daaaf3e10c5a4bd15e258ff72a6",
+      "pixel_sha256": "bfbeec3b8f1aacad5ed537a5ef68b0408e1362f995313cd54f4d69d49c97a106",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "17a364389b3b54b0913dfaa6b0f6c7d1c92b9d782a6754a11f72e4f34a68bef8"
+    },
+    {
+      "file": "reading-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "abf3ed668c63b625983c69ad7a71942b93f6254a94cf735f13c2833fdc86cb4a",
+      "pixel_sha256": "320036fc106dae33e5b7ce6f9a089c1fd12e34a5e3d21998e9c13ff883f7a52e",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "reading-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "ef85f88d3df8ff56f248fbdaffed6645543a4e13b02e240e00ffe2d21cb0857c",
+      "pixel_sha256": "19c7ce52e2d3fcde76e722077b906a6094bcdcb210e974a3f0a42901a4a7d941",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "reading-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "08fd8432da19e8572d484d04034eacb504ed71e8cd546401565fce0a6b26e64b",
+      "pixel_sha256": "2bb8d39162b45c01716c27d249447ce368235c15c15fd22a1eceffc6f86ad291",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "skills-Arcanist-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "08f4b5a013d3c5f8fcc5deea63322578e26c0fc8bbfc7abc18c6969196b6669e",
+      "pixel_sha256": "cf4647b7403625bccbed0dc4920534346f59c01aa549fe44f0ac0895b5bca42b",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "skills-Arcanist-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "9a087017b4f01dbcdb834989ee4545dc24e7ea979451dae7eeefcee5102d7f51",
+      "pixel_sha256": "13c67568deced867044a84042cb121d31ea9248725e24218b27aa18702f7c861",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "skills-Arcanist-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "abe7ff73805f759201639b359264e1d015a540a439a90608d1caf5f732388f72",
+      "pixel_sha256": "a97f93e71bcbe71d5cbfdcd1616d3c3fddfc825b46d110424f0da564770e83de",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "skills-Ranger-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "37db2443347e052547fdc88f0311555d460184f3adac29cb51c75a8247dc03fb",
+      "pixel_sha256": "825282b0894c2505183e7ee95128663ed59e9e1a7eb7d3aeb88a536a6bd22fc7",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "skills-Ranger-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "8eee3a89f22d9490ca775fe46e2d2a721ab41aa450a6cf4fa3d46aeb05940213",
+      "pixel_sha256": "6e67b988289990bed5c6af38af9a8568c94fb8336ad6624b2d148cde331545f4",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "skills-Ranger-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "0b86778149b0d73d6fbc75d853a2a5276887cb8dac7dcc152f5eb119df33c604",
+      "pixel_sha256": "81d27052d66dda9c58be4a019e76b92aa695c172c85011311af919fa49398644",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "skills-Vowkeeper-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "79acb61bdb45f35f371466532d8cf5be866ee975c94c3a2de36791d15da8b105",
+      "pixel_sha256": "737c06e390848eafe7d89db44bcb4ecb3c7f071036c997c40ea59ee2d93b411d",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "skills-Vowkeeper-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "ab0dd68f6a4b5d9ee9dbf1fac8dc5f3b71e52da0b2ba637d1c03ad1c4ffb5fe1",
+      "pixel_sha256": "66255d5e6b2db224d2a437b76ce9bc559a6971fb35dd26cf21ab857852452712",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "skills-Vowkeeper-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "7a764c7aee31b7accd21862bd007bb75f4bf51a3a626962c1d32b884ae81cea7",
+      "pixel_sha256": "a9b40f308bca63e08c18543b2a146e10656ea26eff86c2c56d388458f6f47b7e",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "ward-reserve-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "192ece52765f1345765c4c2a66c352ef4dfd39bd0912cef3ff8165cfb5e09ef5",
+      "pixel_sha256": "3565ac840c5dcfb7804e705ecf25e04d8aacab399fac0e5be2e07704af71f4be",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "ward-reserve-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "08417184bac41a9626a7cb1173b45470d78ff4f80e635bbb0ca92c401525a643",
+      "pixel_sha256": "dd9ddc14e67b5eaeff0d60b84a416774c784b6dd2b9d61e2ab2e4b015e199769",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "ward-reserve-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "8e161bb99a508c2749b0cd66297af3570604716d28b6d6e09464d62d966cfed2",
+      "pixel_sha256": "2932444d941b1f8eef04d9c9de8f74ce82cf0d3edb0142a4c986a39c9d203326",
+      "origin_embedded": true,
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    }
+  ],
+  "clips": [
+    {
+      "file": "emberfall-attacks-048.mp4",
+      "frames": 720,
+      "fps": 30,
+      "seconds": 24.0,
+      "dimensions": [
+        1200,
+        536
+      ],
+      "audio": false,
+      "fixture": "Ordinary equipment, 4s first fight plus4s first guardian per class. Cuts skip travel only; actual attack and damage clocks.",
+      "sha256": "7296b32aeb623f042fbdeb4b7eb45a5400c42c735eb94547c922be9b2eab8967",
+      "full_decode": "pass",
+      "capture_fixture_sha256": "12333afd1d7694b13939e48ac67c095f6f832d4eb959d5ef74bf230988748fdc"
+    },
+    {
+      "file": "emberfall-attacks-bare-048.mp4",
+      "frames": 360,
+      "fps": 30,
+      "seconds": 12.0,
+      "dimensions": [
+        1200,
+        536
+      ],
+      "audio": false,
+      "fixture": "Labelled QA at actual attack speed,4s first fight per class. Effects/numbers/markers hidden for body inspection; not a shipping setting.",
+      "sha256": "cf897dd08463b55751c88bac97147be3347a423b0daf040ea71adee303296c87",
+      "full_decode": "pass",
+      "capture_fixture_sha256": "12333afd1d7694b13939e48ac67c095f6f832d4eb959d5ef74bf230988748fdc"
+    },
+    {
+      "file": "emberfall-graphics-048.mp4",
+      "frames": 450,
+      "fps": 30,
+      "seconds": 15.0,
+      "dimensions": [
+        1200,
+        536
+      ],
+      "audio": false,
+      "fixture": "Ordinary Arcanist; actual reading pause at 5–8 s, then travel into the Pilgrim’s Well chamber; still approaching the healing point at the final frame.",
+      "sha256": "4978326acddece824898c4b912a53791ac35a8f6d50e1e88c0b2f8c5da3a5e3b",
+      "full_decode": "pass",
+      "capture_fixture_sha256": "1e5933b122f2ec3c3b80c8eb881c0a7b50d2706a13f503ada4418b5238b8b809"
+    },
+    {
+      "file": "emberfall-motion-048.mp4",
+      "frames": 720,
+      "fps": 30,
+      "seconds": 24.0,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "audio": false,
+      "fixture": "Controlled native model gallery: heroes, hostiles, guardians. QA650ms windups; not proof of ordinary attack timing.",
+      "sha256": "727b83d6e78d962a5aa7cdd69337c46aa068076a809cdd245f586d624c3dd39b",
+      "full_decode": "pass",
+      "capture_fixture_sha256": "6cca163b813e3883dc8dcb2ed51c614ba7037eff1bdec68c95926868cb2d5d6c"
+    }
+  ],
+  "runtime_source_commit": "850721fd010dd62ddbf1a6c681f73955ffddc8b3",
+  "capture_integrity": "All listed source hashes were checked before and after the complete capture matrix, and again during packaging. Renderer-only settling before each recorded segment preserves the simulation clock.",
+  "regression": {
+    "file": "regression.log",
+    "sha256": "cc08f509e2087e45cca98e029a7f29f2a0bbff578c9688e2e45a139cf0b7a305",
+    "godot_suites": 34,
+    "checks": 3642,
+    "failures": 0,
+    "server_checks": "passed"
+  },
+  "comparisons": [
+    {
+      "file": "emberfall-attacks-comparison-047-048.mp4",
+      "sha256": "fefb07be387217b6876517bcbef5f78ac9fa9fbbb3c2c857dc9d0b000fa3b231",
+      "dimensions": [
+        2400,
+        572
+      ],
+      "frames": 720,
+      "fps": 30,
+      "seconds": 24,
+      "full_decode": "pass",
+      "construction": "Two original1200x536 clips placed side-by-side,36px label strip added above each; H264 encoded, no crop or speed change. A labelled comparison, not an additional game capture.",
+      "inputs": [
+        {
+          "file": "docs/previews/visible-combat/emberfall-attacks-047.mp4",
+          "sha256": "bd4e433f6850e8446624ec9190464902cf999bd38d0b15c5deb9df832b807f47"
+        },
+        {
+          "file": "docs/previews/constructed-world/emberfall-attacks-048.mp4",
+          "sha256": "7296b32aeb623f042fbdeb4b7eb45a5400c42c735eb94547c922be9b2eab8967"
+        }
+      ]
+    }
+  ]
+}

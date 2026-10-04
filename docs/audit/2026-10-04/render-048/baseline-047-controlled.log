@@ -1,0 +1,23 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+ANDROID_ART_READY native spatial 3D skeletons, renderer=gl_compatibility
+ART_RENDER_METRIC {"frames":30,"median_draw_calls":225.0,"median_frame_ms":626.084,"p95_frame_ms":704.517,"quality":"balanced","region":0,"render_height":540,"render_width":1212,"target_fps":60}
+ART_RENDER_METRIC {"frames":30,"median_draw_calls":188.0,"median_frame_ms":115.647,"p95_frame_ms":142.485,"quality":"battery","region":0,"render_height":270,"render_width":606,"target_fps":30}
+ANDROID_MOTION_REGION_PASS 0 bone_changes=17 unique_frames=4
+ANDROID_ART_REGION_PASS 0 The Bell Warden 2424x1080
+ART_RENDER_METRIC {"frames":30,"median_draw_calls":231.0,"median_frame_ms":457.603,"p95_frame_ms":529.95,"quality":"balanced","region":1,"render_height":540,"render_width":1212,"target_fps":60}
+ART_RENDER_METRIC {"frames":30,"median_draw_calls":199.0,"median_frame_ms":105.182,"p95_frame_ms":113.018,"quality":"battery","region":1,"render_height":270,"render_width":606,"target_fps":30}
+ANDROID_MOTION_REGION_PASS 1 bone_changes=17 unique_frames=4
+ANDROID_ART_REGION_PASS 1 The Silt Abbot 2424x1080
+ART_RENDER_METRIC {"frames":30,"median_draw_calls":226.0,"median_frame_ms":603.337,"p95_frame_ms":710.425,"quality":"balanced","region":2,"render_height":540,"render_width":1212,"target_fps":60}
+ART_RENDER_METRIC {"frames":30,"median_draw_calls":192.0,"median_frame_ms":119.645,"p95_frame_ms":142.409,"quality":"battery","region":2,"render_height":270,"render_width":606,"target_fps":30}
+ANDROID_MOTION_REGION_PASS 2 bone_changes=12 unique_frames=4
+ANDROID_ART_REGION_PASS 2 The Mourning Queen 2424x1080
+ART_RENDER_METRIC {"frames":30,"median_draw_calls":231.0,"median_frame_ms":501.795,"p95_frame_ms":591.018,"quality":"balanced","region":3,"render_height":540,"render_width":1212,"target_fps":60}
+ART_RENDER_METRIC {"frames":30,"median_draw_calls":208.0,"median_frame_ms":109.408,"p95_frame_ms":121.144,"quality":"battery","region":3,"render_height":270,"render_width":606,"target_fps":30}
+ANDROID_MOTION_REGION_PASS 3 bone_changes=17 unique_frames=4
+ANDROID_ART_REGION_PASS 3 The Cinder Sovereign 2424x1080
+ANDROID_ART_PASS all four regions rendered with authored 3D models and lit materials
