@@ -1,0 +1,20 @@
+10-04 13:21:15.171  5042  5064 I godot   : ANDROID_SUCCESS_PASS restart preserves combined oaths, protected relic, checkpoint and rewards
+10-04 13:20:42.336  2852  2972 I godot   : ANDROID_READABILITY_PASS real skill inspection pauses and Back resumes
+10-04 13:21:02.942  2852  2972 I godot   : ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI
+10-04 13:23:38.588  5156  5210 I godot   : ART_RENDER_METRIC {"frames":30,"median_draw_calls":225.0,"median_frame_ms":2143.638,"p95_frame_ms":4693.037,"quality":"balanced","region":0,"render_height":540,"render_width":1212,"target_fps":60}
+10-04 13:24:08.175  5156  5210 I godot   : ART_RENDER_METRIC {"frames":30,"median_draw_calls":188.0,"median_frame_ms":729.905,"p95_frame_ms":1235.339,"quality":"battery","region":0,"render_height":270,"render_width":606,"target_fps":30}
+10-04 13:24:54.659  5156  5210 I godot   : ANDROID_MOTION_REGION_PASS 0 bone_changes=17 unique_frames=4
+10-04 13:24:54.659  5156  5210 I godot   : ANDROID_ART_REGION_PASS 0 The Bell Warden 2424x1080
+10-04 13:26:22.461  5156  5210 I godot   : ART_RENDER_METRIC {"frames":30,"median_draw_calls":232.0,"median_frame_ms":1665.681,"p95_frame_ms":3907.379,"quality":"balanced","region":1,"render_height":540,"render_width":1212,"target_fps":60}
+10-04 13:26:47.733  5156  5210 I godot   : ART_RENDER_METRIC {"frames":30,"median_draw_calls":201.0,"median_frame_ms":657.872,"p95_frame_ms":900.37,"quality":"battery","region":1,"render_height":270,"render_width":606,"target_fps":30}
+10-04 13:27:25.274  5156  5210 I godot   : ANDROID_MOTION_REGION_PASS 1 bone_changes=17 unique_frames=4
+10-04 13:27:25.274  5156  5210 I godot   : ANDROID_ART_REGION_PASS 1 The Silt Abbot 2424x1080
+10-04 13:29:02.784  5156  5210 I godot   : ART_RENDER_METRIC {"frames":30,"median_draw_calls":226.0,"median_frame_ms":2020.851,"p95_frame_ms":4391.676,"quality":"balanced","region":2,"render_height":540,"render_width":1212,"target_fps":60}
+10-04 13:29:31.174  5156  5210 I godot   : ART_RENDER_METRIC {"frames":30,"median_draw_calls":192.0,"median_frame_ms":765.087,"p95_frame_ms":1057.081,"quality":"battery","region":2,"render_height":270,"render_width":606,"target_fps":30}
+10-04 13:30:15.108  5156  5210 I godot   : ANDROID_MOTION_REGION_PASS 2 bone_changes=12 unique_frames=4
+10-04 13:30:15.108  5156  5210 I godot   : ANDROID_ART_REGION_PASS 2 The Mourning Queen 2424x1080
+10-04 13:31:43.373  5156  5210 I godot   : ART_RENDER_METRIC {"frames":30,"median_draw_calls":229.0,"median_frame_ms":1749.626,"p95_frame_ms":3769.7,"quality":"balanced","region":3,"render_height":540,"render_width":1212,"target_fps":60}
+10-04 13:32:10.094  5156  5210 I godot   : ART_RENDER_METRIC {"frames":30,"median_draw_calls":208.0,"median_frame_ms":678.36,"p95_frame_ms":1288.183,"quality":"battery","region":3,"render_height":270,"render_width":606,"target_fps":30}
+10-04 13:32:49.195  5156  5210 I godot   : ANDROID_MOTION_REGION_PASS 3 bone_changes=17 unique_frames=4
+10-04 13:32:49.195  5156  5210 I godot   : ANDROID_ART_REGION_PASS 3 The Cinder Sovereign 2424x1080
+10-04 13:32:49.196  5156  5210 I godot   : ANDROID_ART_PASS all four regions rendered with authored 3D models and lit materials

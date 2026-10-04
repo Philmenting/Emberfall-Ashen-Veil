@@ -1,0 +1,175 @@
+{
+	"device": "GenericDevice",
+	"measurements": [
+		{
+			"frames": 30,
+			"median_draw_calls": 267.0,
+			"median_frame_ms": 388.913,
+			"p95_frame_ms": 418.256,
+			"quality": "balanced",
+			"region": 0,
+			"render_height": 540,
+			"render_width": 1212,
+			"target_fps": 60
+		},
+		{
+			"frames": 30,
+			"median_draw_calls": 207.0,
+			"median_frame_ms": 96.392,
+			"p95_frame_ms": 117.192,
+			"quality": "battery",
+			"region": 0,
+			"render_height": 270,
+			"render_width": 606,
+			"target_fps": 30
+		},
+		{
+			"frames": 30,
+			"median_draw_calls": 244.0,
+			"median_frame_ms": 291.994,
+			"p95_frame_ms": 339.131,
+			"quality": "balanced",
+			"region": 1,
+			"render_height": 540,
+			"render_width": 1212,
+			"target_fps": 60
+		},
+		{
+			"frames": 30,
+			"median_draw_calls": 205.0,
+			"median_frame_ms": 94.882,
+			"p95_frame_ms": 111.498,
+			"quality": "battery",
+			"region": 1,
+			"render_height": 270,
+			"render_width": 606,
+			"target_fps": 30
+		},
+		{
+			"frames": 30,
+			"median_draw_calls": 269.0,
+			"median_frame_ms": 336.623,
+			"p95_frame_ms": 379.145,
+			"quality": "balanced",
+			"region": 2,
+			"render_height": 540,
+			"render_width": 1212,
+			"target_fps": 60
+		},
+		{
+			"frames": 30,
+			"median_draw_calls": 221.0,
+			"median_frame_ms": 95.521,
+			"p95_frame_ms": 105.785,
+			"quality": "battery",
+			"region": 2,
+			"render_height": 270,
+			"render_width": 606,
+			"target_fps": 30
+		},
+		{
+			"frames": 30,
+			"median_draw_calls": 231.0,
+			"median_frame_ms": 271.985,
+			"p95_frame_ms": 350.612,
+			"quality": "balanced",
+			"region": 3,
+			"render_height": 540,
+			"render_width": 1212,
+			"target_fps": 60
+		},
+		{
+			"frames": 30,
+			"median_draw_calls": 210.0,
+			"median_frame_ms": 88.471,
+			"p95_frame_ms": 109.766,
+			"quality": "battery",
+			"region": 3,
+			"render_height": 270,
+			"render_width": 606,
+			"target_fps": 30
+		}
+	],
+	"motion": [
+		{
+			"bone_changes": 17,
+			"captures": [
+				0,
+				5,
+				11,
+				17
+			],
+			"frames": 20,
+			"native_clips": 9,
+			"passed": true,
+			"physical_device_performance": false,
+			"region": 0,
+			"simulation_step_seconds": 0.05,
+			"skeleton_bones": 29,
+			"source_depth": 0.855481743812561,
+			"unique_rendered_frames": 4
+		},
+		{
+			"bone_changes": 17,
+			"captures": [
+				0,
+				5,
+				11,
+				17
+			],
+			"frames": 20,
+			"native_clips": 9,
+			"passed": true,
+			"physical_device_performance": false,
+			"region": 1,
+			"simulation_step_seconds": 0.05,
+			"skeleton_bones": 29,
+			"source_depth": 0.753038287162781,
+			"unique_rendered_frames": 4
+		},
+		{
+			"bone_changes": 12,
+			"captures": [
+				0,
+				5,
+				11,
+				17
+			],
+			"frames": 20,
+			"native_clips": 9,
+			"passed": true,
+			"physical_device_performance": false,
+			"region": 2,
+			"simulation_step_seconds": 0.05,
+			"skeleton_bones": 29,
+			"source_depth": 0.753038287162781,
+			"unique_rendered_frames": 4
+		},
+		{
+			"bone_changes": 17,
+			"captures": [
+				0,
+				5,
+				11,
+				17
+			],
+			"frames": 20,
+			"native_clips": 9,
+			"passed": true,
+			"physical_device_performance": false,
+			"region": 3,
+			"simulation_step_seconds": 0.05,
+			"skeleton_bones": 29,
+			"source_depth": 0.813281774520874,
+			"unique_rendered_frames": 4
+		}
+	],
+	"platform": "Linux",
+	"renderer": "gl_compatibility",
+	"resolution": {
+		"height": 540.0,
+		"width": 1212.0
+	},
+	"scenario": "frozen guardian render workload; separately stepped real combat animation",
+	"schema": 1
+}

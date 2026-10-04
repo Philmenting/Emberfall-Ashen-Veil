@@ -71,6 +71,11 @@ func _video() -> void:
 	get_window().size=Vector2i(1200,536)
 	await get_tree().process_frame
 	character_class="Arcanist"; floor_number=1; _start_run(); _manual()
+	# Populate the SubViewport before recording frame zero, with combat frozen.
+	var before:float=expedition.elapsed
+	for warmup in range(4): await get_tree().process_frame
+	await RenderingServer.frame_post_draw
+	assert(expedition.elapsed==before,"Capture warmup must not advance combat")
 	for frame in range(450):
 		if frame==150: _inspect_combat_skill("chain")
 		if frame==240: _toggle_combat_details()

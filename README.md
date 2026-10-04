@@ -1,6 +1,70 @@
 # Emberfall: Ashen Veil
 
-## Teststand: 0.46.0-beta.1 · Angriffsbewegungen und zusammenhängende Ruinen
+## Teststand: 0.47.0-beta.1 · Sichtbare Angriffe und gebaute regionale Räume
+
+Schwert, Stab und Bogen verwenden neue Schritt-, Lade- und Rückkehrkurven
+bei unveränderten Kampfzeiten. Vowkeepers Schwertabläufe nutzen passend zum
+nativen Skelett übertragene CC0-Grundlagen von Quaternius; Zauber und Bogen
+bleiben eigene Abläufe. Neue Körper-, Hand-, Stiefel- und Kleidungsformen
+umgeben Nyras erhaltenes gemeinsames Gesicht. Tiefe regionale Raummodule,
+gefasste Archivbecken und ein eigenes Mauerwerksmaterial ergänzen den an den
+Weg angepassten Boden. Die feste Kamera und echte Lesepause bleiben erhalten;
+der deaktivierte Loot-Knopf behält jetzt Füllung und Beschriftungsabstand.
+Porträts werden nur bei sichtbaren neuen Posen gezeichnet. Eine freiwillig
+kopierbare Leistungsanzeige sammelt Framezeiten während des Spiels im Speicher.
+Android-Version-Code **53**.
+
+Die korrigierte Regression besteht mit **34 Suiten, 3.635 Prüfungen,
+0 Fehlern** und beiden Serverprüfungen; außerdem bestehen die **404** gezielten
+Korrekturprüfungen. Alle drei CI-Läufe für Gameplay, Android-Paketierung und
+Android-16-Emulator bestanden auf
+[Quellstand 2648672](https://github.com/Philmenting/Emberfall-Ashen-Veil/commit/2648672c4e7700ed57d223bd3a9fb7bf1e874491).
+[CI-Belege und Testpakete](docs/audit/2026-10-04/android-047/README.md)
+enthalten die genaue Reichweite. Die Pakete sind temporär CI-signiert;
+eine Google-Play-Veröffentlichung oder Update-Kompatibilität mit anderen
+Signaturschlüsseln ist nicht belegt.
+
+Im [kontrollierten Vergleich auf demselben Rechner](docs/audit/2026-10-04/render-047/README.md)
+war 0.47 in allen Fällen langsamer: **+47,0–81,3 % Framezeit in Balanced**,
+**+11,0–30,3 % in Battery**, trotz weniger oder gleicher Zeichenaufrufe.
+Das war ein einziges sequenzielles Vergleichspaar unter Linux/llvmpipe;
+es belegt keinen Leistungsgewinn und ersetzt keine Messung auf einem Telefon.
+Die getrennten Android-CI-Messungen stammen ebenfalls aus einem langsamen
+Softwareemulator. Echte Geräte-FPS, Wärme, Akku und Touch bleiben ungeprüft.
+
+Die [vollständige visuelle Prüfung](docs/design/graphics-review-047.md)
+verlangt **Neuaufbau (`rebuild`)**. Die Figuren behalten eine zu glatte,
+zusammengesetzt wirkende Anatomie und Kleidung; Bodenränder, massive
+Wandkurse und Raumübergänge bilden noch keine glaubwürdig zusammenhängende
+Welt. Schwertangriffe zeigen lesbaren Körpereinsatz. Bei Zauber und Bogen
+bleiben koordinierte Hüft-, Stützbein- und Rückkehrbewegungen aus der normalen
+Kampfkamera zu schwach. Figuren- und Materialgestaltung, Raumübergänge,
+Zauber/Bogen und reale Telefonleistung bleiben offen. Gemeinsame Nyra-Identität,
+ruhige Kamera, vollständige Warnflächen und die verbesserten UI-Zustände
+bleiben erhalten.
+
+Das [korrigierte Belegpaket](docs/previews/visible-combat/provenance.json)
+ist vollständig: **34 native Ansichten, vier vollständig dekodierte Clips**
+und ein abgeleiteter **24-Sekunden-Vergleich** mit 0.46. Die drei zuvor
+betroffenen Sequenzen wurden vollständig neu aufgenommen; vier reine
+Renderer-Vorlaufframes veränderten keine Kampfzeit. Alle zehn Segmentanfänge
+sind befüllt und geprüft. Die Provenienz trennt die beiden korrigierten
+Aufnahme-Helfer von unverändertem Spielcode und unveränderten Assets und hält
+151 passende aktuelle Quellhashes fest. Die erste
+[Neuaufnahme-Anforderung](docs/design/graphics-review-047-recapture.md)
+bleibt archiviert.
+
+Dieser 0.47-Stand ist ein abgeschlossenes Testergebnis, **keine visuelle oder
+Veröffentlichungsfreigabe**. Eine weitere Umsetzungsrunde im beauftragten
+Gesamtumbau wird vorbereitet. Frühere 0.46-Ergebnisse gelten nur für ihren
+archivierten Quellstand.
+
+[Richtung und Umfang](docs/design/graphics-direction-047.md),
+[aktuelles natives Designsystem](DESIGN.md),
+[Animierungsquellen](assets/animations/SOURCE.md),
+[Geometrieherkunft](tools/art/CHARACTER_ASSETS_047.md).
+
+## Vorheriger Teststand: 0.46.0-beta.1 · Angriffsbewegungen und zusammenhängende Ruinen
 
 Die Überarbeitung setzt bei den tatsächlichen Kampfbewegungen und der begehbaren
 Welt an: eigene Abläufe für Schwert, Stab und Bogen, passende Übergänge am
@@ -368,6 +432,6 @@ Prüfablauf für den Einstieg, Ausrüstungswerte und echte Android-Toucheingaben
 
 ### Beta.2: Einstieg und Spielziele
 
-[Schneller Erstkampf, Schwüre und Klassenreliquien](docs/SUCCESS_LOOP.md), vier regionale Sets, Wächtersiegel und optionale Haptik. [Geschlossener Spieltest und Pixel-Probe](docs/SUCCESS_PLAYTEST.md); [Gameplay-Clip](docs/previews/success-loop/emberfall-gameplay-beta2.mp4). Historischer Stand dieser Beta.2/Beta.3-Berichte: 0.39.0-beta.3, Version-Code 45. Aktueller Kandidat: 0.41.0-beta.1, Version-Code 47.
+[Schneller Erstkampf, Schwüre und Klassenreliquien](docs/SUCCESS_LOOP.md), vier regionale Sets, Wächtersiegel und optionale Haptik. [Geschlossener Spieltest und Pixel-Probe](docs/SUCCESS_PLAYTEST.md); [Gameplay-Clip](docs/previews/success-loop/emberfall-gameplay-beta2.mp4). Historischer Stand dieser Beta.2/Beta.3-Berichte: 0.39.0-beta.3, Version-Code 45. Damals folgender Kandidat: 0.41.0-beta.1, Version-Code 47; aktueller Teststand siehe oben.
 
 [Geschützte Ausrüstung, Taschenfilter und konkrete Hilfe nach Niederlagen](docs/GEAR_AND_RECOVERY.md). Die erste Klassenreliquie bleibt bei vollständig geschützter voller Tasche zum Abholen erhalten; der lokale Online-Integrationstest ist repariert.

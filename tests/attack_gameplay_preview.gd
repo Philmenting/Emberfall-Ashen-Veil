@@ -21,6 +21,7 @@ func _record() -> void:
 	await get_tree().process_frame
 	for class_key in ["Vowkeeper","Arcanist","Ranger"]:
 		character_class=class_key; floor_number=1; _start_run(); _manual()
+		await _settle_renderer()
 		print("ATTACK_CAPTURE ",class_key," ordinary start / frame ",frame_index)
 		for frame in range(120): await _frame()
 		if bare_inspection: continue
@@ -32,10 +33,19 @@ func _record() -> void:
 			push_error("ATTACK_CAPTURE_FAIL normal gear did not reach guardian: "+class_key)
 			get_tree().quit(1); return
 		_sync_model_state(); _build_ui(); _manual()
+		await _settle_renderer()
 		print("ATTACK_CAPTURE ",class_key," ordinary guardian / frame ",frame_index)
 		for frame in range(120): await _frame()
 	print("ATTACK_CAPTURE_PASS ",frame_index," native frames / 30 FPS / three classes / ordinary gear / real damage and release / bare=",bare_inspection)
 	get_tree().quit()
+
+func _settle_renderer() -> void:
+	# SubViewport visibility/layout becomes valid after the first root draw.
+	# Initialize it without advancing combat or dropping a recorded attack step.
+	var before:float=expedition.elapsed
+	for frame in range(4): await get_tree().process_frame
+	await RenderingServer.frame_post_draw
+	assert(expedition.elapsed==before,"Capture warmup must not advance combat")
 
 func _manual() -> void:
 	run_arena.set_process(false); run_arena.world.set_process(false)
