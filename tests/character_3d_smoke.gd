@@ -178,11 +178,15 @@ func run_checks() -> void:
 				shooter.sync_attack(.30-float(frame)/60.0)
 				shooter.animate(1.0/60.0,false)
 			var tip_before:Vector3=shooter.weapon_world_position()
+			var origin_before:Vector3=shooter.projectile_origin()
 			var hand_before:Vector3=shooter.body.to_global(shooter.motion_rig.skeleton.get_bone_global_pose(11).origin)
 			var held:bool=shooter.release_time<0.0
 			shooter.release_attack()
 			var hand_after:Vector3=shooter.body.to_global(shooter.motion_rig.skeleton.get_bone_global_pose(11).origin)
 			check(held and tip_before.distance_to(shooter.weapon_world_position())<.025 and hand_before.distance_to(hand_after)<.025,class_key+" "+style+": the actual 85 ms early release has a prepared weapon and continuous grip")
+			var launch_point:Vector3=shooter.projectile_origin()
+			var emitter:Vector3=shooter.body.to_global(shooter.motion_rig.skeleton.get_bone_global_pose(7).origin) if class_key=="Arcanist" else shooter.weapon_world_position()
+			check(origin_before.distance_to(launch_point)<.025 and launch_point.distance_to(emitter)<.001,class_key+" "+style+": the actual casting palm or bow emitter remains continuous at release")
 			shooter.free()
 	var raider:=make_actor("raider")
 	var resting_tip:Vector3=raider.weapon_world_position()
@@ -194,13 +198,20 @@ func run_checks() -> void:
 	sim.setup("Arcanist",bot._combat_stats(),1,"Guardian",1979); reference.setup("Arcanist",bot._combat_stats(),1,"Guardian",1979)
 	var world:=World.new(); world.simulation=sim; world.character_class="Arcanist"; world.active=false; root.add_child(world); world.set_process(false); world.active=true
 	var same:=true; var hits:=0; var synchronized:=true
+	var launched:=0; var palm_launch:=true
 	for frame in range(360):
 		world._process(1.0/60.0)
+		for effect: Dictionary in world.effects:
+			if effect.kind=="projectile" and float(effect.age)==0.0:
+				launched+=1
+				var palm:Vector3=world.hero.body.to_global(world.hero.motion_rig.skeleton.get_bone_global_pose(7).origin)
+				palm_launch=palm_launch and Vector3(effect.origin).distance_to(palm)<.025 and Vector3(effect.origin).distance_to(world.hero.weapon_world_position())>.25 and world.hero.release_time==0.0
 		for event: Dictionary in reference.advance(1.0/60.0):
 			if event.type=="hit": hits+=1; synchronized=synchronized and world.hero.release_time>=0.0 and world.hero.pose_frame==4
 		same=same and sim.encode_snapshot()==reference.encode_snapshot()
 	check(same,"native 3D animation never changes combat timing, damage, loot or simulation RNG")
 	check(hits>=2 and synchronized,"visible 3D contact is synchronized to actual damage events")
+	check(launched>0 and palm_launch,"actual Arcanist projectiles leave the leading palm on the release frame, clear of the staff tip")
 	world.free(); bot.free()
 	print("CHARACTER THREE D SMOKE: %d checks, %d failures" % [checks,failures])
 	quit(1 if failures else 0)

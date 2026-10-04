@@ -693,7 +693,7 @@ func _options(parent: VBoxContainer) -> void:
 	var reduced_motion: Button=game._button("REDUCED MOTION: "+("ON" if game.preferences.reduced_motion else "OFF"),Color("31443a") if game.preferences.reduced_motion else game.PANEL_LIGHT,11,func(): game._change_preference("reduced_motion",not game.preferences.reduced_motion); _build())
 	reduced_motion.name="ReducedMotion"
 	parent.add_child(reduced_motion)
-	parent.add_child(game._paragraph_label("Reduces boss camera zoom and impact shake. Auto-follow and essential combat animation remain active.",11,game.MUTED))
+	parent.add_child(game._paragraph_label("Reduces idle movement and ambient effects. Essential combat animation and danger warnings remain active.",11,game.MUTED))
 	var haptics: Button=game._button("HAPTICS: "+("ON" if game.preferences.haptics else "OFF"),game.PANEL_LIGHT,11,func(): game._change_preference("haptics",not game.preferences.haptics); _build())
 	haptics.name="Haptics"
 	parent.add_child(haptics)

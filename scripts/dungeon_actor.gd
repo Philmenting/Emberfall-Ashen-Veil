@@ -134,6 +134,13 @@ func portrait_anchor() -> Vector3:
 func weapon_world_position(_camera_position: Vector3=Vector3.ZERO) -> Vector3:
 	return body.to_global(motion_rig.weapon_tip())
 
+func projectile_origin() -> Vector3:
+	# Spells leave the leading casting palm; arrows keep the bow's release
+	# point. Both positions come from the pose on the real launch frame.
+	if kind=="Arcanist":
+		return body.to_global(motion_rig.skeleton.get_bone_global_pose(7).origin)
+	return weapon_world_position()
+
 func weapon_grip_position() -> Vector3:
 	return body.to_global(motion_rig.skeleton.get_bone_global_pose(20).origin)
 

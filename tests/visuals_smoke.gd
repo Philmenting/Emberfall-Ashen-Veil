@@ -107,19 +107,24 @@ func run_checks() -> void:
 			if batch.material_override==world.court_material:
 				continuous_floor_count+=batch.multimesh.instance_count
 				carved_floor_unshadowed=carved_floor_unshadowed and batch.cast_shadow==GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-		# Ordinary rooms intentionally lose their decorative medallion. Keep
-		# the single guardian inlay and continuous floor flush and unshadowed.
-		check(carved_floor_count==1 and continuous_floor_count==1 and carved_floor_unshadowed,"region %d: continuous floor and single guardian inlay keep shadows disabled" % region)
+		# Module thresholds and perimeter paving now share the court material.
+		# Their instance count is not the number of continuous floor surfaces.
+		check(carved_floor_count==1 and continuous_floor_count>=1 and carved_floor_unshadowed,"region %d: court and regional paving remain unshadowed with one guardian inlay" % region)
 		world.reduced_motion=true
 		world.set_shadows(false)
 		var battery_hidden:=not world.sun.shadow_enabled
 		for beam in world.sanctuary_beams: battery_hidden=battery_hidden and not beam.visible
 		for light in world.sanctuary_lights: battery_hidden=battery_hidden and not light.visible
+		var ruin_materials:Dictionary=world.get_meta("ruin_material_cache",{})
+		for family in ["masonry","dressed_stone"]:
+			battery_hidden=battery_hidden and ruin_materials.has(family) and is_zero_approx(ruin_materials[family].get_shader_parameter("relief"))
 		check(battery_hidden and sim.encode_snapshot()==before,"region %d: Battery removes decorative lighting without changing combat" % region)
 		world.set_shadows(true)
 		var quality_restored:=world.sun.shadow_enabled
 		for beam in world.sanctuary_beams: quality_restored=quality_restored and beam.visible
 		for light in world.sanctuary_lights: quality_restored=quality_restored and light.visible
+		for family in ["masonry","dressed_stone"]:
+			quality_restored=quality_restored and float(ruin_materials[family].get_shader_parameter("relief"))>0.0
 		check(quality_restored and is_zero_approx(world.sanctuary_beam_material.get_shader_parameter("motion")),"region %d: quality returns while reduced motion freezes beam drift" % region)
 		world.reduced_motion=false
 		world.set_shadows(true)
@@ -134,7 +139,8 @@ func run_checks() -> void:
 		check(warning_visual.scale==Vector3.ONE and warning_visual.get_child(0).mesh.get_aabb()==bounds,"region %d: countdown preserves the full collision footprint" % region)
 		warning_visual.queue_free()
 		world._launch_projectile(int(sim.waves[0][0].id),Color.WHITE)
-		check(Vector3(world.effects.back().origin).distance_to(world.hero.weapon_world_position(world.camera.position))<.0001,"region %d: ranged release originates at the animated weapon" % region)
+		var palm:Vector3=world.hero.body.to_global(world.hero.motion_rig.skeleton.get_bone_global_pose(7).origin)
+		check(Vector3(world.effects.back().origin).distance_to(palm)<.0001,"region %d: spell release originates at the animated casting palm" % region)
 		world._update_effects(0.04)
 		check(world.effects.back().node.position.distance_to(Vector3(world.effects.back().origin))>0.1,"region %d: ranged projectile travels toward its target" % region)
 		world._impact_sparks(Vector3.ZERO,Color.WHITE)

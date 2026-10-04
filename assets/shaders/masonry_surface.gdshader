@@ -1,42 +1,42 @@
 shader_type spatial;
 render_mode diffuse_burley, specular_schlick_ggx;
-uniform sampler2D masonry_color : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D masonry_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
+
+// Each mesh family supplies one material stack. The artist-authored UVs are
+// measured in local metres, with a tangent basis exported alongside them.
+uniform sampler2D masonry_color : source_color, filter_linear_mipmap, repeat_enable;
+uniform sampler2D masonry_normal : hint_normal, filter_linear_mipmap, repeat_enable;
 uniform sampler2D masonry_roughness : filter_linear_mipmap, repeat_enable;
-uniform sampler2D cap_color : source_color, filter_linear_mipmap, repeat_enable;
-uniform sampler2D cap_normal : hint_normal, filter_linear_mipmap, repeat_enable;
-uniform sampler2D cap_roughness : filter_linear_mipmap, repeat_enable;
 uniform vec4 stone_tint : source_color = vec4(.87,.86,.83,1.0);
-uniform float relief = .80;
-varying vec3 world_pos;
-varying vec3 world_normal;
+uniform vec2 meters_per_repeat = vec2(2.8,1.4);
+uniform float pigment_saturation : hint_range(0.0,1.0) = .35;
+uniform float dampness : hint_range(0.0,1.0) = .32;
+uniform float roughness_bias : hint_range(-.5,.5) = .08;
+uniform float relief : hint_range(0.0,1.0) = .80;
+varying float world_height;
+
 void vertex() {
-    world_pos=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz;
-    world_normal=normalize(MODEL_NORMAL_MATRIX*NORMAL);
+    // Regional bays stretch in X/Z. Compensate in the vertex stage so the
+    // same block remains the same physical size across differently sized bays.
+    vec2 surface_scale = vec2(
+        length(mat3(MODEL_MATRIX)*TANGENT),
+        length(mat3(MODEL_MATRIX)*BINORMAL));
+    UV *= surface_scale/max(meters_per_repeat,vec2(.01));
+    world_height = (MODEL_MATRIX*vec4(VERTEX,1.0)).y;
 }
+
 void fragment() {
-    vec3 base=normalize(world_normal);
-    vec3 axis=abs(base);
-    bool cap=axis.y>.70;
-    // Signed world bases preserve course height across adjacent, stretched bays.
-    vec3 tangent=cap ? vec3(1,0,0) : (axis.x>axis.z ? vec3(0,0,-sign(base.x)) : vec3(sign(base.z),0,0));
-    vec3 bitangent=cap ? vec3(0,0,-sign(base.y)) : vec3(0,1,0);
-    vec2 uv=vec2(dot(world_pos,tangent),dot(world_pos,bitangent))/(cap ? vec2(1.4) : vec2(2.8,1.4));
-    vec3 pigment=cap ? texture(cap_color,uv).rgb : texture(masonry_color,uv).rgb;
-    float value=dot(pigment,vec3(.2126,.7152,.0722));
-    pigment=mix(vec3(value),pigment,.35);
-    // Damp darkens actual stone detail instead of replacing it with a flat wash.
-    float foot=1.0-smoothstep(.05,2.8,world_pos.y);
-    ALBEDO=pigment*stone_tint.rgb*COLOR.rgb*mix(1.0,.68,foot);
-    float rough=cap ? texture(cap_roughness,uv).r : texture(masonry_roughness,uv).r;
-    ROUGHNESS=clamp(rough*.90+.08,.48,.96);
-    SPECULAR=.28;
+    vec3 pigment = texture(masonry_color,UV).rgb;
+    float value = dot(pigment,vec3(.2126,.7152,.0722));
+    pigment = mix(vec3(value),pigment,pigment_saturation);
+    float foot = 1.0-smoothstep(.05,2.8,world_height);
+    ALBEDO = pigment*stone_tint.rgb*COLOR.rgb*(1.0-dampness*foot);
+    ROUGHNESS = clamp(texture(masonry_roughness,UV).r*.90+roughness_bias,.48,.96);
+    SPECULAR = .28;
     if(relief>.01) {
-        vec2 xy=(cap ? texture(cap_normal,uv).rg : texture(masonry_normal,uv).rg)*2.0-1.0;
-        vec3 bump=vec3(xy,sqrt(max(0.0,1.0-dot(xy,xy))));
-        tangent=normalize(tangent-base*dot(tangent,base));
-        bitangent=normalize(cross(base,tangent));
-        vec3 detail=normalize(tangent*bump.x+bitangent*bump.y+base*bump.z);
-        NORMAL=normalize(mat3(VIEW_MATRIX)*normalize(mix(base,detail,cap ? relief*.40 : relief)));
+        // Godot may import normal maps with only RG. Reconstruct Z explicitly.
+        vec2 xy = texture(masonry_normal,UV).rg*2.0-1.0;
+        vec3 normal = vec3(xy,sqrt(max(0.0,1.0-dot(xy,xy))));
+        NORMAL_MAP = normal*.5+.5;
+        NORMAL_MAP_DEPTH = relief;
     }
 }

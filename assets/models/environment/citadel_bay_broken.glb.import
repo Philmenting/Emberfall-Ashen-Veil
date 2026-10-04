@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://twxql8onu43p"
-path="res://.godot/imported/ossuary_crown.glb-7659901cc67d8d08a8206762a4bbb58c.scn"
+uid="uid://bd0lhxy1sjxoy"
+path="res://.godot/imported/citadel_bay_broken.glb-23fc37b64c57a3d4053a76507cd3eb36.scn"
 
 [deps]
 
-source_file="res://assets/models/environment/ossuary_crown.glb"
-dest_files=["res://.godot/imported/ossuary_crown.glb-7659901cc67d8d08a8206762a4bbb58c.scn"]
+source_file="res://assets/models/environment/citadel_bay_broken.glb"
+dest_files=["res://.godot/imported/citadel_bay_broken.glb-23fc37b64c57a3d4053a76507cd3eb36.scn"]
 
 [params]
 
@@ -42,4 +42,4 @@ materials/extract_path=""
 _subresources={}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
-gltf/texture_map_mode=0
+gltf/texture_map_mode=1

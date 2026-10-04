@@ -55,7 +55,7 @@ static func action_foot(key: String,clip: String,u: float,side: int) -> Vector3:
 	var start:=stance_foot(key,side)
 	var stepping: int=1 if key=="Vowkeeper" else 0
 	if key not in ["Vowkeeper","Arcanist","Ranger"] or side!=stepping: return start
-	var finish:=start+Vector3(.025,0,-.64) if key=="Vowkeeper" else start+Vector3(-.045,0,-.29 if key=="Arcanist" else -.17)
+	var finish:=start+Vector3(.025,0,-.64) if key=="Vowkeeper" else start+Vector3(-.085 if key=="Arcanist" else -.145,0,-.34 if key=="Arcanist" else -.28)
 	var recovery:=clip.begins_with("recover")
 	var lift:=.12 if key=="Vowkeeper" else .085
 	if recovery:
@@ -86,38 +86,34 @@ static func _base_state() -> Dictionary:
 	return {"hip":Vector3(0,-.075,0),"pelvis":Vector3.ZERO,"chest":Vector3.ZERO,"right":Vector3(.36,1.23,.08),"left":Vector3(-.30,1.41,-.22),"weapon":Vector3.ZERO,"palm":Vector3(-.14,0,-.10),"left_pole":Vector3(-1,-.10,.35),"right_pole":Vector3(1,-.10,.40),"knee_l":Vector3(-.16,0,-1),"knee_r":Vector3(.18,0,-1),"cloth":Vector3(.016,0,0),"draw":0.0,"arrow":0.0,"nock":0.0,"support":0.0}
 
 static func _arcanist_spec(action: String) -> Dictionary:
-	# The left shoulder comes around with the throw. The palm crosses an open
-	# silhouette from beside the head to the camera-near side of the real -Z
-	# target line; it no longer disappears between the torso and the cape.
+	# Rear-leg coil, hip-led transfer and front-knee catch form one throw.
+	# The staff hand travels with the shoulder; the casting palm stays outside.
 	var guard:=_change(_base_state(),{"hip":Vector3(0,-.085,0),"pelvis":Vector3(0,.10,0),"chest":Vector3(0,.12,0),"right":Vector3(.44,1.17,.46),"left":Vector3(-.29,1.43,-.16),"weapon":Vector3(.22,0,-.16)})
-	var gather:=_change(guard,{"hip":Vector3(.025,-.12,.035),"pelvis":Vector3(.01,.14,-.025),"chest":Vector3(.055,.28,-.035),"left":Vector3(-.53,1.67,.08),"right":Vector3(.47,1.12,.50),"left_pole":Vector3(-1,.28,.35),"cloth":Vector3(-.025,.035,-.035)})
-	var load:=_change(gather,{"hip":Vector3(.065,-.20,.065),"pelvis":Vector3(.025,.18,-.04),"chest":Vector3(.08,.43,-.055),"left":Vector3(-.51,1.79,.19),"right":Vector3(.48,1.05,.55),"palm":Vector3(-.35,.20,-.85),"weapon":Vector3(.22,.02,-.18),"knee_r":Vector3(.40,0,-1),"cloth":Vector3(-.055,.065,-.04)})
-	var drive:=_change(load,{"hip":Vector3(-.025,-.125,-.105),"pelvis":Vector3(-.035,-.25,.015),"chest":Vector3(-.16,-.56,.035),"left":Vector3(.20,1.66,-.48),"right":Vector3(.47,1.10,.57),"left_pole":Vector3(-.35,.30,-.65),"palm":Vector3(-1.22,-.10,-.20),"weapon":Vector3(.22,0,-.16),"knee_l":Vector3(-.35,0,-1),"cloth":Vector3(.10,-.09,.025)})
-	var contact:=_change(drive,{"hip":Vector3(-.055,-.175,-.145),"pelvis":Vector3(-.05,-.43,.02),"chest":Vector3(-.22,-.51,.025),"left":Vector3(.23,1.43,-.78),"right":Vector3(.48,1.06,.57),"palm":Vector3(-1.50,0,-.10),"cloth":Vector3(.14,-.10,.04)})
-	var follow:=_change(contact,{"hip":Vector3(-.065,-.195,-.155),"left":Vector3(.25,1.39,-.78),"chest":Vector3(-.235,-.48,.025),"cloth":Vector3(.18,-.035,.015)})
-	var return_pose:=_change(guard,{"hip":Vector3(-.03,-.125,-.04),"pelvis":Vector3(-.015,-.16,.015),"chest":Vector3(-.065,-.32,.015),"left":Vector3(.20,1.49,-.32),"right":Vector3(.45,1.14,.50),"palm":Vector3(-.65,.10,-.38),"cloth":Vector3(.06,.045,-.015)})
+	var gather:=_change(guard,{"hip":Vector3(.085,-.23,.10),"pelvis":Vector3(.04,-.13,-.065),"chest":Vector3(.085,.52,.055),"left":Vector3(-.45,1.45,.14),"right":Vector3(.49,.97,.34),"left_pole":Vector3(-1,.08,.40),"right_pole":Vector3(.80,-.18,.50),"knee_r":Vector3(.35,0,-1),"cloth":Vector3(-.035,.045,-.025)})
+	var load:=_change(gather,{"hip":Vector3(.15,-.325,.15),"pelvis":Vector3(.075,-.20,-.095),"chest":Vector3(.10,.74,.085),"left":Vector3(-.38,1.48,.22),"right":Vector3(.51,.87,.27),"palm":Vector3(-.25,.20,-.80),"weapon":Vector3(.28,.08,-.18),"knee_r":Vector3(.40,0,-1),"cloth":Vector3(-.07,.07,-.035)})
+	var drive:=_change(load,{"hip":Vector3(-.015,-.16,-.16),"pelvis":Vector3(-.07,-.52,.035),"chest":Vector3(-.18,.17,-.065),"left":Vector3(.18,1.54,-.51),"right":Vector3(.47,1.02,.12),"left_pole":Vector3(-.35,.23,-.75),"right_pole":Vector3(.90,-.10,.40),"palm":Vector3(-1.22,-.10,-.20),"weapon":Vector3(.22,0,-.18),"knee_l":Vector3(-.35,0,-1),"cloth":Vector3(.13,-.08,.04)})
+	var contact:=_change(drive,{"hip":Vector3(-.14,-.21,-.27),"pelvis":Vector3(-.09,-.32,.065),"chest":Vector3(-.30,-.54,.015),"left":Vector3(.22,1.32,-.86),"right":Vector3(.42,1.03,.02),"palm":Vector3(-1.50,0,-.10),"cloth":Vector3(.17,-.10,.04)})
+	var follow:=_change(contact,{"hip":Vector3(-.17,-.25,-.29),"left":Vector3(.22,1.28,-.87),"right":Vector3(.40,.98,.00),"chest":Vector3(-.32,-.48,.025),"cloth":Vector3(.20,-.035,.02)})
+	var return_pose:=_change(guard,{"hip":Vector3(-.07,-.17,-.095),"pelvis":Vector3(-.035,-.20,.04),"chest":Vector3(-.08,-.25,.015),"left":Vector3(.12,1.30,-.36),"right":Vector3(.43,1.07,.22),"palm":Vector3(-.65,.10,-.38),"cloth":Vector3(.055,.045,-.015)})
 	if action!="basic":
-		# The signature gathers low then casts upward, with the same visible
-		# cross-body line and a separate catch rather than a stronger basic.
-		gather=_change(gather,{"left":Vector3(-.47,1.29,.11),"palm":Vector3(-.20,.10,-.50)})
-		load=_change(load,{"hip":Vector3(.075,-.235,.07),"left":Vector3(-.48,1.37,.20),"palm":Vector3(.35,.15,-.75)})
-		drive=_change(drive,{"left":Vector3(.17,1.43,-.47),"palm":Vector3(-.80,0,-.20)})
-		contact=_change(contact,{"hip":Vector3(-.045,-.13,-.15),"left":Vector3(.22,1.64,-.74),"palm":Vector3(-1.75,0,-.10)})
-		follow=_change(follow,{"hip":Vector3(-.055,-.155,-.155),"left":Vector3(.24,1.67,-.73),"palm":Vector3(-1.80,0,-.08)})
+		gather=_change(gather,{"left":Vector3(-.42,1.21,.11),"palm":Vector3(-.20,.10,-.50)})
+		load=_change(load,{"left":Vector3(-.41,1.22,.23),"palm":Vector3(.35,.15,-.75)})
+		drive=_change(drive,{"left":Vector3(.16,1.38,-.49),"palm":Vector3(-.80,0,-.20)})
+		contact=_change(contact,{"hip":Vector3(-.13,-.165,-.27),"left":Vector3(.23,1.54,-.81),"palm":Vector3(-1.75,0,-.10)})
+		follow=_change(follow,{"hip":Vector3(-.17,-.205,-.29),"left":Vector3(.24,1.55,-.82),"palm":Vector3(-1.80,0,-.08)})
 	return {"guard":guard,"gather":gather,"load":load,"drive":drive,"contact":contact,"follow":follow,"return":return_pose}
 
 static func _ranger_spec(action: String) -> Dictionary:
-	# A side-on archer, not two arms raised in front of a back-facing cape.
-	# The bow remains aligned with -Z. The right elbow and release hand have
-	# their own clear contour on the camera-near side of the shoulders.
-	var guard:=_change(_base_state(),{"hip":Vector3(0,-.085,0),"pelvis":Vector3(0,-.16,0),"chest":Vector3(-.025,-.34,0),"left":Vector3(-.18,1.23,-.23),"right":Vector3(.30,1.40,-.01),"weapon":Vector3(0,0,-.14),"right_pole":Vector3(1,.18,.65),"left_pole":Vector3(-.65,-.65,-.45)})
-	var gather:=_change(guard,{"hip":Vector3(.015,-.11,.015),"pelvis":Vector3(0,-.30,-.015),"chest":Vector3(-.035,-.50,.02),"left":Vector3(.12,1.58,-.66),"weapon":Vector3.ZERO,"draw":.015,"arrow":1.0,"nock":1.0,"cloth":Vector3(-.02,.035,0)})
-	var load:=_change(gather,{"hip":Vector3(.025,-.15,.01),"pelvis":Vector3(0,-.46,-.025),"chest":Vector3(-.025,-.74,.025),"left":Vector3(.20,1.60,-.78),"draw":.42,"right_pole":Vector3(1,.22,.65),"knee_l":Vector3(-.40,0,-1),"knee_r":Vector3(.28,0,-1),"cloth":Vector3(.01,.07,-.015)})
-	if action!="basic": load=_change(load,{"hip":Vector3(.035,-.18,.02),"left":Vector3(.20,1.61,-.79),"draw":.45})
+	# Set the front boot, sit over the rear leg and draw against that support.
+	# Hips resist the chest turn; after release the torso rises while aim holds.
+	var guard:=_change(_base_state(),{"hip":Vector3(0,-.085,0),"pelvis":Vector3(0,-.24,-.02),"chest":Vector3(.025,-.44,.02),"left":Vector3(-.18,1.23,-.23),"right":Vector3(.30,1.40,-.01),"weapon":Vector3(0,0,-.14),"right_pole":Vector3(1,.20,.65),"left_pole":Vector3(-.65,-.65,-.45)})
+	var gather:=_change(guard,{"hip":Vector3(.065,-.19,.08),"pelvis":Vector3(.025,-.36,-.055),"chest":Vector3(.06,-.36,.06),"left":Vector3(.09,1.39,-.56),"weapon":Vector3.ZERO,"draw":.015,"arrow":1.0,"nock":1.0,"knee_r":Vector3(.40,0,-1),"cloth":Vector3(-.035,.05,0)})
+	var load:=_change(gather,{"hip":Vector3(.085,-.285,.07),"pelvis":Vector3(.04,-.24,-.075),"chest":Vector3(.085,-.96,.075),"left":Vector3(.15,1.46,-.78),"draw":.42,"right_pole":Vector3(1,.20,.65),"knee_l":Vector3(-.42,0,-1),"knee_r":Vector3(.45,0,-1),"cloth":Vector3(-.025,.085,-.025)})
+	if action!="basic": load=_change(load,{"hip":Vector3(.095,-.305,.08),"left":Vector3(.15,1.47,-.79),"draw":.45})
 	load.right=Vector3(load.left)+Vector3(0,0,.34+float(load.draw))
 	var contact:=_change(load,{"draw":0.0,"arrow":0.0,"nock":0.0})
-	var follow:=_change(contact,{"right":Vector3(load.right)+Vector3(.31,.065,.08),"hip":Vector3(.035,Vector3(load.hip).y+.018,.025),"chest":Vector3(-.02,-.68,.025),"cloth":Vector3(.045,-.025,.01)})
-	var return_pose:=_change(guard,{"hip":Vector3(.02,-.115,.015),"pelvis":Vector3(0,-.30,-.01),"chest":Vector3(-.035,-.46,.015),"left":Vector3(.09,1.38,-.53),"right":Vector3(.43,1.38,.055),"weapon":Vector3(0,0,-.10),"cloth":Vector3(.03,-.035,0)})
+	var follow:=_change(contact,{"right":Vector3(load.right)+Vector3(.30,.10,.09),"hip":Vector3(.07,Vector3(load.hip).y+.02,.06),"pelvis":Vector3(.015,-.32,-.03),"chest":Vector3(.035,-.69,.035),"cloth":Vector3(.075,-.04,.015)})
+	var return_pose:=_change(guard,{"hip":Vector3(.03,-.115,.025),"pelvis":Vector3(0,-.32,-.015),"chest":Vector3(.02,-.42,.025),"left":Vector3(.035,1.26,-.48),"right":Vector3(.40,1.25,.09),"weapon":Vector3(0,0,-.10),"cloth":Vector3(.035,-.035,0)})
 	return {"guard":guard,"gather":gather,"load":load,"drive":load,"contact":contact,"follow":follow,"return":return_pose}
 
 static func _foundation_sample(name: String,time: float,guard: Dictionary) -> Dictionary:
@@ -298,13 +294,14 @@ static func _action_state(spec: Dictionary,key: String,clip: String,u: float) ->
 				if u<.72: return _mix(spec.gather,spec.load,smoothstep(.24,.72,u))
 				return spec.load.duplicate(true)
 			if u<.22: return _mix(spec.guard,spec.gather,smoothstep(0,.22,u))
-			if u<.47: return _mix(spec.gather,spec.load,smoothstep(.22,.47,u))
-			if u<.59: return spec.load.duplicate(true)
-			if u<.82: return _mix(spec.load,spec.drive,pow((u-.59)/.23,1.45))
-			return _mix(spec.drive,spec.contact,(u-.82)/.18)
+			if u<.38: return _mix(spec.gather,spec.load,smoothstep(.22,.38,u))
+			if u<.55: return spec.load.duplicate(true)
+			if u<.79: return _mix(spec.load,spec.drive,pow((u-.55)/.24,1.15))
+			return _mix(spec.drive,spec.contact,(u-.79)/.21)
 		var catch:=.31 if key=="Ranger" else .22
 		if u<catch: return _mix(spec.contact,spec.follow,1.0-pow(1.0-u/catch,2.0))
-		if u<.78: return _mix(spec.follow,spec["return"],smoothstep(catch,.78,u))
+		if key=="Ranger" and u<.40: return spec.follow.duplicate(true)
+		if u<.78: return _mix(spec.follow,spec["return"],smoothstep(.40 if key=="Ranger" else catch,.78,u))
 		return _mix(spec["return"],spec.guard,smoothstep(.78,1.0,u))
 	if clip.begins_with("windup"):
 		var heavy:=clip.ends_with("heavy")

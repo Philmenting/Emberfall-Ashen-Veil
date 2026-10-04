@@ -24,6 +24,17 @@ func _initialize()->void:
 	check(is_equal_approx(area,76.0) and overlaps==0,"overlapping rooms have exactly one supported surface without z-fighting")
 	check(holes==0 and not _contains(pieces,Vector2(6,4)),"basin removes the full stone surface above its opening")
 	check(not _contains(pieces,Vector2(2,7)) and not _contains(pieces,Vector2(10,1)),"outside corners remain open rather than filling a rectangular landscape")
+	var perimeter:=0.0;var hole_perimeter:=0.0;var exposed:=true
+	for edge in Ground.boundary_edges(pieces):
+		var direction:Vector2=(edge[1]-edge[0]).normalized()
+		var outward:=Vector2(direction.y,-direction.x)
+		var midpoint:Vector2=(edge[0]+edge[1])*.5
+		var length:float=edge[0].distance_to(edge[1])
+		perimeter+=length
+		exposed=exposed and _contains(pieces,midpoint-outward*.001) and not _contains(pieces,midpoint+outward*.001)
+		if cuts[0].has_point(midpoint+outward*.001): hole_perimeter+=length
+	check(exposed and is_equal_approx(perimeter,48.0),"partial shared edges and T-junctions have no internal foundation faces")
+	check(is_equal_approx(hole_perimeter,8.0),"the basin retains its complete inward-facing stone boundary")
 	for region in range(4):
 		for seed_value in [1979,1042,7351]:
 			var walkable:Array=Layout.floor_rects(region,seed_value,seed_value+17,true,true,true)

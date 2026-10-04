@@ -1,9 +1,8 @@
-"""Original joined regional room architecture for Emberfall 0.47.
-
+"""Original connected ruin construction for Emberfall 0.48.
 Rebuild: blender -b -t 2 --python tools/art/build_ruin_environment.py
-Coordinates are Godot Y-up metres. No downloaded model, generated picture,
-character builder or baked screenshot is used. Each GLB is joined by material;
-floor/foundation surfaces are separate from standing-height wall surfaces.
+Thin load-bearing walls, deep openings, broken crowns and flush paving replace
+0.47 capped bay-boxes. Coordinates/UVs are local metres, Godot Y-up; TANGENT is
+exported. Original code geometry; existing licensed/material provenance retained.
 """
 from pathlib import Path
 from collections import defaultdict
@@ -18,7 +17,7 @@ MATS={}
 REPORT={}
 PALETTE={
  'stone':('747774',0,.94),'edge':('aaa79b',0,.91),'dark':('353d3c',0,.98),
- 'floor':('747774',0,.95),'iron':('535d61',.66,.74),'bronze':('786853',.58,.70),
+ 'masonry':('cccccc',0,.94),'dressed_stone':('cccccc',0,.93),'paving':('cccccc',0,.95),'floor':('747774',0,.95),'iron':('535d61',.66,.74),'bronze':('786853',.58,.70),
  'oak':('3d3128',0,.95),'leather':('494331',0,.98),'ember':('ac4c20',0,.85),
 }
 
@@ -140,285 +139,276 @@ def face_spandrel(mat,half,spring,rise,height,z_front,z_back,pointed=False,openi
    verts=[(x,y,z) for z in (z_front,z_back) for x,y in [(a,aa),(b,bb),(b,top),(a,top)]]
    mesh(mat,verts,[(0,1,2,3),(7,6,5,4),(0,4,5,1),(1,5,6,2),(2,6,7,3),(3,7,4,0)])
 
-def base(depth=5.2,basin=False):
- # Structural 0.85m foundation with paved threshold projecting into the court.
+from contextlib import contextmanager
+from types import SimpleNamespace
+from mathutils import Matrix
+g=SimpleNamespace(mesh=mesh,block=block,loft=loft,tube=tube,arch=arch,arc_y=arc_y,vault=vault,xyz=xyz,GROUPS=GROUPS,MATS=MATS,material=material)
+BASE_MESH=g.mesh
+TX=Matrix.Identity(4)
+
+def mesh(mat,vertices,faces,smooth=False):
+ BASE_MESH(mat,[tuple(TX@Vector(v)) for v in vertices],faces,smooth)
+g.mesh=mesh
+
+@contextmanager
+def at(x=0,y=0,z=0,angle=0):
+ global TX
+ old=TX.copy();TX=TX@Matrix.Translation(Vector((x,y,z)))@Matrix.Rotation(angle,4,'Y')
+ try:yield
+ finally:TX=old
+
+def panel(mat,poly,depth=.4):
+ # Vertical cross section, extruded backward in local Z; top is broken stone.
+ n=len(poly);v=[(x,y,z) for z in (0,-depth) for x,y in poly]
+ faces=[tuple(range(n)),tuple(reversed(range(n,n*2)))]
+ faces += [(i,(i+1)%n,(i+1)%n+n,i+n) for i in range(n)]
+ mesh(mat,v,faces)
+
+def floor_rect(x0,x1,z0,z1,y=-.02):
+ mesh('paving',[(x0,y,z0),(x1,y,z0),(x1,y,z1),(x0,y,z1)],[(0,3,2,1)])
+
+def footing(width=4.2,depth=3.3,basin=False):
  if basin:
-  block('floor',(-2.05,-.43,-depth/2+.3),(.76,.86,depth+2.05),.035,17)
-  block('floor',(2.05,-.43,-depth/2+.3),(.76,.86,depth+2.05),.035,21)
-  block('floor',(0,-.47,-depth+.25),(4.8,.94,.85),.035,3)
-  block('floor',(0,-.13,.81),(4.8,.25,.83),.026,4)
-  block('floor',(0,-1.0,-2.25),(3.5,.24,4.65),.03,5)
+  floor_rect(-2.1,-1.66,-4.55,.55)
+  floor_rect(1.66,2.1,-4.55,.55)
+  floor_rect(-1.66,1.66,-4.55,-4.28)
+  floor_rect(-1.66,1.66,.12,.60)
+  g.block('masonry',(0,-1.0,-2.08),(3.5,.20,4.65),.018,31)
+  for side in (-1,1):
+   g.block('masonry',(side*1.84,-.45,-2.08),(.35,.89,4.45),.014,33)
+   for k in range(7):g.block('dressed_stone',(side*1.84,.015,.1-k*.65),(.43,.16,.635),.015,k)
  else:
-  block('floor',(0,-.46,-depth/2+.35),(4.82,.91,depth+1.72),.038,7)
-  # Finer flush flags have unequal lengths and narrow physical joints.
-  for row in range(math.ceil(depth/1.15)):
-   for col in range(4):
-    x=-1.82+col*1.22;z=.57-row*1.15
-    block('floor',(x,-.023,z),(1.205,.07,1.13),.013,row*7+col)
-
-def pier(x,height,front=.03,style=0):
- rings=[(0,.48,.48),(.18,.52,.51),(.32,.43,.45),(.48,.35,.39),(height-.55,.31,.35),(height-.34,.40,.43),(height-.15,.45,.48),(height,.48,.49)]
- if style==1:rings=[(0,.53,.62),(.25,.57,.65),(.42,.50,.56),(height-.35,.36,.45),(height-.17,.46,.53),(height,.49,.56)]
- loft('stone',(x,0,front),rings,12)
- if style in (0,2):
-  for a in (-.9,0,.9):
-   dx=math.sin(a)*.29;dz=math.cos(a)*.32
-   loft('edge',(x+dx,0,front+dz),[(.40,.063,.063),(.56,.071,.071),(height-.43,.071,.071),(height-.28,.097,.087)],10,True)
-
-# Complete side/rear bay, with region-built surfaces behind its front opening.
-def bay_shell(region):
- spring=[3.3,2.45,1.63,2.0][region];rise=[2.85,1.8,2.15,1.65][region]
- height=[8.1,6.65,7.7,8.5][region];depth=[5.3,5.65,5.3,6.0][region]
- half=[1.77,1.83,1.86,1.64][region];pointed=region==0
- base(depth,region==1)
- # Return walls and rear wall are the enclosure, not a separate backdrop.
+  floor_rect(-width*.5,width*.5,-depth,.58)
+  g.block('masonry',(0,-.56,-depth+.12),(width,1.10,.37),.02,16)
+  for side in (-1,1):g.block('masonry',(side*(width*.5-.20),-.51,-depth*.5),(.45,1.0,depth),.021,17)
+ # One low wall foot; never a full-depth stand or raised paving platform.
  for side in (-1,1):
-  block('stone',(side*2.14,height*.48,-depth*.5),(.52,height*.96,depth),.028,region*10+side)
-  pier(side*1.87,[6.65,4.68,4.14,4.05][region],.05,region)
- block('dark',(0,height*.42,-depth+.16),(3.92,height*.84,.40),.024,13)
- arch('edge',half,spring,rise,.38,.22,-.6,pointed)
- slots=[]
- if region==0:slots=[(x,.68,6.54,7.53) for x in (-1.12,0,1.12)]
- if region==2:slots=[(x,.83,4.62,6.62) for x in (-1.05,0,1.05)]
- if region==3:slots=[(x,.50,4.86,7.04) for x in (-1.07,0,1.07)]
- face_spandrel('stone',half+.13,spring+.08,rise+.07,height,-.08,-1.02,pointed,slots)
- vault('dark',half+.08,spring,rise,.28,-.62,-depth+.35,pointed)
- for z in (-1.8,-3.50):arch('stone',half+.06,spring,rise,.20,z+.12,z-.12,pointed)
- # Deep top coping and cornice connect adjacent modules without a shelf grid.
- for y,thickness,projection in [(height-.46,.20,.05),(height-.18,.20,.12)]:
-  block('edge',(0,y,-.18),(4.80,thickness,1.25+projection),.022,region+int(y*3))
- if region==0:spire_interior(depth)
- elif region==1:archive_interior(depth)
- elif region==2:ossuary_interior(depth)
- else:citadel_interior(depth)
- if region==2:
-  # Cinerary niches cut through the upper front wall, with real inner sills
-  # and separate lidded vessels at depth. They replace a second nave portal.
-  for x in (-1.05,0,1.05):
-   block('dark',(x,5.61,-1.16),(.83,2.06,.20),.006,2)
-   for y in (4.70,5.72):
-    block('edge',(x,y,-.57),(.87,.12,1.12),.014,3)
-    loft('stone',(x,y+.08,-.62),[(0,.24,.21),(.09,.28,.24),(.38,.25,.22),(.49,.19,.19),(.56,.27,.24),(.63,.17,.16)],16)
-  block('edge',(0,4.29,.16),(4.54,.26,.65),.035,3)
- if region==3:
-  for y in (4.39,7.21):block('iron',(0,y,.21),(4.70,.23,.41),.010,1)
-  for x in (-1.70,1.70):
-   tube('iron',[(x,3.43,.32),(x,6.76,.33),(x*.70,7.52,.21)],.095,12)
-  for x in (-1.07,0,1.07):
-   for row in range(5):block('iron',(x,5.12+row*.37,-.12),(.55,.10,.45),.007,row)
- return depth,height
+  g.block('masonry',(side*(width*.5-.20),.12,-depth*.5),(.48,.28,depth),.013,14)
 
-def bell(center,radius=.71):
- rings=[(0,radius,.9*radius),(.09,radius*1.03,.93*radius),(.16,radius*.88,.80*radius),(.43,radius*.62,.58*radius),(.83,radius*.49,.47*radius),(1.03,radius*.26,.25*radius),(1.12,.075,.07),(1.01,.07,.06),(.84,radius*.40,.39*radius),(.39,radius*.53,.5*radius),(.14,radius*.82,.74*radius),(0,radius*.90,.80*radius)]
- loft('bronze',center,rings,36,True,True)
- x,y,z=center;tube('iron',[(x,y+.9,z),(x,y-.16,z)],.042,10)
- loft('bronze',(x,y-.28,z),[(0,.085,.085),(.08,.11,.11),(.17,.07,.07)],12,True)
+def engaged_pier(x,spring,spire):
+ if spire:
+  rings=[(-.02,.38,.38),(.16,.39,.39),(.29,.30,.31),(.43,.25,.26),(spring-.32,.25,.26),(spring-.22,.33,.35),(spring,.37,.37)]
+  g.loft('dressed_stone',(x,0,.08),rings,10)
+  for dx,dz in [(-.23,.03),(.23,.03),(0,.24)]:
+   g.loft('dressed_stone',(x+dx,0,dz+.05),[(.24,.075,.075),(.37,.095,.095),(spring-.2,.084,.084),(spring-.05,.13,.12)],8,True)
+ else:
+  g.block('masonry',(x,spring*.5,-.13),(.58,spring,.65),.018,6)
+  g.block('dressed_stone',(x,.13,.03),(.75,.27,.84),.019,3)
+  g.block('dressed_stone',(x,spring-.02,.03),(.72,.20,.78),.017,5)
 
-def spire_interior(depth):
- # Bell is hung from a connected gallery; the shrine rests against its rear wall.
- block('iron',(0,5.75,-2.65),(3.75,.21,.34),.008,2)
- tube('iron',[(0,5.65,-2.65),(0,4.1,-2.65)],.035,10)
- bell((0,2.99,-2.65),.81)
- for side in (-1,1):
-  tube('iron',[(side*1.75,5.7,-2.65),(side*.75,6.4,-2.65),(0,6.45,-2.65)],.045,10)
-  block('stone',(side*1.52,.34,-3.85),(.57,.67,1.22),.035,7)
- # Funeral chest with a curved lid and carved panels; its scale is architectural.
- reliquary((0,.12,-4.0),1.0)
- for i in range(4):
-  x=(i-1.5)*.71
-  block('dark',(x,6.22,-depth+.42),(.31,1.42,.10),.0)
-  arch('edge',.23,6.68,.62,.10,-depth+.52,-depth+.39,True,12)
+def opening_wall(spire=True,variant=0,back=False,settings=None):
+ half=1.65 if spire else 1.58;spring=3.1 if spire else 2.05;rise=2.05 if spire else 1.34
+ crest=6.3 if spire else 4.5;depth=.43 if spire else .57
+ if settings:
+  half=settings['half'];spring=settings['spring'];rise=settings['rise'];crest=settings['crest'];depth=settings['depth']
+ # Elevation is a wall, not a capped 5m deep solid. Broken silhouette is authored.
+ profile=[crest+.2,crest+.24,crest-.20,crest-.2,crest-.78,crest-.63,crest-.63,crest-.08,crest-.16]
+ if variant%2:profile=list(reversed([p-.55 for p in profile]))
+ segments=24;xs=[-2.1+4.2*i/segments for i in range(segments+1)]
+ def height(x):
+  q=(x+2.1)/4.2*(len(profile)-1);a=min(len(profile)-2,int(q));return profile[a]*(1-(q-a))+profile[a+1]*(q-a)
+ for i in range(segments):
+  a,b=xs[i:i+2]
+  def inner(x):return g.arc_y(x,half,spring,rise,spire)+.16 if abs(x)<half+.02 else 0
+  lo1,lo2=inner(a),inner(b);hi1,hi2=height(a),height(b)
+  if max(lo1,lo2)>=min(hi1,hi2):continue
+  panel('masonry',[(a,lo1),(b,lo2),(b,hi2),(a,hi1)],depth)
+ # Cut coping blocks follow the true wall thickness and variable crown, .5m scale.
+ for i in range(8):
+  x=-1.85+i*.53;h=height(x)
+  g.block('dressed_stone',(x,h+.025,-depth*.5),(.50,.13,depth+.12),.023,variant*13+i)
+ g.arch('dressed_stone',half,spring,rise,.25,.16,-depth-.07,spire,18)
+ for side in (-1,1):engaged_pier(side*1.88,spring,spire)
+ # Recessed single upper lancet rises with the remaining pier rather than a box cap.
+ if spire and variant==0:
+  with at(x=-1.84,y=0,z=-.22):
+   g.loft('dressed_stone',(0,0,0),[(spring,.16,.21),(crest-.4,.12,.16),(crest+.5,.065,.1),(crest+.62,.018,.022)],8)
 
-def books(center,width=3.3,height=2.3):
- x,y,z=center
- for side in (-1,1):block('oak',(x+side*width*.5,y+height*.5,z),(.15,height,.61),.009,4)
+def buttress(x,depth,height):
+ # Unequal stepped and sloping load-bearing section, 0.65–1m thick.
+ with at(x=x,z=-.44):
+  for level,(yy,hh,out) in enumerate([(0,.50,.9),(.50,1.35,.72),(1.85,1.75,.49),(3.60,max(.1,height-3.6),.32)]):
+   g.block('masonry',(0,yy+hh*.5,-out*.5),(.66,hh,out),.016,level)
+  panel('dressed_stone',[(-.39,height-.05),(.39,height-.05),(.26,height+.10),(-.26,height+.14)],.45)
+
+def spire_bay(variant=0,close_end=False):
+ footing(depth=3.35)
+ opening_wall(True,variant)
+ # Back enclosure has a second actual opening; it is not a black wall prop.
+ with at(z=-3.35):opening_wall(True,(variant+1)%2,True)
+ if close_end:
+  with at(x=-2.10,z=-.24,angle=math.pi*.5):
+   panel('masonry',[(-3.11,0),(0,0),(0,5.6),(-.62,5.95),(-1.50,5.70),(-3.11,6.2)],.40)
+ for x in (-1.94,1.94):buttress(x,3.4,5.35)
+ # Broken springing survives over the side aisle; no sheet spans the central path.
+ for z in (-.52,-2.92):
+  g.arch('dressed_stone',1.57,3.25,2.0,.17,z+.10,z-.11,True,16)
+ # Narrow supported walk along rear gallery; open boards/stone coping distinguish it.
+ floor_rect(-2.07,2.07,-3.34,-2.48,3.29)
+ g.block('dressed_stone',(0,3.20,-2.86),(4.14,.19,.92),.014,3)
+ for x in (-1.62,1.52):
+  with at(x=x,z=-2.51):panel('dressed_stone',[(-.14,2.58),(.14,2.58),(.31,3.2),(-.31,3.2)],.60)
+ if variant==0:
+  # One retained bell belongs to the load-bearing bay, not every module.
+  g.block('iron',(0,4.15,-1.85),(3.2,.15,.13),.005,1)
+  g.tube('iron',[(0,4.10,-1.85),(0,3.53,-1.85)],.025,6)
+  g.loft('bronze',(0,2.98,-1.85),[(0,.42,.42),(.07,.44,.44),(.13,.35,.35),(.54,.22,.22),(.62,.16,.16),(.68,.1,.1)],16)
+
+def archive_bay(variant=0,close_end=False):
+ footing(depth=4.55,basin=True)
+ opening_wall(False,variant)
+ # Real water rectangle exactly matches the current basin-hole contract.
+ # Animated basin surface is supplied once by RuinArchitecture._basin.
+ # Segmental masonry bridge: actual shallow arch, supported by the side banks.
+ g.arch('dressed_stone',1.74,-.60,.46,.12,-.63,-1.63,False,14)
+ floor_rect(-1.84,1.84,-1.68,-.61,-.02)
+ for side in (-1,1):g.block('dressed_stone',(side*1.76,-.25,-1.14),(.25,.50,1.17),.012,2)
+ # Deep raised retaining stack wall with masonry shelves, dry above the basin.
+ with at(z=-4.43):
+  panel('masonry',[(-2.1,-.85),(2.1,-.85),(2.1,5.15),(1.2,5.35),(.4,5.02),(-.4,5.19),(-1.2,5.35),(-2.1,4.95)],.58)
+ for x in (-1.85,0,1.85):g.block('dressed_stone',(x,2.48,-4.12),(.22,4.30,.34),.01,4)
  for row in range(4):
-  yy=y+row*(height/3)
-  block('oak',(x,yy,z),(width+.13,.12,.68),.009,row)
-  if row==3:continue
-  for i in range(12):
-   xx=x-width*.45+i*(width*.90/12);h=.40+((i*7+row*3)%5)*.039
-   block('leather',(xx,yy+.10+h*.5,z+.08),(.16,h,.37),.006,i+row*11)
-   for dy in [-.10,.10]:block('bronze',(xx,yy+.10+h*.5+dy,z+.275),(.161,.022,.014),0)
-
-def archive_interior(depth):
- # Raised archive stack on the far bank. Full stone basin, supported bridge.
- block('stone',(0,.36,-4.65),(3.78,.75,1.15),.025,3)
- books((0,.79,-4.61),3.32,2.5)
+  yy=.56+row*.84
+  g.block('dressed_stone',(0,yy,-3.93),(3.86,.15,.82),.012,row)
+  for k in range(14):
+   x=-1.65+k*.253;h=.36+.15*((k*7+row*3)%5)/4
+   simple_block('oak',(x,yy+.09+h*.5,-4.04),(.14,h,.26))
+ # Wetload buttress and uneven rear coping, not repeated huge blank piers.
  for side in (-1,1):
-  block('edge',(side*1.83,-.05,-2.30),(.28,.42,4.56),.018,4)
-  block('dark',(side*1.84,-.58,-2.30),(.33,.78,4.56),.015,5)
- # A small genuine masonry bridge spans the water: deck, haunches and soffit.
- block('floor',(0,-.065,-1.32),(3.74,.18,1.08),.015,9)
- for side in (-1,1):block('stone',(side*1.39,-.34,-1.32),(.85,.54,1.08),.018,4)
- arch('stone',1.15,-.68,.48,.13,-.79,-1.86,False,18)
- # Face of the water-control sluice remains part of the bay's construction.
- for x in (-.55,-.28,0,.28,.55):tube('iron',[(x,.18,-3.82),(x,1.22,-3.82)],.026,8)
- block('iron',(0,1.16,-3.82),(1.42,.12,.13),.007,4)
+  with at(x=side*2.02,z=-4.01):panel('masonry',[(-.3,0),(.3,0),(.22,4.6),(-.22,4.7)],.62)
+ if close_end:
+  with at(x=-2.10,z=-.42,angle=math.pi*.5):panel('masonry',[(-4.06,-.6),(0,-.6),(0,3.8),(-.8,4.2),(-2.2,4.4),(-4.06,4.65)],.51)
+ # Sluice bars at basin head belong to the channel structure.
+ for x in (-1.1,-.72,-.34,.04,.42,.8,1.18):g.tube('iron',[(x,-.70,-3.18),(x,.15,-3.18)],.026,6)
 
 
-def reliquary(center,scale=1):
- x,y,z=center
- def p(a,b,c):return (x+a*scale,y+b*scale,z+c*scale)
- block('stone',p(0,.14,0),(2.02*scale,.28*scale,1.07*scale),.027,12)
- block('dark',p(0,.44,0),(1.75*scale,.45*scale,.87*scale),.031,4)
- # Many profile stations make a carved barrel lid, not a plain box/cone.
- n=18;verts=[]
- for zz in (-.47,.47):
-  for i in range(n+1):
-   angle=math.pi*i/n;verts.append(p(math.cos(angle)*.93,.67+math.sin(angle)*.24,zz))
- faces=[]
- for i in range(n):faces.append((i,i+1,n+2+i,n+1+i))
- faces.extend([tuple(reversed(range(n+1))),tuple(n+1+i for i in range(n+1))]);mesh('stone',verts,faces)
- for xx in (-.62,0,.62):
-  tube('bronze',[p(xx,.65,-.49),p(xx,.83,-.31),p(xx,.91,0),p(xx,.83,.31),p(xx,.65,.49)],.022*scale,8)
- for xx in (-.53,0,.53):
-  block('edge',p(xx,.45,.452),(.30*scale,.26*scale,.035*scale),.009,7)
-  tube('bronze',[p(xx-.08,.48,.482),p(xx,.36,.486),p(xx+.08,.48,.482)],.012*scale,8)
+def simple_block(mat,center,size):
+ x,y,z=center;sx,sy,sz=[v*.5 for v in size]
+ verts=[(x+a*sx,y+b*sy,z+c*sz) for a,b,c in [(-1,-1,-1),(1,-1,-1),(1,1,-1),(-1,1,-1),(-1,-1,1),(1,-1,1),(1,1,1),(-1,1,1)]]
+ mesh(mat,verts,[(0,3,2,1),(4,5,6,7),(0,1,5,4),(3,7,6,2),(0,4,7,3),(1,2,6,5)])
+def burial_cell(cx,cy,variant):
+ # A carved recess with a real back, soffit and lower ledge; no bone-cone proxy.
+ with at(x=cx,y=cy,z=-3.30):
+  half=.48;spring=.62;rise=.40
+  for side in (-1,1):g.block('masonry',(side*.57,.64,-.28),(.20,1.28,.66),.012,variant)
+  g.block('masonry',(0,.65,-.65),(1.05,1.30,.14),.008,variant)
+  g.arch('dressed_stone',half,spring,rise,.12,.12,-.66,False,10)
+  g.block('dressed_stone',(0,.03,-.27),(1.12,.13,.84),.015,3)
+  g.loft('dressed_stone',(0,.12,-.30),[(0,.19,.15),(.07,.22,.17),(.34,.21,.16),(.46,.14,.12),(.51,.12,.10),(.55,.17,.14)],12,True)
 
-
-def ossuary_interior(depth):
- # Deep, carved burial shelves; the recesses hold actual lidded reliquaries.
+def ossuary_bay(variant=0,close_end=False):
+ footing(depth=3.80)
+ opening_wall(False,variant,settings={'half':1.72,'spring':1.70,'rise':1.72,'crest':4.80,'depth':.65})
+ # Heavy carved burial walls are the enclosure, rather than a shelf prop.
  for row in range(2):
-  yy=.16+row*1.53
-  block('stone',(0,yy,-4.37),(3.76,.20,1.35),.020,row)
-  for x in (-.98,.98):
-   reliquary((x,yy+.14,-4.32),.82)
-   block('dark',(x,yy+.82,-4.91),(1.67,1.05,.10),.0)
-   # Nested carved reveals and vertical fluting, separate from pale bone props.
-   for side in (-1,1):tube('edge',[(x+side*.87,yy+.13,-3.68),(x+side*.87,yy+1.15,-3.68),(x+side*.45,yy+1.45,-3.68),(x,yy+1.60,-3.68)],.04,8)
+  for col in range(3):burial_cell(-1.28+col*1.28,.35+row*1.68,row*5+col+variant)
+ with at(z=-3.89):panel('masonry',[(-2.1,0),(2.1,0),(2.1,4.45),(1.2,4.68),(.35,4.38),(-.5,4.57),(-1.3,4.47),(-2.1,4.68)],.43)
  for side in (-1,1):
-  for i in range(4):
-   zz=-.85-i*.96
-   block('edge',(side*1.90,2.03,zz),(.15,2.86,.16),.009,i)
-   block('stone',(side*1.90,.55,zz),(.27,.19,.29),.010,i)
- # A central stone shrine belongs to the bay floor, outside combat geometry.
- reliquary((0,.05,-1.30),1.22)
+  with at(x=side*1.98,z=-.38):panel('masonry',[(-.19,0),(.19,0),(.14,3.92),(-.14,4.06)],3.28)
+ for z in (-.68,-3.20):g.arch('dressed_stone',1.69,1.88,1.75,.20,z+.13,z-.12,False,16)
+ # One attached funerary chest, fitted to the burial bay and clear of the route.
+ g.block('dressed_stone',(0,.24,-2.83),(1.56,.47,.85),.022,6)
+ g.block('dressed_stone',(0,.54,-2.83),(1.68,.16,.95),.030,4)
+ if variant==0:g.block('dressed_stone',(0,.67,-2.83),(1.29,.17,.64),.030,9)
 
-
-def citadel_interior(depth):
- # Fire is recessed more than two metres behind the heavy throat and iron grate.
- for z in (-.7,-1.0):arch('iron',1.57,1.48,1.43,.12,z+.05,z-.07,False,22)
- for i in range(9):
-  x=(i-4)*.32
-  top=2.77-abs(x)*.17
-  tube('iron',[(x,.14,-1.20),(x,1.26,-1.29),(x,top,-1.24)],.044,10)
- for y in (.31,1.53,2.28):block('iron',(0,y,-1.26),(3.06,.13,.16),.008,1)
- for i in range(14):
-  x=((i*7)%11-5)*.23;z=-3.45+(i%3)*.19
-  block('ember',(x,.09+(i%4)*.045,z),(.33,.18,.30),.012,i)
- # Ducts and forged ties visually join the upper mass to the throat.
+def chimney(cx,height):
+ # Open flue rather than a solid cube or a bright painted roof cap.
  for side in (-1,1):
-  tube('iron',[(side*1.88,.40,-2.9),(side*1.88,3.45,-2.9),(side*.98,4.72,-3.3),(side*.98,6.54,-3.3)],.19,14)
-  for y in (1.0,2.75,4.65):
-   block('iron',(side*1.88,y,-2.9),(.50,.14,.49),.009,int(y))
- # Tall connected chimney shoulders and a visibly open flue crown.
+  g.block('masonry',(cx+side*.43,height*.5,-3.80),(.26,height,1.12),.02,7)
+  g.block('masonry',(cx,height*.5,-3.80+side*.43),(.63,height,.26),.02,5)
  for side in (-1,1):
-  block('stone',(side*1.28,7.75,-2.1),(.75,2.3,3.15),.027,7)
-  block('stone',(0,7.75,-2.1+side*1.17),(1.85,2.3,.62),.022,3)
- block('dark',(0,7.75,-2.1),(1.8,.20,1.8),.020,1)
+  g.block('dressed_stone',(cx+side*.43,height,-3.80),(.34,.18,1.16),.017,2)
+  g.block('dressed_stone',(cx,height,-3.80+side*.43),(.65,.18,.34),.017,3)
 
+def citadel_bay(variant=0,close_end=False):
+ footing(depth=4.42)
+ opening_wall(False,variant,settings={'half':1.67,'spring':2.06,'rise':.68,'crest':4.34,'depth':.69})
+ # Structural furnace chamber recessed behind the load-bearing front arcade.
+ with at(z=-2.1):
+  for side in (-1,1):g.block('masonry',(side*1.58,1.2,-.93),(.50,2.40,2.28),.028,9)
+  g.vault('masonry',1.29,1.35,1.00,.27,.04,-2.17,False)
+  g.arch('dressed_stone',1.29,1.35,1.00,.25,.16,-.22,False,16)
+  g.block('masonry',(0,1.12,-2.12),(2.80,2.24,.32),.02,6)
+  for k in range(12):
+   x=-1.15+k*.21;g.tube('iron',[(x,.12,.04),(x,1.45+.57*math.sqrt(max(0,1-(x/1.25)**2)),.04)],.033,6)
+  for y in (.42,1.35):g.block('iron',(0,y,.06),(2.47,.065,.07),.006,4)
+  for k in range(6):g.block('ember',(-.91+k*.37,.20,-1.18+(k%2)*.2),(.29,.18,.48),.02,k)
+ chimney(-1.44,6.13 if variant==0 else 5.64)
+ chimney(1.44,5.57 if variant==0 else 6.31)
+ # Narrow iron maintenance walk, carried by the kiln sides, stays inside the bay.
+ g.block('iron',(0,3.21,-2.97),(3.87,.15,.77),.009,3)
+ for side in (-1,1):
+  g.block('iron',(side*1.96,2.21,-2.61),(.12,2.14,.12),.003,2)
+  g.block('iron',(side*1.96,3.89,-2.61),(.075,1.20,.075),.003,1)
+ for y in (3.53,4.03):g.block('iron',(0,y,-2.61),(3.97,.055,.055),.003,7)
 
-def crown(region):
- # High structural gallery links bays and crosses actual passages without
- # placing a low beam or any jamb into the walking / warning envelope.
- low=3.70;half=2.4;rise=[1.7,1.20,1.9,1.3][region];top=[8.1,6.65,7.7,8.5][region]
- arch('stone',half,low,rise,.43,.08,-1.10,region in (0,2))
- face_spandrel('stone',half,low+.05,rise+.05,top,-.10,-1.13,region in (0,2))
- vault('dark',half,low,rise,.22,-1.0,-4.80,region in (0,2))
- block('stone',(0,top-.25,-2.64),(4.80,.42,4.50),.022,region)
- block('edge',(0,top-.12,.02),(4.84,.18,.43),.015,4)
- if region==0:
-  # Gallery arcading is carved into a deep, solid upper facade.
-  for x in (-1.5,0,1.5):
-   block('dark',(x,6.51,.145),(.99,1.0,.10),.004,2)
-   for side in (-1,1):loft('edge',(x+side*.52,5.92,.21),[(0,.07,.07),(.70,.07,.07),(.79,.095,.095)],10,True)
-   # individual arch transform is authored directly in the vertex buffer
-   start={key:len(value[0]) for key,value in GROUPS.items()}
-   arch('edge',.49,6.57,.61,.10,.23,.10,True,12)
-   for key,(v,f) in GROUPS.items():
-    for i in range(start.get(key,0),len(v)):v[i]=(v[i][0]+x,v[i][1],v[i][2])
- elif region==3:
-  for y in (5.65,7.45):block('iron',(0,y,.17),(4.79,.21,.32),.006,1)
-  for x in (-1.8,-.9,0,.9,1.8):tube('iron',[(x,5.6,.28),(x+.75,7.5,.28)],.075,10)
- elif region==2:
-  for x in (-1.5,0,1.5):
-   loft('edge',(x,5.55,.22),[(0,.14,.12),(.18,.20,.14),(.40,.20,.13),(.64,.14,.12)],12)
-
-
-def solid(region):
- # Blind thick buttress used only for narrow safe intervals between passages.
- height=[7.6,6.1,7.3,8.1][region];depth=[5.3,5.65,5.3,6.0][region]
- base(depth,False)
- block('stone',(0,height*.5,-depth*.5),(4.79,height,depth),.040,region)
- for x in (-1.5,0,1.5):
-  block('dark',(x,height*.46,.045),(.64,height*.55,.06),.015,2)
-  for side in (-1,1):tube('edge',[(x+side*.38,.6,.14),(x+side*.38,height*.72,.14),(x,height*.81,.14)],.045,8)
- for y in (.34,height-.49,height-.18):block('edge',(0,y,.13),(4.80,.18,.48),.013,4)
-
+def narrow_remnant(region):
+ # A narrow interval is a torn wall/pier, never a compressed deep bay-box.
+ heights=[4.5,3.4,3.85,4.25];h=heights[region]
+ panel('masonry',[(-2.10,0),(2.10,0),(2.10,h-.30),(1.17,h-.22),(.83,h+.08),(.14,h-.08),(-.49,h-.43),(-1.26,h-.12),(-2.1,h-.21)],.68)
+ for x in (-1.65,-.8,.06,.92,1.73):g.block('dressed_stone',(x,.16,-.24),(.78,.30,.84),.023,3)
+ floor_rect(-2.10,2.10,-.72,.56)
 
 def low_return(region):
- # Low camera-side construction with a real paved foundation and broken edge.
- depth=2.25;base(depth,False)
- height=[.95,.72,1.08,.84][region]
- block('stone',(0,height*.43,-.36),(4.8,height*.86,.87),.035,12)
- for i in range(5):
-  x=-1.96+i*.97;h=height+(.10 if i in (0,3) else -.04)
-  block('edge',(x,h,-.36),(.96,.18,1.07),.025,i)
- if region==3:
-  for x in (-1.85,0,1.85):block('iron',(x,.55,.12),(.14,.83,.17),.007,2)
+ heights=[.55,.82,.65,1.03,.43,.69];width=.7
+ for i,h in enumerate(heights):
+  x=-1.75+i*width;g.block('masonry',(x,h*.5,-.32),(.72,h,.67),.042,region*19+i)
+  if i not in (1,4):g.block('dressed_stone',(x,h+.035,-.30),(.73,.13,.78),.036,i)
+ floor_rect(-2.10,2.10,-.75,.58)
 
+def reset():
+ bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
+ g.GROUPS.clear()
 
-def export(name,build):
- global GROUPS
- GROUPS={};bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
- build()
- total=0;bounds=[];surfaces=[]
- for (mat,smooth),(verts,faces) in GROUPS.items():
-  if not verts:continue
-  data=bpy.data.meshes.new(name+'_'+mat);data.from_pydata([xyz(p) for p in verts],[],faces);data.update()
-  obj=bpy.data.objects.new(name+'__'+mat+('_curved' if smooth else ''),data);bpy.context.collection.objects.link(obj)
-  target='stone' if mat in ('stone','edge','dark') else mat
-  data.materials.append(material(target))
-  if target=='stone':
-   tint={'stone':.88,'edge':1.0,'dark':.56}[mat]
-   colors=data.color_attributes.new(name='MasonryTint',type='FLOAT_COLOR',domain='CORNER')
-   for color in colors.data:color.color=(tint,tint,tint,1)
-  for face in data.polygons:face.use_smooth=smooth
-  # Correct every closed/component surface normal before triangulation.
+def export(name):
+ stats={};bounds=[]
+ for (family,smooth),(verts,faces) in g.GROUPS.items():
+  m=bpy.data.meshes.new(name+'_'+family);m.from_pydata([g.xyz(v) for v in verts],[],faces);m.update()
+  obj=bpy.data.objects.new(name+'_'+family,m);bpy.context.collection.objects.link(obj)
+  mat=g.material(family)
+  obj.data.materials.append(mat)
   bpy.context.view_layer.objects.active=obj;obj.select_set(True)
   bpy.ops.object.mode_set(mode='EDIT');bpy.ops.mesh.select_all(action='SELECT');bpy.ops.mesh.normals_make_consistent(inside=False);bpy.ops.object.mode_set(mode='OBJECT')
-  obj.select_set(False)
- # Join hard and curved subparts per material into one draw surface.
- for mat in PALETTE:
-  objects=[o for o in bpy.context.scene.objects if o.type=='MESH' and o.data.materials[0].name=='environment_'+mat]
-  if not objects:continue
-  bpy.ops.object.select_all(action='DESELECT')
-  for obj in objects:obj.select_set(True)
-  bpy.context.view_layer.objects.active=objects[0];bpy.ops.object.join();obj=bpy.context.object;obj.name=name+'__'+mat
-  modifier=obj.modifiers.new('triangulated_surface','TRIANGULATE');bpy.ops.object.modifier_apply(modifier=modifier.name)
-  total+=len(obj.data.polygons);surfaces.append(mat)
-  # World-space texture materials use triplanar coordinates at runtime; include
-  # regular UVs for the existing crafted wood/iron material as well.
-  if not obj.data.uv_layers:obj.data.uv_layers.new(name='UVMap')
-  uv=obj.data.uv_layers.active.data
+  if family in ('paving','water'):
+   for face in m.polygons:
+    if face.normal.z<0:face.flip()
+   m.update()
+  mod=obj.modifiers.new('triangulation','TRIANGULATE');bpy.ops.object.modifier_apply(modifier=mod.name)
+  uv=obj.data.uv_layers.new(name='UVMetres')
   for face in obj.data.polygons:
-   n=face.normal
+   n=face.normal;gy=n.z;gx=n.x;gz=-n.y
+   # Signed dominant-plane local METRES, never normalized per object bounds.
    for li in face.loop_indices:
-    p=obj.data.vertices[obj.data.loops[li].vertex_index].co
-    uv[li].uv=(p.x,p.z) if abs(n.y)>=max(abs(n.x),abs(n.z)) else ((p.y,p.z) if abs(n.x)>abs(n.z) else (p.x,p.y))
-  for v in obj.data.vertices:bounds.append((v.co.x,v.co.z,-v.co.y))
-  obj.select_set(False)
+    p=obj.data.vertices[obj.data.loops[li].vertex_index].co;x,y,z=p.x,p.z,-p.y
+    if abs(gy)>.70:u,v=x,-z*(1 if gy>=0 else -1)
+    elif abs(gx)>abs(gz):u,v=-z*(1 if gx>=0 else -1),y
+    else:u,v=x*(1 if gz>=0 else -1),y
+    uv.data[li].uv=(u,v)
+   face.use_smooth=smooth
+  stats[family]=stats.get(family,0)+len(m.polygons)
+  bounds.extend(verts);obj.select_set(False)
+ # Join by family even when some primitives used smooth normals.
+ for family in sorted(set(k[0] for k in g.GROUPS)):
+  objects=[o for o in bpy.context.scene.objects if o.type=='MESH' and o.data.materials[0].name=='environment_'+family]
+  bpy.ops.object.select_all(action='DESELECT')
+  for o in objects:o.select_set(True)
+  bpy.context.view_layer.objects.active=objects[0]
+  if len(objects)>1:bpy.ops.object.join()
+  objects[0].name=name+'__'+family
  bpy.ops.object.select_all(action='SELECT')
  path=OUT/(name+'.glb')
- bpy.ops.export_scene.gltf(filepath=str(path),export_format='GLB',use_selection=True,export_materials='EXPORT',export_yup=True,export_animations=False,export_cameras=False,export_lights=False)
- mins=[min(p[i] for p in bounds) for i in range(3)];maxs=[max(p[i] for p in bounds) for i in range(3)]
- REPORT[name]={'triangles':total,'material_meshes':len(surfaces),'surfaces':surfaces,'bounds_min':mins,'bounds_max':maxs,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()}
- print('ENVIRONMENT',name,total,len(surfaces),mins,maxs,flush=True)
+ bpy.ops.export_scene.gltf(filepath=str(path),export_format='GLB',use_selection=True,export_materials='EXPORT',export_tangents=True,export_animations=False,export_cameras=False,export_lights=False)
+ return {'file':str(path.relative_to(ROOT)),'triangles_by_surface':stats,'triangles':sum(stats.values()),'material_meshes':len(stats),'surfaces':list(stats),'uv_units':'local metres','tangents_exported':True,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'bounds_min':[min(p[i] for p in bounds) for i in range(3)],'bounds_max':[max(p[i] for p in bounds) for i in range(3)]}
 
 if __name__=='__main__':
  OUT.mkdir(parents=True,exist_ok=True)
- for region,prefix in enumerate(['spire','archive','ossuary','citadel']):
-  for kind,fn in [('bay',bay_shell),('crown',crown),('solid',solid),('return',low_return)]:export(prefix+'_'+kind,lambda r=region,f=fn:f(r))
- manifest={'origin':'Original code-authored Blender geometry','generator':'tools/art/build_ruin_environment.py','generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'coordinates':'Godot Y-up metres; front faces +Z, bay depth extends -Z','textures':'Runtime uses existing documented stone maps and material-atlas textures; no new raster','models':REPORT}
+ report={}
+ for region,(prefix,fn) in enumerate([('spire',spire_bay),('archive',archive_bay),('ossuary',ossuary_bay),('citadel',citadel_bay)]):
+  for kind in ['bay','bay_broken','solid','return']:
+   reset()
+   if kind.startswith('bay'):fn(1 if kind=='bay_broken' else 0,False)
+   elif kind=='solid':narrow_remnant(region)
+   else:low_return(region)
+   key=prefix+'_'+kind;report[key]=export(key);print('ENVIRONMENT',key,report[key]['triangles'],report[key]['material_meshes'],flush=True)
+ manifest={'origin':'Original code-authored Blender geometry','generator':'tools/art/build_ruin_environment.py','generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'coordinates':'Godot Y-up metres; front +Z; depth -Z. UVMetres uses signed dominant planar axes in local metres, with glTF TANGENT exported.','materials':'Separate masonry and dressed_stone use the shared three-sampler UV shader; paving uses the identical court material. Existing documented CC0 and original textures, no new raster or third-party model.','models':report}
  (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')

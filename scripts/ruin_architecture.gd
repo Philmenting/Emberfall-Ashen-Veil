@@ -1,24 +1,25 @@
 extends RefCounted
-## Connected original 0.47 regional architecture, with explicit passage clearance.
+## Connected original 0.48 regional architecture, with explicit passage clearance.
 const Layout=preload("res://scripts/dungeon_layout.gd")
+const RoomGround=preload("res://scripts/room_ground.gd")
 const Authored=preload("res://scripts/authored_architecture.gd")
 const MODEL_ROOT="res://assets/models/environment/"
 const REGIONS=["spire","archive","ossuary","citadel"]
 const MODELS={
 	"spire_bay":preload("res://assets/models/environment/spire_bay.glb"),
-	"spire_crown":preload("res://assets/models/environment/spire_crown.glb"),
+	"spire_bay_broken":preload("res://assets/models/environment/spire_bay_broken.glb"),
 	"spire_solid":preload("res://assets/models/environment/spire_solid.glb"),
 	"spire_return":preload("res://assets/models/environment/spire_return.glb"),
 	"archive_bay":preload("res://assets/models/environment/archive_bay.glb"),
-	"archive_crown":preload("res://assets/models/environment/archive_crown.glb"),
+	"archive_bay_broken":preload("res://assets/models/environment/archive_bay_broken.glb"),
 	"archive_solid":preload("res://assets/models/environment/archive_solid.glb"),
 	"archive_return":preload("res://assets/models/environment/archive_return.glb"),
 	"ossuary_bay":preload("res://assets/models/environment/ossuary_bay.glb"),
-	"ossuary_crown":preload("res://assets/models/environment/ossuary_crown.glb"),
+	"ossuary_bay_broken":preload("res://assets/models/environment/ossuary_bay_broken.glb"),
 	"ossuary_solid":preload("res://assets/models/environment/ossuary_solid.glb"),
 	"ossuary_return":preload("res://assets/models/environment/ossuary_return.glb"),
 	"citadel_bay":preload("res://assets/models/environment/citadel_bay.glb"),
-	"citadel_crown":preload("res://assets/models/environment/citadel_crown.glb"),
+	"citadel_bay_broken":preload("res://assets/models/environment/citadel_bay_broken.glb"),
 	"citadel_solid":preload("res://assets/models/environment/citadel_solid.glb"),
 	"citadel_return":preload("res://assets/models/environment/citadel_return.glb"),
 }
@@ -36,7 +37,7 @@ static func ground_holes(region: int,centers: Array,clearance: Array) -> Array[R
 	var result: Array[Rect2]=[]
 	if region!=1: return result
 	for entry in _plan(region,centers,clearance):
-		if entry.kind!="bay": continue
+		if not String(entry.kind).begins_with("bay"): continue
 		var transform: Transform3D=_entry_transform(entry)
 		var bounds: AABB=transform*AABB(Vector3(-1.66,-.9,-4.28),Vector3(3.32,.6,4.40))
 		result.append(Rect2(Vector2(bounds.position.x,bounds.position.z),Vector2(bounds.size.x,bounds.size.z)))
@@ -50,32 +51,28 @@ static func build(w) -> void:
 		w.dressing_room=entry.room
 		_place(w,entry)
 	w.dressing_room=-1
+	_build_ground_joins(w,centers)
 
 static func _plan(region: int,centers: Array,clearance: Array) -> Array:
 	var result: Array=[]
 	for room in range(centers.size()):
 		var c: Vector3=centers[room]
-		# A 34m rear elevation occupies the whole useful far field. All ground
-		# bays stop at the actual protected route, while the high gallery links
-		# their shoulders across those passages and continues into native depth.
-		_fill_run(result,region,room,c+Vector3(0,0,-6.45),0.0,-17.0,17.0,"bay",clearance)
-		_fill_crown(result,region,room,c+Vector3(0,0,-6.45),0.0,-17.0,17.0,clearance)
-		# Deep left aisle and its connected vault return form an inhabited edge.
-		_fill_run(result,region,room,c+Vector3(-6.85,0,0),PI*.5,-6.85,6.85,"bay",clearance)
-		_fill_crown(result,region,room,c+Vector3(-6.85,0,0),PI*.5,-6.85,6.85,clearance)
-		# Tall mass turns the rear corner; the camera-near right side stays open.
-		_fill_run(result,region,room,c+Vector3(6.85,0,-4.30),-PI*.5,-2.40,2.40,"bay",clearance)
-		_fill_run(result,region,room,c+Vector3(6.85,0,3.20),-PI*.5,-4.45,4.45,"return",clearance)
+		# Thin rear and left enclosures, with a genuine gap at every route crossing.
+		# Each bay carries its own supported rear gallery; no crown spans a path.
+		_fill_run(result,region,room,c+Vector3(0,0,-6.35),0.0,-13.10,13.10,"bay",clearance)
+		_fill_run(result,region,room,c+Vector3(-6.95,0,0),PI*.5,-6.30,5.20,"bay",clearance)
+		# The camera-near side is a low, damaged enclosure, never a tall end block.
+		_fill_run(result,region,room,c+Vector3(6.95,0,1.40),-PI*.5,-4.35,4.35,"return",clearance)
 	return result
 
 static func _entry_transform(entry: Dictionary) -> Transform3D:
-	return Transform3D(Basis(Vector3.UP,float(entry.angle)).scaled_local(Vector3(float(entry.width)/4.90,1.0,1.0)),entry.at)
+	return Transform3D(Basis(Vector3.UP,float(entry.angle)).scaled_local(Vector3(float(entry.width)/4.20,1.0,1.0)),entry.at)
 
 static func _fill_run(output: Array,region: int,room: int,origin: Vector3,angle: float,minimum: float,maximum: float,kind: String,clearance: Array) -> void:
 	# Split the placement band before instantiation. This adapts to every real
 	# seed and turn; it does not add a collider and try to repair the route later.
 	var intervals: Array[Vector2]=[Vector2(minimum,maximum)]
-	var depth: float=6.25 if kind!="return" else 2.70
+	var depth: float=([3.65,4.75,4.15,4.70][region] if kind!="return" else 1.0)
 	var basis:=Basis(Vector3.UP,angle)
 	var inverse:=Transform3D(basis,origin).affine_inverse()
 	for walking: Rect2 in clearance:
@@ -91,22 +88,14 @@ static func _fill_run(output: Array,region: int,room: int,origin: Vector3,angle:
 	for interval in intervals:
 		var length: float=interval.y-interval.x
 		if length<.72: continue
-		var count: int=maxi(1,ceili(length/4.8))
+		var count: int=maxi(1,ceili(length/4.65))
 		var width: float=length/float(count)
 		for index_value in range(count):
 			var middle: float=interval.x+(float(index_value)+.5)*width
-			var chosen: String=kind if width>=2.8 or kind=="return" else "solid"
+			var chosen: String=kind if width>=3.30 or kind=="return" else "solid"
+			if chosen=="bay" and (index_value+room)%2==1: chosen="bay_broken"
 			var entry: Dictionary={"region":region,"room":room,"kind":chosen,"at":origin+basis*Vector3(middle,0,0),"angle":angle,"width":width+.035}
 			if _entry_clear(entry,clearance): output.append(entry)
-
-static func _fill_crown(output: Array,region: int,room: int,origin: Vector3,angle: float,minimum: float,maximum: float,clearance: Array) -> void:
-	var count: int=maxi(1,ceili((maximum-minimum)/4.8))
-	var width: float=(maximum-minimum)/float(count)
-	var basis:=Basis(Vector3.UP,angle)
-	for index_value in range(count):
-		var at: Vector3=origin+basis*Vector3(minimum+(float(index_value)+.5)*width,0,0)
-		var entry: Dictionary={"region":region,"room":room,"kind":"crown","at":at,"angle":angle,"width":width+.05}
-		if _entry_clear(entry,clearance): output.append(entry)
 
 static func _entry_clear(entry: Dictionary,clearance: Array) -> bool:
 	var placement: Transform3D=_entry_transform(entry)
@@ -145,7 +134,9 @@ static func _material(w,part: Dictionary) -> Material:
 	var channel: String=part.channel
 	var material_cache: Dictionary=_world_materials(w)
 	match channel:
-		"stone": return _masonry(w)
+		"masonry": return _masonry(w,false)
+		"dressed_stone": return _masonry(w,true)
+		"paving": return w.court_material
 		"edge": return w.materials.edge
 		"dark": return w.floor_materials[4]
 		"floor": return w.floor_materials[1]
@@ -159,19 +150,22 @@ static func _material(w,part: Dictionary) -> Material:
 	else: material_cache[key]=Authored.crafted(original)
 	return material_cache[key]
 
-static func _masonry(w) -> ShaderMaterial:
+static func _masonry(w,dressed: bool=false) -> ShaderMaterial:
 	var cache: Dictionary=_world_materials(w)
-	if cache.has("masonry"): return cache.masonry
+	var key: String="dressed_stone" if dressed else "masonry"
+	if cache.has(key): return cache[key]
 	var material:=ShaderMaterial.new()
 	material.shader=preload("res://assets/shaders/masonry_surface.gdshader")
-	material.set_shader_parameter("masonry_color",preload("res://assets/materials/masonry/Bricks096_1K-PNG_Color.png"))
-	material.set_shader_parameter("masonry_normal",preload("res://assets/materials/masonry/Bricks096_1K-PNG_NormalGL.png"))
-	material.set_shader_parameter("masonry_roughness",preload("res://assets/materials/masonry/Bricks096_1K-PNG_Roughness.png"))
-	material.set_shader_parameter("cap_color",preload("res://assets/materials/stone/Rock030_1K-JPG_Color.jpg"))
-	material.set_shader_parameter("cap_normal",preload("res://assets/materials/stone/Rock030_1K-JPG_NormalGL.jpg"))
-	material.set_shader_parameter("cap_roughness",preload("res://assets/materials/stone/Rock030_1K-JPG_Roughness.jpg"))
+	material.set_shader_parameter("masonry_color",preload("res://assets/materials/stone/Rock030_1K-JPG_Color.jpg") if dressed else preload("res://assets/materials/masonry/Bricks096_1K-PNG_Color.png"))
+	material.set_shader_parameter("masonry_normal",preload("res://assets/materials/stone/Rock030_1K-JPG_NormalGL.jpg") if dressed else preload("res://assets/materials/masonry/Bricks096_1K-PNG_NormalGL.png"))
+	material.set_shader_parameter("masonry_roughness",preload("res://assets/materials/stone/Rock030_1K-JPG_Roughness.jpg") if dressed else preload("res://assets/materials/masonry/Bricks096_1K-PNG_Roughness.png"))
+	material.set_shader_parameter("meters_per_repeat",Vector2(1.4,1.4) if dressed else Vector2(2.8,1.4))
+	material.set_shader_parameter("pigment_saturation",.35)
+	material.set_shader_parameter("dampness",.32)
+	material.set_shader_parameter("roughness_bias",.08)
+	material.set_shader_parameter("relief",.38 if dressed else .80)
 	material.set_shader_parameter("stone_tint",Color(["dddcd7","d1ddd4","e2dbd0","d4c7b9"][w.region_index]))
-	cache.masonry=material
+	cache[key]=material
 	return material
 
 static func _place(w,entry: Dictionary) -> void:
@@ -189,9 +183,9 @@ static func _place(w,entry: Dictionary) -> void:
 		piece.material_override=_material(w,part)
 		piece.set_meta("decoration_chamber",entry.room)
 		piece.set_meta("regional_module",key)
-		if part.channel=="floor": piece.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		if part.channel=="paving": piece.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		w.add_child(piece)
-	if entry.kind=="bay":
+	if String(entry.kind).begins_with("bay"):
 		if entry.region==1: _basin(w,placement,false)
 		if entry.region==3: _basin(w,placement,true)
 
@@ -220,6 +214,80 @@ static func _basin(w,placement: Transform3D,lava: bool) -> void:
 	surface.set_meta("regional_liquid",true); surface.set_meta("decoration_chamber",w.dressing_room)
 	surface.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	w.add_child(surface)
+
+static func _build_ground_joins(w,centers: Array) -> void:
+	# Only the real Court union's exposed edges receive low native continuations.
+	# Channel edges belong to their authored banks and must stay open.
+	var court: MeshInstance3D=w.get_node_or_null("ContinuousStoneCourt")
+	if court==null or not court.has_meta("ground_rectangles"): return
+	var rectangles: Array[Rect2]=[]
+	rectangles.assign(court.get_meta("ground_rectangles"))
+	var holes: Array=court.get_meta("channel_holes",[])
+	var groups: Dictionary={}
+	for edge: PackedVector2Array in RoomGround.boundary_edges(rectangles):
+		var a: Vector2=edge[0]; var b: Vector2=edge[1]
+		var along: Vector2=(b-a).normalized()
+		var outward:=Vector2(along.y,-along.x)
+		var count: int=maxi(1,ceili(a.distance_to(b)/1.4))
+		for index_value in range(count):
+			var p: Vector2=a.lerp(b,float(index_value)/count)
+			var q: Vector2=a.lerp(b,float(index_value+1)/count)
+			var middle: Vector2=(p+q)*.5
+			var channel:=false
+			for hole: Rect2 in holes:
+				if hole.grow(.8).has_point(middle+outward*.35): channel=true; break
+			if channel: continue
+			var room:=0; var nearest:=INF
+			for candidate in range(centers.size()):
+				var center: Vector3=centers[candidate]
+				var distance: float=middle.distance_squared_to(Vector2(center.x,center.z))
+				if distance<nearest: nearest=distance; room=candidate
+			var width_p: float=.91+.24*sin(p.x*2.7+p.y*1.83)
+			var width_q: float=.91+.24*sin(q.x*2.7+q.y*1.83)
+			var outer_p: Vector2=p+outward*width_p
+			var outer_q: Vector2=q+outward*width_q
+			# At re-entrant corners stop a skirt that would enter another court.
+			var overlap:=false
+			for rectangle: Rect2 in rectangles:
+				if rectangle.has_point((outer_p+outer_q)*.5): overlap=true; break
+			if overlap: continue
+			if not groups.has(room):
+				var top:=SurfaceTool.new(); top.begin(Mesh.PRIMITIVE_TRIANGLES)
+				var side:=SurfaceTool.new(); side.begin(Mesh.PRIMITIVE_TRIANGLES)
+				groups[room]={"paving":top,"masonry":side}
+			var inner_a:=Vector3(p.x,-.030,p.y)
+			var inner_b:=Vector3(q.x,-.030,q.y)
+			var outer_a:=Vector3(outer_p.x,-.09-.025*sin(p.x+p.y),outer_p.y)
+			var outer_b:=Vector3(outer_q.x,-.09-.025*sin(q.x+q.y),outer_q.y)
+			_emit_join_quad(groups[room].paving,[inner_a,inner_b,outer_b,outer_a],Vector3.UP)
+			var foot_a:=outer_a+Vector3(outward.x*.23,-1.25,outward.y*.23)
+			var foot_b:=outer_b+Vector3(outward.x*.23,-1.25,outward.y*.23)
+			_emit_join_quad(groups[room].masonry,[outer_a,outer_b,foot_b,foot_a],Vector3(outward.x,0,outward.y))
+	for room in groups:
+		for family: String in groups[room]:
+			var surface: SurfaceTool=groups[room][family]
+			surface.generate_tangents()
+			var mesh: ArrayMesh=surface.commit()
+			if mesh.get_surface_count()==0: continue
+			var node:=MeshInstance3D.new()
+			node.name="CourtJoin_%d_%s"%[room,family]
+			node.mesh=mesh
+			node.material_override=w.court_material if family=="paving" else _masonry(w)
+			node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			node.set_meta("decoration_chamber",room)
+			node.set_meta("regional_module","ground_join")
+			w.add_child(node)
+
+static func _emit_join_quad(surface: SurfaceTool,points: Array,normal: Vector3) -> void:
+	var tangent: Vector3=Vector3.RIGHT if absf(normal.y)>.5 else Vector3.UP.cross(normal).normalized()
+	var bitangent: Vector3=normal.cross(tangent).normalized()
+	var winding: Array=[0,1,2,0,2,3]
+	if (points[1]-points[0]).cross(points[2]-points[0]).dot(normal)>0.0: winding=[0,2,1,0,3,2]
+	for index_value: int in winding:
+		var point: Vector3=points[index_value]
+		surface.set_normal(normal)
+		surface.set_uv(Vector2(point.dot(tangent),point.dot(bitangent)))
+		surface.add_vertex(point)
 
 # Camp compatibility: cached small dressed stones, never used as room-wall nodes.
 static func masonry_piece(index: int=0) -> ArrayMesh:

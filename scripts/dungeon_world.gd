@@ -276,6 +276,7 @@ func _build_court_ground() -> void:
 	var court:=MeshInstance3D.new(); court.name="ContinuousStoneCourt"
 	court.mesh=mesh; court.material_override=court_material
 	court.set_meta("channel_holes",holes)
+	court.set_meta("ground_rectangles",pieces)
 	court.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(court)
 
@@ -1183,6 +1184,7 @@ func set_shadows(enabled: bool) -> void:
 	materials.intarsia.set_shader_parameter("relief",0.32 if enabled else 0.0)
 	var ruin_materials: Dictionary=get_meta("ruin_material_cache",{})
 	if ruin_materials.has("masonry"): ruin_materials.masonry.set_shader_parameter("relief",.80 if enabled else 0.0)
+	if ruin_materials.has("dressed_stone"): ruin_materials.dressed_stone.set_shader_parameter("relief",.38 if enabled else 0.0)
 	for beam in sanctuary_beams: beam.visible=enabled
 	for light in sanctuary_lights: light.visible=enabled
 	if sanctuary_beam_material!=null:
@@ -1508,7 +1510,7 @@ func _update_warning(node: Node3D, warning: Dictionary) -> void:
 	if timer!=null: timer.text="%.1fs" % maxf(0.0,float(warning.left))
 
 func _launch_projectile(target: int, color: Color,flight_seconds: float=Actor.PROJECTILE_RELEASE_LEAD) -> void:
-	var origin: Vector3=hero.weapon_world_position(camera.position)
+	var origin: Vector3=hero.projectile_origin()
 	var destination: Vector3 = actor_by_id[target].position+Vector3(0,1.15,0)
 	var projectile := Node3D.new()
 	projectile.name = "SpellBolt" if character_class=="Arcanist" else "CinderArrow"
