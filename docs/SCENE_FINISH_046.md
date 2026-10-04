@@ -106,5 +106,52 @@ nativer Einzelbilder und Zeitfolgen; er zertifiziert kein kontinuierliches
 Videoplayback. Der vorherige Neuaufbau-Bericht bleibt separat erhalten.
 
 Dies ist ein nachvollziehbarer **Teststand ohne visuelle Beta-Freigabe**.
-Android-Paketierung und Emulatorlauf folgen auf diesem unveränderten Quellstand;
-sie ersetzen die offene gestalterische Abnahme nicht.
+
+## Android-Teststand
+
+Alle drei CI-Läufe sind auf dem unveränderten Spielquellstand
+[`883d65e`](https://github.com/Philmenting/Emberfall-Ashen-Veil/commit/883d65eeb304f18aeb999f8ace53d9f359cbf46f)
+erfolgreich abgeschlossen. Die anschließende Ergänzung dieser Nachweise ändert
+weder den Spielcode noch die aufgenommenen Animationen.
+
+- [Gameplay Quality](https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37189036398):
+  32 Godot-Suiten, 3.580 Prüfungen ohne Fehler, dazu die Server-Regression.
+- [Android-Paketierung](https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37189076124):
+  Test-APK, Closed-Beta-Test-APK und AAB; Version 0.46 / Code 52, ARM64,
+  Ziel-API 36 und 16-KB-kompatible native ELF-Segmente bestätigt.
+- [Android-16-Emulator](https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37189077582):
+  erster Kampf, echte Lesepause mit Fortsetzen über Back, einmaliges Klassenrelikt,
+  Ausrüstungsschutz, Taschenfilter, kombinierte Eide und Kaltstart bestehen.
+  Alle vier Regionen rendern in Balanced und Battery. Jede Bewegungsfolge
+  enthält vier unterschiedliche native Bilder. Die Pose des geprüften
+  Wächterknochens (Index 3) ändert sich in 12 bis 17 von 20 Schritten;
+  das Modell besitzt 29 Knochen und neun Clips. `graphics_only` war aktiviert;
+  die separate Android-AFK-Abrechnung wurde in diesem Lauf nicht wiederholt.
+
+[Prüfbericht, Artefakt- und Bildprüfsummen](audit/2026-10-04/android-046/ci-summary.json),
+[originale Messwerte](audit/2026-10-04/android-046/render-performance.json),
+[erster Kampf](audit/2026-10-04/android-046/android-success-first-fight.png) und
+[Lesepause](audit/2026-10-04/android-046/android-success-skill-reading.png)
+sind archiviert. Alle 28 Emulatorbilder wurden dekodiert und über Kontaktbögen
+geprüft; Kampf und Lesesicht wurden zusätzlich einzeln geöffnet. Der bekannte
+deaktivierte Loot-Zustand bleibt sichtbar fehlerhaft.
+
+Der Pixel-6-Emulator verwendet **Software-Rendering**. Seine Medianzeiten liegen
+bei 1.651–1.879 ms pro Bild in Balanced und 592–635 ms in Battery. Der Test
+bestätigt Rendering und fortschreitende Animationen, nicht das Erreichen der
+60/30-FPS-Ziele. Leistung und Bedienung auf einem echten Telefon bleiben offen.
+Diese technische Prüfung ersetzt die gestalterische Abnahme nicht.
+
+Das [Download-Artefakt](https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37189076124/artifacts/11298032981)
+enthält `emberfall-closed-beta-ci.apk`. Es ist nur ein CI-Testpaket mit einem
+für diesen Lauf erzeugten Schlüssel; es ist kein Play-Release und kein
+verlässliches Update über früher anders signierte Installationen.
+
+## Grundlage für weitere Angriffsarbeit
+
+Die [Prüfung freier Animationsquellen](design/animation-source-study-046.md)
+findet verwendbare Schwertbewegungen, aber keinen Bogensatz und keinen
+überzeugenden Ganzkörper-Zauberangriff in den untersuchten Standard-Paketen.
+Dateiimporte und Quellkurven wurden überprüft. Eine Übertragung auf Emberfalls
+Skelett und eine sichtbare Qualitätsverbesserung sind damit noch nicht belegt;
+keines dieser Pakete wurde in diesen Teststand integriert.

@@ -1,0 +1,12 @@
+10-04 08:40:13.542  5389  5452 I godot   : ANDROID_MOTION_REGION_PASS 0 bone_changes=17 unique_frames=4
+10-04 08:40:13.542  5389  5452 I godot   : ANDROID_ART_REGION_PASS 0 The Bell Warden 2424x1080
+10-04 08:42:45.011  5389  5452 I godot   : ANDROID_MOTION_REGION_PASS 1 bone_changes=17 unique_frames=4
+10-04 08:42:45.011  5389  5452 I godot   : ANDROID_ART_REGION_PASS 1 The Silt Abbot 2424x1080
+10-04 08:45:10.677  5389  5452 I godot   : ANDROID_MOTION_REGION_PASS 2 bone_changes=12 unique_frames=4
+10-04 08:45:10.677  5389  5452 I godot   : ANDROID_ART_REGION_PASS 2 The Mourning Queen 2424x1080
+10-04 08:47:32.155  5389  5452 I godot   : ANDROID_MOTION_REGION_PASS 3 bone_changes=17 unique_frames=4
+10-04 08:47:32.155  5389  5452 I godot   : ANDROID_ART_REGION_PASS 3 The Cinder Sovereign 2424x1080
+10-04 08:47:32.157  5389  5452 I godot   : ANDROID_ART_PASS all four regions rendered with authored 3D models and lit materials
+10-04 08:36:18.931  2829  3039 I godot   : ANDROID_READABILITY_PASS real skill inspection pauses and Back resumes
+10-04 08:36:37.264  2829  3039 I godot   : ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI
+10-04 08:36:53.647  4996  5018 I godot   : ANDROID_SUCCESS_PASS restart preserves combined oaths, protected relic, checkpoint and rewards

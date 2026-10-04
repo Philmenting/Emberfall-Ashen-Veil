@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-04T08:26:26.716838+00:00",
+  "generatedAt": "2026-10-04T08:53:15.498020+00:00",
   "title": "Design System: Emberfall: Ashen Veil",
   "extensions": {
     "colorMeta": {
@@ -3204,7 +3204,7 @@
         }
       },
       "evidence": {
-        "documentationScope": "Source and asset scan of the final 0.46 reconstruction, followed by an evidence-only reconciliation with the fresh full review and packaged manifest. The documenter viewed three raw final stills during the source pass; full visual review and full video decoding were performed by their named passes, not repeated here.",
+        "documentationScope": "Source and asset scan of the final 0.46 reconstruction, followed by evidence-only reconciliation with the fresh full review, packaged manifest and completed Android CI audit at the recorded source commit. The documenter viewed three raw final stills during the source pass; full visual review, video decoding and Android PNG inspection were performed by their named passes and were not repeated in the documentation followups.",
         "currentStills": {
           "path": "docs/previews/scene-finish",
           "count": 31,
@@ -3286,7 +3286,197 @@
           ]
         },
         "movingPacketStatus": "Complete: four current MP4s packaged with hashes and full_decode pass; ordinary combat, effects-hidden QA, articulated gallery and reading/travel remain separately labelled.",
-        "androidValidation": "Android CI pending; current candidate package/runtime acceptance is not established here.",
+        "androidValidation": {
+          "status": "completed",
+          "conclusion": "success",
+          "verifiedSourceCommit": "883d65eeb304f18aeb999f8ace53d9f359cbf46f",
+          "sourceCommitUrl": "https://github.com/Philmenting/Emberfall-Ashen-Veil/commit/883d65eeb304f18aeb999f8ace53d9f359cbf46f",
+          "summary": "Android CI is complete for [source commit 883d65e](https://github.com/Philmenting/Emberfall-Ashen-Veil/commit/883d65eeb304f18aeb999f8ace53d9f359cbf46f); the [CI summary](docs/audit/2026-10-04/android-046/ci-summary.json), [build/regression checks](docs/audit/2026-10-04/android-046/build-and-regression-checks.txt) and [runtime checks](docs/audit/2026-10-04/android-046/runtime-checks.txt) record three successful runs. Gameplay retains (32) suites, (3580) checks, zero failures and passing server rules; packaging verifies version (0.46.0-beta.1 / 52), ARM64, API (36) and (16 KB) ELF page support. The `graphics_only: true` runtime checks cover first combat, the real skill-reading pause and Back resume, class relic/gear protection/bag filters/combined oaths, cold restart, and four regions in Balanced and Battery. Over (20) simulation steps per region, the probe observed (17/17/12/17) changes in the global pose of guardian bone index (3), with (4) distinct native images per region; these counts are pose changes of one sampled bone, not counts of different bones. AFK reconciliation was not rerun.",
+          "limits": "The [render measurements](docs/audit/2026-10-04/android-046/render-performance.json) came from the Android 16 Pixel 6-profile x86_64 emulator using swangle software rendering: Balanced regional medians were (1650.917–1878.671 ms/frame), Battery (591.786–634.558 ms/frame). This establishes finite measurements and advancing native rendering/animation, not achievement of the configured (60/30 FPS) caps. The root verification pass decoded all (28) PNGs and inspected four contact sheets, plus full-size first-fight and reading originals; the disabled Loot defect remains visible. No continuous emulator-video test or physical-phone frame pacing, heat, battery or touch acceptance is established. The final visual disposition remains **rebuild**. Artifacts use CI-only ephemeral signing, do not establish update compatibility with earlier signing keys, and are not a Google Play release.",
+          "evidence": {
+            "summary": "docs/audit/2026-10-04/android-046/ci-summary.json",
+            "performance": "docs/audit/2026-10-04/android-046/render-performance.json",
+            "buildAndRegression": "docs/audit/2026-10-04/android-046/build-and-regression-checks.txt",
+            "runtime": "docs/audit/2026-10-04/android-046/runtime-checks.txt"
+          },
+          "runs": [
+            {
+              "run": 37189077582,
+              "name": "Android Beta Runtime",
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37189077582",
+              "head": "883d65eeb304f18aeb999f8ace53d9f359cbf46f"
+            },
+            {
+              "run": 37189076124,
+              "name": "Android Debug APK",
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37189076124",
+              "head": "883d65eeb304f18aeb999f8ace53d9f359cbf46f"
+            },
+            {
+              "run": 37189036398,
+              "name": "Gameplay Quality",
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37189036398",
+              "head": "883d65eeb304f18aeb999f8ace53d9f359cbf46f"
+            }
+          ],
+          "regression": {
+            "godot_suites": 32,
+            "checks": 3580,
+            "failures": 0,
+            "server_rules": "passed"
+          },
+          "packaging": {
+            "version": "0.46.0-beta.1",
+            "versionCode": 52,
+            "abi": "ARM64",
+            "targetApi": 36,
+            "elfPageSupportKB": 16,
+            "signing": "CI-only ephemeral keys; these artifacts are not a Google Play release and cannot be assumed to update installations signed by a previous CI run or another key.",
+            "googlePlayRelease": false
+          },
+          "runtime": {
+            "os": "Android 16 / API 36",
+            "device": "Pixel 6 profile, sdk_gphone64_x86_64 emulator",
+            "gpu": "swangle software renderer",
+            "graphicsOnly": true,
+            "afkReconciliationRerun": false,
+            "coverage": [
+              "first fight",
+              "actual skill reading pauses and Back resumes",
+              "one-time class relic",
+              "gear protection",
+              "bag filters",
+              "combined oaths",
+              "cold restart preserves checkpoint and rewards",
+              "four guardian scenes",
+              "balanced and battery rendering in all regions",
+              "native 29-bone / nine-clip figures advance in separately stepped real combat"
+            ],
+            "motion": [
+              {
+                "region": 0,
+                "boneChanges": 17,
+                "uniqueRenderedFrames": 4,
+                "skeletonBones": 29,
+                "nativeClips": 9,
+                "steppedFrames": 20,
+                "simulationStepSeconds": 0.05,
+                "captureIndices": [
+                  0,
+                  5,
+                  11,
+                  17
+                ],
+                "passed": true,
+                "sampledGuardianBoneIndex": 3,
+                "boneChangesMeaning": "Observed pose-change steps for this one sampled bone, not distinct bones."
+              },
+              {
+                "region": 1,
+                "boneChanges": 17,
+                "uniqueRenderedFrames": 4,
+                "skeletonBones": 29,
+                "nativeClips": 9,
+                "steppedFrames": 20,
+                "simulationStepSeconds": 0.05,
+                "captureIndices": [
+                  0,
+                  5,
+                  11,
+                  17
+                ],
+                "passed": true,
+                "sampledGuardianBoneIndex": 3,
+                "boneChangesMeaning": "Observed pose-change steps for this one sampled bone, not distinct bones."
+              },
+              {
+                "region": 2,
+                "boneChanges": 12,
+                "uniqueRenderedFrames": 4,
+                "skeletonBones": 29,
+                "nativeClips": 9,
+                "steppedFrames": 20,
+                "simulationStepSeconds": 0.05,
+                "captureIndices": [
+                  0,
+                  5,
+                  11,
+                  17
+                ],
+                "passed": true,
+                "sampledGuardianBoneIndex": 3,
+                "boneChangesMeaning": "Observed pose-change steps for this one sampled bone, not distinct bones."
+              },
+              {
+                "region": 3,
+                "boneChanges": 17,
+                "uniqueRenderedFrames": 4,
+                "skeletonBones": 29,
+                "nativeClips": 9,
+                "steppedFrames": 20,
+                "simulationStepSeconds": 0.05,
+                "captureIndices": [
+                  0,
+                  5,
+                  11,
+                  17
+                ],
+                "passed": true,
+                "sampledGuardianBoneIndex": 3,
+                "boneChangesMeaning": "Observed pose-change steps for this one sampled bone, not distinct bones."
+              }
+            ],
+            "motionCounterInterpretation": "The raw boneChanges field counts observed changes in the global pose of guardian bone index 3 across 20 simulation steps per region; it does not count distinct changed bones."
+          },
+          "performance": {
+            "report": "docs/audit/2026-10-04/android-046/render-performance.json",
+            "scenario": "frozen guardian render workload; separately stepped real combat animation",
+            "medianFrameMsRange": {
+              "balanced": [
+                1650.917,
+                1878.671
+              ],
+              "battery": [
+                591.786,
+                634.558
+              ]
+            },
+            "measurementFramesPerRegionAndQuality": 30,
+            "renderResolution": {
+              "balanced": [
+                1212,
+                540
+              ],
+              "battery": [
+                606,
+                270
+              ]
+            },
+            "scope": "Finite measurement and rendered native animation gate on a slow swangle software emulator.",
+            "configuredFpsAchievementAccepted": false,
+            "physicalDevicePerformanceAccepted": false
+          },
+          "imageVerification": {
+            "attribution": "Root Android verification pass; not repeated by this documenter.",
+            "decodedOriginals": 28,
+            "contactSheetsInspected": 4,
+            "fullSizeOriginals": [
+              "android-success-first-fight.png",
+              "android-success-skill-reading.png"
+            ],
+            "summary": "All 28 originals decoded at 2424×1080 and inspected through four contact sheets; first-fight and skill-reading originals also opened at full size. Actual scenes, warnings and advancing pose frames are present; the known disabled Loot layout defect remains visible. No continuous emulator video playback or new visual acceptance is claimed.",
+            "continuousEmulatorVideoTest": false,
+            "disabledLootDefectStillVisible": true
+          },
+          "visualReviewDisposition": "rebuild",
+          "visualAcceptance": false
+        },
         "missingContext": [
           "Impeccable context launcher (reported exit 127)",
           "successful concept seed",
@@ -3439,10 +3629,10 @@
         },
         "candidateDisposition": "Frozen concrete candidate for testing and draft PR review; fresh visual disposition is rebuild, not accepted.",
         "knownNotCanonized": [
-          "Disabled Loot loses its filled surface and overlaps its glyph/caption while reading.",
+          "Disabled Loot loses its filled surface and overlaps its glyph/caption while reading; still visible in the verified Android reading image.",
           "Current figure, attack, room-construction and material-finish limitations called out by the rebuild review."
         ],
-        "evidenceUpdatedAt": "2026-10-04T08:26:26.716838+00:00"
+        "evidenceUpdatedAt": "2026-10-04T08:53:15.498020+00:00"
       },
       "combatDock": {
         "source": "scripts/main.gd:_build_run, _build_combat_readouts, _style_combat_command, _combat_command",

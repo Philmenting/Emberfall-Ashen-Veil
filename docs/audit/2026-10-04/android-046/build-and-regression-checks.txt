@@ -1,0 +1,8 @@
+2026-10-04T08:36:52.3440303Z PASS emberfall.js
+2026-10-04T08:36:52.3440661Z PASS progression_runtime_test.js
+2026-10-04T08:36:52.3442496Z BETA CHECKS: 32 Godot suites, 3580 checks, 0 failures
+2026-10-04T08:34:21.3857484Z package: name='com.philmenting.emberfallashenveil.test029' versionCode='52' versionName='0.46.0-online-test' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'
+2026-10-04T08:34:21.3897598Z package: name='com.philmenting.emberfallashenveil.closedbeta' versionCode='52' versionName='0.46.0-beta.1' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'
+2026-10-04T08:34:21.3929340Z targetSdkVersion:'36'
+2026-10-04T08:34:25.7794698Z ANDROID AAB VERIFIED
+2026-10-04T08:34:25.7796763Z ARM64 native libraries: 2, all ELF LOAD segments support 16 KB pages

@@ -10,6 +10,9 @@ freistehenden Bodenplatten. Die kompaktere Kampfleiste lässt mehr Raum für die
 Figuren; Kamera, Warnflächen und Lesepause bleiben fest an das Spiel gebunden.
 Android-Version-Code **52**. Die unabhängige visuelle Prüfung verlangt einen
 weiteren Neuaufbau; dieser Stand hat keine visuelle Beta-Freigabe.
+Die vollständige Regression mit **3.580 Prüfungen**, Android-Paketierung sowie
+die Funktions- und Animationsprüfung im Android-16-Emulator bestehen auf
+Quellstand `883d65e`. Eine Leistungsfreigabe für echte Telefone ist damit nicht belegt.
 
 [Umsetzung und Prüfgrenzen](docs/SCENE_FINISH_046.md),
 [Angriffe aller drei Klassen](docs/previews/scene-finish/emberfall-attacks-046.mp4),
