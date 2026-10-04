@@ -1,0 +1,93 @@
+{
+  "asset": "ruin-floor-albedo.png",
+  "type": "diffuse_albedo_texture",
+  "origin": {
+    "kind": "original_ai_generated_floor_albedo",
+    "tool": "image_gen.imagegen",
+    "model": null,
+    "model_note": "The image generation tool did not expose a model name.",
+    "generation_source": "/workspace/generated_images/exec-7561b992-b853-48a7-9155-1b8d1220a547.png",
+    "source_sha256": "98ddaf8a849417f2ef09ff3368d7ad3fdc3f2fa88e3f4e743fa28e99dc9cf952",
+    "reference_images": [],
+    "requested_resolution": [
+      2048,
+      2048
+    ],
+    "actual_resolution": [
+      1254,
+      1254
+    ],
+    "gameplay_capture": false,
+    "photogrammetry_scan": false,
+    "license_claim": null,
+    "project": "Emberfall: Ashen Veil",
+    "direction": "docs/design/graphics-direction-046.md",
+    "requested_surface": "Live ruin floor diffuse/albedo, region-tinted at runtime.",
+    "metadata_method": "Metadata-only PNG iTXt insertion; Impeccable launcher unavailable in this session; all original chunks including IDAT preserved byte-for-byte."
+  },
+  "prompt": "Create one original square 2048 x 2048 high-fidelity game-ready stone floor diffuse/albedo texture, filling every pixel edge to edge. This is a flat texture map for UV mapping onto live 3D geometry, not an environment painting, not a room, not a rendered material ball, and not a screenshot. Show only the material surface in a true perfectly top-down orthographic view with zero perspective or depth projection.\n\nMaterial: old substantial neutral warm-gray limestone flagstones forming the continuous floor of an inhabited dark-fantasy ruin. Approximately four metres of real floor span the whole image. Large irregular quarried and broken polygonal slabs measure about 0.4 to 1.0 metre, roughly six to eight stone faces across the image. Use visibly varied asymmetrical slab shapes and varied sizes, with occasional long stones and occasional small infill pieces. Interlock them naturally. No regular square tile grid, no repetitive rectangular brick bond, no paving-cobble look, no radial pattern, no focal ornament.\n\nAll stones sit in the same flush plane. Their joints are tight, narrow, uneven seams packed with dark gray earth and very sparse embedded grit; soil appears only in seams and a few shallow worn patches. Worn stone edges are gently chipped in a few places. Stone faces show fine mineral grain, subtle small pits, soft abrasion and broad restrained dirt wear. The surfaces feel dense and convincingly aged, tactile and detailed close up, yet calm and readable as a combat floor from a distance. Favor intact faces with natural small flaws: avoid busy prominent cracks across faces, deep crevasses, raised bevels, dramatic broken holes, or scattered loose rubble.\n\nColor must be low saturation neutral warm gray at medium value, with restrained natural variation between stone faces. No golden or orange cast, no blue lighting, no colored moss, no greenery, no wet glossy patches. Stone-face color variation is subtle and gently mottled rather than striped, cloudy, speckled with high contrast, or uniformly flat. Keep the texture suitable for being tinted toward slate, jade-gray, aged ivory and ash in the game material.\n\nThis is color/albedo information only: perfectly uniform diffuse unlit illumination across the entire frame, no light source, no directional shading, no cast shadows, no ambient-occlusion halos, no highlights, no reflections, no dark vignette, no brighter center, no depth-of-field blur, no photographic lens effects. Dark joints are material color, not shadows. Do not paint bevel shading. Everything stays sharply focused.\n\nMake it seamlessly repeatable in both horizontal and vertical directions: stones and filled seams cut by each border continue naturally at the opposite border, with matching edge colors, scale and wear distribution. No visible tile boundary, border, frame, central composition, mirrored symmetry, text, labels, symbols, characters, props, architecture, plants or markings. Export the single full-frame opaque square PNG albedo texture at the highest available resolution, ideally 2048 x 2048.",
+  "prompt_file": "ruin-floor-albedo.png.prompt.txt",
+  "generation_arguments": {
+    "transparent_background": false,
+    "referenced_image_paths": "omitted",
+    "num_last_images_to_include": "omitted"
+  },
+  "generation_count": 1,
+  "native_format": "PNG",
+  "width": 1254,
+  "height": 1254,
+  "mode": "RGB",
+  "alpha": false,
+  "sha256": "22ee5f0802a34e1f2f53d0f4da2f273fd3510f9b76d4797f617cfe0af1f2138e",
+  "source_sha256": "98ddaf8a849417f2ef09ff3368d7ad3fdc3f2fa88e3f4e743fa28e99dc9cf952",
+  "idat_sha256": "e23c209e27ac1e74d657715c2158b722439808b6a098a483fcaaf394d75fc76f",
+  "decoded_rgb_sha256": "48877b038ac69283bc6c75d9ffad359417c9fb21415e0784b4533b1c64887915",
+  "bytes": 3593727,
+  "pixel_processing": "None. No resizing, retouching, normal-map synthesis or pixel re-encoding.",
+  "mean_rgb_8bit": [
+    137.6448,
+    126.022,
+    112.9426
+  ],
+  "intended_physical_tile_size_metres": [
+    4.0,
+    4.0
+  ],
+  "physical_scale_note": "Generation prompt target, not a photogrammetric measurement. Adjust material UV scale to fit the native scene.",
+  "visual_inspection": {
+    "inspected": true,
+    "result": "Accepted as a low-saturation warm-gray irregular limestone albedo with quiet wear, tight earth-filled joints and no objects, text, perspective, focal lighting or conspicuous cast shadows.",
+    "inspection_method": "Native image_gen output and local view_image inspected; PNG decoded successfully.",
+    "resolution_limitation": "The generator returned 1254 x 1254 pixels instead of the requested 2048 x 2048; native resolution is preserved."
+  },
+  "tileability": {
+    "requested": true,
+    "seamless_guarantee": false,
+    "measurements": {
+      "units": "mean absolute difference of 8-bit RGB channel values",
+      "left_right_join": 15.8522,
+      "top_bottom_join": 17.235,
+      "interior_horizontal_adjacent_pixels": 13.6189,
+      "interior_vertical_adjacent_pixels": 14.2698
+    },
+    "limitation": "Opposite-edge RGB differences were measured and remain close to interior high-frequency variation. Exact crossing-slab and seam-topology continuity has not been established; evaluate repetition in the live material. No seam-repair edit or upsampling was applied."
+  },
+  "material_channels_provided": [
+    "albedo"
+  ],
+  "pbr_limitation": "Generated color map only; it is not a measured PBR material or photoscan and includes no normal, height, roughness, metallic or ambient-occlusion maps.",
+  "provenance_embedding": {
+    "method": "PNG iTXt metadata-only fallback",
+    "reason": "The Impeccable context launcher was unavailable (127 reported by the parent build); no local launcher exists at the project fallback path.",
+    "keywords": [
+      "Prompt",
+      "impeccable:prompt",
+      "Origin"
+    ],
+    "original_idat_preserved": true,
+    "original_chunks_preserved": true,
+    "decoded_pixels_unchanged": true,
+    "embedded_prompt_matches_prompt_file": true,
+    "asset_producer_role": "ordinary fresh agent fallback; shipped asset-producer role unavailable"
+  }
+}

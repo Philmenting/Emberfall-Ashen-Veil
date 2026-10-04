@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-03T20:36:03.515201+00:00",
+  "generatedAt": "2026-10-04T08:26:26.716838+00:00",
   "title": "Design System: Emberfall: Ashen Veil",
   "extensions": {
     "colorMeta": {
@@ -212,21 +212,6 @@
           "oklch(0.721 0.01129 260.647)",
           "oklch(0.836 0.01129 260.647)",
           "oklch(0.950 0.01129 260.647)"
-        ]
-      },
-      "combat-control": {
-        "role": "neutral",
-        "displayName": "Combat Control",
-        "source": "scripts/main.gd",
-        "tonalRamp": [
-          "oklch(0.150 0.00278 325.743)",
-          "oklch(0.264 0.00278 325.743)",
-          "oklch(0.379 0.00278 325.743)",
-          "oklch(0.493 0.00278 325.743)",
-          "oklch(0.607 0.00278 325.743)",
-          "oklch(0.721 0.00278 325.743)",
-          "oklch(0.836 0.00278 325.743)",
-          "oklch(0.950 0.00278 325.743)"
         ]
       },
       "life": {
@@ -1800,6 +1785,156 @@
           "oklch(95.00% 0.00322 106.53)"
         ],
         "source": "scripts/dungeon_lighting.gd:reflection_sky"
+      },
+      "combat-command": {
+        "role": "neutral",
+        "displayName": "Combat Command",
+        "tonalRamp": [
+          "oklch(15.00% 0.01093 242.27)",
+          "oklch(26.43% 0.01093 242.27)",
+          "oklch(37.86% 0.01093 242.27)",
+          "oklch(49.29% 0.01093 242.27)",
+          "oklch(60.71% 0.01093 242.27)",
+          "oklch(72.14% 0.01093 242.27)",
+          "oklch(83.57% 0.01093 242.27)",
+          "oklch(95.00% 0.01093 242.27)"
+        ],
+        "source": "scripts/main.gd:_style_combat_command"
+      },
+      "combat-command-hover": {
+        "role": "neutral",
+        "displayName": "Combat Command Hover",
+        "tonalRamp": [
+          "oklch(15.00% 0.01260 222.52)",
+          "oklch(26.43% 0.01260 222.52)",
+          "oklch(37.86% 0.01260 222.52)",
+          "oklch(49.29% 0.01260 222.52)",
+          "oklch(60.71% 0.01260 222.52)",
+          "oklch(72.14% 0.01260 222.52)",
+          "oklch(83.57% 0.01260 222.52)",
+          "oklch(95.00% 0.01260 222.52)"
+        ],
+        "source": "scripts/main.gd:_style_combat_command"
+      },
+      "combat-command-pressed": {
+        "role": "neutral",
+        "displayName": "Combat Command Pressed",
+        "tonalRamp": [
+          "oklch(15.00% 0.01147 242.49)",
+          "oklch(26.43% 0.01147 242.49)",
+          "oklch(37.86% 0.01147 242.49)",
+          "oklch(49.29% 0.01147 242.49)",
+          "oklch(60.71% 0.01147 242.49)",
+          "oklch(72.14% 0.01147 242.49)",
+          "oklch(83.57% 0.01147 242.49)",
+          "oklch(95.00% 0.01147 242.49)"
+        ],
+        "source": "scripts/main.gd:_style_combat_command"
+      },
+      "combat-command-edge": {
+        "role": "neutral",
+        "displayName": "Combat Command Edge",
+        "tonalRamp": [
+          "oklch(15.00% 0.01219 87.55)",
+          "oklch(26.43% 0.01219 87.55)",
+          "oklch(37.86% 0.01219 87.55)",
+          "oklch(49.29% 0.01219 87.55)",
+          "oklch(60.71% 0.01219 87.55)",
+          "oklch(72.14% 0.01219 87.55)",
+          "oklch(83.57% 0.01219 87.55)",
+          "oklch(95.00% 0.01219 87.55)"
+        ],
+        "source": "scripts/main.gd:_style_combat_command"
+      },
+      "combat-command-hover-edge": {
+        "role": "neutral",
+        "displayName": "Combat Command Hover Edge",
+        "tonalRamp": [
+          "oklch(15.00% 0.02886 71.02)",
+          "oklch(26.43% 0.02886 71.02)",
+          "oklch(37.86% 0.02886 71.02)",
+          "oklch(49.29% 0.02886 71.02)",
+          "oklch(60.71% 0.02886 71.02)",
+          "oklch(72.14% 0.02886 71.02)",
+          "oklch(83.57% 0.02886 71.02)",
+          "oklch(95.00% 0.02886 71.02)"
+        ],
+        "source": "scripts/main.gd:_style_combat_command"
+      },
+      "spire-court": {
+        "role": "neutral",
+        "displayName": "Spire Court",
+        "tonalRamp": [
+          "oklch(15.00% 0.01128 219.64)",
+          "oklch(26.43% 0.01128 219.64)",
+          "oklch(37.86% 0.01128 219.64)",
+          "oklch(49.29% 0.01128 219.64)",
+          "oklch(60.71% 0.01128 219.64)",
+          "oklch(72.14% 0.01128 219.64)",
+          "oklch(83.57% 0.01128 219.64)",
+          "oklch(95.00% 0.01128 219.64)"
+        ],
+        "source": "scripts/dungeon_world.gd:_build_court_ground"
+      },
+      "archive-court": {
+        "role": "neutral",
+        "displayName": "Archive Court",
+        "tonalRamp": [
+          "oklch(15.00% 0.02962 160.46)",
+          "oklch(26.43% 0.02962 160.46)",
+          "oklch(37.86% 0.02962 160.46)",
+          "oklch(49.29% 0.02962 160.46)",
+          "oklch(60.71% 0.02962 160.46)",
+          "oklch(72.14% 0.02962 160.46)",
+          "oklch(83.57% 0.02962 160.46)",
+          "oklch(95.00% 0.02962 160.46)"
+        ],
+        "source": "scripts/dungeon_world.gd:_build_court_ground"
+      },
+      "ossuary-court": {
+        "role": "neutral",
+        "displayName": "Ossuary Court",
+        "tonalRamp": [
+          "oklch(15.00% 0.01572 80.69)",
+          "oklch(26.43% 0.01572 80.69)",
+          "oklch(37.86% 0.01572 80.69)",
+          "oklch(49.29% 0.01572 80.69)",
+          "oklch(60.71% 0.01572 80.69)",
+          "oklch(72.14% 0.01572 80.69)",
+          "oklch(83.57% 0.01572 80.69)",
+          "oklch(95.00% 0.01572 80.69)"
+        ],
+        "source": "scripts/dungeon_world.gd:_build_court_ground"
+      },
+      "citadel-court": {
+        "role": "neutral",
+        "displayName": "Citadel Court",
+        "tonalRamp": [
+          "oklch(15.00% 0.01986 64.76)",
+          "oklch(26.43% 0.01986 64.76)",
+          "oklch(37.86% 0.01986 64.76)",
+          "oklch(49.29% 0.01986 64.76)",
+          "oklch(60.71% 0.01986 64.76)",
+          "oklch(72.14% 0.01986 64.76)",
+          "oklch(83.57% 0.01986 64.76)",
+          "oklch(95.00% 0.01986 64.76)"
+        ],
+        "source": "scripts/dungeon_world.gd:_build_court_ground"
+      },
+      "camp-court": {
+        "role": "neutral",
+        "displayName": "Camp Court",
+        "tonalRamp": [
+          "oklch(15.00% 0.02389 80.65)",
+          "oklch(26.43% 0.02389 80.65)",
+          "oklch(37.86% 0.02389 80.65)",
+          "oklch(49.29% 0.02389 80.65)",
+          "oklch(60.71% 0.02389 80.65)",
+          "oklch(72.14% 0.02389 80.65)",
+          "oklch(83.57% 0.02389 80.65)",
+          "oklch(95.00% 0.02389 80.65)"
+        ],
+        "source": "scripts/camp_scene.gd:_build_materials"
       }
     },
     "typographyMeta": {
@@ -1815,7 +1950,7 @@
       },
       "combat-title": {
         "displayName": "Combat Title",
-        "purpose": "Representative base logical role; actual sizes pass through native scaling.",
+        "purpose": "Compact hero and guardian names; base logical role routed through native scaling.",
         "source": "scripts/main.gd"
       },
       "body": {
@@ -1834,7 +1969,7 @@
       {
         "name": "windup",
         "value": "simulation pending-cast fraction",
-        "purpose": "Native load/contact tracks follow the actual cast or guardian warning countdown.",
+        "purpose": "Native gather/load/drive/contact phrases follow actual pending casts or guardian warning countdowns; ranged windup maps to its existing earlier visual release.",
         "source": "scripts/character_animation.gd"
       },
       {
@@ -1851,14 +1986,14 @@
       },
       {
         "name": "hit-feedback",
-        "value": "0.24 s",
-        "purpose": "Flash and restrained chest reaction; displacement suppressed with Reduced Motion.",
+        "value": "0.18–0.30 s reaction, intensity-dependent",
+        "purpose": "Supported pelvis/chest/head compression and flash; displacement suppressed with Reduced Motion and committed windups retain priority.",
         "source": "scripts/dungeon_actor.gd"
       },
       {
         "name": "camera-follow",
         "value": "1 - exp(-delta * 4.0)",
-        "purpose": "Travel anchor follow; fixed combat-room anchor. Relative travel envelope avoids stale-room drift.",
+        "purpose": "Travel anchor follow; stored combat-room anchor, joint pan/distance fit and relative travel envelope.",
         "source": "scripts/dungeon_world.gd"
       },
       {
@@ -1882,7 +2017,7 @@
       {
         "name": "camera-warning-widen",
         "value": "1.5 scale units/s",
-        "purpose": "Monotonic pullback within the reserved shot; no repeated warning zoom-in.",
+        "purpose": "Monotonic pullback for unexpected real warning bounds while the stored shot pan remains fixed.",
         "source": "scripts/dungeon_world.gd"
       },
       {
@@ -1908,6 +2043,30 @@
         "value": "TIME * motion * 0.7",
         "purpose": "Localized camp veil motion; zero with Reduced Motion.",
         "source": "assets/shaders/veil_gate.gdshader"
+      },
+      {
+        "name": "camera-pan-settle",
+        "value": "1 - exp(-delta * 5.0)",
+        "purpose": "Smooth transition toward the stored shot pan; snap within 0.001 m.",
+        "source": "scripts/dungeon_world.gd:_position_camera"
+      },
+      {
+        "name": "normal-corpse-visual",
+        "value": "2.15 s",
+        "purpose": "Hide a normal nonboss corpse after the full 0.90 s articulated fall; leave death/reward state unchanged.",
+        "source": "scripts/dungeon_world.gd"
+      },
+      {
+        "name": "combat-floating-text",
+        "value": "0.70 s; fade begins 0.38 s; rise 0.65 m/s",
+        "purpose": "Keep the moving body and weapon readable through normal combat feedback.",
+        "source": "scripts/dungeon_world.gd:_float_text, _update_effects"
+      },
+      {
+        "name": "fluid-time",
+        "value": "TIME * motion",
+        "purpose": "World water/lava shader motion; motion is zero with Reduced Motion.",
+        "source": "assets/shaders/dungeon_water.gdshader"
       }
     ],
     "breakpoints": [
@@ -1958,14 +2117,16 @@
         "tools/art/build_camp_furniture.py",
         "assets/shaders/weathered_stone.gdshader",
         "assets/shaders/crafted_surface.gdshader",
-        "assets/shaders/dungeon_court.gdshader",
         "assets/shaders/region_matte.gdshader",
-        "assets/shaders/camp_paving.gdshader",
         "assets/shaders/veil_gate.gdshader",
         "assets/shaders/ward_surface.gdshader",
         "tests/authored_art_smoke.gd",
         "tests/graphics_overhaul_preview.gd",
-        "tests/character_portrait_preview.gd"
+        "tests/character_portrait_preview.gd",
+        "scripts/ruin_architecture.gd",
+        "assets/shaders/ruin_floor.gdshader",
+        "assets/shaders/ruin_deposit.gdshader",
+        "assets/shaders/dungeon_water.gdshader"
       ],
       "units": "Frontmatter px are base Godot logical units; runtime scaling/density correction applies.",
       "primaryDevice": {
@@ -2016,7 +2177,7 @@
         "balanced": 60,
         "battery": 30
       },
-      "qualityBehavior": "Battery applies a 2× viewport stretch shrink (half resolution on each axis), disables MSAA and main shadows, sets stone relief to zero, and hides world sanctuary beams/extra sanctuary lights. Portraits render once. Render pressure changes presentation, never simulation time.",
+      "qualityBehavior": "Battery applies 2× viewport stretch shrink, disables MSAA and main shadows, zeros world court and world/camp masonry relief, hides world sanctuary beams/extra lights, and suppresses transient contact dust/light. Camp court keeps its default 0.18 floor relief. Portraits render once; simulation clocks are unchanged.",
       "tonalRampProvenance": "Eight OKLCH inspection swatches synthesized from each extracted color as required by the document format; not runtime palette tokens.",
       "componentSampleBoundary": "HTML/CSS samples explain reused native controls; no browser renderer or CSS governs the shipped Godot game. Default engine field chrome is not specified by these samples.",
       "fallback": "Fresh delegated documenter used impeccable/reference/document.md and impeccable/reference/degraded/documenter.md because a shipped impeccable_documenter role/launcher was not exposed by this harness.",
@@ -2045,31 +2206,57 @@
           "tools/art/build_faces.py"
         ],
         "animationSource": "scripts/character_animation.gd",
-        "clipOrigin": "Original existing native authored clips reused for the material and face overhaul.",
+        "clipOrigin": "Original native attack phrases re-authored in 0.46 within the existing nine-clip contract; no motion-capture source or imported animation pack.",
         "facialExpressionRig": false,
         "lipSync": false,
         "figureHeightsMeters": {
           "heroAndOrdinaryHostiles": 2.15,
           "bulwarkAndElite": 2.3,
           "guardian": 4.6
+        },
+        "construction046": {
+          "source": "tools/art/build_characters.py",
+          "armor": "Thin forged shells with open side returns, shoulder lames and shallow joint plates over continuous sleeves and shaped boots.",
+          "cloth": "Fitted collars, tailored drape, overlapping front gores and slimmer capes with sewn thickness.",
+          "hostileLimbs": "Continuous anatomical arm sections.",
+          "retainedIdentity": "0.45 face, eye, lip, hair and head-dark mesh positions and normals preserved for all three Nyra classes.",
+          "geometryReport": "docs/previews/scene-finish/character-geometry.json",
+          "trianglesByAppearance": {
+            "elite": 24488,
+            "bulwark": 25968,
+            "hexer": 37408,
+            "raider": 20380,
+            "guardian_3": 29100,
+            "guardian_2": 39178,
+            "guardian_1": 39184,
+            "guardian_0": 38084,
+            "ranger": 39182,
+            "arcanist": 39184,
+            "vowkeeper": 39172
+          },
+          "forgedShellThicknessMeters": 0.008,
+          "jointPlateThicknessMeters": 0.009,
+          "clothGoreThicknessMeters": 0.012,
+          "capeThicknessMeters": 0.014
         }
       },
-      "implementationVersion": "0.45.0-beta.1",
+      "implementationVersion": "0.46.0-beta.1",
       "direction": {
         "authority": [
           "PRODUCT.md",
-          "docs/design/graphics-direction-045.md"
+          "docs/design/graphics-direction-046.md"
         ],
         "reference": "Diablo Immortal",
         "referenceScope": "Mature worn-material realism, isometric spatial clarity and localized lighting; original Emberfall assets and content.",
         "supersedes": "Prior bright painterly environment authority; docs/design/approved-spire.png remains historical.",
-        "form": "User-selected dark fantasy ARPG canon, specifically Diablo Immortal; native code-led realization with original generated environment plates and authored 3D geometry.",
+        "form": "User-pinned Diablo Immortal dark-fantasy direction, continued through original native code, generated diffuse/environment assets and authored 3D geometry; no separate identity tournament or approved composition.",
         "conceptSeed": {
           "available": false,
           "reportedLauncherExit": 127
         },
-        "separateApproved045Comp": false,
-        "latestSteering": "Rework Nyra’s faces across class portraits and actual camp/combat geometry."
+        "latestSteering": "2026-10-04: The overall 0.45 presentation remains too conceptual; improve actual live construction and, explicitly, attack animation: ‘Mir geht’s halt auch um die Animationen beim Angriffen und so.’",
+        "separateApproved046Comp": false,
+        "qualityBarCardAvailable": false
       },
       "world": {
         "source": "scripts/dungeon_world.gd",
@@ -2163,12 +2350,7 @@
             "floorWeathering": 0.08
           }
         ],
-        "floorVariants": {
-          "count": 5,
-          "tintDarkenPerIndex": 0.055,
-          "mainStoneVariantIndex": 2,
-          "intarsiaDarken": 0.34
-        },
+        "floorVariants": "One original diffuse tile with four regional court tints, region dampness/ash, mineral detail and quiet perimeter wear; five weathered masonry material variants remain.",
         "distantPlate": {
           "distanceMeters": 75.0,
           "heightFromFovMultiplier": 1.02,
@@ -2179,13 +2361,35 @@
           "foregroundAuthority": "Live floor, figures, props and simulation warnings."
         },
         "court": {
-          "roughness": 0.94,
-          "specular": 0.12,
-          "alphaDistanceFadeMeters": [
-            23.0,
-            48.0
+          "source": "scripts/dungeon_world.gd:_build_court_ground; scripts/ruin_architecture.gd:ground_holes",
+          "shader": "assets/shaders/ruin_floor.gdshader",
+          "worldRectangleMeters": [
+            -50,
+            -122,
+            100,
+            180
           ],
-          "centerFollowsCameraAnchor": true
+          "heightMeters": -0.019,
+          "centerFollowsCameraAnchor": false,
+          "holeRegions": [
+            "archive",
+            "citadel"
+          ],
+          "holeDefinition": "Same ground_holes rectangles cut the court mesh and position the fluid surfaces; generated walking rectangles grown by 0.22 m are subtracted from potential channels.",
+          "channelWidthMeters": 1.75,
+          "channelDepthMeters": 9.6,
+          "minimumHoleSizeMeters": [
+            0.55,
+            1.2
+          ],
+          "liquidHeightMeters": -0.3,
+          "bankSection": "Live vertical stone cross-section below the walking plane, capped above it; short Citadel service grates.",
+          "floorTintRefs": [
+            "{colors.spire-court}",
+            "{colors.archive-court}",
+            "{colors.ossuary-court}",
+            "{colors.citadel-court}"
+          ]
         },
         "dressingClearance": {
           "source": "scripts/dungeon_world.gd:_prepare_dressing_clearance, _dressing_footprint_clear, _keep_clear_dressing, _build_ruin_depth",
@@ -2196,9 +2400,9 @@
             2.8
           ],
           "bounds": "Actual exported bounds after global rotation/scale; explicit BoxMesh bounds before static batching.",
-          "wallPolicy": "Skip each full-height wall column footprint inside the grown floor/passages.",
+          "wallPolicy": "Skip an entire native masonry piece whose transformed standing-height bounds intersect the grown walking envelope; do not slice its mesh.",
           "propPolicy": "Remove complete props when any standing-height part intrudes.",
-          "lowPaving": "Continuous court and lower aprons remain under warnings.",
+          "lowPaving": "Continuous court remains under the walking route and warnings; matching fluid holes are cut only outside grown generated walking rectangles.",
           "legacyFloorRect": [
             -5.8,
             -58.0,
@@ -2207,9 +2411,9 @@
           ]
         },
         "chamberVisibility": {
-          "combat": "Current chamber tall dressing.",
-          "travel": "Current and preceding chamber tall dressing.",
-          "purpose": "Occlusion management after spatial clearance."
+          "combat": "Current and next chamber tall dressing.",
+          "travel": "Current, next and preceding chamber tall dressing.",
+          "purpose": "Occlusion management after spatial clearance; walking floors and collision boundaries are unchanged."
         },
         "landmarkMeshes": {
           "source": "tools/art/build_landmarks.py:block and build_characters.py:export",
@@ -2222,6 +2426,49 @@
             "furnace_throne": 5
           },
           "testMeshLimitInclusive": 12
+        },
+        "architectureSource": "scripts/ruin_architecture.gd",
+        "constructionSystems": [
+          {
+            "region": "spire",
+            "system": "Clustered bell piers, load-bearing rear arch and fractured returns."
+          },
+          {
+            "region": "archive",
+            "system": "Thick retaining wall, raised deep library niche, watergate shoulders and exposed water channel."
+          },
+          {
+            "region": "ossuary",
+            "system": "Deep burial openings, inset tombs, broad shoulders and doubled transverse ribs."
+          },
+          {
+            "region": "citadel",
+            "system": "Furnace shell, tapered flue, overhead iron cross-bracing and molten channel with maintenance grates."
+          }
+        ],
+        "masonry": {
+          "source": "scripts/ruin_architecture.gd:masonry_mesh, _wall, _pier, _arch",
+          "cachedRegularVariants": 3,
+          "cachedWedgeVariants": 3,
+          "crossSectionCorners": 8,
+          "profileRings": 4,
+          "wallCourseHeightsMeters": [
+            0.72,
+            0.53,
+            0.86,
+            0.62,
+            0.67
+          ],
+          "wallFacingWidthsMeters": [
+            1.53,
+            1.06,
+            1.92,
+            1.31,
+            2.07
+          ],
+          "archSegments": 12,
+          "standingGeometryClearance": "Transformed actual mesh AABB; only geometry whose vertical span intersects 0.5–2.8 m is tested against grown walking rectangles.",
+          "visualMechanism": "Unequal staggered courses, clipped corners, broken crests and material-linked broad staining; not a texture-only silhouette change."
         }
       },
       "materials": {
@@ -2352,7 +2599,12 @@
           "specularOther": 0.48,
           "metalGrain": "assets/materials/metal/Metal063_1K-JPG_Color.jpg",
           "metalRoughness": "assets/materials/metal/Metal063_1K-JPG_Roughness.jpg",
-          "fieldSurfaces": "assets/materials/field-surfaces/material-atlas.png"
+          "fieldSurfaces": "assets/materials/field-surfaces/material-atlas.png",
+          "clothCategory": 1,
+          "clothColorFormula": "COLOR.rgb * (0.94 + wear * 0.20)",
+          "clothRoughnessFormula": "clamp(0.92 + wear * 0.04, 0.92, 0.98)",
+          "clothSpecular": 0.18,
+          "leatherColorFormula": "COLOR.rgb * (0.90 + wear * 0.28)"
         },
         "face": {
           "source": "assets/shaders/character_surface.gdshader:face_v and fragment",
@@ -2411,6 +2663,16 @@
             "color": "assets/materials/stone/Rock030_1K-JPG_Color.jpg",
             "normal": "assets/materials/stone/Rock030_1K-JPG_NormalGL.jpg",
             "roughness": "assets/materials/stone/Rock030_1K-JPG_Roughness.jpg"
+          },
+          "macroAging": {
+            "runoffScale": 0.18,
+            "broadScale": 0.075,
+            "footingHeightRangeMeters": [
+              0.12,
+              2.5
+            ],
+            "maximumStainMix": 0.78,
+            "source": "assets/shaders/weathered_stone.gdshader"
           }
         },
         "crafted": {
@@ -2460,31 +2722,75 @@
           "manaWardHeightMeters": 2.3,
           "guardSegments": 6,
           "visibleState": "Actual guard_time or active Arcanist ward."
+        },
+        "floor": {
+          "source": "assets/shaders/ruin_floor.gdshader",
+          "albedo": "assets/materials/ruin-floor/ruin-floor-albedo.png",
+          "projection": "World X/Z, mirrored diffuse sampling",
+          "diffuseScale": 0.185,
+          "mineralScale": 0.035,
+          "normalScale": 0.8,
+          "colorSaturationMix": 0.55,
+          "roughnessClamp": [
+            0.44,
+            0.97
+          ],
+          "specular": 0.3,
+          "relief": {
+            "worldBalanced": 0.18,
+            "worldBattery": 0.0,
+            "campDefault": 0.18
+          },
+          "dampness": {
+            "archive": 0.72,
+            "otherRegions": 0.1,
+            "campDefault": 0.0
+          },
+          "ash": {
+            "citadel": 0.82,
+            "otherRegions": 0.08,
+            "campDefault": 0.0
+          },
+          "perimeterDistanceMeters": [
+            5.5,
+            13.0
+          ],
+          "maximumPerimeterDarkening": 0.82,
+          "scope": "Original generated diffuse tile with separately retained ambientCG mineral and normal detail; not an authored scanned PBR set."
+        },
+        "fluid": {
+          "source": "assets/shaders/dungeon_water.gdshader",
+          "waterNormal": "World-up wave transformed to view space",
+          "waterRoughnessRange": [
+            0.26,
+            0.34
+          ],
+          "waterMetallic": 0.16,
+          "lavaRoughness": 0.92,
+          "lavaEmissionMultiplier": 0.42,
+          "motion": "TIME * motion; motion = 0 with Reduced Motion",
+          "placement": "Below the court in matching cut channel openings."
         }
       },
       "camera": {
-        "source": "scripts/dungeon_world.gd:_position_camera, _camera_anchor",
+        "source": "scripts/dungeon_world.gd:_position_camera, _room_shot_points, _travel_shot_points, _camera_anchor",
         "projection": "perspective",
         "fovDegrees": 38.0,
         "nearMeters": 0.2,
         "farMeters": 125.0,
         "boomMeters": [
-          10.2,
+          8.0,
           9.3,
-          9.3
+          13.5
         ],
         "zoom": {
           "ordinary": 0.94,
           "guardianRoom": 0.86,
           "smoothing": "1 - exp(-delta * 2.0)"
         },
-        "aspectThreshold": 1.3,
-        "nearSquareFitMultiplier": 1.5,
         "aimHeightMeters": {
-          "landscapeOrdinary": -0.85,
-          "landscapeGuardian": 0.25,
-          "nearSquareOrdinary": 0.15,
-          "nearSquareGuardian": 0.6
+          "ordinary": 1.05,
+          "guardian": 1.35
         },
         "anchorOffsetMeters": {
           "room": [
@@ -2499,25 +2805,49 @@
           ]
         },
         "anchorFollow": "1 - exp(-delta * 4.0)",
-        "reservedHorizontalHalfWidthRatio": 0.43,
-        "reservedTopHalfHeightRatio": {
-          "landscape": 0.26,
-          "nearSquare": 0.35
+        "fit": {
+          "method": "Binary-search distance and iteratively center the same stored room envelope in the usable HUD rectangle.",
+          "distanceScaleRange": [
+            0.35,
+            4.0
+          ],
+          "binarySearchIterations": 12,
+          "centeringIterations": 12,
+          "centeringGain": 0.62,
+          "minimumDepthMeters": 0.25,
+          "horizontalScreenBounds": [
+            0.074,
+            0.926
+          ],
+          "topRatio": {
+            "aspectAbove1_3": 0.245,
+            "other": 0.15
+          },
+          "bottomRatio": "hud_bottom_ratio - 0.008",
+          "verticalInsetRatio": 0.006
         },
-        "bottomReserve": "Actual hud_bottom_ratio from laid-out fixed-height readouts.",
-        "fitIterations": 5,
-        "fitTolerance": 1.01,
-        "fitPaddingMultiplier": 1.015,
-        "fitMaxGrowthPerPass": 1.32,
+        "unexpectedWarningWiden": {
+          "iterations": 5,
+          "tolerance": 1.002,
+          "paddingMultiplier": 1.008,
+          "maxGrowthPerPass": 1.35,
+          "horizontalHalfWidthRatio": 0.43,
+          "pan": "Stored; never oscillates with attacks or targets."
+        },
         "framingWidenRatePerSecond": 1.5,
+        "panFollow": "1 - exp(-delta * 5.0); snap within 0.001 m",
         "roomEnvelopeMeters": {
           "floorHalfWidth": 4.0,
           "floorHalfDepth": 3.5,
-          "heroHorizontalHalfExtent": 1.8,
+          "heroHorizontalHalfExtent": 1.3,
           "heroTop": 3.45,
-          "hostileHeight": 2.3,
-          "guardianHeight": 4.6,
-          "warningReserve": "All three guardian phases and both variants, plus actual active outlines."
+          "hostileBaseHeight": 2.15,
+          "hostileHorizontalReachMultiplier": 0.34,
+          "hostileTopMultiplier": 1.06,
+          "guardianBaseHeight": 4.6,
+          "guardianHorizontalReachMultiplier": 0.52,
+          "guardianTopMultiplier": 1.2,
+          "warningReserve": "All three phases and both variants, plus actual active outlines."
         },
         "travelEnvelopeMeters": {
           "floorHalfWidth": 4.8,
@@ -2529,7 +2859,7 @@
           ],
           "heroTop": 3.45
         },
-        "shotRefit": "Stage/travel transition or aspect change greater than 0.01; widening is monotonic within a shot.",
+        "shotRefit": "Stage/travel transition, aspect difference > 0.01, or hud_bottom_ratio difference > 0.003; unexpected real warnings only widen the stored shot.",
         "hitShake": 0
       },
       "portrait": {
@@ -2595,7 +2925,7 @@
               -36,
               0
             ],
-            "energy": 0.92,
+            "energy": 1.06,
             "color": "Region moon token",
             "shadowMaxDistanceMeters": 32.0
           },
@@ -2606,7 +2936,7 @@
               0
             ],
             "color": "{colors.world-rim}",
-            "energy": 0.48
+            "energy": 0.25
           },
           "heroLantern": {
             "color": "{colors.hero-lantern}",
@@ -2650,13 +2980,40 @@
             "color": "{colors.camp-hearth-light}",
             "rangeMeters": 5.4,
             "initialEnergy": 2.4,
-            "animatedEnergyFormula": "0.7 + sin(clock * 2.4) * 0.04"
+            "animatedEnergyFormula": "base_energy * (0.98 + sin(clock * 2.4) * 0.025)",
+            "positionMeters": [
+              -3.7,
+              1.6,
+              -0.6
+            ]
           },
           "table": {
             "color": "{colors.camp-table-light}",
             "energy": 0.85,
             "rangeMeters": 7.0
-          }
+          },
+          "rearCorridor": [
+            {
+              "color": "#cf9a68",
+              "energy": 0.5,
+              "rangeMeters": 7.0,
+              "positionMeters": [
+                -2.7,
+                2.5,
+                -10.5
+              ]
+            },
+            {
+              "color": "#aeb4ba",
+              "energy": 0.22,
+              "rangeMeters": 7.0,
+              "positionMeters": [
+                2.7,
+                2.5,
+                -20.0
+              ]
+            }
+          ]
         },
         "portrait": {
           "source": "scripts/hero_art.gd",
@@ -2701,14 +3058,13 @@
             -0.5
           ]
         },
-        "stationSpreadFormula": "clamp(aspect / 1.65, 0.72, 1.2)",
         "stations": {
           "forge": {
             "model": "assets/models/field_forge.glb",
             "positionMeters": [
-              -5.0,
+              -3.8,
               0.08,
-              -1.0
+              -1.7
             ],
             "scale": 1.05,
             "yawRadians": -0.2
@@ -2716,9 +3072,9 @@
           "table": {
             "model": "assets/models/expedition_table.glb",
             "positionMeters": [
-              -2.7,
+              -2.3,
               0.08,
-              2.15
+              1.0
             ],
             "scale": 0.9,
             "yawRadians": 0.2
@@ -2735,9 +3091,9 @@
           "seals": {
             "model": "assets/models/seal_shrine.glb",
             "positionMeters": [
-              3.25,
+              3.0,
               0,
-              2.15
+              1.2
             ],
             "mountCount": 4,
             "visibility": "Saved earned_seals only"
@@ -2748,8 +3104,19 @@
           "weathering": 0.55
         },
         "paving": {
-          "roughness": 0.9,
-          "specular": 0.15
+          "shader": "assets/shaders/ruin_floor.gdshader",
+          "color": "{colors.camp-court}",
+          "courtSizeMeters": [
+            44,
+            100
+          ],
+          "courtPositionMeters": [
+            0,
+            0.015,
+            -26
+          ],
+          "platformHeightMeters": 0.04,
+          "reliefDefault": 0.18
         },
         "backdrop": {
           "path": "assets/world/ashen-realms/camp.png",
@@ -2768,6 +3135,31 @@
             "reducedMotion": 0.0
           },
           "curlSpeed": 0.7
+        },
+        "stationComposition": "Fixed source world anchors; action labels project into the UI and clamp/resolve overlap above the bottom tray. No aspect-dependent world station spread.",
+        "rearCorridor": {
+          "source": "scripts/camp_scene.gd:_build_haven",
+          "sideWallCentersMeters": [
+            [
+              -3.35,
+              0,
+              -16
+            ],
+            [
+              3.35,
+              0,
+              -16
+            ]
+          ],
+          "sideWallLengthMeters": 21,
+          "sideWallHeightMeters": 6.6,
+          "rearArchZMeters": [
+            -5.3,
+            -12.0,
+            -20.0
+          ],
+          "endWallZMeters": -27,
+          "construction": "Shared chipped Ruins.masonry_piece variants and live paving; station deposits, grouped work props and two corridor lights."
         }
       },
       "assets": {
@@ -2796,13 +3188,34 @@
         },
         "geometry": "Original project-authored character, face, camp furniture, masonry and landmark generators; no external character/animation pack.",
         "fonts": "Bundled Cinzel and Lora with SIL Open Font License files.",
-        "historicalExcluded": "Prior painted character atlases and old region/camp/stone/station paintings are historical sources excluded from Android export."
+        "historicalExcluded": "Prior painted character atlases and old region/camp/stone/station paintings are historical sources excluded from Android export.",
+        "floorAlbedo": {
+          "path": "assets/materials/ruin-floor/ruin-floor-albedo.png",
+          "metadata": "assets/materials/ruin-floor/ruin-floor-albedo.png.json",
+          "origin": "Original image_gen.imagegen diffuse floor output; source prompt and pixel-preserving metadata in sidecars.",
+          "sizePixels": [
+            1254,
+            1254
+          ],
+          "scan": false,
+          "seamlessScanClaim": false,
+          "pixelEdits": false,
+          "runtime": "Mirrored world-space sampling with separate retained mineral/normal maps."
+        }
       },
       "evidence": {
-        "documentationScope": "Current source and asset scan after the last passage/workload correction; this is not final visual acceptance.",
-        "captureProtocol": {
-          "source": "tests/graphics_overhaul_preview.gd",
-          "stills": 31,
+        "documentationScope": "Source and asset scan of the final 0.46 reconstruction, followed by an evidence-only reconciliation with the fresh full review and packaged manifest. The documenter viewed three raw final stills during the source pass; full visual review and full video decoding were performed by their named passes, not repeated here.",
+        "currentStills": {
+          "path": "docs/previews/scene-finish",
+          "count": 31,
+          "coverage": [
+            "camp",
+            "all three classes",
+            "reading pause",
+            "ward reserve",
+            "all four guardians",
+            "six class/equipment portraits in one portrait sheet"
+          ],
           "sizes": [
             [
               2424,
@@ -2818,53 +3231,68 @@
             ]
           ],
           "compactLargeText": true,
-          "coverage": [
-            "camp",
-            "all three classes",
-            "reading pause",
-            "ward reserve",
-            "all four guardians",
-            "six class/equipment portraits"
+          "guardianFixture": "Raised Life to reach warning states; not ordinary-equipment or balance marketing evidence.",
+          "viewedByDocumenter": [
+            "skills-Vowkeeper-2424x1080.png",
+            "guardian-1-1040x1080.png",
+            "camp-2424x1080.png"
           ],
-          "guardianFixture": "Life raised to reach warning states; not balance or ordinary-equipment marketing evidence.",
-          "clip": {
-            "class": "Arcanist",
-            "equipment": "Normal starting gear",
-            "dimensions": [
-              1200,
-              536
-            ],
-            "frames": 450,
-            "exportFps": 30,
-            "durationSeconds": 15,
-            "readingPauseSeconds": [
-              5,
-              8
-            ],
-            "endpoint": "First passage through arrival at Pilgrim’s Well",
-            "timing": "Native simulation advances by 1/30; no accelerated simulation.",
-            "audio": false,
-            "status": "Corrected 450-frame/15-second MP4 complete and fully decoded by the parent capture pass; consult graphics-review-045-final.md for scored acceptance."
-          }
+          "canonicalPackaging": "Complete: 31 current native stills in docs/previews/scene-finish, with hashes, dimensions and origin metadata in provenance.json.",
+          "rawPath": ".impeccable/review/graphics-046/final"
         },
-        "geometryVerification": {
-          "source": "tests/authored_art_smoke.gd",
-          "sessionLog": "/workspace/scratch/emberfall-045-clearance-regression.log",
-          "regions": 4,
-          "seeds": [
-            1979,
-            1042,
-            7351
+        "measurementReports": {
+          "characterGeometry": "docs/previews/scene-finish/character-geometry.json",
+          "attackEffort": "docs/previews/scene-finish/attack-effort.json",
+          "framingGain": "docs/previews/scene-finish/framing-gain.json",
+          "scope": "Source/native measurements; triangle counts, supported body excursion, release continuity and frame occupancy are not subjective visual approval."
+        },
+        "localRegression": {
+          "inspectedLog": "docs/previews/scene-finish/regression.log",
+          "godotSuites": 32,
+          "checks": 3580,
+          "failures": 0,
+          "serverTests": "PASS emberfall.js; PASS progression_runtime_test.js",
+          "focusedChecks": {
+            "character_3d": 153,
+            "animation_craft": 50,
+            "world_framing": 900,
+            "authored_art": 105,
+            "camp_hud": 44
+          },
+          "packagedLog": "docs/previews/scene-finish/regression.log"
+        },
+        "preservedReview": {
+          "path": "docs/design/graphics-review-046-rebuild.md",
+          "disposition": "rebuild",
+          "scope": "Pre-reconstruction full review; unchanged historical findings, not acceptance of the current build."
+        },
+        "freshFinalReview": {
+          "path": "docs/design/graphics-review-046-final.md",
+          "status": "Complete independent full review of the reconstructed packet.",
+          "disposition": "rebuild",
+          "visualAcceptance": false,
+          "scope": "31 original stills, ordinary and effects-hidden attack frames, all eleven gallery figures, and reading/travel frames; image-only harness, not continuous playback or physical-device observation.",
+          "openScope": [
+            "Focal figure construction and attack silhouettes, especially casting hand and Ranger draw/release.",
+            "Connected live regional depth, material finish, water/shore/prop construction and field-to-plate joins.",
+            "Actor/background value separation, stable framing and nonessential overlays at actual combat scale.",
+            "Disabled Loot surface and glyph/caption separation during reading."
           ],
-          "standingBoundsTestCountPerCase": "> 20",
-          "auditMarginMeters": 0.199,
-          "intersections": 0,
-          "observedStaticBatchMaximum": 325,
-          "archiveSeed1979StaticBatches": 315,
-          "testStaticBatchLimitExclusive": 450,
-          "scope": "Actual new standing-height geometry before batching and runtime batch counts; 99 checks, 0 failures in inspected log.",
-          "physicalFpsClaim": false
+          "retainedStrengths": [
+            "Shared adult Nyra identity and original content.",
+            "Native spatial animation, stable camera and complete simulation-driven warnings.",
+            "Cinzel/Lora hierarchy, grouped dock and real reading pause.",
+            "Explicit fixture, provenance and device limitations."
+          ]
         },
+        "movingPacketStatus": "Complete: four current MP4s packaged with hashes and full_decode pass; ordinary combat, effects-hidden QA, articulated gallery and reading/travel remain separately labelled.",
+        "androidValidation": "Android CI pending; current candidate package/runtime acceptance is not established here.",
+        "missingContext": [
+          "Impeccable context launcher (reported exit 127)",
+          "successful concept seed",
+          "separately approved 0.46 composition",
+          "QUALITY BAR card"
+        ],
         "unmeasured": [
           "physical Pixel Fold frame pacing",
           "heat",
@@ -2875,30 +3303,273 @@
         "claimsExcluded": [
           "AAA production equivalence",
           "Diablo Immortal production equivalence",
-          "beta-ready acceptance from these captures",
+          "visual approval from source/tests",
+          "beta-ready acceptance from renderer captures",
           "Google Play publication"
         ],
-        "correctedCapturePacket": {
-          "status": "Complete native renderer packet; consult graphics-review-045-final.md for scored acceptance.",
-          "source": "docs/previews/graphics-overhaul/provenance.json",
-          "directStills": 31,
-          "selectedMotionFrames": 11,
-          "verificationAttribution": "Parent capture pass personally opened all corrected direct stills and selected motion frames and fully decoded the MP4; documenter inspected source and metadata, not this full image packet.",
-          "clipArrival": "First passage through arrival and subsequent combat at Pilgrim’s Well.",
-          "exportFrames": 450,
-          "durationSeconds": 15
+        "attackEffortSummary": {
+          "basis": "The reviewed 0.46 library and revised library on the same current figure geometry; native .30 s basic/signature, 60 Hz, existing .085 s ranged release",
+          "classes": {
+            "Arcanist": {
+              "basic": {
+                "chest_excursion_m": 0.276823848485947,
+                "chest_pitch_span_deg": 28.3685828308118,
+                "foot_drift_m": 7.7891431797642e-05,
+                "pelvis_excursion_m": 0.244359686970711,
+                "pelvis_yaw_span_deg": 25.6571795841034,
+                "release_tip_jump_m": 5.96046447753906e-08
+              },
+              "signature": {
+                "chest_excursion_m": 0.31382754445076,
+                "chest_pitch_span_deg": 34.1572356005157,
+                "foot_drift_m": 7.7891431797642e-05,
+                "pelvis_excursion_m": 0.285302102565765,
+                "pelvis_yaw_span_deg": 29.2208452977096,
+                "release_tip_jump_m": 5.96046447753906e-08
+              }
+            },
+            "Ranger": {
+              "basic": {
+                "chest_excursion_m": 0.150717213749886,
+                "chest_pitch_span_deg": 2.30660621585379,
+                "foot_drift_m": 6.90215128385302e-05,
+                "pelvis_excursion_m": 0.145429983735085,
+                "pelvis_yaw_span_deg": 8.02140745843518,
+                "release_tip_jump_m": 0.0
+              },
+              "signature": {
+                "chest_excursion_m": 0.192046284675598,
+                "chest_pitch_span_deg": 4.39476921495052,
+                "foot_drift_m": 6.90215128385302e-05,
+                "pelvis_excursion_m": 0.187361732125282,
+                "pelvis_yaw_span_deg": 8.02140745843518,
+                "release_tip_jump_m": 0.0
+              }
+            },
+            "Vowkeeper": {
+              "basic": {
+                "chest_excursion_m": 0.328038036823273,
+                "chest_pitch_span_deg": 31.0407270039447,
+                "foot_drift_m": 2.73202642595103e-05,
+                "pelvis_excursion_m": 0.302350997924805,
+                "pelvis_yaw_span_deg": 38.9353943259147,
+                "release_tip_jump_m": 5.09262292780477e-07
+              },
+              "signature": {
+                "chest_excursion_m": 0.352586448192596,
+                "chest_pitch_span_deg": 38.409109467345,
+                "foot_drift_m": 2.73202642595103e-05,
+                "pelvis_excursion_m": 0.318583548069,
+                "pelvis_yaw_span_deg": 29.2186357315131,
+                "release_tip_jump_m": 1.49011611938477e-07
+              }
+            }
+          }
         },
-        "historicalFullReview": {
-          "path": "docs/design/graphics-review-045-final.md",
-          "dispositionAtInitialFullReview": "fix",
-          "packet": "31 stills and the earlier 360-frame clip, before the final passage/landmark correction.",
-          "sourceCorrections": "Implemented; current source and regenerated GLB mesh counts checked during documentation.",
-          "scope": "Historical initial full review before the final passage/landmark corrections; not a current scored verdict."
+        "framingGainSummary": {
+          "basis": "Native same-scene measurements at the three capture sizes; projected body height, not phone performance.",
+          "outerNormalHeightGain": 1.2308905090326,
+          "outerGuardianHeightGainRange": [
+            1.51950753828274,
+            1.57797560449603
+          ]
         },
-        "authoritativeScoredVerdict": {
-          "path": "docs/design/graphics-review-045-final.md",
-          "instruction": "Read this file for the authoritative current scored verdict. This design record does not assert acceptance."
-        }
+        "packagedPacket": {
+          "manifest": "docs/previews/scene-finish/provenance.json",
+          "status": "complete",
+          "stills": 31,
+          "clips": [
+            {
+              "file": "emberfall-attacks-bare-046.mp4",
+              "frames": 360,
+              "fps": 30,
+              "seconds": 12.0,
+              "dimensions": [
+                1200,
+                536
+              ],
+              "audio": false,
+              "fixture": "QA inspection: ordinary equipment, 4s first fight per class at actual speed; effects, numbers and actor markers temporarily hidden. Not a shipping visual setting.",
+              "full_decode": "pass"
+            },
+            {
+              "file": "emberfall-motion-046.mp4",
+              "frames": 720,
+              "fps": 30,
+              "seconds": 24.0,
+              "dimensions": [
+                1280,
+                720
+              ],
+              "audio": false,
+              "fixture": "Native gallery, 650ms QA attacks; three heroes / four hostile kinds / four guardians, eight seconds each.",
+              "full_decode": "pass"
+            },
+            {
+              "file": "emberfall-attacks-046.mp4",
+              "frames": 720,
+              "fps": 30,
+              "seconds": 24.0,
+              "dimensions": [
+                1200,
+                536
+              ],
+              "audio": false,
+              "fixture": "Ordinary equipment, 4s first fight + 4s first guardian for Vowkeeper / Arcanist / Ranger. Cuts skip travel only; recorded time is actual simulation speed.",
+              "full_decode": "pass"
+            },
+            {
+              "file": "emberfall-graphics-046.mp4",
+              "frames": 450,
+              "fps": 30,
+              "seconds": 15.0,
+              "dimensions": [
+                1200,
+                536
+              ],
+              "audio": false,
+              "fixture": "Ordinary Arcanist; 5–8s actual reading pause, subsequent travel and arrival at Pilgrim’s Well.",
+              "full_decode": "pass"
+            }
+          ],
+          "hashVerification": "Packaging pass verified source/artifact hashes; the independent final reviewer found no mismatch across current sources, stills, four MP4s and measurements.",
+          "decodeVerification": "Full decode pass for all four MP4s supplied by the packaging pass; not rerun in this documentation followup.",
+          "renderer": "Native OpenGL compatibility / Mesa llvmpipe / Linux Xvfb",
+          "captureNote": "Camp label positioning and the effects-hidden QA fixture null guard were corrected while the ordinary combat/travel renderers were already running. Neither change affects their recorded gameplay paths; hashes describe the final packaged candidate."
+        },
+        "candidateDisposition": "Frozen concrete candidate for testing and draft PR review; fresh visual disposition is rebuild, not accepted.",
+        "knownNotCanonized": [
+          "Disabled Loot loses its filled surface and overlaps its glyph/caption while reading.",
+          "Current figure, attack, room-construction and material-finish limitations called out by the rebuild review."
+        ],
+        "evidenceUpdatedAt": "2026-10-04T08:26:26.716838+00:00"
+      },
+      "combatDock": {
+        "source": "scripts/main.gd:_build_run, _build_combat_readouts, _style_combat_command, _combat_command",
+        "composition": "Centered signature/technique tiles followed by Auto, Details, Repeat and Loot; two short activity/route strips above.",
+        "heroPanelMinimumWidth": 226,
+        "portraitRequestedSize": [
+          50,
+          64
+        ],
+        "regionPanelMinimumWidth": 204,
+        "guardianGroundMinimumWidth": 280,
+        "dockGap": 8,
+        "readoutGap": 12,
+        "stateStripMinimumWidth": 360,
+        "routeStripMinimumWidth": 302,
+        "skillRequestedWidth": 134,
+        "commandRequestedWidths": {
+          "default": 82,
+          "auto": 90,
+          "repeat": 100
+        },
+        "requestedHeight": 60,
+        "glyphSize": 20,
+        "skillContentMargins": [
+          7,
+          5
+        ],
+        "skillStackGap": 2,
+        "cooldownTrackHeight": 3,
+        "inspectionColumns": "One column if compact OR aspect < 1.35; otherwise two.",
+        "inspectionColumnGap": 18,
+        "clearance": "Actual readout top minus 8 logical units; ratio clamped to 0.60–0.90; unlaid-out positions below 55% of viewport ignored.",
+        "touchSizing": "Shared _minimum_button_height remains authoritative."
+      },
+      "attackMotion": {
+        "source": [
+          "scripts/character_animation.gd",
+          "scripts/dungeon_actor.gd",
+          "scripts/dungeon_world.gd"
+        ],
+        "nativeBasicCastSeconds": 0.3,
+        "rangedReleaseLeadSeconds": 0.085,
+        "recoverySeconds": 0.34,
+        "fallSeconds": 0.9,
+        "sequence": [
+          "guard",
+          "gather",
+          "load",
+          "drive",
+          "contact",
+          "follow-through",
+          "return",
+          "guard"
+        ],
+        "classes": {
+          "Vowkeeper": "Rear-leg and hip load, pelvis drive preceding chest, distinct sword basic/skill planes and shield support.",
+          "Arcanist": "Directed hand/staff cast with compression, counter-rotation and forward reach.",
+          "Ranger": "Raise/nock, draw to cheek, hold, release/recoil, lower; right hand follows actual moving string nock."
+        },
+        "windupFractions": {
+          "gatherEnd": {
+            "ranger": 0.18,
+            "other": 0.14
+          },
+          "loadEnd": {
+            "ranger": 0.72,
+            "other": 0.34
+          },
+          "commit": {
+            "heavy": 0.78,
+            "skill": 0.56,
+            "basic": 0.52
+          },
+          "passing": "lerp(commit, 1.0, 0.58)",
+          "bodyLead": "Support leg/hip weight starts at commit - 0.15; chest at commit - 0.035."
+        },
+        "recoveryFractions": {
+          "overshoot": {
+            "ranger": 0.3,
+            "heavy": 0.28,
+            "other": 0.24
+          },
+          "returnEnd": 0.74
+        },
+        "support": "Staggered fixed stance targets through guard/attack; runtime leg IK restores soles while preserving authored knee planes.",
+        "clothLagClipFraction": 0.085,
+        "rangedVisualDuration": "max(0.06, attack_duration - 0.085) when the simulation controls release.",
+        "entryBlendSeconds": "min(0.060, visual_duration * 0.20)",
+        "normalNonbossCorpseVisibleSeconds": 2.15,
+        "floatingText": {
+          "lifetimeSeconds": 0.7,
+          "fadeStartSeconds": 0.38,
+          "riseMetersPerSecond": 0.65,
+          "fontSizes": {
+            "longText": 34,
+            "critical": 44,
+            "normal": 38
+          },
+          "pixelSize": 0.0065,
+          "outlineSize": 8
+        },
+        "unchanged": [
+          "simulation damage/reward clocks",
+          "stance world positions",
+          "29 bones",
+          "9 clip names",
+          "shared adult Nyra face",
+          "steady camera"
+        ],
+        "motionCapture": false
+      },
+      "documentationSources": {
+        "checkedAt": "2026-10-04T08:17:49.343644+00:00",
+        "sourceSha256": {
+          "scripts/main.gd": "ce0aa6687e85dc78b9c33a3ed848f138a5005db5d1233712794694e1dfbcc63b",
+          "scripts/dungeon_world.gd": "143b35747788529b1ae3fade10d22fd0ee147d97036a6e29b716320320efc399",
+          "scripts/camp_scene.gd": "30ede3a1073e9605bcf1308096adf01005ac83e16da554c0437d9768686f52ff",
+          "scripts/ruin_architecture.gd": "974f9afbc5ecf509352b2155a58f33f8b5f7d8f50320754550d6702161796e74",
+          "scripts/character_animation.gd": "8d9c13241dd6e55ed1cb6ea307658fa4297b60c24388b88197d9f931c80ea781",
+          "scripts/dungeon_actor.gd": "aaae675efdc07cd7cb6f1575285eb54559b7366bf245adc8bae7982fbbf274ee",
+          "tools/art/build_characters.py": "dc8d310c140f87f1c3da2a5c958d32994e00175f6006e3e4491fc4d1656453aa",
+          "assets/shaders/character_surface.gdshader": "34892374b6bcfa70527c692894da6646df2ba7ad355fba8e56702392b46f65e0",
+          "assets/shaders/weathered_stone.gdshader": "14c1aa69bd8aff96824e85b26c07625efab2516c2e35c4ea889f7f82c79adb8a",
+          "assets/shaders/ruin_floor.gdshader": "1f26defac45ef200fef39a32896188b475f832705b2fb46a2dc658ada233d102",
+          "assets/shaders/dungeon_water.gdshader": "3beefed1c6f9e8fd557eba31d3a826d033475d5af25b34e9295b6753adcf2e9b"
+        },
+        "method": "Extracted current native values, checked supplied geometry/motion/framing reports and final local regression log, and viewed three current raw native stills; no captures or source edits in this documenter pass."
       }
     }
   },
@@ -2936,12 +3607,12 @@
       "css": ".ds-button-oath-selected { position:relative; min-height:48px; padding:0 9px; border:1px solid rgb(37.192157% 30.635294% 28.564706%); border-radius:10px; background:#493630; color:#e7dfd2; font-family:Lora,serif; font-size:14px; } .ds-button-oath-selected:hover { background:rgb(37.192157% 30.635294% 28.564706%); color:white; } .ds-button-oath-selected:active { background:rgb(25.764706% 19.058824% 16.941176%); color:#d2ad70; } .ds-button-oath-selected:focus-visible { outline:2px solid #ffe2a2; outline-offset:-2px; } .ds-button-oath-selected:disabled { color:#c3b9a8; }"
     },
     {
-      "name": "Combat details control",
+      "name": "Combat command",
       "kind": "button",
-      "refersTo": "combat-control",
-      "description": "Base logical-size illustration of the native helper; adaptive sizing and engine behavior remain authoritative.",
-      "html": "<button class=\"ds-combat-control\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" aria-hidden=\"true\"><path d=\"M3 5 9 3 15 5 21 3V19L15 21 9 19 3 21ZM9 3V19M15 5V21\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\"/></svg>DETAILS</button>",
-      "css": ".ds-combat-control { position:relative; min-height:48px; padding:0 12px 0 42px; border:1px solid rgb(14.376000% 14.112000% 14.376000% / 92%); border-radius:5px; background:rgb(2.7% 2.4% 2.7% / 92%); color:#e7dfd2; font-family:Lora,serif; font-size:12px; } .ds-combat-control:hover { background:rgb(14.376000% 14.112000% 14.376000% / 92%); color:white; } .ds-combat-control:active { background:rgb(2.430000% 2.160000% 2.430000% / 92%); color:#d2ad70; } .ds-combat-control:focus-visible { outline:2px solid #ffe2a2; outline-offset:-2px; } .ds-combat-control:disabled { color:#c3b9a8; } .ds-combat-control svg { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:#d2ad70; }"
+      "refersTo": "combat-command",
+      "description": "Native centered glyph-above-caption command; requested logical minimums are adjusted by content and native touch sizing.",
+      "html": "<button class=\"ds-combat-command\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" aria-hidden=\"true\"><path d=\"M3 5 9 3 15 5 21 3V19L15 21 9 19 3 21ZM9 3V19M15 5V21\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\"/></svg>DETAILS</button>",
+      "css": ".ds-combat-command { position:relative; min-width:82px; min-height:60px; padding:27px 6px 5px; border:1px solid #49463f; border-radius:2px; background:#151a1e; color:#e7dfd2; font-family:Lora,serif; font-size:12px; } .ds-combat-command:hover { background:#20282b; border-color:#655849; color:white; } .ds-combat-command:active { background:#0c1115; color:#d2ad70; } .ds-combat-command:focus-visible { outline:2px solid #ffe2a2; outline-offset:-2px; } .ds-combat-command:disabled { color:#c3b9a8; } .ds-combat-command svg { position:absolute; left:50%; top:7px; transform:translateX(-50%); color:#d2ad70; }"
     },
     {
       "name": "Preparation navigation",
@@ -2966,22 +3637,31 @@
       "description": "Native TextEdit minimum height and inherited type only; HTML textarea chrome is illustrative, not an extracted Godot skin.",
       "html": "<textarea class=\"ds-backup-field\" aria-label=\"Restore backup code\"></textarea>",
       "css": ".ds-backup-field { min-height:76px; width:100%; font-family:Lora,serif; font-size:14px; white-space:pre-wrap; }"
+    },
+    {
+      "name": "Automatic skill tile",
+      "kind": "button",
+      "refersTo": "combat-skill",
+      "description": "Native signature or equipped technique; words and actual cooldown track accompany color. Opens the reading pause.",
+      "html": "<button class=\"ds-combat-skill\"><span class=\"ds-skill-title\">EMBER OATH</span><span class=\"ds-skill-state\">3.8s</span><span class=\"ds-skill-track\"><span class=\"ds-skill-fill\"></span></span></button>",
+      "css": ".ds-combat-skill { display:flex; flex-direction:column; gap:2px; min-width:134px; min-height:60px; padding:5px 7px; border:1px solid #49463f; border-radius:2px; background:#151a1e; color:#e7dfd2; text-align:left; font-family:Lora,serif; font-size:12px; } .ds-skill-title { font-family:Cinzel,serif; } .ds-skill-track { display:block; height:3px; width:100%; background:#343338; border-radius:5px; } .ds-skill-fill { display:block; width:36%; height:100%; background:#d2ad70; border-radius:5px; } .ds-combat-skill:hover { background:#20282b; border-color:#655849; } .ds-combat-skill:active { background:#0c1115; color:#d2ad70; } .ds-combat-skill:focus-visible { outline:2px solid #ffe2a2; outline-offset:-2px; }"
     }
   ],
   "narrative": {
     "northStar": "Inhabited dark fantasy ruins",
-    "overview": "The user's complete graphics overhaul and explicit Diablo Immortal reference, recorded in [PRODUCT.md](PRODUCT.md) and the [0.45 direction contract](docs/design/graphics-direction-045.md), establish mature worn materials, a grounded isometric fight and localized light. Soot-dark iron, worn silver, oxblood cloth, wet slate and aged ivory surround original Emberfall characters and regional architecture. The earlier bright painterly illustration is historical authority; it no longer governs this world. No separate approved 0.45 composition or successful concept seed is inferred.\n\nLive floors, masonry, props and eleven lit skeletal figures carry the foreground. Five original generated distant plates supply camp and regional depth. Nyra's rebuilt continuous adult face, fitted eyes and lips, and pale swept hair use the same class/equipment model in portrait, camp and combat. The facial albedo is a generated diffuse patch on authored geometry; the Head bone and existing body clips animate it, with no separate facial-expression or lip-sync rig.\n\nThe fight owns the image. Quiet native ink grounds carry readable state, preparation remains scrollable, and the combat-room camera stays anchored through hits and target changes. Travel follows the actual route; widening preserves complete simulation-driven warning geometry. Warm hearths, jade waterlight and muted spectral accents reveal worn surfaces without turning all armor into polished bronze.",
+    "overview": "The user's complete graphics overhaul and explicit Diablo Immortal reference, recorded in [PRODUCT.md](PRODUCT.md) and the [0.46 direction contract](docs/design/graphics-direction-046.md), establish mature worn materials, spatial adult figures, a grounded isometric fight and localized light. Soot-dark iron, worn silver, oxblood cloth, wet slate and aged ivory surround original Emberfall characters and regional architecture. The reference sets direction and ambition; it does not establish commercial production equivalence. The superseded bright painterly illustration remains historical evidence. No successful concept seed, separate approved 0.46 composition or supplied QUALITY BAR card is inferred.\n\nLive continuous paving, chipped masonry, region-specific construction and eleven lit skeletal figures carry the foreground. Five original generated distant plates provide camp and regional depth. Nyra retains the shared adult face, fitted eyes and lips, pale swept hair and saved equipment identity established in 0.45. The 0.46 construction pass changes armor shells, limbs and garments around that identity; it adds no facial-expression or lip-sync rig. The face remains authored geometry with an original generated diffuse patch attached in rest space.\n\nAttacks are central to this iteration: native sword, directed cast and bow phrases pass through supported body load, contact and a distinct recovery at the existing simulation release. A room shot jointly fits pan and distance around stored actor and warning envelopes, then stays anchored through attacks and target changes. The compact native command dock, short state readouts and reading pause keep operational state available. Camp returns the hero to grouped workstations and a live rear corridor.",
     "keyCharacteristics": [
-      "Original spatial adult figures with shared class, face and saved equipment identity.",
-      "Worn metal, cloth, leather and stone tied to the moving geometry.",
-      "Regional live masonry and props joined to quiet distant environment plates.",
-      "Clear authoritative passages, complete danger footprints and a steady room camera.",
-      "Native scaled text, touch sizing, safe-area offsets and a real reading pause."
+      "Shared adult 3D Nyra identity across class, portrait, camp and combat.",
+      "Distinct supported sword, casting and bow phrases on native skeletal clips.",
+      "Worn shells, shaped cloth and continuous limbs with finish attached to the mesh.",
+      "Live regional masonry, cut channels and continuous ground around the authoritative route.",
+      "A steady room shot, complete danger footprints and a compact native command dock.",
+      "Scaled text, native touch sizing, safe-area offsets and a real reading pause."
     ],
     "rules": [
       {
         "name": "The Shared Geometry Rule",
-        "body": "Draw warnings from the same BossPatterns zones used for damage and avoidance; improve separation through material and outline treatment, preserving their active footprint.",
+        "body": "Draw warnings from the same BossPatterns zones used for damage and avoidance; improve separation through material and outline treatment while preserving their active footprint.",
         "section": "colors"
       },
       {
@@ -2996,12 +3676,12 @@
       },
       {
         "name": "The Clear Passage Rule",
-        "body": "Derive tall dressing clearance from the generated floor and passage envelope, including its margin; keep openings full height and remove whole obstructing props before static batching.",
+        "body": "Derive tall dressing clearance and channel cuts from the generated floor and passage envelope; keep openings full height and remove whole obstructing props before static batching.",
         "section": "layout"
       },
       {
         "name": "The Steady Shot Rule",
-        "body": "Hold the combat-room anchor through hits, casts and target changes; follow travel smoothly and widen only to preserve the complete reserved geometry.",
+        "body": "Store the fitted room pan and distance through hits, casts and target changes; follow travel smoothly and widen only to preserve the complete reserved geometry.",
         "section": "layout"
       },
       {
@@ -3015,24 +3695,30 @@
         "section": "components"
       },
       {
+        "name": "The Supported Action Rule",
+        "body": "Author leg, pelvis, chest, hand and weapon as one phrase at the actual release; retain supporting soles and the unchanged simulation clock through load, contact and recovery.",
+        "section": "components"
+      },
+      {
         "name": "The Earned State Rule",
         "body": "Camp seals appear only for saved guardian trophies. Class, equipment, guardian phase and warning cues come from real preparation or simulation state.",
         "section": "components"
       }
     ],
     "dos": [
-      "Do use the authorized worn dark-fantasy material world, original regional assets and shared adult 3D Nyra identity.",
-      "Do derive complete warning geometry and tall-dressing clearance from the authoritative simulation and generated route.",
-      "Do keep camera, portrait, stage-light and material values aligned with their native source tokens.",
-      "Do use shared scaled-font, minimum-control and safe-area helpers, preserving the real reading-pause intent.",
-      "Do record generated asset origins, native renderer fixtures and measured device evidence by their actual source."
+      "**Do** use the authorized worn dark-fantasy material world, original regional construction and shared adult 3D Nyra identity.",
+      "**Do** carry native attack effort through the legs, hips, torso and weapon while preserving actual release timing and supported feet.",
+      "**Do** derive complete warning geometry, tall-dressing clearance and fluid cuts from the authoritative simulation and generated route.",
+      "**Do** keep camera, portrait, stage-light and material values aligned with their native source tokens.",
+      "**Do** use shared scaled-font, minimum-control and safe-area helpers while preserving the real reading-pause intent.",
+      "**Do** identify generated asset origins, renderer fixtures, measured animation/framing data and physical-device evidence by their actual source."
     ],
     "donts": [
-      "Don't restore the superseded bright painterly world or replace live faces with painted portrait substitutes.",
-      "Don't place tall masonry or sliced props across the authoritative passage, or use visibility culling as its repair.",
-      "Don't add camera shake or a decorative warning footprint that disagrees with damage and avoidance geometry.",
-      "Don't show unearned seals, imply a unique model for every item, or claim facial-expression/lip-sync animation that is absent.",
-      "Don't reduce text or controls to force a compact layout, or infer physical-device performance or release acceptance from renderer captures."
+      "**Don't** restore the superseded bright painterly world or replace live faces with painted portrait substitutes.",
+      "**Don't** place tall masonry or sliced props across the authoritative passage, or use visibility culling as its repair.",
+      "**Don't** add camera shake, alter simulation attack clocks for a visual phrase, or invent warning footprints that disagree with damage geometry.",
+      "**Don't** show unearned seals, imply a unique model for every item, or claim motion capture, facial-expression or lip-sync animation that is absent.",
+      "**Don't** reduce text or controls to force a compact layout, or infer visual approval, physical-device performance or release acceptance from renderer captures and test counts."
     ]
   }
 }

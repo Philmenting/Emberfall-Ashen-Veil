@@ -95,6 +95,19 @@ func run_checks() -> void:
 			check(intersections==0,"region %d seed %d: added walls and complete props leave authoritative passages clear (%d intersections)" % [region,seed_value,intersections])
 			var batch_count:=world.find_children("*","MultiMeshInstance3D",true,false).size()
 			check(batch_count<450,"region %d seed %d: repeated static geometry stays below 450 batches (%d)" % [region,seed_value,batch_count])
+			if region in [1,3]:
+				var court_vertices:=PackedVector3Array()
+				for batch in world.find_children("*","MultiMeshInstance3D",true,false):
+					if batch.material_override==world.court_material:
+						court_vertices=batch.multimesh.mesh.surface_get_arrays(0)[Mesh.ARRAY_VERTEX]
+				var opened:=0;var buried:=0
+				for liquid in world.find_children("*","MeshInstance3D",true,false):
+					if not liquid.get_meta("regional_liquid",false):continue
+					opened+=1
+					for vertex in range(0,court_vertices.size(),3):
+						if Geometry3D.ray_intersects_triangle(liquid.position+Vector3.UP*3.0,Vector3.DOWN,court_vertices[vertex],court_vertices[vertex+1],court_vertices[vertex+2])!=null:
+							buried+=1;break
+				check(opened>0 and buried==0,"region %d seed %d: native fluid centers are visible through actual stone-court mesh openings" % [region,seed_value])
 			world.free()
 	game.free()
 	print("AUTHORED ART SMOKE: %d checks, %d failures" % [checks,failures])

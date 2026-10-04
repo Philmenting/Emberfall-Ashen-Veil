@@ -1,5 +1,5 @@
 extends "res://scripts/main.gd"
-## Native 0.45 graphics evidence. Guardian fixtures have extra Life; clip gear is ordinary.
+## Native 0.46 graphics evidence. Guardian fixtures have extra Life; clip gear is ordinary.
 var capture_dir:="/tmp/emberfall-graphics"
 var capture_video:=false
 func _ready() -> void:

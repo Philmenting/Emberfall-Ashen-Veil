@@ -82,6 +82,11 @@ func run_checks() -> void:
 			world._process(1.0/60.0); reference.advance(1.0/60.0)
 			same=same and sim.encode_snapshot()==reference.encode_snapshot()
 		check(same,class_key+": rendered 3D actions never change simulation or RNG")
+		var has_settled:=false;var clear_after_collapse:=true
+		for actor in world.actor_by_id.values():
+			if not actor.boss and actor.death_time>2.2:
+				has_settled=true;clear_after_collapse=clear_after_collapse and not actor.visible
+		check(has_settled and clear_after_collapse,class_key+": completed collapses leave the active weapon and feet readable without changing rewards")
 		var before: String=sim.encode_snapshot(); world._update_combat_readability(.2)
 		check(sim.encode_snapshot()==before and world.hero.silhouette_focus>.5,class_key+": heroine emphasis is visual only")
 		world.hero.die(); world.hero.animate(1.5,false); world._update_combat_readability(.2)

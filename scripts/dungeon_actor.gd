@@ -7,6 +7,8 @@ const HOSTILES: Array[String]=["raider","bulwark","hexer","elite"]
 const GEAR_RANKS: Dictionary={"COMMON":0,"UNCOMMON":1,"RARE":2,"EPIC":3,"LEGENDARY":4}
 const GEAR_TINTS: Array[Color]=[Color("98794c"),Color("a5b393"),Color("93c4c6"),Color("b79ec6"),Color("e7bf79")]
 const COLLAPSE_DURATION:=.90
+const PROJECTILE_RELEASE_LEAD:=.085
+const SKILL_STYLES: Array[String]=["signature","sunder","judgment","chain","starfall","rain","marked"]
 static var appearance_cache: Dictionary={}
 var region_index:=0
 var kind:="Vowkeeper"
@@ -228,7 +230,7 @@ func animate(delta: float,walking: bool,horizontal_speed: float=-1.0) -> void:
 		var speed:=clampf(horizontal_speed,0.0,6.0) if horizontal_speed>=0.0 else 3.2
 		gait_phase+=delta*speed/body.scale.x*TAU/1.60
 	pose_frame=1+int(floor(gait_phase/PI))%2 if gait_blend>.22 else 0
-	action_intensity=1.20 if attack_style in ["signature","sunder","judgment","chain","starfall","rain","marked"] else 1.0
+	action_intensity=1.20 if attack_style in SKILL_STYLES else 1.0
 	if telegraph_left>0.0: pose_frame=3
 	elif attack_time>=0.0:
 		if release_time>=0.0: release_time+=delta
@@ -250,33 +252,85 @@ func animate(delta: float,walking: bool,horizontal_speed: float=-1.0) -> void:
 
 func _apply_motion(delta: float=0.0,contact: bool=false) -> void:
 	var clip:="idle"; var time:=fposmod(clock,4.2) if not reduced_motion else 0.0
-	var action:="skill" if action_intensity>1.05 else "basic"
+	var action:="skill" if attack_style in SKILL_STYLES else "basic"
+	var blend_duration:=.10
 	if death_time>=0.0: clip="death"; time=minf(death_time,COLLAPSE_DURATION)
 	elif telegraph_left>0.0:
 		clip="windup_heavy"; time=clampf(1.0-telegraph_left/maxf(telegraph_duration,.001),0,1)
 	elif attack_time>=0.0:
 		if attack_style=="heavy": action="heavy"
-		if release_time<0.0: clip="windup_"+action; time=clampf(attack_time/attack_duration,0,1)
+		if release_time<0.0:
+			# DungeonWorld launches basic/signature projectiles this far before
+			# damage. Finish the authored draw/cast on that existing launch frame;
+			# this mapping never releases an attack or advances simulation time.
+			var visual_duration:=attack_duration
+			if external_release and kind in ["Arcanist","Ranger"] and attack_style in ["basic","signature"]:
+				visual_duration=maxf(.06,attack_duration-PROJECTILE_RELEASE_LEAD)
+			clip="windup_"+action; time=clampf(attack_time/visual_duration,0,1)
+			blend_duration=minf(.060,visual_duration*.20)
 		else: clip="recover_"+action; time=minf(release_time,Rig.Clips.RECOVERY)
+	elif hostile and anticipation>0.0:
+		# Ordinary hostile hits already expose their final cooldown fraction.
+		# Use that real preparation window instead of appearing at contact.
+		clip="windup_heavy"; time=clampf(anticipation,0,1); blend_duration=.035
 	elif gait_blend>.04:
 		clip="walk"; time=fposmod(gait_phase,TAU)/TAU
 	if clip!=last_clip:
 		blend_pose=motion_rig.capture_pose(); blend_age=0.0
+		# Restored casts and short interruptions must enter at their real pose.
+		if clip.begins_with("windup") and time>.24: blend_age=1.0
 		last_clip=clip
 	motion_rig.pose(clip,time)
+	if clip=="death":
+		# Deterministic variations keep fallen fighters from repeating the same
+		# prop silhouette. They are native joint poses on the original ground.
+		var settle:=smoothstep(.15,.82,time)
+		var skeleton: Skeleton3D=motion_rig.skeleton
+		var root_pose:=skeleton.get_bone_pose_rotation(0)
+		skeleton.set_bone_pose_rotation(0,Quaternion(Vector3.UP,death_lean*.24*settle)*root_pose)
+		skeleton.force_update_all_bone_transforms()
 	if contact: blend_age=1.0
 	else: blend_age+=delta
-	if blend_age<.10 and not blend_pose.is_empty(): motion_rig.blend_from(blend_pose,smoothstep(0,.10,blend_age))
+	if blend_age<blend_duration and not blend_pose.is_empty(): motion_rig.blend_from(blend_pose,smoothstep(0,blend_duration,blend_age))
 	if clip=="walk": _plant_feet()
-	elif stop_time<0.0 or stop_time>.24: plant_active=[false,false]
-	hit_strength=sin(clampf(impact_time/recoil_duration,0,1)*PI)*recoil_intensity if impact_time>=0.0 and death_time<0.0 else 0.0
-	if hit_strength>0.0 and not reduced_motion:
-		var influence:=.25 if attack_time>=0.0 or telegraph_left>0.0 else 1.0
+	elif clip.begins_with("windup") or clip.begins_with("recover"):
+		# Large supported weight changes can expose a few millimetres of foot
+		# drift from quaternion interpolation or the short entry blend. Preserve
+		# each authored knee plane while returning its sole to the support point.
 		var skeleton: Skeleton3D=motion_rig.skeleton
+		plant_active=[false,false]
+		for side in range(2):
+			var thigh:=12 if side==0 else 15
+			var knee_pole:=skeleton.get_bone_global_pose(thigh+1).origin-skeleton.get_bone_global_pose(thigh).origin
+			motion_rig.solve_leg(side,Rig.Clips.stance_foot(appearance_key,side),knee_pole)
+	elif clip=="death" and time<.12:
+		# Entry blending must not pull the sole through the floor while the
+		# knees fold. The authored root fall begins after this short interval.
+		var skeleton: Skeleton3D=motion_rig.skeleton
+		for side in range(2):
+			var thigh:=12 if side==0 else 15
+			var target:=skeleton.get_bone_global_pose(thigh+2).origin
+			target.y=maxf(target.y,motion_rig.rest[thigh+2].origin.y)
+			var knee_pole:=skeleton.get_bone_global_pose(thigh+1).origin-skeleton.get_bone_global_pose(thigh).origin
+			motion_rig.solve_leg(side,target,knee_pole)
+	elif stop_time<0.0 or stop_time>.24: plant_active=[false,false]
+	var recoil_phase:=clampf(impact_time/recoil_duration,0,1)
+	hit_strength=(smoothstep(0,.16,recoil_phase)*(1.0-smoothstep(.16,1.0,recoil_phase)))*recoil_intensity if impact_time>=0.0 and death_time<0.0 else 0.0
+	if hit_strength>0.0 and not reduced_motion:
+		# A quick shoulder compression makes a real impact legible. Committed
+		# windups keep priority, and neither world position nor camera is kicked.
+		var influence:=.22 if (attack_time>=0.0 and release_time<0.0) or telegraph_left>0.0 else (.45 if attack_time>=0.0 else 1.0)
+		var skeleton: Skeleton3D=motion_rig.skeleton
+		var feet: Array[Vector3]=[skeleton.get_bone_global_pose(14).origin,skeleton.get_bone_global_pose(17).origin]
+		var pelvis:=skeleton.get_bone_pose_rotation(1)
 		var chest:=skeleton.get_bone_pose_rotation(2)
-		skeleton.set_bone_pose_rotation(2,chest*Quaternion.from_euler(Vector3(.04,0,.045*recoil_direction)*hit_strength*influence))
-		skeleton.set_bone_pose_position(0,skeleton.get_bone_pose_position(0)+Vector3(.035*recoil_direction,0,.018)*hit_strength*influence)
+		var head:=skeleton.get_bone_pose_rotation(3)
+		skeleton.set_bone_pose_rotation(1,pelvis*Quaternion.from_euler(Vector3(-.025,-.03*recoil_direction,-.02*recoil_direction)*hit_strength*influence))
+		skeleton.set_bone_pose_position(1,skeleton.get_bone_pose_position(1)+Vector3(0,-.012,0)*hit_strength*influence)
+		skeleton.set_bone_pose_rotation(2,chest*Quaternion.from_euler(Vector3(.12,.045*recoil_direction,.085*recoil_direction)*hit_strength*influence))
+		skeleton.set_bone_pose_rotation(3,head*Quaternion.from_euler(Vector3(-.055,-.015*recoil_direction,-.035*recoil_direction)*hit_strength*influence))
 		skeleton.force_update_all_bone_transforms()
+		for side in range(2): motion_rig.solve_leg(side,feet[side])
 	motion_offset=motion_rig.skeleton.get_bone_pose_position(0)
 	surface_material.set_shader_parameter("hit_flash",hit_strength*.32)
 	surface_material.set_shader_parameter("action_intensity",action_intensity)

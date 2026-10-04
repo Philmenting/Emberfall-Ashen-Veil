@@ -61,6 +61,10 @@ void fragment(){
     vec3 surface=texture(field_surfaces,(cell+vec2(0.045)+repeat_uv*0.91)*0.5).rgb;
     float wear=dot(surface,vec3(0.299,0.587,0.114));
     color*=mix(0.76+wear*1.5,0.58+wear*1.75,metal);
+    // Woven cloth carries a quiet fibre grain. Large bright atlas variation
+    // must not turn the animated fold surfaces into pebbled, reflective stone.
+    if(category==1.0) color=COLOR.rgb*(0.94+wear*0.20);
+    if(category==2.0) color=COLOR.rgb*(0.90+wear*0.28);
     if(category==3.0) color=COLOR.rgb*(0.97+wear*0.07);
     if(category==4.0 || category==5.0) color=COLOR.rgb*(0.95+grain*0.12);
     if(category==6.0 || category==7.0) {
@@ -75,8 +79,10 @@ void fragment(){
         color=mix(color,accent*0.70,0.08+rank*0.045);
     ALBEDO=mix(color,vec3(0.8,0.72,0.61),hit_flash*0.22)*readability;
     ROUGHNESS=clamp(UV.y+(etched-0.5)*metal*0.26+(wear-0.2)*0.18,0.40,0.98);
+    if(category==1.0) ROUGHNESS=clamp(0.92+wear*0.04,0.92,0.98);
     METALLIC=metal;
     SPECULAR=(category==3.0 || category>=6.0) ? 0.25 : 0.48;
+    if(category==1.0) SPECULAR=0.18;
     float edge=pow(1.0-max(dot(NORMAL,VIEW),0.0),3.0);
     EMISSION=color*UV2.y*(0.65+boss_phase*0.25)
         +focus_tint.rgb*edge*silhouette_focus*0.055

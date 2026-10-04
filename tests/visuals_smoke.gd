@@ -98,12 +98,18 @@ func run_checks() -> void:
 		check(world.find_child("LowCryptMist",true,false)!=null and world.find_child("DungeonDust",true,false)!=null,"region %d: mist and dust are present" % region)
 		check((world.find_child("FloodedArchive",true,false)!=null)==(region==1) and (world.find_child("LavaBasin",true,false)!=null)==(region==3),"region %d: animated regional surfaces retained" % region)
 		var carved_floor_count:=0
+		var continuous_floor_count:=0
 		var carved_floor_unshadowed:=true
 		for batch in world.find_children("*","MultiMeshInstance3D",true,false):
 			if batch.material_override==world.materials.intarsia:
 				carved_floor_count+=batch.multimesh.instance_count
 				carved_floor_unshadowed=carved_floor_unshadowed and batch.cast_shadow==GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-		check(carved_floor_count==6 and carved_floor_unshadowed,"region %d: batched flush floors keep shadows disabled" % region)
+			if batch.material_override==world.court_material:
+				continuous_floor_count+=batch.multimesh.instance_count
+				carved_floor_unshadowed=carved_floor_unshadowed and batch.cast_shadow==GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		# Ordinary rooms intentionally lose their decorative medallion. Keep
+		# the single guardian inlay and continuous floor flush and unshadowed.
+		check(carved_floor_count==1 and continuous_floor_count==1 and carved_floor_unshadowed,"region %d: continuous floor and single guardian inlay keep shadows disabled" % region)
 		world.reduced_motion=true
 		world.set_shadows(false)
 		var battery_hidden:=not world.sun.shadow_enabled

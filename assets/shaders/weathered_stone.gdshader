@@ -28,6 +28,13 @@ void fragment() {
     float pores=texture(stone_roughness,p.zy).r*w.x+texture(stone_roughness,p.xz).r*w.y+texture(stone_roughness,p.xy).r*w.z;
     float damp=weathering*smoothstep(0.42,0.84,pores);
     ALBEDO=mix(mix(vec3(0.32),stone,0.62)*stone_tint.rgb*1.65,mineral_tint.rgb,damp*0.32);
+    // Aging belongs to the assembled elevation: broad runoff crosses joints,
+    // while the lowest courses collect damp mineral and soot deposits.
+    float runoff=texture(stone_roughness,world_pos.xz*0.18+world_pos.yy*vec2(0.011,0.023)).r;
+    float broad=texture(stone_roughness,world_pos.xz*0.075).r;
+    float footing=(1.0-smoothstep(0.12,2.5,world_pos.y))*mix(0.38,0.78,broad);
+    float stain=smoothstep(0.46,0.82,runoff)*(0.16+weathering*0.40);
+    ALBEDO=mix(ALBEDO,mineral_tint.rgb*0.32,clamp(footing+stain,0.0,0.78));
     ROUGHNESS=clamp(roughness+(pores-0.5)*0.22-damp*0.28,0.34,0.97);
     SPECULAR=0.38;
     if(relief>0.01){

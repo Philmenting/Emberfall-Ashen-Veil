@@ -416,10 +416,11 @@ func _position_camp_stations() -> void:
 	for button in stations.get_children():
 		var key:String=button.get_meta("camp_station_key")
 		var at:Vector2=camp_scene.station_position(key)
-		var target:Vector2=at-Vector2(button.size.x*0.5,button.size.y*0.5)
+		var target:Vector2=Vector2(at.x-button.size.x*.5,at.y+12.0)
+		if key=="forge": target=Vector2(at.x-button.size.x-40.0,at.y-button.size.y*.15)
 		if key=="hero": target.y=at.y+8.0
-		if key=="table": target.x-=35; target.y+=15
-		if key=="seals": target.x+=25; target.y+=15
+		if key=="table": target.x-=45; target.y+=10
+		if key=="seals": target.x+=25; target.y+=10
 		target.x=clampf(target.x,20+int(insets.left),maxf(20,bounds.x-button.size.x-20-int(insets.right)))
 		target.y=clampf(target.y,118+int(insets.top),maxf(118,lower_edge-button.size.y))
 		var rect:=Rect2(target,button.size)
@@ -845,7 +846,7 @@ func _build_run() -> void:
 	top.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	overlay.add_child(top)
 	var hero_panel:=_panel(Color(0.027,0.024,0.027,0.8),Color("9c8053"),4)
-	hero_panel.custom_minimum_size.x=248
+	hero_panel.custom_minimum_size.x=226
 	hero_panel.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
 	hero_panel.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
 	top.add_child(hero_panel)
@@ -856,13 +857,13 @@ func _build_run() -> void:
 	portrait.name="NyraPortrait"
 	portrait.configure(character_class,equipment)
 	portrait.set_presentation(preferences.reduced_motion,preferences.battery)
-	portrait.custom_minimum_size=Vector2(57,69)
+	portrait.custom_minimum_size=Vector2(50,64)
 	hero_row.add_child(portrait)
 	var hero_stack:=VBoxContainer.new()
 	hero_stack.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	hero_stack.add_theme_constant_override("separation",5)
+	hero_stack.add_theme_constant_override("separation",3)
 	hero_row.add_child(hero_stack)
-	hero_stack.add_child(_label("NYRA · %d" % player_level,16,PALE,true))
+	hero_stack.add_child(_label("NYRA · %d" % player_level,14,PALE,true))
 	combat_hud.hp=_progress_bar(run_health,expedition.stats.max_hp,Color("b62c2b"),10,true)
 	hero_stack.add_child(combat_hud.hp)
 	combat_hud.mana=_progress_bar(run_mana,expedition.stats.max_mana,Color("438e9e"),6)
@@ -875,7 +876,7 @@ func _build_run() -> void:
 	var boss_stack:=VBoxContainer.new()
 	boss_stack.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	boss_stack.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	boss_stack.add_theme_constant_override("separation",5)
+	boss_stack.add_theme_constant_override("separation",3)
 	var guardian_space:=VBoxContainer.new()
 	guardian_space.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	guardian_space.mouse_filter=Control.MOUSE_FILTER_IGNORE
@@ -883,13 +884,15 @@ func _build_run() -> void:
 	var boss_ground:=_ink_ground(6,4)
 	boss_ground.name="BossTextGround"
 	guardian_space.add_child(boss_ground)
+	boss_ground.custom_minimum_size.x=280
+	boss_ground.size_flags_horizontal=Control.SIZE_SHRINK_CENTER
 	boss_ground.add_child(boss_stack)
 	combat_hud.boss_panel=boss_ground
 	combat_hud.boss_panel.name="BossEncounter"
-	combat_hud.boss_name=_centered_label("",16,PALE,true)
+	combat_hud.boss_name=_centered_label("",14,PALE,true)
 	combat_hud.boss_name.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	boss_stack.add_child(combat_hud.boss_name)
-	combat_hud.boss_hp=_progress_bar(0,1,Color("b9382d"),12,true)
+	combat_hud.boss_hp=_progress_bar(0,1,Color("b9382d"),7,true)
 	boss_stack.add_child(combat_hud.boss_hp)
 	combat_hud.boss_life=_centered_label("",10,GOLD)
 	boss_stack.add_child(combat_hud.boss_life)
@@ -899,7 +902,7 @@ func _build_run() -> void:
 	var region_panel:=_panel(Color(0.027,0.024,0.027,0.78),Color("9c8053"),4)
 	region_panel.size_flags_horizontal=Control.SIZE_SHRINK_END
 	region_panel.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
-	region_panel.custom_minimum_size.x=228
+	region_panel.custom_minimum_size.x=204
 	top.add_child(region_panel)
 	var region_row:=HBoxContainer.new()
 	region_row.add_theme_constant_override("separation",8)
@@ -926,44 +929,23 @@ func _build_run() -> void:
 	air.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	air.size_flags_vertical=Control.SIZE_EXPAND_FILL
 	overlay.add_child(air)
-	_build_combat_readouts(overlay)
-	var bottom:=HBoxContainer.new()
-	bottom.add_theme_constant_override("separation",10)
-	bottom.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	overlay.add_child(bottom)
-	combat_hud.auto=_glyph_button("AUTO","auto",Color(0.027,0.024,0.027,0.92),13,_toggle_run_pause)
-	combat_hud.auto.name="AutoControl"
-	combat_hud.auto.custom_minimum_size.x=122
-	combat_hud.auto.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
-	bottom.add_child(combat_hud.auto)
-	var state_ground:=_ink_ground(7,4)
-	state_ground.name="CombatStateGround"
-	state_ground.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	state_ground.size_flags_vertical=Control.SIZE_SHRINK_CENTER
-	bottom.add_child(state_ground)
-	combat_hud.state=_label("AUTO",12,GOLD,true)
-	combat_hud.state.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	combat_hud.state.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	combat_hud.state.size_flags_vertical=Control.SIZE_SHRINK_CENTER
-	state_ground.add_child(combat_hud.state)
-	var details:=_glyph_button("DETAILS","map",Color(0.027,0.024,0.027,0.92),11,_toggle_combat_details)
-	details.name="CombatDetailsToggle"
-	details.custom_minimum_size.x=137
-	details.size_flags_horizontal=Control.SIZE_SHRINK_END
-	combat_hud.details=details
-	bottom.add_child(details)
-	combat_hud.repeat=_glyph_button("REPEAT","repeat",Color(0.027,0.024,0.027,0.92),12,_toggle_repeat)
-	combat_hud.repeat.name="RepeatControl"
-	combat_hud.repeat.custom_minimum_size.x=142
-	combat_hud.repeat.size_flags_horizontal=Control.SIZE_SHRINK_END
-	bottom.add_child(combat_hud.repeat)
-	var loot:=_glyph_button("LOOT","loot",Color(0.027,0.024,0.027,0.92),13,_skip_run)
-	loot.name="LootControl"
-	loot.tooltip_text="Resolve this expedition with the same combat rules and collect its outcome"
-	loot.custom_minimum_size.x=123
-	loot.size_flags_horizontal=Control.SIZE_SHRINK_END
-	combat_hud.loot=loot
-	bottom.add_child(loot)
+	var dock:=_build_combat_readouts(overlay)
+	var dock_gap:=Control.new()
+	dock_gap.custom_minimum_size.x=8; dock_gap.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	dock.add_child(dock_gap)
+	combat_hud.auto=_combat_command("AUTO","auto",_toggle_run_pause)
+	combat_hud.auto.name="AutoControl"; combat_hud.auto.custom_minimum_size.x=90
+	dock.add_child(combat_hud.auto)
+	combat_hud.details=_combat_command("DETAILS","map",_toggle_combat_details)
+	combat_hud.details.name="CombatDetailsToggle"
+	dock.add_child(combat_hud.details)
+	combat_hud.repeat=_combat_command("REPEAT","repeat",_toggle_repeat)
+	combat_hud.repeat.name="RepeatControl"; combat_hud.repeat.custom_minimum_size.x=100
+	dock.add_child(combat_hud.repeat)
+	combat_hud.loot=_combat_command("LOOT","loot",_skip_run)
+	combat_hud.loot.name="LootControl"
+	combat_hud.loot.tooltip_text="Resolve this expedition with the same combat rules and collect its outcome"
+	dock.add_child(combat_hud.loot)
 	# A scrollable detail sheet preserves the world and simulation beneath it.
 	var detail_sheet:=_panel(Color(0.035,0.037,0.045,0.97),Color("9c8053"),5)
 	detail_sheet.name="CombatDetails"
@@ -979,9 +961,10 @@ func _build_run() -> void:
 	detail_scroll.name="CombatDetailScroll"
 	detail_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
 	detail_sheet.add_child(detail_scroll)
-	var columns:=HBoxContainer.new()
+	var columns: BoxContainer=VBoxContainer.new() if _compact_layout() or size.x/size.y<1.35 else HBoxContainer.new()
+	columns.name="InspectionContent"
 	columns.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	columns.add_theme_constant_override("separation",24)
+	columns.add_theme_constant_override("separation",18)
 	detail_scroll.add_child(columns)
 	var hero_details:=VBoxContainer.new()
 	hero_details.name="HeroDetails"
@@ -1049,56 +1032,99 @@ func _build_run() -> void:
 	_sync_combat_hud()
 	_sync_combat_clearance.call_deferred()
 
-func _build_combat_readouts(parent: VBoxContainer) -> void:
+func _build_combat_readouts(parent: VBoxContainer) -> HBoxContainer:
 	var readouts:=HBoxContainer.new()
 	readouts.name="CombatReadouts"
-	readouts.add_theme_constant_override("separation",8)
+	readouts.size_flags_horizontal=Control.SIZE_SHRINK_CENTER
+	readouts.add_theme_constant_override("separation",12)
 	readouts.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	parent.add_child(readouts)
 	combat_hud.readouts=readouts
+	var state_ground:=_ink_ground(7,3)
+	state_ground.name="CombatStateGround"
+	state_ground.custom_minimum_size.x=360
+	state_ground.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	readouts.add_child(state_ground)
+	combat_hud.state=_label("AUTO",10,GOLD,true)
+	combat_hud.state.clip_text=true
+	combat_hud.state.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+	state_ground.add_child(combat_hud.state)
+	var route_ground:=_ink_ground(7,3)
+	route_ground.name="CombatRouteReadout"
+	route_ground.custom_minimum_size.x=302
+	readouts.add_child(route_ground)
+	var route:=VBoxContainer.new(); route.add_theme_constant_override("separation",1)
+	route_ground.add_child(route)
+	var route_line:=HBoxContainer.new(); route_line.add_theme_constant_override("separation",12)
+	route.add_child(route_line)
+	combat_hud.route_summary=_label("",10,GOLD,true)
+	route_line.add_child(combat_hud.route_summary)
+	combat_hud.route_objective=_label("",10,PALE)
+	combat_hud.route_objective.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	combat_hud.route_objective.clip_text=true
+	combat_hud.route_objective.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+	route_line.add_child(combat_hud.route_objective)
+	combat_hud.route_progress=_progress_bar(0,6,GOLD,2)
+	route.add_child(combat_hud.route_progress)
+	var dock:=HBoxContainer.new()
+	dock.name="CombatCommandDock"
+	dock.size_flags_horizontal=Control.SIZE_SHRINK_CENTER
+	dock.add_theme_constant_override("separation",8)
+	dock.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	parent.add_child(dock)
 	combat_hud.skill_tiles={}
 	for entry in CombatReadout.skills(expedition):
-		var tile:=_button("",Color(0.027,0.024,0.027,0.96),10,_inspect_combat_skill.bind(String(entry.key)))
+		var tile:=_button("",Color("151a1e"),10,_inspect_combat_skill.bind(String(entry.key)))
 		tile.name="CombatSkill_"+String(entry.key)
-		tile.custom_minimum_size=Vector2(156,_minimum_button_height(54))
+		tile.custom_minimum_size=Vector2(134,_minimum_button_height(60))
 		tile.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
 		tile.tooltip_text="Inspect %s · casts automatically · %d Mana" % [entry.title,entry.cost]
-		readouts.add_child(tile)
+		_style_combat_command(tile)
+		dock.add_child(tile)
 		var margin:=MarginContainer.new()
 		margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 		margin.mouse_filter=Control.MOUSE_FILTER_IGNORE
-		for edge in ["left","right"]: margin.add_theme_constant_override("margin_"+edge,9)
-		for edge in ["top","bottom"]: margin.add_theme_constant_override("margin_"+edge,4)
+		for edge in ["left","right"]: margin.add_theme_constant_override("margin_"+edge,7)
+		for edge in ["top","bottom"]: margin.add_theme_constant_override("margin_"+edge,5)
 		tile.add_child(margin)
 		var stack:=VBoxContainer.new()
 		stack.add_theme_constant_override("separation",2)
 		stack.mouse_filter=Control.MOUSE_FILTER_IGNORE
 		margin.add_child(stack)
 		var title:=_label(entry.title,10,PALE,true)
-		title.mouse_filter=Control.MOUSE_FILTER_IGNORE
-		stack.add_child(title)
+		title.mouse_filter=Control.MOUSE_FILTER_IGNORE; stack.add_child(title)
 		var status:=_label("",10,PALE)
-		status.mouse_filter=Control.MOUSE_FILTER_IGNORE
-		stack.add_child(status)
+		status.mouse_filter=Control.MOUSE_FILTER_IGNORE; stack.add_child(status)
 		var cooldown:=_progress_bar(0,1,entry.color,3)
 		stack.add_child(cooldown)
 		combat_hud.skill_tiles[entry.key]={"button":tile,"status":status,"bar":cooldown}
-	var route_ground:=_ink_ground(9,4)
-	route_ground.name="CombatRouteReadout"
-	route_ground.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	readouts.add_child(route_ground)
-	var route:=VBoxContainer.new()
-	route.add_theme_constant_override("separation",2)
-	route_ground.add_child(route)
-	combat_hud.route_summary=_label("",10,GOLD,true)
-	route.add_child(combat_hud.route_summary)
-	combat_hud.route_objective=_label("",10,PALE)
-	combat_hud.route_objective.clip_text=true
-	combat_hud.route_objective.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
-	route.add_child(combat_hud.route_objective)
-	combat_hud.route_progress=_progress_bar(0,6,GOLD,3)
-	route.add_child(combat_hud.route_progress)
 	readouts.item_rect_changed.connect(func(): _sync_combat_clearance.call_deferred())
+	return dock
+
+func _style_combat_command(button: Button) -> void:
+	for state in ["normal","hover","pressed","focus"]:
+		var box:=button.get_theme_stylebox(state).duplicate() as StyleBoxFlat
+		box.set_corner_radius_all(2)
+		if state!="focus":
+			box.border_color=Color("655849") if state=="hover" else Color("49463f")
+			box.bg_color=Color("20282b") if state=="hover" else Color("0c1115") if state=="pressed" else Color("151a1e")
+		button.add_theme_stylebox_override(state,box)
+
+func _combat_command(caption: String,icon: String,action: Callable) -> Button:
+	var button:=_button(caption,Color("151a1e"),10,action)
+	button.custom_minimum_size=Vector2(82,_minimum_button_height(60))
+	button.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+	_style_combat_command(button)
+	for state in ["normal","hover","pressed","focus"]:
+		var box:=button.get_theme_stylebox(state).duplicate() as StyleBoxFlat
+		box.content_margin_left=6; box.content_margin_right=6
+		box.content_margin_top=27; box.content_margin_bottom=5
+		button.add_theme_stylebox_override(state,box)
+	var glyph:=UiGlyph.new(); glyph.key=icon; glyph.ink=GOLD
+	glyph.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
+	glyph.offset_left=-10; glyph.offset_right=10; glyph.offset_top=7; glyph.offset_bottom=27
+	button.add_child(glyph)
+	return button
 
 func _sync_combat_clearance() -> void:
 	if page!="run" or not is_instance_valid(run_arena) or not combat_hud.has("readouts"): return
@@ -1106,12 +1132,17 @@ func _sync_combat_clearance() -> void:
 	# Containers briefly report their unlaid-out origin. Reserving it would
 	# permanently widen a monotonic room shot before the first visible frame.
 	if top<size.y*0.55 or combat_hud.readouts.size.x<=0.0: return
-	var bottom_ratio:=clampf((top-10.0)/maxf(1.0,size.y),0.60,0.86)
+	var bottom_ratio:=clampf((top-8.0)/maxf(1.0,size.y),0.60,0.90)
 	if not is_equal_approx(run_arena.world.hud_bottom_ratio,bottom_ratio):
 		run_arena.world.hud_bottom_ratio=bottom_ratio
 		run_arena.world.shot_stage=-1
 		run_arena.world._position_camera()
 	combat_hud.details_sheet.offset_bottom=top-size.y-8.0
+	var content:=find_child("InspectionContent",true,false) as BoxContainer
+	if combat_details_open and content!=null and content is VBoxContainer:
+		var needed:float=content.get_combined_minimum_size().y+26.0
+		var bottom:float=minf(top-8.0,combat_hud.details_sheet.offset_top+maxf(300.0,needed))
+		combat_hud.details_sheet.offset_bottom=bottom-size.y
 
 func _inspect_combat_skill(key: String) -> void:
 	if page!="run" or finish_pending: return
@@ -1136,6 +1167,7 @@ func _toggle_combat_details() -> void:
 	combat_hud.route_details.visible=expanded
 	combat_hud.details_sheet.visible=expanded
 	_sync_combat_hud()
+	_sync_combat_clearance.call_deferred()
 	_save_progress()
 	if not expanded: combat_hud.details.grab_focus()
 

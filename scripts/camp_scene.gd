@@ -2,6 +2,10 @@ extends Control
 ## Spatial stations occupy real camp anchors; equipment and seals come from the save.
 const Actor = preload("res://scripts/dungeon_actor.gd")
 const Architecture = preload("res://scripts/authored_architecture.gd")
+const Sculpt=preload("res://scripts/sculpted_mesh.gd")
+const Ruins=preload("res://scripts/ruin_architecture.gd")
+static var masonry_mesh:ArrayMesh
+var masonry_index:=0
 var character_class := "Vowkeeper"
 var equipment: Dictionary = {}
 var earned_seals: Array = []
@@ -76,9 +80,12 @@ func _build_materials() -> void:
 	stone.set_shader_parameter("stone_tint", Color("727575"))
 	stone.set_shader_parameter("weathering", 0.55)
 	materials.stone = stone
-	materials.paving = ShaderMaterial.new()
-	materials.paving.shader = preload("res://assets/shaders/camp_paving.gdshader")
-	materials.paving.set_shader_parameter("stone_color", preload("res://assets/materials/stone/Rock030_1K-JPG_Color.jpg"))
+	materials.paving=ShaderMaterial.new()
+	materials.paving.shader=preload("res://assets/shaders/ruin_floor.gdshader")
+	materials.paving.set_shader_parameter("flagstones",preload("res://assets/materials/ruin-floor/ruin-floor-albedo.png"))
+	materials.paving.set_shader_parameter("mineral",preload("res://assets/materials/stone/Rock030_1K-JPG_Color.jpg"))
+	materials.paving.set_shader_parameter("micro_normal",preload("res://assets/materials/stone/Rock030_1K-JPG_NormalGL.jpg"))
+	materials.paving.set_shader_parameter("floor_tint",Color("a39a8b"))
 	materials.metal = _material(Color("8e7047"), 0.58)
 	materials.rune = _material(Color("c2a071"), 0.35)
 	materials.fire = _material(Color("dc9760"), 0.0, true)
@@ -113,19 +120,76 @@ func _build_environment() -> void:
 	world.add_child(fill)
 
 func _build_haven() -> void:
-	# A physical stone floor recedes into the distant courtyard without a raised edge.
-	var floor := PlaneMesh.new()
-	floor.size = Vector2(22.0, 18.0)
-	_mesh(Vector3(0, 0.015, 1.0), floor, materials.paving).name = "CampStoneCourt"
-	var platform := _cylinder(Vector3(0, 0.055, 0.45), 1.25, 0.08, materials.stone)
-	platform.name = "CampStonePlatform"
+	var floor:=PlaneMesh.new(); floor.size=Vector2(44.0,100.0)
+	_mesh(Vector3(0,.015,-26.0),floor,materials.paving).name="CampStoneCourt"
+	var platform:=_cylinder(Vector3(0,.035,.45),1.25,.04,materials.paving)
+	platform.name="CampStonePlatform"
+	# A built passage continues behind the rear opening. Its ground and side
+	# courses hide the old exposed horizon band at the end of the shallow stage.
+	for side in [-1.0,1.0]:
+		_wall_courses(Vector3(side*6.1,0,-5.8),6.2,6.8,1.2,false)
+		_wall_courses(Vector3(side*3.35,0,-16.0),21.0,6.6,1.25,true)
+		_wall_courses(Vector3(side*8.5,0,-1.5),9.0,5.8,1.3,true)
+		_box(Vector3(side*8.3,.15,-1.5),Vector3(1.75,.28,10.2),materials.stone)
+	for z in [-5.3,-12.0,-20.0]:
+		var rear_arch:Node3D=Architecture.MODELS.arch.instantiate()
+		rear_arch.name="HavenPassageArch";rear_arch.position=Vector3(0,0,z)
+		rear_arch.scale=Vector3(1.25,1.30,1.6)
+		world.add_child(rear_arch);_style_prop(rear_arch)
+	_wall_courses(Vector3(0,0,-27),8.0,6.8,1.3,false)
+	_light(world,Vector3(-2.7,2.5,-10.5),Color("cf9a68"),.50,7.0)
+	_light(world,Vector3(2.7,2.5,-20.0),Color("aeb4ba"),.22,7.0)
+	for side in [-1.0,1.0]:
+		for z in [-5.0,-1.4,2.2]:
+			var pier: Node3D=Architecture.MODELS.pillar.instantiate()
+			pier.position=Vector3(side*8.1,0,z); pier.scale=Vector3(1.25,1.22,1.25)
+			world.add_child(pier); _style_prop(pier)
+		for i in range(9):
+			var rubble:=_box(Vector3(side*(7.0+float(i%3)*.35),.12,-3.4+float(i)*.76),Vector3(.36,.22,.28+float(i%2)*.2),materials.stone)
+			rubble.rotation=Vector3(.1,float(i)*.93,.06)
+	# A shallow worked-stone threshold joins the doorway to the whole court.
+	for step in range(3):
+		_box(Vector3(0,.025+float(step)*.045,-4.0-float(step)*.46),Vector3(4.8,.07,.62),materials.stone)
+	# Work-station deposits share the room's floor and are kept away from Nyra.
+	for at in [Vector3(-3.8,.025,-1.7),Vector3(-2.5,.026,.8),Vector3(3.2,.025,1.1)]:
+		var plane:=PlaneMesh.new();plane.size=Vector2(3.2,2.4)
+		var grime:=ShaderMaterial.new();grime.shader=preload("res://assets/shaders/ruin_deposit.gdshader")
+		grime.set_shader_parameter("mineral",preload("res://assets/materials/stone/Rock030_1K-JPG_Color.jpg"))
+		grime.set_shader_parameter("deposit_color",Color(.08,.065,.045,.62))
+		_mesh(at,plane,grime).cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+
+func _wall_courses(center:Vector3,length:float,height:float,depth:float,along_z:bool) -> void:
+	var row:=0;var y:=.0
+	while y<height:
+		var h:=minf(.62+.13*sin(float(row)*1.8),height-y)
+		var x:float=-length*.5
+		var stone:=0
+		while x<length*.5-.01:
+			var width:=minf(1.15+.47*(1.0+sin(float(stone)*2.7+float(row)*1.3)),length*.5-x)
+			var at:=center+Vector3(0,y+h*.5,0)+(Vector3.BACK if along_z else Vector3.RIGHT)*(x+width*.5)
+			var block:=_box(at,Vector3(depth,h-.025,width-.02) if along_z else Vector3(width-.02,h-.025,depth),materials.stone)
+			block.rotation.y=.018*sin(float(stone+row)*2.1)
+			x+=width;stone+=1
+		y+=h;row+=1
 
 func _build_stations() -> void:
-	_spatial_station("forge", "SpatialForge", "field_forge", Vector3(-5.0, 0.08, -1.0), 1.05)
+	_spatial_station("forge", "SpatialForge", "field_forge", Vector3(-3.8, 0.08, -1.7), 1.05)
 	station_art.forge.rotation.y=-0.20
-	_spatial_station("table", "ExpeditionTable", "field_table", Vector3(-2.7, 0.08, 2.15), 0.90)
+	var forge: Node3D=station_art.forge
+	for i in range(5):
+		var stone:=_box(Vector3(-.95-float(i%2)*.28,.10,.38+float(i)*.22),Vector3(.34,.20,.24),materials.stone,forge)
+		stone.rotation.y=float(i)*.72
+	_box(Vector3(.80,.18,.57),Vector3(.58,.36,.65),materials.metal,forge)
+	_spatial_station("table", "ExpeditionTable", "field_table", Vector3(-2.3, 0.08, 1.0), 0.90)
 	station_art.table.rotation.y=0.20
+	var table: Node3D=station_art.table
+	for i in range(3):
+		var bundle:=_cylinder(Vector3(-1.0,.12+float(i)*.10,.52),.14,.62,materials.stone,table)
+		bundle.rotation.z=PI/2.0
 	_spatial_station("portal", "VeilGate", "arch", Vector3(3.7, 0.08, -3.0), 0.82)
+	for side in [-1.0,1.0]:
+		_box(Vector3(side*2.0,.17,-1.2),Vector3(1.1,.34,4.8),materials.stone,station_art.portal)
+		_box(Vector3(side*2.12,1.9,-1.4),Vector3(.74,3.8,4.5),materials.stone,station_art.portal)
 	var opening:=MeshInstance3D.new()
 	opening.name="VeilMembrane"
 	var gate_quad:=QuadMesh.new(); gate_quad.size=Vector2(3.0,4.6)
@@ -134,12 +198,12 @@ func _build_stations() -> void:
 	opening.material_override=portal_material
 	opening.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	station_art.portal.add_child(opening)
-	fire_lights.append(_light(world, Vector3(-4.8, 1.6, 0.1), Color("e2a16a"), 2.4, 5.4))
+	fire_lights.append(_light(world, Vector3(-3.7, 1.6, -.6), Color("e2a16a"), 2.4, 5.4))
 	_light(world,Vector3(-1.4,3.3,2.0),Color("ead0a5"),0.85,7.0)
 	# The low stone shelf stays empty until the corresponding guardian is defeated.
 	var altar := Node3D.new()
 	altar.name = "GuardianSealAltar"
-	altar.position = Vector3(3.25, 0.0, 2.15)
+	altar.position = Vector3(3.0, 0.0, 1.2)
 	world.add_child(altar)
 	var shrine: Node3D=Architecture.MODELS.seal_shrine.instantiate()
 	altar.add_child(shrine)
@@ -164,7 +228,7 @@ func _build_stations() -> void:
 		orb.height = 0.016
 		orb.radial_segments = 6
 		orb.rings = 3
-		var mote := _mesh(Vector3(-4.9 + (i % 3) * 0.17, 0.9 + i * 0.21, -0.9), orb, materials.fire)
+		var mote := _mesh(Vector3(-3.8 + (i % 3) * 0.17, 0.9 + i * 0.21, -1.6), orb, materials.fire)
 		mote.name = "ForgeEmber%d" % i
 		motes.append(mote)
 
@@ -189,15 +253,11 @@ func _style_prop(art: Node3D) -> void:
 
 func _update_composition() -> void:
 	if not is_instance_valid(camera): return
-	var aspect := size.x / maxf(size.y, 1.0)
-	var spread := clampf(aspect / 1.65, 0.72, 1.2)
 	for key in station_art:
 		var art: Node3D = station_art[key]
 		var at: Vector3 = art.get_meta("station_base")
-		at.x *= spread
 		art.position = at
 		station_anchors[key] = at
-	world.get_node("GuardianSealAltar").position.x = 3.25 * spread
 	station_anchors.seals = world.get_node("GuardianSealAltar").position + Vector3(0, 0.45, 0)
 
 func _material(color: Color, metallic: float = 0.0, luminous: bool = false) -> StandardMaterial3D:
@@ -212,6 +272,11 @@ func _material(color: Color, metallic: float = 0.0, luminous: bool = false) -> S
 	return material
 
 func _box(at: Vector3, dimensions: Vector3, material: Material, parent: Node3D = null) -> MeshInstance3D:
+	if material==materials.stone:
+		var stone:=_mesh(at,Ruins.masonry_piece(masonry_index),material,parent)
+		masonry_index+=1
+		stone.scale=dimensions
+		return stone
 	var shape := BoxMesh.new()
 	shape.size = dimensions
 	return _mesh(at, shape, material, parent)
@@ -254,6 +319,7 @@ func _light(parent: Node3D, at: Vector3, color: Color, energy: float, radius: fl
 	light.position = at
 	light.light_color = color
 	light.light_energy = energy
+	light.set_meta("base_energy",energy)
 	light.omni_range = radius
 	parent.add_child(light)
 	return light
@@ -278,7 +344,7 @@ func _process(delta: float) -> void:
 	clock += delta
 	if is_instance_valid(hero): hero.animate(delta, false)
 	for light in fire_lights:
-		light.light_energy = 0.7 + sin(clock * 2.4) * 0.04
+		light.light_energy = float(light.get_meta("base_energy",1.0))*(.98+sin(clock*2.4)*.025)
 	for mote in motes:
 		mote.position.y += delta * 0.075
 		if mote.position.y > 2.5: mote.position.y = 0.8

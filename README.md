@@ -1,6 +1,21 @@
 # Emberfall: Ashen Veil
 
-## Aktuell: 0.45.0-beta.1 · Neue Gesichter, räumliche Ruinen und Materialien
+## Teststand: 0.46.0-beta.1 · Angriffsbewegungen und zusammenhängende Ruinen
+
+Die Überarbeitung setzt bei den tatsächlichen Kampfbewegungen und der begehbaren
+Welt an: eigene Abläufe für Schwert, Stab und Bogen, passende Übergänge am
+Geschossstart und geformte Rüstung, Hände und Stoffbahnen. Durchgehender
+unregelmäßiger Steinboden, tiefe Wandnischen und regionale Hallen ersetzen die
+freistehenden Bodenplatten. Die kompaktere Kampfleiste lässt mehr Raum für die
+Figuren; Kamera, Warnflächen und Lesepause bleiben fest an das Spiel gebunden.
+Android-Version-Code **52**. Die unabhängige visuelle Prüfung verlangt einen
+weiteren Neuaufbau; dieser Stand hat keine visuelle Beta-Freigabe.
+
+[Umsetzung und Prüfgrenzen](docs/SCENE_FINISH_046.md),
+[Angriffe aller drei Klassen](docs/previews/scene-finish/emberfall-attacks-046.mp4),
+[Review und Testbuild](https://github.com/Philmenting/Emberfall-Ashen-Veil/pull/5).
+
+## Vorheriger Ausbau: 0.45.0-beta.1 · Neue Gesichter, räumliche Ruinen und Materialien
 
 Die Grafik folgt einer düsteren isometrischen ARPG-Richtung: eigene regionale
 Umgebungen, verwitterter Stein, geschichtete Rüstung und örtliche Lichtquellen.

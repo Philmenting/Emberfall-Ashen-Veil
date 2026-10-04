@@ -100,6 +100,12 @@ func run_checks() -> void:
 		var left_fold: float=actor.motion_rig.skeleton.get_bone_pose_rotation(13).get_angle()
 		var right_fold: float=actor.motion_rig.skeleton.get_bone_pose_rotation(16).get_angle()
 		check(absf(left_fold-right_fold)>.25 and actor.motion_rig.skeleton.get_bone_pose_rotation(3).get_angle()>.30,key+": the settled body has articulated unequal legs and a turned head")
+		var variants_grounded:=true
+		for lean in [-1.0,0.0,1.0]:
+			actor.death_lean=lean; actor.animate(0.0,false)
+			var actual_floor:float=posed_floor(actor,arrays)
+			variants_grounded=variants_grounded and actual_floor>-.035 and actual_floor<.065
+		check(variants_grounded,key+": all actual runtime corpse variants rest on the same floor")
 		actor.free()
 	var ranger:=make_actor("Ranger")
 	ranger.strike("basic",.6,true); ranger.sync_attack(.10); ranger.animate(.15,false)
@@ -112,6 +118,28 @@ func run_checks() -> void:
 	straight=(ranger.motion_rig.skeleton.get_bone_global_pose(21).origin+ranger.motion_rig.skeleton.get_bone_global_pose(23).origin)*.5
 	check(draw.distance_to(straight)<.001 and ranger.motion_rig.skeleton.get_bone_pose_scale(24).length()<.001,"real release straightens the string and releases the held arrow")
 	ranger.free()
+	# The renderer launches ranged basic/signature projectiles before damage.
+	# A full draw/cast must already be ready at that real frame, or the weapon
+	# snaps between its unfinished preparation and the contact pose.
+	for class_key in ["Arcanist","Ranger"]:
+		for style in ["basic","signature"]:
+			var shooter:=make_actor(class_key)
+			shooter.strike(style,.30,true)
+			for frame in range(1,14):
+				shooter.sync_attack(.30-float(frame)/60.0)
+				shooter.animate(1.0/60.0,false)
+			var tip_before:Vector3=shooter.weapon_world_position()
+			var hand_before:Vector3=shooter.body.to_global(shooter.motion_rig.skeleton.get_bone_global_pose(11).origin)
+			var held:bool=shooter.release_time<0.0
+			shooter.release_attack()
+			var hand_after:Vector3=shooter.body.to_global(shooter.motion_rig.skeleton.get_bone_global_pose(11).origin)
+			check(held and tip_before.distance_to(shooter.weapon_world_position())<.025 and hand_before.distance_to(hand_after)<.025,class_key+" "+style+": the actual 85 ms early release has a prepared weapon and continuous grip")
+			shooter.free()
+	var raider:=make_actor("raider")
+	var resting_tip:Vector3=raider.weapon_world_position()
+	raider.anticipation=.70; raider.animate(.15,false)
+	check(raider.attack_time<0.0 and raider.release_time<0.0 and resting_tip.distance_to(raider.weapon_world_position())>.12,"ordinary hostile visibly prepares during its real cooldown without inventing a hit")
+	raider.free()
 	var bot:=Bot.new(); bot.character_class="Arcanist"
 	var sim:=Sim.new(); var reference:=Sim.new()
 	sim.setup("Arcanist",bot._combat_stats(),1,"Guardian",1979); reference.setup("Arcanist",bot._combat_stats(),1,"Guardian",1979)

@@ -28,3 +28,5 @@ portraits and the actual camp/combat model. Native 3D remains authoritative.
 ## Evidence and success
 
 Use screenshots and clips from actual playable scenes with normal equipment for marketing. Label render fixtures, generated references and source-rendered frame sequences honestly. Regression tests and emulator rendering do not establish Pixel frame rate, heat, battery use or player retention. A 12–20-person test package can be prepared here; real participant results require actual sessions.
+
+On 4 October 2026 the user rejected the overall 0.45 presentation as still too conceptual (“Das Spiel funktioniert sieht aber weiterhin noch sehr konzeptmäßig aus.”). The continuing authorized overhaul must improve the actual live rooms, character construction, contact and combat composition; a more detailed distant image alone is insufficient. Retain the Diablo Immortal reference, original Emberfall content, adult shared Nyra, spatial 3D, steady camera and readable warnings. This is visual iteration, not a change to simulation, saves, loot or AFK rules.
