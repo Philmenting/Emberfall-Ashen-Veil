@@ -740,6 +740,21 @@ func _beta(parent: VBoxContainer) -> void:
 	)
 	copy.name="CopyBetaFeedback"
 	parent.add_child(copy)
+	parent.add_child(game._label("DEVICE PERFORMANCE",12,game.GOLD,true))
+	var performance: Label=game._paragraph_label(game.frame_metrics.summary(),11,game.PALE)
+	performance.name="DevicePerformanceSummary"
+	parent.add_child(performance)
+	parent.add_child(game._paragraph_label("Frame measurements stay in memory on this device. Copy them to compare Balanced and Battery mode; nothing is uploaded automatically.",11,game.MUTED))
+	var copy_performance:Button=game._button("COPY PERFORMANCE REPORT",game.PANEL_LIGHT,11,func():
+		var report:Dictionary=game.frame_metrics.report()
+		report.version=release.VERSION
+		report.version_code=release.VERSION_CODE
+		DisplayServer.clipboard_set(JSON.stringify(report,"  "))
+		status.text="Performance report copied. Review it before sharing."
+	)
+	copy_performance.name="CopyPerformanceReport"
+	copy_performance.disabled=game.frame_metrics.rows().is_empty()
+	parent.add_child(copy_performance)
 	var tracker: Button=game._button("OPEN ISSUE TRACKER",game.PANEL_LIGHT,11,func():
 		if OS.shell_open(release.FEEDBACK_URL)!=OK: status.text="Open github.com/Philmenting/Emberfall-Ashen-Veil/issues in your browser."
 	)

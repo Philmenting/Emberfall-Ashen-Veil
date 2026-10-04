@@ -40,6 +40,8 @@ GODOT_SUITES = (
     "authored_art",
     "character_equipment",
     "presentation",
+    "frame_metrics",
+    "room_ground",
     "character_3d",
     "animation_craft",
     "camp_hud",

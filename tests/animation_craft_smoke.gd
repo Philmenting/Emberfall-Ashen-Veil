@@ -23,9 +23,9 @@ func run_checks() -> void:
 	var feet: Array[Vector3]=[]
 	for bone in [14,17]: feet.append(hero.motion_rig.skeleton.get_bone_global_pose(bone).origin)
 	hero.sync_attack(.015); hero.animate(.15,false); hero.release_attack()
-	var supported:=true
-	for i in range(2): supported=supported and feet[i].distance_to(hero.motion_rig.skeleton.get_bone_global_pose(14 if i==0 else 17).origin)<.012
-	check(supported,"loaded body and weapon transfer weight while support ankles stay planted")
+	var loaded: Vector3=hero.motion_rig.skeleton.get_bone_global_pose(14).origin
+	var landed: Vector3=hero.motion_rig.skeleton.get_bone_global_pose(17).origin
+	check(feet[0].distance_to(loaded)<.012 and feet[1].y>landed.y+.015 and landed.z<-.30,"the loaded boot stays planted while the free boot clears the floor and lands into the cut")
 	hero.animate(.07,false); hero.strike("sunder",.10,true); hero.sync_attack(.085); hero.animate(.008,false)
 	check(hero.external_release and hero.release_time<0.0 and hero.release_attack(),"a following real cast owns its countdown even during recovery")
 	hero.animate(.5,false); hero.strike("basic",.4,true); hero.retreat(); hero.animate(.15,true,2.0)

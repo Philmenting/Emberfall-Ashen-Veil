@@ -34,6 +34,15 @@ func run_checks() -> void:
 		portrait.set_presentation(true,true)
 		check(portrait.actor.appearance_key==class_key and portrait.actor.model.mesh==hero.model.mesh and portrait.actor.equipment_grades.Weapon==4,class_key+": portrait and battle render the same equipped spatial heroine")
 		check(portrait.viewport.render_target_update_mode==SubViewport.UPDATE_ONCE and portrait.camera.position.z<0,class_key+": Battery portrait keeps the real face view without continuous rendering")
+		portrait.set_presentation(false,false)
+		portrait.viewport.render_target_update_mode=SubViewport.UPDATE_DISABLED
+		portrait._process(1.0/120.0)
+		check(portrait.viewport.render_target_update_mode==SubViewport.UPDATE_DISABLED,class_key+": unchanged portrait reuses its rendered texture")
+		portrait._process(1.0/24.0)
+		check(portrait.viewport.render_target_update_mode==SubViewport.UPDATE_ONCE,class_key+": a new idle pose requests exactly one portrait redraw")
+		portrait.hide();portrait.viewport.render_target_update_mode=SubViewport.UPDATE_DISABLED
+		portrait._process(1.0)
+		check(portrait.viewport.render_target_update_mode==SubViewport.UPDATE_DISABLED,class_key+": hidden portrait does not submit animation work")
 		portrait.free()
 	for kind in Actor.HOSTILES:
 		var enemy:=Actor.new(); enemy.kind=kind; enemy.hostile=true; root.add_child(enemy)

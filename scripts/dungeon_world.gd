@@ -133,9 +133,9 @@ func _ready() -> void:
 		plate.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	guard_visual.visible=simulation.guard_time>0.0
 	_ensure_wave(mini(simulation.stage,5))
-	target_ring = _ring(Vector3.ZERO,0.65,_material(Color("e8cb8f"),0.0,true))
+	target_ring = _ring(Vector3.ZERO,0.65,_material(Color("9c8763")))
 	target_ring.visible = false
-	hero_marker=_ring(hero.position+Vector3(0,.075,0),.47,_material(Color("a8d6d0"),0.0,true))
+	hero_marker=_ring(hero.position+Vector3(0,.075,0),.47,_material(Color("6f9892")))
 	hero_marker.name="HeroFootprint"
 	hero_marker.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	camera = Camera3D.new()
@@ -230,12 +230,21 @@ func _build_environment() -> void:
 	moon.light_energy = 1.06
 	moon.shadow_enabled = true
 	moon.directional_shadow_max_distance = 32.0
+	# One focused room shadow map avoids four repeated scene passes.
+	moon.directional_shadow_mode = DirectionalLight3D.SHADOW_ORTHOGONAL
 	add_child(moon)
 	var rim:=DirectionalLight3D.new()
 	rim.rotation_degrees=Vector3(-24,145,0)
 	rim.light_color=Color("82bed4")
 	rim.light_energy=0.25
 	add_child(rim)
+	var actor_key:=DirectionalLight3D.new()
+	actor_key.name="CharacterKeyLight"
+	actor_key.rotation_degrees=Vector3(-34,32,0)
+	actor_key.light_color=Color("e0e7e9")
+	actor_key.light_energy=.62
+	actor_key.light_cull_mask=2
+	add_child(actor_key)
 
 func _build_court_ground() -> void:
 	court_material=ShaderMaterial.new()
@@ -252,25 +261,18 @@ func _build_court_ground() -> void:
 	var room_positions:Array=[]
 	for center in centers: room_positions.append(_point(center))
 	var holes:Array=Ruins.ground_holes(region_index,room_positions,dressing_clearance)
-	var pieces:Array[Rect2]=[Rect2(-50,-122,100,180)]
-	for hole:Rect2 in holes:
-		var remaining:Array[Rect2]=[]
-		for piece in pieces:
-			var cut:=piece.intersection(hole)
-			if cut.size.x<=0 or cut.size.y<=0:
-				remaining.append(piece); continue
-			for fragment in [Rect2(piece.position,Vector2(piece.size.x,cut.position.y-piece.position.y)),Rect2(Vector2(piece.position.x,cut.end.y),Vector2(piece.size.x,piece.end.y-cut.end.y)),Rect2(Vector2(piece.position.x,cut.position.y),Vector2(cut.position.x-piece.position.x,cut.size.y)),Rect2(Vector2(cut.end.x,cut.position.y),Vector2(piece.end.x-cut.end.x,cut.size.y))]:
-				if fragment.size.x>.001 and fragment.size.y>.001: remaining.append(fragment)
-		pieces=remaining
-	var surface:=SurfaceTool.new(); surface.begin(Mesh.PRIMITIVE_TRIANGLES)
-	for piece in pieces:
-		var a:=Vector3(piece.position.x,-.019,piece.position.y)
-		var b:=Vector3(piece.end.x,-.019,piece.position.y)
-		var c:=Vector3(piece.end.x,-.019,piece.end.y)
-		var d:=Vector3(piece.position.x,-.019,piece.end.y)
-		for point in [a,b,c,a,c,d]:
-			surface.set_normal(Vector3.UP); surface.add_vertex(point)
-	var mesh:=surface.commit()
+	var floor_rectangles:Array[Rect2]=[]
+	for passage in dressing_clearance: floor_rectangles.append(passage.grow(.72))
+	# Regional bays bring their own structural floors; this mesh joins the
+	# authoritative room and corridor surfaces without an artificial horizon.
+	var ground=preload("res://scripts/room_ground.gd")
+	var pieces:Array[Rect2]=ground.cover(floor_rectangles,holes)
+	var mesh:=ground.surface(pieces,-.019)
+	var foundation:=MeshInstance3D.new()
+	foundation.name="CourtFoundation"
+	foundation.mesh=ground.foundation(pieces,-.02,.86)
+	foundation.material_override=materials.stone
+	add_child(foundation)
 	var court:=MeshInstance3D.new(); court.name="ContinuousStoneCourt"
 	court.mesh=mesh; court.material_override=court_material
 	court.set_meta("channel_holes",holes)
@@ -433,7 +435,12 @@ func _batch_static_geometry() -> void:
 		# Godot renames duplicate sibling names. Keep dynamic planes by identity,
 		# otherwise later room beams are batched, freed and lose quality control.
 		if sanctuary_beams.has(mesh_node): continue
-		if mesh_node.get_meta("regional_liquid",false): continue
+		if mesh_node.get_meta("regional_liquid",false):
+			# Water and embers keep their animated material, but share the same
+			# room visibility as the containing architectural bay.
+			var liquid_chamber:=int(mesh_node.get_meta("decoration_chamber",-1))
+			if liquid_chamber>=0: occluder_batches.append({"node":mesh_node,"chamber":liquid_chamber})
+			continue
 		if mesh_node.name in ["FloodedArchive","LavaBasin","LowCryptMist","SanctuaryBeam"]: continue
 		var signature := ""
 		var transform: Transform3D = mesh_node.global_transform
@@ -1174,6 +1181,8 @@ func set_shadows(enabled: bool) -> void:
 	for mat in floor_materials: mat.set_shader_parameter("relief",0.32 if enabled else 0.0)
 	materials.edge.set_shader_parameter("relief",0.32 if enabled else 0.0)
 	materials.intarsia.set_shader_parameter("relief",0.32 if enabled else 0.0)
+	var ruin_materials: Dictionary=get_meta("ruin_material_cache",{})
+	if ruin_materials.has("masonry"): ruin_materials.masonry.set_shader_parameter("relief",.80 if enabled else 0.0)
 	for beam in sanctuary_beams: beam.visible=enabled
 	for light in sanctuary_lights: light.visible=enabled
 	if sanctuary_beam_material!=null:
@@ -1190,28 +1199,9 @@ func _build_journey_floor() -> void:
 			_torch(origin+Vector3(side*5.7,0.0,-1.6 if side<0.0 else 2.6))
 
 func _build_journey_details() -> void:
-	for room in range(6):
-		dressing_room=room
-		var origin := _point(Layout.center(region_index,room,simulation.layout_seed()))
-		for side in [-1.0,1.0]:
-			match region_index:
-				0:
-					_sarcophagus(origin+Vector3(side*4.9,0,2.5))
-				1:
-					_box(origin+Vector3(side*4.7,0.025,3.3),Vector3(1.6,0.025,1.2),materials.moss)
-				2:
-					for i in range(3):
-						var shard := _cylinder(origin+Vector3(side*(5.4+i*0.25),0.22+i*0.07,3),0.19,0.015,0.44+i*0.14,materials.bone,7)
-						shard.rotation.z=side*0.25
-				3:
-					var furnace:=_authored_prop("furnace",origin+Vector3(side*5.45,0,-3.8),side*PI/2)
-					furnace.scale=Vector3.ONE*0.45
-	dressing_room=-1
-	var boss_center := _point(Layout.center(region_index,5,simulation.layout_seed()))
-	if region_index==0:
-		var fallen_bell:=_authored_prop("bell",boss_center+Vector3(-5.4,0.23,-4.2))
-		fallen_bell.scale=Vector3.ONE*0.42
-		fallen_bell.rotation.z=0.8
+	# The connected regional bay modules supply the structural props. The old
+	# standalone moss boxes, bone cones and miniature furnaces were provisional.
+	pass
 
 func _build_journey_props() -> void:
 	for room in [1,3,5]:
@@ -1579,6 +1569,10 @@ func _build_region_matte() -> void:
 	var paint:=ShaderMaterial.new()
 	paint.shader=preload("res://assets/shaders/region_matte.gdshader")
 	paint.set_shader_parameter("painting",REGION_BACKDROPS[region_index])
+	# This distant unlit plate needs the same atmospheric extinction as the
+	# live region. Camp uses the shared shader's unchanged zero-haze default.
+	paint.set_shader_parameter("haze_color",Color(theme.fog))
+	paint.set_shader_parameter("haze_strength",1.0-exp(-float(theme.density)*75.0))
 	region_matte.material_override=paint
 	region_matte.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	region_matte.extra_cull_margin=100.0

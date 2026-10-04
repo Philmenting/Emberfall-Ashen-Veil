@@ -5,6 +5,7 @@ extends RefCounted
 const NAMES: Array[String]=["Root","Pelvis","Chest","Head","ClavicleL","UpperArmL","ForearmL","HandL","ClavicleR","UpperArmR","ForearmR","HandR","ThighL","ShinL","FootL","ThighR","ShinR","FootR","Cape","CapeTip","Weapon","BowUpper","BowString","BowLower","Arrow","CoatL","CoatR","HairL","HairR"]
 const PARENTS: Array[int]=[-1,0,1,2,2,4,5,6,2,8,9,10,1,12,13,1,15,16,2,18,11,20,20,20,22,1,1,3,3]
 const RECOVERY:=.34
+const SwordFoundation=preload("res://assets/animations/vowkeeper_sword_foundation.gd")
 
 static func create(key: String,rests: Array[Transform3D]) -> AnimationLibrary:
 	var locals: Array[Transform3D]=[]
@@ -47,6 +48,128 @@ static func stance_foot(key: String,side: int) -> Vector3:
 	if key in ["guardian_0","guardian_3","bulwark","elite"]: foot.x*=1.18
 	return foot
 
+static func action_foot(key: String,clip: String,u: float,side: int) -> Vector3:
+	# One boot bears the load while the other actually steps. These are sole
+	# contact curves, also used after runtime pose blending; they are not a
+	# projection of the in-place source's sliding feet.
+	var start:=stance_foot(key,side)
+	var stepping: int=1 if key=="Vowkeeper" else 0
+	if key not in ["Vowkeeper","Arcanist","Ranger"] or side!=stepping: return start
+	var finish:=start+Vector3(.025,0,-.64) if key=="Vowkeeper" else start+Vector3(-.045,0,-.29 if key=="Arcanist" else -.17)
+	var recovery:=clip.begins_with("recover")
+	var lift:=.12 if key=="Vowkeeper" else .085
+	if recovery:
+		var lift_off:=.40 if key=="Ranger" else .35
+		var t:=smoothstep(lift_off,.91,u)
+		return finish.lerp(start,t)+Vector3(0,sin(t*PI)*lift,0)
+	var takeoff:=.18 if key=="Vowkeeper" else .12
+	var landing:=.64 if key=="Vowkeeper" else (.38 if key=="Ranger" else .58)
+	var t:=smoothstep(takeoff,landing,u)
+	return start.lerp(finish,t)+Vector3(0,sin(t*PI)*lift,0)
+
+static func action_foot_basis(key: String,side: int) -> Basis:
+	return Basis(Vector3.UP,-.34 if side==0 else -.62) if key=="Ranger" else Basis.IDENTITY
+
+static func action_support(key: String,clip: String,u: float,side: int) -> bool:
+	return action_foot(key,clip,u,side).y<=stance_foot(key,side).y+.0001
+
+static func _basis(value: Variant) -> Basis:
+	return Basis(value) if value is Quaternion else Basis.from_euler(value)
+
+static func _rotation(value: Variant) -> Quaternion:
+	return value if value is Quaternion else Quaternion.from_euler(value)
+
+static func _angles(value: Variant) -> Vector3:
+	return Basis(value).get_euler() if value is Quaternion else value
+
+static func _base_state() -> Dictionary:
+	return {"hip":Vector3(0,-.075,0),"pelvis":Vector3.ZERO,"chest":Vector3.ZERO,"right":Vector3(.36,1.23,.08),"left":Vector3(-.30,1.41,-.22),"weapon":Vector3.ZERO,"palm":Vector3(-.14,0,-.10),"left_pole":Vector3(-1,-.10,.35),"right_pole":Vector3(1,-.10,.40),"knee_l":Vector3(-.16,0,-1),"knee_r":Vector3(.18,0,-1),"cloth":Vector3(.016,0,0),"draw":0.0,"arrow":0.0,"nock":0.0,"support":0.0}
+
+static func _arcanist_spec(action: String) -> Dictionary:
+	# The left shoulder comes around with the throw. The palm crosses an open
+	# silhouette from beside the head to the camera-near side of the real -Z
+	# target line; it no longer disappears between the torso and the cape.
+	var guard:=_change(_base_state(),{"hip":Vector3(0,-.085,0),"pelvis":Vector3(0,.10,0),"chest":Vector3(0,.12,0),"right":Vector3(.44,1.17,.46),"left":Vector3(-.29,1.43,-.16),"weapon":Vector3(.22,0,-.16)})
+	var gather:=_change(guard,{"hip":Vector3(.025,-.12,.035),"pelvis":Vector3(.01,.14,-.025),"chest":Vector3(.055,.28,-.035),"left":Vector3(-.53,1.67,.08),"right":Vector3(.47,1.12,.50),"left_pole":Vector3(-1,.28,.35),"cloth":Vector3(-.025,.035,-.035)})
+	var load:=_change(gather,{"hip":Vector3(.065,-.20,.065),"pelvis":Vector3(.025,.18,-.04),"chest":Vector3(.08,.43,-.055),"left":Vector3(-.51,1.79,.19),"right":Vector3(.48,1.05,.55),"palm":Vector3(-.35,.20,-.85),"weapon":Vector3(.22,.02,-.18),"knee_r":Vector3(.40,0,-1),"cloth":Vector3(-.055,.065,-.04)})
+	var drive:=_change(load,{"hip":Vector3(-.025,-.125,-.105),"pelvis":Vector3(-.035,-.25,.015),"chest":Vector3(-.16,-.56,.035),"left":Vector3(.20,1.66,-.48),"right":Vector3(.47,1.10,.57),"left_pole":Vector3(-.35,.30,-.65),"palm":Vector3(-1.22,-.10,-.20),"weapon":Vector3(.22,0,-.16),"knee_l":Vector3(-.35,0,-1),"cloth":Vector3(.10,-.09,.025)})
+	var contact:=_change(drive,{"hip":Vector3(-.055,-.175,-.145),"pelvis":Vector3(-.05,-.43,.02),"chest":Vector3(-.22,-.51,.025),"left":Vector3(.23,1.43,-.78),"right":Vector3(.48,1.06,.57),"palm":Vector3(-1.50,0,-.10),"cloth":Vector3(.14,-.10,.04)})
+	var follow:=_change(contact,{"hip":Vector3(-.065,-.195,-.155),"left":Vector3(.25,1.39,-.78),"chest":Vector3(-.235,-.48,.025),"cloth":Vector3(.18,-.035,.015)})
+	var return_pose:=_change(guard,{"hip":Vector3(-.03,-.125,-.04),"pelvis":Vector3(-.015,-.16,.015),"chest":Vector3(-.065,-.32,.015),"left":Vector3(.20,1.49,-.32),"right":Vector3(.45,1.14,.50),"palm":Vector3(-.65,.10,-.38),"cloth":Vector3(.06,.045,-.015)})
+	if action!="basic":
+		# The signature gathers low then casts upward, with the same visible
+		# cross-body line and a separate catch rather than a stronger basic.
+		gather=_change(gather,{"left":Vector3(-.47,1.29,.11),"palm":Vector3(-.20,.10,-.50)})
+		load=_change(load,{"hip":Vector3(.075,-.235,.07),"left":Vector3(-.48,1.37,.20),"palm":Vector3(.35,.15,-.75)})
+		drive=_change(drive,{"left":Vector3(.17,1.43,-.47),"palm":Vector3(-.80,0,-.20)})
+		contact=_change(contact,{"hip":Vector3(-.045,-.13,-.15),"left":Vector3(.22,1.64,-.74),"palm":Vector3(-1.75,0,-.10)})
+		follow=_change(follow,{"hip":Vector3(-.055,-.155,-.155),"left":Vector3(.24,1.67,-.73),"palm":Vector3(-1.80,0,-.08)})
+	return {"guard":guard,"gather":gather,"load":load,"drive":drive,"contact":contact,"follow":follow,"return":return_pose}
+
+static func _ranger_spec(action: String) -> Dictionary:
+	# A side-on archer, not two arms raised in front of a back-facing cape.
+	# The bow remains aligned with -Z. The right elbow and release hand have
+	# their own clear contour on the camera-near side of the shoulders.
+	var guard:=_change(_base_state(),{"hip":Vector3(0,-.085,0),"pelvis":Vector3(0,-.16,0),"chest":Vector3(-.025,-.34,0),"left":Vector3(-.18,1.23,-.23),"right":Vector3(.30,1.40,-.01),"weapon":Vector3(0,0,-.14),"right_pole":Vector3(1,.18,.65),"left_pole":Vector3(-.65,-.65,-.45)})
+	var gather:=_change(guard,{"hip":Vector3(.015,-.11,.015),"pelvis":Vector3(0,-.30,-.015),"chest":Vector3(-.035,-.50,.02),"left":Vector3(.12,1.58,-.66),"weapon":Vector3.ZERO,"draw":.015,"arrow":1.0,"nock":1.0,"cloth":Vector3(-.02,.035,0)})
+	var load:=_change(gather,{"hip":Vector3(.025,-.15,.01),"pelvis":Vector3(0,-.46,-.025),"chest":Vector3(-.025,-.74,.025),"left":Vector3(.20,1.60,-.78),"draw":.42,"right_pole":Vector3(1,.22,.65),"knee_l":Vector3(-.40,0,-1),"knee_r":Vector3(.28,0,-1),"cloth":Vector3(.01,.07,-.015)})
+	if action!="basic": load=_change(load,{"hip":Vector3(.035,-.18,.02),"left":Vector3(.20,1.61,-.79),"draw":.45})
+	load.right=Vector3(load.left)+Vector3(0,0,.34+float(load.draw))
+	var contact:=_change(load,{"draw":0.0,"arrow":0.0,"nock":0.0})
+	var follow:=_change(contact,{"right":Vector3(load.right)+Vector3(.31,.065,.08),"hip":Vector3(.035,Vector3(load.hip).y+.018,.025),"chest":Vector3(-.02,-.68,.025),"cloth":Vector3(.045,-.025,.01)})
+	var return_pose:=_change(guard,{"hip":Vector3(.02,-.115,.015),"pelvis":Vector3(0,-.30,-.01),"chest":Vector3(-.035,-.46,.015),"left":Vector3(.09,1.38,-.53),"right":Vector3(.43,1.38,.055),"weapon":Vector3(0,0,-.10),"cloth":Vector3(.03,-.035,0)})
+	return {"guard":guard,"gather":gather,"load":load,"drive":load,"contact":contact,"follow":follow,"return":return_pose}
+
+static func _foundation_sample(name: String,time: float,guard: Dictionary) -> Dictionary:
+	var frames: Array=SwordFoundation.CURVES[name]
+	var index:=mini(int(floor(time*30.0)),frames.size()-2)
+	index=maxi(index,0)
+	var a: Array=frames[index]; var b: Array=frames[index+1]
+	var amount:=clampf((time-float(a[0]))/maxf(.001,float(b[0])-float(a[0])),0,1)
+	var state:=guard.duplicate(true)
+	for field in {"hip":1,"right":12,"right_pole":15,"left":18,"left_pole":21}:
+		var offset: int={"hip":1,"right":12,"right_pole":15,"left":18,"left_pole":21}[field]
+		state[field]=Vector3(a[offset],a[offset+1],a[offset+2]).lerp(Vector3(b[offset],b[offset+1],b[offset+2]),amount)
+	for field in {"pelvis":4,"chest":8,"weapon":24}:
+		var offset: int={"pelvis":4,"chest":8,"weapon":24}[field]
+		state[field]=Quaternion(a[offset],a[offset+1],a[offset+2],a[offset+3]).slerp(Quaternion(b[offset],b[offset+1],b[offset+2],b[offset+3]),amount)
+	# Source is a free off-hand sword fighter. The shield occupies the front
+	# guard instead of being whipped behind the body by the free-arm gesture.
+	var pelvis_basis:=_basis(state.pelvis)
+	var chest_basis:=pelvis_basis*_basis(state.chest)
+	var shoulder:=Vector3(0,1.053,0)+Vector3(state.hip)+pelvis_basis*Vector3(0,.39,0)+chest_basis*Vector3(-.32,.19,0)
+	var brace:=shoulder+Vector3(-.10,-.43,-.28)
+	# The source fighter has no shield. Its deep shoulder roll must still
+	# leave room for our shield below the fist, rather than burying the rim.
+	brace.y=maxf(brace.y,.70)
+	state.left=Vector3(state.left).lerp(brace,.92)
+	state.left_pole=Vector3(-.30,.60,-.50)
+	return state
+
+static func _vowkeeper_state(spec: Dictionary,clip: String,u: float) -> Dictionary:
+	var recovery:=clip.begins_with("recover")
+	var diagonal:=clip.ends_with("skill")
+	var source:="diagonal" if diagonal else "cut"
+	var time:=0.0
+	if not recovery:
+		if diagonal: time=lerpf(0,.09,smoothstep(0,.60,u)) if u<.60 else lerpf(.09,.28,(u-.60)/.40)
+		else:
+			var chamber:=.73 if clip.ends_with("heavy") else .61
+			time=lerpf(0,.30,smoothstep(0,chamber,u)) if u<chamber else lerpf(.30,.43,(u-chamber)/(1.0-chamber))
+	else:
+		if diagonal:
+			if u<.34: time=lerpf(.28,.533333,u/.34)
+			else: source="diagonal_return"; time=lerpf(0,1.033333,smoothstep(.34,1.0,u))
+		else: time=lerpf(.43,.82,u/.45) if u<.45 else lerpf(.82,1.533333,smoothstep(.45,1.0,u))
+	var state:=_foundation_sample(source,time,spec.guard)
+	var drive: float=(1.0-smoothstep(.43,.91,u)) if recovery else smoothstep(.35,.89,u)
+	var weight:=Vector3(0,0,-.14*drive)
+	for field in ["hip","right","left"]: state[field]+=weight
+	state.knee_l=Vector3(-.18,0,-1); state.knee_r=Vector3(.26,0,-1)
+	state.cloth=Vector3(.12*drive,-.055*drive,.025*drive)
+	if recovery: return _mix(state,spec.guard,smoothstep(.77,1.0,u))
+	return _mix(spec.guard,state,smoothstep(0,.22,u))
+
 static func global_pose(p: Array[Transform3D],bone: int,key: String) -> Transform3D:
 	var transform:=p[bone]
 	var parent:=_parent(bone,key)
@@ -75,8 +198,9 @@ static func solve_two(p: Array[Transform3D],upper: int,lower: int,end: int,targe
 	global_rotation(p,lower,Basis(Quaternion(p[end].origin.normalized(),(finish-elbow).normalized())),key)
 
 static func _spec(key: String,action: String="basic") -> Dictionary:
-	var ranger:=key=="Ranger"
-	var caster:=key in ["Arcanist","hexer","guardian_1","guardian_2"]
+	if key=="Arcanist": return _arcanist_spec(action)
+	if key=="Ranger": return _ranger_spec(action)
+	var caster:=key in ["hexer","guardian_1","guardian_2"]
 	var raider:=key=="raider"
 	var skill:=action=="skill"
 	var heavy:=action=="heavy"
@@ -84,12 +208,11 @@ static func _spec(key: String,action: String="basic") -> Dictionary:
 	# follow-through and a separate return path. Skill cuts/casts are authored
 	# in their own planes; they are not the basic pose multiplied by a gain.
 	var guard: Dictionary={"hip":Vector3(0,-.055,0),"pelvis":Vector3(0,.025,0),"chest":Vector3(0,.08,0),"right":Vector3(.32,1.10,-.20),"left":Vector3(-.38,1.24,-.29),"weapon":Vector3(-.18,0,-.15),"palm":Vector3(-.14,0,-.10),"left_pole":Vector3(-1,-.10,.35),"right_pole":Vector3(1,-.10,.40),"knee_l":Vector3(-.16,0,-1),"knee_r":Vector3(.18,0,-1),"cloth":Vector3(.016,0,0),"draw":0.0,"arrow":0.0,"nock":0.0,"support":0.0}
+	if key=="Vowkeeper":
+		guard.left=Vector3(-.34,.96,-.33); guard.left_pole=Vector3(-.30,.60,-.50)
 	if caster:
 		guard.right=Vector3(.34,1.03,-.09); guard.left=Vector3(-.17,1.19,-.22)
 		guard.chest=Vector3(0,-.10,0); guard.pelvis=Vector3(0,-.03,0); guard.weapon=Vector3(-.12,0,-.12)
-	elif ranger:
-		guard.left=Vector3(-.35,1.01,-.16); guard.right=Vector3(.24,1.13,-.13)
-		guard.chest=Vector3(-.02,-.18,0); guard.pelvis=Vector3(0,-.06,0); guard.weapon=Vector3(0,0,-.13)
 	elif raider:
 		guard.hip=Vector3(0,-.14,.025); guard.chest=Vector3(-.14,0,0)
 		guard.right=Vector3(.39,1.02,-.31); guard.left=Vector3(-.39,1.03,-.28)
@@ -102,7 +225,7 @@ static func _spec(key: String,action: String="basic") -> Dictionary:
 	var contact:=_change(drive,{"hip":Vector3(-.075,-.19,-.175),"pelvis":Vector3(-.08,.32,-.06),"chest":Vector3(-.24,.18,.08),"right":Vector3(.035,.99,-.65),"left":Vector3(-.35,1.12,-.46),"weapon":Vector3(-1.31,.16,.12),"knee_l":Vector3(-.30,0,-1),"cloth":Vector3(.13,-.085,.055)})
 	var follow:=_change(contact,{"hip":Vector3(-.105,-.235,-.17),"pelvis":Vector3(-.09,.38,-.035),"chest":Vector3(-.28,.32,.065),"right":Vector3(-.17,.80,-.42),"left":Vector3(-.34,1.05,-.40),"weapon":Vector3(-1.78,.30,.54),"cloth":Vector3(.19,-.02,.025)})
 	var return_pose:=_change(guard,{"hip":Vector3(-.045,-.13,-.065),"pelvis":Vector3(-.015,.17,.01),"chest":Vector3(-.10,.035,.025),"right":Vector3(.25,.88,-.29),"left":Vector3(-.35,1.17,-.34),"weapon":Vector3(-.81,.10,.20),"cloth":Vector3(.065,.035,-.02)})
-	if skill and not caster and not ranger:
+	if skill and not caster:
 		# Shield closes before a committed descending cut. Recovery lifts the
 		# blade back beside the hip instead of replaying the strike backwards.
 		gather=_change(gather,{"left":Vector3(-.29,1.20,-.40),"right":Vector3(.30,1.39,.12),"weapon":Vector3(.58,-.08,-.22)})
@@ -128,18 +251,6 @@ static func _spec(key: String,action: String="basic") -> Dictionary:
 			drive=_change(drive,{"hip":Vector3(.015,-.105,-.08),"right":Vector3(.36,1.10,-.18),"left":Vector3(-.17,1.20,-.48),"weapon":Vector3(-.64,.10,-.25)})
 			contact=_change(contact,{"hip":Vector3(-.05,-.20,-.20),"pelvis":Vector3(-.09,.24,-.045),"chest":Vector3(-.34,.13,.045),"right":Vector3(.30,1.15,-.30),"left":Vector3(-.20,1.04,-.66),"weapon":Vector3(-.90,.12,-.18),"palm":Vector3(-1.58,.05,-.10)})
 			follow=_change(follow,{"hip":Vector3(-.055,-.225,-.18),"chest":Vector3(-.35,.21,.035),"right":Vector3(.30,1.05,-.35),"left":Vector3(-.22,.94,-.59),"weapon":Vector3(-1.02,.08,-.15)})
-	elif ranger:
-		# Raise/nock, draw to the cheek, aim, release, hold the bow arm, lower.
-		# The right-hand target is solved against the real nock during draw.
-		gather=_change(guard,{"hip":Vector3(.02,-.105,.025),"pelvis":Vector3(0,-.10,-.015),"chest":Vector3(-.025,-.30,.015),"left":Vector3(-.19,1.34,-.56),"weapon":Vector3(-.015,.025,-.015),"draw":.035,"arrow":1.0,"nock":1.0,"right_pole":Vector3(1,.35,.95),"left_pole":Vector3(-1,-.15,.15),"knee_l":Vector3(-.24,0,-1),"knee_r":Vector3(.30,0,-1),"cloth":Vector3(-.02,.025,0)})
-		load=_change(gather,{"hip":Vector3(.045,-.17,.015),"pelvis":Vector3(0,-.20,-.035),"chest":Vector3(-.035,-.56,.025),"left":Vector3(-.17,1.46,-.64),"draw":.34,"cloth":Vector3(.008,.04,-.01)})
-		if skill:
-			load=_change(load,{"hip":Vector3(.05,-.205,.025),"chest":Vector3(-.07,-.61,.025),"left":Vector3(-.17,1.45,-.64),"weapon":Vector3(-.07,-.045,-.025),"draw":.36})
-		load.right=Vector3(load.left)+Basis.from_euler(load.weapon)*Vector3(0,0,.34+float(load.draw))
-		drive=load.duplicate(true)
-		contact=_change(load,{"draw":0.0,"arrow":0.0,"nock":0.0})
-		follow=_change(contact,{"hip":Vector3(.045,-.145,.025),"right":Vector3(load.right)+Vector3(.25,.015,.145),"chest":Vector3(-.025,-.43,.025),"cloth":Vector3(.045,-.02,0)})
-		return_pose=_change(guard,{"hip":Vector3(.025,-.105,.01),"pelvis":Vector3(0,-.12,-.015),"chest":Vector3(-.02,-.28,.015),"left":Vector3(-.25,1.20,-.40),"right":Vector3(.18,1.20,.13),"weapon":Vector3(-.035,0,-.085),"cloth":Vector3(.025,-.025,0)})
 	elif raider:
 		gather=_change(gather,{"hip":Vector3(.065,-.235,.06),"chest":Vector3(-.03,-.23,-.08),"right":Vector3(.49,1.07,.015),"left":Vector3(-.36,1.03,-.34),"weapon":Vector3(-.38,0,.18)})
 		load=_change(load,{"hip":Vector3(.10,-.315,.09),"chest":Vector3(.03,-.43,-.10),"right":Vector3(.50,1.15,.03),"left":Vector3(-.30,1.06,-.34),"weapon":Vector3(-.78,-.10,.26)})
@@ -179,14 +290,29 @@ static func _change(state: Dictionary,changes: Dictionary) -> Dictionary:
 	return result
 
 static func _action_state(spec: Dictionary,key: String,clip: String,u: float) -> Dictionary:
+	if key=="Vowkeeper": return _vowkeeper_state(spec,clip,u)
+	if key in ["Arcanist","Ranger"]:
+		if clip.begins_with("windup"):
+			if key=="Ranger":
+				if u<.24: return _mix(spec.guard,spec.gather,smoothstep(0,.24,u))
+				if u<.72: return _mix(spec.gather,spec.load,smoothstep(.24,.72,u))
+				return spec.load.duplicate(true)
+			if u<.22: return _mix(spec.guard,spec.gather,smoothstep(0,.22,u))
+			if u<.47: return _mix(spec.gather,spec.load,smoothstep(.22,.47,u))
+			if u<.59: return spec.load.duplicate(true)
+			if u<.82: return _mix(spec.load,spec.drive,pow((u-.59)/.23,1.45))
+			return _mix(spec.drive,spec.contact,(u-.82)/.18)
+		var catch:=.31 if key=="Ranger" else .22
+		if u<catch: return _mix(spec.contact,spec.follow,1.0-pow(1.0-u/catch,2.0))
+		if u<.78: return _mix(spec.follow,spec["return"],smoothstep(catch,.78,u))
+		return _mix(spec["return"],spec.guard,smoothstep(.78,1.0,u))
 	if clip.begins_with("windup"):
 		var heavy:=clip.ends_with("heavy")
-		var gather_end:=.18 if key=="Ranger" else .14
-		var load_end:=.72 if key=="Ranger" else .34
+		var gather_end:=.14
+		var load_end:=.34
 		var commit:=.78 if heavy else (.56 if clip.ends_with("skill") else .52)
 		if u<gather_end: return _mix(spec.guard,spec.gather,smoothstep(0,gather_end,u))
 		if u<load_end: return _mix(spec.gather,spec.load,smoothstep(gather_end,load_end,u))
-		if key=="Ranger": return spec.load.duplicate(true)
 		# The supporting leg drives first, before the weapon leaves its chamber.
 		# This is visible even in a .30 s cast (.215 s for the ranged launch).
 		var passing:=lerpf(commit,1.0,.58)
@@ -197,14 +323,16 @@ static func _action_state(spec: Dictionary,key: String,clip: String,u: float) ->
 			phrase.chest=Vector3(spec.load.chest).lerp(spec.drive.chest,smoothstep(commit-.035,passing,u))
 			return phrase
 		return _mix(spec.drive,spec.contact,clampf((u-passing)/(1.0-passing),0,1))
-	var overshoot:=.30 if key=="Ranger" else (.28 if clip.ends_with("heavy") else .24)
+	var overshoot:=.28 if clip.ends_with("heavy") else .24
 	if u<overshoot: return _mix(spec.contact,spec.follow,1.0-pow(1.0-clampf(u/overshoot,0,1),2.0))
 	if u<.74: return _mix(spec.follow,spec["return"],smoothstep(overshoot+.035,.74,u))
 	return _mix(spec["return"],spec.guard,smoothstep(.74,1.0,u))
 
 static func _mix(a: Dictionary,b: Dictionary,t: float) -> Dictionary:
 	var result: Dictionary={}
-	for name in a: result[name]=a[name].lerp(b[name],t) if a[name] is Vector3 else lerpf(a[name],b[name],t)
+	for name in a:
+		if a[name] is Quaternion or b[name] is Quaternion: result[name]=_rotation(a[name]).slerp(_rotation(b[name]),t)
+		else: result[name]=a[name].lerp(b[name],t) if a[name] is Vector3 else lerpf(a[name],b[name],t)
 	return result
 
 static func _author(key: String,clip: String,u: float,rests: Array[Transform3D]) -> Array[Transform3D]:
@@ -230,14 +358,15 @@ static func _author(key: String,clip: String,u: float,rests: Array[Transform3D])
 	p.assign(rests)
 	p[1].origin+=Vector3(state.hip)+Vector3(0,breath*.005,0)
 	if death: p[1].origin.y-=.23*sin(clampf(u/.46,0,1)*PI)
-	p[1].basis=Basis.from_euler(state.pelvis)
-	p[2].basis=Basis.from_euler(Vector3(state.chest)+Vector3(breath*.007,0,0))
-	p[3].basis=Basis.from_euler(Vector3(-Vector3(state.chest).x*.22,-Vector3(state.chest).y*.42,0))
+	p[1].basis=_basis(state.pelvis)
+	var chest_angles:=_angles(state.chest)
+	p[2].basis=_basis(state.chest)*Basis.from_euler(Vector3(breath*.007,0,0))
+	p[3].basis=Basis.from_euler(Vector3(-chest_angles.x*.22,-chest_angles.y*.42,0))
 	if acting:
 		# Eyes retain the target while shoulders and hips turn underneath.
-		global_rotation(p,3,Basis.from_euler(Vector3(-.015+Vector3(state.chest).x*.08,Vector3(state.chest).y*.10,-Vector3(state.chest).z*.15)),key)
+		global_rotation(p,3,Basis.from_euler(Vector3(-.015+chest_angles.x*.08,chest_angles.y*.10,-chest_angles.z*.15)),key)
 	var left: Vector3=state.left; var right: Vector3=state.right
-	var weapon_basis:=Basis.from_euler(state.weapon)
+	var weapon_basis:=_basis(state.weapon)
 	p[22].origin.z+=float(state.draw)
 	p[21].origin.z-=float(state.draw)*.06; p[23].origin.z-=float(state.draw)*.06
 	p[24].basis=Basis.IDENTITY.scaled(Vector3.ONE*float(state.arrow))
@@ -257,6 +386,20 @@ static func _author(key: String,clip: String,u: float,rests: Array[Transform3D])
 		global_rotation(p,11,Basis.from_euler(Vector3(-.12,-.08,.10)),key)
 	else:
 		solve_two(p,9,10,11,right,state.right_pole,key)
+		if key=="Vowkeeper" and acting:
+			# Fit the transferred blade arc to native floor clearance at the
+			# solved wrist. A smooth elevation blend rotates fist and blade
+			# together without changing the hand path or the contact phase.
+			var wrist_y:=global_pose(p,11,key).origin.y
+			var blade:=weapon_basis.y
+			var gap:=wrist_y+blade.y*1.39-.075
+			if gap<.060:
+				var tip_y:=.075 if gap<=-.060 else .075+pow(gap+.060,2.0)/.240
+				var elevation:=clampf((tip_y-wrist_y)/1.39,-.999,.999)
+				var horizontal:=Vector3(blade.x,0,blade.z).normalized()
+				if horizontal.length_squared()<.5: horizontal=Vector3.FORWARD
+				var direction:=horizontal*sqrt(1.0-elevation*elevation)+Vector3.UP*elevation
+				weapon_basis=Basis(Quaternion(blade,direction))*weapon_basis
 		# Grip and weapon share an orientation; the blade/staff no longer
 		# rotates through a separately upright fist during its fastest arc.
 		global_rotation(p,11,weapon_basis,key)
@@ -271,9 +414,7 @@ static func _author(key: String,clip: String,u: float,rests: Array[Transform3D])
 		var phase:=fposmod(u+side*.5,1.0)
 		var foot:=Vector3(-.13 if side==0 else .13,.117 if nyra else .10,-.04)
 		if not walking and not death:
-			# A staggered support polygon carries the forward weight transfer.
-			# Targets are identical throughout guard and every attack phrase.
-			foot=stance_foot(key,side)
+			foot=action_foot(key,clip,u,side) if acting else stance_foot(key,side)
 		if walking:
 			if phase<.5: foot.z+=-.40+phase*1.60
 			else:
@@ -282,7 +423,7 @@ static func _author(key: String,clip: String,u: float,rests: Array[Transform3D])
 				foot.y+=sin(swing*PI)*.115
 		var knee_pole: Vector3=state.knee_l if side==0 else state.knee_r
 		solve_two(p,12 if side==0 else 15,13 if side==0 else 16,14 if side==0 else 17,foot,Vector3.FORWARD if walking or death else knee_pole,key)
-		global_rotation(p,14 if side==0 else 17,Basis.IDENTITY,key)
+		global_rotation(p,14 if side==0 else 17,action_foot_basis(key,side) if not walking and not death else Basis.IDENTITY,key)
 		var coat:=25+side
 		p[coat].basis=Basis.from_euler(cloth*.28+Vector3(0,0,(-.012 if side==0 else .012)*cloth.x) if acting else Vector3(.025*sin(u*TAU+side*PI) if walking else breath*.007,0,0))
 		if not death: p[coat].basis=p[coat].basis.scaled(Vector3(1,1.0-cloth_compression/.75,1))

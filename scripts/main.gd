@@ -171,6 +171,7 @@ var first_relic_claimed := false
 var pending_class_relic: Dictionary = {}
 var guardian_trophies: Array = []
 var playtest_notes: Dictionary = {}
+var frame_metrics=preload("res://scripts/frame_metrics.gd").new()
 var ui_revision := 0
 var forecast_cache: Dictionary = {}
 var forecast_jobs: Dictionary = {}
@@ -815,6 +816,7 @@ func _build_map(parent: VBoxContainer) -> void:
 func _build_run() -> void:
 	combat_hud.clear()
 	var arena:=BattleArt.new()
+	arena.frame_metrics=frame_metrics
 	arena.name="BattleArena"
 	arena.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	arena.character_class=character_class
@@ -1102,20 +1104,24 @@ func _build_combat_readouts(parent: VBoxContainer) -> HBoxContainer:
 	return dock
 
 func _style_combat_command(button: Button) -> void:
-	for state in ["normal","hover","pressed","focus"]:
-		var box:=button.get_theme_stylebox(state).duplicate() as StyleBoxFlat
+	for state in ["normal","hover","pressed","focus","disabled"]:
+		var box:=button.get_theme_stylebox("normal" if state=="disabled" else state).duplicate() as StyleBoxFlat
 		box.set_corner_radius_all(2)
 		if state!="focus":
 			box.border_color=Color("655849") if state=="hover" else Color("49463f")
 			box.bg_color=Color("20282b") if state=="hover" else Color("0c1115") if state=="pressed" else Color("151a1e")
+		if state=="disabled":
+			box.bg_color=Color("11171a")
+			box.border_color=Color("343b40")
 		button.add_theme_stylebox_override(state,box)
+	button.add_theme_color_override("font_disabled_color",Color("8e969b"))
 
 func _combat_command(caption: String,icon: String,action: Callable) -> Button:
 	var button:=_button(caption,Color("151a1e"),10,action)
 	button.custom_minimum_size=Vector2(82,_minimum_button_height(60))
 	button.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
 	_style_combat_command(button)
-	for state in ["normal","hover","pressed","focus"]:
+	for state in ["normal","hover","pressed","focus","disabled"]:
 		var box:=button.get_theme_stylebox(state).duplicate() as StyleBoxFlat
 		box.content_margin_left=6; box.content_margin_right=6
 		box.content_margin_top=27; box.content_margin_bottom=5

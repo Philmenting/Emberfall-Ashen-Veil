@@ -36,7 +36,7 @@ func posed_floor(actor: Node3D,arrays: Array) -> float:
 	var minimum:=INF
 	for i in arrays[Mesh.ARRAY_VERTEX].size():
 		var point:=Vector3.ZERO
-		for slot in range(2): point+=(transforms[arrays[Mesh.ARRAY_BONES][i*4+slot]]*arrays[Mesh.ARRAY_VERTEX][i])*arrays[Mesh.ARRAY_WEIGHTS][i*4+slot]
+		for slot in range(4): point+=(transforms[arrays[Mesh.ARRAY_BONES][i*4+slot]]*arrays[Mesh.ARRAY_VERTEX][i])*arrays[Mesh.ARRAY_WEIGHTS][i*4+slot]
 		minimum=minf(minimum,point.y*actor.body.scale.y)
 	return minimum
 func run_checks() -> void:
@@ -107,6 +107,51 @@ func run_checks() -> void:
 			variants_grounded=variants_grounded and actual_floor>-.035 and actual_floor<.065
 		check(variants_grounded,key+": all actual runtime corpse variants rest on the same floor")
 		actor.free()
+	# New attacks contain an actual step. Verify its physical contract at the
+	# normal game clock: one continuously loaded sole, a lifted free boot, a
+	# landed stance before release, and no translation of the world actor.
+	for class_key in Actor.HEROES:
+		for style in ["basic","signature"]:
+			var fighter:=make_actor(class_key)
+			var arrays: Array=fighter.model.mesh.surface_get_arrays(0)
+			var support_bone: int=14 if class_key=="Vowkeeper" else 17
+			var step_bone: int=17 if support_bone==14 else 14
+			var support_points:=foot_vertices(arrays,support_bone)
+			var step_points:=foot_vertices(arrays,step_bone)
+			var anchor: Vector3=fighter.motion_rig.skeleton.get_bone_global_pose(support_bone).origin
+			var world_start: Transform3D=fighter.transform
+			var locked:=true; var clear:=true; var raised:=false; var landed:=false
+			var surface_clear:=true; var did_release:=false
+			fighter.strike(style,.30,true)
+			var launch:=.30 if class_key=="Vowkeeper" else .215
+			for frame in range(1,40):
+				var elapsed:=float(frame)/60.0
+				fighter.sync_attack(maxf(0.0,.30-elapsed)); fighter.animate(1.0/60.0,false)
+				if elapsed>=launch and not did_release:
+					did_release=true
+					fighter.release_attack()
+					landed=absf(sole(fighter,step_points,step_bone))<.025
+				var point: Vector3=fighter.motion_rig.skeleton.get_bone_global_pose(support_bone).origin
+				locked=locked and anchor.distance_to(point)<.012 and fighter.transform==world_start
+				clear=clear and absf(sole(fighter,support_points,support_bone))<.025 and sole(fighter,step_points,step_bone)>-.012
+				raised=raised or sole(fighter,step_points,step_bone)>.065
+				# Skin the actual blended 60-Hz return as well as direct poses;
+				# the first 50 ms contained a blade-floor dip between key poses.
+				surface_clear=surface_clear and posed_floor(fighter,arrays)>-.01
+			check(locked and clear and raised and landed,class_key+" "+style+": normal-speed step clears and lands while its support sole and actor stay fixed")
+			var action: String="basic" if style=="basic" else "skill"
+			for phase in ["windup","recover"]:
+				for progress in [.25,.45,.80,1.0]:
+					fighter.motion_rig.pose(phase+"_"+action,progress*(.34 if phase=="recover" else 1.0))
+					surface_clear=surface_clear and posed_floor(fighter,arrays)>-.01
+			check(surface_clear,class_key+" "+style+": every skinned attack vertex clears the floor through the real 60-Hz windup and return")
+			fighter.free()
+	var caster:=make_actor("Arcanist")
+	caster.strike("basic",.30,true); caster.sync_attack(.085); caster.animate(.215,false)
+	var casting_hand: Vector3=caster.motion_rig.skeleton.get_bone_global_pose(7).origin
+	var casting_chest: Vector3=caster.motion_rig.skeleton.get_bone_global_pose(2).origin
+	check(casting_hand.z<casting_chest.z-.35 and casting_hand.x>casting_chest.x+.18,"the casting palm reaches the real forward target plane on the exposed side of the torso")
+	caster.free()
 	var ranger:=make_actor("Ranger")
 	ranger.strike("basic",.6,true); ranger.sync_attack(.10); ranger.animate(.15,false)
 	var draw: Vector3=ranger.motion_rig.skeleton.get_bone_global_pose(22).origin
@@ -117,6 +162,10 @@ func run_checks() -> void:
 	draw=ranger.motion_rig.skeleton.get_bone_global_pose(22).origin
 	straight=(ranger.motion_rig.skeleton.get_bone_global_pose(21).origin+ranger.motion_rig.skeleton.get_bone_global_pose(23).origin)*.5
 	check(draw.distance_to(straight)<.001 and ranger.motion_rig.skeleton.get_bone_pose_scale(24).length()<.001,"real release straightens the string and releases the held arrow")
+	var bow_grip: Vector3=ranger.motion_rig.skeleton.get_bone_global_pose(7).origin
+	var release_hand: Vector3=ranger.motion_rig.skeleton.get_bone_global_pose(11).origin
+	ranger.animate(.085,false)
+	check(bow_grip.distance_to(ranger.motion_rig.skeleton.get_bone_global_pose(7).origin)<.008 and ranger.motion_rig.skeleton.get_bone_global_pose(11).origin.x>release_hand.x+.22,"bow arm holds aim while the released draw hand follows through outside the shoulder")
 	ranger.free()
 	# The renderer launches ranged basic/signature projectiles before damage.
 	# A full draw/cast must already be ready at that real frame, or the weapon

@@ -82,7 +82,7 @@ func _load_appearance() -> void:
 	appearance_cache[appearance_key]=motion_rig.mesh
 	body.scale=Vector3.ONE*figure_height/motion_rig.source_height
 	if model==null:
-		model=MeshInstance3D.new(); model.name="SkinnedCharacter"; body.add_child(model)
+		model=MeshInstance3D.new(); model.name="SkinnedCharacter"; model.layers=2; body.add_child(model)
 		model.extra_cull_margin=figure_height
 		model.ignore_occlusion_culling=true
 		surface_material=ShaderMaterial.new()
@@ -294,15 +294,19 @@ func _apply_motion(delta: float=0.0,contact: bool=false) -> void:
 	if blend_age<blend_duration and not blend_pose.is_empty(): motion_rig.blend_from(blend_pose,smoothstep(0,blend_duration,blend_age))
 	if clip=="walk": _plant_feet()
 	elif clip.begins_with("windup") or clip.begins_with("recover"):
-		# Large supported weight changes can expose a few millimetres of foot
-		# drift from quaternion interpolation or the short entry blend. Preserve
-		# each authored knee plane while returning its sole to the support point.
+		# Correct quaternion-interpolation drift against the actual contact
+		# curve. The free boot keeps its authored step and lift; the loaded boot
+		# keeps its exact sole position. Pinning both to idle erased the phrase.
 		var skeleton: Skeleton3D=motion_rig.skeleton
+		var phase:=time/Rig.Clips.RECOVERY if clip.begins_with("recover") else time
 		plant_active=[false,false]
 		for side in range(2):
 			var thigh:=12 if side==0 else 15
 			var knee_pole:=skeleton.get_bone_global_pose(thigh+1).origin-skeleton.get_bone_global_pose(thigh).origin
-			motion_rig.solve_leg(side,Rig.Clips.stance_foot(appearance_key,side),knee_pole)
+			motion_rig.solve_leg(side,Rig.Clips.action_foot(appearance_key,clip,phase,side),knee_pole)
+			var foot_basis: Basis=skeleton.get_bone_global_pose(thigh+1).basis.inverse()*Rig.Clips.action_foot_basis(appearance_key,side)
+			skeleton.set_bone_pose_rotation(thigh+2,foot_basis.get_rotation_quaternion())
+			skeleton.force_update_all_bone_transforms()
 	elif clip=="death" and time<.12:
 		# Entry blending must not pull the sole through the floor while the
 		# knees fold. The authored root fall begins after this short interval.
@@ -322,6 +326,7 @@ func _apply_motion(delta: float=0.0,contact: bool=false) -> void:
 		var influence:=.22 if (attack_time>=0.0 and release_time<0.0) or telegraph_left>0.0 else (.45 if attack_time>=0.0 else 1.0)
 		var skeleton: Skeleton3D=motion_rig.skeleton
 		var feet: Array[Vector3]=[skeleton.get_bone_global_pose(14).origin,skeleton.get_bone_global_pose(17).origin]
+		var sole_bases: Array[Basis]=[skeleton.get_bone_global_pose(14).basis,skeleton.get_bone_global_pose(17).basis]
 		var pelvis:=skeleton.get_bone_pose_rotation(1)
 		var chest:=skeleton.get_bone_pose_rotation(2)
 		var head:=skeleton.get_bone_pose_rotation(3)
@@ -330,7 +335,12 @@ func _apply_motion(delta: float=0.0,contact: bool=false) -> void:
 		skeleton.set_bone_pose_rotation(2,chest*Quaternion.from_euler(Vector3(.12,.045*recoil_direction,.085*recoil_direction)*hit_strength*influence))
 		skeleton.set_bone_pose_rotation(3,head*Quaternion.from_euler(Vector3(-.055,-.015*recoil_direction,-.035*recoil_direction)*hit_strength*influence))
 		skeleton.force_update_all_bone_transforms()
-		for side in range(2): motion_rig.solve_leg(side,feet[side])
+		for side in range(2):
+			motion_rig.solve_leg(side,feet[side])
+			var foot:=14 if side==0 else 17
+			var basis: Basis=skeleton.get_bone_global_pose(foot-1).basis.inverse()*sole_bases[side]
+			skeleton.set_bone_pose_rotation(foot,basis.get_rotation_quaternion())
+			skeleton.force_update_all_bone_transforms()
 	motion_offset=motion_rig.skeleton.get_bone_pose_position(0)
 	surface_material.set_shader_parameter("hit_flash",hit_strength*.32)
 	surface_material.set_shader_parameter("action_intensity",action_intensity)

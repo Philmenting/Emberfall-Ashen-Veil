@@ -56,6 +56,14 @@ func run_checks() -> void:
 	for name_value in ["CloseSettings","SaveAndExit","MasterVolume","MusicVolume","EffectsVolume","LargeText","ReducedMotion"]:
 		var control: Control=menu.find_child(name_value,true,false)
 		check(control!=null and game.get_global_rect().encloses(control.get_global_rect()),name_value+" fits within landscape viewport")
+	menu.find_child("BetaInfoTab",true,false).pressed.emit()
+	await process_frame
+	check(menu.find_child("CopyPerformanceReport",true,false).disabled,"device report cannot invent measurements before combat")
+	for frame in range(140):
+		game.frame_metrics.sample(1000000+frame*20000,true,"test-balanced",{"quality":"balanced","region":0,"render_width":1200,"render_height":540})
+	menu.find_child("BetaInfoTab",true,false).pressed.emit()
+	await process_frame
+	check(not menu.find_child("CopyPerformanceReport",true,false).disabled and menu.find_child("DevicePerformanceSummary",true,false).text.contains("50.0"),"locally measured frame pacing is readable and copyable from Beta / Privacy")
 	var backup_tab: Button=menu.find_child("SaveBackupTab",true,false)
 	backup_tab.pressed.emit()
 	await process_frame
@@ -100,6 +108,8 @@ func run_checks() -> void:
 	var serial: int=game.expedition_serial
 	var gold: int=game.player_gold
 	check(game.run_arena.render_container.stretch_shrink==2 and game.run_arena.render_viewport.msaa_3d==Viewport.MSAA_DISABLED and not game.run_arena.world.sun.shadow_enabled,"battery mode reduces rendering resolution, MSAA and shadows")
+	var masonry: ShaderMaterial=game.run_arena.world.get_meta("ruin_material_cache").masonry
+	check(is_zero_approx(float(masonry.get_shader_parameter("relief"))),"battery mode also disables architecture normal-map work")
 	check(not game.run_arena.world.damage_numbers,"damage number preference reaches the 3D world")
 	check(game.run_arena.world.reduced_motion,"reduced-motion preference reaches the 3D world")
 	game.run_arena.world._kick_camera(0.08)
@@ -112,6 +122,7 @@ func run_checks() -> void:
 	game._change_preference("numbers",true)
 	game._change_preference("reduced_motion",false)
 	check(Engine.max_fps==60 and game.run_arena.render_container.stretch_shrink==1 and game.run_arena.world.sun.shadow_enabled,"balanced mode restores rendering immediately")
+	check(is_equal_approx(float(masonry.get_shader_parameter("relief")),.80),"balanced mode restores masonry relief on the same live world")
 	game.run_arena.world._kick_camera(0.08)
 	check(game.run_arena.world.camera_shake_time==0.0,"balanced mode keeps the combat camera steady on impact")
 	check(game.expedition.snapshot()==checkpoint and game.expedition_serial==serial and game.player_gold==gold,"graphics changes cannot affect simulation, runs or rewards")
@@ -135,6 +146,7 @@ func run_checks() -> void:
 	game.free()
 	await process_frame
 	game=new_game()
+	check(game.frame_metrics.rows().is_empty(),"performance samples stay in memory and are not restored from the save")
 	check(game.preferences.master==0.75 and game.preferences.music==0.0 and game.preferences.effects==0.5 and not game.preferences.battery and game.preferences.numbers and game.preferences.large_text and game.preferences.reduced_motion,"audio, graphics, readability and motion preferences survive a cold start")
 	check(game.page=="run" and not game.run_active and game.expedition.snapshot()==checkpoint,"paused expedition survives options and cold start")
 	game.free()

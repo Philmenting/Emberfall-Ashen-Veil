@@ -22,7 +22,7 @@ func _ready() -> void:
 	viewport.own_world_3d=true
 	viewport.transparent_bg=true
 	viewport.msaa_3d=Viewport.MSAA_2X
-	viewport.render_target_update_mode=SubViewport.UPDATE_ALWAYS
+	viewport.render_target_update_mode=SubViewport.UPDATE_ONCE
 	add_child(viewport)
 	stage=Node3D.new()
 	stage.name="EquippedHeroStage"
@@ -81,14 +81,14 @@ func configure(class_key: String, equipped: Dictionary = {}) -> void:
 	actor.reduced_motion=reduced_motion
 	actor.animate(0.0,false)
 	_resize()
-	viewport.render_target_update_mode=SubViewport.UPDATE_ONCE if battery or reduced_motion else SubViewport.UPDATE_ALWAYS
+	viewport.render_target_update_mode=SubViewport.UPDATE_ONCE
 
 func set_presentation(motion_reduced: bool, battery_mode: bool = false) -> void:
 	reduced_motion=motion_reduced
 	battery=battery_mode
 	if viewport==null: return
 	viewport.msaa_3d=Viewport.MSAA_DISABLED if battery else Viewport.MSAA_2X
-	viewport.render_target_update_mode=SubViewport.UPDATE_ONCE if battery or reduced_motion else SubViewport.UPDATE_ALWAYS
+	viewport.render_target_update_mode=SubViewport.UPDATE_ONCE
 	if actor!=null: actor.reduced_motion=reduced_motion
 	set_process(not battery and not reduced_motion)
 
@@ -102,11 +102,14 @@ func _resize() -> void:
 	camera.size=maxf(0.50,0.48/aspect) if portrait else maxf(3.20,2.70/aspect)
 	camera.position=target+Vector3(-1.5,.2,-12.0)
 	camera.look_at(target)
-	if battery or reduced_motion: viewport.render_target_update_mode=SubViewport.UPDATE_ONCE
+	viewport.render_target_update_mode=SubViewport.UPDATE_ONCE
 
 func _process(delta: float) -> void:
-	if actor==null or reduced_motion or battery: return
+	if actor==null or reduced_motion or battery or not is_visible_in_tree(): return
 	_animation_elapsed+=delta
 	if _animation_elapsed>=1.0/24.0:
 		actor.animate(_animation_elapsed,false)
+		# The portrait changes at 24 Hz; retain its texture between poses instead
+		# of submitting an identical lit character on every main-window frame.
+		viewport.render_target_update_mode=SubViewport.UPDATE_ONCE
 		_animation_elapsed=0.0

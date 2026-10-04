@@ -10,6 +10,7 @@ var reduced_motion := false
 var render_container: SubViewportContainer
 var budget:=preload("res://scripts/render_budget.gd").new()
 var render_viewport: SubViewport
+var frame_metrics: RefCounted
 
 var equipment_visual: Dictionary={}
 var character_class := "Vowkeeper"
@@ -34,7 +35,7 @@ func _ready() -> void:
 	render_viewport = viewport
 	viewport.size = Vector2i(960,540)
 	viewport.own_world_3d = true
-	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	viewport.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
 	viewport.msaa_3d = Viewport.MSAA_2X
 	container.add_child(viewport)
 	world = DungeonWorld.new()
@@ -70,9 +71,19 @@ func apply_quality(battery: bool,numbers: bool,motion_reduced: bool=false) -> vo
 	world.set_shadows(not battery)
 
 func _process(delta: float) -> void:
+	if frame_metrics!=null and is_instance_valid(render_viewport):
+		var quality:="battery" if battery_mode else "balanced-adaptive" if budget.reduced else "balanced"
+		var dimensions:=render_viewport.size
+		var key:="%s / region %d / %s / %dx%d" % [character_class,region_index,quality,dimensions.x,dimensions.y]
+		frame_metrics.sample(Time.get_ticks_usec(),animation_enabled and is_visible_in_tree(),key,{"class":character_class,"region":region_index,"quality":quality,"render_width":dimensions.x,"render_height":dimensions.y,"target_fps":30 if battery_mode else 60})
 	if battery_mode or not is_instance_valid(render_viewport): return
 	var reduced: bool=budget.sample(delta,animation_enabled)
 	var shrink:=2 if reduced else 1
 	if render_container.stretch_shrink!=shrink:
 		render_container.stretch_shrink=shrink
 		render_viewport.msaa_3d=Viewport.MSAA_DISABLED if reduced else Viewport.MSAA_2X
+
+func _exit_tree() -> void:
+	# Returning to the same class/region after camp starts a fresh warmup;
+	# time spent on another screen is never a combat frame.
+	if frame_metrics!=null: frame_metrics.sample(Time.get_ticks_usec(),false,"")

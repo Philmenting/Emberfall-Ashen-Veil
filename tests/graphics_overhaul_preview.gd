@@ -1,5 +1,5 @@
 extends "res://scripts/main.gd"
-## Native 0.46 graphics evidence. Guardian fixtures have extra Life; clip gear is ordinary.
+## Native graphics evidence. Guardian fixtures have extra Life; clip gear is ordinary.
 var capture_dir:="/tmp/emberfall-graphics"
 var capture_video:=false
 func _ready() -> void:
@@ -49,7 +49,15 @@ func _capture_cases() -> void:
 			if expedition.finished: push_error("GRAPHICS_CAPTURE_FAIL guardian not reached"); get_tree().quit(1); return
 			_sync_model_state(); _build_ui(); _manual()
 			await _capture("guardian-%d-%dx%d" % [region,resolution.x,resolution.y])
-	print("GRAPHICS_CAPTURE_PASS 30 native frames / three layouts")
+		_show_settings()
+		var options:Control=get_node("Options")
+		options.find_child("BetaInfoTab",true,false).pressed.emit()
+		for frame in range(2): await get_tree().process_frame
+		var content_scroll:ScrollContainer=options.find_children("*","ScrollContainer",true,false)[0]
+		content_scroll.ensure_control_visible(options.find_child("CopyPerformanceReport",true,false))
+		await _capture("performance-%dx%d" % [resolution.x,resolution.y])
+		_close_settings()
+	print("GRAPHICS_CAPTURE_PASS 33 native frames / three layouts")
 	get_tree().quit()
 func _manual() -> void:
 	run_arena.set_process(false); run_arena.world.set_process(false)

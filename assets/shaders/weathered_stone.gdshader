@@ -21,11 +21,14 @@ void vertex() {
     world_normal=normalize(MODEL_NORMAL_MATRIX*NORMAL);
 }
 void fragment() {
-    vec3 w=pow(abs(world_normal),vec3(5.0));
-    w/=max(w.x+w.y+w.z,0.001);
+    // Chipped masonry has authored faces. Project from each face's dominant
+    // world axis rather than sampling/blending three full material stacks.
+    vec3 axis=abs(world_normal);
+    int projection=axis.x>axis.y && axis.x>axis.z ? 0 : (axis.y>axis.z ? 1 : 2);
     vec3 p=world_pos*0.72;
-    vec3 stone=texture(stone_color,p.zy).rgb*w.x+texture(stone_color,p.xz).rgb*w.y+texture(stone_color,p.xy).rgb*w.z;
-    float pores=texture(stone_roughness,p.zy).r*w.x+texture(stone_roughness,p.xz).r*w.y+texture(stone_roughness,p.xy).r*w.z;
+    vec2 uv=projection==0 ? p.zy : (projection==1 ? p.xz : p.xy);
+    vec3 stone=texture(stone_color,uv).rgb;
+    float pores=texture(stone_roughness,uv).r;
     float damp=weathering*smoothstep(0.42,0.84,pores);
     ALBEDO=mix(mix(vec3(0.32),stone,0.62)*stone_tint.rgb*1.65,mineral_tint.rgb,damp*0.32);
     // Aging belongs to the assembled elevation: broad runoff crosses joints,
@@ -35,15 +38,16 @@ void fragment() {
     float footing=(1.0-smoothstep(0.12,2.5,world_pos.y))*mix(0.38,0.78,broad);
     float stain=smoothstep(0.46,0.82,runoff)*(0.16+weathering*0.40);
     ALBEDO=mix(ALBEDO,mineral_tint.rgb*0.32,clamp(footing+stain,0.0,0.78));
+    // Joined architectural stone carries relative linear edge/recess tints.
+    // Untinted existing meshes supply white, preserving their material.
+    ALBEDO*=COLOR.rgb;
     ROUGHNESS=clamp(roughness+(pores-0.5)*0.22-damp*0.28,0.34,0.97);
     SPECULAR=0.38;
     if(relief>0.01){
-        vec3 nx=stone_bump(p.zy);
-        vec3 ny=stone_bump(p.xz);
-        vec3 nz=stone_bump(p.xy);
-        vec3 detail=vec3(nx.z*sign(world_normal.x),nx.y,nx.x)*w.x
-            +vec3(ny.x,ny.z*sign(world_normal.y),ny.y)*w.y
-            +vec3(nz.x,nz.y,nz.z*sign(world_normal.z))*w.z;
+        vec3 bump=stone_bump(uv);
+        vec3 detail=projection==0 ? vec3(bump.z*sign(world_normal.x),bump.y,bump.x)
+            : (projection==1 ? vec3(bump.x,bump.z*sign(world_normal.y),bump.y)
+            : vec3(bump.x,bump.y,bump.z*sign(world_normal.z)));
         NORMAL=normalize(mat3(VIEW_MATRIX)*normalize(mix(world_normal,detail,relief)));
     }
 }

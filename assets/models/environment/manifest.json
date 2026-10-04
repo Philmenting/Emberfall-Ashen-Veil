@@ -1,0 +1,320 @@
+{
+  "origin": "Original code-authored Blender geometry",
+  "generator": "tools/art/build_ruin_environment.py",
+  "generator_sha256": "4f5e20d9aba23ed9e0327f76172b08fc52a3f8b6628276c05f0cce63c2ff1c90",
+  "coordinates": "Godot Y-up metres; front faces +Z, bay depth extends -Z",
+  "textures": "Runtime uses existing documented stone maps and material-atlas textures; no new raster",
+  "models": {
+    "spire_bay": {
+      "triangles": 6758,
+      "material_meshes": 4,
+      "surfaces": [
+        "stone",
+        "floor",
+        "iron",
+        "bronze"
+      ],
+      "bounds_min": [
+        -2.443592071533203,
+        -0.9150000214576721,
+        -5.845150470733643
+      ],
+      "bounds_max": [
+        2.4554553031921387,
+        8.100000381469727,
+        1.234840750694275
+      ],
+      "sha256": "73f920935dd13a156583392539075d601b1efb456da08e1be13913a1e8e0a7c9"
+    },
+    "spire_crown": {
+      "triangles": 1872,
+      "material_meshes": 1,
+      "surfaces": [
+        "stone"
+      ],
+      "bounds_min": [
+        -2.8299999237060547,
+        3.700000047683716,
+        -4.8910298347473145
+      ],
+      "bounds_max": [
+        2.8299999237060547,
+        8.100000381469727,
+        0.3050000071525574
+      ],
+      "sha256": "8b48f451d03eb6af4564b11ba9ae566206fca7f121f9efacac68a87ae9134fa4"
+    },
+    "spire_solid": {
+      "triangles": 1944,
+      "material_meshes": 2,
+      "surfaces": [
+        "stone",
+        "floor"
+      ],
+      "bounds_min": [
+        -2.443592071533203,
+        -0.9150000214576721,
+        -5.845150470733643
+      ],
+      "bounds_max": [
+        2.4554553031921387,
+        7.587594032287598,
+        1.234840750694275
+      ],
+      "sha256": "c64ae43f08019af4b12c40890040507400236c0ef2ee805524314503fd9d810d"
+    },
+    "spire_return": {
+      "triangles": 900,
+      "material_meshes": 2,
+      "surfaces": [
+        "stone",
+        "floor"
+      ],
+      "bounds_min": [
+        -2.452474594116211,
+        -0.9150000214576721,
+        -2.7951502799987793
+      ],
+      "bounds_max": [
+        2.4553868770599365,
+        1.1383992433547974,
+        1.234840750694275
+      ],
+      "sha256": "528b325cb892ce9d07d9cc83b7ab274579d9575ede96771f68f115220648852f"
+    },
+    "archive_bay": {
+      "triangles": 9996,
+      "material_meshes": 6,
+      "surfaces": [
+        "stone",
+        "floor",
+        "iron",
+        "bronze",
+        "oak",
+        "leather"
+      ],
+      "bounds_min": [
+        -2.4572887420654297,
+        -1.1200000047683716,
+        -6.408114433288574
+      ],
+      "bounds_max": [
+        2.440000057220459,
+        6.650000095367432,
+        1.3454843759536743
+      ],
+      "sha256": "fd8002a02de6aee6b992ebea4237d47f6f69de589d4f10cc61a10631defa0f9c"
+    },
+    "archive_crown": {
+      "triangles": 924,
+      "material_meshes": 1,
+      "surfaces": [
+        "stone"
+      ],
+      "bounds_min": [
+        -2.8299999237060547,
+        3.700000047683716,
+        -4.910752773284912
+      ],
+      "bounds_max": [
+        2.8299999237060547,
+        6.650000095367432,
+        0.23204773664474487
+      ],
+      "sha256": "97425a971f35b3fd1d5244ff1777acfb33c53b0c7bcfafbb84d86816cfa91081"
+    },
+    "archive_solid": {
+      "triangles": 1944,
+      "material_meshes": 2,
+      "surfaces": [
+        "stone",
+        "floor"
+      ],
+      "bounds_min": [
+        -2.443592071533203,
+        -0.9150000214576721,
+        -6.195150375366211
+      ],
+      "bounds_max": [
+        2.4554553031921387,
+        6.098982334136963,
+        1.234840750694275
+      ],
+      "sha256": "4224c80007f2e71b1ee6472b4879f32b13b50fabbfbf581f7e4faf90d8060792"
+    },
+    "archive_return": {
+      "triangles": 900,
+      "material_meshes": 2,
+      "surfaces": [
+        "stone",
+        "floor"
+      ],
+      "bounds_min": [
+        -2.452474594116211,
+        -0.9150000214576721,
+        -2.7951502799987793
+      ],
+      "bounds_max": [
+        2.4553868770599365,
+        0.908399224281311,
+        1.234840750694275
+      ],
+      "sha256": "7d9f6da2f035e495b5e9c77df799f1290fe9937cde44c4d5093a2a157439976d"
+    },
+    "ossuary_bay": {
+      "triangles": 11142,
+      "material_meshes": 3,
+      "surfaces": [
+        "stone",
+        "floor",
+        "bronze"
+      ],
+      "bounds_min": [
+        -2.443592071533203,
+        -0.9150000214576721,
+        -5.845150470733643
+      ],
+      "bounds_max": [
+        2.4554553031921387,
+        7.699999809265137,
+        1.234840750694275
+      ],
+      "sha256": "03bd330f8454c0b21ffd8c0c8516336e620055af61331b594faf46e831a1b1bf"
+    },
+    "ossuary_crown": {
+      "triangles": 1200,
+      "material_meshes": 1,
+      "surfaces": [
+        "stone"
+      ],
+      "bounds_min": [
+        -2.8299999237060547,
+        3.700000047683716,
+        -4.885338306427002
+      ],
+      "bounds_max": [
+        2.8299999237060547,
+        7.699999809265137,
+        0.36000001430511475
+      ],
+      "sha256": "4b4436345af83cb2ce8bb2a8fc6a5b30dc69e7d1ce3356f7cdbba394d136f9b2"
+    },
+    "ossuary_solid": {
+      "triangles": 1944,
+      "material_meshes": 2,
+      "surfaces": [
+        "stone",
+        "floor"
+      ],
+      "bounds_min": [
+        -2.443592071533203,
+        -0.9150000214576721,
+        -5.845150470733643
+      ],
+      "bounds_max": [
+        2.4554553031921387,
+        7.2989020347595215,
+        1.234840750694275
+      ],
+      "sha256": "b0d6875481816cbb940614fed3e82bce5d20567deee46058e046b06bfbb667a0"
+    },
+    "ossuary_return": {
+      "triangles": 900,
+      "material_meshes": 2,
+      "surfaces": [
+        "stone",
+        "floor"
+      ],
+      "bounds_min": [
+        -2.452474594116211,
+        -0.9150000214576721,
+        -2.7951502799987793
+      ],
+      "bounds_max": [
+        2.4553868770599365,
+        1.2683992385864258,
+        1.234840750694275
+      ],
+      "sha256": "38d179acfe5e1a6433b170825581aca86e8a47a2e24029d59f830bd0b1fa2a5d"
+    },
+    "citadel_bay": {
+      "triangles": 7760,
+      "material_meshes": 4,
+      "surfaces": [
+        "stone",
+        "floor",
+        "iron",
+        "ember"
+      ],
+      "bounds_min": [
+        -2.443592071533203,
+        -0.9150000214576721,
+        -6.545150279998779
+      ],
+      "bounds_max": [
+        2.4554553031921387,
+        8.89874267578125,
+        1.234840750694275
+      ],
+      "sha256": "1e13c9c95188d1ea25b3e4e19c1beda825d215ceda4538ac0db37f96ca131b67"
+    },
+    "citadel_crown": {
+      "triangles": 1224,
+      "material_meshes": 2,
+      "surfaces": [
+        "stone",
+        "iron"
+      ],
+      "bounds_min": [
+        -2.8299999237060547,
+        3.700000047683716,
+        -4.901689529418945
+      ],
+      "bounds_max": [
+        2.8299999237060547,
+        8.5,
+        0.3513292372226715
+      ],
+      "sha256": "6c208bc52216ef278552f6b36181bcf8475a052cd30635dd153d840cccbbd326"
+    },
+    "citadel_solid": {
+      "triangles": 2184,
+      "material_meshes": 2,
+      "surfaces": [
+        "stone",
+        "floor"
+      ],
+      "bounds_min": [
+        -2.443592071533203,
+        -0.9150000214576721,
+        -6.545150279998779
+      ],
+      "bounds_max": [
+        2.4554553031921387,
+        8.09743881225586,
+        1.234840750694275
+      ],
+      "sha256": "07d41c897eec590fdeefcd1935c897db58405fdfdf3188d16e6c8b3a5f36b3a6"
+    },
+    "citadel_return": {
+      "triangles": 1080,
+      "material_meshes": 3,
+      "surfaces": [
+        "stone",
+        "floor",
+        "iron"
+      ],
+      "bounds_min": [
+        -2.452474594116211,
+        -0.9150000214576721,
+        -2.7951502799987793
+      ],
+      "bounds_max": [
+        2.4553868770599365,
+        1.0283992290496826,
+        1.234840750694275
+      ],
+      "sha256": "28fd18c4d68a048cc870c08f8669df041f3965e1acba886ab4fe12630ec8c1e9"
+    }
+  }
+}

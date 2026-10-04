@@ -20,11 +20,11 @@ PARTS = defaultdict(list)
 MATS = {}
 ACTIVE_MODEL = ''
 PALETTE = {
-    'iron': ('657381', .74, .46), 'silver': ('b4bdc0', .78, .35),
-    'bronze': ('78664f', .67, .58), 'gold': ('b09c79', .74, .43),
-    'patina': ('50736b', .52, .68), 'leather': ('382b27', .0, .83),
-    'wine': ('50272f', .0, .94), 'violet': ('343c55', .0, .92),
-    'sage': ('304039', .0, .93), 'linen': ('b1a58f', .0, .94),
+    'iron': ('7b8790', .67, .44), 'silver': ('b4bdc0', .76, .38),
+    'bronze': ('938169', .63, .52), 'gold': ('b09c79', .68, .49),
+    'patina': ('657f75', .48, .66), 'leather': ('725c4a', .0, .79),
+    'wine': ('79434d', .0, .91), 'violet': ('596982', .0, .89),
+    'sage': ('586b59', .0, .91), 'linen': ('b1a58f', .0, .94),
     'bone': ('b8b09a', .0, .81), 'skin': ('bea495', .0, .81),
     'ash': ('655f59', .0, .96), 'dark': ('171d23', .06, .89),
     'soul': ('78bfb5', .0, .29), 'ember': ('ef984e', .0, .44),
@@ -33,6 +33,11 @@ PALETTE = {
     'lip': ('9e6d68', .0, .82),
     'lip_shadow': ('674d46', .0, .87),
 }
+
+def body_author():
+    sys.path.insert(0,str(Path(__file__).parent))
+    import build_body_047
+    return build_body_047
 
 def xyz(p):
     return Vector((p[0], -p[2], p[1]))
@@ -44,9 +49,9 @@ def material(name):
     # These are the same exported material channels; local pigment/finish
     # choices stop the Queen's shroud and raider skin reading as bright plastic.
     worn = {
-        'guardian_2': {'linen':('736d63',0,.98),'bone':('a09886',0,.90),
+        'guardian_2': {'linen':('928978',0,.94),'bone':('b3aa94',0,.87),
             'silver':('8c9390',.64,.58),'gold':('87785d',.57,.64)},
-        'raider': {'skin':('82796a',0,.93),'ash':('5f5e55',0,.96),
+        'raider': {'skin':('8e8c7a',0,.87),'ash':('5f5e55',0,.96),
             'bone':('aaa18e',0,.89)},
     }
     hx,metal,rough=worn.get(ACTIVE_MODEL,{}).get(name,(hx,metal,rough))
@@ -73,7 +78,23 @@ def mesh(part, mat, vertices, faces, smooth=True):
     data.update()
     obj = bpy.data.objects.new(part+'__'+mat, data)
     bpy.context.collection.objects.link(obj)
-    data.materials.append(material(mat))
+    finish=material(mat)
+    # Same runtime material categories, with physical garment-piece pigments.
+    # Separate sleeve/hand values remain readable before the darker rear cloak.
+    role='cape' if part=='Cape' and mat in ('wine','sage','violet','linen','dark') else (
+        'sleeve' if part.startswith('Arm') and mat in ('wine','sage','violet','linen','leather') else
+        'sole' if part.startswith('Knee') and mat=='leather' else '')
+    if role:
+        key=mat+'@'+role
+        if key not in MATS:
+            toned=finish.copy();toned.name=mat+'.'+role
+            factor=.57 if role=='cape' else .72 if role=='sole' else 1.28
+            color=tuple(min(.85,c*factor) for c in finish.diffuse_color[:3])
+            toned.diffuse_color=(*color,1)
+            toned.node_tree.nodes.get('Principled BSDF').inputs['Base Color'].default_value=(*color,1)
+            MATS[key]=toned
+        finish=MATS[key]
+    data.materials.append(finish)
     for poly in data.polygons:
         poly.use_smooth = smooth
     PARTS[(part, mat)].append(obj)
@@ -373,20 +394,8 @@ def strap(part, mat, points, width=.032):
     solid=obj.modifiers.new('Cut leather strap','SOLIDIFY');solid.thickness=.005;solid.offset=0
 
 def gripping_hand(part, side, monstrous=False):
-    # Hand rest remains y=-.59, z=-.01. Fingers wrap a Y-axis hilt at that
-    # exact bone origin; the palm sits behind it instead of inside the handle.
-    mat='skin' if monstrous else 'leather'
-    ellipsoid(part,mat,(0,-.590,.036),(.051,.073,.026),20,10)
-    for finger in range(4):
-        y=-.540-finger*.031
-        tube(part,'bone' if monstrous else mat,
-            [(side*.036,y,.039),(side*.050,y-.003,.005),
-             (side*.032,y-.005,-.041),(-side*.017,y-.007,-.044),
-             (-side*.031,y-.007,-.023)],
-            [.013,.013,.012,.010,.007],8,3)
-    tube(part,mat,[(-side*.043,-.549,.043),(-side*.060,-.572,.006),
-        (-side*.048,-.600,-.038),(side*.005,-.611,-.049)],
-        [.020,.019,.015,.009],8,4)
+    return body_author().hand(sys.modules[__name__],part,side,monstrous)
+
 
 def fitted_collar(cloth, armor, plated=False):
     # A shaped throat opening seats around the existing anatomical neck. The
@@ -418,92 +427,20 @@ def gem(part, center, size=.06, mat='soul'):
     return loft(part,mat,[(-size*1.3,.002,.002,0),(-size*.4,size,size*.65,0),(size*.35,size,size*.65,0),(size*1.4,.001,.001,0)],center,6)
 
 def boot(part, armor='iron', nyra=False):
-    width=.86 if nyra else 1.0
-    # Toe box and sole are continuous into a shaped calf, with leather visible
-    # at the ankle hinge. The old inflated scallops on the shin are removed.
-    loft(part,'leather',[(-.47,.081*width,.148,-.046),
-        (-.448,.100*width,.168,-.062),(-.397,.095*width,.157,-.057),
-        (-.354,.078*width,.126,-.026),(-.311,.065*width,.073,.004),
-        (-.252,.073*width,.080,.012),(-.169,.090*width,.088,.017),
-        (-.094,.091*width,.086,.010),(-.032,.077*width,.074,.008),
-        (.034,.069*width,.070,0)],sides=24,folds=6,amplitude=.016)
-    formed_plate(part,armor,[(-.322,.066*width,.081,.001),
-        (-.275,.071*width,.086,0),(-.184,.090*width,.100,.003),
-        (-.098,.094*width,.100,.003),(-.060,.083*width,.089,0)],arc=PI*1.14,ridge=.007)
-    joint_plate(part,'silver',.005,.079*width,.073,-.093)
-    # Two short foot lames follow the instep; neither crosses the ankle joint.
-    for y in [-.410,-.372]:
-        formed_plate(part,armor,[(y-.018,.078*width,.143,-.043),
-            (y+.015,.077*width,.129,-.027)],arc=PI*.78,ridge=.003)
+    return body_author().boot(sys.modules[__name__],part,armor,nyra)
+
 
 def limbs(armor='iron', cloth='wine', monstrous=False, slender=False, nyra=False):
-    for side in [-1,1]:
-        arm='ArmL' if side<0 else 'ArmR'
-        leg='LegL' if side<0 else 'LegR'
-        knee='KneeL' if side<0 else 'KneeR'
-        width=.82 if slender else 1
-        if monstrous:
-            organic_arm(arm,side)
-        else:
-            loft(arm,cloth,[(-.557,.054*width,.054,.017),
-                (-.477,.064*width,.062,.013),(-.401,.074*width,.071,.008),
-                (-.329,.061*width,.067,.012),(-.307,.059*width,.065,.018),
-                (-.275,.066*width,.073,.018),(-.217,.080*width,.086,.006),
-                (-.138,.091*width,.091,0),(-.054,.102*width,.106,0),
-                (.025,.103*width,.109,0),(.073,.046*width,.052,0)],
-                sides=24,folds=7,amplitude=.045)
-            if not nyra: pauldron(arm,armor,side,.91 if slender else 1.13,2 if slender else 3)
-            formed_plate(arm,armor,[(-.535,.059*width,.063,.004),
-                (-.486,.069*width,.074,.006),(-.407,.083*width,.083,.006),
-                (-.370,.078*width,.080,.006)],arc=PI*1.30,ridge=.008)
-            joint_plate(arm,armor,-.308,.065*width,.055,-.079)
-            for y in [-.523,-.476]:
-                # Rear straps meet the return of the open front shell.
-                tube(arm,'gold',[(-.052*width,y,.016),(-.040*width,y,.068),
-                    (.040*width,y,.068),(.052*width,y,.016)],.006,6,3)
-        gripping_hand(arm,side,monstrous)
-        loft(leg,cloth,[(-.438,.061*width,.065,0),(-.392,.067*width,.070,0),
-            (-.310,.084*width,.088,.002),(-.212,.111*width,.105,.007),
-            (-.112,.127*width,.119,.005),(.045,.128*width,.121,0)],
-            sides=24,folds=6,amplitude=.03)
-        boot(knee,armor,nyra)
+    return body_author().limbs(sys.modules[__name__],armor,cloth,monstrous,slender,nyra)
+
 
 def torso(armor='iron', cloth='wine', slender=False, nyra=False):
-    w=.86 if slender else 1
-    rings=[(.89,.18*w,.13,0),(.99,.21*w,.15,0),(1.10,.22*w,.15,0),
-        (1.23,.26*w,.18,0),(1.37,.29*w,.18,0),(1.46,.29*w,.16,0),
-        (1.54,.20*w,.115,0),(1.59,.062,.069,0)] if nyra else [
-        (.89,.18*w,.13,0),(.99,.21*w,.15,0),(1.10,.22*w,.15,0),
-        (1.23,.26*w,.18,0),(1.37,.29*w,.18,0),(1.46,.29*w,.16,0),
-        (1.54,.20*w,.115,0),(1.61,.10,.08,0)]
-    garment=loft('Body',cloth,rings,sides=40,folds=7,amplitude=.017)
-    for vertex in garment.data.vertices:
-        x,z,y=vertex.co.x,-vertex.co.y,vertex.co.z
-        front=max(0,-z/.18)
-        tension=math.exp(-((y-1.105)/.16)**2)*front
-        z-=.012*math.sin((y-1)*28+abs(x)*18)*tension
-        vertex.co=xyz((x,y,z))
-    garment.data.update()
-    loft('Body','leather',[(.88,.205*w,.155,0),(.91,.213*w,.16,0),(.96,.21*w,.156,0),(.99,.197*w,.148,0)],sides=32)
-    ring('Body','gold',(0,.96,0),.212*w,.16,.012)
-    gem('Body',(0,.937,-.172),.036,'ember' if armor=='bronze' else 'soul')
-    if not slender:
-        cuirass(armor,False)
-        # Mail/leather throat joins the cuirass and helmet through the head
-        # blend zone. No detached helmet floating over the torso remains.
-        loft('Body','leather',[(1.51,.105,.083,0),(1.58,.079,.072,0),
-            (1.67,.075,.071,0),(1.71,.070,.064,0)],sides=24,folds=12,amplitude=.045)
-        fitted_collar(cloth,armor,True)
-    else:
-        # Sewn front seams and one functional clasp replace generic raised
-        # metallic ribs across every class and every robed hostile.
-        for side in [-1,1]:
-            tube('Body',cloth,[(side*.145,1.50,-.110),(side*.175,1.34,-.168),
-                (side*.133,1.14,-.168),(side*.080,1.01,-.151)],.005,6,4)
-        tube('Body','bronze',[(0,1.405,-.184),(0,1.340,-.195),(0,1.302,-.197)],.006,6,3)
+    return body_author().torso(sys.modules[__name__],armor,cloth,slender,nyra)
+
 
 def cuirass(armor, nyra=False):
-    w=.91 if nyra else 1.04
+    w=.83 if nyra else .95
+    body_author().backplate(sys.modules[__name__],armor,nyra)
     formed_plate('Body',armor,[(1.080,.199*w,.163,0),
         (1.155,.226*w,.176,0),(1.260,.253*w,.194,0),
         (1.355,.279*w,.195,0),(1.430,.279*w,.178,0),
@@ -525,6 +462,8 @@ def face(part='Body', skull=False, hood=False, nyra=False):
         import build_faces
         build_faces.build(sys.modules[__name__],part)
         return
+    if skull:
+        return body_author().skull(sys.modules[__name__],part)
     skin='bone' if skull else 'skin'
     loft(part,skin,[(1.54,.058,.063,0),(1.65,.062,.068,-.01),(1.71,.065,.070,-.02)],sides=20)
     if nyra:
@@ -609,18 +548,12 @@ def hood(cloth='sage'):
     tube('Body','gold',[(-.18,1.60,-.06),(-.16,1.84,-.12),(0,1.996,-.073),(.16,1.84,-.12),(.18,1.60,-.06)],.013,8,6)
 
 def cape(cloth='wine', regal=False):
-    tailored_drape('Cape',cloth,.035,-1.32 if regal else -1.19,.23,.48 if regal else .36,.045,.26,PI*1.08,7,regal,thickness=.014)
-    for side in [-1,1]:
-        tube('Cape','gold',[(side*.23,.025,.004),(side*.29,-.55,.17),(side*(.47 if regal else .35),-1.15,.17)],.010,6,5)
-    # Embroidered oath emblem on the back, readable in the actual camera.
-    tube('Cape','bronze',[(0,-.10,.09),(0,-.57,.175),(0,-.89,.24)],.015,6,5)
-    for side in [-1,1]: tube('Cape','bronze',[(0,-.37,.15),(side*.13,-.50,.19),(0,-.69,.225)],.013,6,5)
+    return body_author().cape(sys.modules[__name__],cloth,regal)
+
 
 def skirt(cloth='violet', long=True):
-    tailored_drape('Body',cloth,.92,.09 if long else .53,.21,.33 if long else .25,.155,.215,PI*1.55,8,False)
-    # Separate cut gores overlap the side skirt and retain coat-bone weighting.
-    for side in [-1,1]:
-        coat_panel('Body',cloth,side,.96,.17 if long else .56)
+    return body_author().skirt(sys.modules[__name__],cloth,long)
+
 
 def staff(crozier=False):
     tube('Weapon','leather',[(0,-.53,0),(0,0,0),(.013,.29,.013),(0,1.14,0)], [.024,.028,.030,.025],12,5)
@@ -699,7 +632,7 @@ def field_equipment(kind, armor):
     for side in [-1,1]:
         arm='ArmL' if side<0 else 'ArmR'
         pauldron(arm,armor if kind!='Ranger' else 'leather',side,
-            .96 if kind=='Vowkeeper' else .88,3 if kind=='Vowkeeper' else 2)
+            .89 if kind=='Vowkeeper' else .81,2 if kind=='Vowkeeper' else 1)
         if kind=='Vowkeeper':
             tube('Body','silver',[(side*.07,1.55,-.108),(side*.17,1.52,-.122),(side*.24,1.44,-.139)],.009,8,4)
         elif kind=='Arcanist':
@@ -822,15 +755,8 @@ def boss(region):
 
 def enemy(kind):
     if kind=='raider':
-        loft('Body','ash',[(.84,.14,.10,.01),(1.05,.17,.115,0),
-            (1.23,.22,.137,0),(1.40,.25,.140,.024),
-            (1.493,.270,.127,.033),(1.531,.252,.111,.042),
-            (1.58,.115,.076,.045)],sides=32,folds=5,amplitude=.016)
+        body_author().raider_body(sys.modules[__name__])
         limbs('bone','ash',True,True); face(skull=True)
-        for side in [-1,1]:
-            for i in range(5):
-                tube('Body','bone',[(side*.03,1.14+i*.055,-.133),(side*.15,1.16+i*.055,-.16),(side*.22,1.20+i*.055,-.08)], [.008,.014,.009],8,5)
-        tube('Body','bone',[(0,.94,.12),(0,1.30,.15),(0,1.57,.075)],.021,8,7)
         for i in range(3): tube('Weapon','bone',[((i-1)*.044,0,0),((i-1)*.05,-.16,-.04),((i-1)*.06,-.32,-.12)], [.025,.017,.002],8,5)
         skirt('ash',False)
         # The scavenged clasp retains the raider's original gold channel while
@@ -902,7 +828,7 @@ def export(name, build):
         return len(obj.data.loop_triangles)
     objects=[o for o in bpy.context.scene.objects if o.type=='MESH']
     triangles=sum(triangle_count(o) for o in objects)
-    if name in character_names and triangles>39500:
+    if name in character_names and triangles>36750:
         # Spend the mobile budget on the face and silhouette, preserving the
         # already calibrated facial/eye/hair meshes exactly. Reduce dense
         # garment interiors and small equipment relief by a measured ratio.
@@ -912,7 +838,7 @@ def export(name, build):
             o.name.split('__',1)[1] in protected)]
         movable=sum(triangle_count(o) for o in reducible)
         fixed=triangles-movable
-        ratio=(39200-fixed)/movable
+        ratio=(36400-fixed)/movable
         for obj in reducible:
             bpy.context.view_layer.objects.active=obj
             mobile=obj.modifiers.new('Measured mobile garment budget','DECIMATE')
