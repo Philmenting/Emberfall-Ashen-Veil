@@ -1,6 +1,75 @@
 # Emberfall: Ashen Veil
 
-## Teststand: 0.47.0-beta.1 · Sichtbare Angriffe und gebaute regionale Räume
+## Teststand: 0.48.0-beta.1 · Raumanschlüsse und Stützbewegungen
+
+Dünnere regionale Wände, tiefe Öffnungen, gebrochene Mauerkronen und bündig
+angebundenes Pflaster ersetzen die bisherigen geschlossenen Raumblöcke.
+Bodenanschlüsse folgen dem tatsächlichen Außenrand; innere Rechtecknähte
+bekommen keine Fundamentseiten mehr. Steinmaterialien verwenden je eine
+Texturgruppe mit exportierten Meter-UVs und Tangenten. Zauber und Bogen laden
+Stützbein, Hüfte und Rumpf stärker und halten die Rückkehr zusammen. Arcanists
+Geschoss startet an der linken Zauberhand; Schwertbewegung, Kampfzeiten,
+Kamera und Spielregeln bleiben erhalten. Android-Version-Code **54**.
+
+**Die Figurenrekonstruktion ist nicht fertig.** Beide isolierten Kostümproben
+von Flare und MPFB/MakeHuman wurden verworfen. Keine ihrer Figuren, Texturen,
+Rigs oder Shader wurde übernommen; alle elf 0.47-Modelle bleiben unverändert.
+Die [Quellenbewertung](docs/design/figure-source-assessment-048.md) hält die
+sichtbaren Mängel und den noch offenen Gestaltungsbedarf fest.
+
+[Gameplay CI 37212951293](https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37212951293)
+besteht auf [Quellstand 850721f](https://github.com/Philmenting/Emberfall-Ashen-Veil/commit/850721fd010dd62ddbf1a6c681f73955ffddc8b3)
+mit **34 Suiten, 3.642 Prüfungen, 0 Fehlern** und beiden Serverprüfungen.
+Im [kontrollierten 0.47/0.48-Vergleich](docs/audit/2026-10-04/render-048/README.md)
+sank die mediane Framezeit in allen Fällen: **44,0–51,1 % in Balanced** und
+**11,8–18,1 % in Battery**. Das ist ein einziges sequenzielles Vergleichspaar
+unter Linux/llvmpipe, keine Messung realer Telefon-FPS. Wärme, Akku, Eingabe
+und dauerhafte Leistung auf dem Pixel 9 Pro Fold bleiben ungeprüft.
+
+Das [native Belegpaket](docs/previews/constructed-world/README.md) ist
+vollständig: **34 Ansichten, vier Clips und ein 24-Sekunden-Vergleich** mit
+0.47. Vollständige Dekodierung, Framezahlen und eingefrorene Quellen sind
+geprüft. Der Reiseclip zeigt die echte Lesepause und den Weg in die Kammer
+Pilgrim’s Well; am Ende nähert sich Nyra noch dem Heilpunkt. Er belegt keine
+Ankunft am Heilpunkt oder Heilung.
+
+[Android-Build und Runtime-Versuch 2](docs/audit/2026-10-04/android-048/README.md)
+bestanden auf demselben Quellstand. Das
+[Testpaket-Archiv](https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37214678280/artifacts/11307604661)
+ist bis 18. Oktober 2026 verfügbar: **emberfall-closed-beta-ci.apk** ist das
+Offline-Testpaket; **emberfall-debug.apk** gehört zum separaten Online-Test.
+Die temporäre CI-Signatur belegt keine Update-Kompatibilität mit anderen
+Signaturschlüsseln oder Veröffentlichung bei Google Play.
+
+Runtime-Versuch 1 endete vor dem Emulatortest: Exporter-Code 250 nach dem
+Asset-Import, zuletzt eine abgewiesene ADB-Daemon-Verbindung. Die genaue
+Ursache ist nicht geklärt; Versuch 2 bestand ohne Quelländerung. Alle 28
+Android-Bilder wurden geprüft, zwei Originale zusätzlich vollständig geöffnet.
+Die Emulatorzeiten belegen keine realen Telefon-FPS.
+
+Die [frische vollständige Prüfung](docs/design/graphics-review-048.md)
+bestätigt gültige Belege, verlangt aber **Neuaufbau (`rebuild`)**. Offen bleiben:
+
+- Fertige Körper-, Kleidungs- und Materialassets für alle elf Figuren.
+- Glaubwürdige Übergänge vom Spielboden ins Umfeld sowie fertige Reliquiar- und Objektgestaltung.
+- Lesbare Ganzkörperbewegungen für Zauber und Bogen auf den rekonstruierten Figuren bei normaler Kameragröße.
+- Eine bessere Verteilung von Helligkeit und Materialdetail, damit die bewegten Figuren vor der Umgebung auffallen.
+- Dauerhafte Leistung, Wärme, Akku, Touch/Zurück und Bildschirmeinpassung auf dem echten Pixel 9 Pro Fold.
+
+Die dünnen gebrochenen Raumbögen, durchgängigen sichtbaren Wege, offenen
+Becken, ruhige Kamera, vollständigen Warnflächen und UI-Zustände sind
+bestätigte Stärken. Der Schwertablauf und die eng begrenzte Verbesserung der
+Software-Renderzeit bleiben erhalten. Dieser Stand hat **keine visuelle oder
+Veröffentlichungsfreigabe**. Nach dem zweiten Neuaufbau-Urteil auf gültigen
+Belegen erfordert eine weitere Rekonstruktionsrunde zunächst die Rücksprache
+mit dem Nutzer, sobald dieser Teststand als Commit und PR konkret vorliegt;
+eine weitere Runde gilt hier nicht als begonnen oder abgeschlossen.
+
+[Richtung und Grenzen](docs/design/graphics-direction-048.md),
+[aktuelles natives Designsystem](DESIGN.md),
+[Zauber-/Bogenbewegung und begrenzter Nachweis](assets/animations/bodyphrase-048/README.md).
+
+## Vorheriger Teststand: 0.47.0-beta.1 · Sichtbare Angriffe und gebaute regionale Räume
 
 Schwert, Stab und Bogen verwenden neue Schritt-, Lade- und Rückkehrkurven
 bei unveränderten Kampfzeiten. Vowkeepers Schwertabläufe nutzen passend zum

@@ -48,4 +48,5 @@ temperature, battery drain and touch response remain unmeasured. See the
 Filtered [build/regression](build-and-regression-checks.txt) and
 [runtime](runtime-checks.txt) logs retain actual success lines. Technical
 validation is separate from the [native visual evidence](../../../previews/constructed-world/README.md)
-and its fresh finish review; the existing figure finish remains unresolved.
+and the fresh [finish review](../../../design/graphics-review-048.md), which
+returns `rebuild`. The existing figure finish remains unresolved.

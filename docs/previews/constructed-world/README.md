@@ -53,5 +53,13 @@ rendered layouts and motion, not physical Android FPS, heat or touch response.
 [controlled render comparison](../../audit/2026-10-04/render-048/README.md),
 [construction direction](../../design/graphics-direction-048.md) and
 [rejected figure samples](../../design/figure-source-assessment-048.md).
-The fresh independent 0.48 finish review is pending. Successful tests and
-packaging do not establish visual acceptance or release readiness.
+The fresh independent [0.48 finish review](../../design/graphics-review-048.md)
+returns **`rebuild`** on valid evidence. Focal figure construction/materials,
+room-to-surround and prop integration, ordinary-view cast/bow readability,
+focal balance and physical-device acceptance remain open. Thin broken bays,
+clear routes, sword commitment, camera, warnings and HUD are retained.
+Successful tests and packaging do not establish visual acceptance or release
+readiness. This second rebuild directive follows the complete 0.47 review;
+the next reconstruction round requires user consultation under the applied
+Impeccable workflow. The specialized reviewer was unavailable, so a fresh
+independent ordinary agent performed the review.

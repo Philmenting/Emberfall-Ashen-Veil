@@ -22,7 +22,14 @@ is complete: median frame time fell 44.0–51.1% in Balanced and 11.8–18.1% in
 Battery on the same software renderer, without a physical-phone claim.
 The complete [native capture packet](../previews/constructed-world/README.md)
 and [Android emulator evidence](../audit/2026-10-04/android-048/README.md) are
-packaged. A fresh finish verdict is pending.
+packaged. The fresh [0.48 finish review](graphics-review-048.md) returns
+**`rebuild`** on valid evidence: focal figures/materials, remaining architectural
+and prop integration, ordinary-view cast/bow readability, focal balance and
+physical-device acceptance are still unresolved. The successful software
+render reduction closes only that narrow measured claim. This is the second
+rebuild directive after the valid 0.47 review; the applied Impeccable workflow
+requires user consultation before another reconstruction round. No new round
+or release acceptance is recorded as authorized by the verdict alone.
 
 ## Construction commitments
 
