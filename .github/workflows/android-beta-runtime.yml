@@ -78,6 +78,8 @@ jobs:
         sudo udevadm trigger --name-match=kvm
     - name: Verify AFK recovery and restart on Android 16
       uses: ReactiveCircus/android-emulator-runner@v2
+      env:
+        EMBERFALL_SOURCE_COMMIT: ${{ github.event.pull_request.head.sha || github.sha }}
       with:
         api-level: 36
         target: google_apis

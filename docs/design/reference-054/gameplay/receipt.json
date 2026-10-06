@@ -1,0 +1,481 @@
+{
+  "schema": 1,
+  "status": "complete",
+  "input_sha256_before": {
+    "Main.tscn": "e2c97bd36e4f81713f36208f513abc7cef049282dd8861b721a5b5217d2df56b",
+    "assets/models/nyra052/ANIMATION-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/nyra052/BASE-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/nyra052/MANUFACTURER-OUTFIT-README.txt": "2f87579c277cde1e1ddbd4b8d823bed618728781cb6597b4dee3978c589ff5c4",
+    "assets/models/nyra052/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/nyra052/README.md": "80cd7f90cbd14e9b2331e00d4bdefd4ed64eeff3f4afebdd73c1b84c3268163e",
+    "assets/models/nyra052/arcanist.glb": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "assets/models/nyra052/assembly-report.json": "0010a84fdf4170fc15167f4da38d5771d3bf7b90b99caed8186eed21d8dbe4c7",
+    "assets/models/nyra052/death-grounding.json": "f69e8b6b62387fc4743cbbfb3ab4d4e06581ec4442bf203e49f238ef0a2b6435",
+    "assets/models/nyra052/staff-grip053.glb": "98bd5832256f9a2fdbb68198d1dbf0d2db0b87c9c4d9d28b136cdfe54db0f11c",
+    "assets/models/nyra052/staff-grip053.json": "fa80f22d398ee8d8947a2be4e6b8c8bb64a7d71a1b41b3489171257ea35735dc",
+    "assets/models/nyra054/QUATERNIUS-CC0-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/nyra054/README.md": "e07de588afae90929fb65e5e933fccfc5f916457187fb2afa9910e818a568c45",
+    "assets/models/nyra054/nyra-attire054.glb": "8a96a9bac63a934213ddea77020d1b50dfd57e5270842ada69355925a5e906f1",
+    "assets/models/nyra054/nyra-attire054.json": "9a9c0e980173aa1da03081b97b61c34a9ae2a4ca3469ba79a9df0cf1a4ec63a5",
+    "assets/shaders/aged_stone.gdshader": "81a6675a552598a4735072a0e713ae17494e6603db0e93b5f216d863b1e48041",
+    "assets/shaders/camp_matte.gdshader": "543c89236729d0596031f60144efac898ed596196b383949596b353b7240f338",
+    "assets/shaders/camp_paving.gdshader": "fb4d21ce1f2aade7f3fdd1962130aed60490712105eb2b78119371e0f3c8e7c7",
+    "assets/shaders/character_surface.gdshader": "d57b02bdbe94cc590b624829fd3489126c18d3163e5551a65931041d0056102d",
+    "assets/shaders/combat_telegraph.gdshader": "444b2ebb46ee39a6130babeacdc5401ad6e33039f1c14ea78542ce901501f601",
+    "assets/shaders/crafted_surface.gdshader": "fabbfddacac14fd5b243c189da50601374ebb462ca2d493aa93660b359b7a99b",
+    "assets/shaders/crypt_mist.gdshader": "4d7523594f8499015b843e9b5c122bcbf90357a1b6796f620b418501d458a728",
+    "assets/shaders/dungeon_atmosphere.gdshader": "b99a857627f57e4a68d7b56e18c42f39cee5b4b058fef3eaa82679f6d6211ca3",
+    "assets/shaders/dungeon_court.gdshader": "9b621f1d77ed363979dc4d2b6d9b75160c5488d422b93493a54040aedf450bcc",
+    "assets/shaders/dungeon_water.gdshader": "3beefed1c6f9e8fd557eba31d3a826d033475d5af25b34e9295b6753adcf2e9b",
+    "assets/shaders/ember_flame.gdshader": "90ceceebe9b628e347b8b191e60f587be490784c8f230aeabf58aa8f660c8d0e",
+    "assets/shaders/environment_basin.gdshader": "d3b3d42bbc5eed526317cafee7ce22be0b93879c7542374c68e56dffddf46fbf",
+    "assets/shaders/forged_surface.gdshader": "08a29ecba1e8185c4060a3f94978e686cff85ace623b23afa3fabca422f842c6",
+    "assets/shaders/ground_grime.gdshader": "cfdf0f549359c652c1affff94ea5bb2029aec3f12f5e9a81bde3ba3f90a058c8",
+    "assets/shaders/magic_volume.gdshader": "8203ade68c3e85a3f02da2ab22ac1771179a8aa1eeab6166a6acc37cc9d6c82c",
+    "assets/shaders/masonry_surface.gdshader": "d73e6e2cd3fcc94ecaaf8899afafcfb3f42301162df985e5054b212173165b13",
+    "assets/shaders/painted_actor.gdshader": "6a26a281e7c2018bc51180275230380ca842aeb264a08d3eec5f372b4f9f4f65",
+    "assets/shaders/painted_stone.gdshader": "6bfa423bf4b4dceee12bffce2964d955a42e6eca0464fca104c070fd22945eef",
+    "assets/shaders/region_matte.gdshader": "d3977211bc2e5a96d894a23d9d803789a3779152b1a8c7f6237b12b5ca2fff4a",
+    "assets/shaders/ruin_deposit.gdshader": "aeacef77c5a3165038c0ab4c647a97afd31cfc649495e69e517497f9ada1d513",
+    "assets/shaders/ruin_floor.gdshader": "1f26defac45ef200fef39a32896188b475f832705b2fb46a2dc658ada233d102",
+    "assets/shaders/sanctuary_beam.gdshader": "dace078f60919fc5e396d44e7cbd7c842c0f6734bf2417d38e2052d0532014ff",
+    "assets/shaders/sanctuary_glass.gdshader": "7e5eddfb48c07d23008852e0f08b1083271673193aebc1ed03d25c319c79060a",
+    "assets/shaders/veil_gate.gdshader": "41ed87f890fa53e214914abe57b2959157d212d1d1882abc5b8ac7e49319068b",
+    "assets/shaders/ward_surface.gdshader": "5a42adf6e77e88142c5fab64bf07a412226368f96adff302f2ba7a15d2524480",
+    "assets/shaders/weathered_stone.gdshader": "a05dd8129d9b51b95d944c3af2766494bab25c75336f3d13573a6febb805fed9",
+    "project.godot": "06443ae1339db92383984483104457c9b085bd80a8772d0b3ce9b923a9c906f1",
+    "scripts/audio_director.gd": "476432c1261da36d8a7c0eeaca9c53de0712188dcf91ad3496fb54352ba6c962",
+    "scripts/authored_architecture.gd": "e68d8d835cafe1f3b0e24e46060a5ce4add3d9cf9ddeef5e5bce4a934529d899",
+    "scripts/authored_characters.gd": "530d0f0a3c5b84eb4dcd40f60f3fadaa9be89d1bee4c8201f1420d3d2d9247d8",
+    "scripts/battle_art.gd": "7d54a95db37801ee603e4aa5be5cde221cba908e23884edd134b0cf46aa74830",
+    "scripts/boss_patterns.gd": "8a808f6fc59ae0619b19488d2fe4753f0f19ea6b6d0dc31bf98dbd58be87d4bb",
+    "scripts/camp_scene.gd": "30ede3a1073e9605bcf1308096adf01005ac83e16da554c0437d9768686f52ff",
+    "scripts/character_animation.gd": "7f58864865e7a3459be394b86bf3900db409d29a54fa6b6ad90996b204e5c2c8",
+    "scripts/character_rig.gd": "53d0100fe61edb238926a71ace86963eee20f2851858e2439ded2ccfd0f1ff23",
+    "scripts/class_loot.gd": "a8d593dc6af163e92298ad8fc627e5004b43646ea99c674c601c119c106e4b76",
+    "scripts/class_relics.gd": "18c540965b7e4f80a0e45ad7d01dfe28d376702d1f3d53b9775b85f9972821e9",
+    "scripts/class_skills.gd": "25e37394f53126478b955108f9d604505e83a8c7fff7e50ef446b34407f06898",
+    "scripts/cloud_save.gd": "50b796e146d93404031828592ce4de5a836b54e48e40ab0241466be2715fea23",
+    "scripts/combat_health_bar.gd": "86cf42d3009ce34ca94059a61d654b09c2b2435b8820c23ce73d50be83726f75",
+    "scripts/combat_readout.gd": "8c3563909c6100ccb034cef1c61589a218e71bf4d9b36424de2de5e68e466a55",
+    "scripts/combat_stances.gd": "d3f7d2a7d16574681ef40bd2bf763595bef7fb3532dbb2cd3c753ddee2855371",
+    "scripts/dungeon_actor.gd": "fc76fa5ee47215b5eb75a276d566065f084b2104f38655729382065ee26ba370",
+    "scripts/dungeon_layout.gd": "fd66656086e248dd8c42d345351e2a1e22f58ddc6cef4dbfea177d5b70332df7",
+    "scripts/dungeon_lighting.gd": "995b2d8dfcfd0875a94f6f08ce5f06cbcd9b9bb2a5e9315cf62e4f4da6caa563",
+    "scripts/dungeon_theme.gd": "55232beaa65ccaad0da265d78f0506a00c4451a9be0b622627bf6bfe4d96d91b",
+    "scripts/dungeon_world.gd": "034069069275b529c1bed532de73c11e464e18fbc2d3f68b812344731d71ba76",
+    "scripts/expedition_contract.gd": "05db36bebc7e0231b977ca0b0f33b2cd4967683913479fcfc3a6c2fc86adf837",
+    "scripts/expedition_map.gd": "f2f5febcddc6bb6d06f746c4b803a797b8d8386af8b4ee3ec66cc3caf034a9bf",
+    "scripts/expedition_simulation.gd": "ed4cabb75e65486aa277632ad2d25700bfca4d60e79b7e7fc0a28bbffe6c649b",
+    "scripts/farm_forecast.gd": "a1506505e3da2195d58026ef59fba30a8fe0aaa130cd5de5647fbf5802a8b083",
+    "scripts/fellowship_service.gd": "c8f33d6bf1cb39cd82ac8d2551132e7851e1906b92f699dd7e7dffd2a411601b",
+    "scripts/frame_metrics.gd": "20e0aa3a71a218957dbee8161e4706cebeffdee49d35bb86bc6dedddafb7555d",
+    "scripts/game_preferences.gd": "a7179eea97cb59cb689bdda398a7b8cc712a1cff3296a52533b2000341027cbf",
+    "scripts/gear_advisor.gd": "6dea2eae02252c95fd57b73711e2ae86bf4bf26f5a304f4149d29110cdde2e24",
+    "scripts/hero_art.gd": "ce7a6c4ef5cb52ce870440d0b0494264c4f4091c57608b063eee19a1c0acfcdd",
+    "scripts/main.gd": "805ad431d458de242e97edc835d3e2a8df6b4b4aa6087fda77e2651cd5aca216",
+    "scripts/mobile_safe_area.gd": "6fc90d1a94100fdde4b8ab06928b92a729069394ce7d80b172bfe733e7e75df3",
+    "scripts/oath_combat_rules.gd": "c0b5f85c487237963cdff96b5f2002f03eac65c17dbda483c3393a402c4fd1b2",
+    "scripts/offline_farm.gd": "ee3930fffd691813a7094e1f820cf9e1b0a3d2bd08d0e7a896b2817640844548",
+    "scripts/painted_action_craft.gd": "495f16b7bf9c4a27e31913ac5580856f7f49e0a85d811f0a4aadb17bcdd82c28",
+    "scripts/painted_motion_layers.gd": "4d1cd31ef3b926044fd5a89e72efa5435b385e7601cfbec6918fc6a3d4688282",
+    "scripts/painted_motion_rig.gd": "d8e177331ddfdd0630b8ada2f9558f9895d23342455f65eb3aa4cb9ca22a4138",
+    "scripts/playtest_notes.gd": "9c3a611afdbf524ff2271892985d7c6bc1afdd70ae5fd0ad73db4ea0c734ac44",
+    "scripts/progression_service.gd": "0c3e7387579a3d90077cd1042595ed939487b7cd3524e5b92869e4f4e7f841f4",
+    "scripts/regional_sets.gd": "32236ab325cab5d7ab11dd5b45dfca25cc4b56cd7d5b6dbb3986f3f96bfcbb22",
+    "scripts/regional_stage.gd": "c68d128bed523b771bdde459cf12db91bdde665a5af27d0cc0581ad0f4a61669",
+    "scripts/release_info.gd": "b8723513c5434fae9b587cec073d0dd20d7ba77f99cfe5ebe8d162cd1d2bd3ce",
+    "scripts/render_budget.gd": "99a1f816371991937dabf4cc5830d9cc90990f20214736da218f4921899ac09b",
+    "scripts/room_ground.gd": "2a4b3b1ef37064d0932aed30feb7eddf362a3030b6ba52bfb8ca39702c8a0c93",
+    "scripts/ruin_architecture.gd": "3a77f958110aacaa9c19fb6a8184fe117fa2c793222a1fd17a91dff4639d60a7",
+    "scripts/save_store.gd": "97f5c641866ba935a3467495531008da7459665798867f7c22c11db4121aabfa",
+    "scripts/sculpted_mesh.gd": "57df0f7444b2bd930031069efc7d83edb20750f058f628f7535e7d1a0dc283a1",
+    "scripts/settings_panel.gd": "6d3d5cf798a442893eaeca9494305faebd0fe4a3c5dcf8a8b986bc6a019fe9b5",
+    "scripts/skill_glyph.gd": "0df2f5cdd5ae234ef593ad42f57266c292dddd95da7be3f1b3f1b73064f8d7be",
+    "scripts/source_avatar_combat.gd": "9066888875cec7671593c158473ec8343b51fad0ace58c89046bee92cb3e4e18",
+    "scripts/source_avatar_rig.gd": "1d5de716e8deac1ddeffd4e293b497de5f2884aebc0469578073b81277cf261d",
+    "scripts/source_avatar_style.gd": "54ae9ef1b1d12d8379d106797141302be873b58717ab223fb499333f330c6ccc",
+    "scripts/ui_glyph.gd": "e24e98966ab6050a5dcac576a05096c41f8fe6ad671e74253263a9cbc439d406",
+    "tests/arcanist_quality_gameplay_preview.gd": "0185f78aa421b27da5f5f9a718259fdbb673f5201e2d591ea4fe9850c7e5dbc4",
+    "tests/arcanist_quality_gameplay_preview.tscn": "50c6bb5b1508d0662c09348a38f7fbf373145dc23def11d8fa0bb57639aa7023",
+    "tests/attack_gameplay_preview.gd": "12333afd1d7694b13939e48ac67c095f6f832d4eb959d5ef74bf230988748fdc",
+    "tools/capture_arcanist_quality.py": "29e05eb4f9643df8ae29a03ece3962db810209f5ca552b84391558a7caab7ff4"
+  },
+  "scope": "Original continuous native viewport export at fixed 30 Hz simulation/playback; capture wall time is not a game FPS benchmark.",
+  "physical_device_performance": false,
+  "captured_audio": false,
+  "pixel_changes": "None in selected native PNGs; all chronological PNGs are H.264 encoded into the MP4.",
+  "maximum_simulation_seconds": 240.0,
+  "godot_command": [
+    "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+    "--path",
+    "/workspace/Emberfall-Ashen-Veil",
+    "--audio-driver",
+    "Dummy",
+    "--resolution",
+    "1200x536",
+    "res://tests/arcanist_quality_gameplay_preview.tscn",
+    "--",
+    "--capture-dir=/workspace/scratch/emberfall-quality-054/complete-gameplay",
+    "--stream-port=60633",
+    "--max-simulation-seconds=240.0"
+  ],
+  "display": ":107",
+  "ffmpeg_command": [
+    "/usr/bin/ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-f",
+    "image2pipe",
+    "-framerate",
+    "30",
+    "-vcodec",
+    "png",
+    "-i",
+    "pipe:0",
+    "-an",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "veryfast",
+    "-crf",
+    "20",
+    "-threads",
+    "2",
+    "-pix_fmt",
+    "yuv420p",
+    "-movflags",
+    "+faststart",
+    "/workspace/scratch/emberfall-quality-054/complete-gameplay/ordinary-arcanist-complete.mp4"
+  ],
+  "input_sha256_after": {
+    "Main.tscn": "e2c97bd36e4f81713f36208f513abc7cef049282dd8861b721a5b5217d2df56b",
+    "assets/models/nyra052/ANIMATION-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/nyra052/BASE-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/nyra052/MANUFACTURER-OUTFIT-README.txt": "2f87579c277cde1e1ddbd4b8d823bed618728781cb6597b4dee3978c589ff5c4",
+    "assets/models/nyra052/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/nyra052/README.md": "80cd7f90cbd14e9b2331e00d4bdefd4ed64eeff3f4afebdd73c1b84c3268163e",
+    "assets/models/nyra052/arcanist.glb": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "assets/models/nyra052/assembly-report.json": "0010a84fdf4170fc15167f4da38d5771d3bf7b90b99caed8186eed21d8dbe4c7",
+    "assets/models/nyra052/death-grounding.json": "f69e8b6b62387fc4743cbbfb3ab4d4e06581ec4442bf203e49f238ef0a2b6435",
+    "assets/models/nyra052/staff-grip053.glb": "98bd5832256f9a2fdbb68198d1dbf0d2db0b87c9c4d9d28b136cdfe54db0f11c",
+    "assets/models/nyra052/staff-grip053.json": "fa80f22d398ee8d8947a2be4e6b8c8bb64a7d71a1b41b3489171257ea35735dc",
+    "assets/models/nyra054/QUATERNIUS-CC0-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/nyra054/README.md": "e07de588afae90929fb65e5e933fccfc5f916457187fb2afa9910e818a568c45",
+    "assets/models/nyra054/nyra-attire054.glb": "8a96a9bac63a934213ddea77020d1b50dfd57e5270842ada69355925a5e906f1",
+    "assets/models/nyra054/nyra-attire054.json": "9a9c0e980173aa1da03081b97b61c34a9ae2a4ca3469ba79a9df0cf1a4ec63a5",
+    "assets/shaders/aged_stone.gdshader": "81a6675a552598a4735072a0e713ae17494e6603db0e93b5f216d863b1e48041",
+    "assets/shaders/camp_matte.gdshader": "543c89236729d0596031f60144efac898ed596196b383949596b353b7240f338",
+    "assets/shaders/camp_paving.gdshader": "fb4d21ce1f2aade7f3fdd1962130aed60490712105eb2b78119371e0f3c8e7c7",
+    "assets/shaders/character_surface.gdshader": "d57b02bdbe94cc590b624829fd3489126c18d3163e5551a65931041d0056102d",
+    "assets/shaders/combat_telegraph.gdshader": "444b2ebb46ee39a6130babeacdc5401ad6e33039f1c14ea78542ce901501f601",
+    "assets/shaders/crafted_surface.gdshader": "fabbfddacac14fd5b243c189da50601374ebb462ca2d493aa93660b359b7a99b",
+    "assets/shaders/crypt_mist.gdshader": "4d7523594f8499015b843e9b5c122bcbf90357a1b6796f620b418501d458a728",
+    "assets/shaders/dungeon_atmosphere.gdshader": "b99a857627f57e4a68d7b56e18c42f39cee5b4b058fef3eaa82679f6d6211ca3",
+    "assets/shaders/dungeon_court.gdshader": "9b621f1d77ed363979dc4d2b6d9b75160c5488d422b93493a54040aedf450bcc",
+    "assets/shaders/dungeon_water.gdshader": "3beefed1c6f9e8fd557eba31d3a826d033475d5af25b34e9295b6753adcf2e9b",
+    "assets/shaders/ember_flame.gdshader": "90ceceebe9b628e347b8b191e60f587be490784c8f230aeabf58aa8f660c8d0e",
+    "assets/shaders/environment_basin.gdshader": "d3b3d42bbc5eed526317cafee7ce22be0b93879c7542374c68e56dffddf46fbf",
+    "assets/shaders/forged_surface.gdshader": "08a29ecba1e8185c4060a3f94978e686cff85ace623b23afa3fabca422f842c6",
+    "assets/shaders/ground_grime.gdshader": "cfdf0f549359c652c1affff94ea5bb2029aec3f12f5e9a81bde3ba3f90a058c8",
+    "assets/shaders/magic_volume.gdshader": "8203ade68c3e85a3f02da2ab22ac1771179a8aa1eeab6166a6acc37cc9d6c82c",
+    "assets/shaders/masonry_surface.gdshader": "d73e6e2cd3fcc94ecaaf8899afafcfb3f42301162df985e5054b212173165b13",
+    "assets/shaders/painted_actor.gdshader": "6a26a281e7c2018bc51180275230380ca842aeb264a08d3eec5f372b4f9f4f65",
+    "assets/shaders/painted_stone.gdshader": "6bfa423bf4b4dceee12bffce2964d955a42e6eca0464fca104c070fd22945eef",
+    "assets/shaders/region_matte.gdshader": "d3977211bc2e5a96d894a23d9d803789a3779152b1a8c7f6237b12b5ca2fff4a",
+    "assets/shaders/ruin_deposit.gdshader": "aeacef77c5a3165038c0ab4c647a97afd31cfc649495e69e517497f9ada1d513",
+    "assets/shaders/ruin_floor.gdshader": "1f26defac45ef200fef39a32896188b475f832705b2fb46a2dc658ada233d102",
+    "assets/shaders/sanctuary_beam.gdshader": "dace078f60919fc5e396d44e7cbd7c842c0f6734bf2417d38e2052d0532014ff",
+    "assets/shaders/sanctuary_glass.gdshader": "7e5eddfb48c07d23008852e0f08b1083271673193aebc1ed03d25c319c79060a",
+    "assets/shaders/veil_gate.gdshader": "41ed87f890fa53e214914abe57b2959157d212d1d1882abc5b8ac7e49319068b",
+    "assets/shaders/ward_surface.gdshader": "5a42adf6e77e88142c5fab64bf07a412226368f96adff302f2ba7a15d2524480",
+    "assets/shaders/weathered_stone.gdshader": "a05dd8129d9b51b95d944c3af2766494bab25c75336f3d13573a6febb805fed9",
+    "project.godot": "06443ae1339db92383984483104457c9b085bd80a8772d0b3ce9b923a9c906f1",
+    "scripts/audio_director.gd": "476432c1261da36d8a7c0eeaca9c53de0712188dcf91ad3496fb54352ba6c962",
+    "scripts/authored_architecture.gd": "e68d8d835cafe1f3b0e24e46060a5ce4add3d9cf9ddeef5e5bce4a934529d899",
+    "scripts/authored_characters.gd": "530d0f0a3c5b84eb4dcd40f60f3fadaa9be89d1bee4c8201f1420d3d2d9247d8",
+    "scripts/battle_art.gd": "7d54a95db37801ee603e4aa5be5cde221cba908e23884edd134b0cf46aa74830",
+    "scripts/boss_patterns.gd": "8a808f6fc59ae0619b19488d2fe4753f0f19ea6b6d0dc31bf98dbd58be87d4bb",
+    "scripts/camp_scene.gd": "30ede3a1073e9605bcf1308096adf01005ac83e16da554c0437d9768686f52ff",
+    "scripts/character_animation.gd": "7f58864865e7a3459be394b86bf3900db409d29a54fa6b6ad90996b204e5c2c8",
+    "scripts/character_rig.gd": "53d0100fe61edb238926a71ace86963eee20f2851858e2439ded2ccfd0f1ff23",
+    "scripts/class_loot.gd": "a8d593dc6af163e92298ad8fc627e5004b43646ea99c674c601c119c106e4b76",
+    "scripts/class_relics.gd": "18c540965b7e4f80a0e45ad7d01dfe28d376702d1f3d53b9775b85f9972821e9",
+    "scripts/class_skills.gd": "25e37394f53126478b955108f9d604505e83a8c7fff7e50ef446b34407f06898",
+    "scripts/cloud_save.gd": "50b796e146d93404031828592ce4de5a836b54e48e40ab0241466be2715fea23",
+    "scripts/combat_health_bar.gd": "86cf42d3009ce34ca94059a61d654b09c2b2435b8820c23ce73d50be83726f75",
+    "scripts/combat_readout.gd": "8c3563909c6100ccb034cef1c61589a218e71bf4d9b36424de2de5e68e466a55",
+    "scripts/combat_stances.gd": "d3f7d2a7d16574681ef40bd2bf763595bef7fb3532dbb2cd3c753ddee2855371",
+    "scripts/dungeon_actor.gd": "fc76fa5ee47215b5eb75a276d566065f084b2104f38655729382065ee26ba370",
+    "scripts/dungeon_layout.gd": "fd66656086e248dd8c42d345351e2a1e22f58ddc6cef4dbfea177d5b70332df7",
+    "scripts/dungeon_lighting.gd": "995b2d8dfcfd0875a94f6f08ce5f06cbcd9b9bb2a5e9315cf62e4f4da6caa563",
+    "scripts/dungeon_theme.gd": "55232beaa65ccaad0da265d78f0506a00c4451a9be0b622627bf6bfe4d96d91b",
+    "scripts/dungeon_world.gd": "034069069275b529c1bed532de73c11e464e18fbc2d3f68b812344731d71ba76",
+    "scripts/expedition_contract.gd": "05db36bebc7e0231b977ca0b0f33b2cd4967683913479fcfc3a6c2fc86adf837",
+    "scripts/expedition_map.gd": "f2f5febcddc6bb6d06f746c4b803a797b8d8386af8b4ee3ec66cc3caf034a9bf",
+    "scripts/expedition_simulation.gd": "ed4cabb75e65486aa277632ad2d25700bfca4d60e79b7e7fc0a28bbffe6c649b",
+    "scripts/farm_forecast.gd": "a1506505e3da2195d58026ef59fba30a8fe0aaa130cd5de5647fbf5802a8b083",
+    "scripts/fellowship_service.gd": "c8f33d6bf1cb39cd82ac8d2551132e7851e1906b92f699dd7e7dffd2a411601b",
+    "scripts/frame_metrics.gd": "20e0aa3a71a218957dbee8161e4706cebeffdee49d35bb86bc6dedddafb7555d",
+    "scripts/game_preferences.gd": "a7179eea97cb59cb689bdda398a7b8cc712a1cff3296a52533b2000341027cbf",
+    "scripts/gear_advisor.gd": "6dea2eae02252c95fd57b73711e2ae86bf4bf26f5a304f4149d29110cdde2e24",
+    "scripts/hero_art.gd": "ce7a6c4ef5cb52ce870440d0b0494264c4f4091c57608b063eee19a1c0acfcdd",
+    "scripts/main.gd": "805ad431d458de242e97edc835d3e2a8df6b4b4aa6087fda77e2651cd5aca216",
+    "scripts/mobile_safe_area.gd": "6fc90d1a94100fdde4b8ab06928b92a729069394ce7d80b172bfe733e7e75df3",
+    "scripts/oath_combat_rules.gd": "c0b5f85c487237963cdff96b5f2002f03eac65c17dbda483c3393a402c4fd1b2",
+    "scripts/offline_farm.gd": "ee3930fffd691813a7094e1f820cf9e1b0a3d2bd08d0e7a896b2817640844548",
+    "scripts/painted_action_craft.gd": "495f16b7bf9c4a27e31913ac5580856f7f49e0a85d811f0a4aadb17bcdd82c28",
+    "scripts/painted_motion_layers.gd": "4d1cd31ef3b926044fd5a89e72efa5435b385e7601cfbec6918fc6a3d4688282",
+    "scripts/painted_motion_rig.gd": "d8e177331ddfdd0630b8ada2f9558f9895d23342455f65eb3aa4cb9ca22a4138",
+    "scripts/playtest_notes.gd": "9c3a611afdbf524ff2271892985d7c6bc1afdd70ae5fd0ad73db4ea0c734ac44",
+    "scripts/progression_service.gd": "0c3e7387579a3d90077cd1042595ed939487b7cd3524e5b92869e4f4e7f841f4",
+    "scripts/regional_sets.gd": "32236ab325cab5d7ab11dd5b45dfca25cc4b56cd7d5b6dbb3986f3f96bfcbb22",
+    "scripts/regional_stage.gd": "c68d128bed523b771bdde459cf12db91bdde665a5af27d0cc0581ad0f4a61669",
+    "scripts/release_info.gd": "b8723513c5434fae9b587cec073d0dd20d7ba77f99cfe5ebe8d162cd1d2bd3ce",
+    "scripts/render_budget.gd": "99a1f816371991937dabf4cc5830d9cc90990f20214736da218f4921899ac09b",
+    "scripts/room_ground.gd": "2a4b3b1ef37064d0932aed30feb7eddf362a3030b6ba52bfb8ca39702c8a0c93",
+    "scripts/ruin_architecture.gd": "3a77f958110aacaa9c19fb6a8184fe117fa2c793222a1fd17a91dff4639d60a7",
+    "scripts/save_store.gd": "97f5c641866ba935a3467495531008da7459665798867f7c22c11db4121aabfa",
+    "scripts/sculpted_mesh.gd": "57df0f7444b2bd930031069efc7d83edb20750f058f628f7535e7d1a0dc283a1",
+    "scripts/settings_panel.gd": "6d3d5cf798a442893eaeca9494305faebd0fe4a3c5dcf8a8b986bc6a019fe9b5",
+    "scripts/skill_glyph.gd": "0df2f5cdd5ae234ef593ad42f57266c292dddd95da7be3f1b3f1b73064f8d7be",
+    "scripts/source_avatar_combat.gd": "9066888875cec7671593c158473ec8343b51fad0ace58c89046bee92cb3e4e18",
+    "scripts/source_avatar_rig.gd": "1d5de716e8deac1ddeffd4e293b497de5f2884aebc0469578073b81277cf261d",
+    "scripts/source_avatar_style.gd": "54ae9ef1b1d12d8379d106797141302be873b58717ab223fb499333f330c6ccc",
+    "scripts/ui_glyph.gd": "e24e98966ab6050a5dcac576a05096c41f8fe6ad671e74253263a9cbc439d406",
+    "tests/arcanist_quality_gameplay_preview.gd": "0185f78aa421b27da5f5f9a718259fdbb673f5201e2d591ea4fe9850c7e5dbc4",
+    "tests/arcanist_quality_gameplay_preview.tscn": "50c6bb5b1508d0662c09348a38f7fbf373145dc23def11d8fa0bb57639aa7023",
+    "tests/attack_gameplay_preview.gd": "12333afd1d7694b13939e48ac67c095f6f832d4eb959d5ef74bf230988748fdc",
+    "tools/capture_arcanist_quality.py": "29e05eb4f9643df8ae29a03ece3962db810209f5ca552b84391558a7caab7ff4"
+  },
+  "inputs_unchanged": true,
+  "frames": 2496,
+  "wall_seconds": 1835.607,
+  "simulation_summary": {
+    "complete": true,
+    "frames": 2496,
+    "guardian_seen": true,
+    "guardian_warning_seen": true,
+    "playback_seconds": 83.2,
+    "schema": 1,
+    "scope": "Recording completeness and actual combat outcome; no visual or release approval.",
+    "settle_frames_recorded": 90,
+    "simulation_elapsed": 80.1999999999997,
+    "simulation_finished": true,
+    "won": true
+  },
+  "selected_frames": [
+    {
+      "file": "selected-frames/frame-00000.png",
+      "frame": 0,
+      "simulation_elapsed": 0.0,
+      "reasons": [
+        "ordinary-start",
+        "chronological-000s"
+      ],
+      "sha256": "b3cb2694d8d8317821f87b934715383dc97b90f7bd93b433fbc33d998b76a731"
+    },
+    {
+      "file": "selected-frames/frame-00002.png",
+      "frame": 2,
+      "simulation_elapsed": 0.1,
+      "reasons": [
+        "first-windup-signature"
+      ],
+      "sha256": "35205df962a38bf7865e29115c594b2278047f6912a593b64d4b4e52ee4a6d49"
+    },
+    {
+      "file": "selected-frames/frame-00009.png",
+      "frame": 9,
+      "simulation_elapsed": 0.3,
+      "reasons": [
+        "first-release-signature"
+      ],
+      "sha256": "a3529dfcfe904243d65d517ef7d411b71f3e703d6550d7000bc22aea17f550b4"
+    },
+    {
+      "file": "selected-frames/frame-00044.png",
+      "frame": 44,
+      "simulation_elapsed": 1.5,
+      "reasons": [
+        "first-windup-basic"
+      ],
+      "sha256": "33d9525bcd025f96204d8ef97f803bcde10d1469c90fb60de107c20a307ca46d"
+    },
+    {
+      "file": "selected-frames/frame-00051.png",
+      "frame": 51,
+      "simulation_elapsed": 1.7,
+      "reasons": [
+        "first-release-basic"
+      ],
+      "sha256": "a759386014268529072ad550123f39f711bbfa7f1d9c3e6f0405f9404facd0ab"
+    },
+    {
+      "file": "selected-frames/frame-00300.png",
+      "frame": 300,
+      "simulation_elapsed": 9.99999999999998,
+      "reasons": [
+        "chronological-010s"
+      ],
+      "sha256": "1764f737b73db5cb46cbe78f1730499ff3ecbd9c38f5f0218c080f2376db17bb"
+    },
+    {
+      "file": "selected-frames/frame-00320.png",
+      "frame": 320,
+      "simulation_elapsed": 10.7,
+      "reasons": [
+        "first-windup-starfall"
+      ],
+      "sha256": "d9ab6f7050c292c44ef1ccaea3c7bd78003d553551123d139245c292f8b8c262"
+    },
+    {
+      "file": "selected-frames/frame-00347.png",
+      "frame": 347,
+      "simulation_elapsed": 11.6,
+      "reasons": [
+        "first-release-starfall"
+      ],
+      "sha256": "826d40645344e95677992b94d770bbbb246c46425e44561c66c18a2e89c28bbf"
+    },
+    {
+      "file": "selected-frames/frame-00600.png",
+      "frame": 600,
+      "simulation_elapsed": 20.0,
+      "reasons": [
+        "chronological-020s"
+      ],
+      "sha256": "c60b7c7ef5827a12bef0f3bce45064c546d3188e377622eddb7b0887e9f414ec"
+    },
+    {
+      "file": "selected-frames/frame-00791.png",
+      "frame": 791,
+      "simulation_elapsed": 26.4000000000001,
+      "reasons": [
+        "first-windup-chain"
+      ],
+      "sha256": "c8c54f833261c86a0b3323545c2da17a3da297b63f28121d5f72b7feaf156daf"
+    },
+    {
+      "file": "selected-frames/frame-00900.png",
+      "frame": 900,
+      "simulation_elapsed": 30.0000000000002,
+      "reasons": [
+        "chronological-030s"
+      ],
+      "sha256": "ce3314f3463ac7ea2c8a79a2326f44539ca1b0cc9d7b07e7abdbfc957501b805"
+    },
+    {
+      "file": "selected-frames/frame-01200.png",
+      "frame": 1200,
+      "simulation_elapsed": 40.0000000000003,
+      "reasons": [
+        "chronological-040s"
+      ],
+      "sha256": "07b476a41b86137bafdf95392795a5e145cb09ce876123bcb37ef07e2246b9a2"
+    },
+    {
+      "file": "selected-frames/frame-01280.png",
+      "frame": 1280,
+      "simulation_elapsed": 42.7000000000003,
+      "reasons": [
+        "first-release-chain"
+      ],
+      "sha256": "13d42c49b26e53412811bd2140d894d66b78c7e089e634b1022b7ccd671ab2a0"
+    },
+    {
+      "file": "selected-frames/frame-01500.png",
+      "frame": 1500,
+      "simulation_elapsed": 50.0000000000004,
+      "reasons": [
+        "chronological-050s"
+      ],
+      "sha256": "3964bb346088fa4e666e4cd698f13611c34060cc229230bc23c7cbbf4741baf2"
+    },
+    {
+      "file": "selected-frames/frame-01800.png",
+      "frame": 1800,
+      "simulation_elapsed": 60.0000000000006,
+      "reasons": [
+        "chronological-060s"
+      ],
+      "sha256": "eac99db0512223af33dcc56da4e01f2bf1d9da3f62871f1dbfc29a58658adef1"
+    },
+    {
+      "file": "selected-frames/frame-02039.png",
+      "frame": 2039,
+      "simulation_elapsed": 68.0000000000004,
+      "reasons": [
+        "first-guardian-combat",
+        "first-guardian-phase-0"
+      ],
+      "sha256": "c44884652a541f5e808bc8628d9ecb08ec4c0d864d2454ce98666a8f261a73f1"
+    },
+    {
+      "file": "selected-frames/frame-02096.png",
+      "frame": 2096,
+      "simulation_elapsed": 69.9000000000003,
+      "reasons": [
+        "first-guardian-phase-1"
+      ],
+      "sha256": "24e4aaaaa35a5019d41301a797ff0688349343290d14a37b110bbc9f15e05e60"
+    },
+    {
+      "file": "selected-frames/frame-02099.png",
+      "frame": 2099,
+      "simulation_elapsed": 70.0000000000003,
+      "reasons": [
+        "first-guardian-warning"
+      ],
+      "sha256": "4b4c9b1367d88bd0dac09551f81fd45797915be323128b7097a843f167d1c158"
+    },
+    {
+      "file": "selected-frames/frame-02100.png",
+      "frame": 2100,
+      "simulation_elapsed": 70.0000000000003,
+      "reasons": [
+        "chronological-070s"
+      ],
+      "sha256": "a0802f6c65fbb48aa81e32014139f658bb7fff0f6f1e9fb40c8ddd3e02a2c657"
+    },
+    {
+      "file": "selected-frames/frame-02153.png",
+      "frame": 2153,
+      "simulation_elapsed": 71.8000000000002,
+      "reasons": [
+        "first-guardian-phase-2"
+      ],
+      "sha256": "9ab92f7eaf378ec5bccfdb86ca17ecc24cfeb60ded86e9f2d7a7b9c19a4d992f"
+    },
+    {
+      "file": "selected-frames/frame-02400.png",
+      "frame": 2400,
+      "simulation_elapsed": 79.9999999999997,
+      "reasons": [
+        "chronological-080s"
+      ],
+      "sha256": "ee83ff5fc127febf59b283fa381c93a288cad4abfebf590f3d0aa8e1f8669a2d"
+    },
+    {
+      "file": "selected-frames/frame-02405.png",
+      "frame": 2405,
+      "simulation_elapsed": 80.1999999999997,
+      "reasons": [
+        "expedition-finished"
+      ],
+      "sha256": "cdcf956c8de42dc730f474ea7c401bf86de28c11c5fa2f7f601d394571dd9951"
+    }
+  ],
+  "decoded_video": {
+    "width": 1200,
+    "height": 536,
+    "r_frame_rate": "30/1",
+    "duration": "83.200000",
+    "nb_read_frames": "2496"
+  },
+  "full_decode_passed": true,
+  "mp4_sha256": "c5b054415c95ef001aef7d74f8ce3fc5b83395ffde39ab7a0a8b2a73bfc76412",
+  "frame_log_sha256": "ef485a98a5e91cdc83627ab2fcc36c7de7bd8b54154d69378a37f044f2a704c3",
+  "continuous_simulation_verified": true
+}

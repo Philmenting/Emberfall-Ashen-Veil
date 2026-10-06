@@ -17,6 +17,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from android_native_check import verify_elf, verify_bundle_native
 from check_play_release import validate
 from export_android_qa import QaPackage, build_packages, prepare_stage, write_preset
+from android_beta_smoke import main as run_android_smoke
 
 
 def elf(alignment=16384, address=16384):
@@ -184,6 +185,160 @@ class QaExportChecks(unittest.TestCase):
             with patch("export_android_qa.subprocess.run", return_value=subprocess.CompletedProcess([], 0, "")), contextlib.redirect_stdout(io.StringIO()):
                 with self.assertRaisesRegex(RuntimeError, "without producing an APK"):
                     build_packages(root, "godot", [package])
+
+
+class FakeAdb:
+    """Scripted device observations; no APK, emulator or real adb is executed."""
+    def __init__(self, scenario):
+        self.scenario = scenario
+        self.clock = 0.0
+        self.launch = 0
+        self.poll = 0
+        self.calls = []
+
+    def sleep(self, seconds):
+        self.clock += seconds
+
+    def run(self, command, **kwargs):
+        self.calls.append(command[1:])
+        args = command[1:]
+        result, code, error = "", 0, ""
+        if self.scenario == "missing_device":
+            return subprocess.CompletedProcess(command, 1, "", "error: no devices/emulators found")
+        if args[:3] == ["shell", "am", "start"]:
+            self.launch += 1
+            self.poll = 0
+            result = "Error type 3\nError: Activity class does not exist" if self.scenario == "start_error" else "Starting: Intent"
+        elif args[:2] == ["shell", "pidof"]:
+            self.poll += 1
+            missing = self.scenario == "not_started" or (self.scenario == "success" and self.launch == 1 and self.poll == 1) or (self.scenario == "process_lost" and self.poll > 1)
+            if missing:
+                code = 1  # Normal Android pidof absence: no stderr.
+            else:
+                result = "42" if self.launch > 1 or (self.scenario == "pid_changed" and self.poll > 1) else "41"
+        elif args == ["logcat", "-d", "-s", "godot"]:
+            if self.scenario == "not_started" or (self.scenario == "success" and self.launch == 1 and self.poll == 1):
+                result = ""
+            elif self.launch > 1:
+                result = "ANDROID_BETA_PASS restart does not repeat"
+            elif self.scenario == "success":
+                result = "ANDROID_BETA_READY cooperative=true\nANDROID_BETA_PASS exact AFK ledger"
+            elif self.scenario == "error_and_marker":
+                result = "ERROR: runtime broke\nANDROID_BETA_PASS exact AFK ledger"
+            elif self.scenario in ("process_lost", "pid_changed") and self.poll > 1:
+                result = "ANDROID_BETA_READY cooperative=true\nANDROID_BETA_PASS exact AFK ledger"
+            else:
+                result = "ANDROID_BETA_READY cooperative=true"
+        elif args == ["logcat", "-b", "all", "-d", "-v", "threadtime"]:
+            result = "AndroidRuntime FATAL EXCEPTION\nActivityManager: Process exit; native DEBUG/ANR details"
+        elif args[:4] == ["shell", "dumpsys", "activity", "exit-info"]:
+            result = "ApplicationExitInfo reason=3 status=9 pid=41"
+        elif args[:2] == ["exec-out", "screencap"]:
+            result = b"\x89PNG\r\n\x1a\nfixture"
+        return subprocess.CompletedProcess(command, code, result, error)
+
+
+class AndroidRuntimeChecks(unittest.TestCase):
+    def run_fixture(self, scenario, seconds=6):
+        device = FakeAdb("process_lost" if scenario == "evidence_write_error" else scenario)
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory)
+            apk = folder / "fixture.apk"
+            apk.write_bytes(b"QA APK fixture")
+            output = folder / "evidence"
+            argv = ["android_beta_smoke.py", "--apk", str(apk), "--output", str(output), "--timeout-seconds", str(seconds)]
+            console = io.StringIO()
+            original_write = Path.write_text
+
+            def write_evidence(path, data, *args, **kwargs):
+                if scenario == "evidence_write_error" and (path.name.startswith("failure-") or (path.name == "runtime-status.json" and '"status": "failed"' in data)):
+                    raise OSError("No space left on evidence filesystem")
+                return original_write(path, data, *args, **kwargs)
+
+            with patch("sys.argv", argv), patch("android_beta_smoke.subprocess.run", side_effect=device.run), \
+                    patch("android_beta_smoke.time.monotonic", side_effect=lambda: device.clock), \
+                    patch("android_beta_smoke.time.sleep", side_effect=device.sleep), \
+                    patch.dict("os.environ", {"EMBERFALL_SOURCE_COMMIT": "source-head", "GITHUB_SHA": "merge-head"}), \
+                    patch.object(Path, "write_text", new=write_evidence), contextlib.redirect_stdout(console):
+                status = run_android_smoke()
+            device.console = console.getvalue()
+            report = json.loads((output / "runtime-status.json").read_text())
+            files = {path.name: path.read_bytes() for path in output.iterdir()}
+        return status, report, files, device
+
+    def test_live_process_start_grace_and_both_markers_pass(self):
+        status, report, files, device = self.run_fixture("success")
+        self.assertEqual(status, 0)
+        self.assertEqual(report["status"], "passed")
+        self.assertEqual(len(report["launches"]), 2)
+        self.assertEqual(report["launches"][0]["pid_samples"][0]["pids"], [])
+        self.assertTrue(all(launch["status"] == "marker_observed" for launch in report["launches"]))
+        self.assertEqual(report["provenance"]["source_commit"], "source-head")
+        self.assertEqual(report["provenance"]["github_sha"], "merge-head")
+        self.assertEqual(len(report["apk"]["sha256"]), 64)
+        self.assertIn("first-launch-all.log", files)
+        self.assertIn(["logcat", "-b", "all", "-c"], device.calls)
+
+    def test_observed_process_loss_fails_even_if_a_marker_was_buffered(self):
+        status, report, files, device = self.run_fixture("process_lost", 900)
+        self.assertEqual(status, 1)
+        self.assertEqual(report["failure"]["kind"], "process_lost")
+        self.assertLess(device.clock, 900)
+        self.assertEqual(device.launch, 1)
+        self.assertIn(b"ApplicationExitInfo reason=3", files["failure-exit-info.txt"])
+        self.assertIn(b"FATAL EXCEPTION", files["failure-logcat-all.log"])
+
+    def test_activity_error_with_zero_adb_exit_fails_before_waiting(self):
+        status, report, files, device = self.run_fixture("start_error")
+        self.assertEqual(status, 1)
+        self.assertEqual(report["failure"]["kind"], "activity_start_failed")
+        self.assertEqual(device.clock, 0)
+        self.assertIn(b"Activity class does not exist", files["launch-1-start.txt"])
+
+    def test_live_process_without_marker_still_times_out_at_original_deadline(self):
+        status, report, files, device = self.run_fixture("timeout", 6)
+        self.assertEqual(status, 1)
+        self.assertEqual(report["failure"]["kind"], "marker_timeout")
+        self.assertEqual(device.clock, 6)
+        self.assertEqual(report["launches"][0]["marker_deadline_seconds"], 6)
+        self.assertTrue(report["launches"][0]["process_observed"])
+
+    def test_pidof_absence_during_grace_is_not_a_transport_error(self):
+        status, report, files, device = self.run_fixture("not_started", 45)
+        self.assertEqual(status, 1)
+        self.assertEqual(report["failure"]["kind"], "process_not_started")
+        self.assertEqual(device.clock, 30)
+        self.assertFalse(report["launches"][0]["process_observed"])
+
+    def test_runtime_error_precedes_marker_success(self):
+        status, report, files, device = self.run_fixture("error_and_marker")
+        self.assertEqual(status, 1)
+        self.assertEqual(report["failure"]["kind"], "godot_runtime_error")
+        self.assertEqual(device.launch, 1)
+
+    def test_unrequested_process_restart_does_not_pass_from_old_marker(self):
+        status, report, files, device = self.run_fixture("pid_changed")
+        self.assertEqual(status, 1)
+        self.assertEqual(report["failure"]["kind"], "unexpected_process_restart")
+        self.assertIn("[41] -> [42]", report["failure"]["message"])
+
+    def test_missing_device_preserves_original_failure_and_other_diagnostics(self):
+        status, report, files, device = self.run_fixture("missing_device")
+        self.assertEqual(status, 1)
+        self.assertEqual(report["failure"]["kind"], "adb_command_failed")
+        self.assertIn("install", report["failure"]["message"])
+        self.assertIn("no devices/emulators found", report["failure"]["message"])
+        self.assertEqual(len(report["diagnostic_errors"]), 5)
+        for name in ("failure-logcat-all.log", "failure-exit-info.txt", "failure-activity.txt", "failure-meminfo.txt"):
+            self.assertIn(b"Diagnostic unavailable", files[name])
+
+    def test_evidence_write_errors_do_not_replace_original_process_failure(self):
+        status, report, files, device = self.run_fixture("evidence_write_error", 900)
+        self.assertEqual(status, 1)
+        self.assertIn("ANDROID BETA RUNTIME FAILED: QA process disappeared", device.console)
+        self.assertIn("ANDROID_RUNTIME_DIAGNOSTIC_UNAVAILABLE: No space left", device.console)
+        self.assertLess(device.console.index("QA process disappeared"), device.console.index("No space left"))
+        self.assertEqual(device.launch, 1)
 
 
 if __name__ == "__main__": unittest.main()

@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "source_commit": "c788464aa95ae91c29ffcf13e60deba319889335",
+  "source_video": "ordinary-arcanist-complete.mp4",
+  "video_sha256": "c5b054415c95ef001aef7d74f8ce3fc5b83395ffde39ab7a0a8b2a73bfc76412",
+  "image": "decoded-result-frame-02495.png",
+  "zero_based_frame": 2495,
+  "playback_seconds": 83.16666666666667,
+  "image_sha256": "566356d0426653b1a94dd6e224784b7898ed108802e8aab1f56de2b6b88bdada",
+  "scope": "Unmodified decoded frame from the H.264 video, not an original native PNG; shows the actual loot result after the recorded 66-frame UI timer."
+}
