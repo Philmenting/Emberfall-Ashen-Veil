@@ -1,0 +1,91 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "OpenGL Compatibility; Mesa25.0.7 llvmpipe LLVM19.1.7; software desktop",
+  "checks": 398,
+  "failures": 0,
+  "actual_contact_poses": 50,
+  "maximum_actual_finger_gap_m": 0.00264442898333,
+  "maximum_actual_handle_penetration_m": 0.00082332082093,
+  "classes": {
+    "Ranger": {
+      "actual_arrow_rest_height_m": 0.0607721385955811,
+      "actual_source_surfaces": 12,
+      "actually_visible_guard_triangles": 32884,
+      "armor_surfaces": 0,
+      "maximum_rendered_triangles": 33294,
+      "measured_handle_maximum_radius_m": 0.018349677324295,
+      "native_bones": 65,
+      "source_triangles": 32222
+    },
+    "Vowkeeper": {
+      "actual_source_surfaces": 10,
+      "actually_visible_guard_triangles": 31440,
+      "armor_surfaces": 3,
+      "maximum_rendered_triangles": 31440,
+      "measured_handle_maximum_radius_m": 0.017843522131443,
+      "native_bones": 65,
+      "source_triangles": 33370
+    }
+  },
+  "native_source": {
+    "source_skin_hierarchy_bone_names_rests_uv_geometry_unchanged": true,
+    "native65_no_legacy29_remap": true,
+    "original_provider": "Quaternius CC0 Standard",
+    "bow_motion": "new anatomical two-arm IK phrase, not authored provider bow clip",
+    "sword_motion": "actual original rest-retargeted SwordRegularA/B/C",
+    "physical_device": false,
+    "bow_phrase_support_pose": "native Idle_Loop at 0 seconds through the complete draw/recovery phrase; ordinary idle/walk remain animated"
+  },
+  "studio": {
+    "native_original_images_rendered": 14,
+    "selected_original_images_retained": 7,
+    "capture_audio": false,
+    "ordinary_gameplay": false,
+    "eye_blendshape_animation": false
+  },
+  "source_file_sha256": {
+    "scripts/class_avatar_rig.gd": "2a19ade9e2f8edf88cd81775ca92329098511c558ce96a8e9e52bb57c2f3f104",
+    "scripts/class_avatar_pose.gd": "55c67da5f08f91f3e8861fb6a58b6f19b31e0950657fe391ff274300be26350d",
+    "scripts/class_avatar_style.gd": "aef464e19ac01dab4d309e467c941df820ce7d47e07a1115a37f23de4936a166",
+    "tests/class_avatar_quality_smoke.gd": "a455f226dace8dad6ef563b977c115a5b8947110dbb09a63da3f2a7bffe33c03",
+    "tests/class_avatar_quality_preview.gd": "349dfe6c73c032c8fada837f2fc5d3b980f48a399127ee08ece87bd3ae26474d",
+    "tools/art/build_class_avatars055.py": "fab893c70dd3a92134dfbb5332af0423c538333a4c6123c2c0d6b94e3dc4bbb0",
+    "assets/models/classes055/ranger-native65.glb": "606ec05719144a9bdcfed9283b14117248b00bba65ba1c940d63b555e055363c"
+  },
+  "selected_image_sha256": {
+    "vowkeeper-guard.png": "bec873b0ead2cf8b877ed5f4131a10c80f3c9f558b78a731ba2bd553adc1d4ec",
+    "vowkeeper-basic-release.png": "3de77fd432d36f50dccbc0feca9bba64826aef775edeff674c8c16f68a417f90",
+    "vowkeeper-heavy-release.png": "3692c365ed5496c9f898bb71f08d43974c0b35b55a0fe03ce971c0177aaabc2a",
+    "vowkeeper-grip-closeup.png": "7bfec5608d5e9cd2fb23b782e787a22abbd67b36063c50b9a371d884c4652191",
+    "ranger-guard.png": "68c6b321202b3a3a7939722e52ff4a3adfab1fbc654b4e3e33706943dc85f8a3",
+    "ranger-basic-release.png": "7510a74363de2aa53bde01f189183c0ac1bff31aaa4c89b2400bef36047a5b9a",
+    "ranger-grip-closeup.png": "5adb026baa8ee0d48e06d62cd2c066502bd6e21f9d6601c2550f28fb53d445bd"
+  },
+  "production_release": {
+    "basic": {
+      "actual_arrow_tip_contact_jump_m": 2.92001942625575e-07,
+      "hidden_arrow_tip_projectile_origin_error_m": 1.19209289550781e-07,
+      "hidden_arrow_tip_socket_error_m": 1.19209289550781e-07,
+      "maximum_bone_position_jump_m": 0.0,
+      "maximum_bone_rotation_jump_rad": 0.0,
+      "maximum_bone_scale_jump": 0.0,
+      "native_bones": 65
+    },
+    "signature": {
+      "actual_arrow_tip_contact_jump_m": 1.68587391158326e-07,
+      "hidden_arrow_tip_projectile_origin_error_m": 2.38418579101562e-07,
+      "hidden_arrow_tip_socket_error_m": 2.38418579101562e-07,
+      "maximum_bone_position_jump_m": 0.0,
+      "maximum_bone_rotation_jump_rad": 0.0,
+      "maximum_bone_scale_jump": 0.0,
+      "native_bones": 65
+    }
+  },
+  "execution": {
+    "class_smoke_actual_exit": 0,
+    "studio_actual_exit": 0,
+    "owned_runtime_and_test_inputs_unchanged": true,
+    "tested_version": "4.7.2.stable.official.ed1daf0bf",
+    "source_freeze_file": "release-fix-input-freeze.json"
+  }
+}

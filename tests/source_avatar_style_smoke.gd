@@ -149,7 +149,9 @@ func run() -> void:
 	audit_pose(actor,"idle",.40)
 	check(rig.skeleton.get_bone_count()==65,"Live poses never alter native rest hierarchy or add guessed bones")
 	actor.configure_equipment({},"Ranger")
-	check(not actor.source_avatar,"Switching class releases the source attire with its owning rig")
+	var old_attire_released=true
+	for accessory in style.accessories:old_attire_released=old_attire_released and not is_instance_valid(accessory)
+	check(actor.source_avatar and actor.motion_rig!=rig and actor.motion_rig.style!=style and old_attire_released,"Switching native class releases the Arcanist attire with its owning rig")
 	actor.configure_equipment({},"Arcanist")
 	check(actor.source_avatar and actor.motion_rig.style.accessories.size()==11,"Switching back rebuilds the actual styled source avatar")
 	print("SOURCE AVATAR STYLE POSES: ",poses,"; remaining death garment floor offset: ",maximum_floor_shift)

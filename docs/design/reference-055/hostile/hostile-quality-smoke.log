@@ -1,0 +1,11 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+HOSTILE_METRIC raider length=0.00000005960464 bone=ClavicleL join=0.00000040672253 max_emission=0.51999998092651
+HOSTILE_METRIC hexer length=0.00000005960464 bone=ClavicleL join=0.00000022302017 max_emission=0.60000002384186
+HOSTILE_METRIC bulwark length=0.00000005960464 bone=ClavicleL join=0.0000002731428 max_emission=0.60000002384186
+HOSTILE_METRIC elite length=0.00000005960464 bone=ClavicleL join=0.00000041829551 max_emission=0.60000002384186
+HOSTILE_METRIC guardian_0 length=0.00000005960464 bone=ClavicleL join=0.00000020861626 max_emission=0.60000002384186
+HOSTILE_METRIC guardian_1 length=0.00000005960464 bone=ClavicleL join=0.00000022302017 max_emission=0.51999998092651
+HOSTILE_METRIC guardian_2 length=0.00000005960464 bone=ClavicleL join=0.00000022302017 max_emission=0.51999998092651
+HOSTILE_METRIC guardian_3 length=0.00000005960464 bone=ClavicleL join=0.00000065293619 max_emission=0.60000002384186
+HOSTILE QUALITY SMOKE: 81 checks, 0 failures

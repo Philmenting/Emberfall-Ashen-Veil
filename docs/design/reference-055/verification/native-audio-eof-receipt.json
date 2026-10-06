@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "engine_version": "4.7.2.stable.official.ed1daf0bf",
+  "command": [
+    "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+    "--headless",
+    "--audio-driver",
+    "Dummy",
+    "--path",
+    "/workspace/Emberfall-Ashen-Veil",
+    "--script",
+    "res://tests/native_capture_audio_smoke.gd"
+  ],
+  "observed_process_exit_code": 0,
+  "checks": 79,
+  "failures": 0,
+  "engine_errors": false,
+  "log": "/workspace/scratch/emberfall-quality-055/audio-capture/native-capture-audio-eof-smoke.log",
+  "log_sha256": "3a6e6ee4b47437b85aa04c25f42b4e4e7ea7e0411142296e7c170b90de3c7c30",
+  "inputs_sha256": {
+    "scripts/audio_director.gd": "3c1519b5a1b8c2c222cb94804f70da20ef6f9d9a17a1aea7856ba883b1f73c5a",
+    "tests/native_capture_audio.gd": "f0649e8143a1445e90cbe2c8f13d8626becaf72d408e1a146b1fc93b44faa7d5",
+    "tests/native_capture_audio_smoke.gd": "e8e0e604fcce85798d7dd1891bdc6837dcd4c3067f98719dee05e20e9aa8eecb"
+  },
+  "scope": "Actual native WAV mix_audio EOF/loop/prefetch tests under Dummy output; no renderer or hardware loopback. Valid decoded stereo EOF data remains intact, each missing suffix is zero-filled in that voice only, and the complete sample timeline remains unchanged."
+}

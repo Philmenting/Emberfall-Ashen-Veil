@@ -53,7 +53,7 @@ func run() -> void:
 	actor.release_attack()
 	check(actor.release_time>=0.0,"Simulation confirmation starts recovery")
 	actor.configure_equipment({},"Vowkeeper")
-	check(not actor.source_avatar and actor.model.visible,"Switching to legacy class restores its renderer")
+	check(actor.source_avatar and not actor.model.visible and actor.motion_rig.key=="Vowkeeper","Switching class builds its independent complete native renderer")
 	actor.configure_equipment({},"Arcanist")
 	check(actor.source_avatar and not actor.model.visible,"Switching back rebuilds authored rig")
 	print("SOURCE AVATAR: ",checks," checks, ",failures.size()," failures")

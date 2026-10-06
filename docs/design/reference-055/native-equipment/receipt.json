@@ -1,0 +1,34 @@
+{
+  "suite": "native_equipment_finish_smoke",
+  "godot": "4.7.2.stable.official.ed1daf0bf",
+  "execution": "headless native runtime, three real hero classes plus live HeroArt portraits",
+  "checks": 129,
+  "failures": 0,
+  "process_exit_code": 0,
+  "actual_pass_lines": 129,
+  "source_hashes_at_collection": {
+    "scripts/native_equipment_finish.gd": "8d760c59b8257b5c14b43ea4cf883a8baf5320b36e03cb62998a2b66bfd95704",
+    "tests/native_equipment_finish_smoke.gd": "b339d578d1c5442c13db2d652102a9c0d0fcff5856557f398c7255fbd0d65728"
+  },
+  "log": {
+    "path": "smoke.log",
+    "bytes": 12000,
+    "sha256": "303d670418b9ffa7d301bccb8e8d6f1f5889fed309b69c87309ef38e5329305a"
+  },
+  "claims": {
+    "common_restore_exact": true,
+    "unequip_restore_exact": true,
+    "three_classes_six_slots": true,
+    "repeat_no_drift": true,
+    "slot_groups_disjoint": true,
+    "peer_and_live_portrait_isolation": true,
+    "face_exposed_hands_hair_eyes_preserved": true,
+    "original_skin_geometry_texture_resources_preserved": true,
+    "no_added_geometry_lights_or_render_passes": true
+  },
+  "limitations": [
+    "No helmet mesh is added to the unhooded Vowkeeper; Helmet echoes rank on existing shoulder protection.",
+    "No glove mesh is added to Arcanist; Gloves echoes rank on existing shoulder bronze, keeping exposed-hand texels untouched.",
+    "Headless material inspections do not establish a perceptual screenshot comparison or physical-device performance."
+  ]
+}

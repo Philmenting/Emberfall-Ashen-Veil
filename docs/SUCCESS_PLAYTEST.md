@@ -26,15 +26,13 @@ Das isolierte ARM64-Messpaket findet sich nach erfolgreichem Android-Runtime-Bui
 Mit verbundenem Android-Gerät und eingerichteter ADB-Autorisierung:
 
 ```bash
-adb install --no-incremental -r emberfall-pixel-probe.apk
-adb shell am start -n com.philmenting.emberfallashenveil.betaqa/com.godot.game.GodotAppLauncher
-# Auf ANDROID_DEVICE_PROBE_PASS im Godot-Log warten:
-adb logcat -s godot
-# Danach den lokalen Messbericht aus dem separaten QA-Paket kopieren:
-adb exec-out run-as com.philmenting.emberfallashenveil.betaqa cat files/device-performance.json > pixel-performance.json
+python3 scripts/android_device_probe.py --discover-only --output build/device-055/discovery
+python3 scripts/android_device_probe.py --apk emberfall-pixel-probe.apk \
+  --source-commit <exakter-export-commit> --aapt /path/to/aapt2 \
+  --serial <bereits-autorisiertes-gerät> --output build/device-055/profile
 ```
 
-Der Bericht enthält Gerätemodell, Renderer, logische und gerenderte Auflösung, Median/P95 der Frame-Zeit sowie Zeichenaufrufe. Pro Klasse und Grafikmodus werden nach 60 Aufwärmframes 90 Frames im echten Kampf erfasst. `live_combat` muss für alle sechs Zeilen wahr sein. Höhere Frame-Zeiten bedeuten niedrigere FPS; 16,7 ms entsprechen ungefähr 60 FPS, 33,3 ms ungefähr 30 FPS. Ein kurzer Test belegt weder anhaltende Leistung noch Akkulaufzeit.
+Ab Stand 055 läuft jede Klasse in Balanced/Battery 200 reale Sekunden mit gewöhnlichem Start-Equipment; abgeschlossene Etage-1-Läufe starten unverändert neu. Der Beobachter verweigert Emulatoren, prüft das isolierte ARM64-Offline-Paket und erfasst Frame-Verteilung, CPU-/verfügbare GPU-Zeit, Prozessspeicher, Thermaldaten und Akku-Zustand. Quelle/APK und System-Rohbelege stehen im Bericht. `measured_touch_pending` bedeutet abgeschlossene Profilierung, keine Freigabe. Fehlende Hardware heißt `unavailable` / Exit 3. Details, Messgrenzen und Touch-Schritte stehen im [Geräteplan 055](device-quality-055.md).
 
 Für Wärme und Verbrauch anschließend mit dem **regulären Solo-Testbuild** 20 Minuten spielen. Helligkeit, Bildwiederholrate, Ladezustand, Grafikmodus und Umgebungstemperatur protokollieren; ohne Ladekabel messen. Akkustand und Android-Batterietemperatur vor und nach dem Versuch erfassen, subjektive Handwärme separat notieren. Battery und Balanced in vergleichbaren, getrennten Sitzungen mit abgekühltem Gerät untersuchen. Keine Akku- oder Leistungsverbesserung behaupten, bevor diese Messungen vorliegen.
 

@@ -25,3 +25,5 @@ Thumbs.db
 # Keep the embedded source and importer settings, not duplicate PNG exports.
 assets/models/nyra052/arcanist_T_*.png
 assets/models/nyra052/arcanist_T_*.png.import
+assets/models/classes055/ranger-native65_T_*.png
+assets/models/classes055/ranger-native65_T_*.png.import

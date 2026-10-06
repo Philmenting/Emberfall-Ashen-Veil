@@ -121,6 +121,20 @@ func run() -> void:
 		check(maximum_step < .065, action + ": visible casting hand follows a continuous windup; largest normalized-frame step " + str(maximum_step))
 		print("ATTACK PATH ", action, ": largest step frame ", maximum_step_frame, " from ", path[maxi(0, maximum_step_frame - 1)], " to ", path[maximum_step_frame], "; load ", path[24], "; release ", path[60])
 		check(path[0].distance_to(path[-1]) > .35, action + ": actual rendered left hand performs a substantial cast")
+		# A passing hand/chest key must not behave as a tiny stop. Measure
+		# the actual weighted glove, including its imported source torso, on
+		# both sides of the late passing key rather than checking curve code.
+		var passing: float = {"basic": .66, "skill": .82, "heavy": .70}[action]
+		var passing_hand: Array[Vector3] = []
+		for offset in [-.012, -.004, .004, .012]:
+			pose_actor(actor, windup, passing + float(offset))
+			passing_hand.append(rendered_hand(rig))
+		var near_speed: float = passing_hand[1].distance_to(passing_hand[2]) / .008
+		var approach_speed: float = passing_hand[0].distance_to(passing_hand[1]) / .008
+		var depart_speed: float = passing_hand[2].distance_to(passing_hand[3]) / .008
+		print("ATTACK PASSING ", action, ": approach ", approach_speed, ", key ", near_speed, ", depart ", depart_speed)
+		check(near_speed > .12 and near_speed > minf(approach_speed, depart_speed) * .65, action + ": the actual glove carries velocity through the late passing key")
+		pose_actor(actor, windup, 1.0)
 		var release_hand: Vector3 = rendered_hand(rig)
 		var release_pose: Array[Transform3D] = rig.capture_pose()
 		pose_actor(actor, recovery, 0.0)
@@ -129,6 +143,13 @@ func run() -> void:
 		for bone in 65:
 			release_continuous = release_continuous and release_pose[bone].is_equal_approx(rig.skeleton.get_bone_pose(bone))
 		check(release_continuous, action + ": release is continuous across all native bones")
+		var near_release: Vector3 = release_hand
+		pose_actor(actor, windup, .97)
+		var approach: Vector3 = release_hand - rendered_hand(rig)
+		pose_actor(actor, recovery, .045)
+		var follow: Vector3 = rendered_hand(rig) - near_release
+		check(follow.length() > .006 and follow.dot(approach) > 0.0, action + ": the actual glove continues through discharge before folding back")
+		pose_actor(actor, recovery, 0.0)
 		var previous: Vector3 = rendered_hand(rig)
 		var recovery_step := 0.0
 		for frame in range(1, 61):
@@ -248,6 +269,14 @@ func run() -> void:
 	for bone in 65:
 		hurt_stable = hurt_stable and hurt_pose[bone].is_equal_approx(actor.motion_rig.skeleton.get_bone_pose(bone))
 	check(hurt_stable, "A held actual impact frame never accumulates native recoil")
+	var impact_turn: Quaternion = (actor.motion_rig.skeleton.get_bone_global_pose(chest).basis * control.motion_rig.skeleton.get_bone_global_pose(chest).basis.inverse()).get_rotation_quaternion()
+	var initial_turn: Vector3 = impact_turn.get_axis() * impact_turn.get_angle()
+	var rebound_step: float = actor.recoil_duration * .72 - actor.impact_time
+	actor.animate(rebound_step, false)
+	control.animate(rebound_step, false)
+	var return_turn: Quaternion = (actor.motion_rig.skeleton.get_bone_global_pose(chest).basis * control.motion_rig.skeleton.get_bone_global_pose(chest).basis.inverse()).get_rotation_quaternion()
+	var rebound_turn: Vector3 = return_turn.get_axis() * return_turn.get_angle()
+	check(rebound_turn.length() > .005 and rebound_turn.length() < initial_turn.length() * .25 and rebound_turn.dot(initial_turn) < 0.0, "A real hurt response returns through a small opposing native chest rebound")
 	var settle: float = actor.recoil_duration
 	actor.animate(settle, false)
 	control.animate(settle, false)
@@ -278,5 +307,42 @@ func run() -> void:
 	check(cast_delta > .005 and cast_delta < chest_delta * .45 and actor.release_time < 0.0, "A committed source cast attenuates real hurt recoil without releasing simulation damage")
 	actor.free()
 	control.free()
+	# Cancel the actual ordinary actor while loading and while almost ready.
+	# The first retreat frame preserves the visible glove; once its regular
+	# transition ends, no cancelled attack survives into locomotion or repeat.
+	for style in ["basic", "signature", "starfall"]:
+		for remaining in [.38, .08]:
+			actor = Actor.new()
+			actor.kind = "Arcanist"
+			root.add_child(actor)
+			control = Actor.new()
+			control.kind = "Arcanist"
+			root.add_child(control)
+			actor.strike(style, .42, true)
+			actor.sync_attack(float(remaining))
+			actor.animate(0.0, false)
+			var before_cancel: Vector3 = rendered_hand(actor.motion_rig)
+			actor.retreat()
+			actor.animate(0.0, true, 2.0)
+			control.animate(0.0, true, 2.0)
+			check(actor.attack_time < 0.0 and actor.release_time < 0.0 and not actor.attack_queued and not actor.external_release, style + ": real retreat cancels the unreleased cast without a damage confirmation")
+			check(rendered_hand(actor.motion_rig).distance_to(before_cancel) < .002, style + ": cancellation enters locomotion from the current visible glove without a pose snap")
+			for frame in 20:
+				actor.animate(1.0 / 60.0, true, 2.0)
+				control.animate(1.0 / 60.0, true, 2.0)
+			var clean_walk := true
+			for bone in 65:
+				clean_walk = clean_walk and actor.motion_rig.skeleton.get_bone_pose(bone).is_equal_approx(control.motion_rig.skeleton.get_bone_pose(bone))
+			check(clean_walk, style + ": the cancelled phrase leaves no native-bone residue after the ordinary walking transition")
+			for target in [actor, control]:
+				target.strike("signature", .42, true)
+				target.sync_attack(.14)
+				target.animate(0.0, false)
+			var clean_repeat := true
+			for bone in 65:
+				clean_repeat = clean_repeat and actor.motion_rig.skeleton.get_bone_pose(bone).is_equal_approx(control.motion_rig.skeleton.get_bone_pose(bone))
+			check(clean_repeat, style + ": an immediate subsequent committed signature starts from the same clean source pose")
+			actor.free()
+			control.free()
 	print("SOURCE AVATAR ATTACK: ", checks, " checks, ", failures.size(), " failures")
 	quit(0 if failures.is_empty() else 1)

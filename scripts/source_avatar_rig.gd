@@ -179,14 +179,9 @@ func _restore_source_pose(poses: Dictionary) -> void:
 func pose(clip: String,time: float) -> void:
 	if clip=="idle":_sample("Idle_Loop",fposmod(time,player.get_animation("Idle_Loop").length))
 	elif clip=="walk":_sample("Walk_Loop",fposmod(time,1.0)*player.get_animation("Walk_Loop").length)
-	elif clip.begins_with("windup"):
-		var phase=clampf(time,0,1)
-		if phase<.55:_sample("Spell_Simple_Enter",phase/.55*.5333333)
-		else:_sample("Spell_Simple_Shoot",(phase-.55)/.45*.24)
-	elif clip.begins_with("recover"):
-		var phase=clampf(time/RECOVERY,0,1)
-		if phase<.55:_sample("Spell_Simple_Shoot",.24+phase/.55*.26)
-		else:_sample("Spell_Simple_Exit",(phase-.55)/.45*.4333333)
+	elif clip.begins_with("windup") or clip.begins_with("recover"):
+		var sample := Combat.source_sample(clip,time)
+		_sample(sample.action,sample.time)
 	elif clip=="death":_sample("Death01",clampf(time/.90,0,1)*player.get_animation("Death01").length)
 	else:_sample("Spell_Simple_Idle_Loop",0.0)
 	Combat.apply(self,clip,time)
@@ -261,18 +256,12 @@ func apply_actor_postprocess(actor: Variant,clip: String,time: float,_delta: flo
 			# A committed cast keeps priority; pelvis, soles, actor position and
 			# camera remain untouched. Staff IK runs after this upper-body pose.
 			var influence=.22 if (actor.attack_time>=0.0 and actor.release_time<0.0) or actor.telegraph_left>0.0 else (.45 if actor.attack_time>=0.0 else 1.0)
-			_apply_source_recoil(actor.hit_strength*influence,actor.recoil_direction)
+			Combat.apply_recoil(self,actor,influence)
 		_support_staff_arm()
 		_update_weapon()
 	actor.motion_offset=motion_node.position
 	refresh_bounds()
 
-func _apply_source_recoil(amount: float,direction: float) -> void:
-	var names=["spine_01","spine_03","Head"]
-	var angles=[Vector3(.035,.015*direction,.025*direction),Vector3(.075,.030*direction,.055*direction),Vector3(-.035,-.010*direction,-.030*direction)]
-	for i in names.size():
-		var bone=skeleton.find_bone(names[i])
-		_global_rotation(bone,Basis.from_euler(angles[i]*amount)*skeleton.get_bone_global_pose(bone).basis)
 func refresh_bounds() -> void:
 	var first=true
 	for bone in skeleton.get_bone_count():

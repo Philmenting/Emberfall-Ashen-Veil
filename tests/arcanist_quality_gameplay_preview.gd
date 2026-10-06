@@ -5,6 +5,7 @@ extends "res://tests/attack_gameplay_preview.gd"
 const CAPTURE_STEP := 1.0 / 30.0
 const SETTLE_FRAMES := 90
 const STREAM_TIMEOUT_USEC := 120000000
+const NativeAudio = preload("res://tests/native_capture_audio.gd")
 var stream := StreamPeerTCP.new()
 var stream_port := 0
 var max_simulation_seconds := 240.0
@@ -18,15 +19,35 @@ var holding_result_ui := false
 var result_frames := 0
 var manual_rendering := false
 var previous_render_loop_enabled := true
+var capture_portraits: Array = []
+var native_audio: RefCounted
+var audio_file: FileAccess
 
 func _exit_tree() -> void:
 	_restore_render_loop()
+	if audio_file != null: audio_file.close()
+	if native_audio != null: native_audio.detach()
 
 func _build_ui() -> void:
 	# Main's 2.2-second result timer advances during slow PNG transport. Hold
 	# its original UI builder for the equivalent 66 recorded simulation frames.
 	if holding_result_ui and result_frames < 66: return
 	super._build_ui()
+	_capture_portrait_nodes()
+
+func _capture_portrait_nodes() -> void:
+	capture_portraits.clear()
+	for node in find_children("*","Control",true,false):
+		if node.get_script()==HeroArt:
+			node.set_process(false)
+			capture_portraits.append(node)
+
+func _step_portraits() -> void:
+	# Software rendering can take seconds per output frame. The portrait's
+	# original 24 Hz update rule must follow playback time, like the world,
+	# instead of turning its ordinary breathing into an accelerated flicker.
+	for portrait in capture_portraits:
+		if is_instance_valid(portrait):portrait._process(CAPTURE_STEP)
 
 func _finish_run_presentation() -> void:
 	holding_result_ui = true
@@ -71,8 +92,15 @@ func _record() -> void:
 	_start_run(1)
 	_manual()
 	await _settle_renderer()
+	_capture_portrait_nodes()
 	if not run_arena.world.hero.source_avatar:
 		_capture_error("The ordinary Arcanist did not load the native source avatar.")
+		return
+	native_audio = NativeAudio.new()
+	native_audio.attach(audio)
+	audio_file = FileAccess.open(capture_dir + "/native-game-audio.f32le", FileAccess.WRITE)
+	if audio_file == null:
+		_capture_error("Could not create the native accepted-cue PCM stream.")
 		return
 	previous_render_loop_enabled = RenderingServer.is_render_loop_enabled()
 	RenderingServer.set_render_loop_enabled(false)
@@ -94,6 +122,7 @@ func _record() -> void:
 		"selected_skill_loadout": _json_value(Skills.normalize(character_class, skill_loadouts.get(character_class))),
 		"loadout_scope": "Player-selectable Chain and Starfall equipped through the ordinary Armory action; unchanged starting gear and combat formulas.",
 		"platform": OS.get_name(),
+		"engine_version": Engine.get_version_info(),
 		"device": OS.get_model_name(),
 		"renderer": RenderingServer.get_current_rendering_method(),
 		"video_adapter": RenderingServer.get_video_adapter_name(),
@@ -107,8 +136,12 @@ func _record() -> void:
 		"projection_scope": "Camera subviewport coordinates; current conservative actor pose bounds, including source joint influence envelopes and actual staff geometry. Rectangle overlap is a visibility proxy, not a rendered-pixel occlusion measurement.",
 		"wall_time_scope": "Capture intervals include viewport readback, PNG encoding and encoder acknowledgements. They are not normal gameplay frame-rate measurements.",
 		"render_driver_scope": "Capture fixture disables automatic rendering after normal scene warmup. Two SceneTree ticks flush deferred scene changes; force_sync and force_draw render exactly one original viewport per recorded simulation step. TCP polling can yield without redundant GPU draws. Production quality, camera and runtime assets are unchanged.",
-		"audio_scope": "Viewport-only capture; no captured combat audio.",
+		"audio_scope": native_audio.summary().scope,
+		"audio_sample_rate": native_audio.sample_rate,
+		"audio_channels": 2,
+		"audio_clock_scope": native_audio.summary().cue_clock_scope,
 		"result_ui_timer_scope": "The original Main result UI builder is held until 66 recorded ending frames, preserving its normal 2.2-second delay in fixed-step playback despite slow capture transport.",
+		"portrait_clock_scope": "Original HeroArt animation advances on fixed 30 Hz playback, retaining its original 1/24-second update threshold (updates every two recorded frames). Slow software viewport export does not advance portrait motion between recorded frames.",
 		"physical_device_performance": false
 	}
 	if not _write_json("capture-metadata.json", metadata): return
@@ -136,6 +169,7 @@ func _record() -> void:
 				_build_ui()
 		else:
 			break
+		_step_portraits()
 		# Flush deferred scene/transform updates without rendering a second
 		# costly software frame while the TCP receiver acknowledges the PNG.
 		await get_tree().process_frame
@@ -144,6 +178,16 @@ func _record() -> void:
 		RenderingServer.force_draw(false, CAPTURE_STEP)
 		var now := Time.get_ticks_usec()
 		var record := _frame_record(now, advanced)
+		var first_sample: int = native_audio.sample_frames
+		var expected_end := floori(float(frame_index + 1) * native_audio.sample_rate / 30.0)
+		var pcm: PackedByteArray = native_audio.mix(expected_end - first_sample)
+		audio_file.store_buffer(pcm)
+		if not native_audio.finite or native_audio.peak > 1.0:
+			_capture_error("Native game PCM is nonfinite or exceeds full-scale mix headroom.")
+			return
+		record["audio"] = {"first_sample_frame": first_sample, "end_sample_frame": native_audio.sample_frames,
+			"sample_rate": native_audio.sample_rate, "channels": 2,
+			"accepted_state_events": native_audio.take_frame_events()}
 		records.store_line(JSON.stringify(record))
 		records.flush()
 		previous_frame_usec = now
@@ -156,6 +200,7 @@ func _record() -> void:
 		if expedition.finished and settle >= SETTLE_FRAMES:
 			break
 	records.close()
+	audio_file.close()
 	var summary: Dictionary = {
 		"schema": 1,
 		"frames": frame_index,
@@ -167,6 +212,8 @@ func _record() -> void:
 		"guardian_warning_seen": guardian_warning_seen,
 		"settle_frames_recorded": settle,
 		"complete": expedition.finished and settle >= SETTLE_FRAMES,
+		"audio": native_audio.summary(),
+		"native_pcm_sha256": FileAccess.get_sha256(capture_dir + "/native-game-audio.f32le"),
 		"scope": "Recording completeness and actual combat outcome; no visual or release approval."
 	}
 	if not _write_json("capture-summary.json", summary): return

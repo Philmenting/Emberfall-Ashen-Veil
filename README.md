@@ -6,16 +6,19 @@ Ein Android-Idle-Action-RPG im Querformat: Nyra ausrüsten, ihre Klasse und Schw
 
 Der aktuelle Quellstand liegt auf [`improve/animation-craft`](https://github.com/Philmenting/Emberfall-Ashen-Veil/tree/improve/animation-craft) und wird in [PR #5](https://github.com/Philmenting/Emberfall-Ashen-Veil/pull/5) gesammelt.
 
-- Arcanist verwendet einen originalen, erwachsenen Quaternius-Charakter mit vollständigem 65-Knochen-Skelett, animierten Fingern, Künstler-Kleidung und übernommenen Animationen. Die übrigen Klassen und Gegner behalten ihre bisherigen Modelle.
+- Alle drei Spielerklassen verwenden kompatible erwachsene Quaternius-Figuren mit vollständigem 65-Knochen-Skelett und nativen Händen/Fingern. Ranger trägt das originale Ranger-Outfit; Vowkeeper erhält angepasste Stahlteile auf der kompatiblen Körper-/Kleidungsquelle.
 - Der Stabgriff wurde anhand der tatsächlich animierten Handgeometrie korrigiert: angepasste Finger, passender Schaft und eine Stützarmhaltung ohne gestreckte Knochen.
-- Basiszauber, Signatur und der bestehende Starfall-Angriff haben unterschiedliche Körperbewegungen. Eine zusätzliche, an dasselbe Skelett gebundene Kleidungsschicht und abgestimmte Haut-, Haar- und Stoffmaterialien überarbeiten Nyra.
+- Arcanists Basiszauber, Signatur und Starfall erhalten weiterlaufende Bewegungskurven, Nachschwingen, Trefferreaktion und saubere Abbruchübergänge. Vowkeeper verwendet originale Sword-Regular-A/B/C-Clips; Rangers Bogenziehen und Auslösen sind eigene Bewegungen auf den unveränderten nativen Armlängen.
+- Die vorhandenen Gegner-/Wächtermodelle behalten ihre bisherigen 29-Knochen-Skelette und erhalten abgestimmte Metall-/Stoffmaterialien sowie passendere Vorbereitung, Schlag und Erholung. Der erste Wächter fängt seinen schweren Glockenschlag sichtbar ab.
+- Regionale Raumlichter und neutralere Figurenfüllung trennen Körper, Kleidung und Waffen deutlicher vom ruhigeren Boden. Warnkonturen bleiben erhalten; die Lichtüberarbeitung fügt keine zusätzlichen Lichter oder Renderpässe hinzu.
 - Die Kampfinszenierung verbessert Nyras Sichtbarkeit vor großen Gegnern, setzt Zaubereffekte an der tatsächlichen Hand und am Treffer an und unterscheidet Vorbereitung, Auslösung und Kontakt auch im Sound.
 - Regionale Ruinen, Reliquiare, Zaubereffekte und Bodenkontakt enthalten die fortgesetzten Überarbeitungen nach dem früheren 0.48-Teststand.
 - Drei Klassen, vier Regionen, autonome Kämpfe, Schwüre, Ausrüstung, Beute, wiederholte Expeditionen und Offline-Fortschritt bleiben erhalten.
+- Ein isolierter ARM64-Gerätebeobachter für normale Kämpfe, Framezeiten, Speicher und verfügbare Wärme-/Akkudaten ist vorbereitet. Der tatsächliche Verfügbarkeitstest findet keine physische adb-Verbindung; Telefonmessung und Touch-Abnahme bleiben offen.
 
-[Qualitätsüberarbeitung 054 und Prüfstand](docs/quality054.md) · [Aktuelle Figur](docs/design/reference-054/idle-front.png) · [Erhaltener Stabgriff](docs/design/reference-053/grip-idle-0.4-front.png) · [Künstlerquellen und Lizenzen](assets/models/nyra052/README.md)
+[Qualitätsüberarbeitung 055 und Prüfstand](docs/QUALITY_055.md) · [Native Klassenbilder](docs/design/reference-055/classes/README.md) · [Gegnerbilder](docs/design/reference-055/hostile/README.md) · [Erhaltener Stabgriff](docs/design/reference-053/grip-idle-0.4-front.png) · [Künstlerquellen und Lizenzen](assets/models/classes055/README.md)
 
-Die Nahaufnahmen zeigen das echte Spielmodell unter diagnostischem Licht. Die gewöhnliche Gameplay-Aufnahme verwendet die vorhandene Spielkamera und Ausrüstung. Die Quellen- und Griffprüfungen belegen konkrete technische Eigenschaften; eine allgemeine visuelle Beta-Freigabe oder Diablo-Immortal-Qualität wird damit nicht behauptet. Die gespeicherte Paketkennung bleibt `0.48.0-beta.1`, Android-Version-Code `54`; diese Integration erhöht keine Release-Version.
+Die aktuellen Klassen- und Gegnerbilder zeigen echte Spielmodelle unter diagnostischem Desktoplicht. Vollständige 45-Suiten-Regression, aktueller CI-Nachweis und zwei durchgehende Vergleichsvideos mit Ton stehen für den integrierten 055-Stand noch aus. Die Quellen- und Griffprüfungen belegen konkrete technische Eigenschaften; eine allgemeine visuelle Beta-Freigabe oder Diablo-Immortal-Qualität wird damit nicht behauptet. Die gespeicherte Paketkennung bleibt `0.48.0-beta.1`, Android-Version-Code `54`; diese Integration erhöht keine Release-Version. Die [054-Nachweise](docs/quality054.md) bleiben historische Belege für ihren damaligen Quellstand.
 
 ## Lokal starten
 
@@ -34,11 +37,12 @@ Godot erzeugt Importcache und die aus dem eingebetteten Charakter-GLB extrahiert
 
 ```sh
 python3 scripts/run_beta_checks.py
-python3 scripts/run_beta_checks.py --suite source_avatar_attack --suite source_avatar_style --suite guardian_presentation --suite combat_audio
+python3 scripts/run_beta_checks.py --suite source_avatar_attack --suite class_avatar_quality --suite hostile_quality --suite dungeon_lighting --suite native_capture_audio
 python3 -m unittest discover -s tests -p test_android_release.py -v
+python3 -m unittest discover -s tests -p test_android_device_probe.py -v
 ```
 
-Bei abweichendem Programmnamen setzt `GODOT_BIN` den Pfad zu Godot 4.7.2. Der vollständige Runner umfasst 40 Godot-Suiten mit isolierten Spielständen sowie die Syntax- und Laufzeitprüfung des Servermoduls. Die GitHub-Workflows prüfen Gameplay und Android separat. Der Android-QA-Export importiert die isolierte Projektkopie einmal und erzeugt daraus alle Prüf-APKs. Der genaue Nachweisstand steht im [Qualitätsbericht](docs/quality054.md). Google Play wird ausschließlich über den manuellen Veröffentlichungsworkflow bedient.
+Bei abweichendem Programmnamen setzt `GODOT_BIN` den Pfad zu Godot 4.7.2. Der vollständige Runner umfasst 45 Godot-Suiten mit isolierten Spielständen sowie die Syntax- und Laufzeitprüfung des Servermoduls. Die GitHub-Workflows prüfen Gameplay und Android separat. Der Android-QA-Export importiert die isolierte Projektkopie einmal und erzeugt daraus alle Prüf-APKs. Der genaue Nachweisstand steht im [Qualitätsbericht](docs/QUALITY_055.md). Google Play wird ausschließlich über den manuellen Veröffentlichungsworkflow bedient.
 
 ## Projekt und Quellen
 

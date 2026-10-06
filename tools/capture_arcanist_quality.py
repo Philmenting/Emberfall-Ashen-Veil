@@ -40,17 +40,17 @@ def runtime_hashes(root: Path) -> dict[str, str]:
     for relative, pattern in [
         ("scripts", "*.gd"),
         ("assets/shaders", "*"),
-        ("assets/models/nyra052", "*"),
-        ("assets/models/nyra054", "*"),
+        ("assets/models", "*"),
     ]:
         directory = root / relative
         if directory.is_dir():
             paths.update(path for path in directory.rglob(pattern) if path.is_file()
                          and not path.name.endswith((".import", ".uid"))
-                         and not path.name.startswith("arcanist_T_"))
+                         and not path.name.startswith(("arcanist_T_", "ranger-native65_T_")))
     paths.update(root / "tests" / name for name in [
         "attack_gameplay_preview.gd", "arcanist_quality_gameplay_preview.gd",
         "arcanist_quality_gameplay_preview.tscn",
+        "native_capture_audio.gd",
     ])
     paths.add(Path(__file__).resolve())
     return {str(path.relative_to(root)): digest(path) for path in sorted(paths)
@@ -92,6 +92,20 @@ def verify_record(record: dict, frame: int, previous_clock: float) -> float:
     if not math.isclose(float(record["playback_seconds"]), frame / 30, abs_tol=0.0001):
         raise RuntimeError("The viewport playback clock is not a continuous 30 Hz sequence")
     return clock
+
+
+def verify_audio_record(record: dict, frame: int, previous_sample: int, sample_rate: int | None) -> tuple[int, int]:
+    audio = record["audio"]
+    rate = int(audio["sample_rate"])
+    if rate <= 0 or audio["channels"] != 2 or sample_rate not in (None, rate):
+        raise RuntimeError("The native PCM rate/channels changed during capture")
+    expected_end = (frame + 1) * rate // 30
+    if audio["first_sample_frame"] != previous_sample or audio["end_sample_frame"] != expected_end:
+        raise RuntimeError("Native PCM has missing/overlapping samples or diverges from the video clock")
+    for event in audio["accepted_state_events"]:
+        if event["sample_frame"] != previous_sample:
+            raise RuntimeError("An accepted cue/state event is outside its recorded sample boundary")
+    return expected_end, rate
 
 
 def write_all(stream, payload: bytes) -> None:
@@ -168,7 +182,9 @@ def main() -> int:
     receipt = {
         "schema": 1, "status": "running", "input_sha256_before": before,
         "scope": "Original continuous native viewport export at fixed 30 Hz simulation/playback; capture wall time is not a game FPS benchmark.",
-        "physical_device_performance": False, "captured_audio": False,
+        "physical_device_performance": False, "captured_audio": True,
+        "portrait_clock_scope": "Original HeroArt updates follow the recorded playback clock rather than viewport-export wall time.",
+        "audio_scope": "Actual accepted game cues/music, decoded with native AudioStreamPlayback and fixed-step mixed into stereo PCM; not live hardware loopback. MP4 audio is AAC encoded from this PCM.",
         "pixel_changes": "None in selected native PNGs; all chronological PNGs are H.264 encoded into the MP4.",
         "maximum_simulation_seconds": args.max_simulation_seconds,
     }
@@ -180,6 +196,8 @@ def main() -> int:
     selected_frames = []
     frame_size = None
     simulation_clock = 0.0
+    audio_sample_frames = 0
+    audio_sample_rate = None
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as listener, \
                 (output / "godot.log").open("wb") as engine_log, \
@@ -216,7 +234,7 @@ def main() -> int:
                                "-framerate", "30", "-vcodec", "png", "-i", "pipe:0", "-an",
                                "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-threads", "2",
                                "-pix_fmt", "yuv420p", "-movflags", "+faststart",
-                               str(output / "ordinary-arcanist-complete.mp4")]
+                               str(output / "viewport-video-only.mp4")]
             receipt["ffmpeg_command"] = encoder_command
             encoder = subprocess.Popen(encoder_command, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL,
                                        stderr=encode_log, bufsize=0)
@@ -233,6 +251,8 @@ def main() -> int:
                     raise RuntimeError("A viewport frame has no flushed chronological metadata")
                 record = json.loads(line)
                 simulation_clock = verify_record(record, frame_count, simulation_clock)
+                audio_sample_frames, audio_sample_rate = verify_audio_record(
+                    record, frame_count, audio_sample_frames, audio_sample_rate)
                 dimensions = struct.unpack("!II", pixels[16:24])
                 if frame_size is None:
                     frame_size = dimensions
@@ -266,6 +286,24 @@ def main() -> int:
         summary = json.loads((output / "capture-summary.json").read_text())
         if summary.get("frames") != frame_count or frame_count == 0:
             raise RuntimeError("The final simulation summary does not match the encoded frame count")
+        native_pcm = output / "native-game-audio.f32le"
+        audio_summary = summary["audio"]
+        if (native_pcm.stat().st_size != audio_sample_frames * 2 * 4
+                or audio_summary["sample_frames"] != audio_sample_frames
+                or audio_summary["sample_rate"] != audio_sample_rate
+                or not audio_summary["finite"] or not 0 < audio_summary["peak"] <= 1
+                or audio_summary["accepted_cues"] <= 0
+                or digest(native_pcm) != summary["native_pcm_sha256"]):
+            raise RuntimeError("The actual native PCM evidence has invalid length, mix state or provenance")
+        with (output / "ffmpeg-mux.log").open("wb") as mux_log:
+            mux_command = [args.ffmpeg, "-hide_banner", "-loglevel", "warning",
+                           "-i", str(output / "viewport-video-only.mp4"),
+                           "-f", "f32le", "-ar", str(audio_sample_rate), "-ac", "2",
+                           "-i", str(native_pcm), "-map", "0:v:0", "-map", "1:a:0",
+                           "-c:v", "copy", "-c:a", "aac", "-b:a", "128k",
+                           "-movflags", "+faststart", str(output / "ordinary-arcanist-complete.mp4")]
+            receipt["ffmpeg_audio_mux_command"] = mux_command
+            subprocess.run(mux_command, check=True, stdout=subprocess.DEVNULL, stderr=mux_log, timeout=120)
         after = runtime_hashes(root)
         receipt["input_sha256_after"] = after
         receipt["inputs_unchanged"] = before == after
@@ -283,6 +321,18 @@ def main() -> int:
         video = json.loads(probe.stdout)["streams"][0]
         if int(video["nb_read_frames"]) != frame_count or video["r_frame_rate"] != "30/1":
             raise RuntimeError("Decoded MP4 chronology does not match the original viewport frames")
+        audio_probe = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "a:0",
+                                     "-show_entries", "stream=codec_name,sample_rate,channels,duration",
+                                     "-of", "json", str(output / "ordinary-arcanist-complete.mp4")],
+                                    check=True, capture_output=True, text=True, timeout=120)
+        encoded_audio = json.loads(audio_probe.stdout)["streams"]
+        expected_audio_seconds = audio_sample_frames / audio_sample_rate
+        if (len(encoded_audio) != 1 or encoded_audio[0]["codec_name"] != "aac"
+                or int(encoded_audio[0]["sample_rate"]) != audio_sample_rate
+                or encoded_audio[0]["channels"] != 2
+                or not math.isclose(float(encoded_audio[0]["duration"]), expected_audio_seconds, abs_tol=0.001)
+                or not math.isclose(float(video["duration"]), expected_audio_seconds, abs_tol=0.001)):
+            raise RuntimeError("Muxed audio/video streams do not match the actual native PCM duration")
         decode = subprocess.run([args.ffmpeg, "-v", "error", "-i", str(output / "ordinary-arcanist-complete.mp4"),
                                  "-f", "null", "-"], capture_output=True, text=True, timeout=120)
         if decode.returncode or decode.stderr.strip():
@@ -292,7 +342,10 @@ def main() -> int:
                        simulation_summary=summary, selected_frames=selected_frames, decoded_video=video,
                        full_decode_passed=True, mp4_sha256=digest(output / "ordinary-arcanist-complete.mp4"),
                        frame_log_sha256=digest(output / "frames.jsonl"), continuous_simulation_verified=True)
+        receipt.update(native_audio=audio_summary, native_pcm_sha256=digest(native_pcm),
+                       encoded_audio=encoded_audio[0], continuous_audio_samples_verified=True)
         write_json(output / "receipt.json", receipt)
+        (output / "viewport-video-only.mp4").unlink()
         print("CAPTURE VERIFIED", receipt["status"], frame_count, "chronological frames;", output, flush=True)
         return 0
     except (OSError, RuntimeError, ValueError, KeyError, subprocess.SubprocessError) as error:

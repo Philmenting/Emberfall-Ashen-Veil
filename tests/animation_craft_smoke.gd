@@ -11,6 +11,63 @@ func _initialize() -> void: run_checks.call_deferred()
 func check(value: bool,label: String) -> void:
 	checks+=1
 	if not value: failures+=1; push_error("FAIL: "+label)
+func actual_boot_floors(rig: RefCounted) -> Vector2:
+	var low:=Vector2(INF,INF)
+	# These probes are indexed native boot vertices with all original skin
+	# influences; no legacy ankle socket or contact-plane proxy participates.
+	for probe in rig.floor_probes:
+		var point:=Vector3.ZERO
+		for i in probe.bones.size():
+			point+=(rig.skeleton.get_bone_global_pose(probe.bones[i])*probe.binds[i]*probe.point)*probe.weights[i]
+		point=rig.motion_node.transform*point
+		low[probe.side]=minf(low[probe.side],point.y)
+	return low
+
+func check_native_sword_boot_support(hero: Node3D) -> void:
+	var rig: RefCounted=hero.motion_rig
+	var feet: Array[int]=[rig.skeleton.find_bone("foot_l"),rig.skeleton.find_bone("foot_r")]
+	check(hero.source_avatar and rig.skeleton.get_bone_count()==65 and feet[0]>=0 and feet[1]>=0,"sword support uses both named native65 boots")
+	var reference:=Actor.new();root.add_child(reference)
+	var source: RefCounted=reference.motion_rig
+	var release: float=source.player.get_animation("Sword_Regular_A").length*.62
+	var original_motion:=true
+	var clearance:=true
+	var starts:=Vector2.ZERO
+	var peak:=Vector2.ZERO
+	var path: Array[Vector3]=[]
+	for sample in range(31):
+		var phase:=float(sample)/30.0
+		hero.sync_attack(hero.attack_duration*(1.0-phase));hero.animate(0.0,false)
+		# Read the unmodified artist sample independently of the production
+		# actor's clip selector, blending, floor offset and weapon posing.
+		source._sample("Sword_Regular_A",release*phase)
+		for side in 2:
+			original_motion=original_motion and rig.skeleton.get_bone_global_pose(feet[side]).is_equal_approx(source.skeleton.get_bone_global_pose(source.skeleton.find_bone("foot_l" if side==0 else "foot_r")))
+		var floor:=actual_boot_floors(rig)
+		if sample==0:starts=floor
+		peak=Vector2(maxf(peak.x,floor.x),maxf(peak.y,floor.y))
+		clearance=clearance and floor.is_finite() and minf(floor.x,floor.y)>=.0029
+		path.append(rig._point("foot_l"));path.append(rig._point("foot_r"))
+	check(original_motion,"both actual native feet follow the original artist Sword A transforms throughout preparation")
+	# Sword A contains a two-boot hop, not the former synthetic one-boot
+	# lunge. Preserve its real weight movement and measure its visible soles.
+	check(peak.x>starts.x+.10 and peak.y>starts.y+.10 and path[0].distance_to(path[-2])>.25 and path[1].distance_to(path[-1])>.20,"the original sword hop lifts both actually weighted boots and carries both native feet through the cut")
+	var contact: Array[Transform3D]=[]
+	for foot in feet:contact.append(rig.skeleton.get_bone_global_pose(foot))
+	hero.release_attack()
+	var continuous:=true
+	for side in 2:continuous=continuous and contact[side].is_equal_approx(rig.skeleton.get_bone_global_pose(feet[side]))
+	check(continuous,"simulation release preserves both exact native boot transforms into sword recovery")
+	for sample in range(30):
+		hero.animate(.34/30.0,false)
+		var floor:=actual_boot_floors(rig)
+		clearance=clearance and floor.is_finite() and minf(floor.x,floor.y)>=.0029
+	var landed:=actual_boot_floors(rig)
+	check(clearance,"all actual weighted sword soles clear the floor throughout the complete hop and recovery")
+	check(minf(landed.x,landed.y)<=.0031 and landed.x<.02 and landed.y<.02 and peak.x-landed.x>.10 and peak.y-landed.y>.10,"the complete native sword recovery lands a real support sole at 3 mm and returns both boots to their grounded guard")
+	print("NATIVE SWORD SUPPORT: start=",starts," peak=",peak," landed=",landed," foot_l travel=",path[0].distance_to(path[-2])," foot_r travel=",path[1].distance_to(path[-1]))
+	reference.free()
+
 func run_checks() -> void:
 	var hero:=Actor.new(); root.add_child(hero); hero.animate(.15,false)
 	var before_yaw: float=hero.rotation.y
@@ -20,12 +77,7 @@ func run_checks() -> void:
 	var cast_yaw: float=hero.desired_yaw
 	hero.face_toward(Vector3(-1,0,0))
 	check(hero.desired_yaw==cast_yaw,"an in-flight cast holds its target orientation")
-	var feet: Array[Vector3]=[]
-	for bone in [14,17]: feet.append(hero.motion_rig.skeleton.get_bone_global_pose(bone).origin)
-	hero.sync_attack(.015); hero.animate(.15,false); hero.release_attack()
-	var loaded: Vector3=hero.motion_rig.skeleton.get_bone_global_pose(14).origin
-	var landed: Vector3=hero.motion_rig.skeleton.get_bone_global_pose(17).origin
-	check(feet[0].distance_to(loaded)<.012 and feet[1].y>landed.y+.015 and landed.z<-.30,"the loaded boot stays planted while the free boot clears the floor and lands into the cut")
+	check_native_sword_boot_support(hero)
 	hero.animate(.07,false); hero.strike("sunder",.10,true); hero.sync_attack(.085); hero.animate(.008,false)
 	check(hero.external_release and hero.release_time<0.0 and hero.release_attack(),"a following real cast owns its countdown even during recovery")
 	hero.animate(.5,false); hero.strike("basic",.4,true); hero.retreat(); hero.animate(.15,true,2.0)

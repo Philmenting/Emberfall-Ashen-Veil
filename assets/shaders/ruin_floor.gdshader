@@ -16,6 +16,12 @@ void fragment() {
     // joins the original diffuse tile without claiming it is a seamless scan.
     vec2 p = world_pos.xz;
     vec3 slab = texture(flagstones, mirror_uv(p * 0.185)).rgb;
+    // Occupied stone reads as a broad material plane beneath the small
+    // figures. Compress noisy highlights and cracks before weathering, using
+    // the same texture sample rather than an extra blur/post-process pass.
+    // The anchor follows this tile's measured linear mean; compression does
+    // not turn the court into a brighter, chalk-colored plane.
+    slab = mix(vec3(0.27,0.22,0.18), slab, 0.66);
     float broad = texture(mineral, p * 0.035 + vec2(0.21,0.61)).r;
     float soil = smoothstep(0.045,0.19,broad);
     float value = dot(slab,vec3(0.299,0.587,0.114));
@@ -30,7 +36,9 @@ void fragment() {
     float perimeter = smoothstep(5.5,13.0,distance_to_hall);
     ALBEDO = base * (1.0 - dampness * soil * 0.16) * (1.0-perimeter*0.82);
     ROUGHNESS = clamp(0.87 - dampness * soil * 0.38 + seam * 0.09,0.44,0.97);
-    SPECULAR = 0.30;
+    // Wet Archive patches retain their sheen; dry courts never compete with
+    // weapon glints or the full danger outline.
+    SPECULAR = mix(0.18,0.30,dampness);
     vec2 micro = texture(micro_normal,p*0.8).rg*2.0-1.0;
     vec3 n=normalize(vec3(micro.x*relief,1.0,micro.y*relief));
     NORMAL=normalize(mat3(VIEW_MATRIX)*n);

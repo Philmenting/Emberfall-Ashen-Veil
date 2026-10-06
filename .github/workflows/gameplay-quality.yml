@@ -51,12 +51,13 @@ jobs:
         shell: bash
         run: |
           mkdir -p build/reports
+          python3 -m unittest discover -s tests -p 'test_*.py' -v 2>&1 | tee build/reports/python-contracts.log
           python3 scripts/run_beta_checks.py 2>&1 | tee build/reports/gameplay-quality.log
       - name: Retain regression report
         if: always()
         uses: actions/upload-artifact@v7
         with:
           name: emberfall-gameplay-quality
-          path: build/reports/gameplay-quality.log
+          path: build/reports/*.log
           if-no-files-found: ignore
           retention-days: 14

@@ -6,6 +6,13 @@ const NAMES: Array[String]=["Root","Pelvis","Chest","Head","ClavicleL","UpperArm
 const PARENTS: Array[int]=[-1,0,1,2,2,4,5,6,2,8,9,10,1,12,13,1,15,16,2,18,11,20,20,20,22,1,1,3,3]
 const RECOVERY:=.34
 const SwordFoundation=preload("res://assets/animations/vowkeeper_sword_foundation.gd")
+const HostileStyle=preload("res://scripts/hostile_style.gd")
+
+static func hostile_action(key: String) -> String:
+	return HostileStyle.ordinary_action(key)
+
+static func recovery_duration(key: String,action: String="basic") -> float:
+	return HostileStyle.recovery_seconds(key,action) if key in HostileStyle.KEYS else RECOVERY
 
 static func create(key: String,rests: Array[Transform3D],profile: Dictionary={}) -> AnimationLibrary:
 	if not profile.is_empty():
@@ -21,7 +28,7 @@ static func create(key: String,rests: Array[Transform3D],profile: Dictionary={})
 	for name in ["idle","walk","windup_basic","windup_skill","windup_heavy","recover_basic","recover_skill","recover_heavy","death"]:
 		var animation:=Animation.new()
 		animation.resource_name=key+"/"+name
-		animation.length=4.2 if name=="idle" else (RECOVERY if name.begins_with("recover") else (.90 if name=="death" else 1.0))
+		animation.length=4.2 if name=="idle" else (recovery_duration(key,name.get_slice("_",1)) if name.begins_with("recover") else (.90 if name=="death" else 1.0))
 		animation.loop_mode=Animation.LOOP_LINEAR if name in ["idle","walk"] else Animation.LOOP_NONE
 		var tracks: Array[Vector3i]=[]
 		for bone in NAMES.size():
@@ -362,7 +369,7 @@ static func _spec(key: String,action: String="basic") -> Dictionary:
 		for state in [guard,gather,load,drive,contact,follow,return_pose]:
 			state.hip.y*=1.17
 			state.left.y+=.153; state.right.y+=.153
-	return {"guard":guard,"gather":gather,"load":load,"drive":drive,"contact":contact,"follow":follow,"return":return_pose}
+	return HostileStyle.phrase(key,action,{"guard":guard,"gather":gather,"load":load,"drive":drive,"contact":contact,"follow":follow,"return":return_pose})
 
 static func _change(state: Dictionary,changes: Dictionary) -> Dictionary:
 	var result:=state.duplicate(true)
@@ -714,6 +721,7 @@ static func _author(key: String,clip: String,u: float,rests: Array[Transform3D],
 		state.pelvis=Vector3(0,Vector3(state.chest).y*.30,0)
 		state.right+=Vector3(0,.018*sin(u*TAU),.075*sin(u*TAU))
 		state.left+=Vector3(0,-.018*sin(u*TAU),-.060*sin(u*TAU))
+		state=HostileStyle.gait(key,u,state)
 	if death:
 		state=_mix(spec.guard,_change(spec.guard,{"hip":Vector3(0,-.02,0),"pelvis":Vector3.ZERO,"chest":Vector3(-.10,0,.035),"right":Vector3(.27,1.153 if nyra else 1.00,.06),"left":Vector3(-.33,1.233 if nyra else 1.08,.08),"weapon":Vector3.ZERO,"draw":0.0,"arrow":0.0,"nock":0.0,"support":0.0}),smoothstep(0,.40,u))
 	var p: Array[Transform3D]=[]
@@ -771,6 +779,11 @@ static func _author(key: String,clip: String,u: float,rests: Array[Transform3D],
 		global_rotation(p,7,Basis.from_euler(state.palm).slerp(weapon_basis,float(state.support)),key)
 	var cloth: Vector3=state.cloth
 	var cloth_lag: Vector3=_action_state(spec,key,clip,maxf(0.0,u-.085)).cloth if acting else cloth
+	if key in HostileStyle.KEYS and clip.begins_with("recover") and u<.085:
+		# A garment still trails the end of the warning when the real strike
+		# releases. Starting recovery at its contact cloth erased that delay
+		# and snapped the cape through up to 1.8 degrees on the launch frame.
+		cloth_lag=_action_state(spec,key,"windup_"+action,1.0+u-.085).cloth
 	var cloth_compression:=clampf(-Vector3(state.hip).y-.025,0,.22)
 	for side in range(2):
 		var phase:=fposmod(u+side*.5,1.0)

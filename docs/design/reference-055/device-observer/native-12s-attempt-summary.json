@@ -1,0 +1,572 @@
+{
+  "scope": "Initial marked desktop-only 12-second fixture; no phone or FPS claim",
+  "process_exit_code": 1,
+  "reason": "30 measured-frame minimum was not reached in two slow llvmpipe Balanced cases; every case had genuine hero attacks and advancing simulation",
+  "assertions_changed": false,
+  "measurements": [
+    {
+      "case_wall_seconds": 12.160557,
+      "class": "Vowkeeper",
+      "draw_calls": {
+        "max": 351.0,
+        "mean": 324.0,
+        "median": 322.0,
+        "p95": 348.0,
+        "p99": 351.0,
+        "samples": 22
+      },
+      "frame_intervals": {
+        "frames_over_50_ms": 22,
+        "frames_over_target_plus_5_percent": 22,
+        "max": 4161.726,
+        "mean": 535.5855,
+        "median": 341.792,
+        "p95": 510.153,
+        "p99": 4161.726,
+        "samples": 22
+      },
+      "frames": 22,
+      "godot_static_memory_bytes": {
+        "max": 119683992.0,
+        "mean": 119318024.863636,
+        "median": 119364855.0,
+        "p95": 119643299.0,
+        "p99": 119683992.0,
+        "samples": 22
+      },
+      "gpu_timing_status": "measured",
+      "guardian_attacks": 0,
+      "guardian_frame_intervals": {
+        "samples": 0
+      },
+      "hero_attacks": 2,
+      "hits": 4,
+      "last_sim_elapsed": 3.0,
+      "ordinary_route_frame_intervals": {
+        "max": 4161.726,
+        "mean": 535.5855,
+        "median": 341.792,
+        "p95": 510.153,
+        "p99": 4161.726,
+        "samples": 22
+      },
+      "physics_cpu_ms": {
+        "max": 1352.668,
+        "mean": 61.5165,
+        "median": 0.031,
+        "p95": 0.047,
+        "p99": 1352.668,
+        "samples": 22
+      },
+      "process_cpu_ms": {
+        "max": 4161.402,
+        "mean": 557.258590909091,
+        "median": 391.214,
+        "p95": 509.987,
+        "p99": 4161.402,
+        "samples": 22
+      },
+      "quality": "balanced",
+      "render_configurations": {
+        "1208x540 / balanced": {
+          "frames": 22,
+          "height": 540,
+          "quality": "balanced",
+          "width": 1208
+        }
+      },
+      "render_height": 540,
+      "render_width": 1208,
+      "runs_completed": 0,
+      "runs_started": 1,
+      "simulation_seconds": 3.0,
+      "target_fps": 60,
+      "viewport_render_cpu_ms": {
+        "max": 4121.56396484375,
+        "mean": 411.307635914196,
+        "median": 290.989013671875,
+        "p95": 465.407012939453,
+        "p99": 4121.56396484375,
+        "samples": 22
+      },
+      "viewport_render_gpu_ms": {
+        "max": 4118.708984375,
+        "mean": 409.594226490368,
+        "median": 289.459991455078,
+        "p95": 464.454010009766,
+        "p99": 4118.708984375,
+        "samples": 22
+      }
+    },
+    {
+      "case_wall_seconds": 12.162535,
+      "class": "Arcanist",
+      "draw_calls": {
+        "max": 355.0,
+        "mean": 326.677419354839,
+        "median": 325.0,
+        "p95": 355.0,
+        "p99": 355.0,
+        "samples": 31
+      },
+      "frame_intervals": {
+        "frames_over_50_ms": 31,
+        "frames_over_target_plus_5_percent": 31,
+        "max": 763.246,
+        "mean": 375.188903225806,
+        "median": 359.087,
+        "p95": 452.341,
+        "p99": 763.246,
+        "samples": 31
+      },
+      "frames": 31,
+      "godot_static_memory_bytes": {
+        "max": 131127175.0,
+        "mean": 130333249.322581,
+        "median": 130052989.0,
+        "p95": 131125279.0,
+        "p99": 131127175.0,
+        "samples": 31
+      },
+      "gpu_timing_status": "measured",
+      "guardian_attacks": 0,
+      "guardian_frame_intervals": {
+        "samples": 0
+      },
+      "hero_attacks": 3,
+      "hits": 5,
+      "last_sim_elapsed": 4.2,
+      "ordinary_route_frame_intervals": {
+        "max": 763.246,
+        "mean": 375.188903225806,
+        "median": 359.087,
+        "p95": 452.341,
+        "p99": 763.246,
+        "samples": 31
+      },
+      "physics_cpu_ms": {
+        "max": 15.524,
+        "mean": 1.03570967741935,
+        "median": 0.032,
+        "p95": 15.524,
+        "p99": 15.524,
+        "samples": 31
+      },
+      "process_cpu_ms": {
+        "max": 762.813,
+        "mean": 418.709548387097,
+        "median": 377.611,
+        "p95": 762.813,
+        "p99": 762.813,
+        "samples": 31
+      },
+      "quality": "balanced",
+      "render_configurations": {
+        "1208x540 / balanced": {
+          "frames": 31,
+          "height": 540,
+          "quality": "balanced",
+          "width": 1208
+        }
+      },
+      "render_height": 540,
+      "render_width": 1208,
+      "runs_completed": 0,
+      "runs_started": 1,
+      "simulation_seconds": 4.2,
+      "target_fps": 60,
+      "viewport_render_cpu_ms": {
+        "max": 727.590026855469,
+        "mean": 272.92416332614,
+        "median": 312.816009521484,
+        "p95": 408.660003662109,
+        "p99": 727.590026855469,
+        "samples": 31
+      },
+      "viewport_render_gpu_ms": {
+        "max": 725.817016601562,
+        "mean": 272.396451888546,
+        "median": 313.515991210938,
+        "p95": 407.430999755859,
+        "p99": 725.817016601562,
+        "samples": 31
+      }
+    },
+    {
+      "case_wall_seconds": 12.275559,
+      "class": "Ranger",
+      "draw_calls": {
+        "max": 341.0,
+        "mean": 303.034482758621,
+        "median": 297.0,
+        "p95": 341.0,
+        "p99": 341.0,
+        "samples": 29
+      },
+      "frame_intervals": {
+        "frames_over_50_ms": 29,
+        "frames_over_target_plus_5_percent": 29,
+        "max": 509.718,
+        "mean": 399.934206896552,
+        "median": 393.233,
+        "p95": 497.685,
+        "p99": 509.718,
+        "samples": 29
+      },
+      "frames": 29,
+      "godot_static_memory_bytes": {
+        "max": 159734781.0,
+        "mean": 159416265.413793,
+        "median": 159378765.0,
+        "p95": 159724991.0,
+        "p99": 159734781.0,
+        "samples": 29
+      },
+      "gpu_timing_status": "measured",
+      "guardian_attacks": 0,
+      "guardian_frame_intervals": {
+        "samples": 0
+      },
+      "hero_attacks": 3,
+      "hits": 6,
+      "last_sim_elapsed": 4.1,
+      "ordinary_route_frame_intervals": {
+        "max": 509.718,
+        "mean": 399.934206896552,
+        "median": 393.233,
+        "p95": 497.685,
+        "p99": 509.718,
+        "samples": 29
+      },
+      "physics_cpu_ms": {
+        "max": 19.659,
+        "mean": 1.40265517241379,
+        "median": 0.033,
+        "p95": 19.659,
+        "p99": 19.659,
+        "samples": 29
+      },
+      "process_cpu_ms": {
+        "max": 575.34,
+        "mean": 403.986689655172,
+        "median": 401.839,
+        "p95": 575.34,
+        "p99": 575.34,
+        "samples": 29
+      },
+      "quality": "balanced",
+      "render_configurations": {
+        "1208x540 / balanced": {
+          "frames": 29,
+          "height": 540,
+          "quality": "balanced",
+          "width": 1208
+        }
+      },
+      "render_height": 540,
+      "render_width": 1208,
+      "runs_completed": 0,
+      "runs_started": 1,
+      "simulation_seconds": 4.1,
+      "target_fps": 60,
+      "viewport_render_cpu_ms": {
+        "max": 541.06298828125,
+        "mean": 302.056277571053,
+        "median": 343.670013427734,
+        "p95": 451.881011962891,
+        "p99": 541.06298828125,
+        "samples": 29
+      },
+      "viewport_render_gpu_ms": {
+        "max": 535.861022949219,
+        "mean": 300.637346991177,
+        "median": 343.144012451172,
+        "p95": 450.648010253906,
+        "p99": 535.861022949219,
+        "samples": 29
+      }
+    },
+    {
+      "case_wall_seconds": 12.045131,
+      "class": "Vowkeeper",
+      "draw_calls": {
+        "max": 268.0,
+        "mean": 222.64,
+        "median": 223.0,
+        "p95": 238.0,
+        "p99": 253.0,
+        "samples": 100
+      },
+      "frame_intervals": {
+        "frames_over_50_ms": 98,
+        "frames_over_target_plus_5_percent": 100,
+        "max": 4468.774,
+        "mean": 120.45072,
+        "median": 59.895,
+        "p95": 81.288,
+        "p99": 1179.279,
+        "samples": 100
+      },
+      "frames": 100,
+      "godot_static_memory_bytes": {
+        "max": 159728650.0,
+        "mean": 159463961.72,
+        "median": 159436405.0,
+        "p95": 159565362.0,
+        "p99": 159684225.0,
+        "samples": 100
+      },
+      "gpu_timing_status": "measured",
+      "guardian_attacks": 0,
+      "guardian_frame_intervals": {
+        "samples": 0
+      },
+      "hero_attacks": 5,
+      "hits": 7,
+      "last_sim_elapsed": 6.39999999999999,
+      "ordinary_route_frame_intervals": {
+        "max": 4468.774,
+        "mean": 120.45072,
+        "median": 59.895,
+        "p95": 81.288,
+        "p99": 1179.279,
+        "samples": 100
+      },
+      "physics_cpu_ms": {
+        "max": 15.352,
+        "mean": 0.217,
+        "median": 0.054,
+        "p95": 0.149,
+        "p99": 0.149,
+        "samples": 100
+      },
+      "process_cpu_ms": {
+        "max": 4468.279,
+        "mean": 176.14581,
+        "median": 79.168,
+        "p95": 427.082,
+        "p99": 785.108,
+        "samples": 100
+      },
+      "quality": "battery",
+      "render_configurations": {
+        "604x270 / battery": {
+          "frames": 100,
+          "height": 270,
+          "quality": "battery",
+          "width": 604
+        }
+      },
+      "render_height": 270,
+      "render_width": 604,
+      "runs_completed": 0,
+      "runs_started": 1,
+      "simulation_seconds": 6.39999999999999,
+      "target_fps": 30,
+      "viewport_render_cpu_ms": {
+        "max": 4444.2138671875,
+        "mean": 82.0645487213135,
+        "median": 38.0709991455078,
+        "p95": 50.2760009765625,
+        "p99": 385.381988525391,
+        "samples": 100
+      },
+      "viewport_render_gpu_ms": {
+        "max": 4447.27978515625,
+        "mean": 86.7916877746582,
+        "median": 40.1980018615723,
+        "p95": 57.9869995117188,
+        "p99": 385.420989990234,
+        "samples": 100
+      }
+    },
+    {
+      "case_wall_seconds": 12.006885,
+      "class": "Arcanist",
+      "draw_calls": {
+        "max": 306.0,
+        "mean": 263.229813664596,
+        "median": 264.0,
+        "p95": 273.0,
+        "p99": 300.0,
+        "samples": 161
+      },
+      "frame_intervals": {
+        "frames_over_50_ms": 158,
+        "frames_over_target_plus_5_percent": 161,
+        "max": 311.899,
+        "mean": 68.4602732919254,
+        "median": 64.636,
+        "p95": 81.338,
+        "p99": 156.16,
+        "samples": 161
+      },
+      "frames": 161,
+      "godot_static_memory_bytes": {
+        "max": 169427385.0,
+        "mean": 168882656.068323,
+        "median": 168890397.0,
+        "p95": 169066217.0,
+        "p99": 169395709.0,
+        "samples": 161
+      },
+      "gpu_timing_status": "measured",
+      "guardian_attacks": 0,
+      "guardian_frame_intervals": {
+        "samples": 0
+      },
+      "hero_attacks": 3,
+      "hits": 9,
+      "last_sim_elapsed": 11.4,
+      "ordinary_route_frame_intervals": {
+        "max": 311.899,
+        "mean": 68.4602732919254,
+        "median": 64.636,
+        "p95": 81.338,
+        "p99": 156.16,
+        "samples": 161
+      },
+      "physics_cpu_ms": {
+        "max": 0.085,
+        "mean": 0.0419875776397515,
+        "median": 0.035,
+        "p95": 0.085,
+        "p99": 0.085,
+        "samples": 161
+      },
+      "process_cpu_ms": {
+        "max": 334.417,
+        "mean": 125.842633540373,
+        "median": 78.258,
+        "p95": 334.417,
+        "p99": 334.417,
+        "samples": 161
+      },
+      "quality": "battery",
+      "render_configurations": {
+        "604x270 / battery": {
+          "frames": 161,
+          "height": 270,
+          "quality": "battery",
+          "width": 604
+        }
+      },
+      "render_height": 270,
+      "render_width": 604,
+      "runs_completed": 0,
+      "runs_started": 1,
+      "simulation_seconds": 11.4,
+      "target_fps": 30,
+      "viewport_render_cpu_ms": {
+        "max": 310.015991210938,
+        "mean": 49.621030925964,
+        "median": 46.9269981384277,
+        "p95": 60.3289985656738,
+        "p99": 294.378997802734,
+        "samples": 161
+      },
+      "viewport_render_gpu_ms": {
+        "max": 316.919006347656,
+        "mean": 50.7684163158725,
+        "median": 46.181999206543,
+        "p95": 57.8019981384277,
+        "p99": 296.066009521484,
+        "samples": 161
+      }
+    },
+    {
+      "case_wall_seconds": 12.041224,
+      "class": "Ranger",
+      "draw_calls": {
+        "max": 251.0,
+        "mean": 231.650273224044,
+        "median": 238.0,
+        "p95": 248.0,
+        "p99": 251.0,
+        "samples": 183
+      },
+      "frame_intervals": {
+        "frames_over_50_ms": 169,
+        "frames_over_target_plus_5_percent": 183,
+        "max": 86.295,
+        "mean": 60.446349726776,
+        "median": 61.3,
+        "p95": 72.162,
+        "p99": 74.571,
+        "samples": 183
+      },
+      "frames": 183,
+      "godot_static_memory_bytes": {
+        "max": 159874432.0,
+        "mean": 159698881.57377,
+        "median": 159847536.0,
+        "p95": 159874384.0,
+        "p99": 159874432.0,
+        "samples": 183
+      },
+      "gpu_timing_status": "measured",
+      "guardian_attacks": 0,
+      "guardian_frame_intervals": {
+        "samples": 0
+      },
+      "hero_attacks": 4,
+      "hits": 7,
+      "last_sim_elapsed": 11.8,
+      "ordinary_route_frame_intervals": {
+        "max": 86.295,
+        "mean": 60.446349726776,
+        "median": 61.3,
+        "p95": 72.162,
+        "p99": 74.571,
+        "samples": 183
+      },
+      "physics_cpu_ms": {
+        "max": 20.856,
+        "mean": 0.967562841530055,
+        "median": 0.052,
+        "p95": 0.124,
+        "p99": 20.856,
+        "samples": 183
+      },
+      "process_cpu_ms": {
+        "max": 469.094,
+        "mean": 84.599349726776,
+        "median": 68.944,
+        "p95": 73.421,
+        "p99": 469.094,
+        "samples": 183
+      },
+      "quality": "battery",
+      "render_configurations": {
+        "604x270 / battery": {
+          "frames": 183,
+          "height": 270,
+          "quality": "battery",
+          "width": 604
+        }
+      },
+      "render_height": 270,
+      "render_width": 604,
+      "runs_completed": 0,
+      "runs_started": 1,
+      "simulation_seconds": 11.8,
+      "target_fps": 30,
+      "viewport_render_cpu_ms": {
+        "max": 65.4800033569336,
+        "mean": 40.3627868610653,
+        "median": 40.9570007324219,
+        "p95": 49.5820007324219,
+        "p99": 54.8110008239746,
+        "samples": 183
+      },
+      "viewport_render_gpu_ms": {
+        "max": 55.4609985351562,
+        "mean": 40.8378360310539,
+        "median": 41.3470001220703,
+        "p95": 47.7869987487793,
+        "p99": 51.4900016784668,
+        "samples": 183
+      }
+    }
+  ]
+}

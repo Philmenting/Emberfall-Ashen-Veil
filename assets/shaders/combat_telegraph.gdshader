@@ -21,7 +21,10 @@ void fragment() {
 		ALBEDO = ink_ground ? vec3(0.045,0.018,0.012) : hot_color;
 		ALPHA = ink_ground ? 0.97 : 0.98;
 	} else {
-		ALBEDO = mix(vec3(0.20,0.032,0.008),hot_color,0.55+stripe*0.20);
-		ALPHA = mix(0.23,0.36,stripe) + progress * 0.10;
+		// The stationary contour carries the exact collision area. Keep the
+		// interior quieter so boots, floor contacts and the caster's movement
+		// remain visible inside a large ring even just before its impact.
+		ALBEDO = mix(vec3(0.20,0.032,0.008),hot_color,0.48+stripe*0.16);
+		ALPHA = mix(0.19,0.28,stripe) + progress * 0.07;
 	}
 }

@@ -3,6 +3,7 @@ extends RefCounted
 ## Source models are bound once per appearance; animation never rewrites vertices.
 const Models=preload("res://scripts/authored_characters.gd")
 const Clips=preload("res://scripts/character_animation.gd")
+const HostileStyle=preload("res://scripts/hostile_style.gd")
 const NAMES: Array[String]=["Root","Pelvis","Chest","Head","ClavicleL","UpperArmL","ForearmL","HandL","ClavicleR","UpperArmR","ForearmR","HandR","ThighL","ShinL","FootL","ThighR","ShinR","FootR","Cape","CapeTip","Weapon","BowUpper","BowString","BowLower","Arrow","CoatL","CoatR","HairL","HairR"]
 const PARENTS: Array[int]=[-1,0,1,2,2,4,5,6,2,8,9,10,1,12,13,1,15,16,2,18,11,20,20,20,22,1,1,3,3]
 const REST: Array[Vector3]=[Vector3.ZERO,Vector3(0,.90,0),Vector3(0,.39,0),Vector3(0,.42,0),Vector3(-.17,.19,0),Vector3(-.15,0,0),Vector3(0,-.31,0),Vector3(0,-.28,-.01),Vector3(.17,.19,0),Vector3(.15,0,0),Vector3(0,-.31,0),Vector3(0,-.28,-.01),Vector3(-.13,0,0),Vector3(0,-.42,0),Vector3(0,-.38,-.04),Vector3(.13,0,0),Vector3(0,-.42,0),Vector3(0,-.38,-.04),Vector3(0,.25,.14),Vector3(0,-.66,.10),Vector3.ZERO,Vector3(0,.60,.34),Vector3(0,0,.34),Vector3(0,-.60,.34),Vector3.ZERO,Vector3(-.12,-.03,0),Vector3(.12,-.03,0),Vector3(-.116,.12,.033),Vector3(.116,.12,.033)]
@@ -133,6 +134,7 @@ func _bake(authored: Node3D,continuous_body: Node3D=null) -> Dictionary:
 			var material: StandardMaterial3D=source.mesh.surface_get_material(slot)
 			var material_name:=String(material.resource_name).get_slice(".",0)
 			var category:=_category(material_name)
+			var finish:=HostileStyle.finish(key,material_name,part,material)
 			var arrays: Array=source.mesh.surface_get_arrays(slot)
 			var vertices: PackedVector3Array=arrays[Mesh.ARRAY_VERTEX]
 			var normals: PackedVector3Array=arrays[Mesh.ARRAY_NORMAL]
@@ -145,15 +147,15 @@ func _bake(authored: Node3D,continuous_body: Node3D=null) -> Dictionary:
 				var vertex:=local+origin
 				var weights:=_weights(part,local)
 				var equipment_slot:=_equipment_slot(part,local,material_name)
-				var color:=material.albedo_color.srgb_to_linear()
+				var color: Color=finish.color
 				color.a=category/8.0
 				surface.set_color(color)
 				surface.set_custom(0,Color(vertex.x,vertex.y,vertex.z,1.0))
 				surface.set_custom(1,Color(0,0,0,1))
 				surface.set_custom(2,Color(0,0,0,1))
 				surface.set_tangent(Plane(Vector3.RIGHT,1.0))
-				surface.set_uv(Vector2(equipment_slot,material.roughness))
-				surface.set_uv2(Vector2(material.metallic,1.0 if material.emission_enabled else 0.0))
+				surface.set_uv(Vector2(equipment_slot,float(finish.rough)))
+				surface.set_uv2(Vector2(float(finish.metal),float(finish.emission)))
 				surface.set_bones(PackedInt32Array([int(weights.x),int(weights.y),0,0]))
 				surface.set_weights(PackedFloat32Array([1.0-weights.z,weights.z,0,0]))
 				surface.set_normal((source.transform.basis.inverse().transposed()*normals[i]).normalized())

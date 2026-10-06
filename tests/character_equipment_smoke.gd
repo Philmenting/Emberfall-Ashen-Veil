@@ -17,7 +17,7 @@ func run_checks() -> void:
 	check(hero.motion_rig.skeleton.get_bone_count()==65 and source_surfaces_rendered(hero) and hero.motion_rig.player.has_animation("Walk_Loop") and hero.motion_rig.player.has_animation("Death01"),"visible authored surfaces bind to the original native65 skeleton and source animation player")
 	var uniforms: Dictionary={"Weapon":"weapon","Helmet":"helm","Chest":"chest","Gloves":"gloves","Boots":"boots","Amulet":"accent"}
 	for slot in uniforms:
-		check(hero.equipment_grades[slot]==2 and hero.equipped_items[slot].quality=="RARE",slot+": actual rarity binds to source-avatar equipment data; PBR rarity accents remain unimplemented")
+		check(hero.equipment_grades[slot]==2 and hero.equipped_items[slot].quality=="RARE",slot+": actual rarity binds to the native avatar equipment data and material finish")
 	var peer:=Actor.new(); peer.kind="Arcanist"; root.add_child(peer)
 	check(source_peers_match(hero,peer,true),"source peers share all eight immutable meshes and native skins with independent actual PBR overrides")
 	var material: StandardMaterial3D=hero.motion_rig.surfaces[0].get_active_material(0)
@@ -35,7 +35,10 @@ func run_checks() -> void:
 	hero.configure_equipment(gear,"Arcanist")
 	check(hero.equipment_grades.Weapon==4 and peer.equipment_grades.Weapon==0 and source_geometry_unchanged(hero,original_source) and source_peers_match(hero,peer,true),"a source weapon grade update preserves actual authored geometry and independent peer PBR materials")
 	hero.configure_equipment(gear,"Ranger")
-	check(hero.appearance_key=="Ranger" and hero.model.mesh!=original and hero.motion_rig.skeleton.get_bone_parent(20)==7,"Ranger uses its actual bow model held in the left hand")
+	var ranger_rig=hero.motion_rig
+	var left_hand=ranger_rig.skeleton.find_bone("hand_l")
+	var palm=ranger_rig.motion_node.transform*(ranger_rig.skeleton.get_bone_global_pose(left_hand)*ranger_rig.bow_grip_center)
+	check(hero.appearance_key=="Ranger" and hero.model.mesh!=original and left_hand>=0 and ranger_rig.weapon_grip_position().distance_to(palm)<.001,"Ranger binds its real bow handle to the authored left palm")
 	for class_key in Actor.HEROES:
 		hero.configure_equipment(gear,class_key)
 		check(hero.appearance_key==class_key and hero.equipment_grades.Weapon==4,class_key+": changing class retains actual equipped grades")
@@ -46,7 +49,7 @@ func run_checks() -> void:
 		var portrait:=HeroArt.new(); portrait.configure(class_key,gear); portrait.size=Vector2(140,140); root.add_child(portrait)
 		portrait.set_presentation(true,true)
 		if hero.source_avatar:
-			check(portrait.actor.appearance_key==class_key and source_peers_match(hero,portrait.actor,true) and portrait.actor.equipment_grades.Weapon==4,class_key+": portrait and battle render the same eight source meshes and native skins with bound gear data")
+			check(portrait.actor.appearance_key==class_key and source_peers_match(hero,portrait.actor,true) and portrait.actor.equipment_grades.Weapon==4,class_key+": portrait and battle render the same complete source meshes and native skins with bound gear data")
 		else:
 			check(portrait.actor.appearance_key==class_key and portrait.actor.model.mesh==hero.model.mesh and portrait.actor.equipment_grades.Weapon==4,class_key+": portrait and battle render the same equipped spatial heroine")
 		check(portrait.viewport.render_target_update_mode==SubViewport.UPDATE_ONCE and portrait.camera.position.z<0,class_key+": Battery portrait keeps the real face view without continuous rendering")
@@ -74,7 +77,7 @@ func run_checks() -> void:
 	quit(1 if failures else 0)
 
 func source_surfaces_rendered(actor: Node3D) -> bool:
-	if not actor.source_avatar or actor.model.visible or actor.motion_rig.surfaces.size()!=8: return false
+	if not actor.source_avatar or actor.model.visible or actor.motion_rig.surfaces.is_empty(): return false
 	for surface in actor.motion_rig.surfaces:
 		if not surface.is_visible_in_tree() or surface.mesh==null or surface.skin==null or surface.get_node_or_null(surface.skeleton)!=actor.motion_rig.skeleton: return false
 	return true

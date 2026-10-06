@@ -1,0 +1,22 @@
+RUN character_equipment_smoke.gd
+PASS CHARACTER EQUIPMENT SMOKE: 38 checks
+RUN native_equipment_finish_smoke.gd
+PASS NATIVE EQUIPMENT FINISH SMOKE: 129 checks
+RUN presentation_smoke.gd
+PASS PRESENTATION SMOKE: 77 checks
+RUN character_3d_smoke.gd
+PASS CHARACTER THREE D SMOKE: 150 checks
+RUN source_avatar_attack_smoke.gd
+PASS SOURCE AVATAR ATTACK: 120 checks
+RUN animation_craft_smoke.gd
+PASS ANIMATION CRAFT SMOKE: 55 checks
+RUN class_avatar_quality_smoke.gd
+PASS CLASS AVATAR QUALITY SMOKE: 398 checks
+RUN source_avatar_style_smoke.gd
+PASS SOURCE AVATAR STYLE SMOKE: 131 checks
+RUN source_avatar_grip_smoke.gd
+PASS SOURCE AVATAR GRIP: 296 checks
+PASS emberfall.js
+PASS progression_runtime_test.js
+PROGRESSION RUNTIME: server-owned profile, bounded AFK settlement, allowlists, inventory and replay protection passed.
+BETA CHECKS: 9 Godot suites, 1394 checks, 0 failures

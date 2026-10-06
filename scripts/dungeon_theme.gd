@@ -6,6 +6,14 @@ const THEMES := [
 	{"id":"ossuary", "stone":"807d7e", "edge":"b5ae9e", "dark":"27242b", "metal":"9b917c", "cloth":"452d3c", "fire":"a99ab9", "light":"c1afcb", "moon":"c8c3d5", "ambient":"958e9d", "fog":"202029", "background":"101017", "roughness":0.84, "density":0.007, "enemy":"976caf", "skin":"c3bca5", "glow":"bb9fc3"},
 	{"id":"citadel", "stone":"666464", "edge":"968576", "dark":"272324", "metal":"88705a", "cloth":"472820", "fire":"e47732", "light":"e89553", "moon":"cdbdae", "ambient":"988f8b", "fog":"251b18", "background":"110d0c", "roughness":0.89, "density":0.008, "enemy":"ce652c", "skin":"827065", "glow":"e89e58"}
 ]
+# Lighting distinguishes each region's masonry from the neutral-lit figures.
+# These tune the existing room lights, never add region-specific render passes.
+const LIGHTING := [
+	{"key":"d4dce5", "key_energy":0.94, "rim":"9dc8df", "actor":"eee5d9", "actor_energy":0.80, "fill":"cddce5", "ambient_energy":0.17},
+	{"key":"b2cec7", "key_energy":0.90, "rim":"a7d4dd", "actor":"eee5d8", "actor_energy":0.84, "fill":"d9dce4", "ambient_energy":0.17},
+	{"key":"ccc6d6", "key_energy":0.92, "rim":"bcc8e5", "actor":"efe5d7", "actor_energy":0.82, "fill":"d3dbe7", "ambient_energy":0.17},
+	{"key":"d7c4b1", "key_energy":0.88, "rim":"9ebfd6", "actor":"e0e7ec", "actor_energy":0.84, "fill":"cbdce7", "ambient_energy":0.16}
+]
 const ENEMY_NAMES := [
 	{"raider":"Hollow Stalker","bulwark":"Ashbound Shieldbearer","hexer":"Grave Hexer","elite":"Cinder Captain"},
 	{"raider":"Drowned Acolyte","bulwark":"Silt Sentinel","hexer":"Tide Scribe","elite":"Archive Keeper"},
@@ -13,6 +21,9 @@ const ENEMY_NAMES := [
 	{"raider":"Ember Thrall","bulwark":"Furnace Guard","hexer":"Cinder Invoker","elite":"Crown Executioner"}
 ]
 static func definition(index: int) -> Dictionary:
-	return THEMES[clampi(index,0,THEMES.size()-1)].duplicate(true)
+	var region:=clampi(index,0,THEMES.size()-1)
+	var theme: Dictionary=THEMES[region].duplicate(true)
+	theme.lighting=LIGHTING[region].duplicate(true)
+	return theme
 static func enemy_name(index: int, role: String) -> String:
 	return ENEMY_NAMES[clampi(index,0,ENEMY_NAMES.size()-1)].get(role,"Guardian")

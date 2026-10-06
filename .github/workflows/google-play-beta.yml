@@ -63,7 +63,7 @@ jobs:
       run: |-
         godot --headless --path . --editor --import --quit
         python3 scripts/run_beta_checks.py
-        python3 -m unittest discover -s tests -p test_android_release.py -v
+        python3 -m unittest discover -s tests -p 'test_*.py' -v
     - name: Restore the private upload key
       env:
         UPLOAD_KEY: ${{ secrets.EMBERFALL_UPLOAD_KEYSTORE_B64 }}

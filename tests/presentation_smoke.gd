@@ -3,6 +3,8 @@ const Actor=preload("res://scripts/dungeon_actor.gd")
 const Budget=preload("res://scripts/render_budget.gd")
 const Main=preload("res://scripts/main.gd")
 const SourceSkin=preload("res://tests/source_avatar_skin.gd")
+const SOURCE_SURFACE_COUNTS={"Arcanist":8,"Vowkeeper":10,"Ranger":12}
+const ACCESSORY_COUNTS={"Arcanist":11,"Vowkeeper":3,"Ranger":0}
 var checks:=0
 var failures:=0
 func _initialize() -> void: run_checks.call_deferred()
@@ -17,12 +19,16 @@ func run_checks() -> void:
 		var mesh: MeshInstance3D=actor.model
 		var source_geometry: Array=[]
 		if actor.source_avatar:
-			for surface in actor.motion_rig.surfaces: source_geometry.append([surface.mesh,surface.skin])
-			check(source_surfaces_rendered(actor) and actor.get_node_or_null("ContactShadow") is MeshInstance3D,kind+": eight rendered authored surfaces and a contact shadow; compatibility proxy stays hidden")
-			var surface_count:=0
-			for surface in actor.motion_rig.surfaces: surface_count+=surface.mesh.get_surface_count()
-			check(surface_count==8 and actor.motion_rig.triangles<=40000,kind+": actual authored surfaces retain the bounded skinned triangle budget")
-			check(SourceSkin.actual_bounds(actor.motion_rig).size.z>.30,kind+": all four skin influences give the rendered figure real depth")
+			for surface in complete_source_surfaces(actor): source_geometry.append([surface,surface.mesh,surface.skin])
+			check(source_surfaces_rendered(actor) and actor.get_node_or_null("ContactShadow") is MeshInstance3D,kind+": complete class-specific rendered source surfaces and accessories plus contact shadow; compatibility proxy stays hidden")
+			var material_slots_present:=true
+			for surface in complete_source_surfaces(actor):
+				material_slots_present=material_slots_present and surface.mesh.get_surface_count()>0
+				for slot in surface.mesh.get_surface_count():
+					material_slots_present=material_slots_present and surface.get_active_material(slot)!=null
+			var visible_triangles:=actual_visible_triangles(actor.motion_rig)
+			check(actor.motion_rig.surfaces.size()==SOURCE_SURFACE_COUNTS[kind] and material_slots_present and visible_triangles<=40000 and actor.motion_rig.rendered_triangles<=40000,kind+": exact class source mesh inventory, bound material slots and full actual outfit/accessory/weapon triangle budget; visible="+str(visible_triangles))
+			check(complete_source_bounds(actor).size.z>.30,kind+": all four skin influences give the complete rendered figure and accessories real depth")
 			check(source_surfaces_rendered(actor) and actor.motion_rig.skeleton.get_bone_count()==65 and actor.motion_rig.player.has_animation("Walk_Loop") and actor.motion_rig.player.has_animation("Death01"),kind+": original native65 skin and authored walking/death clips drive the visible surfaces")
 		else:
 			check(actor.find_children("*","MeshInstance3D",true,false).size()==2,kind+": one volumetric surface and one contact shadow")
@@ -31,7 +37,7 @@ func run_checks() -> void:
 			check(mesh.skin==actor.motion_rig.skin and actor.motion_rig.skeleton.get_bone_count()==29 and actor.motion_rig.player.has_animation("death"),kind+": native skeleton and AnimationPlayer drive the visible volume")
 		actor.animate(0.20,true,3.0)
 		if actor.source_avatar:
-			check(actor.motion_rig.player.current_animation=="Walk_Loop" and SourceSkin.actual_bounds(actor.motion_rig).size.z>.30,kind+": actual walking samples the authored clip on the visible weighted surfaces")
+			check(actor.motion_rig.player.current_animation=="Walk_Loop" and complete_source_bounds(actor).size.z>.30,kind+": actual walking samples the authored clip on the complete visible weighted surfaces")
 		var walking_blend: float=actor.gait_blend
 		actor.animate(1.0/60.0,false,0.0)
 		check(actor.gait_blend>0.0 and actor.gait_blend<walking_blend,kind+": stopping retains a fading stride")
@@ -56,7 +62,9 @@ func run_checks() -> void:
 			check(mesh.skin!=null and actor.motion_rig.skeleton.get_bone_pose_position(1).y<actor.motion_rig.rest[1].origin.y-.10,kind+": defeat first buckles the visible articulated figure")
 		actor.animate(1.0,false)
 		if actor.source_avatar:
-			check(actor.pose_frame==5 and source_geometry_unchanged(actor,source_geometry) and actor.body.position.is_finite() and SourceSkin.actual_bounds(actor.motion_rig).position.y>-.025,kind+": completed collapse keeps the same actual skinned surfaces above the floor")
+			check(actor.pose_frame==5 and source_geometry_unchanged(actor,source_geometry) and actor.body.position.is_finite(),kind+": completed collapse retains every original actual body/accessory mesh and skin")
+			var floor:=complete_source_bounds(actor).position.y
+			check(floor>-.025 and floor<.065,kind+": independently measured complete indexed weighted body and accessories settle above the floor; minimum="+str(floor))
 		else:
 			check(actor.pose_frame==5 and mesh.skin!=null and actor.body.position.is_finite(),kind+": completed collapse settles into the same skinned 3D figure on the floor")
 		actor.free()
@@ -116,14 +124,34 @@ func run_checks() -> void:
 	quit(1 if failures else 0)
 
 func source_surfaces_rendered(actor: Node3D) -> bool:
-	if not actor.source_avatar or actor.model.visible or actor.motion_rig.surfaces.size()!=8: return false
-	for surface in actor.motion_rig.surfaces:
+	if not actor.source_avatar or actor.model.visible: return false
+	if actor.motion_rig.surfaces.size()!=int(SOURCE_SURFACE_COUNTS.get(actor.appearance_key,-1)): return false
+	if actor.motion_rig.style.accessories.size()!=int(ACCESSORY_COUNTS.get(actor.appearance_key,-1)): return false
+	for surface in complete_source_surfaces(actor):
 		if not surface.is_visible_in_tree() or surface.mesh==null or surface.skin==null or surface.get_node_or_null(surface.skeleton)!=actor.motion_rig.skeleton: return false
 	return true
 
 func source_geometry_unchanged(actor: Node3D,original: Array) -> bool:
-	if not source_surfaces_rendered(actor) or original.size()!=actor.motion_rig.surfaces.size(): return false
+	var complete:=complete_source_surfaces(actor)
+	if not source_surfaces_rendered(actor) or original.size()!=complete.size(): return false
 	for index in original.size():
-		var surface: MeshInstance3D=actor.motion_rig.surfaces[index]
-		if surface.mesh!=original[index][0] or surface.skin!=original[index][1]: return false
+		var surface: MeshInstance3D=complete[index]
+		if surface!=original[index][0] or surface.mesh!=original[index][1] or surface.skin!=original[index][2]: return false
 	return true
+
+func complete_source_surfaces(actor: Node3D) -> Array:
+	var result: Array=actor.motion_rig.surfaces.duplicate()
+	result.append_array(actor.motion_rig.style.accessories)
+	return result
+
+func complete_source_bounds(actor: Node3D) -> AABB:
+	return SourceSkin.actual_bounds(actor.motion_rig,actor.motion_rig.style.accessories)
+
+func actual_visible_triangles(rig: RefCounted) -> int:
+	var count:=0
+	for part: MeshInstance3D in rig.motion_node.find_children("*","MeshInstance3D",true,false):
+		if not part.is_visible_in_tree(): continue
+		if part.mesh is ArrayMesh:
+			for slot in part.mesh.get_surface_count(): count+=part.mesh.surface_get_arrays(slot)[Mesh.ARRAY_INDEX].size()/3
+		elif part.mesh is PrimitiveMesh: count+=part.mesh.get_mesh_arrays()[Mesh.ARRAY_INDEX].size()/3
+	return count

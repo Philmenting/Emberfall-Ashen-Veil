@@ -3,6 +3,8 @@ extends Node3D
 ## simulation events decide contact, warnings and death, never renderer clocks.
 const Rig=preload("res://scripts/character_rig.gd")
 const SourceAvatar=preload("res://scripts/source_avatar_rig.gd")
+const ClassAvatar=preload("res://scripts/class_avatar_rig.gd")
+const EquipmentFinish=preload("res://scripts/native_equipment_finish.gd")
 const HEROES: Array[String]=["Vowkeeper","Arcanist","Ranger"]
 const HOSTILES: Array[String]=["raider","bulwark","hexer","elite"]
 const GEAR_RANKS: Dictionary={"COMMON":0,"UNCOMMON":1,"RARE":2,"EPIC":3,"LEGENDARY":4}
@@ -24,6 +26,7 @@ var motion_rig: RefCounted
 var source_avatar:=false
 var equipped_items: Dictionary={}
 var equipment_grades: Dictionary={}
+var native_equipment_finish: RefCounted=EquipmentFinish.new()
 var materials: Dictionary={}
 var appearance_key:=""
 var clock:=0.0
@@ -86,8 +89,8 @@ func _load_appearance() -> void:
 	if motion_rig!=null:
 		if source_avatar: motion_rig.dispose()
 		else: motion_rig.player.free(); motion_rig.skeleton.free()
-	source_avatar=SourceAvatar.has_appearance(appearance_key)
-	motion_rig=SourceAvatar.new() if source_avatar else Rig.new()
+	source_avatar=SourceAvatar.has_appearance(appearance_key) or ClassAvatar.has_appearance(appearance_key)
+	motion_rig=ClassAvatar.new() if ClassAvatar.has_appearance(appearance_key) else (SourceAvatar.new() if source_avatar else Rig.new())
 	motion_rig.build(body,appearance_key)
 	appearance_cache[appearance_key]=motion_rig.mesh
 	body.scale=Vector3.ONE*figure_height/motion_rig.source_height
@@ -138,6 +141,7 @@ func configure_equipment(equipment: Dictionary,class_key: String="") -> void:
 		equipment_grades[slot]=rank
 		surface_material.set_shader_parameter(uniforms[slot]+"_rank",float(rank))
 		surface_material.set_shader_parameter(uniforms[slot]+"_tint",GEAR_TINTS[rank])
+	if source_avatar: native_equipment_finish.apply(motion_rig,equipment_grades)
 
 func set_boss_phase(value: int) -> void:
 	boss_phase=clampi(value,0,2)
@@ -178,11 +182,13 @@ func follow_travel(displacement: Vector3,_camera_position: Vector3=Vector3.ZERO)
 	travel_direction=(global_basis.inverse()*displacement.normalized()).normalized()
 	travel_direction.y=0.0
 
-func strike(style: String="basic",windup_seconds: float=.30,wait_for_hit: bool=false) -> void:
+func strike(style: String="basic",windup_seconds: float=.30,wait_for_hit: bool=false,warning_release: bool=false) -> void:
 	if death_time>=0.0: return
 	if style=="heavy":
+		var ordinary_hostile := hostile and telegraph_left<=0.0 and not warning_release
 		telegraph_left=0.0; attack_queued=false; attack_time=0.0
-		attack_style=style; release_time=0.0; external_release=false; pose_frame=4
+		attack_style=Rig.Clips.hostile_action(appearance_key) if ordinary_hostile else style
+		release_time=0.0; external_release=false; pose_frame=4
 		_apply_motion(0.0,true); return
 	if wait_for_hit and release_time>=0.0:
 		attack_time=-1.0; attack_queued=false
@@ -277,7 +283,7 @@ func animate(delta: float,walking: bool,horizontal_speed: float=-1.0) -> void:
 			attack_time+=delta
 			if attack_time>=attack_duration: release_time=maxf(0.0,attack_time-attack_duration)
 		pose_frame=3 if release_time<0.0 else (4 if release_time<.14 else 0)
-		if release_time>=Rig.Clips.RECOVERY:
+		if release_time>=Rig.Clips.recovery_duration(appearance_key,_action_phrase()):
 			attack_time=-1.0; release_time=-1.0; external_release=false
 			if attack_queued:
 				attack_queued=false; strike(queued_attack_style)
@@ -289,12 +295,19 @@ func animate(delta: float,walking: bool,horizontal_speed: float=-1.0) -> void:
 		if impact_time>=recoil_duration: impact_time=-1.0
 	_apply_motion(delta)
 
+func _action_phrase() -> String:
+	if hostile:
+		return "heavy" if attack_style=="heavy" else Rig.Clips.hostile_action(appearance_key)
+	if source_avatar and kind=="Vowkeeper" and attack_style in ["sunder","judgment"]:
+		return "heavy"
+	return "heavy" if source_avatar and kind=="Arcanist" and attack_style=="starfall" else ("skill" if attack_style in SKILL_STYLES else "basic")
+
 func _apply_motion(delta: float=0.0,contact: bool=false) -> void:
 	var clip:="idle"; var time:=fposmod(clock,4.2) if not reduced_motion else 0.0
 	# Starfall is the existing long ground-burst cast. Give the authored
 	# Arcanist its low chamber and heavy thrust without changing the skill's
 	# simulation windup, damage, cooldown, or any other class's animation.
-	var action:="heavy" if source_avatar and attack_style=="starfall" else ("skill" if attack_style in SKILL_STYLES else "basic")
+	var action:=_action_phrase()
 	var blend_duration:=.10
 	if death_time>=0.0: clip="death"; time=minf(death_time,COLLAPSE_DURATION)
 	elif telegraph_left>0.0:
@@ -310,11 +323,11 @@ func _apply_motion(delta: float=0.0,contact: bool=false) -> void:
 				visual_duration=maxf(.06,attack_duration-PROJECTILE_RELEASE_LEAD)
 			clip="windup_"+action; time=clampf(attack_time/visual_duration,0,1)
 			blend_duration=minf(.060,visual_duration*.20)
-		else: clip="recover_"+action; time=minf(release_time,Rig.Clips.RECOVERY)
+		else: clip="recover_"+action; time=minf(release_time,Rig.Clips.recovery_duration(appearance_key,action))
 	elif hostile and anticipation>0.0:
 		# Ordinary hostile hits already expose their final cooldown fraction.
 		# Use that real preparation window instead of appearing at contact.
-		clip="windup_heavy"; time=clampf(anticipation,0,1); blend_duration=.035
+		clip="windup_"+Rig.Clips.hostile_action(appearance_key); time=clampf(anticipation,0,1); blend_duration=.035
 	elif gait_blend>.04:
 		clip="walk"; time=fposmod(gait_phase,TAU)/TAU
 	if clip!=last_clip:
@@ -346,7 +359,7 @@ func _apply_motion(delta: float=0.0,contact: bool=false) -> void:
 		# curve. The free boot keeps its authored step and lift; the loaded boot
 		# keeps its exact sole position. Pinning both to idle erased the phrase.
 		var skeleton: Skeleton3D=motion_rig.skeleton
-		var phase:=time/Rig.Clips.RECOVERY if clip.begins_with("recover") else time
+		var phase:=time/Rig.Clips.recovery_duration(appearance_key,action) if clip.begins_with("recover") else time
 		plant_active=[false,false]
 		for side in range(2):
 			var thigh:=12 if side==0 else 15

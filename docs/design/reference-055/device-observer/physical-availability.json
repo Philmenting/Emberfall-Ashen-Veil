@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "status": "unavailable",
+  "started_at": "2026-10-06T18:44:36.249150+00:00",
+  "observer_sha256": "3edf12755eaebaca1f3ee1dd35645b1212847c4ac4ad14e0264d0eda25592d66",
+  "touch_acceptance": "pending",
+  "physical_device_measured": false,
+  "scope": "Physical-only QA profile; USB charging, sensor availability and instrumentation affect results. No touch-latency or beta-readiness inference.",
+  "reason": "adb is unavailable; no physical Android device could be inspected",
+  "finished_at": "2026-10-06T18:44:36.249287+00:00"
+}

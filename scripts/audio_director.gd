@@ -3,6 +3,11 @@ extends Node
 const Preferences = preload("res://scripts/game_preferences.gd")
 const RATE := 22050
 const VOICES := 6
+# Observers receive the accepted playback allocation, after the ordinary mute,
+# suspension and duplicate checks. They never supply or replace production cues.
+signal cue_accepted(key: String, slot: int, source: AudioStreamWAV)
+signal music_context_changed(source: AudioStreamWAV)
+signal mix_state_changed
 static var bank: Dictionary = {}
 var preferences := Preferences.DEFAULTS.duplicate()
 var music: AudioStreamPlayer
@@ -42,6 +47,7 @@ func apply_preferences(values: Dictionary) -> void:
 		# Six simultaneous half-scale PCM voices plus the score stay below unity.
 		voice.volume_db = _volume(preferences.master*preferences.effects*0.24)
 		if preferences.master*preferences.effects<=0.0: voice.stop()
+	if mix_state_changed.has_connections(): mix_state_changed.emit()
 
 func _volume(value: float) -> float:
 	return linear_to_db(value) if value>0.0 else -80.0
@@ -53,6 +59,7 @@ func set_context(in_dungeon: bool) -> void:
 	music.stream=stream_for(next)
 	if AudioServer.get_driver_name()!="Dummy": music.play()
 	music.stream_paused=suspended or preferences.master*preferences.music<=0.0
+	if music_context_changed.has_connections(): music_context_changed.emit(music.stream)
 
 func set_suspended(value: bool) -> void:
 	suspended=value
@@ -60,6 +67,7 @@ func set_suspended(value: bool) -> void:
 	music.stream_paused=value or preferences.master*preferences.music<=0.0
 	if value:
 		for voice in voices: voice.stop()
+	if mix_state_changed.has_connections(): mix_state_changed.emit()
 
 func cue(key: String) -> void:
 	if suspended or voices.is_empty() or preferences.master*preferences.effects<=0.0: return
@@ -67,10 +75,12 @@ func cue(key: String) -> void:
 	# A multi-target hit produces one contact sound, not a stack of identical peaks.
 	if now-int(last_played.get(key,-1000))<80: return
 	last_played[key]=now
-	var voice:=voices[cursor]
+	var slot:=cursor
+	var voice:=voices[slot]
 	cursor=(cursor+1)%VOICES
 	voice.stream=stream_for(key)
 	if AudioServer.get_driver_name()!="Dummy": voice.play()
+	if cue_accepted.has_connections(): cue_accepted.emit(key,slot,voice.stream)
 
 func combat_events(events: Array,class_key: String) -> void:
 	if not suspended and preferences.haptics and OS.has_feature("android"):

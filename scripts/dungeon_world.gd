@@ -14,6 +14,7 @@ const Layout = preload("res://scripts/dungeon_layout.gd")
 const Actor = preload("res://scripts/dungeon_actor.gd")
 const Ruins = preload("res://scripts/ruin_architecture.gd")
 const ThemeData = preload("res://scripts/dungeon_theme.gd")
+const Lighting = preload("res://scripts/dungeon_lighting.gd")
 const REGION_BACKDROPS = [preload("res://assets/world/ashen-realms/spire.png"),preload("res://assets/world/ashen-realms/archive.png"),preload("res://assets/world/ashen-realms/ossuary.png"),preload("res://assets/world/ashen-realms/citadel.png")]
 const BossPatterns = preload("res://scripts/boss_patterns.gd")
 const CAMERA_BOOM := Vector3(8.0,9.3,13.5)
@@ -167,10 +168,7 @@ func _ready() -> void:
 	_build_cast_focus()
 	_update_combat_readability(0.0)
 	var lantern := OmniLight3D.new()
-	lantern.light_color = Color("cad8e5")
-	lantern.light_energy = 1.18
-	lantern.omni_range = 6.0
-	lantern.position = Vector3(0,2.8,0)
+	Lighting.configure_actor_fill(lantern,theme)
 	hero.add_child(lantern)
 
 func _build_materials() -> void:
@@ -227,40 +225,16 @@ func _material(color: Color, metallic: float = 0.0, glow: bool = false) -> Stand
 func _build_environment() -> void:
 	var environment := WorldEnvironment.new()
 	var env := Environment.new()
-	env.background_mode = Environment.BG_COLOR
-	env.background_color = Color(theme.background)
-	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	env.ambient_light_color = Color(theme.ambient)
-	env.ambient_light_energy = 0.18
-	env.sky=preload("res://scripts/dungeon_lighting.gd").reflection_sky()
-	env.reflected_light_source=Environment.REFLECTION_SOURCE_SKY
-	env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
-	env.fog_enabled = true
-	env.fog_light_color = Color(theme.fog)
-	env.fog_density = theme.density
+	Lighting.configure_environment(env,theme)
 	environment.environment = env
 	add_child(environment)
 	var moon := DirectionalLight3D.new()
 	sun = moon
-	moon.rotation_degrees = Vector3(-52,-36,0)
-	moon.light_color = Color(theme.moon)
-	moon.light_energy = 1.06
-	moon.shadow_enabled = true
-	moon.directional_shadow_max_distance = 32.0
-	# One focused room shadow map avoids four repeated scene passes.
-	moon.directional_shadow_mode = DirectionalLight3D.SHADOW_ORTHOGONAL
-	add_child(moon)
 	var rim:=DirectionalLight3D.new()
-	rim.rotation_degrees=Vector3(-24,145,0)
-	rim.light_color=Color("82bed4")
-	rim.light_energy=0.25
-	add_child(rim)
 	var actor_key:=DirectionalLight3D.new()
-	actor_key.name="CharacterKeyLight"
-	actor_key.rotation_degrees=Vector3(-34,32,0)
-	actor_key.light_color=Color("e0e7e9")
-	actor_key.light_energy=.62
-	actor_key.light_cull_mask=2
+	Lighting.configure_room_lights(moon,rim,actor_key,theme)
+	add_child(moon)
+	add_child(rim)
 	add_child(actor_key)
 
 func _build_court_ground() -> void:
@@ -1039,7 +1013,7 @@ func _show_event(event: Dictionary) -> void:
 			if not source.is_empty() and not source.warning.is_empty(): _update_warning(zone,source.warning)
 			if actor_by_id.has(event.source): actor_by_id[event.source].set_telegraph(float(event.get("duration",1.3)),float(source.warning.get("total",event.get("duration",1.3))))
 		"impact":
-			if actor_by_id.has(event.get("source",-1)): actor_by_id[event.source].strike("heavy")
+			if actor_by_id.has(event.get("source",-1)): actor_by_id[event.source].strike("heavy",.30,false,true)
 			_kick_camera(0.055)
 			if event.has("zones"):
 				var burst:=_pattern_visual(event.zones,Color(theme.fire),0.55)

@@ -100,7 +100,7 @@ jobs:
       - name: Check Play identity, listing limits and 16 KB verifier
         run: |
           python3 scripts/check_play_release.py
-          python3 -m unittest discover -s tests -p test_android_release.py -v
+          python3 -m unittest discover -s tests -p 'test_android*.py' -v
 
       - name: Check combined oaths, phased bosses, legacy checkpoints and offline parity
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-phased-data" timeout 300s godot --headless --path . --script tests/combined_oaths_phases_smoke.gd
