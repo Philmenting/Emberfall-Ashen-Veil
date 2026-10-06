@@ -37,25 +37,35 @@ func run_checks() -> void:
 	var allowed: Array=["Body","ArmL","ArmR","LegL","LegR","KneeL","KneeR","Cape","Weapon","HairL","HairR","BowString","Arrow"]
 	var appearances: Array=[]
 	for name in Models.MODELS:
-		var scene: PackedScene=Models.MODELS[name]
-		check(not appearances.has(scene),name+": own exported character appearance")
-		appearances.append(scene)
+		var complete: bool=Models.BODY_COMPLETE.get(name,false)
+		var descriptor: Variant=Models.BODY_MODELS[name] if complete else Models.MODELS[name]
+		check(not appearances.has(descriptor),name+": own exported character appearance")
+		# Keep path identities rather than retaining all lazy source PackedScenes.
+		appearances.append(descriptor)
+		var scene: PackedScene=Models.body_scene(name) if complete else Models.MODELS[name]
 		var model:=scene.instantiate()
 		var triangles:=0
 		var valid:=true
 		for source in model.find_children("*","MeshInstance3D",true,false):
-			valid=valid and allowed.has(String(source.name).get_slice("__",0))
+			if complete:
+				var skeleton:=source.get_node(source.skeleton) as Skeleton3D
+				valid=valid and source.skin!=null and skeleton!=null and skeleton.get_bone_count()==29
+			else: valid=valid and allowed.has(String(source.name).get_slice("__",0))
 			for surface in range(source.mesh.get_surface_count()):
 				var arrays: Array=source.mesh.surface_get_arrays(surface)
 				var vertices: PackedVector3Array=arrays[Mesh.ARRAY_VERTEX]
 				var normals: PackedVector3Array=arrays[Mesh.ARRAY_NORMAL]
 				var indices: PackedInt32Array=arrays[Mesh.ARRAY_INDEX]
-				triangles+=indices.size()/3
+				triangles+=(vertices.size() if indices.is_empty() else indices.size())/3
+				if complete:
+					valid=valid and arrays[Mesh.ARRAY_TEX_UV].size()==vertices.size() and arrays[Mesh.ARRAY_TANGENT].size()==vertices.size()*4
+					valid=valid and arrays[Mesh.ARRAY_BONES].size()==vertices.size()*4 and arrays[Mesh.ARRAY_WEIGHTS].size()==vertices.size()*4
 				for normal in normals: valid=valid and normal.is_finite() and normal.length()>0.9
 				for vertex in vertices: valid=valid and vertex.is_finite()
 		check(valid,name+": finite geometry and normals fit the animated joint contract")
 		check(triangles>4000 and triangles<=40000,name+": character geometry remains within the 40k triangle ceiling (%d)" % triangles)
 		model.free()
+		scene=null
 	for name in Architecture.MODELS:
 		var prop: Node3D=Architecture.MODELS[name].instantiate()
 		check(not prop.find_children("*","MeshInstance3D",true,false).is_empty(),name+": architectural GLTF is available for export")

@@ -1,0 +1,36 @@
+{
+  "command": [
+    "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+    "--path",
+    "/workspace/Emberfall-Ashen-Veil",
+    "--audio-driver",
+    "Dummy",
+    "--script",
+    "res://tests/source_avatar_grip_preview.gd",
+    "--",
+    "--capture-dir=/workspace/scratch/emberfall-staff-grip-053/original-closeups/captures"
+  ],
+  "started_utc": "2026-10-06T06:44:40Z",
+  "inputs_before": {
+    "/workspace/Emberfall-Ashen-Veil/assets/models/arcanist.glb": "2d20d4f79f650383e0370c00c0debf628dad0926509cb79bccff622a8797b749",
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/arcanist.glb": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "/workspace/Emberfall-Ashen-Veil/scripts/dungeon_actor.gd": "371eac851948d14fbb5156f16d42352af36487416ff9c3ae3359fd546058448c",
+    "/workspace/Emberfall-Ashen-Veil/scripts/source_avatar_rig.gd": "8b01384604d52e575b042321fa58407b134cb699cc292741b724c19faa319e14",
+    "/workspace/Emberfall-Ashen-Veil/tests/source_avatar_grip_preview.gd": "ea16c1e87b97174ee990def9b1aa26095ff1330622c975cd7b56940f5fc685a5"
+  },
+  "appearance_accepted": false,
+  "pid": 799,
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_seconds": 6.635,
+  "inputs_after": {
+    "/workspace/Emberfall-Ashen-Veil/assets/models/arcanist.glb": "2d20d4f79f650383e0370c00c0debf628dad0926509cb79bccff622a8797b749",
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/arcanist.glb": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "/workspace/Emberfall-Ashen-Veil/scripts/dungeon_actor.gd": "371eac851948d14fbb5156f16d42352af36487416ff9c3ae3359fd546058448c",
+    "/workspace/Emberfall-Ashen-Veil/scripts/source_avatar_rig.gd": "8b01384604d52e575b042321fa58407b134cb699cc292741b724c19faa319e14",
+    "/workspace/Emberfall-Ashen-Veil/tests/source_avatar_grip_preview.gd": "ea16c1e87b97174ee990def9b1aa26095ff1330622c975cd7b56940f5fc685a5"
+  },
+  "inputs_unchanged": true,
+  "log_sha256": "79bee36642462d2cf30a45046d2e84bfaf0dab1075e99b92fd2a48356b4327bb",
+  "finished_utc": "2026-10-06T06:44:46Z"
+}

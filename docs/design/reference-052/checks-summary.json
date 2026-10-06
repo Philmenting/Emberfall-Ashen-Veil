@@ -1,0 +1,79 @@
+[
+  {
+    "test": "source_avatar_smoke",
+    "runner_exit": 0,
+    "engine_exit": 0,
+    "inputs_unchanged": true,
+    "seconds": 3.752,
+    "errors": [],
+    "passed": true,
+    "checks": 39,
+    "time_scale": 1
+  },
+  {
+    "test": "character_3d_smoke",
+    "runner_exit": 0,
+    "engine_exit": 0,
+    "inputs_unchanged": true,
+    "seconds": 18.346,
+    "errors": [],
+    "passed": true,
+    "checks": 164,
+    "time_scale": 1
+  },
+  {
+    "test": "authored_art_smoke",
+    "runner_exit": 0,
+    "engine_exit": 0,
+    "inputs_unchanged": true,
+    "seconds": 7.513,
+    "errors": [],
+    "passed": true,
+    "checks": 105,
+    "time_scale": 1
+  },
+  {
+    "test": "world_framing_smoke",
+    "runner_exit": 0,
+    "engine_exit": 0,
+    "inputs_unchanged": true,
+    "seconds": 24.476,
+    "errors": [],
+    "passed": true,
+    "checks": 900,
+    "time_scale": 1
+  },
+  {
+    "test": "visuals_smoke",
+    "runner_exit": 0,
+    "engine_exit": 0,
+    "inputs_unchanged": true,
+    "seconds": 5.609,
+    "errors": [],
+    "passed": true,
+    "checks": 73,
+    "time_scale": 1
+  },
+  {
+    "test": "dungeon_smoke",
+    "runner_exit": 0,
+    "engine_exit": 0,
+    "inputs_unchanged": true,
+    "seconds": 125.4,
+    "errors": [],
+    "passed": true,
+    "checks": 55,
+    "time_scale": 3
+  },
+  {
+    "test": "combat_stances_smoke",
+    "runner_exit": 0,
+    "engine_exit": 0,
+    "inputs_unchanged": true,
+    "seconds": 3.955,
+    "errors": [],
+    "passed": true,
+    "checks": 140,
+    "time_scale": 1
+  }
+]

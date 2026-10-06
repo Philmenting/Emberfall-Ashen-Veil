@@ -2,17 +2,18 @@ name: Gameplay Quality
 
 on:
   push:
-    branches: [main, release/google-play-beta-039]
+    branches: [main]
     paths:
       - 'scripts/**'
       - 'tests/**'
       - 'server/**'
       - 'assets/**'
       - 'project.godot'
+      - 'export_presets.cfg'
       - 'Main.tscn'
       - '.github/workflows/gameplay-quality.yml'
   pull_request:
-    branches: [main, release/google-play-beta-039, improve/expedition-quality]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -38,6 +39,14 @@ jobs:
           sudo install -m 0755 "$RUNNER_TEMP/godot/Godot_v4.7.2-stable_linux.x86_64" /usr/local/bin/godot
       - name: Import native assets
         run: godot --headless --path . --editor --import --quit
+      - name: Verify native avatar data in the Android resource package
+        shell: bash
+        run: |
+          mkdir -p build
+          godot --headless --path . --export-pack 'Android Closed Beta APK' build/native-avatar-smoke.pck
+          cd "$RUNNER_TEMP"
+          timeout 60s godot --headless --main-pack "$GITHUB_WORKSPACE/build/native-avatar-smoke.pck" \
+            --script "$GITHUB_WORKSPACE/tests/source_avatar_export_smoke.gd"
       - name: Check gameplay, saves, AFK, presentation and server rules
         shell: bash
         run: |

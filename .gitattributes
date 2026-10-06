@@ -1,0 +1,4 @@
+# Keep the manufacturer's original license/readme bytes, including CRLF and
+# supplied spacing. Project-authored text keeps the normal whitespace checks.
+assets/models/nyra052/*LICENSE.txt -text -whitespace
+assets/models/nyra052/MANUFACTURER-OUTFIT-README.txt -text -whitespace

@@ -1,0 +1,43 @@
+{
+  "command": [
+    "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+    "--headless",
+    "--path",
+    "/workspace/Emberfall-Ashen-Veil",
+    "--audio-driver",
+    "Dummy",
+    "--script",
+    "res://tests/character_3d_smoke.gd"
+  ],
+  "started_utc": "2026-10-06T07:03:47Z",
+  "inputs_before": {
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/arcanist.glb": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/staff-grip053.glb": "58d7e76521f7134aabf803db1288cb395596cc80ccf93c482733a133972de843",
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/staff-grip053.json": "fa80f22d398ee8d8947a2be4e6b8c8bb64a7d71a1b41b3489171257ea35735dc",
+    "/workspace/Emberfall-Ashen-Veil/scripts/dungeon_actor.gd": "371eac851948d14fbb5156f16d42352af36487416ff9c3ae3359fd546058448c",
+    "/workspace/Emberfall-Ashen-Veil/scripts/source_avatar_rig.gd": "6e47bd07bf876e7c3d8c9d37aef1ac6fe874eecaabb7cf978583c28e04282d64",
+    "/workspace/Emberfall-Ashen-Veil/tests/character_3d_smoke.gd": "bfbde722fbff1e66543bda8ff439bcf10d2bc8ac4ddd71615c13fc439babbe9d",
+    "/workspace/Emberfall-Ashen-Veil/tests/source_avatar_smoke.gd": "4b476536eda3cd7b52e2adc84c37fed5ddbea84a09006eb0f18d35a0bdf4ce71",
+    "/workspace/Emberfall-Ashen-Veil/tests/visuals_smoke.gd": "132d213ba49d820ddd36b20f599c91c67e64951cd82f7ca3787026e614da1927",
+    "/workspace/Emberfall-Ashen-Veil/tests/world_framing_smoke.gd": "42fc74f8f4c5de7da4c4542b2d579823974623cd2831c78dc1c69412a9a54ca8"
+  },
+  "appearance_accepted": false,
+  "pid": 1807,
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_seconds": 18.24,
+  "inputs_after": {
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/arcanist.glb": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/staff-grip053.glb": "58d7e76521f7134aabf803db1288cb395596cc80ccf93c482733a133972de843",
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/staff-grip053.json": "fa80f22d398ee8d8947a2be4e6b8c8bb64a7d71a1b41b3489171257ea35735dc",
+    "/workspace/Emberfall-Ashen-Veil/scripts/dungeon_actor.gd": "371eac851948d14fbb5156f16d42352af36487416ff9c3ae3359fd546058448c",
+    "/workspace/Emberfall-Ashen-Veil/scripts/source_avatar_rig.gd": "6e47bd07bf876e7c3d8c9d37aef1ac6fe874eecaabb7cf978583c28e04282d64",
+    "/workspace/Emberfall-Ashen-Veil/tests/character_3d_smoke.gd": "bfbde722fbff1e66543bda8ff439bcf10d2bc8ac4ddd71615c13fc439babbe9d",
+    "/workspace/Emberfall-Ashen-Veil/tests/source_avatar_smoke.gd": "4b476536eda3cd7b52e2adc84c37fed5ddbea84a09006eb0f18d35a0bdf4ce71",
+    "/workspace/Emberfall-Ashen-Veil/tests/visuals_smoke.gd": "132d213ba49d820ddd36b20f599c91c67e64951cd82f7ca3787026e614da1927",
+    "/workspace/Emberfall-Ashen-Veil/tests/world_framing_smoke.gd": "42fc74f8f4c5de7da4c4542b2d579823974623cd2831c78dc1c69412a9a54ca8"
+  },
+  "inputs_unchanged": true,
+  "log_sha256": "2c5161278f3836b0d8a1a4be57dd46de304910c7ebdece6c35268da87c0b0a1f",
+  "finished_utc": "2026-10-06T07:04:05Z"
+}

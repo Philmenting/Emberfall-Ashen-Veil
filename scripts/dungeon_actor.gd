@@ -2,6 +2,7 @@ extends Node3D
 ## Fully volumetric, opaque 3D characters. Native skeletons play authored clips;
 ## simulation events decide contact, warnings and death, never renderer clocks.
 const Rig=preload("res://scripts/character_rig.gd")
+const SourceAvatar=preload("res://scripts/source_avatar_rig.gd")
 const HEROES: Array[String]=["Vowkeeper","Arcanist","Ranger"]
 const HOSTILES: Array[String]=["raider","bulwark","hexer","elite"]
 const GEAR_RANKS: Dictionary={"COMMON":0,"UNCOMMON":1,"RARE":2,"EPIC":3,"LEGENDARY":4}
@@ -20,6 +21,7 @@ var body: Node3D
 var model: MeshInstance3D
 var surface_material: ShaderMaterial
 var motion_rig: RefCounted
+var source_avatar:=false
 var equipped_items: Dictionary={}
 var equipment_grades: Dictionary={}
 var materials: Dictionary={}
@@ -62,6 +64,11 @@ var plant_active: Array[bool]=[false,false]
 var stop_time:=-1.0
 var stop_support:=-1
 
+static func retain_character_cache(appearances: Array[String]) -> void:
+	var retained:=Rig.retain_cache(appearances)
+	for appearance in appearance_cache.keys():
+		if not retained.has(String(appearance)): appearance_cache.erase(appearance)
+
 func _ready() -> void:
 	desired_yaw=rotation.y
 	body=Node3D.new(); body.name="CharacterBody"; add_child(body)
@@ -77,8 +84,11 @@ func _load_appearance() -> void:
 	if not appearance_key in HEROES+HOSTILES and not boss: appearance_key="raider"
 	figure_height=4.6 if boss else (2.30 if kind in ["bulwark","elite"] else 2.15)
 	if motion_rig!=null:
-		motion_rig.player.free(); motion_rig.skeleton.free()
-	motion_rig=Rig.new(); motion_rig.build(body,appearance_key)
+		if source_avatar: motion_rig.dispose()
+		else: motion_rig.player.free(); motion_rig.skeleton.free()
+	source_avatar=SourceAvatar.has_appearance(appearance_key)
+	motion_rig=SourceAvatar.new() if source_avatar else Rig.new()
+	motion_rig.build(body,appearance_key)
 	appearance_cache[appearance_key]=motion_rig.mesh
 	body.scale=Vector3.ONE*figure_height/motion_rig.source_height
 	if model==null:
@@ -92,7 +102,20 @@ func _load_appearance() -> void:
 		surface_material.set_shader_parameter("metal_grain",preload("res://assets/materials/metal/Metal063_1K-JPG_Color.jpg"))
 		surface_material.set_shader_parameter("metal_roughness",preload("res://assets/materials/metal/Metal063_1K-JPG_Roughness.jpg"))
 		model.material_override=surface_material
+	model.visible=not source_avatar
+	model.material_override=null if source_avatar else surface_material
 	model.mesh=motion_rig.mesh; model.skin=motion_rig.skin
+	if source_avatar: motion_rig.configure_rendering(model)
+	if motion_rig.body_material!=null:
+		var authored_material: StandardMaterial3D=motion_rig.body_material
+		surface_material.set_shader_parameter("body_albedo",authored_material.albedo_texture)
+		surface_material.set_shader_parameter("body_normal",authored_material.normal_texture)
+		surface_material.set_shader_parameter("body_orm",authored_material.roughness_texture)
+	else:
+		# A reused portrait/actor switching to legacy geometry must not retain
+		# the previous complete character's atlases through its ShaderMaterial.
+		for parameter in ["body_albedo","body_normal","body_orm"]:
+			surface_material.set_shader_parameter(parameter,null)
 	model.skeleton=model.get_path_to(motion_rig.skeleton)
 	last_clip=""; blend_pose.clear(); blend_age=1.0
 	plant_active=[false,false]
@@ -129,6 +152,7 @@ func pose_bounds() -> AABB:
 	return body.transform*motion_rig.bounds if motion_rig!=null else AABB()
 
 func portrait_anchor() -> Vector3:
+	if source_avatar: return body.transform*motion_rig.head_anchor()
 	return body.transform*(motion_rig.skeleton.get_bone_global_pose(3)*Vector3(0,.10,-.035)) if motion_rig!=null else Vector3(0,1.85,0)
 
 func weapon_world_position(_camera_position: Vector3=Vector3.ZERO) -> Vector3:
@@ -138,11 +162,11 @@ func projectile_origin() -> Vector3:
 	# Spells leave the leading casting palm; arrows keep the bow's release
 	# point. Both positions come from the pose on the real launch frame.
 	if kind=="Arcanist":
-		return body.to_global(motion_rig.skeleton.get_bone_global_pose(7).origin)
+		return body.to_global(motion_rig.palm_position(0))
 	return weapon_world_position()
 
 func weapon_grip_position() -> Vector3:
-	return body.to_global(motion_rig.skeleton.get_bone_global_pose(20).origin)
+	return body.to_global(motion_rig.weapon_grip_position()) if source_avatar else body.to_global(motion_rig.skeleton.get_bone_global_pose(20).origin)
 
 func face_toward(direction: Vector3,_camera_position: Vector3=Vector3.ZERO,force: bool=false) -> void:
 	if death_time>=0.0 or direction.length_squared()<.0025: return
@@ -203,6 +227,13 @@ func set_readability(value: float,focus: float=0.0) -> void:
 		surface_material.set_shader_parameter("silhouette_focus",silhouette_focus)
 		surface_material.set_shader_parameter("focus_tint",Color("f1dbac") if not hostile else Color("dcba80"))
 
+func set_defeated_readability(value: float) -> void:
+	if death_time<0.0 or surface_material==null: return
+	# Living combatants keep their contrast floor. Settled bodies relinquish
+	# visual emphasis without changing death, reward or animation clocks.
+	surface_material.set_shader_parameter("readability",clampf(value,.10,1.0))
+	surface_material.set_shader_parameter("silhouette_focus",0.0)
+
 func set_telegraph(remaining_seconds: float,total_seconds: float=-1.0) -> void:
 	if total_seconds>0.0: telegraph_duration=total_seconds
 	elif remaining_seconds>telegraph_left+.05: telegraph_duration=remaining_seconds
@@ -235,7 +266,8 @@ func animate(delta: float,walking: bool,horizontal_speed: float=-1.0) -> void:
 	gait_blend=lerpf(gait_blend,1.0 if walking else 0.0,1.0-exp(-delta*12.0))
 	if walking:
 		var speed:=clampf(horizontal_speed,0.0,6.0) if horizontal_speed>=0.0 else 3.2
-		gait_phase+=delta*speed/body.scale.x*TAU/1.60
+		var stride: float=motion_rig.walk_stride() if source_avatar else Rig.Clips.walk_stride(appearance_key,motion_rig.animation_profile)
+		gait_phase+=delta*speed/body.scale.x*TAU/stride
 	pose_frame=1+int(floor(gait_phase/PI))%2 if gait_blend>.22 else 0
 	action_intensity=1.20 if attack_style in SKILL_STYLES else 1.0
 	if telegraph_left>0.0: pose_frame=3
@@ -288,6 +320,12 @@ func _apply_motion(delta: float=0.0,contact: bool=false) -> void:
 		if clip.begins_with("windup") and time>.24: blend_age=1.0
 		last_clip=clip
 	motion_rig.pose(clip,time)
+	if source_avatar:
+		if contact: blend_age=1.0
+		else: blend_age+=delta
+		if blend_age<blend_duration and not blend_pose.is_empty(): motion_rig.blend_from(blend_pose,smoothstep(0,blend_duration,blend_age))
+		motion_rig.apply_actor_postprocess(self,clip,time,delta,contact)
+		return
 	if clip=="death":
 		# Deterministic variations keep fallen fighters from repeating the same
 		# prop silhouette. They are native joint poses on the original ground.
@@ -310,8 +348,8 @@ func _apply_motion(delta: float=0.0,contact: bool=false) -> void:
 		for side in range(2):
 			var thigh:=12 if side==0 else 15
 			var knee_pole:=skeleton.get_bone_global_pose(thigh+1).origin-skeleton.get_bone_global_pose(thigh).origin
-			motion_rig.solve_leg(side,Rig.Clips.action_foot(appearance_key,clip,phase,side),knee_pole)
-			var foot_basis: Basis=skeleton.get_bone_global_pose(thigh+1).basis.inverse()*Rig.Clips.action_foot_basis(appearance_key,side)
+			motion_rig.solve_leg(side,Rig.Clips.action_foot(appearance_key,clip,phase,side,motion_rig.animation_profile),knee_pole)
+			var foot_basis: Basis=skeleton.get_bone_global_pose(thigh+1).basis.inverse()*Rig.Clips.action_foot_basis(appearance_key,side,motion_rig.animation_profile)
 			skeleton.set_bone_pose_rotation(thigh+2,foot_basis.get_rotation_quaternion())
 			skeleton.force_update_all_bone_transforms()
 	elif clip=="death" and time<.12:
@@ -361,6 +399,7 @@ func _plant_feet() -> void:
 	for side in range(2):
 		var foot_index:=14 if side==0 else 17
 		var offset: Vector3=motion_rig.rest[foot_index].origin
+		if not motion_rig.animation_profile.is_empty(): offset=Rig.Clips.walk_anchor(appearance_key,side,motion_rig.animation_profile)
 		var target: Vector3=skeleton.get_bone_global_pose(foot_index).origin
 		target=offset+direction_basis*(target-offset)
 		var supporting:=fposmod(phase+side*.5,1.0)<.5
@@ -373,7 +412,9 @@ func _plant_feet() -> void:
 			if not moving:
 				target=target.lerp(offset,smoothstep(0,.20,stop_time))
 				target.y=maxf(target.y,offset.y+sin(clampf(stop_time/.20,0,1)*PI)*.035)
-		motion_rig.solve_leg(side,target,direction_basis*Vector3.FORWARD)
+		var foot_basis: Basis=Rig.Clips.action_foot_basis(appearance_key,side,motion_rig.animation_profile)
+		if not motion_rig.animation_profile.is_empty(): foot_basis=direction_basis*foot_basis
+		motion_rig.solve_leg(side,target,direction_basis*Vector3.FORWARD,foot_basis)
 
 func _contact_shadow() -> void:
 	var material:=ShaderMaterial.new(); material.shader=preload("res://assets/shaders/ground_grime.gdshader")

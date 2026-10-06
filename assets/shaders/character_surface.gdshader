@@ -27,8 +27,16 @@ uniform sampler2D metal_roughness:filter_linear_mipmap,repeat_enable;
 uniform sampler2D field_surfaces:source_color,filter_linear_mipmap,repeat_disable;
 uniform bool portrait_crop=false;
 uniform sampler2D face_albedo:source_color,filter_linear_mipmap,repeat_disable;
+uniform sampler2D body_albedo:source_color,filter_linear_mipmap,repeat_disable;
+uniform sampler2D body_normal:hint_normal,filter_linear_mipmap,repeat_disable;
+uniform sampler2D body_orm:filter_linear_mipmap,repeat_disable;
 varying vec3 object_position;
-void vertex(){ object_position=CUSTOM0.xyz; }
+varying vec3 authored_uv;
+varying vec3 authored_emission;
+void vertex(){ object_position=CUSTOM0.xyz; authored_uv=CUSTOM1.xyz; authored_emission=CUSTOM2.xyz; }
+vec3 encode_linear_emission(vec3 value) {
+    return mix(value*12.92,1.055*pow(max(value,vec3(0.0)),vec3(1.0/2.4))-0.055,step(vec3(0.0031308),value));
+}
 float face_v(float y) {
     // Authored geometry landmarks after the common adult-proportion export.
     // Image coordinates are measured from the original patch, not guessed.
@@ -51,15 +59,35 @@ void fragment(){
     else if(UV.x<4.5){rank=boots_rank;accent=boots_tint.rgb;}
     else {rank=accent_rank;accent=accent_tint.rgb;}
     vec3 color=COLOR.rgb;
+    float grain=0.5;
+    float etched=0.5;
+    float wear=0.25;
+    float metal=UV2.x;
+    bool source_body=authored_uv.z>0.5;
+    NORMAL_MAP=vec3(0.5,0.5,1.0);
+    if(source_body) {
+        // The sewn surface and its bake share the source UVs through skinning.
+        // The normal frame is exported with the mesh, not projected in space.
+        // Source-guide hair cards share this atlas. Their authored coverage
+        // cuts the strand edges; all opaque body texels retain alpha 1.
+        vec4 source_albedo=texture(body_albedo,authored_uv.xy);
+        if(source_albedo.a<0.35) discard;
+        color=source_albedo.rgb;
+        vec3 orm=texture(body_orm,authored_uv.xy).rgb;
+        metal=orm.b;
+        AO=orm.r;
+        ROUGHNESS=clamp(orm.g,0.30,0.99);
+        NORMAL_MAP=texture(body_normal,authored_uv.xy).rgb;
+        NORMAL_MAP_DEPTH=1.0;
+    } else {
     // Rest-space coordinates keep the finish attached to the animated garment.
     vec2 grain_uv=object_position.xy*1.35+object_position.zy*0.34;
-    float grain=dot(texture(metal_grain,grain_uv).rgb,vec3(0.299,0.587,0.114));
-    float etched=texture(metal_roughness,grain_uv).r;
-    float metal=UV2.x;
+    grain=dot(texture(metal_grain,grain_uv).rgb,vec3(0.299,0.587,0.114));
+    etched=texture(metal_roughness,grain_uv).r;
     vec2 cell=metal>0.3 ? vec2(1.0,1.0) : (category==2.0 ? vec2(1.0,0.0) : vec2(0.0,1.0));
     vec2 repeat_uv=abs(fract(grain_uv*(metal>0.3 ? 1.1 : 2.0))*2.0-1.0);
     vec3 surface=texture(field_surfaces,(cell+vec2(0.045)+repeat_uv*0.91)*0.5).rgb;
-    float wear=dot(surface,vec3(0.299,0.587,0.114));
+    wear=dot(surface,vec3(0.299,0.587,0.114));
     // The GLTF factor -> sRGB material -> linear vertex color chain has been
     // measured. COLOR is already linear albedo, not a color needing another
     // gamma operation or a high-contrast atlas multiplier. Authored broad
@@ -79,9 +107,6 @@ void fragment(){
         float head=smoothstep(1.782,1.822,object_position.y);
         color=mix(COLOR.rgb,complexion,front*cheek*head);
     }
-    if(equipment_enabled && UV.x>=0.0 && category<0.5 && rank>0.0)
-        color=mix(color,accent*0.70,0.08+rank*0.045);
-    ALBEDO=mix(color,vec3(0.8,0.72,0.61),hit_flash*0.22)*readability;
     ROUGHNESS=clamp(UV.y+(etched-0.5)*metal*0.075,0.37,0.97);
     if(category==1.0) ROUGHNESS=clamp(UV.y+(wear-0.25)*0.025,0.86,0.96);
     if(category==2.0) ROUGHNESS=clamp(UV.y+(wear-0.25)*0.045,0.70,0.87);
@@ -89,13 +114,24 @@ void fragment(){
     // The calibrated face's material response is retained independently of
     // the revised equipment finish.
     if(category>=6.0) ROUGHNESS=clamp(UV.y+(wear-0.2)*0.18,0.40,0.98);
+    }
+    if(equipment_enabled && UV.x>=0.0 && (category<0.5 || (source_body && metal>0.3)) && rank>0.0)
+        color=mix(color,accent*0.70,0.08+rank*0.045);
+    ALBEDO=mix(color,vec3(0.8,0.72,0.61),hit_flash*0.22)*readability;
     METALLIC=metal;
     SPECULAR=(category==3.0 || category>=6.0) ? 0.25 : 0.48;
     if(category==1.0) SPECULAR=0.22;
     if(category==2.0) SPECULAR=0.32;
     if(category==5.0) SPECULAR=0.29;
     float edge=pow(1.0-max(dot(NORMAL,VIEW),0.0),3.0);
-    EMISSION=color*UV2.y*(0.65+boss_phase*0.25)
+    vec3 material_emission=color*UV2.y*(0.65+boss_phase*0.25);
+    if(source_body) {
+        material_emission=authored_emission*UV2.y*(1.0+boss_phase*0.25);
+        // Compatibility decodes EMISSION after fragment(). Encode the complete
+        // linear pigment × intensity once, including dark gem emission.
+        if(OUTPUT_IS_SRGB) material_emission=encode_linear_emission(material_emission);
+    }
+    EMISSION=material_emission
         +focus_tint.rgb*edge*silhouette_focus*0.055
         +color*hit_flash*0.20;
 }

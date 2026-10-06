@@ -1,0 +1,134 @@
+{
+  "final_sha256": "98bd5832256f9a2fdbb68198d1dbf0d2db0b87c9c4d9d28b136cdfe54db0f11c",
+  "previous_exact_artifact_reproduced_sha256": "58d7e76521f7134aabf803db1288cb395596cc80ccf93c482733a133972de843",
+  "previous_artifact_method": "Reproduced prior exporter in scratch with only final normal normalization removed; byte hash exactly matches originally reviewed artifact",
+  "all_positions_and_indices_byte_identical": true,
+  "all_normals_unit_within1e-6": true,
+  "all_used_attributes_finite": true,
+  "all_triangles_nondegenerate": true,
+  "all_winding_consistent_with_normals": true,
+  "nodes_unchanged": true,
+  "materials_unchanged": true,
+  "meshes": {
+    "Weapon__leather": [
+      {
+        "used_vertices": 1098,
+        "triangles": 366,
+        "positions_byte_identical": true,
+        "indices_byte_identical": true,
+        "non_normal_attributes_byte_identical": {
+          "POSITION": true
+        },
+        "normal_length_range": [
+          0.9999999403953552,
+          1.0
+        ],
+        "non_unit_normals_tolerance1e-6": 0,
+        "nonfinite_attributes": {
+          "POSITION": 0,
+          "NORMAL": 0
+        },
+        "degenerate_triangles_area_less1e-12": 0,
+        "winding_against_normal_triangles": 0,
+        "uv_present": false,
+        "normal_values_changed": 491
+      }
+    ],
+    "Weapon__gold": [
+      {
+        "used_vertices": 882,
+        "triangles": 1732,
+        "positions_byte_identical": true,
+        "indices_byte_identical": true,
+        "non_normal_attributes_byte_identical": {
+          "POSITION": true
+        },
+        "normal_length_range": [
+          0.9999999403953552,
+          1.0000001192092896
+        ],
+        "non_unit_normals_tolerance1e-6": 0,
+        "nonfinite_attributes": {
+          "POSITION": 0,
+          "NORMAL": 0
+        },
+        "degenerate_triangles_area_less1e-12": 0,
+        "winding_against_normal_triangles": 0,
+        "uv_present": false,
+        "normal_values_changed": 0
+      }
+    ],
+    "Weapon__silver": [
+      {
+        "used_vertices": 243,
+        "triangles": 478,
+        "positions_byte_identical": true,
+        "indices_byte_identical": true,
+        "non_normal_attributes_byte_identical": {
+          "POSITION": true
+        },
+        "normal_length_range": [
+          0.9999999403953552,
+          1.0000001192092896
+        ],
+        "non_unit_normals_tolerance1e-6": 0,
+        "nonfinite_attributes": {
+          "POSITION": 0,
+          "NORMAL": 0
+        },
+        "degenerate_triangles_area_less1e-12": 0,
+        "winding_against_normal_triangles": 0,
+        "uv_present": false,
+        "normal_values_changed": 0
+      }
+    ],
+    "Weapon__soul": [
+      {
+        "used_vertices": 24,
+        "triangles": 44,
+        "positions_byte_identical": true,
+        "indices_byte_identical": true,
+        "non_normal_attributes_byte_identical": {
+          "POSITION": true
+        },
+        "normal_length_range": [
+          0.9999999403953552,
+          1.0
+        ],
+        "non_unit_normals_tolerance1e-6": 0,
+        "nonfinite_attributes": {
+          "POSITION": 0,
+          "NORMAL": 0
+        },
+        "degenerate_triangles_area_less1e-12": 0,
+        "winding_against_normal_triangles": 0,
+        "uv_present": false,
+        "normal_values_changed": 0
+      }
+    ],
+    "Weapon__ember": [
+      {
+        "used_vertices": 24,
+        "triangles": 44,
+        "positions_byte_identical": true,
+        "indices_byte_identical": true,
+        "non_normal_attributes_byte_identical": {
+          "POSITION": true
+        },
+        "normal_length_range": [
+          1.0,
+          1.0
+        ],
+        "non_unit_normals_tolerance1e-6": 0,
+        "nonfinite_attributes": {
+          "POSITION": 0,
+          "NORMAL": 0
+        },
+        "degenerate_triangles_area_less1e-12": 0,
+        "winding_against_normal_triangles": 0,
+        "uv_present": false,
+        "normal_values_changed": 0
+      }
+    ]
+  }
+}

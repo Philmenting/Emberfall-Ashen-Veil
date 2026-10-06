@@ -1,0 +1,17 @@
+# NEW051 corrected prototype: bounded independent pixel review
+
+Verdict: **FAIL for the requested main-character quality; no production approval.** The main requested model remains unfinished. **0 of the 3 original findings are fully resolved.**
+
+I inspected these original, uncropped build-003 engine captures at original resolution: `idle_front.png`, `idle_threequarter.png`, `basic_projectile_launch_0215.png`, `walk.png`, and the original `basic_projectile_launch_0215_head_closeup.png`, all under `proof/native-studio-003/captures`. This review scores only F1, F2, and F3 from `quality/first-prototype-review.md`. No engines, model edits, new camera angles, or pixel modifications were used.
+
+| Original finding | Corrected verdict | Visible evidence and remaining acceptance gap |
+| --- | --- | --- |
+| F1: garment coverage and intersections | **Partial** | The broad exposed thigh/chest areas from the first prototype are substantially reduced, and most of the legs are now covered. Coverage is still not continuous or coherent: pale jagged bands and gaps interrupt the hips/crotch region; skin-colored openings remain around the knees in launch and walk; the boot/leg transitions and sleeve/shoulder transitions retain irregular cut-through edges. The new pale collar/shoulder garment is visibly fragmented into the surrounding layers. The original criterion required continuous intended opaque coverage without unintended skin islands or body intersections across these poses; that criterion is not met. |
+| F2: primitive, disconnected costume construction | **Partial** | There is now a visible collar and more complete trousers/boot volume, so the correction makes some construction progress. The costume still reads as separate generic blocks and intersecting sheets: flat blue chest strips break into jagged pieces over the brown torso, the brown torso's upper edge is uneven, and the black coat tails remain plain rectangular hanging sheets. The outfit has not acquired the reference's coherent tailored chest/waist/sleeve silhouette. |
+| F3: hair and facial identity | **Open** | The head close-up retains the segmented silver helmet silhouette, visible scalp seams, sharp forehead point, thin tube-like braid, and generic wide-eyed fixed expression. No visible correction establishes gathered hair or the intended composed adult identity. |
+
+The correction demonstrates that code can improve coverage, but the actual image remains plainly a prototype. Neither partially improved coverage nor reported numerical/UV passes changes the quality verdict. This is not suitable for a main character in the requested Diablo-inspired release presentation.
+
+This bounded correction fully resolves no original finding. Do not turn this result into another unlimited cosmetic search or call it a completed model. The independent garment/hair code remains a technical scaffold rather than demonstrated evidence of an artist-quality production source. The strategy decision from the first review stands: the requested visual standard needs a deliberately authored, deformation-ready character source with a coherent modeled costume, face, hairstyle, and materials, or a suitable licensed finished source. These pixels do not support promising that further shell adjustments will produce that standard.
+
+This is a static visual verdict only. It does not certify continuous attack animation, camera stability, runtime performance, or beta readiness.

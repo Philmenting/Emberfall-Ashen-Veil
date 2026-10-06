@@ -1,0 +1,16 @@
+Emberfall 0.49 reliquaries — original project work
+
+The four reliquary meshes are original native construction authored in
+tools/art/build_reliquaries_049.py, using the original primitive library in
+tools/art/build_ruin_environment.py. No third-party 3D source or generated
+raster asset was introduced in this prop set.
+
+The repository does not declare a separate public asset license for these
+original meshes. This provenance record grants no new CC0 or other public
+license. The existing runtime material inputs retain their own source records:
+- ambientCG Rock030 (CC0 1.0), assets/materials/README.md;
+- the original generated oak/metal atlas and exact prompt/origin records under
+  assets/materials/field-surfaces/.
+
+GLBs embed geometry and base material identifiers only. The adjacent manifest
+records both generator sources, Blender version and per-file SHA256 values.

@@ -1,7 +1,8 @@
-"""Original connected ruin construction for Emberfall 0.48.
+"""Original connected ruin construction for Emberfall 0.49.
 Rebuild: blender -b -t 2 --python tools/art/build_ruin_environment.py
-Thin load-bearing walls, deep openings, broken crowns and flush paving replace
-0.47 capped bay-boxes. Coordinates/UVs are local metres, Godot Y-up; TANGENT is
+Thin load-bearing walls retain their deep openings; built wall feet, transverse
+end walls and regional returns now connect them to immediate depth. UVs/metres
+are local, Godot Y-up; TANGENT is
 exported. Original code geometry; existing licensed/material provenance retained.
 """
 from pathlib import Path
@@ -179,8 +180,16 @@ def footing(width=4.2,depth=3.3,basin=False):
    for k in range(7):g.block('dressed_stone',(side*1.84,.015,.1-k*.65),(.43,.16,.635),.015,k)
  else:
   floor_rect(-width*.5,width*.5,-depth,.58)
-  g.block('masonry',(0,-.56,-depth+.12),(width,1.10,.37),.02,16)
-  for side in (-1,1):g.block('masonry',(side*(width*.5-.20),-.51,-depth*.5),(.45,1.0,depth),.021,17)
+  # The aisle stands on a shallow undercroft. Open load-bearing arches and
+  # battered feet remain visible at an exposed join, never a paper floor edge.
+  with at(y=-1.72,z=-depth+.16):
+   g.arch('masonry',1.47,.18,.93,.30,.03,-.46,False,12)
+   for side in (-1,1):
+    g.block('masonry',(side*1.88,.71,-.12),(.43,1.72,.59),.028,16)
+   g.block('dressed_stone',(0,1.61,-.13),(width,.22,.64),.018,16)
+  for side in (-1,1):
+   g.block('masonry',(side*(width*.5-.22),-.70,-depth*.5),(.45,1.38,depth),.021,17)
+   g.block('masonry',(side*(width*.5-.30),-1.47,-depth*.5),(.60,.29,depth),.03,18)
  # One low wall foot; never a full-depth stand or raised paving platform.
  for side in (-1,1):
   g.block('masonry',(side*(width*.5-.20),.12,-depth*.5),(.48,.28,depth),.013,14)
@@ -270,9 +279,16 @@ def archive_bay(variant=0,close_end=False):
  for row in range(4):
   yy=.56+row*.84
   g.block('dressed_stone',(0,yy,-3.93),(3.86,.15,.82),.012,row)
-  for k in range(14):
-   x=-1.65+k*.253;h=.36+.15*((k*7+row*3)%5)/4
-   simple_block('oak',(x,yy+.09+h*.5,-4.04),(.14,h,.26))
+  # Volumes occur in weight-bearing groups and fallen folios, not an even
+  # picket fence. Empty gaps expose the true shelf depth at ordinary scale.
+  for k in range(10):
+   if (k+row*2+variant)%7==0:continue
+   x=-1.62+k*.345;h=.32+.18*((k*7+row*3)%5)/4
+   simple_block('oak',(x,yy+.09+h*.5,-4.04),(.19,h,.31))
+   for dx in [-.104,.104]:simple_block('oak',(x+dx,yy+.09+h*.5,-4.03),(.025,h+.025,.35))
+  if row in (0,2):
+   for k in range(2):
+    simple_block('oak',(-1.60+((row+variant)%3)*.70,yy+.13+k*.075,-3.83),(.49,.065,.43))
  # Wetload buttress and uneven rear coping, not repeated huge blank piers.
  for side in (-1,1):
   with at(x=side*2.02,z=-4.01):panel('masonry',[(-.3,0),(.3,0),(.22,4.6),(-.22,4.7)],.62)
@@ -306,10 +322,17 @@ def ossuary_bay(variant=0,close_end=False):
  for side in (-1,1):
   with at(x=side*1.98,z=-.38):panel('masonry',[(-.19,0),(.19,0),(.14,3.92),(-.14,4.06)],3.28)
  for z in (-.68,-3.20):g.arch('dressed_stone',1.69,1.88,1.75,.20,z+.13,z-.12,False,16)
- # One attached funerary chest, fitted to the burial bay and clear of the route.
- g.block('dressed_stone',(0,.24,-2.83),(1.56,.47,.85),.022,6)
- g.block('dressed_stone',(0,.54,-2.83),(1.68,.16,.95),.030,4)
- if variant==0:g.block('dressed_stone',(0,.67,-2.83),(1.29,.17,.64),.030,9)
+ # A built burial casket: inset long panel, joined stone corners, pitched lid.
+ # The front tablet sits behind its frame, leaving a genuine shallow reveal.
+ with at(z=-2.83):
+  g.block('dressed_stone',(0,.12,0),(1.67,.23,.95),.018,6)
+  for side in (-1,1):
+   g.block('dressed_stone',(side*.71,.34,0),(.21,.39,.79),.018,7)
+   g.block('dressed_stone',(0,.34,side*.31),(1.25,.32,.13),.012,8)
+   g.block('dressed_stone',(0,.49,side*.39),(1.26,.09,.14),.01,9)
+  g.block('dressed_stone',(0,.33,.376),(.95,.20,.045),.005,10)
+  section=[(-.83,.52),(.83,.52),(.83,.61),(.64,.65),(.35,.79),(-.42,.77),(-.66,.64),(-.83,.61)]
+  with at(z=.47):panel('dressed_stone',section,.94)
 
 def chimney(cx,height):
  # Open flue rather than a solid cube or a bright painted roof cap.
@@ -349,12 +372,92 @@ def narrow_remnant(region):
  for x in (-1.65,-.8,.06,.92,1.73):g.block('dressed_stone',(x,.16,-.24),(.78,.30,.84),.023,3)
  floor_rect(-2.10,2.10,-.72,.56)
 
+def retaining_return():
+ # A common load-bearing section, not the visible identity: a ledge continuing
+ # below the aisle with a battered toe and interrupted coping.
+ floor_rect(-2.10,2.10,-.74,.58)
+ g.block('masonry',(0,-.70,-.43),(4.2,1.39,.67),.027,49)
+ g.block('masonry',(0,-1.45,-.56),(4.2,.26,.91),.038,51)
+ for x,ww,h in [(-1.64,.88,.12),(-.54,1.19,.09),(.79,1.36,.13),(1.83,.50,.06)]:
+  g.block('dressed_stone',(x,h*.5,-.31),(ww,h,.77),.022,31)
+
 def low_return(region):
- heights=[.55,.82,.65,1.03,.43,.69];width=.7
- for i,h in enumerate(heights):
-  x=-1.75+i*width;g.block('masonry',(x,h*.5,-.32),(.72,h,.67),.042,region*19+i)
-  if i not in (1,4):g.block('dressed_stone',(x,h+.035,-.30),(.73,.13,.78),.036,i)
- floor_rect(-2.10,2.10,-.75,.58)
+ retaining_return()
+ if region==0:
+  # Funeral gallery: broad casket seat, mortised stone standards, iron field.
+  for x,h in [(-1.88,1.18),(.72,.86)]:
+   g.block('masonry',(x,h*.5,-.34),(.37,h,.53),.025,41)
+   g.block('dressed_stone',(x,h+.035,-.33),(.48,.13,.65),.02,43)
+  g.block('masonry',(-.51,.17,-.39),(2.15,.33,.68),.02,44)
+  g.block('dressed_stone',(-.51,.36,-.39),(2.24,.16,.79),.021,45)
+  for x in [-1.56,-1.10,-.64,-.18,.28]:
+   g.tube('iron',[(x,.43,-.37),(x,.93-(x+1.56)*.08,-.37)],.027,6)
+  g.tube('iron',[(-1.65,.86,-.37),(.49,.69,-.37)],.037,6)
+  # The torn end is a real shallow diagonal break, not a row of square blocks.
+  panel('masonry',[(.94,0),(2.1,0),(2.1,.21),(1.64,.28),(1.49,.49),(.94,.62)],.66)
+ elif region==1:
+  # A sluice bank with open culvert, recessed gate guides and an interrupted lip.
+  with at(x=-.46,y=-.12,z=.02):
+   g.arch('dressed_stone',.76,.13,.47,.18,.13,-.91,False,10)
+   for side in (-1,1):g.block('masonry',(side*.94,.24,-.39),(.35,.74,1.00),.022,54)
+  for x in [-1.13,-.91,-.69,-.47,-.25,-.03,.19]:
+   g.tube('iron',[(x,-.33,-.38),(x,.43,-.38)],.024,6)
+  g.block('iron',(-.47,.40,-.38),(1.47,.08,.08),.005,3)
+  for x,h in [(1.18,.61),(1.74,.43),(-1.87,.71)]:
+   g.block('masonry',(x,h*.5,-.34),(.60,h,.68),.025,55)
+   g.block('dressed_stone',(x,h+.02,-.34),(.67,.10,.77),.02,56)
+ elif region==2:
+  # A burial sill with a recessed long cell and surviving rounded shoulder.
+  g.block('masonry',(-.26,.21,-.40),(2.80,.39,.65),.020,61)
+  g.block('dressed_stone',(-.26,.47,-.42),(2.92,.19,.80),.025,63)
+  for x in [-1.81,1.25]:
+   g.block('masonry',(x,.47,-.38),(.32,.91,.70),.023,64)
+   g.block('dressed_stone',(x,.97,-.38),(.45,.16,.82),.018,65)
+  # Carved recess is backed and deep, a surviving wall, not a floating coffin.
+  g.block('masonry',(-.26,.75,-.70),(2.78,.44,.16),.014,66)
+  with at(x=-.26,y=.60,z=-.15):
+   g.arch('dressed_stone',1.31,.08,.37,.13,.04,-.55,False,12)
+  panel('masonry',[(1.51,0),(2.1,0),(2.1,.18),(1.87,.35),(1.51,.39)],.65)
+ else:
+  # A maintenance trench: the cover is an actual split grate over an open duct.
+  for x in [-1.87,1.84]:g.block('masonry',(x,.28,-.36),(.45,.55,.72),.027,72)
+  for z in [-.68,-.04]:g.block('iron',(-.05,.27,z),(3.51,.12,.09),.005,73)
+  for x in [-1.68,-1.37,-1.06,-.75,-.44,-.13,.18,.80,1.11,1.42,1.71]:
+   g.block('iron',(x,.31,-.35),(.075,.10,.65),.004,74)
+  for x in [-1.76,1.73]:
+   g.block('iron',(x,.72,-.40),(.10,.82,.10),.004,75)
+  g.tube('iron',[(-1.76,1.10,-.40),(-.48,1.10,-.40)],.047,8)
+  g.tube('iron',[(.52,.83,-.40),(1.73,.83,-.40)],.047,8)
+
+def end_wall(region):
+ # The exposed end of an aisle has thickness, a real passage and a broken
+ # upper edge. Its narrow footprint joins the last bay without a large end box.
+ depth=[3.35,4.55,3.80,4.42][region]
+ half=[.87,1.03,.92,.99][region]
+ spring=[2.35,1.45,1.64,1.72][region]
+ rise=[1.15,.73,.93,.55][region]
+ height=[4.60,3.12,3.57,3.04][region]
+ bank=region==1
+ skin=.20 if bank else .39
+ with at(x=.08 if bank else .20,z=-depth*.5,angle=math.pi*.5):
+  width=depth*.5
+  for side in (-1,1):
+   a=side*half;b=side*width
+   x0,x1=min(a,b),max(a,b)
+   panel('masonry',[(x0,-1.38),(x1,-1.38),(x1,height-.23),(x0,height-.02)],skin)
+   g.block('dressed_stone',((a+b)*.5,.12,-.08 if bank else -.15),(abs(b-a)+.07,.24,.28 if bank else .60),.012 if bank else .019,88)
+  face_spandrel('masonry',half,spring,rise,height,.0,-skin,region==0)
+  g.arch('dressed_stone',half,spring,rise,.21,.03 if bank else .10,-.24 if bank else -.50,region==0,14)
+  for i,x in enumerate([-width+.21,-half*.55,half*.34,width-.20]):
+   hh=height-.12-.11*math.sin(i*2.9)
+   g.block('dressed_stone',(x,hh,-.09 if bank else -.19),(.42,.16,.28 if bank else .49),.018 if bank else .03,i)
+  g.block('masonry',(0,-1.32,-.08 if bank else -.17),(depth,.30,.31 if bank else .75),.016 if bank else .026,91)
+ # Floor through the service opening shares the exact court shader.
+ if bank:
+  # The transverse bank never adds a stone sheet across the basin opening.
+  floor_rect(-.16,.15,-depth,-4.28)
+  floor_rect(-.16,.15,.12,.39)
+ else:floor_rect(-.53,.28,-depth,.39)
 
 def reset():
  bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
@@ -404,11 +507,12 @@ if __name__=='__main__':
  OUT.mkdir(parents=True,exist_ok=True)
  report={}
  for region,(prefix,fn) in enumerate([('spire',spire_bay),('archive',archive_bay),('ossuary',ossuary_bay),('citadel',citadel_bay)]):
-  for kind in ['bay','bay_broken','solid','return']:
+  for kind in ['bay','bay_broken','solid','return','end']:
    reset()
    if kind.startswith('bay'):fn(1 if kind=='bay_broken' else 0,False)
    elif kind=='solid':narrow_remnant(region)
-   else:low_return(region)
+   elif kind=='return':low_return(region)
+   else:end_wall(region)
    key=prefix+'_'+kind;report[key]=export(key);print('ENVIRONMENT',key,report[key]['triangles'],report[key]['material_meshes'],flush=True)
- manifest={'origin':'Original code-authored Blender geometry','generator':'tools/art/build_ruin_environment.py','generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'coordinates':'Godot Y-up metres; front +Z; depth -Z. UVMetres uses signed dominant planar axes in local metres, with glTF TANGENT exported.','materials':'Separate masonry and dressed_stone use the shared three-sampler UV shader; paving uses the identical court material. Existing documented CC0 and original textures, no new raster or third-party model.','models':report}
+ manifest={'origin':'Original code-authored Blender geometry','version':'0.49','generator':'tools/art/build_ruin_environment.py','generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'authoring_tool':'Blender '+bpy.app.version_string,'rebuild_command':'blender -b -t 2 --python tools/art/build_ruin_environment.py','source_license_record':'assets/models/environment/LICENSE-SOURCE.txt','runtime_construction':'scripts/ruin_architecture.gd','runtime_construction_sha256':hashlib.sha256((ROOT/'scripts/ruin_architecture.gd').read_bytes()).hexdigest(),'runtime_contract':'Per-part authoritative passage clearance before batching. Union-only stepped ground joins, paired internal end profiles removed, open basin cuts. Guardian room 5 has no camera-near return in any region, reserving the full danger envelope without dynamic culling.','coordinates':'Godot Y-up metres; front +Z; depth -Z. UVMetres uses signed dominant planar axes in local metres, with glTF TANGENT exported.','materials':'Separate masonry and dressed_stone use the shared three-sampler UV shader; paving uses the identical court material. Existing documented CC0 and original textures, no new raster or third-party model.','models':report}
  (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')

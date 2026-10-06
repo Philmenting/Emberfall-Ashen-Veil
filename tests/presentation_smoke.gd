@@ -2,6 +2,7 @@ extends SceneTree
 const Actor=preload("res://scripts/dungeon_actor.gd")
 const Budget=preload("res://scripts/render_budget.gd")
 const Main=preload("res://scripts/main.gd")
+const SourceSkin=preload("res://tests/source_avatar_skin.gd")
 var checks:=0
 var failures:=0
 func _initialize() -> void: run_checks.call_deferred()
@@ -14,11 +15,23 @@ func run_checks() -> void:
 	for kind in ["Vowkeeper","Arcanist","Ranger","boss"]:
 		var actor:=Actor.new(); actor.kind=kind; actor.boss=kind=="boss"; root.add_child(actor)
 		var mesh: MeshInstance3D=actor.model
-		check(actor.find_children("*","MeshInstance3D",true,false).size()==2,kind+": one volumetric surface and one contact shadow")
-		check(mesh.mesh.get_surface_count()==1 and actor.motion_rig.triangles<=40000,kind+": lit 3D geometry fits one bounded skinned surface")
-		check(mesh.mesh.get_aabb().size.z>.30,kind+": figure has real depth, not a camera-facing card")
-		check(mesh.skin==actor.motion_rig.skin and actor.motion_rig.skeleton.get_bone_count()==29 and actor.motion_rig.player.has_animation("death"),kind+": native skeleton and AnimationPlayer drive the visible volume")
+		var source_geometry: Array=[]
+		if actor.source_avatar:
+			for surface in actor.motion_rig.surfaces: source_geometry.append([surface.mesh,surface.skin])
+			check(source_surfaces_rendered(actor) and actor.get_node_or_null("ContactShadow") is MeshInstance3D,kind+": eight rendered authored surfaces and a contact shadow; compatibility proxy stays hidden")
+			var surface_count:=0
+			for surface in actor.motion_rig.surfaces: surface_count+=surface.mesh.get_surface_count()
+			check(surface_count==8 and actor.motion_rig.triangles<=40000,kind+": actual authored surfaces retain the bounded skinned triangle budget")
+			check(SourceSkin.actual_bounds(actor.motion_rig).size.z>.30,kind+": all four skin influences give the rendered figure real depth")
+			check(source_surfaces_rendered(actor) and actor.motion_rig.skeleton.get_bone_count()==65 and actor.motion_rig.player.has_animation("Walk_Loop") and actor.motion_rig.player.has_animation("Death01"),kind+": original native65 skin and authored walking/death clips drive the visible surfaces")
+		else:
+			check(actor.find_children("*","MeshInstance3D",true,false).size()==2,kind+": one volumetric surface and one contact shadow")
+			check(mesh.mesh.get_surface_count()==1 and actor.motion_rig.triangles<=40000,kind+": lit 3D geometry fits one bounded skinned surface")
+			check(mesh.mesh.get_aabb().size.z>.30,kind+": figure has real depth, not a camera-facing card")
+			check(mesh.skin==actor.motion_rig.skin and actor.motion_rig.skeleton.get_bone_count()==29 and actor.motion_rig.player.has_animation("death"),kind+": native skeleton and AnimationPlayer drive the visible volume")
 		actor.animate(0.20,true,3.0)
+		if actor.source_avatar:
+			check(actor.motion_rig.player.current_animation=="Walk_Loop" and SourceSkin.actual_bounds(actor.motion_rig).size.z>.30,kind+": actual walking samples the authored clip on the visible weighted surfaces")
 		var walking_blend: float=actor.gait_blend
 		actor.animate(1.0/60.0,false,0.0)
 		check(actor.gait_blend>0.0 and actor.gait_blend<walking_blend,kind+": stopping retains a fading stride")
@@ -27,15 +40,25 @@ func run_checks() -> void:
 		actor.strike(); actor.animate(0.001,false)
 		check(actor.pose_frame==3,kind+": actual attack starts in authored spatial windup")
 		actor.animate(0.30,false)
-		check(actor.pose_frame==4 and actor.release_time>=0.0 and mesh.mesh==actor.motion_rig.mesh,kind+": committed action reaches contact while retaining the animated mesh")
+		if actor.source_avatar:
+			check(actor.pose_frame==4 and actor.release_time>=0.0 and source_geometry_unchanged(actor,source_geometry),kind+": committed action reaches contact while retaining all actual authored meshes and skins")
+		else:
+			check(actor.pose_frame==4 and actor.release_time>=0.0 and mesh.mesh==actor.motion_rig.mesh,kind+": committed action reaches contact while retaining the animated mesh")
 		actor.set_telegraph(1.4); actor.animate(0.85,false)
 		check(actor.pose_frame==3,kind+": real warning countdown holds the windup longer than a basic swing")
 		actor.strike("heavy")
 		check(actor.pose_frame==4 and is_zero_approx(actor.telegraph_left),kind+": actual heavy impact clears warning and displays strike immediately")
 		actor.die(); actor.animate(0.1,false)
-		check(mesh.skin!=null and actor.motion_rig.skeleton.get_bone_pose_position(1).y<actor.motion_rig.rest[1].origin.y-.10,kind+": defeat first buckles the visible articulated figure")
+		if actor.source_avatar:
+			var pelvis: int=actor.motion_rig.skeleton.find_bone("pelvis")
+			check(source_surfaces_rendered(actor) and actor.motion_rig.player.current_animation=="Death01" and actor.motion_rig.skeleton.get_bone_global_pose(pelvis).origin.y<actor.motion_rig.rest[pelvis].origin.y-.10,kind+": authored defeat lowers the actual native pelvis and articulated surfaces")
+		else:
+			check(mesh.skin!=null and actor.motion_rig.skeleton.get_bone_pose_position(1).y<actor.motion_rig.rest[1].origin.y-.10,kind+": defeat first buckles the visible articulated figure")
 		actor.animate(1.0,false)
-		check(actor.pose_frame==5 and mesh.skin!=null and actor.body.position.is_finite(),kind+": completed collapse settles into the same skinned 3D figure on the floor")
+		if actor.source_avatar:
+			check(actor.pose_frame==5 and source_geometry_unchanged(actor,source_geometry) and actor.body.position.is_finite() and SourceSkin.actual_bounds(actor.motion_rig).position.y>-.025,kind+": completed collapse keeps the same actual skinned surfaces above the floor")
+		else:
+			check(actor.pose_frame==5 and mesh.skin!=null and actor.body.position.is_finite(),kind+": completed collapse settles into the same skinned 3D figure on the floor")
 		actor.free()
 	var budget:=Budget.new()
 	for frame in range(60*20): budget.sample(1.0/60.0,true)
@@ -91,3 +114,16 @@ func run_checks() -> void:
 	game.free()
 	print("PRESENTATION SMOKE: %d checks, %d failures" % [checks,failures])
 	quit(1 if failures else 0)
+
+func source_surfaces_rendered(actor: Node3D) -> bool:
+	if not actor.source_avatar or actor.model.visible or actor.motion_rig.surfaces.size()!=8: return false
+	for surface in actor.motion_rig.surfaces:
+		if not surface.is_visible_in_tree() or surface.mesh==null or surface.skin==null or surface.get_node_or_null(surface.skeleton)!=actor.motion_rig.skeleton: return false
+	return true
+
+func source_geometry_unchanged(actor: Node3D,original: Array) -> bool:
+	if not source_surfaces_rendered(actor) or original.size()!=actor.motion_rig.surfaces.size(): return false
+	for index in original.size():
+		var surface: MeshInstance3D=actor.motion_rig.surfaces[index]
+		if surface.mesh!=original[index][0] or surface.skin!=original[index][1]: return false
+	return true

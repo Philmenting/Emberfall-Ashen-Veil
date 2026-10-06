@@ -1,0 +1,59 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Vowkeeper: frame rate and skipping produce identical combat
+PASS: Vowkeeper: defeats six varied packs and boss
+PASS: Vowkeeper: uses abilities and reacts when actually threatened
+PASS: Vowkeeper: first floor starts in a live encounter
+PASS: Vowkeeper: signature lands during the first second
+PASS: Vowkeeper: pause freezes simulation and world
+PASS: Vowkeeper: live run reaches victory and loot
+PASS: Vowkeeper: live and skipped result exactly match
+PASS: Vowkeeper: unlock and gear awarded once
+PASS: Arcanist: frame rate and skipping produce identical combat
+PASS: Arcanist: defeats six varied packs and boss
+PASS: Arcanist: uses abilities and reacts when actually threatened
+PASS: Arcanist: first floor starts in a live encounter
+PASS: Arcanist: signature lands during the first second
+PASS: Arcanist: pause freezes simulation and world
+PASS: Arcanist: live run reaches victory and loot
+PASS: Arcanist: live and skipped result exactly match
+PASS: Arcanist: unlock and gear awarded once
+PASS: Ranger: frame rate and skipping produce identical combat
+PASS: Ranger: defeats six varied packs and boss
+PASS: Ranger: uses abilities and reacts when actually threatened
+PASS: Ranger: first floor starts in a live encounter
+PASS: Ranger: signature lands during the first second
+PASS: Ranger: pause freezes simulation and world
+PASS: Ranger: live run reaches victory and loot
+PASS: Ranger: live and skipped result exactly match
+PASS: Ranger: unlock and gear awarded once
+PASS: Ranger prioritizes the enemy caster when the pack contains one
+PASS: Vowkeeper: similar targets vary across run seeds
+PASS: Arcanist: similar targets vary across run seeds
+PASS: Ranger: similar targets vary across run seeds
+PASS: the same seed replays the same target choice and RNG state
+PASS: the hero keeps its selected target throughout attack cooldown
+PASS: Arcanist Nova damages multiple members of a pack
+PASS: Vowkeeper Guard reduces actual incoming damage
+PASS: insufficient gear cannot randomly clear an impossible floor
+PASS: offline pattern cache is equivalent to a full simulation
+PASS: repeated combat patterns retain independent loot seeds
+PASS: abilities cannot be cast without sufficient mana
+PASS: stronger weapon clears faster with more remaining health
+PASS: skip also works while paused
+PASS: completed run cannot award rewards twice
+PASS: auto repeat starts the same farm floor after collecting loot
+PASS: auto repeat stops on defeat
+PASS: short interruption preserves the live world
+PASS: short background time advances the same expedition exactly once
+PASS: current expedition checkpoint can be restored
+PASS: completed offline expeditions return to the report
+PASS: AFK counts use actual simulated durations
+PASS: AFK leaves the exact unused time remainder
+PASS: AFK repeats the selected floor without runaway progression
+PASS: duplicate resume cannot duplicate AFK rewards
+PASS: farm selector cannot access uncleared higher floors
+24H AFK benchmark ms=5130
+PASS: long AFK sessions respect bag limit and sell overflow
+PASS: farm cursor and pending rewards survive save/load
+DUNGEON SMOKE: 55 checks, 0 failures

@@ -1,0 +1,76 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: shared architectural profile surfaces face outward
+PASS: beveled paver top surfaces face upward
+PASS: Vowkeeper: 3D actor retains contact shadow and native GPU skinning
+PASS: Vowkeeper: spatial geometry, animation clips and movement stay finite
+PASS: Arcanist: 3D actor retains contact shadow and native GPU skinning
+PASS: Arcanist: spatial geometry, animation clips and movement stay finite
+PASS: Ranger: 3D actor retains contact shadow and native GPU skinning
+PASS: Ranger: spatial geometry, animation clips and movement stay finite
+PASS: raider: 3D actor retains contact shadow and native GPU skinning
+PASS: raider: spatial geometry, animation clips and movement stay finite
+PASS: bulwark: 3D actor retains contact shadow and native GPU skinning
+PASS: bulwark: spatial geometry, animation clips and movement stay finite
+PASS: hexer: 3D actor retains contact shadow and native GPU skinning
+PASS: hexer: spatial geometry, animation clips and movement stay finite
+PASS: elite: 3D actor retains contact shadow and native GPU skinning
+PASS: elite: spatial geometry, animation clips and movement stay finite
+PASS: boss: 3D actor retains contact shadow and native GPU skinning
+PASS: boss: spatial geometry, animation clips and movement stay finite
+PASS: Vowkeeper: actual signature style supplies stronger action emphasis
+PASS: Arcanist: actual signature style supplies stronger action emphasis
+PASS: Ranger: actual signature style supplies stronger action emphasis
+PASS: repeated characters share the authored 3D geometry
+PASS: running cadence advances with actual travel speed
+PASS: continuous locomotion alternates grounded left/right support
+PASS: attack motion reaches its contact state at the configured release
+PASS: enemy reacts to an actual hit with a short surface flash and lean
+PASS: rapid attacks queue without restarting the current swing
+PASS: queued swing begins after recovery
+PASS: death animation displays the continuous skinned corpse
+PASS: region 0: visual setup does not alter combat or RNG
+PASS: region 0: mist and dust are present
+PASS: region 0: animated regional surfaces retained
+PASS: region 0: court and regional paving remain unshadowed with one guardian inlay
+PASS: region 0: Battery removes decorative lighting without changing combat
+PASS: region 0: quality returns while reduced motion freezes beam drift
+PASS: region 0: hazard shading reflects actual countdown
+PASS: region 0: countdown preserves the full collision footprint
+PASS: region 0: spell release originates at the animated casting palm
+PASS: region 0: ranged projectile travels toward its target
+PASS: region 0: combat VFX clean up without affecting simulation
+PASS: region 1: visual setup does not alter combat or RNG
+PASS: region 1: mist and dust are present
+PASS: region 1: animated regional surfaces retained
+PASS: region 1: court and regional paving remain unshadowed with one guardian inlay
+PASS: region 1: Battery removes decorative lighting without changing combat
+PASS: region 1: quality returns while reduced motion freezes beam drift
+PASS: region 1: hazard shading reflects actual countdown
+PASS: region 1: countdown preserves the full collision footprint
+PASS: region 1: spell release originates at the animated casting palm
+PASS: region 1: ranged projectile travels toward its target
+PASS: region 1: combat VFX clean up without affecting simulation
+PASS: region 2: visual setup does not alter combat or RNG
+PASS: region 2: mist and dust are present
+PASS: region 2: animated regional surfaces retained
+PASS: region 2: court and regional paving remain unshadowed with one guardian inlay
+PASS: region 2: Battery removes decorative lighting without changing combat
+PASS: region 2: quality returns while reduced motion freezes beam drift
+PASS: region 2: hazard shading reflects actual countdown
+PASS: region 2: countdown preserves the full collision footprint
+PASS: region 2: spell release originates at the animated casting palm
+PASS: region 2: ranged projectile travels toward its target
+PASS: region 2: combat VFX clean up without affecting simulation
+PASS: region 3: visual setup does not alter combat or RNG
+PASS: region 3: mist and dust are present
+PASS: region 3: animated regional surfaces retained
+PASS: region 3: court and regional paving remain unshadowed with one guardian inlay
+PASS: region 3: Battery removes decorative lighting without changing combat
+PASS: region 3: quality returns while reduced motion freezes beam drift
+PASS: region 3: hazard shading reflects actual countdown
+PASS: region 3: countdown preserves the full collision footprint
+PASS: region 3: spell release originates at the animated casting palm
+PASS: region 3: ranged projectile travels toward its target
+PASS: region 3: combat VFX clean up without affecting simulation
+VISUALS SMOKE: 73 checks, 0 failures

@@ -1,0 +1,21 @@
+Emberfall 0.49 environment geometry — original project work
+
+All geometry in this directory is constructed by the original project source
+tools/art/build_ruin_environment.py. Native placed ground continuations and
+clearance rules are authored in scripts/ruin_architecture.gd. No external 3D
+model, photoscan, downloaded sculpture or image-generated mesh was used.
+
+The repository does not declare a separate public asset license for this
+original geometry. This record does not grant a CC0 license or introduce a
+third-party model license. Texture licensing does not change geometry ownership.
+
+Existing runtime texture inputs retain their own source/license records:
+- ambientCG Bricks096, CC0 1.0: assets/materials/masonry/LICENSE-SOURCE.txt
+  and assets/materials/masonry/manifest.json.
+- ambientCG Rock030, CC0 1.0: assets/materials/README.md.
+- Original generated floor albedo: assets/materials/ruin-floor/ sidecars.
+- Original generated surface atlas: assets/materials/field-surfaces/manifest.json
+  and the atlas's exact-prompt/origin sidecars.
+
+GLBs contain geometry and material identifiers, not new raster texture files.
+The adjacent manifest records authoring tool, source SHA256 and GLB SHA256.

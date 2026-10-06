@@ -11,6 +11,8 @@ android/build/
 android/.build_version
 *.jks
 __pycache__/
+*.blend1
+*.blend2
 *.apk
 *.aab
 *.keystore
@@ -18,3 +20,8 @@ __pycache__/
 # Local operating system files
 .DS_Store
 Thumbs.db
+
+# Godot extracts these textures from the committed native65 GLB on import.
+# Keep the embedded source and importer settings, not duplicate PNG exports.
+assets/models/nyra052/arcanist_T_*.png
+assets/models/nyra052/arcanist_T_*.png.import

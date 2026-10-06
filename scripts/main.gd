@@ -1,6 +1,7 @@
 extends Control
 
 const HeroArt = preload("res://scripts/hero_art.gd")
+const CharacterActor = preload("res://scripts/dungeon_actor.gd")
 const CampScene = preload("res://scripts/camp_scene.gd")
 const UiGlyph = preload("res://scripts/ui_glyph.gd")
 const TITLE_FONT = preload("res://assets/fonts/Cinzel.ttf")
@@ -265,6 +266,9 @@ func _build_ui() -> void:
 		if child == audio: continue
 		remove_child(child)
 		child.queue_free()
+	# Old actors keep their resources until queued deletion. Prune after that
+	# boundary, and ignore an obsolete rebuild if another UI revision starts.
+	_retain_character_cache_after_rebuild.call_deferred(ui_revision)
 	if is_instance_valid(audio): audio.set_context(page=="run")
 	if page == "run":
 		_build_run()
@@ -305,6 +309,21 @@ func _build_ui() -> void:
 	layout.add_child(_build_navigation())
 	_show_save_notice()
 	if offline_job!=null: _build_offline_loading()
+
+func _retain_character_cache_after_rebuild(revision: int) -> void:
+	var tree:=get_tree()
+	if tree==null: return
+	await tree.process_frame
+	if not is_inside_tree() or revision!=ui_revision: return
+	var keys: Array[String]=[character_class]
+	keys.append_array(CharacterActor.HOSTILES)
+	# A completed run can already advance floor_number while its world still
+	# belongs to run_floor; keep the actual visible region on dungeon pages.
+	var region:=_region_index(run_floor) if page=="run" else _region_index()
+	keys.append("guardian_%d" % region)
+	if page=="run" and is_instance_valid(run_arena) and run_arena.is_inside_tree() and is_instance_valid(run_arena.world):
+		keys=run_arena.world.character_cache_keys()
+	CharacterActor.retain_character_cache(keys)
 
 func _build_spatial_camp() -> void:
 	camp_scene = CampScene.new()
@@ -1200,7 +1219,8 @@ func _sync_combat_readouts() -> void:
 		tile.button.accessibility_name="%s, %s. Inspect automatic skill." % [entry.title,entry.status]
 	var route:=CombatReadout.route(expedition)
 	combat_hud.route_summary.text=route.label
-	combat_hud.route_objective.text=route.objective
+	var route_objective:=String(route.objective)
+	combat_hud.route_objective.text="Clear foes • follow passage" if route_objective=="Clear the chamber and follow the passage" else route_objective
 	combat_hud.route_objective.tooltip_text=route.objective
 	combat_hud.route_progress.max_value=route.total
 	combat_hud.route_progress.value=route.completed

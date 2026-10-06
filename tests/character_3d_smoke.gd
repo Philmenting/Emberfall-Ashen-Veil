@@ -1,5 +1,6 @@
 extends SceneTree
 ## GPU volumes, physical support, bow release and event-driven contact.
+const SourceSkin=preload("res://tests/source_avatar_skin.gd")
 const Actor=preload("res://scripts/dungeon_actor.gd")
 const Sim=preload("res://scripts/expedition_simulation.gd")
 const World=preload("res://scripts/dungeon_world.gd")
@@ -42,6 +43,10 @@ func posed_floor(actor: Node3D,arrays: Array) -> float:
 func run_checks() -> void:
 	for key in Actor.HEROES+Actor.HOSTILES+["guardian_0","guardian_1","guardian_2","guardian_3"]:
 		var actor:=make_actor(key)
+		if actor.source_avatar:
+			check_source_avatar(actor)
+			actor.free()
+			continue
 		var mesh: Mesh=actor.model.mesh; var arrays: Array=mesh.surface_get_arrays(0)
 		var valid:=true; var weapon: Array[Vector3]=[]; var normals_3d:=false
 		for i in arrays[Mesh.ARRAY_VERTEX].size():
@@ -113,6 +118,10 @@ func run_checks() -> void:
 	for class_key in Actor.HEROES:
 		for style in ["basic","signature"]:
 			var fighter:=make_actor(class_key)
+			if fighter.source_avatar:
+				check_source_cast(fighter,style)
+				fighter.free()
+				continue
 			var arrays: Array=fighter.model.mesh.surface_get_arrays(0)
 			var support_bone: int=14 if class_key=="Vowkeeper" else 17
 			var step_bone: int=17 if support_bone==14 else 14
@@ -148,9 +157,13 @@ func run_checks() -> void:
 			fighter.free()
 	var caster:=make_actor("Arcanist")
 	caster.strike("basic",.30,true); caster.sync_attack(.085); caster.animate(.215,false)
-	var casting_hand: Vector3=caster.motion_rig.skeleton.get_bone_global_pose(7).origin
-	var casting_chest: Vector3=caster.motion_rig.skeleton.get_bone_global_pose(2).origin
-	check(casting_hand.z<casting_chest.z-.35 and casting_hand.x>casting_chest.x+.18,"the casting palm reaches the real forward target plane on the exposed side of the torso")
+	var casting_hand: Vector3=caster.motion_rig.palm_position(0)
+	var casting_chest: Vector3=caster.motion_rig.motion_node.transform*caster.motion_rig.skeleton.get_bone_global_pose(caster.motion_rig.skeleton.find_bone("spine_03")).origin
+	var casting_shoulder: Vector3=caster.motion_rig.motion_node.transform*caster.motion_rig.skeleton.get_bone_global_pose(caster.motion_rig.skeleton.find_bone("upperarm_l")).origin
+	# The authored clip reaches straight forward from the left shoulder;
+	# its hand must stay on the left side of the torso, without crossing it.
+	var own_side:=casting_hand.x<casting_chest.x-.02 if caster.source_avatar else casting_hand.x<casting_shoulder.x-.02
+	check(casting_hand.z<casting_chest.z-.35 and own_side,"the casting palm reaches the real forward target plane and stays on its anatomical side")
 	caster.free()
 	var ranger:=make_actor("Ranger")
 	ranger.strike("basic",.6,true); ranger.sync_attack(.10); ranger.animate(.15,false)
@@ -179,13 +192,13 @@ func run_checks() -> void:
 				shooter.animate(1.0/60.0,false)
 			var tip_before:Vector3=shooter.weapon_world_position()
 			var origin_before:Vector3=shooter.projectile_origin()
-			var hand_before:Vector3=shooter.body.to_global(shooter.motion_rig.skeleton.get_bone_global_pose(11).origin)
+			var hand_before:Vector3=shooter.body.to_global(shooter.motion_rig.weapon_grip_position()) if shooter.source_avatar else shooter.body.to_global(shooter.motion_rig.skeleton.get_bone_global_pose(11).origin)
 			var held:bool=shooter.release_time<0.0
 			shooter.release_attack()
-			var hand_after:Vector3=shooter.body.to_global(shooter.motion_rig.skeleton.get_bone_global_pose(11).origin)
+			var hand_after:Vector3=shooter.body.to_global(shooter.motion_rig.weapon_grip_position()) if shooter.source_avatar else shooter.body.to_global(shooter.motion_rig.skeleton.get_bone_global_pose(11).origin)
 			check(held and tip_before.distance_to(shooter.weapon_world_position())<.025 and hand_before.distance_to(hand_after)<.025,class_key+" "+style+": the actual 85 ms early release has a prepared weapon and continuous grip")
 			var launch_point:Vector3=shooter.projectile_origin()
-			var emitter:Vector3=shooter.body.to_global(shooter.motion_rig.skeleton.get_bone_global_pose(7).origin) if class_key=="Arcanist" else shooter.weapon_world_position()
+			var emitter:Vector3=shooter.body.to_global(shooter.motion_rig.palm_position(0)) if class_key=="Arcanist" else shooter.weapon_world_position()
 			check(origin_before.distance_to(launch_point)<.025 and launch_point.distance_to(emitter)<.001,class_key+" "+style+": the actual casting palm or bow emitter remains continuous at release")
 			shooter.free()
 	var raider:=make_actor("raider")
@@ -204,7 +217,7 @@ func run_checks() -> void:
 		for effect: Dictionary in world.effects:
 			if effect.kind=="projectile" and float(effect.age)==0.0:
 				launched+=1
-				var palm:Vector3=world.hero.body.to_global(world.hero.motion_rig.skeleton.get_bone_global_pose(7).origin)
+				var palm:Vector3=world.hero.body.to_global(world.hero.motion_rig.palm_position(0))
 				palm_launch=palm_launch and Vector3(effect.origin).distance_to(palm)<.025 and Vector3(effect.origin).distance_to(world.hero.weapon_world_position())>.25 and world.hero.release_time==0.0
 		for event: Dictionary in reference.advance(1.0/60.0):
 			if event.type=="hit": hits+=1; synchronized=synchronized and world.hero.release_time>=0.0 and world.hero.pose_frame==4
@@ -215,3 +228,44 @@ func run_checks() -> void:
 	world.free(); bot.free()
 	print("CHARACTER THREE D SMOKE: %d checks, %d failures" % [checks,failures])
 	quit(1 if failures else 0)
+
+# The authored native65 ABI is audited by bone names and rendered surfaces.
+# Legacy29 actors retain all original tests above. Source casting is a planted
+# artist clip; it has no invented procedural attack step to assert.
+func check_source_avatar(actor: Node3D) -> void:
+	var rig=actor.motion_rig
+	check(rig.skeleton.get_bone_count()==65 and rig.surfaces.size()==8,"Arcanist: full native skeleton and eight actual authored surfaces")
+	var valid=true
+	for surface in rig.surfaces:
+		for slot in surface.mesh.get_surface_count():
+			var a=surface.mesh.surface_get_arrays(slot)
+			for index in a[Mesh.ARRAY_VERTEX].size():
+				var sum=0.0
+				for influence in 4:sum+=a[Mesh.ARRAY_WEIGHTS][index*4+influence]
+				valid=valid and absf(sum-1.0)<.0001 and a[Mesh.ARRAY_VERTEX][index].is_finite() and a[Mesh.ARRAY_NORMAL][index].is_finite()
+	check(valid and rig.triangles<40000,"Arcanist: normalized original skin weights, finite geometry and render budget")
+	actor.strike("basic",.30,true);actor.sync_attack(.02);actor.animate(.10,false)
+	var before=rig.capture_pose();actor.animate(0,false)
+	check(rig.capture_pose()==before and actor.release_time<0.0,"Arcanist: zero-time update preserves pose and simulation contact")
+	actor.animate(1.0,false)
+	check(actor.release_time<0.0,"Arcanist: renderer cannot invent held damage")
+	check(actor.release_attack() and not actor.release_attack(),"Arcanist: actual source contact releases exactly once")
+	actor.animate(.5,false);actor.reduced_motion=true;actor.animate(.5,false)
+	var quiet=rig.capture_pose();var clock=actor.clock;actor.animate(.3,false)
+	check(rig.capture_pose()==quiet and actor.clock==clock,"Arcanist: Reduced Motion freezes decorative source idle")
+	actor.reduced_motion=false;actor.die()
+	var floor_clear=true;var final_floor=INF
+	for time in [.22,.45,.68,.90]:
+		rig.pose("death",time);rig.apply_actor_postprocess(actor,"death",time,0.0,true)
+		final_floor=SourceSkin.actual_bounds(rig).position.y*actor.body.scale.y
+		floor_clear=floor_clear and final_floor>-.035
+	check(floor_clear and final_floor<.065,"Arcanist: all actually skinned falling surfaces clear the floor and the corpse rests on it")
+func check_source_cast(fighter: Node3D,style: String) -> void:
+	var origin=fighter.transform;var clear=true;var released=false
+	fighter.strike(style,.30,true)
+	for frame in range(1,40):
+		var elapsed=float(frame)/60.0
+		fighter.sync_attack(maxf(0.0,.30-elapsed));fighter.animate(1.0/60.0,false)
+		if elapsed>=.215 and not released:released=fighter.release_attack()
+		clear=clear and SourceSkin.actual_bounds(fighter.motion_rig).position.y>-.01 and fighter.transform==origin
+	check(clear and released,"Arcanist "+style+": actual 60-Hz source cast and recovery stay grounded without moving the world actor")

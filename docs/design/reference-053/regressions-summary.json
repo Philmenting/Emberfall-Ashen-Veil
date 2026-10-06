@@ -1,0 +1,34 @@
+[
+  {
+    "test": "source_avatar_smoke",
+    "passed": true,
+    "exit_code": 0,
+    "inputs_unchanged": true,
+    "errors": [],
+    "seconds": 3.451
+  },
+  {
+    "test": "character_3d_smoke",
+    "passed": true,
+    "exit_code": 0,
+    "inputs_unchanged": true,
+    "errors": [],
+    "seconds": 18.24
+  },
+  {
+    "test": "world_framing_smoke",
+    "passed": true,
+    "exit_code": 0,
+    "inputs_unchanged": true,
+    "errors": [],
+    "seconds": 24.461
+  },
+  {
+    "test": "visuals_smoke",
+    "passed": true,
+    "exit_code": 0,
+    "inputs_unchanged": true,
+    "errors": [],
+    "seconds": 5.808
+  }
+]

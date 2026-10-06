@@ -17,7 +17,10 @@ func attack_pose(kind: String, style: String) -> Vector3:
 	root.add_child(actor)
 	actor.strike(style)
 	actor.animate(0.08,false)
-	var result:=Vector3(float(actor.pose_frame),actor.action_intensity,float(actor.surface_material.get_shader_parameter("action_intensity")))
+	# Source65 uses its original PBR materials; the legacy shader's action
+	# uniform is not part of that renderer. Gameplay/VFX emphasis still applies.
+	var shader_emphasis=0.0 if actor.source_avatar else float(actor.surface_material.get_shader_parameter("action_intensity"))
+	var result:=Vector3(float(actor.pose_frame),actor.action_intensity,shader_emphasis)
 	actor.free()
 	return result
 func run_checks() -> void:
@@ -139,7 +142,7 @@ func run_checks() -> void:
 		check(warning_visual.scale==Vector3.ONE and warning_visual.get_child(0).mesh.get_aabb()==bounds,"region %d: countdown preserves the full collision footprint" % region)
 		warning_visual.queue_free()
 		world._launch_projectile(int(sim.waves[0][0].id),Color.WHITE)
-		var palm:Vector3=world.hero.body.to_global(world.hero.motion_rig.skeleton.get_bone_global_pose(7).origin)
+		var palm:Vector3=world.hero.body.to_global(world.hero.motion_rig.palm_position(0))
 		check(Vector3(world.effects.back().origin).distance_to(palm)<.0001,"region %d: spell release originates at the animated casting palm" % region)
 		world._update_effects(0.04)
 		check(world.effects.back().node.position.distance_to(Vector3(world.effects.back().origin))>0.1,"region %d: ranged projectile travels toward its target" % region)

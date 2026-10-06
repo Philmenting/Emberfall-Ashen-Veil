@@ -7,7 +7,12 @@ const PARENTS: Array[int]=[-1,0,1,2,2,4,5,6,2,8,9,10,1,12,13,1,15,16,2,18,11,20,
 const RECOVERY:=.34
 const SwordFoundation=preload("res://assets/animations/vowkeeper_sword_foundation.gd")
 
-static func create(key: String,rests: Array[Transform3D]) -> AnimationLibrary:
+static func create(key: String,rests: Array[Transform3D],profile: Dictionary={}) -> AnimationLibrary:
+	if not profile.is_empty():
+		assert(key=="Arcanist" and profile.get("appearance")==key,"Only the complete anatomical Arcanist has a source motion profile")
+		assert(profile.get("native_names",[]).size()==NAMES.size() and profile.get("parents",[]).size()==PARENTS.size(),"Source motion needs the native 29-joint hierarchy")
+		for i in NAMES.size(): assert(String(profile.native_names[i])==NAMES[i] and int(profile.parents[i])==PARENTS[i],"Source motion joint order must match its rest contract")
+		for rest in rests: assert(rest.basis.is_equal_approx(Basis.IDENTITY),"Source motion expects global Identity rest frames")
 	var locals: Array[Transform3D]=[]
 	for i in NAMES.size():
 		var parent:=_parent(i,key)
@@ -28,7 +33,7 @@ static func create(key: String,rests: Array[Transform3D]) -> AnimationLibrary:
 		var frames:=48 if name=="walk" else (60 if name=="idle" else 36)
 		for sample in range(frames+1):
 			var u:=float(sample)/frames
-			var poses:=_author(key,name,u,locals)
+			var poses:=_author(key,name,u,locals,profile)
 			for bone in NAMES.size():
 				var time:=u*animation.length
 				animation.position_track_insert_key(tracks[bone].x,time,poses[bone].origin)
@@ -42,13 +47,27 @@ static func create(key: String,rests: Array[Transform3D]) -> AnimationLibrary:
 static func _parent(bone: int,key: String) -> int:
 	return 7 if bone==20 and key=="Ranger" else PARENTS[bone]
 
-static func stance_foot(key: String,side: int) -> Vector3:
+static func stance_foot(key: String,side: int,profile: Dictionary={}) -> Vector3:
+	if not profile.is_empty(): return _source_foot(key,stance_foot(key,side),side,profile)
 	var foot:=Vector3(-.20 if side==0 else .22,.117 if key in ["Vowkeeper","Arcanist","Ranger"] else .10,0)
 	foot.z=(-.25 if side==0 else .20) if key=="Ranger" else (-.235 if side==0 else .19)
 	if key in ["guardian_0","guardian_3","bulwark","elite"]: foot.x*=1.18
 	return foot
 
-static func action_foot(key: String,clip: String,u: float,side: int) -> Vector3:
+static func action_foot(key: String,clip: String,u: float,side: int,profile: Dictionary={}) -> Vector3:
+	if not profile.is_empty():
+		var authored:=action_foot(key,clip,u,side)
+		var fit: Dictionary=profile.get("motion_fit",{})
+		if key=="Arcanist" and side==0 and clip.begins_with("windup") and fit.has("step_landing"):
+			# Fit only the unweighted transfer to this source's measured leg.
+			# The same destination stays fixed after touchdown and throughout
+			# the existing contact/catch. Actor uses this identical curve.
+			var start:=stance_foot(key,side)
+			var landing: float=fit.step_landing
+			assert(landing>=.67 and landing<.79,"Source step must land before the contact phase")
+			var t:=smoothstep(.12,landing,u)
+			authored=start.lerp(start+Vector3(-.085,0,-.34),t)+Vector3(0,sin(t*PI)*.085,0)
+		return _source_foot(key,authored,side,profile)
 	# One boot bears the load while the other actually steps. These are sole
 	# contact curves, also used after runtime pose blending; they are not a
 	# projection of the in-place source's sliding feet.
@@ -63,15 +82,66 @@ static func action_foot(key: String,clip: String,u: float,side: int) -> Vector3:
 		var t:=smoothstep(lift_off,.91,u)
 		return finish.lerp(start,t)+Vector3(0,sin(t*PI)*lift,0)
 	var takeoff:=.18 if key=="Vowkeeper" else .12
-	var landing:=.64 if key=="Vowkeeper" else (.38 if key=="Ranger" else .58)
+	# The free boot lands after the pelvis can reach that support point.
+	# Earlier contact overextended the knee while the body was still loading.
+	var landing:=.64 if key=="Vowkeeper" else (.56 if key=="Ranger" else .67)
 	var t:=smoothstep(takeoff,landing,u)
 	return start.lerp(finish,t)+Vector3(0,sin(t*PI)*lift,0)
 
-static func action_foot_basis(key: String,side: int) -> Basis:
-	return Basis(Vector3.UP,-.34 if side==0 else -.62) if key=="Ranger" else Basis.IDENTITY
+static func action_foot_basis(key: String,side: int,profile: Dictionary={}) -> Basis:
+	var basis:=Basis(Vector3.UP,-.34 if side==0 else -.62) if key=="Ranger" else Basis.IDENTITY
+	if not profile.is_empty(): basis*=_socket_basis(profile,"feet",side,"sole_basis_columns").inverse()
+	return basis
 
-static func action_support(key: String,clip: String,u: float,side: int) -> bool:
-	return action_foot(key,clip,u,side).y<=stance_foot(key,side).y+.0001
+static func action_support(key: String,clip: String,u: float,side: int,profile: Dictionary={}) -> bool:
+	return action_foot(key,clip,u,side,profile).y<=stance_foot(key,side,profile).y+.0001
+
+static func walk_stride(_key: String,profile: Dictionary={}) -> float:
+	return 1.60*_leg_ratio(profile) if not profile.is_empty() else 1.60
+
+static func walk_anchor(key: String,side: int,profile: Dictionary={}) -> Vector3:
+	var foot:=Vector3(-.13 if side==0 else .13,.117 if key in ["Vowkeeper","Arcanist","Ranger"] else .10,-.04)
+	return _source_foot(key,foot,side,profile) if not profile.is_empty() else foot
+
+static func walk_foot(key: String,u: float,side: int,profile: Dictionary={}) -> Vector3:
+	var foot:=walk_anchor(key,side)
+	var phase:=fposmod(u+side*.5,1.0)
+	if phase<.5: foot.z+=-.40+phase*1.60
+	else:
+		var swing:=(phase-.5)*2.0
+		foot.z+=.40-.80*smoothstep(0,1,swing)
+		foot.y+=sin(swing*PI)*.115
+	return _source_foot(key,foot,side,profile) if not profile.is_empty() else foot
+
+# Profiles contain measured model-space rests and rigid sockets. The mesh has
+# already received its one export scale: these ratios fit motion, never skin.
+static func _vector(values: Array) -> Vector3:
+	return Vector3(values[0],values[1],values[2])
+
+static func _rest_point(profile: Dictionary,name: String) -> Vector3:
+	return _vector(profile.rest_global[name].origin)
+
+static func _socket_vector(profile: Dictionary,group: String,side: int,field: String) -> Vector3:
+	return _vector(profile[group]["L" if side==0 else "R"][field])
+
+static func _socket_basis(profile: Dictionary,group: String,side: int,field: String) -> Basis:
+	var columns: Array=profile[group]["L" if side==0 else "R"][field]
+	return Basis(_vector(columns[0]),_vector(columns[1]),_vector(columns[2]))
+
+static func _leg_ratio(profile: Dictionary) -> float:
+	var upper:=_rest_point(profile,"ThighL").distance_to(_rest_point(profile,"ShinL"))
+	var lower:=_rest_point(profile,"ShinL").distance_to(_rest_point(profile,"FootL"))
+	return (upper+lower)/(.4914+Vector3(0,-.4446,-.04).length())
+
+static func _source_foot(key: String,authored: Vector3,side: int,profile: Dictionary) -> Vector3:
+	var ratio:=_leg_ratio(profile)
+	var hip:=_rest_point(profile,"ThighL" if side==0 else "ThighR")
+	var socket:=action_foot_basis(key,side,profile)*_socket_vector(profile,"feet",side,"sole_local")
+	var floor_y:=_socket_vector(profile,"feet",side,"sole_global").y
+	# Author horizontal placement relative to each hip and the vertical path
+	# at the real sole. Return the anatomical ankle expected by both IK callers.
+	var sole:=Vector3(hip.x+(authored.x-(-.13 if side==0 else .13))*ratio+socket.x,floor_y+(authored.y-.117)*ratio,hip.z+authored.z*ratio+socket.z)
+	return sole-socket
 
 static func _basis(value: Variant) -> Basis:
 	return Basis(value) if value is Quaternion else Basis.from_euler(value)
@@ -178,7 +248,7 @@ static func global_rotation(p: Array[Transform3D],bone: int,basis: Basis,key: St
 	var parent:=_parent(bone,key)
 	p[bone].basis=basis if parent<0 else global_pose(p,parent,key).basis.inverse()*basis
 
-static func solve_two(p: Array[Transform3D],upper: int,lower: int,end: int,target: Vector3,pole: Vector3,key: String) -> void:
+static func solve_two(p: Array[Transform3D],upper: int,lower: int,end: int,target: Vector3,pole: Vector3,key: String,profile: Dictionary={}) -> void:
 	var start:=global_pose(p,upper,key).origin
 	var a:=p[lower].origin.length(); var b:=p[end].origin.length()
 	var direction:=target-start
@@ -190,8 +260,22 @@ static func solve_two(p: Array[Transform3D],upper: int,lower: int,end: int,targe
 	var along:=(a*a-b*b+distance*distance)/(2.0*distance)
 	var elbow:=start+direction*along+bend*sqrt(maxf(0.0,a*a-along*along))
 	var finish:=start+direction*distance
-	global_rotation(p,upper,Basis(Quaternion(p[lower].origin.normalized(),(elbow-start).normalized())),key)
-	global_rotation(p,lower,Basis(Quaternion(p[end].origin.normalized(),(finish-elbow).normalized())),key)
+	if profile.is_empty():
+		global_rotation(p,upper,Basis(Quaternion(p[lower].origin.normalized(),(elbow-start).normalized())),key)
+		global_rotation(p,lower,Basis(Quaternion(p[end].origin.normalized(),(finish-elbow).normalized())),key)
+	else:
+		# Source A-pose chains carry an anatomical bend plane. Preserve its roll
+		# while changing the bend angle; a shortest-arc swing alone discards it.
+		var rest_normal:=p[lower].origin.cross(p[end].origin).normalized()
+		var posed_normal:=(elbow-start).cross(finish-elbow).normalized()
+		assert(rest_normal.length_squared()>.5,"A source IK chain requires an authored bend plane")
+		global_rotation(p,upper,_chain_frame(elbow-start,posed_normal)*_chain_frame(p[lower].origin,rest_normal).transposed(),key)
+		global_rotation(p,lower,_chain_frame(finish-elbow,posed_normal)*_chain_frame(p[end].origin,rest_normal).transposed(),key)
+
+static func _chain_frame(direction: Vector3,normal: Vector3) -> Basis:
+	var y:=direction.normalized()
+	var z:=(normal-y*normal.dot(y)).normalized()
+	return Basis(y.cross(z),y,z)
 
 static func _spec(key: String,action: String="basic") -> Dictionary:
 	if key=="Arcanist": return _arcanist_spec(action)
@@ -332,7 +416,288 @@ static func _mix(a: Dictionary,b: Dictionary,t: float) -> Dictionary:
 		else: result[name]=a[name].lerp(b[name],t) if a[name] is Vector3 else lerpf(a[name],b[name],t)
 	return result
 
-static func _author(key: String,clip: String,u: float,rests: Array[Transform3D]) -> Array[Transform3D]:
+static func _source_hand_target(p: Array[Transform3D],key: String,state: Dictionary,side: int,authored: Vector3,vertical_offset: float) -> Vector3:
+	# These are the immutable coordinate references in which the existing
+	# phrase was authored, not dimensions imposed on the new skin or skeleton.
+	var pelvis:=_basis(state.pelvis)
+	var chest:=pelvis*_basis(state.chest)
+	var reference:=Vector3(0,1.053+vertical_offset,0)+Vector3(state.hip)+pelvis*Vector3(0,.39,0)+chest*Vector3(-.32 if side==0 else .32,.19,0)
+	var upper:=5 if side==0 else 9
+	var old_a:=.3534
+	var old_b:=Vector3(0,-.3192,-.01).length()
+	var offset:=authored-reference
+	# Transfer the displayed reference joint, including its existing elbow
+	# limit. The old walk/gather inputs sometimes sit inside that limit; using
+	# those unsolved points would invent a new, unreachable source wrist path.
+	var old_distance:=clampf(offset.length(),sqrt(old_a*old_a+old_b*old_b+2.0*old_a*old_b*cos(2.40)),old_a+old_b-.001)
+	var bend_cos:=(old_distance*old_distance-old_a*old_a-old_b*old_b)/(2.0*old_a*old_b)
+	var a:=p[upper+1].origin.length()
+	var b:=p[upper+2].origin.length()
+	var distance:=clampf(sqrt(maxf(0.0,a*a+b*b+2.0*a*b*bend_cos)),sqrt(a*a+b*b+2.0*a*b*cos(2.40))+.0002,a+b-.0012)
+	return global_pose(p,upper,key).origin+offset.normalized()*distance
+
+static func _source_walk_hand(p: Array[Transform3D],key: String,u: float) -> Vector3:
+	var reach:=p[6].origin.length()+p[7].origin.length()
+	# The casting guard is not a locomotion pose. Let the free arm hang from
+	# its actual shoulder and swing opposite the front leg, with a soft elbow.
+	return global_pose(p,5,key).origin+Vector3(-.08*reach,-.82*reach,(-.065+.205*cos(u*TAU))*reach)
+
+static func _source_cast_state(clip: String,u: float) -> Dictionary:
+	# Measured anatomical arm lengths define this shoulder-relative phrase.
+	# The old glove's absolute +X contact crossed the left forearm over the
+	# entire chest. Keep this palm on its own side while the unchanged body
+	# coil carries the shoulder forward; the elbow stays below the reach.
+	var guard: Dictionary={"offset":Vector3(-.18,-.38,-.37),"pole":Vector3(-.45,-1,.20),"aim":0.0,"roll":0.0}
+	var spec: Dictionary={
+		"guard":guard,
+		"gather":{"offset":Vector3(-.34,-.18,-.29),"pole":Vector3(-.65,-.70,.25),"aim":.04,"roll":0.0},
+		"load":{"offset":Vector3(-.44,.30,-.25),"pole":Vector3(-1,.08,.40),"aim":.08,"roll":-.15},
+		"drive":{"offset":Vector3(-.20,.02,-.69),"pole":Vector3(-.25,-1,.05),"aim":.82,"roll":-.15},
+		"contact":{"offset":Vector3(-.13,-.075,-.88),"pole":Vector3(-.15,-1,.05),"aim":1.0,"roll":0.0},
+		"follow":{"offset":Vector3(-.13,-.11,-.90),"pole":Vector3(-.15,-1,.05),"aim":1.0,"roll":0.0},
+		"return":{"offset":Vector3(-.19,-.34,-.48),"pole":Vector3(-.35,-1,.15),"aim":.15,"roll":0.0}}
+	return _action_state(spec,"Arcanist",clip,u) if clip.begins_with("windup") or clip.begins_with("recover") else guard
+
+static func _source_cast_target(p: Array[Transform3D],key: String,clip: String,u: float) -> Vector3:
+	var state:=_source_cast_state(clip,u)
+	return global_pose(p,5,key).origin+Vector3(state.offset)*(p[6].origin.length()+p[7].origin.length())
+
+static func _source_cast_arm(p: Array[Transform3D],key: String,clip: String,u: float,profile: Dictionary) -> void:
+	var state:=_source_cast_state(clip,u)
+	var wrist:=_source_cast_target(p,key,clip,u)
+	solve_two(p,5,6,7,wrist,state.pole,key,profile)
+	var forearm:=global_pose(p,6,key).basis
+	var frame:=_socket_basis(profile,"hands",0,"palm_basis_columns")
+	# Aim both semantic axes: fingers run up/forward, with the open palm
+	# tilted toward the target. A normal-only swing permits sideways fingers
+	# and transfers forearm pronation into a visibly twisted wrist.
+	var directed:=Basis(Vector3.BACK,float(state.roll))*Basis(Vector3.RIGHT,deg_to_rad(-35.0))*frame.inverse()
+	var hand:=forearm.slerp(directed,float(state.aim))
+	var relative: Quaternion=(forearm.inverse()*hand).get_rotation_quaternion()
+	if relative.w<0.0: relative=-relative
+	var long_axis:=p[7].origin.normalized()
+	var axial:=long_axis*Vector3(relative.x,relative.y,relative.z).dot(long_axis)
+	var pronation:=Quaternion(axial.x,axial.y,axial.z,relative.w).normalized()
+	# Axial rotation about elbow->wrist leaves both joints fixed. Carry it in
+	# the forearm; the anatomical wrist then supplies only the fitted bend.
+	global_rotation(p,6,forearm*Basis(pronation),key)
+	global_rotation(p,7,hand,key)
+
+static func _source_staff_state(clip: String,u: float) -> Dictionary:
+	# Carry the staff beside the lower ribs while the unchanged torso coils.
+	# The old glove's rearward absolute target put the source shoulder into
+	# extension and asked the wrist to compensate for the shaft orientation.
+	var guard: Dictionary={"offset":Vector3(.28,-.56,-.30)}
+	var spec: Dictionary={
+		"guard":guard,
+		"gather":{"offset":Vector3(.31,-.54,-.25)},
+		"load":{"offset":Vector3(.32,-.52,-.22)},
+		"drive":{"offset":Vector3(.29,-.53,-.28)},
+		"contact":{"offset":Vector3(.26,-.54,-.33)},
+		"follow":{"offset":Vector3(.27,-.56,-.34)},
+		"return":{"offset":Vector3(.29,-.55,-.28)}}
+	var state: Dictionary=_action_state(spec,"Arcanist",clip,u) if clip.begins_with("windup") or clip.begins_with("recover") else guard.duplicate()
+	if clip=="walk": state.offset+=Vector3(0,.012*sin(u*TAU),.025*sin(u*TAU))
+	return state
+
+static func _source_staff_target(p: Array[Transform3D],key: String,clip: String,u: float) -> Vector3:
+	var state:=_source_staff_state(clip,u)
+	var reach:=p[10].origin.length()+p[11].origin.length()
+	return global_pose(p,9,key).origin+global_pose(p,2,key).basis*(Vector3(state.offset)*reach)
+
+static func _source_staff_arm(p: Array[Transform3D],key: String,clip: String,u: float,effector: Basis,profile: Dictionary) -> void:
+	var wrist:=_source_staff_target(p,key,clip,u)
+	var local_pole:=Vector3(.60,-1,0)
+	var fit: Dictionary=profile.get("motion_fit",{})
+	if fit.has("staff_elbow_pole_local"): local_pole=_vector(fit.staff_elbow_pole_local)
+	var pole:=global_pose(p,2,key).basis*local_pole
+	solve_two(p,9,10,11,wrist,pole,key,profile)
+	var forearm:=global_pose(p,10,key).basis
+	var long_axis:=p[11].origin.normalized()
+	var world_axis:=forearm*long_axis
+	var tool_frame:=_socket_basis(profile,"hands",1,"tool_basis_columns")
+	var shaft:=forearm*tool_frame.y
+	var from_axis:=(shaft-world_axis*shaft.dot(world_axis)).normalized()
+	var to_axis:=(effector.y-world_axis*effector.y.dot(world_axis)).normalized()
+	# Turn around the anatomical forearm axis to carry the measured grip.
+	# The staff is allowed its natural inclination; forcing it upright with a
+	# capped wrist swing formerly concealed 54 degrees of radial deviation.
+	var pronation:=atan2(world_axis.dot(from_axis.cross(to_axis)),from_axis.dot(to_axis))
+	var carried:=forearm*Basis(Quaternion(long_axis,pronation))
+	global_rotation(p,10,carried,key)
+	global_rotation(p,11,carried,key)
+	# Source tool frame and palm offset are already baked into the rigid prop.
+	global_rotation(p,20,carried,key)
+
+static func _source_hand(p: Array[Transform3D],key: String,side: int,authored_joint: Vector3,effector: Basis,pole: Vector3,profile: Dictionary,tool: bool,palm_angles: Vector3=Vector3.ZERO,relaxed: bool=false,aim_weight: float=1.0) -> void:
+	var upper:=5 if side==0 else 9
+	var frame:=_socket_basis(profile,"hands",side,"tool_basis_columns" if tool else "palm_basis_columns")
+	var socket:=_socket_vector(profile,"hands",side,"grip_local")
+	# The legacy Hand joint and grip shared one pivot. Transfer that joint
+	# path to an anatomical wrist first; a newly separate palm must not pull
+	# the wrist backward into an impossible fold to preserve the old pivot.
+	var wrist:=_reachable_wrist(p,upper,authored_joint,key)
+	solve_two(p,upper,upper+1,upper+2,wrist,pole,key,profile)
+	var neutral:=global_pose(p,upper+1,key).basis*frame
+	var swing:=Quaternion(neutral.y if tool else neutral.z,effector.y if tool else effector.z)
+	var angle:=swing.get_angle()
+	var limit:=deg_to_rad(55.0 if tool else 70.0)
+	if angle>limit: swing=Quaternion.IDENTITY.slerp(swing,limit/angle)
+	var hand_basis:=Basis(swing)*neutral*frame.inverse()
+	if not tool:
+		# Gather with a neutral wrist; the authored extension/catch phase turns
+		# the actual palmar surface toward -Z. Copying old glove Euler axes
+		# would instead face this reconstructed palm across the target plane.
+		var extension:=clampf((-palm_angles.x-.14)/1.36,0,1)
+		var facing:=Quaternion(neutral.z,Vector3.BACK)
+		var amount:=minf(1.0,limit/maxf(.0001,facing.get_angle()))*extension*aim_weight
+		# As the forearm folds back past its usable aiming hemisphere, relax
+		# the wrist before a shortest-arc normal reaches the opposite direction.
+		amount*=smoothstep(-.85,-.30,neutral.z.dot(Vector3.BACK))
+		if relaxed: amount=0.0
+		hand_basis=Basis(Quaternion.IDENTITY.slerp(facing,amount))*neutral*frame.inverse()
+	# The fitted effector has a measured palm offset and the calibrated frame.
+	# Recover its wrist with the same socket convention used by runtime Rig.
+	var fitted_centre:=wrist+hand_basis*socket
+	wrist=fitted_centre-hand_basis*socket
+	solve_two(p,upper,upper+1,upper+2,wrist,pole,key,profile)
+	global_rotation(p,upper+2,hand_basis,key)
+	if tool:
+		# Exported staff vertices already contain the source tool frame.
+		global_rotation(p,20,hand_basis,key)
+
+static func _reachable_wrist(p: Array[Transform3D],upper: int,target: Vector3,key: String) -> Vector3:
+	var shoulder:=global_pose(p,upper,key).origin
+	var a:=p[upper+1].origin.length()
+	var b:=p[upper+2].origin.length()
+	var offset:=target-shoulder
+	var distance:=clampf(offset.length(),sqrt(a*a+b*b+2.0*a*b*cos(2.40))+.0002,a+b-.0012)
+	return shoulder+(offset.normalized() if offset.length_squared()>.000001 else Vector3.DOWN)*distance
+
+static func _author_source(key: String,clip: String,u: float,rests: Array[Transform3D],profile: Dictionary) -> Array[Transform3D]:
+	var action:=clip.get_slice("_",1) if clip.contains("_") else "basic"
+	var spec:=_spec(key,action)
+	var state: Dictionary=spec.guard.duplicate(true)
+	var walking:=clip=="walk"
+	var death:=clip=="death"
+	var acting:=clip.begins_with("windup") or clip.begins_with("recover")
+	var breath:=sin(u*TAU) if clip=="idle" else 0.0
+	if acting: state=_action_state(spec,key,clip,u)
+	if walking:
+		state.hip=Vector3(0,(-.105+.012*cos(u*TAU*2))*1.17,0)
+		state.chest=Vector3(-.055,.035*sin(u*TAU),.01*sin(u*TAU))
+		state.pelvis=Vector3(0,Vector3(state.chest).y*.30,0)
+		state.right+=Vector3(0,.018*sin(u*TAU),.075*sin(u*TAU))
+		state.left+=Vector3(0,-.018*sin(u*TAU),-.060*sin(u*TAU))
+	if death:
+		state=_mix(spec.guard,_change(spec.guard,{"hip":Vector3(0,-.02,0),"pelvis":Vector3.ZERO,"chest":Vector3(-.10,0,.035),"right":Vector3(.27,1.153,.06),"left":Vector3(-.33,1.233,.08),"weapon":Vector3.ZERO,"draw":0.0,"arrow":0.0,"nock":0.0,"support":0.0}),smoothstep(0,.40,u))
+	var ratio:=_leg_ratio(profile)
+	var vertical_offset:=breath*.005-(.23*sin(clampf(u/.46,0,1)*PI) if death else 0.0)
+	var p: Array[Transform3D]=[]
+	p.assign(rests)
+	p[1].origin+=(Vector3(state.hip)+Vector3(0,vertical_offset,0))*ratio
+	p[1].basis=_basis(state.pelvis)
+	var chest_angles:=_angles(state.chest)
+	p[2].basis=_basis(state.chest)*Basis.from_euler(Vector3(breath*.007,0,0))
+	p[3].basis=Basis.from_euler(Vector3(-chest_angles.x*.22,-chest_angles.y*.42,0))
+	if acting: global_rotation(p,3,Basis.from_euler(Vector3(-.015+chest_angles.x*.08,chest_angles.y*.10,-chest_angles.z*.15)),key)
+	var left:=_source_hand_target(p,key,state,0,state.left,vertical_offset)
+	var right:=_source_hand_target(p,key,state,1,state.right,vertical_offset)
+	if walking: left=_source_walk_hand(p,key,u)
+	var weapon_basis:=_basis(state.weapon)
+	# In the semantic palm frame +Y follows the fingers and -Z faces out of
+	# the casting palm. The old glove frame was offset by a quarter turn.
+	var palm_basis:=Basis.from_euler(state.palm)*Basis(Vector3.RIGHT,PI*.5)
+	if death: palm_basis=Basis.from_euler(Vector3(PI*.5-.14,0,-.10))
+	if key=="Arcanist" and not death:
+		_source_staff_arm(p,key,clip,u,weapon_basis,profile)
+	else:
+		_source_hand(p,key,1,right,weapon_basis,Vector3(1,.15,.45) if death else Vector3(state.right_pole),profile,true)
+	# Release the aiming wrist during the existing catch, before the returning
+	# elbow reverses its bend plane. The body and recovery clock are unchanged.
+	var aim_weight:=1.0-smoothstep(.22,.52,u) if clip.begins_with("recover") else 1.0
+	if walking or death:
+		_source_hand(p,key,0,left,palm_basis,Vector3(-1,.15,.35) if death else Vector3(state.left_pole),profile,false,state.palm,walking,aim_weight)
+	else:
+		_source_cast_arm(p,key,clip,u,profile)
+	p[24].basis=Basis.IDENTITY.scaled(Vector3.ZERO)
+	var cloth: Vector3=state.cloth
+	var cloth_lag: Vector3=_action_state(spec,key,clip,maxf(0.0,u-.085)).cloth if acting else cloth
+	for side in range(2):
+		var foot:=walk_foot(key,u,side,profile) if walking else (action_foot(key,clip,u,side,profile) if acting else stance_foot(key,side,profile))
+		if death: foot=walk_anchor(key,side,profile)
+		var knee_pole: Vector3=state.knee_l if side==0 else state.knee_r
+		solve_two(p,12 if side==0 else 15,13 if side==0 else 16,14 if side==0 else 17,foot,Vector3.FORWARD if walking or death else knee_pole,key,profile)
+		global_rotation(p,14 if side==0 else 17,action_foot_basis(key,side,profile),key)
+		p[25+side].basis=Basis.from_euler(cloth*.28+Vector3(0,0,(-.012 if side==0 else .012)*cloth.x) if acting else Vector3(.025*sin(u*TAU+side*PI) if walking else breath*.007,0,0))
+	# Imported body weights are never compressed to fit a garment. The actual
+	# cloth attachment bones receive the restrained angular follow-through.
+	p[18].basis=Basis.from_euler(cloth if acting else Vector3(.06 if walking else .016+breath*.008,0,.015*sin(u*TAU)))
+	p[19].basis=Basis.from_euler(cloth_lag*.60 if acting else Vector3(.045*sin(u*TAU-.55) if walking else breath*.012,0,0))
+	p[27].basis=Basis.from_euler(cloth_lag*.12 if acting else Vector3(breath*.007,0,.012*sin(u*TAU-.40)))
+	p[28].basis=Basis.from_euler(cloth_lag*.10 if acting else Vector3(breath*.007,0,-.012*sin(u*TAU-.40)))
+	if death: _source_fall(p,key,u,ratio,profile)
+	return p
+
+static func _source_fall(p: Array[Transform3D],key: String,u: float,ratio: float,profile: Dictionary) -> void:
+	var fall:=smoothstep(.16,.94,u)
+	var fold:=smoothstep(.31,.87,u)
+	var settle:=smoothstep(.58,1.0,u)
+	var gather:=sin(clampf(u/.46,0,1)*PI)
+	p[1].basis=Basis.from_euler(Vector3(.08*fold,.28*fold,.055*fold))
+	p[2].basis=Basis.from_euler(Vector3(-.20*fold,-.18*fold,.045*fold))
+	p[3].basis=Basis.from_euler(Vector3(.12*settle,.40*settle,-.12*settle))
+	p[15].basis=p[15].basis.slerp(Basis.from_euler(Vector3(-.58,.08,.18)),fold)
+	p[16].basis=p[16].basis.slerp(Basis.from_euler(Vector3(.87,0,0)),fold)
+	p[17].basis=p[17].basis.slerp(Basis.from_euler(Vector3(-.12,0,0)),settle)
+	global_rotation(p,18,Basis.from_euler(Vector3(.14*settle,0,.025*settle)),key)
+	p[19].basis=Basis.from_euler(Vector3(.12*settle,0,-.025*settle))
+	p[19].origin.y+=.09*gather*ratio
+	global_rotation(p,25,Basis.from_euler(Vector3(.22*settle,0,-.86*gather)),key)
+	global_rotation(p,26,Basis.from_euler(Vector3(.22*settle,0,.86*gather)),key)
+	p[27].basis=Basis.from_euler(Vector3(.18*settle,0,-.11*settle))
+	p[28].basis=Basis.from_euler(Vector3(.14*settle,0,.09*settle))
+	p[0].origin=Vector3(.075*fall,.33*fall-.035*smoothstep(.92,1.0,u),-.05*fall)*ratio
+	p[0].basis=Basis.from_euler(Vector3(-PI*.5*fall,0,.045*fall))
+	# A source's actual boots supply their own support envelope. Never use
+	# the earlier body's vertices to fit this anatomical source to the floor.
+	# This contact offset affects only the falling root, never a standing or
+	# action root. Complete skinned-floor verification is still required.
+	var support_y:=INF
+	for side in range(2):
+		var foot:=global_pose(p,14 if side==0 else 17,key)
+		var foot_data: Dictionary=profile.feet["L" if side==0 else "R"]
+		var measured_skin: Array=foot_data.get("support_skin",[])
+		var measured: Array=foot_data.get("support_points_local",[])
+		if not measured_skin.is_empty():
+			assert(measured_skin.size()>=4,"Source fall requires a measured skinned outsole envelope")
+			for support in measured_skin:
+				var bind_point:=_vector(support.position)
+				var posed:=Vector3.ZERO
+				var total:=0.0
+				assert(support.joints.size()==4 and support.weights.size()==4,"Outsole vertices retain their actual four skin influences")
+				for influence in range(4):
+					var weight: float=support.weights[influence]
+					var bone: int=int(support.joints[influence])
+					assert(bone>=0 and bone<NAMES.size() and weight>=0.0,"Invalid source support influence")
+					if weight>0.0: posed+=(global_pose(p,bone,key)*(bind_point-_rest_point(profile,NAMES[bone])))*weight
+					total+=weight
+				assert(absf(total-1.0)<.0001,"Outsole skin weights must be normalized")
+				support_y=minf(support_y,posed.y)
+		elif not measured.is_empty():
+			assert(not profile.has("source"),"An authored source must supply actual outsole skin weights")
+			for support in measured: support_y=minf(support_y,(foot*_vector(support)).y)
+		else:
+			# Historical MPFB profile compatibility only. Newly identified
+			# authored sources must export their real support measurements.
+			assert(not profile.has("source"),"An authored source cannot inherit another body's floor supports")
+			for support in [Vector3(.018804753,-.098581,-.221338304),Vector3(.029812181,-.098581,-.218608262),Vector3(.067068973,-.098581,-.106236832),Vector3(-.042864001,-.098581,-.077341998),Vector3(.004507238,-.098581,.066654311),Vector3(-.004749393,-.098581,.063928697)]:
+				if side==0: support.x=-support.x
+				support_y=minf(support_y,(foot*support).y)
+	p[0].origin.y+=maxf(0.0,.002*fall-support_y)
+
+static func _author(key: String,clip: String,u: float,rests: Array[Transform3D],profile: Dictionary={}) -> Array[Transform3D]:
+	if not profile.is_empty(): return _author_source(key,clip,u,rests,profile)
 	var action:=clip.get_slice("_",1) if clip.contains("_") else "basic"
 	var spec:=_spec(key,action)
 	var state: Dictionary=spec.guard.duplicate(true)

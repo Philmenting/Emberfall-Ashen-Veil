@@ -1,5 +1,5 @@
 extends RefCounted
-## Connected original 0.48 regional architecture, with explicit passage clearance.
+## Connected original 0.49 regional architecture, with explicit passage clearance.
 const Layout=preload("res://scripts/dungeon_layout.gd")
 const RoomGround=preload("res://scripts/room_ground.gd")
 const Authored=preload("res://scripts/authored_architecture.gd")
@@ -10,19 +10,29 @@ const MODELS={
 	"spire_bay_broken":preload("res://assets/models/environment/spire_bay_broken.glb"),
 	"spire_solid":preload("res://assets/models/environment/spire_solid.glb"),
 	"spire_return":preload("res://assets/models/environment/spire_return.glb"),
+	"spire_end":preload("res://assets/models/environment/spire_end.glb"),
 	"archive_bay":preload("res://assets/models/environment/archive_bay.glb"),
 	"archive_bay_broken":preload("res://assets/models/environment/archive_bay_broken.glb"),
 	"archive_solid":preload("res://assets/models/environment/archive_solid.glb"),
 	"archive_return":preload("res://assets/models/environment/archive_return.glb"),
+	"archive_end":preload("res://assets/models/environment/archive_end.glb"),
 	"ossuary_bay":preload("res://assets/models/environment/ossuary_bay.glb"),
 	"ossuary_bay_broken":preload("res://assets/models/environment/ossuary_bay_broken.glb"),
 	"ossuary_solid":preload("res://assets/models/environment/ossuary_solid.glb"),
 	"ossuary_return":preload("res://assets/models/environment/ossuary_return.glb"),
+	"ossuary_end":preload("res://assets/models/environment/ossuary_end.glb"),
 	"citadel_bay":preload("res://assets/models/environment/citadel_bay.glb"),
 	"citadel_bay_broken":preload("res://assets/models/environment/citadel_bay_broken.glb"),
 	"citadel_solid":preload("res://assets/models/environment/citadel_solid.glb"),
 	"citadel_return":preload("res://assets/models/environment/citadel_return.glb"),
+	"citadel_end":preload("res://assets/models/environment/citadel_end.glb"),
 }
+const RELIQUARIES=[
+	preload("res://assets/models/props049/spire_reliquary.glb"),
+	preload("res://assets/models/props049/archive_reliquary.glb"),
+	preload("res://assets/models/props049/ossuary_reliquary.glb"),
+	preload("res://assets/models/props049/citadel_reliquary.glb"),
+]
 static var masonry_cache: Dictionary={}
 static var template_cache: Dictionary={}
 
@@ -61,8 +71,11 @@ static func _plan(region: int,centers: Array,clearance: Array) -> Array:
 		# Each bay carries its own supported rear gallery; no crown spans a path.
 		_fill_run(result,region,room,c+Vector3(0,0,-6.35),0.0,-13.10,13.10,"bay",clearance)
 		_fill_run(result,region,room,c+Vector3(-6.95,0,0),PI*.5,-6.30,5.20,"bay",clearance)
-		# The camera-near side is a low, damaged enclosure, never a tall end block.
-		_fill_run(result,region,room,c+Vector3(6.95,0,1.40),-PI*.5,-4.35,4.35,"return",clearance)
+		# The Guardian court's complete danger shapes can extend beyond the
+		# walk rectangles. Its camera-near front stays structurally open in all
+		# regions; no dynamic popping or warning/camera clipping is involved.
+		if room!=5:
+			_fill_run(result,region,room,c+Vector3(6.95,0,1.40),-PI*.5,-4.35,4.35,"return",clearance)
 	return result
 
 static func _entry_transform(entry: Dictionary) -> Transform3D:
@@ -96,6 +109,13 @@ static func _fill_run(output: Array,region: int,room: int,origin: Vector3,angle:
 			if chosen=="bay" and (index_value+room)%2==1: chosen="bay_broken"
 			var entry: Dictionary={"region":region,"room":room,"kind":chosen,"at":origin+basis*Vector3(middle,0,0),"angle":angle,"width":width+.035}
 			if _entry_clear(entry,clearance): output.append(entry)
+		if kind=="bay" and length>=3.30:
+			# Close a surviving aisle with a thin pierced transverse wall. These
+			# supports occupy its existing depth, not the authoritative passage.
+			var inset: float=.17 if region==1 else .46
+			for end_x: float in [interval.x+inset,interval.y-inset]:
+				var end: Dictionary={"region":region,"room":room,"kind":"end","at":origin+basis*Vector3(end_x,0,0),"angle":angle,"width":4.20}
+				if _entry_clear(end,clearance): output.append(end)
 
 static func _entry_clear(entry: Dictionary,clearance: Array) -> bool:
 	var placement: Transform3D=_entry_transform(entry)
@@ -129,6 +149,20 @@ static func _world_materials(w) -> Dictionary:
 	# live in the static cache, so repeated descents do not retain per-world state.
 	if not w.has_meta("ruin_material_cache"): w.set_meta("ruin_material_cache",{})
 	return w.get_meta("ruin_material_cache")
+
+static func create_reliquary(w,region: int=-1) -> Node3D:
+	# Root positions the whole object and owns LootBeam/reward behavior. Body
+	# and ChestLid are direct children; the lid's exported rear hinge is retained.
+	var selected: int=clampi(w.region_index if region<0 else region,0,3)
+	var prop: Node3D=RELIQUARIES[selected].instantiate()
+	prop.name="GuardianReliquary"
+	prop.set_meta("dynamic_reliquary",true)
+	for piece: MeshInstance3D in prop.find_children("*","MeshInstance3D",true,false):
+		var original: Material=piece.mesh.surface_get_material(0)
+		var channel: String=String(original.resource_name).get_slice(".",0).trim_prefix("environment_")
+		piece.material_override=_material(w,{"channel":channel,"original":original})
+		piece.set_meta("dynamic_reliquary",true)
+	return prop
 
 static func _material(w,part: Dictionary) -> Material:
 	var channel: String=part.channel
@@ -216,14 +250,16 @@ static func _basin(w,placement: Transform3D,lava: bool) -> void:
 	w.add_child(surface)
 
 static func _build_ground_joins(w,centers: Array) -> void:
-	# Only the real Court union's exposed edges receive low native continuations.
-	# Channel edges belong to their authored banks and must stay open.
+	# The real Court's exposed union edges continue into battered retaining
+	# masonry and lower broken landings. They are inhabited structural depth,
+	# not a flat surrounding plane. Channel edges retain their native open banks.
 	var court: MeshInstance3D=w.get_node_or_null("ContinuousStoneCourt")
 	if court==null or not court.has_meta("ground_rectangles"): return
 	var rectangles: Array[Rect2]=[]
 	rectangles.assign(court.get_meta("ground_rectangles"))
 	var holes: Array=court.get_meta("channel_holes",[])
 	var groups: Dictionary={}
+	var open_ends: Dictionary={}
 	for edge: PackedVector2Array in RoomGround.boundary_edges(rectangles):
 		var a: Vector2=edge[0]; var b: Vector2=edge[1]
 		var along: Vector2=(b-a).normalized()
@@ -242,14 +278,21 @@ static func _build_ground_joins(w,centers: Array) -> void:
 				var center: Vector3=centers[candidate]
 				var distance: float=middle.distance_squared_to(Vector2(center.x,center.z))
 				if distance<nearest: nearest=distance; room=candidate
-			var width_p: float=.91+.24*sin(p.x*2.7+p.y*1.83)
-			var width_q: float=.91+.24*sin(q.x*2.7+q.y*1.83)
+			var width_p: float=.62+.12*sin(p.x*1.71+p.y*1.13)
+			var width_q: float=.62+.12*sin(q.x*1.71+q.y*1.13)
 			var outer_p: Vector2=p+outward*width_p
 			var outer_q: Vector2=q+outward*width_q
-			# At re-entrant corners stop a skirt that would enter another court.
+			var reach: float=[2.75,2.35,2.60,2.48][w.region_index]
+			# Clip conservatively at re-entrant unions and basin banks. The
+			# complete off-route projection is checked, not only its midpoint.
+			var band_a: Vector2=p+outward*.005
+			var band_b: Vector2=q+outward*reach
+			var band:=Rect2(Vector2(minf(band_a.x,band_b.x),minf(band_a.y,band_b.y)),Vector2(absf(band_a.x-band_b.x),absf(band_a.y-band_b.y)))
 			var overlap:=false
 			for rectangle: Rect2 in rectangles:
-				if rectangle.has_point((outer_p+outer_q)*.5): overlap=true; break
+				if rectangle.intersects(band): overlap=true; break
+			for hole: Rect2 in holes:
+				if hole.grow(.20).intersects(band): overlap=true; break
 			if overlap: continue
 			if not groups.has(room):
 				var top:=SurfaceTool.new(); top.begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -257,12 +300,40 @@ static func _build_ground_joins(w,centers: Array) -> void:
 				groups[room]={"paving":top,"masonry":side}
 			var inner_a:=Vector3(p.x,-.030,p.y)
 			var inner_b:=Vector3(q.x,-.030,q.y)
-			var outer_a:=Vector3(outer_p.x,-.09-.025*sin(p.x+p.y),outer_p.y)
-			var outer_b:=Vector3(outer_q.x,-.09-.025*sin(q.x+q.y),outer_q.y)
+			var outer_a:=Vector3(outer_p.x,-.105-.023*sin(p.x+p.y),outer_p.y)
+			var outer_b:=Vector3(outer_q.x,-.105-.023*sin(q.x+q.y),outer_q.y)
 			_emit_join_quad(groups[room].paving,[inner_a,inner_b,outer_b,outer_a],Vector3.UP)
-			var foot_a:=outer_a+Vector3(outward.x*.23,-1.25,outward.y*.23)
-			var foot_b:=outer_b+Vector3(outward.x*.23,-1.25,outward.y*.23)
-			_emit_join_quad(groups[room].masonry,[outer_a,outer_b,foot_b,foot_a],Vector3(outward.x,0,outward.y))
+			var ledge: float=[1.22,1.47,1.35,1.19][w.region_index]
+			var drop: float=[.56,.36,.43,.71][w.region_index]
+			var riser_a:=Vector3(outer_p.x+outward.x*.07,-drop,outer_p.y+outward.y*.07)
+			var riser_b:=Vector3(outer_q.x+outward.x*.07,-drop,outer_q.y+outward.y*.07)
+			var knee_a:=Vector3(p.x+outward.x*ledge,-drop-.04*sin(p.y),p.y+outward.y*ledge)
+			var knee_b:=Vector3(q.x+outward.x*ledge,-drop-.04*sin(q.y),q.y+outward.y*ledge)
+			var lower_a:=knee_a+Vector3(outward.x*.13,-.72,outward.y*.13)
+			var lower_b:=knee_b+Vector3(outward.x*.13,-.72,outward.y*.13)
+			var bottom_a:=Vector3(p.x+outward.x*(reach-.22),-1.63-.08*sin(p.x*.77),p.y+outward.y*(reach-.22))
+			var bottom_b:=Vector3(q.x+outward.x*(reach-.22),-1.63-.08*sin(q.x*.77),q.y+outward.y*(reach-.22))
+			var toe_a:=Vector3(p.x+outward.x*reach,-2.18,p.y+outward.y*reach)
+			var toe_b:=Vector3(q.x+outward.x*reach,-2.18,q.y+outward.y*reach)
+			var normal:=Vector3(outward.x,.12,outward.y).normalized()
+			_emit_join_quad(groups[room].masonry,[outer_a,outer_b,riser_b,riser_a],normal)
+			_emit_join_quad(groups[room].paving,[riser_a,riser_b,knee_b,knee_a],Vector3.UP)
+			_emit_join_quad(groups[room].masonry,[knee_a,knee_b,lower_b,lower_a],normal)
+			_emit_join_quad(groups[room].masonry,[lower_a,lower_b,bottom_b,bottom_a],normal)
+			_emit_join_quad(groups[room].masonry,[bottom_a,bottom_b,toe_b,toe_a],normal)
+			_register_join_end(open_ends,p,outward,room,[inner_a,outer_a,riser_a,knee_a,lower_a,bottom_a,toe_a,Vector3(p.x,-2.18,p.y)],Vector3(-along.x,0,-along.y))
+			_register_join_end(open_ends,q,outward,room,[inner_b,outer_b,riser_b,knee_b,lower_b,bottom_b,toe_b,Vector3(q.x,-2.18,q.y)],Vector3(along.x,0,along.y))
+	# Paired collinear ends cancel. Only a genuinely exposed stepped profile
+	# receives a masonry cap; no hidden walls are added between adjacent strips.
+	for cap: Dictionary in open_ends.values():
+		var points: Array=cap.points
+		var origin: Vector3=points[0]
+		var profile:=PackedVector2Array()
+		for point: Vector3 in points:
+			profile.append(Vector2(Vector2(point.x-origin.x,point.z-origin.z).dot(cap.outward),point.y))
+		var indices: PackedInt32Array=Geometry2D.triangulate_polygon(profile)
+		for index_value in range(0,indices.size(),3):
+			_triangle(groups[cap.room].masonry,points[indices[index_value]],points[indices[index_value+1]],points[indices[index_value+2]],cap.normal)
 	for room in groups:
 		for family: String in groups[room]:
 			var surface: SurfaceTool=groups[room][family]
@@ -278,7 +349,15 @@ static func _build_ground_joins(w,centers: Array) -> void:
 			node.set_meta("regional_module","ground_join")
 			w.add_child(node)
 
+static func _register_join_end(ends: Dictionary,point: Vector2,outward: Vector2,room: int,profile: Array,normal: Vector3) -> void:
+	var key: String="%d:%d:%d:%d"%[roundi(point.x*1000),roundi(point.y*1000),roundi(outward.x),roundi(outward.y)]
+	if ends.has(key): ends.erase(key)
+	else: ends[key]={"room":room,"points":profile,"normal":normal,"outward":outward}
+
 static func _emit_join_quad(surface: SurfaceTool,points: Array,normal: Vector3) -> void:
+	var actual: Vector3=(points[1]-points[0]).cross(points[2]-points[0]).normalized()
+	if actual.dot(normal)<0.0: actual=-actual
+	normal=actual
 	var tangent: Vector3=Vector3.RIGHT if absf(normal.y)>.5 else Vector3.UP.cross(normal).normalized()
 	var bitangent: Vector3=normal.cross(tangent).normalized()
 	var winding: Array=[0,1,2,0,2,3]

@@ -71,8 +71,17 @@ var shot_pan := Vector3.ZERO
 var framing_pan := Vector3.ZERO
 var shot_bottom := -1.0
 
+func character_cache_keys() -> Array[String]:
+	var keys: Array[String]=[character_class]
+	keys.append_array(Actor.HOSTILES)
+	keys.append("guardian_%d" % clampi(region_index,0,3))
+	return keys
+
 func _ready() -> void:
 	region_index = clampi(region_index,0,3)
+	# This retains a warm roster; it does not instantiate absent appearances.
+	# Any other still-live world/portrait is protected by Rig's weak live pins.
+	Actor.retain_character_cache(character_cache_keys())
 	theme = ThemeData.definition(region_index)
 	rng.seed = 7291 + region_index
 	_build_materials()
@@ -432,6 +441,10 @@ func _batch_static_geometry() -> void:
 	var groups: Dictionary = {}
 	for node in find_children("*","MeshInstance3D",true,false):
 		var mesh_node: MeshInstance3D = node
+		var dynamic_prop:=false
+		for prop in journey_props.values():
+			if prop.is_ancestor_of(mesh_node): dynamic_prop=true; break
+		if dynamic_prop: continue
 		var source: Mesh = mesh_node.mesh
 		# Godot renames duplicate sibling names. Keep dynamic planes by identity,
 		# otherwise later room beams are batched, freed and lose quality control.
@@ -639,9 +652,9 @@ func _process(delta: float) -> void:
 		actor.animate(delta,speed>.12,speed)
 		# Let the actual collapse read, then clear defeated scenery from the
 		# active fighters. The enemy dictionary, drops and rewards are untouched.
-		if actor.death_time>1.30 and not actor.boss:
-			actor.set_readability(lerpf(.48,.20,smoothstep(1.30,2.10,actor.death_time)),0.0)
-			actor.visible=actor.death_time<2.15
+		if actor.death_time>.70 and not actor.boss:
+			actor.set_defeated_readability(lerpf(.72,.12,smoothstep(.70,1.10,actor.death_time)))
+			actor.visible=actor.death_time<1.12
 	if simulation.uses_journey(): _sync_journey_props(delta)
 	for id_value in warnings.keys():
 		var enemy: Dictionary = simulation.enemy_by_id(id_value)
@@ -890,7 +903,7 @@ func _show_event(event: Dictionary) -> void:
 			if event.dead:
 				actor.die()
 				_contact_dust(actor.position)
-				var loot := _box(actor.position+Vector3(0,0.5,0),Vector3(0.12,0.5,0.12),materials.soul)
+				var loot := _magic_volume(actor.position+Vector3(0,0.5,0),Vector3(0.14,0.23,0.14),_magic_material(Color("6bc4cc"),0.82))
 				effects.append({"node":loot,"age":0.0,"life":0.9,"kind":"loot"})
 		"hero_hit":
 			var heavy_hit:=false
@@ -1033,12 +1046,16 @@ func _update_effects(delta: float) -> void:
 			node.position = Vector3(effect.origin).lerp(destination,progress)
 			if character_class=="Arcanist": node.position.y+=sin(progress*PI)*0.35
 			if node.position.distance_to(destination)>0.01: node.look_at(destination)
+			for part in node.get_children():
+				if part is MeshInstance3D and part.material_override is ShaderMaterial:
+					part.material_override.set_shader_parameter("fade",1.0-smoothstep(.82,1.0,progress))
 		if effect.kind=="fall": node.position+=Vector3(0,-10.0*delta,0)
 		if effect.kind == "ring": node.scale = Vector3.ONE*(1.0+effect.age*3.0)
 		elif effect.kind == "nova": node.scale=Vector3.ONE*lerpf(0.15,1.0,minf(1.0,effect.age/effect.life))
 		elif effect.kind == "spark":
 			node.position += Vector3(effect.velocity)*delta
 			effect.velocity.y -= delta*8.0
+			node.material_override.set_shader_parameter("fade",1.0-smoothstep(.10,1.0,clampf(effect.age/effect.life,0.0,1.0)))
 		elif effect.kind == "contact_dust":
 			var progress: float=clampf(effect.age/effect.life,0.0,1.0)
 			node.scale=Vector3.ONE*lerpf(.34,1.0,progress)
@@ -1052,6 +1069,7 @@ func _update_effects(delta: float) -> void:
 			node.modulate.a=1.0-smoothstep(.38,.70,float(effect.age))
 		elif effect.kind == "loot":
 			node.position = node.position.lerp(hero.position+Vector3(0,0.8,0),delta*4.0)
+			node.material_override.set_shader_parameter("fade",1.0-smoothstep(.55,1.0,clampf(effect.age/effect.life,0.0,1.0)))
 		elif effect.kind == "recovered_gear":
 			node.position.y=float(effect.base_y)+sin(elapsed*3.2+float(effect.phase))*0.11
 			node.rotation.y+=delta*0.9
@@ -1207,12 +1225,12 @@ func _build_journey_details() -> void:
 
 func _build_journey_props() -> void:
 	for room in [1,3,5]:
-		var prop := Node3D.new()
+		var prop: Node3D=Ruins.create_reliquary(self) if room==5 else Node3D.new()
 		prop.name="HealingWell" if room==1 else ("SanctumSeal" if room==3 else "GuardianReliquary")
 		prop.position=_point(Layout.interact_point(region_index,room,simulation.layout_seed()))
 		add_child(prop)
 		journey_props[room]=prop
-		_box(Vector3(0,-0.03,0),Vector3(1.5,0.15,1.5),materials.dark,prop)
+		if room!=5: _box(Vector3(0,-0.03,0),Vector3(1.5,0.15,1.5),materials.dark,prop)
 		if room==1:
 			_authored_prop("well",Vector3.ZERO,0.0,prop)
 		elif room==3:
@@ -1221,10 +1239,6 @@ func _build_journey_props() -> void:
 			seal.name="SealGem"
 			seal.rotation=Vector3(0.5,0.6,0.5)
 		else:
-			_box(Vector3(0,0.35,0),Vector3(1.3,0.7,0.85),materials.dark,prop)
-			for x in [-0.48,0.48]: _box(Vector3(x,0.4,0),Vector3(0.1,0.78,0.9),materials.metal,prop)
-			var lid := _box(Vector3(0,0.77,0),Vector3(1.35,0.16,0.9),materials.metal,prop)
-			lid.name="ChestLid"
 			var beam := _box(Vector3(0,1.8,0),Vector3(0.09,2.5,0.09),materials.soul,prop)
 			beam.name="LootBeam"
 			beam.visible=false
@@ -1460,9 +1474,34 @@ func _impact_sparks(origin: Vector3,color: Color) -> void:
 		add_child(flash)
 		effects.append({"node":flash,"age":0.0,"life":.10,"kind":"contact_light"})
 	for i in range(5):
-		var spark:=_box(origin,Vector3(0.025,0.07,0.025),_material(color,0,true))
-		spark.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		var spark:=_magic_volume(origin,Vector3(0.035,0.035,0.095),_magic_material(color,0.86))
 		effects.append({"node":spark,"age":0.0,"life":0.22+rng.randf()*0.15,"kind":"spark","velocity":Vector3(rng.randf_range(-2.5,2.5),rng.randf_range(0.6,2.2),rng.randf_range(-2.5,2.5))})
+		# Orient the fragment from the already-drawn velocity; never consume
+		# extra randomness for decoration or alter the five-spark draw order.
+		spark.look_at(origin+Vector3(effects.back().velocity))
+
+func _magic_material(color: Color,opacity: float) -> ShaderMaterial:
+	var material:=ShaderMaterial.new()
+	material.shader=preload("res://assets/shaders/magic_volume.gdshader")
+	material.set_shader_parameter("magic_color",color)
+	material.set_shader_parameter("opacity",opacity)
+	return material
+
+func _magic_volume(position_value: Vector3,dimensions: Vector3,material: Material,parent: Node3D=null) -> MeshInstance3D:
+	var volume:=MeshInstance3D.new()
+	var mesh:=SphereMesh.new()
+	mesh.radius=0.5
+	mesh.height=1.0
+	mesh.radial_segments=10
+	mesh.rings=5
+	volume.mesh=mesh
+	volume.scale=dimensions
+	volume.position=position_value
+	volume.material_override=material
+	volume.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	if parent==null: add_child(volume)
+	else: parent.add_child(volume)
+	return volume
 
 func _contact_dust(foot: Vector3) -> void:
 	if reduced_motion or not is_instance_valid(sun) or not sun.shadow_enabled: return
@@ -1516,11 +1555,13 @@ func _launch_projectile(target: int, color: Color,flight_seconds: float=Actor.PR
 	projectile.name = "SpellBolt" if character_class=="Arcanist" else "CinderArrow"
 	projectile.position = origin
 	add_child(projectile)
-	var material := _material(color,0.0,true)
-	_box(Vector3.ZERO,Vector3(0.065,0.065,0.55),material,projectile).cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	_box(Vector3(0,0,0.30),Vector3(0.025,0.025,0.38),material,projectile).cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	var material := _magic_material(color,0.88)
+	# Local -Z is the actual direction of flight. Rounded, tapered volumes
+	# carry the class hue without the old lit/emissive rectangular bars.
+	_magic_volume(Vector3(0,0,-0.17),Vector3(0.10,0.10,0.27),material,projectile)
+	_magic_volume(Vector3(0,0,0.18),Vector3(0.045,0.045,0.46),_magic_material(color,0.48),projectile)
 	if character_class=="Arcanist":
-		_drop_sphere(Vector3(0,0,-0.22),0.105,material,projectile)
+		_magic_volume(Vector3(0,0,-0.19),Vector3(0.17,0.17,0.22),_magic_material(color,0.46),projectile)
 	if origin.distance_to(destination)>0.01: projectile.look_at(destination)
 	effects.append({"node":projectile,"age":0.0,"life":flight_seconds,"kind":"projectile","origin":origin,"destination":destination,"target":target})
 
@@ -1575,6 +1616,7 @@ func _build_region_matte() -> void:
 	# live region. Camp uses the shared shader's unchanged zero-haze default.
 	paint.set_shader_parameter("haze_color",Color(theme.fog))
 	paint.set_shader_parameter("haze_strength",1.0-exp(-float(theme.density)*75.0))
+	paint.set_shader_parameter("distance_contrast",0.72)
 	region_matte.material_override=paint
 	region_matte.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	region_matte.extra_cull_margin=100.0
