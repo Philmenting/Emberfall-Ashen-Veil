@@ -39,7 +39,7 @@ func run_checks() -> void:
 		check(peak>100 and peak<=16384 and energy>0.0 and data.decode_s16(0)==0 and absi(data.decode_s16(data.size()-2))<50,key+": audible PCM with bounded peaks and quiet edges")
 		check(Audio.stream_for(key)==stream,key+": synthesis is cached")
 		if key in ["camp","dungeon"]:
-			check(stream.loop_end==data.size()/2 and stream.loop_mode==AudioStreamWAV.LOOP_FORWARD,key+": loop boundaries use sample frames")
+			check(stream.loop_end==data.size()/2-1 and stream.loop_mode==AudioStreamWAV.LOOP_FORWARD,key+": inclusive loop boundary is the last valid PCM frame")
 	var game:=new_game()
 	game._finish_welcome(false)
 	game.get_window().go_back_requested.emit()

@@ -15,6 +15,41 @@ func rms(data: PackedByteArray,start: float,finish: float) -> float:
 		var sample:=float(data.decode_s16(frame*2))/32767.0
 		total+=sample*sample
 	return sqrt(total/maxi(1,last-first))
+
+func check_native_ambient_loops(key: String) -> void:
+	var stream:=Audio.stream_for(key)
+	var frame_count:=stream.data.size()/2
+	check(stream.loop_begin==0 and stream.loop_end==frame_count-1 and stream.loop_mode==AudioStreamWAV.LOOP_FORWARD,"%s: native inclusive loop endpoint is inside the actual PCM allocation" % key)
+	var playback:=stream.instantiate_playback()
+	playback.start()
+	var output_rate:=AudioServer.get_mix_rate()
+	# Drive the actual native resampler/decoder through two full 12-second
+	# loops. This exercises the formerly out-of-bounds decode on every wrap;
+	# it does not rely on the muted/Dummy AudioStreamPlayer shortcut.
+	var remaining:=int(ceil((stream.get_length()*2.0+.25)*output_rate))
+	var expected_frames:=remaining
+	var mixed_frames:=0; var wraps:=0
+	var previous:=playback.get_playback_position()
+	var finite:=true; var lengths_valid:=true; var stereo_valid:=true
+	var energy:=0.0; var peak:=0.0
+	while remaining>0:
+		var request:=mini(4093,remaining)
+		var output: PackedVector2Array=playback.mix_audio(1.0,request)
+		lengths_valid=lengths_valid and output.size()==request
+		for frame: Vector2 in output:
+			finite=finite and frame.is_finite()
+			stereo_valid=stereo_valid and is_equal_approx(frame.x,frame.y)
+			energy+=frame.length_squared()
+			peak=maxf(peak,maxf(absf(frame.x),absf(frame.y)))
+		mixed_frames+=output.size(); remaining-=request
+		var position:=playback.get_playback_position()
+		if position<previous: wraps+=1
+		previous=position
+	check(lengths_valid and mixed_frames==expected_frames,"%s: native mixing returns every requested output frame across both wraps" % key)
+	check(finite and stereo_valid and peak>.01 and energy>1.0,"%s: native loop output stays finite and audibly nonzero in both channels" % key)
+	check(wraps>=2 and playback.is_playing(),"%s: native decoder wraps twice and remains active without replacing or muting the stream" % key)
+	playback.stop()
+
 func run_checks() -> void:
 	var fingerprints: Dictionary={}
 	var maximum_peak:=0.0
@@ -32,6 +67,7 @@ func run_checks() -> void:
 		fingerprints[fingerprint]=true
 	check(rms(Audio.stream_for("arcane_gather").data,.08,.16)>rms(Audio.stream_for("arcane_gather").data,.0,.035),"basic anticipation rises toward the visible release")
 	check(rms(Audio.stream_for("arcane_contact").data,.02,.07)>rms(Audio.stream_for("arcane_contact").data,.14,.20),"body contact loses energy promptly instead of becoming a sustained alarm")
+	for key in ["camp","dungeon"]: check_native_ambient_loops(key)
 	check(Audio.combat_cues([{"type":"hero_attack","skill":false}],"Arcanist")==["arcane_gather"],"committing a basic cast starts anticipation alone")
 	check(Audio.combat_cues([{"type":"hero_release","skill":false}],"Arcanist")==["arcane_release"],"the actual palm/projectile release starts the basic discharge")
 	check(Audio.combat_cues([{"type":"hero_release","skill":true}],"Arcanist")==["nova"],"signature release uses the radial Nova phrase")

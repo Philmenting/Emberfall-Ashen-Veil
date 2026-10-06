@@ -1,0 +1,8 @@
+ACTIVITY MANAGER PROCESS EXIT INFO (dumpsys activity exit-info)
+Last Timestamp of Persistence Into Persistent Storage: 1970-01-01 00:00:00.000
+  package: com.philmenting.emberfallashenveil.betaqa
+    Historical Process Exit for uid=10216
+        ApplicationExitInfo #0:
+          timestamp=2026-10-06 14:50:41.689 pid=2702 realUid=10216 packageUid=10216 definingUid=10216 user=0
+          process=com.philmenting.emberfallashenveil.betaqa reason=5 (APP CRASH(NATIVE)) subreason=0 (UNKNOWN) status=11
+          importance=100 pss=0.00 rss=0.00 description=crash state=empty trace=null

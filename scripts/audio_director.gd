@@ -191,7 +191,9 @@ static func stream_for(key: String) -> AudioStreamWAV:
 	stream.data=bytes
 	if ambient:
 		stream.loop_mode=AudioStreamWAV.LOOP_FORWARD
-		stream.loop_end=count
+		# Godot's native WAV mixer includes this frame in its final decode block.
+		# count addresses the first sample beyond PCM data; use the last index.
+		stream.loop_end=count-1
 	bank[key]=stream
 	return stream
 

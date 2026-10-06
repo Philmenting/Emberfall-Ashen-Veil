@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "source_commit": "f78e68bc4a8da275f3d40612ea0aa3d448fb2586",
+  "run_id": 37481573580,
+  "job_id": 112330757877,
+  "artifact_id": 11421163781,
+  "artifact_sha256": "20948c00fc43899ae6d360a7be984f108c36db050b2ad5c07b04ac2e62b68a50",
+  "selection": "Original status and exit-info; original nonempty Godot log entries (one empty Godot entry omitted); unmodified selected libc/DEBUG lines from all-buffer logcat. Unrelated emulator system events omitted.",
+  "files": {
+    "failure-exit-info.txt": "1e4e928769b2bd3f410e821158a61a3404b12994f620821930b94f072a32e326",
+    "first-launch.log": "3588746a05111f6f9c7394368bbf847acbb819ba9e36610741cf4ed83bd39c69",
+    "native-crash-excerpt.log": "e2a4212a082f205e3f11d70dfd592259f433e0ab42e75e5eeb71ff53cd07f5e8",
+    "runtime-status.json": "9c923d785548fa299b5227506d1a36f8c8460dfd321f2e7e314200d1ccf19240"
+  }
+}
