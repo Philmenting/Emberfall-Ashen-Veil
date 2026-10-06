@@ -21,6 +21,7 @@ func run() -> void:
 	var folder := "res://assets/models/nyra052/"
 	for filename in ["death-grounding.json", "staff-grip053.json", "BASE-LICENSE.txt", "OUTFIT-LICENSE.txt", "ANIMATION-LICENSE.txt"]:
 		check(FileAccess.file_exists(folder + filename), "Missing exported runtime/source file: " + filename)
+	check(FileAccess.file_exists("res://assets/models/nyra054/QUATERNIUS-CC0-LICENSE.txt"), "Added native attire source license ships in the package")
 	if failures:
 		finish()
 		return
@@ -37,6 +38,7 @@ func run() -> void:
 	rig.build(parent, "Arcanist")
 	rig.pose("idle", .4)
 	check(rig.build_ok and rig.skeleton.get_bone_count() == 65 and rig.surfaces.size() == 8, "Native avatar loads from the exported package")
+	check(rig.style!=null and rig.style.accessories.size()==11 and rig.rendered_triangles<40000, "Native cloth and armor load from the exported package within the full rendered triangle budget")
 	check(rig.grip_pose.size() == 20 and rig.death_grounding.size() == 31, "Production rig uses the exported finger and grounding data")
 	check(rig.weapon_grip_position().is_finite(), "Real exported staff grip is finite")
 	rig.dispose()

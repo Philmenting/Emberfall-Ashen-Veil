@@ -8,10 +8,12 @@ Der aktuelle Quellstand liegt auf [`improve/animation-craft`](https://github.com
 
 - Arcanist verwendet einen originalen, erwachsenen Quaternius-Charakter mit vollständigem 65-Knochen-Skelett, animierten Fingern, Künstler-Kleidung und übernommenen Animationen. Die übrigen Klassen und Gegner behalten ihre bisherigen Modelle.
 - Der Stabgriff wurde anhand der tatsächlich animierten Handgeometrie korrigiert: angepasste Finger, passender Schaft und eine Stützarmhaltung ohne gestreckte Knochen.
+- Basiszauber, Signatur und der bestehende Starfall-Angriff haben unterschiedliche Körperbewegungen. Eine zusätzliche, an dasselbe Skelett gebundene Kleidungsschicht und abgestimmte Haut-, Haar- und Stoffmaterialien überarbeiten Nyra.
+- Die Kampfinszenierung verbessert Nyras Sichtbarkeit vor großen Gegnern, setzt Zaubereffekte an der tatsächlichen Hand und am Treffer an und unterscheidet Vorbereitung, Auslösung und Kontakt auch im Sound.
 - Regionale Ruinen, Reliquiare, Zaubereffekte und Bodenkontakt enthalten die fortgesetzten Überarbeitungen nach dem früheren 0.48-Teststand.
 - Drei Klassen, vier Regionen, autonome Kämpfe, Schwüre, Ausrüstung, Beute, wiederholte Expeditionen und Offline-Fortschritt bleiben erhalten.
 
-[Aktuelle Figur](docs/design/reference-053/figure-idle-front.png) · [Stabgriff](docs/design/reference-053/grip-idle-0.4-front.png) · [Gameplay-Aufnahme und genaue Reichweite](docs/design/nyra-staff-grip-correction-053.md) · [Künstlerquellen und Lizenzen](assets/models/nyra052/README.md)
+[Qualitätsüberarbeitung 054 und Prüfstand](docs/quality054.md) · [Aktuelle Figur](docs/design/reference-054/idle-front.png) · [Erhaltener Stabgriff](docs/design/reference-053/grip-idle-0.4-front.png) · [Künstlerquellen und Lizenzen](assets/models/nyra052/README.md)
 
 Die Nahaufnahmen zeigen das echte Spielmodell unter diagnostischem Licht. Die gewöhnliche Gameplay-Aufnahme verwendet die vorhandene Spielkamera und Ausrüstung. Die Quellen- und Griffprüfungen belegen konkrete technische Eigenschaften; eine allgemeine visuelle Beta-Freigabe oder Diablo-Immortal-Qualität wird damit nicht behauptet. Die gespeicherte Paketkennung bleibt `0.48.0-beta.1`, Android-Version-Code `54`; diese Integration erhöht keine Release-Version.
 
@@ -32,11 +34,11 @@ Godot erzeugt Importcache und die aus dem eingebetteten Charakter-GLB extrahiert
 
 ```sh
 python3 scripts/run_beta_checks.py
-python3 scripts/run_beta_checks.py --suite source_avatar --suite source_avatar_grip
+python3 scripts/run_beta_checks.py --suite source_avatar_attack --suite source_avatar_style --suite guardian_presentation --suite combat_audio
 python3 -m unittest discover -s tests -p test_android_release.py -v
 ```
 
-Bei abweichendem Programmnamen setzt `GODOT_BIN` den Pfad zu Godot 4.7.2. Der vollständige Runner umfasst 36 Godot-Suiten mit isolierten Spielständen sowie die Syntax- und Laufzeitprüfung des Servermoduls. Die GitHub-Workflows prüfen Gameplay und Android separat. Google Play wird ausschließlich über den manuellen Veröffentlichungsworkflow bedient.
+Bei abweichendem Programmnamen setzt `GODOT_BIN` den Pfad zu Godot 4.7.2. Der vollständige Runner umfasst 40 Godot-Suiten mit isolierten Spielständen sowie die Syntax- und Laufzeitprüfung des Servermoduls. Die GitHub-Workflows prüfen Gameplay und Android separat. Der Android-QA-Export importiert die isolierte Projektkopie einmal und erzeugt daraus alle Prüf-APKs. Der genaue Nachweisstand steht im [Qualitätsbericht](docs/quality054.md). Google Play wird ausschließlich über den manuellen Veröffentlichungsworkflow bedient.
 
 ## Projekt und Quellen
 

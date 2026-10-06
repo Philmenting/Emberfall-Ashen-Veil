@@ -291,7 +291,10 @@ func animate(delta: float,walking: bool,horizontal_speed: float=-1.0) -> void:
 
 func _apply_motion(delta: float=0.0,contact: bool=false) -> void:
 	var clip:="idle"; var time:=fposmod(clock,4.2) if not reduced_motion else 0.0
-	var action:="skill" if attack_style in SKILL_STYLES else "basic"
+	# Starfall is the existing long ground-burst cast. Give the authored
+	# Arcanist its low chamber and heavy thrust without changing the skill's
+	# simulation windup, damage, cooldown, or any other class's animation.
+	var action:="heavy" if source_avatar and attack_style=="starfall" else ("skill" if attack_style in SKILL_STYLES else "basic")
 	var blend_duration:=.10
 	if death_time>=0.0: clip="death"; time=minf(death_time,COLLAPSE_DURATION)
 	elif telegraph_left>0.0:

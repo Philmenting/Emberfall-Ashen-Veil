@@ -22,6 +22,12 @@ uniform bool boss_surface=false;
 uniform float readability=1.0;
 uniform float silhouette_focus=0.0;
 uniform vec4 focus_tint:source_color=vec4(0.7,0.6,0.4,1.0);
+// Only foreground hostile bodies use this stationary screen-door cutaway.
+// The world supplies the projected, animated hero skin rather than a marker.
+uniform float hero_cutaway=0.0;
+uniform vec2 hero_window_center=vec2(0.0);
+uniform vec2 hero_window_extent=vec2(1.0);
+uniform float hero_view_depth=0.0;
 uniform sampler2D metal_grain:source_color,filter_linear_mipmap,repeat_enable;
 uniform sampler2D metal_roughness:filter_linear_mipmap,repeat_enable;
 uniform sampler2D field_surfaces:source_color,filter_linear_mipmap,repeat_disable;
@@ -48,6 +54,16 @@ float face_v(float y) {
     return mix(1.0,1003.0/1254.0,clamp((y-1.796)/(mouth_y-1.796),0.0,1.0));
 }
 void fragment(){
+    if(hero_cutaway>0.0 && -VERTEX.z<hero_view_depth) {
+        vec2 window=abs((FRAGCOORD.xy-hero_window_center)/max(hero_window_extent,vec2(1.0)));
+        float coverage=1.0-smoothstep(0.68,1.08,max(window.x,window.y));
+        // An ordered 4x4 pattern has no frame-dependent noise or alpha sort.
+        // Depth-tested opaque fragments outside the hero keep their full finish.
+        ivec2 cell=ivec2(mod(floor(FRAGCOORD.xy),4.0));
+        int bayer[16]=int[16](0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5);
+        float threshold=(float(bayer[cell.y*4+cell.x])+0.5)/16.0;
+        if(threshold<hero_cutaway*coverage) discard;
+    }
     if(portrait_crop && UV.x>=0.0 && UV.x<0.5) discard;
     float category=round(COLOR.a*8.0);
     float rank=0.0;

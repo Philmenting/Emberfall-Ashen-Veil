@@ -1,0 +1,47 @@
+{
+  "scope": "Fresh serial isolated cold import, followed by source-script refresh in the same imported cache and final native-avatar package loaded outside checkout; no Android-device execution.",
+  "checks": 12,
+  "failures": 0,
+  "godot_version": "4.7.2",
+  "native_inputs": {
+    "assets/models/nyra052/arcanist.glb": {
+      "root": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+      "staged": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1"
+    },
+    "assets/models/nyra052/staff-grip053.glb": {
+      "root": "98bd5832256f9a2fdbb68198d1dbf0d2db0b87c9c4d9d28b136cdfe54db0f11c",
+      "staged": "98bd5832256f9a2fdbb68198d1dbf0d2db0b87c9c4d9d28b136cdfe54db0f11c"
+    },
+    "assets/models/nyra052/staff-grip053.json": {
+      "root": "fa80f22d398ee8d8947a2be4e6b8c8bb64a7d71a1b41b3489171257ea35735dc",
+      "staged": "fa80f22d398ee8d8947a2be4e6b8c8bb64a7d71a1b41b3489171257ea35735dc"
+    },
+    "assets/models/nyra052/death-grounding.json": {
+      "root": "f69e8b6b62387fc4743cbbfb3ab4d4e06581ec4442bf203e49f238ef0a2b6435",
+      "staged": "f69e8b6b62387fc4743cbbfb3ab4d4e06581ec4442bf203e49f238ef0a2b6435"
+    },
+    "assets/models/nyra054/nyra-attire054.glb": {
+      "root": "8a96a9bac63a934213ddea77020d1b50dfd57e5270842ada69355925a5e906f1",
+      "staged": "8a96a9bac63a934213ddea77020d1b50dfd57e5270842ada69355925a5e906f1"
+    },
+    "scripts/source_avatar_rig.gd": {
+      "root": "1d5de716e8deac1ddeffd4e293b497de5f2884aebc0469578073b81277cf261d",
+      "staged": "1d5de716e8deac1ddeffd4e293b497de5f2884aebc0469578073b81277cf261d"
+    },
+    "scripts/source_avatar_style.gd": {
+      "root": "54ae9ef1b1d12d8379d106797141302be873b58717ab223fb499333f330c6ccc",
+      "staged": "54ae9ef1b1d12d8379d106797141302be873b58717ab223fb499333f330c6ccc"
+    },
+    "scripts/source_avatar_combat.gd": {
+      "root": "9066888875cec7671593c158473ec8343b51fad0ace58c89046bee92cb3e4e18",
+      "staged": "9066888875cec7671593c158473ec8343b51fad0ace58c89046bee92cb3e4e18"
+    }
+  },
+  "pck_sha256": "ccf90bc90c0e933371a287abfff960f1125596909216a53de8f8b0b34972c32a",
+  "logs": {
+    "import.log": "98e58fa1dcd480b8a6b3ee1e2b3cb35c182dcc229af8c9c161af678e714003e3",
+    "refresh-final.log": "18d75ba6fe87db44e68eb07d6e88e2c0899ce4f697016079a6bf0e568b582567",
+    "export-final.log": "87bcec531540c036cd7043097901cd9e802f07b32d13ac05482bff6aefa315b3",
+    "package-smoke-final.log": "bd62ca1b1a0d0d837f6dc883a44bece1a21bb4a2e63a23f71f5f8f439284877a"
+  }
+}

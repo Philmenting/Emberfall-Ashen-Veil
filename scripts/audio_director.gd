@@ -1,7 +1,7 @@
 extends Node
 ## Original synthesized score and cues. Never called by offline/forecast simulation.
 const Preferences = preload("res://scripts/game_preferences.gd")
-const RATE := 11025
+const RATE := 22050
 const VOICES := 6
 static var bank: Dictionary = {}
 var preferences := Preferences.DEFAULTS.duplicate()
@@ -39,7 +39,8 @@ func apply_preferences(values: Dictionary) -> void:
 	music.volume_db = _volume(preferences.master*preferences.music*0.25)
 	music.stream_paused = suspended or preferences.master*preferences.music<=0.0
 	for voice in voices:
-		voice.volume_db = _volume(preferences.master*preferences.effects*0.3)
+		# Six simultaneous half-scale PCM voices plus the score stay below unity.
+		voice.volume_db = _volume(preferences.master*preferences.effects*0.24)
 		if preferences.master*preferences.effects<=0.0: voice.stop()
 
 func _volume(value: float) -> float:
@@ -78,25 +79,42 @@ func combat_events(events: Array,class_key: String) -> void:
 		if pulse>0 and now-last_haptic>=180:
 			Input.vibrate_handheld(pulse,0.35)
 			last_haptic=now
+	for key in combat_cues(events,class_key): cue(key)
+
+static func combat_cues(events: Array,class_key: String) -> Array[String]:
+	var result: Array[String]=[]
+	var contact:=""
 	for event in events:
+		var key:=""
 		match String(event.type):
 			"hero_attack":
-				if event.has("ability_id"):
-					var key: String=event.ability_id
-					cue("lightning" if key=="chain" else "starfall" if key=="starfall" else "ward" if key in ["bastion","frost_ward","smoke"] else "oath" if key in ["sunder","judgment"] else "volley")
-					continue
-				cue("oath" if class_key=="Vowkeeper" else ("nova" if class_key=="Arcanist" else "volley")) if event.skill else cue("swing" if class_key=="Vowkeeper" else "bolt")
-			"hit": cue("impact" if class_key=="Vowkeeper" else "arcane_contact" if class_key=="Arcanist" else "arrow_contact")
-			"hero_hit": cue("hurt")
-			"warning": cue("warning")
-			"boss_phase": cue("phase_desperate" if int(event.get("phase",1))>=2 else "phase_awakened")
-			"ward": cue("ward")
-			"evade", "backstep": cue("step")
+				if class_key=="Arcanist": key="arcane_gather_heavy" if event.get("ability_id","")=="starfall" else "arcane_gather_power" if event.get("skill",false) else "arcane_gather"
+				elif class_key=="Ranger": key="bow_draw"
+				else: key="oath" if event.get("skill",false) else "swing"
+			"hero_release":
+				var ability: String=event.get("ability_id","")
+				if not ability.is_empty():
+					key="lightning" if ability=="chain" else "starfall" if ability=="starfall" else "ward" if ability in ["bastion","frost_ward","smoke"] else "oath" if ability in ["sunder","judgment"] else "volley"
+				elif class_key=="Arcanist": key="nova" if event.get("skill",false) else "arcane_release"
+				elif class_key=="Ranger": key="volley" if event.get("skill",false) else "bolt"
+			"hit":
+				# Contact events can affect a whole pack. Keep one strongest contact
+				# per simulation batch, including mixed critical/ordinary targets.
+				if event.get("critical",false): contact="arcane_critical" if class_key=="Arcanist" else "impact_critical"
+				elif contact.is_empty(): contact="impact" if class_key=="Vowkeeper" else "arcane_contact" if class_key=="Arcanist" else "arrow_contact"
+			"hero_hit": key="hurt"
+			"warning": key="warning"
+			"boss_phase": key="phase_desperate" if int(event.get("phase",1))>=2 else "phase_awakened"
+			"ward": key="ward"
+			"evade", "backstep": key="step"
+		if not key.is_empty() and not result.has(key): result.append(key)
+	if not contact.is_empty(): result.append(contact)
+	return result
 
 static func stream_for(key: String) -> AudioStreamWAV:
 	if bank.has(key): return bank[key]
 	var ambient:=key in ["camp","dungeon"]
-	var duration:=12.0 if ambient else float({"ui":0.07,"swing":0.24,"bolt":0.22,"impact":0.18,"hurt":0.25,"oath":0.8,"nova":0.85,"volley":0.6,"warning":0.55,"step":0.12,"ward":0.3,"lightning":0.45,"starfall":0.65,"phase_awakened":1.3,"phase_desperate":1.6,"victory":1.8,"defeat":1.3}.get(key,0.2))
+	var duration:=12.0 if ambient else float({"ui":0.07,"swing":0.24,"bolt":0.22,"bow_draw":.21,"arcane_gather":.24,"arcane_gather_power":.26,"arcane_gather_heavy":.75,"arcane_release":.24,"arcane_contact":.24,"arcane_critical":.34,"impact_critical":.28,"impact":0.18,"hurt":0.25,"oath":0.8,"nova":0.65,"volley":0.6,"warning":0.55,"step":0.12,"ward":0.3,"lightning":0.45,"starfall":0.8,"phase_awakened":1.3,"phase_desperate":1.6,"victory":1.8,"defeat":1.3}.get(key,0.2))
 	var count:=int(duration*RATE)
 	var bytes:=PackedByteArray()
 	bytes.resize(count*2)
@@ -124,15 +142,33 @@ static func stream_for(key: String) -> AudioStreamWAV:
 				"ui": sample=0.25*sin(TAU*660*t)*exp(-t*60)
 				"swing", "step": sample=filtered*2.3+noise*0.12
 				"bolt", "volley": sample=0.2*sin(TAU*(500*t-180*t*t))+filtered*1.2
+				"bow_draw": sample=filtered*.35*sin(PI*progress)+.045*sin(TAU*(145*t+80*t*t))*sin(PI*progress)
+				"arcane_gather", "arcane_gather_power", "arcane_gather_heavy":
+					var power:=key!="arcane_gather"
+					var lift:=smoothstep(0.0,.7,progress)
+					var base:=98.0 if key=="arcane_gather_heavy" else 130.8128 if power else 261.6256
+					sample=(.065*sin(TAU*(base*t+base*.7*t*t))+.036*sin(TAU*base*1.4983*t)+filtered*.19)*lift
+				"arcane_release":
+					# Low impulse, pitched glass and a band-limited air tail share one
+					# voice. They begin on the rendered palm/projectile release.
+					sample=.16*sin(TAU*(220*t-130*t*t))*exp(-t*17)+.08*sin(TAU*1046.502*t)*exp(-t*25)+filtered*.55*exp(-t*10)
 				"impact": sample=0.33*sin(TAU*130*t)*exp(-t*24)+noise*0.24*exp(-t*48)
-				"arcane_contact": sample=0.22*sin(TAU*(420*t-350*t*t))*exp(-t*16)+noise*0.09*exp(-t*30)
+				"arcane_contact", "arcane_critical":
+					sample=.16*sin(TAU*146.8324*t)*exp(-t*24)+.10*sin(TAU*(587.33*t-160*t*t))*exp(-t*15)+filtered*.38*exp(-t*21)
+					if key=="arcane_critical": sample+=.13*sin(TAU*73.4162*t)*exp(-t*13)+.045*sin(TAU*1174.659*t)*exp(-t*20)
+				"impact_critical": sample=.30*sin(TAU*82.4069*t)*exp(-t*19)+filtered*.7*exp(-t*28)
 				"arrow_contact": sample=noise*0.3*exp(-t*60)+0.2*sin(TAU*210*t)*exp(-t*26)
 				"hurt": sample=0.27*sin(TAU*(100*t-90*t*t))+filtered*0.6
 				"oath": sample=0.24*sin(TAU*82.5*t)+0.11*sin(TAU*330*t)*exp(-t*4)+filtered*0.8
-				"nova": sample=0.2*sin(TAU*(180*t+160*t*t))+0.08*sin(TAU*523.25*t)+filtered
+				"nova": sample=.22*sin(TAU*(98*t-35*t*t))*exp(-t*7)+.10*sin(TAU*392*t)*exp(-t*5)+.035*sin(TAU*1046.502*t)*exp(-t*9)+filtered*.6*exp(-t*6)
 				"warning": sample=0.2*sin(TAU*155.5*t)*(0.65+0.35*sin(TAU*8*t))
 				"lightning": sample=0.12*sin(TAU*780*t)*exp(-t*5)+noise*0.3*exp(-t*8)+filtered*0.4
-				"starfall": sample=0.24*sin(TAU*(130*t-80*t*t))+filtered*1.2*exp(-t*4)
+				"starfall":
+					# A weighty descent with a delayed mineral resonance, distinct
+					# from Nova's immediate radial pressure and the basic glass bolt.
+					sample=.23*sin(TAU*(65.4064*t-12*t*t))*exp(-t*4)+filtered*.55*exp(-t*9)
+					var echo:=maxf(0.0,t-.055)
+					sample+=(.065*sin(TAU*196.0*echo)+.035*sin(TAU*415.3047*echo))*exp(-echo*6)*minf(1.0,echo*80)
 				"ward": sample=0.11*sin(TAU*392*t)*exp(-t*8)+0.05*sin(TAU*587.33*t)*exp(-t*12)
 				"phase_awakened":
 					# A low toll announces the guardian's second pattern.

@@ -62,6 +62,7 @@ var dressing_clearance: Array[Rect2]=[]
 var occluder_batches: Array[Dictionary]=[]
 var framing_scale := 1.0
 var projectile_emitted := false
+var projectile_cast_style := ""
 var shot_stage := -1
 var shot_aspect := -1.0
 var shot_scale := 1.0
@@ -70,6 +71,8 @@ var shot_travel := false
 var shot_pan := Vector3.ZERO
 var framing_pan := Vector3.ZERO
 var shot_bottom := -1.0
+var presentation_events: Array[Dictionary]=[]
+var cast_focus: MeshInstance3D
 
 func character_cache_keys() -> Array[String]:
 	var keys: Array[String]=[character_class]
@@ -79,6 +82,8 @@ func character_cache_keys() -> Array[String]:
 
 func _ready() -> void:
 	region_index = clampi(region_index,0,3)
+	phase=simulation.phase
+	index=mini(simulation.stage,5)
 	# This retains a warm roster; it does not instantiate absent appearances.
 	# Any other still-live world/portrait is protected by Rig's weak live pins.
 	Actor.retain_character_cache(character_cache_keys())
@@ -104,6 +109,7 @@ func _ready() -> void:
 	if hero.has_method("configure_equipment"): hero.configure_equipment(hero_equipment,character_class)
 	if not simulation.pending_attack.is_empty():
 		var pending_style:=String(simulation.pending_attack.get("ability_id","signature" if simulation.pending_attack.get("skill",false) else "basic"))
+		projectile_cast_style=pending_style
 		var duration: float=Skills.DEFINITIONS.get(pending_style,{}).get("cast",0.3)
 		hero.strike(pending_style,duration,true)
 		hero.sync_attack(float(simulation.pending_attack.left))
@@ -158,6 +164,8 @@ func _ready() -> void:
 	camera_zoom = 0.86 if _boss_is_active() else 0.94
 	_build_region_matte()
 	_position_camera()
+	_build_cast_focus()
+	_update_combat_readability(0.0)
 	var lantern := OmniLight3D.new()
 	lantern.light_color = Color("cad8e5")
 	lantern.light_energy = 1.18
@@ -635,6 +643,7 @@ func _process(delta: float) -> void:
 	elif hero.external_release and hero.release_time<0.0: hero.cancel_attack()
 	hero.follow_travel(hero.position-previous,camera.position)
 	hero.animate(delta,walking,hero_speed)
+	_update_cast_focus()
 	if not simulation.pending_attack.is_empty() and not projectile_emitted and character_class!="Vowkeeper":
 		var pending: Dictionary=simulation.pending_attack
 		var remaining:=maxf(0.0,float(pending.left)-simulation.accumulator)
@@ -643,8 +652,9 @@ func _process(delta: float) -> void:
 			# The weapon/string releases with the visible flight; impact follows
 			# on the unchanged simulation damage frame a few milliseconds later.
 			hero.release_attack()
+			_update_cast_focus()
 			_launch_projectile(int(pending.target),color,maxf(0.016,remaining))
-			projectile_emitted=true
+			_present_attack_release(bool(pending.get("skill",false)),int(pending.target))
 	for id_value in actor_by_id:
 		var actor: Node3D=actor_by_id[id_value]
 		if simulation.enemy_by_id(id_value).hp<=0: actor.die()
@@ -665,7 +675,6 @@ func _process(delta: float) -> void:
 			_update_warning(warnings[id_value],enemy.warning)
 	target_ring.visible = phase=="combat" and actor_by_id.has(simulation.target_id)
 	if target_ring.visible: target_ring.position = actor_by_id[simulation.target_id].position+Vector3(0,0.07,0)
-	_update_combat_readability(delta)
 	for i in range(torches.size()): torches[i].light_energy = 2.1+sin(elapsed*4.0+i*2.1)*0.10
 	var camera_anchor:=_camera_anchor()
 	var zoom_target:=0.86 if simulation.stage==5 else 0.94
@@ -674,8 +683,14 @@ func _process(delta: float) -> void:
 	camera_target = camera_target.lerp(camera_anchor,1.0-exp(-delta*4.0))
 	if camera_target.distance_to(camera_anchor)<.001: camera_target=camera_anchor
 	_position_camera(delta)
+	_update_combat_readability(delta)
 	_set_description("AUTO • " + String(simulation.action).to_upper())
-	simulation_advanced.emit(updates)
+	# Presentation cues accompany the unchanged deterministic event array.
+	# They are never inserted into simulation.events or persisted checkpoints.
+	var presented: Array=updates.duplicate()
+	presented.append_array(presentation_events)
+	presentation_events.clear()
+	simulation_advanced.emit(presented)
 
 func _update_combat_readability(delta: float) -> void:
 	hero_marker.visible=phase=="combat" and hero.death_time<0.0
@@ -683,8 +698,11 @@ func _update_combat_readability(delta: float) -> void:
 	if hero.death_time<0.0: hero.set_readability(1.0,.62)
 	var hero_screen:=camera.unproject_position(hero.position+Vector3.UP*hero.figure_height*.55)
 	var viewport_width:=maxf(1.0,get_viewport().get_visible_rect().size.x)
+	var window:=_hero_occlusion_window()
 	for id_value in actor_by_id:
 		var actor: Node3D=actor_by_id[id_value]
+		if actor.surface_material!=null:
+			actor.surface_material.set_shader_parameter("hero_cutaway",0.0)
 		if actor.death_time>=0.0 or not actor.visible: continue
 		var enemy: Dictionary=simulation.enemy_by_id(id_value)
 		var important: bool=id_value==simulation.target_id or not enemy.warning.is_empty() or actor.boss
@@ -695,6 +713,72 @@ func _update_combat_readability(delta: float) -> void:
 		var goal:=.62 if crowded and not important else 1.0
 		var focus:=.44 if id_value==simulation.target_id else 0.0
 		actor.set_readability(lerpf(actor.emphasis,goal,1.0-exp(-delta*9.0)),focus)
+		if phase=="combat" and hero.death_time<0.0 and actor.surface_material!=null:
+			var enemy_window:=_project_body(actor)
+			if window.rect.intersects(enemy_window.rect) and enemy_window.near<window.far:
+				_preserve_body_shadow(actor)
+				# Local cutaway reveals the actual hero through a foreground body;
+				# the guardian's remaining silhouette, weapon and warning stay opaque.
+				actor.surface_material.set_shader_parameter("hero_cutaway",.875)
+				actor.surface_material.set_shader_parameter("hero_window_center",window.center)
+				actor.surface_material.set_shader_parameter("hero_window_extent",window.extent)
+				actor.surface_material.set_shader_parameter("hero_view_depth",window.far+.025)
+
+func _preserve_body_shadow(actor: Node3D) -> void:
+	# Fragment discard also runs when a spatial material renders a shadow map.
+	# Share the exact mesh/skin in an invisible shadow-only pass with no cutaway;
+	# the visible instance gives up its former shadow pass, preserving draw count.
+	if actor.model.get_parent().has_node("UnmaskedBodyShadow"): return
+	var shadow:=MeshInstance3D.new()
+	shadow.name="UnmaskedBodyShadow"
+	shadow.mesh=actor.model.mesh; shadow.skin=actor.model.skin
+	shadow.layers=actor.model.layers
+	shadow.transform=actor.model.transform
+	actor.model.get_parent().add_child(shadow)
+	shadow.skeleton=shadow.get_path_to(actor.motion_rig.skeleton)
+	shadow.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
+	shadow.material_override=actor.surface_material.duplicate()
+	shadow.material_override.set_shader_parameter("hero_cutaway",0.0)
+	shadow.extra_cull_margin=actor.model.extra_cull_margin
+	actor.model.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+
+func _body_skin_bounds(actor: Node3D) -> AABB:
+	if not actor.source_avatar: return actor.pose_bounds()
+	# The source avatar's compatibility mesh is hidden. Build conservative skin
+	# bounds from the real native surfaces and attire, excluding the held prop.
+	var rig: RefCounted=actor.motion_rig
+	var result:=AABB(); var first:=true
+	for bone in rig.skeleton.get_bone_count():
+		if not rig.populated[bone]: continue
+		var box: AABB=actor.body.transform*(rig.motion_node.transform*(rig.skeleton.get_bone_global_pose(bone)*rig.bone_bounds[bone]))
+		result=box if first else result.merge(box); first=false
+	if rig.style!=null: result=result.merge(actor.body.transform*rig.style.current_bounds())
+	return result
+
+func _project_body(actor: Node3D) -> Dictionary:
+	var bounds:=_body_skin_bounds(actor)
+	var low:=Vector2(INF,INF); var high:=Vector2(-INF,-INF)
+	var near_depth:=INF; var far_depth:=0.0
+	for x in [bounds.position.x,bounds.end.x]:
+		for y in [bounds.position.y,bounds.end.y]:
+			for z in [bounds.position.z,bounds.end.z]:
+				var point:=actor.to_global(Vector3(x,y,z))
+				var depth: float=-camera.to_local(point).z
+				near_depth=minf(near_depth,depth); far_depth=maxf(far_depth,depth)
+				var pixel:=camera.unproject_position(point)
+				low=low.min(pixel); high=high.max(pixel)
+	return {"rect":Rect2(low,high-low),"near":near_depth,"far":far_depth}
+
+func _hero_occlusion_window() -> Dictionary:
+	var projected:=_project_body(hero)
+	var rect: Rect2=projected.rect.grow(3.0)
+	projected.rect=rect
+	# FRAGCOORD has a bottom-left origin in the spatial compatibility shader.
+	projected.center=Vector2(rect.get_center().x,get_viewport().get_visible_rect().size.y-rect.get_center().y)
+	# Place the soft transition beyond skin extrema so the head, casting hand
+	# and support feet remain readable instead of receiving only its faint edge.
+	projected.extent=rect.size*.65+Vector2(2.0,2.0)
+	return projected
 
 func _position_camera(delta: float=0.0) -> void:
 	var viewport_size: Vector2=get_viewport().get_visible_rect().size
@@ -864,8 +948,10 @@ func _show_event(event: Dictionary) -> void:
 			if event.ability_id in ["starfall","rain"]:
 				var marker := _ring(_point(event.position)+Vector3(0,0.07,0),float(event.radius),_material(Color(definition.color),0.0,true))
 				effects.append({"node":marker,"age":0.0,"life":float(event.duration)+0.1,"kind":"cast_mark","ability_id":event.ability_id})
+				_prepare_area_descent(event,Color(definition.color))
 		"technique":
 			hero.release_attack()
+			_present_attack_release(true,-1,String(event.ability_id))
 			_show_technique(event)
 		"well":
 			_float_text(hero.position+Vector3(0,2.6,0),"LIFE +"+str(event.restored),Color("91d1ae"))
@@ -887,9 +973,16 @@ func _show_event(event: Dictionary) -> void:
 			if style.is_empty(): style="signature" if event.get("skill",false) else "basic"
 			var duration: float=Skills.DEFINITIONS.get(style,{}).get("cast",0.3)
 			hero.strike(style,duration,true)
+			projectile_cast_style=style
 			projectile_emitted=false
 		"hit":
 			hero.release_attack()
+			if character_class!="Vowkeeper" and projectile_cast_style in ["basic","signature"]:
+				# A slow frame can cross the entire remaining windup. Its pending
+				# attack has already resolved before the flight-lead check below.
+				# Present the release on this authoritative contact, once, without
+				# spawning a late bolt after the body has already taken damage.
+				_present_attack_release(bool(event.get("skill",false)),int(event.target))
 			if not actor_by_id.has(event.target): return
 			var actor: Node3D = actor_by_id[event.target]
 			actor.react_from(hero.position,camera.position,1.25 if event.critical else .80)
@@ -898,7 +991,7 @@ func _show_event(event: Dictionary) -> void:
 			if event.critical: _kick_camera(0.025)
 			# Actual damage is communicated at the body contact. Repeated ground
 			# rings looked like targets and obscured Nyra's support feet in crowds.
-			_impact_sparks(actor.position+Vector3(0,1.25,0),impact_color)
+			_impact_sparks(_contact_position(actor),impact_color,event.get("critical",false))
 			if character_class=="Vowkeeper": _slash_arc(hero.position,color)
 			if event.dead:
 				actor.die()
@@ -968,11 +1061,21 @@ func _show_event(event: Dictionary) -> void:
 			_float_text(hero.position+Vector3(0,2.6,0),"GUARD +"+str(event.heal),Color("91d1ae"))
 		"evade", "backstep":
 			hero.retreat()
+			projectile_cast_style=""
 			for effect in effects:
 				if effect.kind=="projectile": effect.age=effect.life
 			_float_text(hero.position+Vector3(0,2.3,0),"EVADE",Color("adcbe0"))
 		"finished":
 			if not event.won: hero.die()
+			projectile_cast_style=""
+
+func _present_attack_release(skill: bool,target: int=-1,ability_id: String="") -> void:
+	if projectile_emitted: return
+	var event: Dictionary={"type":"hero_release","skill":skill}
+	if target>=0: event.target=target
+	if not ability_id.is_empty(): event.ability_id=ability_id
+	presentation_events.append(event)
+	projectile_emitted=true
 
 func _pattern_visual(zones: Array, tint: Color, alpha: float, timed: bool=false) -> Node3D:
 	var node:=Node3D.new()
@@ -1039,12 +1142,17 @@ func _update_effects(delta: float) -> void:
 		effect.age += delta
 		var node: Node3D = effect.node
 		if effect.kind=="cast_mark" and simulation.pending_attack.get("ability_id","")!=effect.ability_id: effect.age=effect.life
+		if effect.kind=="area_descent":
+			if simulation.pending_attack.get("ability_id","")!=effect.ability_id: effect.age=effect.life
+			var descent:=smoothstep(maxf(0.0,float(effect.life)-.24),float(effect.life),float(effect.age))
+			node.position.y=float(effect.floor_y)+(1.0-descent)*float(effect.height)
+			node.material_override.set_shader_parameter("fade",smoothstep(.0,.09,float(effect.age)))
 		if effect.kind=="projectile":
 			var destination: Vector3 = effect.destination
-			if actor_by_id.has(effect.target): destination=actor_by_id[effect.target].position+Vector3(0,1.15,0)
+			if actor_by_id.has(effect.target): destination=_contact_position(actor_by_id[effect.target])
 			var progress := clampf(float(effect.age)/float(effect.life),0.0,1.0)
 			node.position = Vector3(effect.origin).lerp(destination,progress)
-			if character_class=="Arcanist": node.position.y+=sin(progress*PI)*0.35
+			if character_class=="Arcanist": node.position.y+=sin(progress*PI)*0.12
 			if node.position.distance_to(destination)>0.01: node.look_at(destination)
 			for part in node.get_children():
 				if part is MeshInstance3D and part.material_override is ShaderMaterial:
@@ -1061,9 +1169,11 @@ func _update_effects(delta: float) -> void:
 			node.scale=Vector3.ONE*lerpf(.34,1.0,progress)
 			node.material_override.set_shader_parameter("deposit_color",Color(.36,.32,.27,(1.0-progress)*.34))
 		elif effect.kind == "contact_light":
-			node.light_energy=(1.0-clampf(effect.age/effect.life,0.0,1.0))*.65
+			node.light_energy=(1.0-clampf(effect.age/effect.life,0.0,1.0))*.38
 		elif effect.kind == "slash":
 			node.material_override.albedo_color.a=(1.0-clampf(effect.age/effect.life,0.0,1.0))*.32
+		elif effect.kind == "bolt":
+			node.material_override.set_shader_parameter("fade",1.0-smoothstep(.01,float(effect.life),float(effect.age)))
 		elif effect.kind == "number":
 			node.position.y += delta*.65
 			node.modulate.a=1.0-smoothstep(.38,.70,float(effect.age))
@@ -1350,28 +1460,37 @@ func _show_technique(event: Dictionary) -> void:
 		effects.append({"node":pulse,"age":0.0,"life":0.5,"kind":"ring"})
 	elif key=="chain" or definition.kind=="single":
 		for i in range(event.points.size()-1):
-			var start := _point(event.points[i])+Vector3(0,1.4,0)
+			var start: Vector3=hero.projectile_origin() if i==0 else _point(event.points[i])+Vector3(0,1.4,0)
 			var finish := _point(event.points[i+1])+Vector3(0,1.2,0)
 			var previous := start
 			for part in range(1,7):
 				var point := start.lerp(finish,part/6.0)
 				if key=="chain" and part<6: point+=Vector3(0.12 if part%2==0 else -0.12,0.14 if part%2==0 else -0.14,0)
 				if previous.distance_to(point)>0.001:
-					var bolt := _box((previous+point)*0.5,Vector3(0.08,0.08,previous.distance_to(point)),material)
+					var bolt := _magic_volume((previous+point)*0.5,Vector3(0.045,0.045,previous.distance_to(point)*1.08),_magic_material(tint,.70))
 					bolt.look_at(point)
-					effects.append({"node":bolt,"age":0.0,"life":0.32,"kind":"bolt"})
+					effects.append({"node":bolt,"age":0.0,"life":0.18,"kind":"bolt"})
 				previous=point
 	else:
 		var origin := _point(event.position)
 		var pulse := _ring(origin+Vector3(0,0.12,0),float(event.radius),material)
 		pulse.scale=Vector3.ONE*0.15
 		effects.append({"node":pulse,"age":0.0,"life":0.45,"kind":"nova"})
-		for i in range(10 if key=="rain" else 6):
-			var angle := TAU*i/(10.0 if key=="rain" else 6.0)
-			var radius := float(event.radius)*0.7
-			var position3 := origin+Vector3(sin(angle)*radius,3.0,cos(angle)*radius)
-			var streak := _box(position3,Vector3(0.04,0.9,0.04) if key=="rain" else Vector3(0.12,1.2,0.12),material)
-			effects.append({"node":streak,"age":0.0,"life":0.3,"kind":"fall"})
+
+func _prepare_area_descent(event: Dictionary,tint: Color) -> void:
+	# These are committed cast visuals. Descent ends at the unchanged damage
+	# frame, instead of falling for 300 ms after the target has already been hit.
+	var rain:=String(event.ability_id)=="rain"
+	var count:=8 if rain else 4
+	var origin:=_point(event.position)
+	for i in count:
+		var angle:=TAU*float(i)/float(count)
+		var radius: float=float(event.radius)*.62
+		var floor_y:=.24
+		var height:=1.0 if reduced_motion else 3.0
+		var position3:=origin+Vector3(sin(angle)*radius,floor_y+height,cos(angle)*radius)
+		var streak:=_magic_volume(position3,Vector3(.035,.65,.035) if rain else Vector3(.075,.85,.075),_magic_material(tint,.62))
+		effects.append({"node":streak,"age":0.0,"life":float(event.duration),"kind":"area_descent","ability_id":event.ability_id,"floor_y":floor_y,"height":height})
 
 func _build_trial_gate() -> void:
 	var glow:=_material(Color("9365c4"),0.0,true)
@@ -1467,15 +1586,22 @@ func _build_sanctuary_details() -> void:
 		light.look_at(origin+Vector3(0,0,-0.8))
 		sanctuary_lights.append(light)
 
-func _impact_sparks(origin: Vector3,color: Color) -> void:
-	if not reduced_motion and is_instance_valid(sun) and sun.shadow_enabled:
+func _contact_position(actor: Node3D) -> Vector3:
+	# Chest contact remains on the real body, including a tall guardian.
+	return actor.position+Vector3.UP*minf(2.0,actor.figure_height*.56)
+
+func _impact_sparks(origin: Vector3,color: Color,critical: bool=false) -> void:
+	var light_live:=false
+	for effect in effects:
+		if effect.kind=="contact_light": light_live=true; break
+	if not reduced_motion and not light_live and is_instance_valid(sun) and sun.shadow_enabled:
 		var flash:=OmniLight3D.new()
-		flash.position=origin; flash.light_color=color; flash.light_energy=.65; flash.omni_range=2.3
+		flash.position=origin; flash.light_color=color; flash.light_energy=.38; flash.omni_range=1.5
 		add_child(flash)
 		effects.append({"node":flash,"age":0.0,"life":.10,"kind":"contact_light"})
 	for i in range(5):
-		var spark:=_magic_volume(origin,Vector3(0.035,0.035,0.095),_magic_material(color,0.86))
-		effects.append({"node":spark,"age":0.0,"life":0.22+rng.randf()*0.15,"kind":"spark","velocity":Vector3(rng.randf_range(-2.5,2.5),rng.randf_range(0.6,2.2),rng.randf_range(-2.5,2.5))})
+		var spark:=_magic_volume(origin,Vector3(0.018,0.018,0.075)*(.85 if not critical else 1.25),_magic_material(color,.72))
+		effects.append({"node":spark,"age":0.0,"life":0.16+rng.randf()*0.10,"kind":"spark","velocity":Vector3(rng.randf_range(-2.5,2.5),rng.randf_range(0.6,2.2),rng.randf_range(-2.5,2.5))*(.25 if reduced_motion else .62)})
 		# Orient the fragment from the already-drawn velocity; never consume
 		# extra randomness for decoration or alter the five-spark draw order.
 		spark.look_at(origin+Vector3(effects.back().velocity))
@@ -1550,20 +1676,39 @@ func _update_warning(node: Node3D, warning: Dictionary) -> void:
 
 func _launch_projectile(target: int, color: Color,flight_seconds: float=Actor.PROJECTILE_RELEASE_LEAD) -> void:
 	var origin: Vector3=hero.projectile_origin()
-	var destination: Vector3 = actor_by_id[target].position+Vector3(0,1.15,0)
+	var destination:=_contact_position(actor_by_id[target])
 	var projectile := Node3D.new()
 	projectile.name = "SpellBolt" if character_class=="Arcanist" else "CinderArrow"
 	projectile.position = origin
 	add_child(projectile)
-	var material := _magic_material(color,0.88)
+	var material := _magic_material(color,.75)
+	var scale_value:=1.35 if hero.attack_style=="signature" else 1.0
 	# Local -Z is the actual direction of flight. Rounded, tapered volumes
 	# carry the class hue without the old lit/emissive rectangular bars.
-	_magic_volume(Vector3(0,0,-0.17),Vector3(0.10,0.10,0.27),material,projectile)
-	_magic_volume(Vector3(0,0,0.18),Vector3(0.045,0.045,0.46),_magic_material(color,0.48),projectile)
-	if character_class=="Arcanist":
-		_magic_volume(Vector3(0,0,-0.19),Vector3(0.17,0.17,0.22),_magic_material(color,0.46),projectile)
+	_magic_volume(Vector3(0,0,-0.10),Vector3(0.07,0.07,0.23)*scale_value,material,projectile)
+	_magic_volume(Vector3(0,0,0.13),Vector3(0.024,0.024,0.39)*scale_value,_magic_material(color,.42),projectile)
 	if origin.distance_to(destination)>0.01: projectile.look_at(destination)
 	effects.append({"node":projectile,"age":0.0,"life":flight_seconds,"kind":"projectile","origin":origin,"destination":destination,"target":target})
+
+func _build_cast_focus() -> void:
+	if character_class!="Arcanist": return
+	cast_focus=_magic_volume(Vector3.ZERO,Vector3.ONE*.10,_magic_material(Color("79dbdc"),.3))
+	cast_focus.name="GatheringSpell"
+	cast_focus.visible=false
+
+func _update_cast_focus() -> void:
+	if not is_instance_valid(cast_focus): return
+	var pending: Dictionary=simulation.pending_attack
+	cast_focus.visible=hero.death_time<0.0 and not pending.is_empty() and hero.release_time<0.0 and hero.attack_time>=0.0
+	if not cast_focus.visible: return
+	var progress:=clampf(1.0-(float(pending.left)-simulation.accumulator)/maxf(.001,hero.attack_duration),0.0,1.0)
+	var powerful: bool=hero.attack_style in ["signature","starfall","heavy"]
+	var size_value:=.14 if powerful else .085
+	cast_focus.position=hero.projectile_origin()
+	cast_focus.scale=Vector3.ONE*size_value*lerpf(.28,1.0,smoothstep(.0,.85,progress))
+	var tint:=Color(Skills.DEFINITIONS.get(hero.attack_style,{}).get("color","79dbdc"))
+	cast_focus.material_override.set_shader_parameter("magic_color",tint)
+	cast_focus.material_override.set_shader_parameter("opacity",lerpf(.15,.45,progress))
 
 func _build_region_landmarks() -> void:
 	# The guardian belongs to a region-specific sanctuary with physical depth.

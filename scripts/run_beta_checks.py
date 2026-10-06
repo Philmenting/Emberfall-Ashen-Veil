@@ -45,6 +45,10 @@ GODOT_SUITES = (
     "character_3d",
     "source_avatar",
     "source_avatar_grip",
+    "source_avatar_attack",
+    "source_avatar_style",
+    "guardian_presentation",
+    "combat_audio",
     "animation_craft",
     "camp_hud",
     "combat_readability",
@@ -54,7 +58,7 @@ GODOT_SUITES = (
 )
 SUITE_TIMEOUT_SECONDS = {"journey": 600}
 SUMMARY = re.compile(
-    r"([A-Z][A-Z /]+ SMOKE|SOURCE AVATAR(?: GRIP)?):\s*(\d+)\s+checks,\s*"
+    r"([A-Z][A-Z /]+ SMOKE|SOURCE AVATAR(?: GRIP| ATTACK)?):\s*(\d+)\s+checks,\s*"
     r"(?:\d+\s+actual poses,\s*)?(\d+)\s+failures"
 )
 ENGINE_ERROR = re.compile(
@@ -138,7 +142,7 @@ def main() -> int:
             matches = list(SUMMARY.finditer(output))
             # Legacy save-corruption suites deliberately exercise ConfigFile errors.
             # The new source-avatar suites must also reject other engine diagnostics.
-            source_engine_error = suite in ("source_avatar", "source_avatar_grip") and ENGINE_ERROR.search(output)
+            source_engine_error = (suite.startswith("source_avatar") or suite in ("guardian_presentation", "combat_audio")) and ENGINE_ERROR.search(output)
             if result.returncode != 0 or not matches or "SCRIPT ERROR:" in output or source_engine_error:
                 failures.append(suite)
                 report_failure(suite, output)

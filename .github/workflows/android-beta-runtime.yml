@@ -54,18 +54,23 @@ jobs:
         export/android/java_sdk_path = "$JAVA_HOME"
         export/android/android_sdk_path = "$ANDROID_HOME"
         EOF
-    - name: Build isolated offline AFK QA package
+    - name: Check isolated QA export contracts
+      run: python3 -m unittest discover -s tests -p test_android_release.py -v
+    - name: Import once and build isolated offline QA packages
       env:
         GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ runner.temp }}/debug.keystore
         GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
         GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: android
       run: |
+        mkdir -p build
+        packages=()
         if [ "${{ inputs.graphics_only }}" != "true" ]; then
-          python3 scripts/export_android_qa.py --scene res://tests/android_beta_flow.tscn --output build/emberfall-afk-qa.apk
+          packages+=(--package res://tests/android_beta_flow.tscn build/emberfall-afk-qa.apk x86_64)
         fi
-        python3 scripts/export_android_qa.py --scene res://tests/android_success_flow.tscn --output build/emberfall-success-qa.apk
-        python3 scripts/export_android_qa.py --scene res://tests/android_art_flow.tscn --output build/emberfall-art-qa.apk
-        python3 scripts/export_android_qa.py --architecture arm64-v8a --scene res://tests/android_device_probe.tscn --output build/emberfall-pixel-probe.apk
+        packages+=(--package res://tests/android_success_flow.tscn build/emberfall-success-qa.apk x86_64)
+        packages+=(--package res://tests/android_art_flow.tscn build/emberfall-art-qa.apk x86_64)
+        packages+=(--package res://tests/android_device_probe.tscn build/emberfall-pixel-probe.apk arm64-v8a)
+        python3 scripts/export_android_qa.py "${packages[@]}" 2>&1 | tee build/android-qa-export.log
     - name: Enable emulator hardware acceleration
       run: |-
         echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -94,6 +99,7 @@ jobs:
       with:
         name: emberfall-android-beta-runtime-evidence
         path: |-
+          build/android-qa-export.log
           build/android-beta-runtime
           build/android-art-runtime
           build/android-success-runtime

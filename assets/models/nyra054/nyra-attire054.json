@@ -1,0 +1,223 @@
+{
+  "source": "../nyra052/arcanist.glb",
+  "source_sha256": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+  "accessory_sha256": "8a96a9bac63a934213ddea77020d1b50dfd57e5270842ada69355925a5e906f1",
+  "native_bones": 65,
+  "source_rest_and_inverse_binds_preserved": true,
+  "original_body_unmodified": true,
+  "textures_included": false,
+  "triangle_count": 3936,
+  "meshes": [
+    {
+      "name": "Nyra054_Open_Coat_Bodice",
+      "vertices": 1457,
+      "triangles": 1984,
+      "material": "Nyra054_Midnight_Cloth",
+      "source_coordinates_bounds": [
+        [
+          -0.17983746528625488,
+          1.003135085105896,
+          -0.15066348016262054
+        ],
+        [
+          0.17983746528625488,
+          1.4726358652114868,
+          0.14259985089302063
+        ]
+      ],
+      "maximum_weight_sum_error": 1.1920928955078125e-07
+    },
+    {
+      "name": "Nyra054_Left_Shoulder_Bronze",
+      "vertices": 115,
+      "triangles": 167,
+      "material": "Nyra054_Worn_Bronze",
+      "source_coordinates_bounds": [
+        [
+          0.16926005482673645,
+          1.4024783372879028,
+          -0.11479934304952621
+        ],
+        [
+          0.2713690996170044,
+          1.4802212715148926,
+          0.008467861451208591
+        ]
+      ],
+      "maximum_weight_sum_error": 0.0
+    },
+    {
+      "name": "Nyra054_Right_Shoulder_Bronze",
+      "vertices": 115,
+      "triangles": 167,
+      "material": "Nyra054_Worn_Bronze",
+      "source_coordinates_bounds": [
+        [
+          -0.2713690996170044,
+          1.4024783372879028,
+          -0.11479934304952621
+        ],
+        [
+          -0.16926005482673645,
+          1.4802212715148926,
+          0.008467861451208591
+        ]
+      ],
+      "maximum_weight_sum_error": 0.0
+    },
+    {
+      "name": "Nyra054_Bodice_Bronze_Binding",
+      "vertices": 1128,
+      "triangles": 564,
+      "material": "Nyra054_Worn_Bronze",
+      "source_coordinates_bounds": [
+        [
+          -0.17952166497707367,
+          1.0000312328338623,
+          -0.13735318183898926
+        ],
+        [
+          0.17952166497707367,
+          1.4761426448822021,
+          0.14508353173732758
+        ]
+      ],
+      "maximum_weight_sum_error": 1.1920928955078125e-07
+    },
+    {
+      "name": "Nyra054_Lapel_Leather_Facing",
+      "vertices": 440,
+      "triangles": 220,
+      "material": "Nyra054_Soot_Leather",
+      "source_coordinates_bounds": [
+        [
+          -0.11796096712350845,
+          1.108458161354065,
+          0.024112824350595474
+        ],
+        [
+          0.11796096712350845,
+          1.4732915163040161,
+          0.14394645392894745
+        ]
+      ],
+      "maximum_weight_sum_error": 1.1920928955078125e-07
+    },
+    {
+      "name": "Nyra054_Left_Split_Tail",
+      "vertices": 189,
+      "triangles": 320,
+      "material": "Nyra054_Midnight_Cloth",
+      "source_coordinates_bounds": [
+        [
+          0.015973346307873726,
+          0.5879999995231628,
+          -0.2100358009338379
+        ],
+        [
+          0.2504293620586395,
+          1.031999945640564,
+          0.13327758014202118
+        ]
+      ],
+      "maximum_weight_sum_error": 1.1920928955078125e-07
+    },
+    {
+      "name": "Nyra054_Left_Tail_Binding",
+      "vertices": 144,
+      "triangles": 72,
+      "material": "Nyra054_Worn_Bronze",
+      "source_coordinates_bounds": [
+        [
+          0.013645422644913197,
+          0.5855659246444702,
+          -0.211875781416893
+        ],
+        [
+          0.2521243691444397,
+          1.032300591468811,
+          0.13606102764606476
+        ]
+      ],
+      "maximum_weight_sum_error": 1.1920928955078125e-07
+    },
+    {
+      "name": "Nyra054_Right_Split_Tail",
+      "vertices": 189,
+      "triangles": 320,
+      "material": "Nyra054_Midnight_Cloth",
+      "source_coordinates_bounds": [
+        [
+          -0.2504293620586395,
+          0.5879999995231628,
+          -0.2100358009338379
+        ],
+        [
+          -0.015973346307873726,
+          1.031999945640564,
+          0.13327758014202118
+        ]
+      ],
+      "maximum_weight_sum_error": 1.1920928955078125e-07
+    },
+    {
+      "name": "Nyra054_Right_Tail_Binding",
+      "vertices": 144,
+      "triangles": 72,
+      "material": "Nyra054_Worn_Bronze",
+      "source_coordinates_bounds": [
+        [
+          -0.2521243691444397,
+          0.5855659246444702,
+          -0.211875781416893
+        ],
+        [
+          -0.013645422644913197,
+          1.032300591468811,
+          0.13606102764606476
+        ]
+      ],
+      "maximum_weight_sum_error": 5.960464477539063e-08
+    },
+    {
+      "name": "Nyra054_Forehead_Circlet",
+      "vertices": 48,
+      "triangles": 46,
+      "material": "Nyra054_Worn_Bronze",
+      "source_coordinates_bounds": [
+        [
+          -0.07632521539926529,
+          1.7117999792099,
+          0.02900109998881817
+        ],
+        [
+          0.07632521539926529,
+          1.724808692932129,
+          0.08188824355602264
+        ]
+      ],
+      "maximum_weight_sum_error": 0.0
+    },
+    {
+      "name": "Nyra054_Circlet_Gem",
+      "vertices": 5,
+      "triangles": 4,
+      "material": "Nyra054_Blue_Gem",
+      "source_coordinates_bounds": [
+        [
+          -0.006500000134110451,
+          1.7079999446868896,
+          0.09099999815225601
+        ],
+        [
+          0.006500000134110451,
+          1.7230000495910645,
+          0.10100000351667404
+        ]
+      ],
+      "maximum_weight_sum_error": 0.0
+    }
+  ],
+  "scope": "Clipped shells preserve source geometry outside cuts; new continuous cut vertices interpolate native weights and UVs. Split tails inherit nearest same-side source garment four weights; circlet is native Head-bound. Cloth is skinned, not physical simulation. Original eight meshes remain separate and intact.",
+  "license": "Upper shell and shoulder surface geometry adapted from Quaternius CC0 Standard source; original licenses in ../nyra052/. New tail/binding/circlet design authored for Emberfall and provided under CC0."
+}

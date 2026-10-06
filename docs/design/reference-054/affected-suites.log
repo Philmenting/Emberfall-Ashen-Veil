@@ -1,0 +1,16 @@
+RUN character_3d_smoke.gd
+PASS CHARACTER THREE D SMOKE: 164 checks
+RUN source_avatar_smoke.gd
+PASS SOURCE AVATAR: 39 checks
+RUN source_avatar_attack_smoke.gd
+PASS SOURCE AVATAR ATTACK: 89 checks
+RUN source_avatar_grip_smoke.gd
+PASS SOURCE AVATAR GRIP: 296 checks
+RUN source_avatar_style_smoke.gd
+PASS SOURCE AVATAR STYLE SMOKE: 131 checks
+RUN guardian_presentation_smoke.gd
+PASS GUARDIAN PRESENTATION SMOKE: 274 checks
+PASS emberfall.js
+PASS progression_runtime_test.js
+PROGRESSION RUNTIME: server-owned profile, bounded AFK settlement, allowlists, inventory and replay protection passed.
+BETA CHECKS: 6 Godot suites, 993 checks, 0 failures
