@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "verified_on": "2026-10-06",
+  "source_commit": "6872262cb17f987d29f0c7fd710a2b7f599e8623",
+  "scope": "Native Arcanist presentation and Android import/runtime changes; final evidence commit modifies docs only.",
+  "workflows": [
+    {
+      "id": 37484063478,
+      "name": "Android Debug APK",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37484063478",
+      "job_id": 112339436854
+    },
+    {
+      "id": 37484063466,
+      "name": "Gameplay Quality",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37484063466",
+      "job_id": 112339435045
+    },
+    {
+      "id": 37484063576,
+      "name": "Android Beta Runtime",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37484063576",
+      "job_id": 112339436443
+    }
+  ],
+  "checks": {
+    "godot_suites": 40,
+    "godot_checks": 4538,
+    "godot_failures": 0,
+    "node_suites": 2,
+    "python_contracts": 21,
+    "exported_avatar_checks": 12,
+    "exported_avatar_failures": 0,
+    "native_audio_checks": 61,
+    "options_checks": 82
+  },
+  "android": {
+    "platform": "Android 16 / API 36",
+    "device": "sdk_gphone64_x86_64",
+    "renderer": "ANGLE SwiftShader / gl_compatibility",
+    "physical_device_performance": false,
+    "runtime_fixtures": [
+      "AFK exact ledger and cold restart without duplicate settlement",
+      "ordinary first descent, class relic, combined oath UI and persisted cold restart",
+      "four guardian regions with separately stepped native combat animation"
+    ],
+    "render_measurement_scope": "Eight frozen guardian render workloads, 30 emulator frames each; separate motion checks are not native Arcanist grip or phone-FPS measurements.",
+    "evidence_directory": "android-final",
+    "artifacts": [
+      {
+        "id": 11424865722,
+        "name": "emberfall-isolated-android-qa-packages",
+        "bytes": 393731351,
+        "sha256": "4d5b8836319e1bf2f3d4443f9bd6b2f06322a465bd287c5637da3cca8654aa30",
+        "expires_at": "2026-10-20T15:36:02Z"
+      },
+      {
+        "id": 11423899483,
+        "name": "emberfall-android-beta-runtime-evidence",
+        "bytes": 56343296,
+        "sha256": "1ddf2aa7570cc4a397fbde79a11898fcb83972850508ae824a9b3a7fbe041c56",
+        "expires_at": "2026-10-20T15:35:59Z"
+      }
+    ]
+  },
+  "continuous_gameplay": {
+    "source_commit": "c788464aa95ae91c29ffcf13e60deba319889335",
+    "frames": 2496,
+    "duration_seconds": 83.2,
+    "captured_audio": false,
+    "physical_device_performance": false,
+    "receipt": "gameplay/receipt.json"
+  },
+  "limits": [
+    "Latest character finish applies to Arcanist; other class models remain as before.",
+    "Original stylized face, no new high-resolution facial sculpt or facial animation.",
+    "No physical Android phone, thermal, battery or touch-quality validation.",
+    "Successful functional CI is not visual beta approval."
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "source_commit": "6872262cb17f987d29f0c7fd710a2b7f599e8623",
+  "workflow_run": 37484063576,
+  "job_id": 112339436443,
+  "artifact_id": 11423899483,
+  "artifact_sha256": "1ddf2aa7570cc4a397fbde79a11898fcb83972850508ae824a9b3a7fbe041c56",
+  "original_files": [
+    {
+      "archive_path": "android-art-runtime/android-motion-region-0-17.png",
+      "retained_file": "android-motion-region-0-17.png",
+      "bytes": 2484412,
+      "sha256": "e1994d5289b4a9ce6df536603cc8d3ca7c31a89cbdfefb817851323c95427ec3"
+    },
+    {
+      "archive_path": "android-art-runtime/android-motion-region-1-17.png",
+      "retained_file": "android-motion-region-1-17.png",
+      "bytes": 2361799,
+      "sha256": "71be0fb01b873834951980826f8333fa3f6c579948a1e4e30ea13fa966af214e"
+    },
+    {
+      "archive_path": "android-art-runtime/android-motion-region-2-17.png",
+      "retained_file": "android-motion-region-2-17.png",
+      "bytes": 2416643,
+      "sha256": "55f1a4ecbb961e04f2ff7a3c5b341bd0150b5f631dc56a89057721cbd6b37c56"
+    },
+    {
+      "archive_path": "android-art-runtime/android-motion-region-3-17.png",
+      "retained_file": "android-motion-region-3-17.png",
+      "bytes": 2236722,
+      "sha256": "43ffd20a25c5a13c3d630d0bf8a3406bf1ee429c13b3d0a0ad8514921e35673c"
+    },
+    {
+      "archive_path": "android-success-runtime/android-success-first-fight.png",
+      "retained_file": "android-success-first-fight.png",
+      "bytes": 2545343,
+      "sha256": "b9095d21895ffd95de96a7723e5dda007265efc3ce0bd039637b16de7b0b193e"
+    },
+    {
+      "archive_path": "android-success-runtime/android-success-first-relic.png",
+      "retained_file": "android-success-first-relic.png",
+      "bytes": 238506,
+      "sha256": "30ce9ba0f45cff376517e7f70279f595535acbde87898071b5930c07a744e557"
+    },
+    {
+      "archive_path": "android-beta-runtime/runtime-status.json",
+      "retained_file": "android-beta-runtime-runtime-status.json",
+      "bytes": 22192,
+      "sha256": "a8ee353eaeef743afa6c55e396bea0f1003faea65c295c51a3b92a9f804246f8"
+    },
+    {
+      "archive_path": "android-success-runtime/runtime-status.json",
+      "retained_file": "android-success-runtime-runtime-status.json",
+      "bytes": 5246,
+      "sha256": "38a891e1ab245a80f4c20db1b5e761a50189181f5a7244bb513ae4478b5c42d4"
+    },
+    {
+      "archive_path": "android-art-runtime/runtime-status.json",
+      "retained_file": "android-art-runtime-runtime-status.json",
+      "bytes": 19777,
+      "sha256": "333b8379014588d83d9957db1cba29005a66116e7e9f7807f5d9484cab4f2d41"
+    },
+    {
+      "archive_path": "android-art-runtime/android-render-performance.json",
+      "retained_file": "android-render-performance.json",
+      "bytes": 3923,
+      "sha256": "ad4bee83a09f036f43f735acdaf2f7abcea8a2a4c85fe7727d7d946fd2d72dc0"
+    }
+  ],
+  "selected_log_lines": [
+    {
+      "retained_file": "art-launch.log.markers.log",
+      "archive_path": "android-art-runtime/art-launch.log",
+      "sha256": "f1a406403f6c67e1183bec33feb562a85b93a02027554a12b5000e84cf67a33f",
+      "selection": "original lines containing a PASS or ART_RENDER_METRIC marker"
+    },
+    {
+      "retained_file": "first-launch.log.markers.log",
+      "archive_path": "android-beta-runtime/first-launch.log",
+      "sha256": "8eeb96cd89e423ff427ed207be914756d80f2015ce8e5936774eb8a207c58465",
+      "selection": "original lines containing a PASS or ART_RENDER_METRIC marker"
+    },
+    {
+      "retained_file": "restart.log.markers.log",
+      "archive_path": "android-beta-runtime/restart.log",
+      "sha256": "f5348ce0ad39b905e012cc0738f2884c880c70d00ac1bdfb6e34cea5c9d9b1fa",
+      "selection": "original lines containing a PASS or ART_RENDER_METRIC marker"
+    },
+    {
+      "retained_file": "success-launch.log.markers.log",
+      "archive_path": "android-success-runtime/success-launch.log",
+      "sha256": "2cb9176323389d5aca9b6cc5ca9449d940a2e7c70fb986ac9da6baa2bbdd61dc",
+      "selection": "original lines containing a PASS or ART_RENDER_METRIC marker"
+    },
+    {
+      "retained_file": "success-restart.log.markers.log",
+      "archive_path": "android-success-runtime/success-restart.log",
+      "sha256": "d438f08fb4ae0a261daa6a6dc5ac1817477c29cb7d57f611c6c8560e59d8c761",
+      "selection": "original lines containing a PASS or ART_RENDER_METRIC marker"
+    }
+  ]
+}
