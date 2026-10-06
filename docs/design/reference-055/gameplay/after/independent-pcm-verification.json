@@ -1,0 +1,24 @@
+{
+  "observed_python_exit_code": 0,
+  "source_of_exit": "This agent observed session24407 completed with exit_code0 after final capture receipt",
+  "pcm_frames": 3669120,
+  "finite": true,
+  "peak": 0.09846801310777664,
+  "rms": 0.00785427066009395,
+  "maximum_stereo_difference": 0.0,
+  "summary_matches_raw_pcm": true,
+  "guardian_death_recorded": true,
+  "actual_result_ui_page_reached": true,
+  "source_inputs_unchanged": true,
+  "source_commit": "ad4d50bb9dbdc07cea42e2306a79fc65bb642489",
+  "source_audit": "matched",
+  "source_files_compared": 168,
+  "complete_authoritative_trace_identical_to_before": true,
+  "comparison_setup_equal": {
+    "world_seed": true,
+    "run_seed": true,
+    "initial_stats": true,
+    "selected_skill_loadout": true
+  },
+  "scope": "Read every persisted native stereo float PCM sample and compare raw measurements to mixer summary; full video/audio decode already completed in launcher. Loot page state precedes original visible result UI delay; actual final image requires separate visual inspection."
+}

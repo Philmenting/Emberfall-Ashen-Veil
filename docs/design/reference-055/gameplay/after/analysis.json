@@ -1,0 +1,4953 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-06T21:03:30.307648+00:00",
+  "capture_directory": "/workspace/scratch/emberfall-quality-055/after-complete",
+  "capture_receipt_sha256": "2deae0f9f7fb385b02fb49cd944aeeea25f6fec94718020eea135ba457946ad2",
+  "helper_sha256": "aa3f0e8c7c287cd9cd685056282a4edc4431fea1c7d08c983be33ad006b589dc",
+  "recording": {
+    "status": "complete",
+    "frames": 2496,
+    "fps": 30,
+    "playback_seconds": 83.2,
+    "simulation_seconds": 80.1999999999997,
+    "advancing_frames": 2406,
+    "ending_settle_frames": 90,
+    "chronology_verified": true,
+    "source_inputs_unchanged": true,
+    "selected_original_pngs_verified": [
+      "selected-frames/frame-00000.png",
+      "selected-frames/frame-00002.png",
+      "selected-frames/frame-00009.png",
+      "selected-frames/frame-00044.png",
+      "selected-frames/frame-00051.png",
+      "selected-frames/frame-00300.png",
+      "selected-frames/frame-00320.png",
+      "selected-frames/frame-00347.png",
+      "selected-frames/frame-00600.png",
+      "selected-frames/frame-00791.png",
+      "selected-frames/frame-00900.png",
+      "selected-frames/frame-01200.png",
+      "selected-frames/frame-01280.png",
+      "selected-frames/frame-01500.png",
+      "selected-frames/frame-01800.png",
+      "selected-frames/frame-02039.png",
+      "selected-frames/frame-02096.png",
+      "selected-frames/frame-02099.png",
+      "selected-frames/frame-02100.png",
+      "selected-frames/frame-02153.png",
+      "selected-frames/frame-02400.png",
+      "selected-frames/frame-02405.png"
+    ],
+    "mp4_sha256": "4e3af95ae6bf92a27398cdbd6e6d6f39c45f6297515cd8f076b5492121fffa4e",
+    "frame_log_sha256": "7827333decafbb893be0eca815cbcde73d24ca0b09f13fe57be025a0b87fac39",
+    "decoded_video": {
+      "width": 1200,
+      "height": 536,
+      "r_frame_rate": "30/1",
+      "duration": "83.200000",
+      "nb_read_frames": "2496"
+    },
+    "full_decode_reported_by_launcher": true,
+    "physical_device_performance": false,
+    "engine": {
+      "build": "official",
+      "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+      "hex": 263938,
+      "major": 4,
+      "minor": 7,
+      "patch": 2,
+      "status": "stable",
+      "string": "4.7.2-stable (official)",
+      "timestamp": 0
+    },
+    "renderer": "gl_compatibility",
+    "video_adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "viewport": [
+      1200,
+      536
+    ]
+  },
+  "setup": {
+    "world_seed": 1979,
+    "run_seed": 95635017,
+    "initial_stats": {
+      "ability_damage": 660,
+      "arcane_tactics": 1,
+      "armor": 104,
+      "attack": 216,
+      "attributes": {
+        "Dexterity": 10,
+        "Intellect": 22,
+        "Spirit": 21,
+        "Strength": 9,
+        "Vitality": 20
+      },
+      "auto_target_variance": 1,
+      "boss_patterns": 1,
+      "boss_phases": 1,
+      "class_mitigation": 0,
+      "combat_stance": "balanced",
+      "crit": 3.5,
+      "dungeon_generation": 6,
+      "dungeon_journey": 1,
+      "first_descent": 1,
+      "gear_power": 217,
+      "mana_cost": 25,
+      "mana_guard": 0.35,
+      "max_hp": 380,
+      "max_mana": 300,
+      "power": 530,
+      "route_pattern_version": 4,
+      "skill_loadout": [
+        "chain",
+        "starfall"
+      ],
+      "skill_rotation": 1
+    },
+    "selected_skill_loadout": [
+      "chain",
+      "starfall"
+    ],
+    "loadout_scope": "Player-selectable Chain and Starfall equipped through the ordinary Armory action; unchanged starting gear and combat formulas.",
+    "scope": "Continuous ordinary floor-1 Arcanist expedition; original Main HUD, camera, effects, gear and damage; no travel cuts or stat overrides."
+  },
+  "six_stations": [
+    {
+      "station": 1,
+      "stage": 0,
+      "frames": 89,
+      "first": {
+        "frame": 0,
+        "simulation_seconds": 0.0,
+        "simulation_clock_seconds": 0.0333333333333333,
+        "playback_seconds": 0.0
+      },
+      "last": {
+        "frame": 88,
+        "simulation_seconds": 2.9,
+        "simulation_clock_seconds": 2.966666666666667,
+        "playback_seconds": 2.93333333333333
+      },
+      "phase_frame_counts": {
+        "combat": 56,
+        "interact": 3,
+        "loot": 30
+      },
+      "actual_event_counts": {
+        "hero_attack": 2,
+        "hero_release": 2,
+        "nova": 1,
+        "hit": 5,
+        "interrupt": 1,
+        "reinforcement_spawn": 1
+      },
+      "combat_first": {
+        "frame": 0,
+        "simulation_seconds": 0.0,
+        "simulation_clock_seconds": 0.0333333333333333,
+        "playback_seconds": 0.0
+      },
+      "combat_last": {
+        "frame": 55,
+        "simulation_seconds": 1.8,
+        "simulation_clock_seconds": 1.8666666666666667,
+        "playback_seconds": 1.83333333333333
+      },
+      "combat_camera": {
+        "camera_records": 56,
+        "consecutive_transform_changes": 0,
+        "longest_exact_constant_run_frames": 56,
+        "maximum_consecutive_origin_delta_m": 0.0,
+        "maximum_consecutive_basis_component_delta": 0.0,
+        "terminal_exact_static_tail": {
+          "first": {
+            "frame": 0,
+            "simulation_seconds": 0.0,
+            "simulation_clock_seconds": 0.0333333333333333,
+            "playback_seconds": 0.0
+          },
+          "last": {
+            "frame": 55,
+            "simulation_seconds": 1.8,
+            "simulation_clock_seconds": 1.8666666666666667,
+            "playback_seconds": 1.83333333333333
+          },
+          "frames": 56,
+          "camera": {
+            "basis": [
+              [
+                0.860291481018066,
+                0.0,
+                -0.509802460670471
+              ],
+              [
+                -0.235732093453407,
+                0.886672019958496,
+                -0.397797822952271
+              ],
+              [
+                0.452027589082718,
+                0.462398886680603,
+                0.762796401977539
+              ]
+            ],
+            "origin": [
+              7.82675933837891,
+              8.27328681945801,
+              10.1538534164429
+            ]
+          },
+          "event_counts": {
+            "hero_attack": 2,
+            "hero_release": 2,
+            "nova": 1,
+            "hit": 5,
+            "interrupt": 1,
+            "reinforcement_spawn": 1
+          },
+          "frames_with_guardian_warning": 0
+        },
+        "scope": "Exact logged camera transforms during combat; room-entry settling may move. No rendered-pixel or visual-quality inference."
+      }
+    },
+    {
+      "station": 2,
+      "stage": 1,
+      "frames": 420,
+      "first": {
+        "frame": 89,
+        "simulation_seconds": 3.0,
+        "simulation_clock_seconds": 3.0,
+        "playback_seconds": 2.96666666666667
+      },
+      "last": {
+        "frame": 508,
+        "simulation_seconds": 16.9,
+        "simulation_clock_seconds": 16.966666666666665,
+        "playback_seconds": 16.9333333333333
+      },
+      "phase_frame_counts": {
+        "travel": 180,
+        "combat": 81,
+        "interact": 129,
+        "loot": 30
+      },
+      "actual_event_counts": {
+        "engage": 1,
+        "hero_attack": 2,
+        "hero_release": 2,
+        "nova": 1,
+        "hit": 4,
+        "warning": 1,
+        "evade": 1,
+        "technique_cast": 1,
+        "miss": 1,
+        "impact": 1,
+        "technique": 1,
+        "well": 1,
+        "objective": 1
+      },
+      "combat_first": {
+        "frame": 269,
+        "simulation_seconds": 8.99999999999998,
+        "simulation_clock_seconds": 8.99999999999998,
+        "playback_seconds": 8.96666666666667
+      },
+      "combat_last": {
+        "frame": 349,
+        "simulation_seconds": 11.6,
+        "simulation_clock_seconds": 11.666666666666666,
+        "playback_seconds": 11.6333333333333
+      },
+      "combat_camera": {
+        "camera_records": 81,
+        "consecutive_transform_changes": 57,
+        "longest_exact_constant_run_frames": 24,
+        "maximum_consecutive_origin_delta_m": 0.9860666705973814,
+        "maximum_consecutive_basis_component_delta": 0.0016622245311740391,
+        "terminal_exact_static_tail": {
+          "first": {
+            "frame": 326,
+            "simulation_seconds": 10.9,
+            "simulation_clock_seconds": 10.9,
+            "playback_seconds": 10.8666666666667
+          },
+          "last": {
+            "frame": 349,
+            "simulation_seconds": 11.6,
+            "simulation_clock_seconds": 11.666666666666666,
+            "playback_seconds": 11.6333333333333
+          },
+          "frames": 24,
+          "camera": {
+            "basis": [
+              [
+                0.860291540622711,
+                0.0,
+                -0.509802401065826
+              ],
+              [
+                -0.238696485757828,
+                0.883615255355835,
+                -0.402800321578979
+              ],
+              [
+                0.450469136238098,
+                0.468213737010956,
+                0.760166704654694
+              ]
+            ],
+            "origin": [
+              8.11273956298828,
+              9.76403617858887,
+              0.381290435791016
+            ]
+          },
+          "event_counts": {
+            "miss": 1,
+            "impact": 1,
+            "hit": 2,
+            "technique": 1,
+            "hero_release": 1
+          },
+          "frames_with_guardian_warning": 0
+        },
+        "scope": "Exact logged camera transforms during combat; room-entry settling may move. No rendered-pixel or visual-quality inference."
+      }
+    },
+    {
+      "station": 3,
+      "stage": 2,
+      "frames": 411,
+      "first": {
+        "frame": 509,
+        "simulation_seconds": 17.0,
+        "simulation_clock_seconds": 17.0,
+        "playback_seconds": 16.9666666666667
+      },
+      "last": {
+        "frame": 919,
+        "simulation_seconds": 30.6000000000002,
+        "simulation_clock_seconds": 30.666666666666867,
+        "playback_seconds": 30.6333333333333
+      },
+      "phase_frame_counts": {
+        "travel": 237,
+        "combat": 141,
+        "interact": 3,
+        "loot": 30
+      },
+      "actual_event_counts": {
+        "engage": 1,
+        "hero_attack": 4,
+        "hero_release": 3,
+        "nova": 1,
+        "hit": 5,
+        "interrupt": 1,
+        "warning": 2,
+        "technique_cast": 1,
+        "evade": 1,
+        "miss": 1,
+        "impact": 1
+      },
+      "combat_first": {
+        "frame": 746,
+        "simulation_seconds": 24.9000000000001,
+        "simulation_clock_seconds": 24.9000000000001,
+        "playback_seconds": 24.8666666666667
+      },
+      "combat_last": {
+        "frame": 886,
+        "simulation_seconds": 29.5000000000001,
+        "simulation_clock_seconds": 29.566666666666766,
+        "playback_seconds": 29.5333333333333
+      },
+      "combat_camera": {
+        "camera_records": 141,
+        "consecutive_transform_changes": 57,
+        "longest_exact_constant_run_frames": 84,
+        "maximum_consecutive_origin_delta_m": 1.0722753889842704,
+        "maximum_consecutive_basis_component_delta": 0.0020179748535160136,
+        "terminal_exact_static_tail": {
+          "first": {
+            "frame": 803,
+            "simulation_seconds": 26.8000000000001,
+            "simulation_clock_seconds": 26.8000000000001,
+            "playback_seconds": 26.7666666666667
+          },
+          "last": {
+            "frame": 886,
+            "simulation_seconds": 29.5000000000001,
+            "simulation_clock_seconds": 29.566666666666766,
+            "playback_seconds": 29.5333333333333
+          },
+          "frames": 84,
+          "camera": {
+            "basis": [
+              [
+                0.860291540622711,
+                0.0,
+                -0.509802401065826
+              ],
+              [
+                -0.237389355897903,
+                0.884969115257263,
+                -0.400594532489777
+              ],
+              [
+                0.45115938782692,
+                0.465649753808975,
+                0.76133143901825
+              ]
+            ],
+            "origin": [
+              0.252512454986572,
+              9.05334377288818,
+              -12.8078470230103
+            ]
+          },
+          "event_counts": {
+            "miss": 1,
+            "impact": 1,
+            "hero_attack": 2,
+            "hero_release": 2,
+            "hit": 2,
+            "warning": 1
+          },
+          "frames_with_guardian_warning": 0
+        },
+        "scope": "Exact logged camera transforms during combat; room-entry settling may move. No rendered-pixel or visual-quality inference."
+      }
+    },
+    {
+      "station": 4,
+      "stage": 3,
+      "frames": 585,
+      "first": {
+        "frame": 920,
+        "simulation_seconds": 30.7000000000002,
+        "simulation_clock_seconds": 30.7000000000002,
+        "playback_seconds": 30.6666666666667
+      },
+      "last": {
+        "frame": 1504,
+        "simulation_seconds": 50.1000000000004,
+        "simulation_clock_seconds": 50.16666666666707,
+        "playback_seconds": 50.1333333333333
+      },
+      "phase_frame_counts": {
+        "travel": 345,
+        "combat": 99,
+        "interact": 111,
+        "loot": 30
+      },
+      "actual_event_counts": {
+        "engage": 1,
+        "technique_cast": 1,
+        "hero_attack": 3,
+        "hit": 5,
+        "technique": 1,
+        "hero_release": 3,
+        "nova": 1,
+        "reinforcement_spawn": 1,
+        "objective": 1
+      },
+      "combat_first": {
+        "frame": 1265,
+        "simulation_seconds": 42.2000000000003,
+        "simulation_clock_seconds": 42.2000000000003,
+        "playback_seconds": 42.1666666666667
+      },
+      "combat_last": {
+        "frame": 1363,
+        "simulation_seconds": 45.4000000000004,
+        "simulation_clock_seconds": 45.46666666666707,
+        "playback_seconds": 45.4333333333333
+      },
+      "combat_camera": {
+        "camera_records": 99,
+        "consecutive_transform_changes": 58,
+        "longest_exact_constant_run_frames": 41,
+        "maximum_consecutive_origin_delta_m": 1.094763567455339,
+        "maximum_consecutive_basis_component_delta": 0.002222448587417991,
+        "terminal_exact_static_tail": {
+          "first": {
+            "frame": 1323,
+            "simulation_seconds": 44.1000000000004,
+            "simulation_clock_seconds": 44.13333333333373,
+            "playback_seconds": 44.1
+          },
+          "last": {
+            "frame": 1363,
+            "simulation_seconds": 45.4000000000004,
+            "simulation_clock_seconds": 45.46666666666707,
+            "playback_seconds": 45.4333333333333
+          },
+          "frames": 41,
+          "camera": {
+            "basis": [
+              [
+                0.860291540622711,
+                0.0,
+                -0.509802401065826
+              ],
+              [
+                -0.236282259225845,
+                0.8861083984375,
+                -0.398726314306259
+              ],
+              [
+                0.451740205287933,
+                0.463478118181229,
+                0.762311577796936
+              ]
+            ],
+            "origin": [
+              13.8808746337891,
+              8.48356819152832,
+              -27.9517459869385
+            ]
+          },
+          "event_counts": {
+            "hero_attack": 1,
+            "hero_release": 1,
+            "hit": 1
+          },
+          "frames_with_guardian_warning": 0
+        },
+        "scope": "Exact logged camera transforms during combat; room-entry settling may move. No rendered-pixel or visual-quality inference."
+      }
+    },
+    {
+      "station": 5,
+      "stage": 4,
+      "frames": 285,
+      "first": {
+        "frame": 1505,
+        "simulation_seconds": 50.2000000000004,
+        "simulation_clock_seconds": 50.2000000000004,
+        "playback_seconds": 50.1666666666667
+      },
+      "last": {
+        "frame": 1789,
+        "simulation_seconds": 59.6000000000006,
+        "simulation_clock_seconds": 59.66666666666727,
+        "playback_seconds": 59.6333333333333
+      },
+      "phase_frame_counts": {
+        "travel": 195,
+        "combat": 57,
+        "interact": 3,
+        "loot": 30
+      },
+      "actual_event_counts": {
+        "engage": 1,
+        "hero_attack": 2,
+        "hero_release": 2,
+        "nova": 1,
+        "hit": 5,
+        "interrupt": 2
+      },
+      "combat_first": {
+        "frame": 1700,
+        "simulation_seconds": 56.7000000000005,
+        "simulation_clock_seconds": 56.7000000000005,
+        "playback_seconds": 56.6666666666667
+      },
+      "combat_last": {
+        "frame": 1756,
+        "simulation_seconds": 58.5000000000006,
+        "simulation_clock_seconds": 58.56666666666727,
+        "playback_seconds": 58.5333333333333
+      },
+      "combat_camera": {
+        "camera_records": 57,
+        "consecutive_transform_changes": 56,
+        "longest_exact_constant_run_frames": 1,
+        "maximum_consecutive_origin_delta_m": 1.0867631077764857,
+        "maximum_consecutive_basis_component_delta": 0.0020179450511940145,
+        "terminal_exact_static_tail": {
+          "first": {
+            "frame": 1756,
+            "simulation_seconds": 58.5000000000006,
+            "simulation_clock_seconds": 58.56666666666727,
+            "playback_seconds": 58.5333333333333
+          },
+          "last": {
+            "frame": 1756,
+            "simulation_seconds": 58.5000000000006,
+            "simulation_clock_seconds": 58.56666666666727,
+            "playback_seconds": 58.5333333333333
+          },
+          "frames": 1,
+          "camera": {
+            "basis": [
+              [
+                0.860291540622711,
+                0.0,
+                -0.509802401065826
+              ],
+              [
+                -0.237389385700226,
+                0.884969115257263,
+                -0.400594592094421
+              ],
+              [
+                0.451159358024597,
+                0.465649783611298,
+                0.761331379413605
+              ]
+            ],
+            "origin": [
+              15.6301555633545,
+              9.04577255249023,
+              -40.3069496154785
+            ]
+          },
+          "event_counts": {},
+          "frames_with_guardian_warning": 0
+        },
+        "scope": "Exact logged camera transforms during combat; room-entry settling may move. No rendered-pixel or visual-quality inference."
+      }
+    },
+    {
+      "station": 6,
+      "stage": 5,
+      "frames": 615,
+      "first": {
+        "frame": 1790,
+        "simulation_seconds": 59.7000000000006,
+        "simulation_clock_seconds": 59.7000000000006,
+        "playback_seconds": 59.6666666666667
+      },
+      "last": {
+        "frame": 2404,
+        "simulation_seconds": 80.0999999999997,
+        "simulation_clock_seconds": 80.16666666666636,
+        "playback_seconds": 80.1333333333333
+      },
+      "phase_frame_counts": {
+        "travel": 249,
+        "combat": 225,
+        "interact": 111,
+        "loot": 30
+      },
+      "actual_event_counts": {
+        "engage": 1,
+        "hero_attack": 6,
+        "hero_release": 6,
+        "nova": 2,
+        "hit": 8,
+        "interrupt": 2,
+        "technique_cast": 2,
+        "boss_phase": 2,
+        "technique": 2,
+        "warning": 2,
+        "evade": 1,
+        "miss": 1,
+        "impact": 2,
+        "ward": 1,
+        "hero_hit": 1,
+        "objective": 1
+      },
+      "combat_first": {
+        "frame": 2039,
+        "simulation_seconds": 68.0000000000004,
+        "simulation_clock_seconds": 68.0000000000004,
+        "playback_seconds": 67.9666666666667
+      },
+      "combat_last": {
+        "frame": 2263,
+        "simulation_seconds": 75.4,
+        "simulation_clock_seconds": 75.46666666666667,
+        "playback_seconds": 75.4333333333333
+      },
+      "combat_camera": {
+        "camera_records": 225,
+        "consecutive_transform_changes": 60,
+        "longest_exact_constant_run_frames": 108,
+        "maximum_consecutive_origin_delta_m": 0.752261137890545,
+        "maximum_consecutive_basis_component_delta": 0.001802295446395985,
+        "terminal_exact_static_tail": {
+          "first": {
+            "frame": 2156,
+            "simulation_seconds": 71.9000000000002,
+            "simulation_clock_seconds": 71.9000000000002,
+            "playback_seconds": 71.8666666666667
+          },
+          "last": {
+            "frame": 2263,
+            "simulation_seconds": 75.4,
+            "simulation_clock_seconds": 75.46666666666667,
+            "playback_seconds": 75.4333333333333
+          },
+          "frames": 108,
+          "camera": {
+            "basis": [
+              [
+                0.860291600227356,
+                0.0,
+                -0.509802401065826
+              ],
+              [
+                -0.240947261452675,
+                0.881261646747589,
+                -0.406598538160324
+              ],
+              [
+                0.449269264936447,
+                0.472628772258759,
+                0.758141934871674
+              ]
+            ],
+            "origin": [
+              12.5480175018311,
+              15.0359039306641,
+              -47.7488822937012
+            ]
+          },
+          "event_counts": {
+            "warning": 1,
+            "hero_attack": 3,
+            "hero_release": 3,
+            "hit": 3,
+            "ward": 1,
+            "hero_hit": 1,
+            "impact": 1,
+            "nova": 1
+          },
+          "frames_with_guardian_warning": 42
+        },
+        "scope": "Exact logged camera transforms during combat; room-entry settling may move. No rendered-pixel or visual-quality inference."
+      }
+    }
+  ],
+  "attack_phrases": {
+    "basic": {
+      "windup_frames": 49,
+      "recovery_frames": 77,
+      "first_windup": {
+        "frame": 44,
+        "simulation_seconds": 1.5,
+        "simulation_clock_seconds": 1.5,
+        "playback_seconds": 1.46666666666667
+      },
+      "first_recovery": {
+        "frame": 51,
+        "simulation_seconds": 1.7,
+        "simulation_clock_seconds": 1.7333333333333332,
+        "playback_seconds": 1.7
+      },
+      "actual_style_frame_counts": {
+        "basic": 126
+      }
+    },
+    "skill": {
+      "windup_frames": 76,
+      "recovery_frames": 97,
+      "first_windup": {
+        "frame": 2,
+        "simulation_seconds": 0.1,
+        "simulation_clock_seconds": 0.1,
+        "playback_seconds": 0.0666666666666667
+      },
+      "first_recovery": {
+        "frame": 9,
+        "simulation_seconds": 0.3,
+        "simulation_clock_seconds": 0.33333333333333326,
+        "playback_seconds": 0.3
+      },
+      "actual_style_frame_counts": {
+        "signature": 126,
+        "chain": 47
+      }
+    },
+    "heavy": {
+      "windup_frames": 54,
+      "recovery_frames": 20,
+      "first_windup": {
+        "frame": 320,
+        "simulation_seconds": 10.7,
+        "simulation_clock_seconds": 10.7,
+        "playback_seconds": 10.6666666666667
+      },
+      "first_recovery": {
+        "frame": 347,
+        "simulation_seconds": 11.6,
+        "simulation_clock_seconds": 11.6,
+        "playback_seconds": 11.5666666666667
+      },
+      "actual_style_frame_counts": {
+        "starfall": 74
+      }
+    }
+  },
+  "cast_timeline": [
+    {
+      "style": "signature",
+      "commit": {
+        "frame": 2,
+        "simulation_seconds": 0.1,
+        "simulation_clock_seconds": 0.1,
+        "playback_seconds": 0.0666666666666667,
+        "event": {
+          "name": "Veil Nova",
+          "skill": true,
+          "target": 0,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [
+        {
+          "frame": 11,
+          "simulation_seconds": 0.4,
+          "simulation_clock_seconds": 0.4,
+          "playback_seconds": 0.366666666666667,
+          "event": {
+            "critical": false,
+            "damage": 216,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 0,
+            "type": "hit"
+          }
+        },
+        {
+          "frame": 11,
+          "simulation_seconds": 0.4,
+          "simulation_clock_seconds": 0.4,
+          "playback_seconds": 0.366666666666667,
+          "event": {
+            "critical": false,
+            "damage": 216,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 1,
+            "type": "hit"
+          }
+        },
+        {
+          "frame": 11,
+          "simulation_seconds": 0.4,
+          "simulation_clock_seconds": 0.4,
+          "playback_seconds": 0.366666666666667,
+          "event": {
+            "critical": false,
+            "damage": 216,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 3,
+            "type": "hit"
+          }
+        },
+        {
+          "frame": 11,
+          "simulation_seconds": 0.4,
+          "simulation_clock_seconds": 0.4,
+          "playback_seconds": 0.366666666666667,
+          "event": {
+            "critical": false,
+            "damage": 187,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 4,
+            "type": "hit"
+          }
+        }
+      ],
+      "release": {
+        "frame": 9,
+        "simulation_seconds": 0.3,
+        "simulation_clock_seconds": 0.33333333333333326,
+        "playback_seconds": 0.3,
+        "event": {
+          "skill": true,
+          "target": 0,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "basic",
+      "commit": {
+        "frame": 44,
+        "simulation_seconds": 1.5,
+        "simulation_clock_seconds": 1.5,
+        "playback_seconds": 1.46666666666667,
+        "event": {
+          "name": "Arcane Bolt",
+          "skill": false,
+          "target": 2,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [
+        {
+          "frame": 53,
+          "simulation_seconds": 1.8,
+          "simulation_clock_seconds": 1.8,
+          "playback_seconds": 1.76666666666667,
+          "event": {
+            "critical": false,
+            "damage": 216,
+            "dead": true,
+            "name": "Arcane Bolt",
+            "skill": false,
+            "target": 2,
+            "type": "hit"
+          }
+        }
+      ],
+      "release": {
+        "frame": 51,
+        "simulation_seconds": 1.7,
+        "simulation_clock_seconds": 1.7333333333333332,
+        "playback_seconds": 1.7,
+        "event": {
+          "skill": false,
+          "target": 2,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "signature",
+      "commit": {
+        "frame": 272,
+        "simulation_seconds": 9.09999999999998,
+        "simulation_clock_seconds": 9.09999999999998,
+        "playback_seconds": 9.06666666666667,
+        "event": {
+          "name": "Veil Nova",
+          "skill": true,
+          "target": 12,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [
+        {
+          "frame": 281,
+          "simulation_seconds": 9.39999999999998,
+          "simulation_clock_seconds": 9.39999999999998,
+          "playback_seconds": 9.36666666666667,
+          "event": {
+            "critical": false,
+            "damage": 216,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 12,
+            "type": "hit"
+          }
+        },
+        {
+          "frame": 281,
+          "simulation_seconds": 9.39999999999998,
+          "simulation_clock_seconds": 9.39999999999998,
+          "playback_seconds": 9.36666666666667,
+          "event": {
+            "critical": false,
+            "damage": 216,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 13,
+            "type": "hit"
+          }
+        }
+      ],
+      "release": {
+        "frame": 279,
+        "simulation_seconds": 9.29999999999998,
+        "simulation_clock_seconds": 9.333333333333313,
+        "playback_seconds": 9.3,
+        "event": {
+          "skill": true,
+          "target": 12,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "starfall",
+      "commit": {
+        "frame": 320,
+        "simulation_seconds": 10.7,
+        "simulation_clock_seconds": 10.7,
+        "playback_seconds": 10.6666666666667,
+        "event": {
+          "ability_id": "starfall",
+          "name": "Ashen Starfall",
+          "skill": true,
+          "target": 10,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [],
+      "release": {
+        "frame": 347,
+        "simulation_seconds": 11.6,
+        "simulation_clock_seconds": 11.6,
+        "playback_seconds": 11.5666666666667,
+        "event": {
+          "ability_id": "starfall",
+          "skill": true,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "signature",
+      "commit": {
+        "frame": 749,
+        "simulation_seconds": 25.0000000000001,
+        "simulation_clock_seconds": 25.0000000000001,
+        "playback_seconds": 24.9666666666667,
+        "event": {
+          "name": "Veil Nova",
+          "skill": true,
+          "target": 20,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [
+        {
+          "frame": 758,
+          "simulation_seconds": 25.3000000000001,
+          "simulation_clock_seconds": 25.3000000000001,
+          "playback_seconds": 25.2666666666667,
+          "event": {
+            "critical": false,
+            "damage": 374,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 20,
+            "type": "hit"
+          }
+        },
+        {
+          "frame": 758,
+          "simulation_seconds": 25.3000000000001,
+          "simulation_clock_seconds": 25.3000000000001,
+          "playback_seconds": 25.2666666666667,
+          "event": {
+            "critical": false,
+            "damage": 216,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 22,
+            "type": "hit"
+          }
+        },
+        {
+          "frame": 758,
+          "simulation_seconds": 25.3000000000001,
+          "simulation_clock_seconds": 25.3000000000001,
+          "playback_seconds": 25.2666666666667,
+          "event": {
+            "critical": false,
+            "damage": 187,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 23,
+            "type": "hit"
+          }
+        }
+      ],
+      "release": {
+        "frame": 756,
+        "simulation_seconds": 25.2000000000001,
+        "simulation_clock_seconds": 25.233333333333434,
+        "playback_seconds": 25.2,
+        "event": {
+          "skill": true,
+          "target": 20,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "chain",
+      "commit": {
+        "frame": 791,
+        "simulation_seconds": 26.4000000000001,
+        "simulation_clock_seconds": 26.4000000000001,
+        "playback_seconds": 26.3666666666667,
+        "event": {
+          "ability_id": "chain",
+          "name": "Veil Lightning",
+          "skill": true,
+          "target": 24,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [],
+      "cancel": {
+        "frame": 794,
+        "simulation_seconds": 26.5000000000001,
+        "simulation_clock_seconds": 26.5000000000001,
+        "playback_seconds": 26.4666666666667,
+        "event": {
+          "goal": [
+            -6.46468544006348,
+            -23.5010433197021
+          ],
+          "position": [
+            -8.14515590667725,
+            -23.5010433197021
+          ],
+          "type": "evade"
+        }
+      }
+    },
+    {
+      "style": "basic",
+      "commit": {
+        "frame": 833,
+        "simulation_seconds": 27.8000000000001,
+        "simulation_clock_seconds": 27.8000000000001,
+        "playback_seconds": 27.7666666666667,
+        "event": {
+          "name": "Arcane Bolt",
+          "skill": false,
+          "target": 24,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [
+        {
+          "frame": 842,
+          "simulation_seconds": 28.1000000000001,
+          "simulation_clock_seconds": 28.1000000000001,
+          "playback_seconds": 28.0666666666667,
+          "event": {
+            "critical": false,
+            "damage": 216,
+            "dead": true,
+            "name": "Arcane Bolt",
+            "skill": false,
+            "target": 24,
+            "type": "hit"
+          }
+        }
+      ],
+      "release": {
+        "frame": 840,
+        "simulation_seconds": 28.0000000000001,
+        "simulation_clock_seconds": 28.033333333333434,
+        "playback_seconds": 28.0,
+        "event": {
+          "skill": false,
+          "target": 24,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "basic",
+      "commit": {
+        "frame": 875,
+        "simulation_seconds": 29.2000000000001,
+        "simulation_clock_seconds": 29.2000000000001,
+        "playback_seconds": 29.1666666666667,
+        "event": {
+          "name": "Arcane Bolt",
+          "skill": false,
+          "target": 21,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [
+        {
+          "frame": 884,
+          "simulation_seconds": 29.5000000000001,
+          "simulation_clock_seconds": 29.5000000000001,
+          "playback_seconds": 29.4666666666667,
+          "event": {
+            "critical": false,
+            "damage": 187,
+            "dead": true,
+            "name": "Arcane Bolt",
+            "skill": false,
+            "target": 21,
+            "type": "hit"
+          }
+        }
+      ],
+      "release": {
+        "frame": 882,
+        "simulation_seconds": 29.4000000000001,
+        "simulation_clock_seconds": 29.433333333333437,
+        "playback_seconds": 29.4,
+        "event": {
+          "skill": false,
+          "target": 21,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "chain",
+      "commit": {
+        "frame": 1268,
+        "simulation_seconds": 42.3000000000003,
+        "simulation_clock_seconds": 42.3000000000003,
+        "playback_seconds": 42.2666666666667,
+        "event": {
+          "ability_id": "chain",
+          "name": "Veil Lightning",
+          "skill": true,
+          "target": 32,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [],
+      "release": {
+        "frame": 1280,
+        "simulation_seconds": 42.7000000000003,
+        "simulation_clock_seconds": 42.7000000000003,
+        "playback_seconds": 42.6666666666667,
+        "event": {
+          "ability_id": "chain",
+          "skill": true,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "signature",
+      "commit": {
+        "frame": 1310,
+        "simulation_seconds": 43.7000000000004,
+        "simulation_clock_seconds": 43.7000000000004,
+        "playback_seconds": 43.6666666666667,
+        "event": {
+          "name": "Veil Nova",
+          "skill": true,
+          "target": 31,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [
+        {
+          "frame": 1319,
+          "simulation_seconds": 44.0000000000004,
+          "simulation_clock_seconds": 44.0000000000004,
+          "playback_seconds": 43.9666666666667,
+          "event": {
+            "critical": false,
+            "damage": 375,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 31,
+            "type": "hit"
+          }
+        }
+      ],
+      "release": {
+        "frame": 1317,
+        "simulation_seconds": 43.9000000000004,
+        "simulation_clock_seconds": 43.93333333333373,
+        "playback_seconds": 43.9,
+        "event": {
+          "skill": true,
+          "target": 31,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "basic",
+      "commit": {
+        "frame": 1352,
+        "simulation_seconds": 45.1000000000004,
+        "simulation_clock_seconds": 45.1000000000004,
+        "playback_seconds": 45.0666666666667,
+        "event": {
+          "name": "Arcane Bolt",
+          "skill": false,
+          "target": 30,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [
+        {
+          "frame": 1361,
+          "simulation_seconds": 45.4000000000004,
+          "simulation_clock_seconds": 45.4000000000004,
+          "playback_seconds": 45.3666666666667,
+          "event": {
+            "critical": false,
+            "damage": 216,
+            "dead": true,
+            "name": "Arcane Bolt",
+            "skill": false,
+            "target": 30,
+            "type": "hit"
+          }
+        }
+      ],
+      "release": {
+        "frame": 1359,
+        "simulation_seconds": 45.3000000000004,
+        "simulation_clock_seconds": 45.333333333333734,
+        "playback_seconds": 45.3,
+        "event": {
+          "skill": false,
+          "target": 30,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "signature",
+      "commit": {
+        "frame": 1703,
+        "simulation_seconds": 56.8000000000005,
+        "simulation_clock_seconds": 56.8000000000005,
+        "playback_seconds": 56.7666666666667,
+        "event": {
+          "name": "Veil Nova",
+          "skill": true,
+          "target": 44,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [
+        {
+          "frame": 1712,
+          "simulation_seconds": 57.1000000000005,
+          "simulation_clock_seconds": 57.1000000000005,
+          "playback_seconds": 57.0666666666667,
+          "event": {
+            "critical": false,
+            "damage": 216,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 41,
+            "type": "hit"
+          }
+        },
+        {
+          "frame": 1712,
+          "simulation_seconds": 57.1000000000005,
+          "simulation_clock_seconds": 57.1000000000005,
+          "playback_seconds": 57.0666666666667,
+          "event": {
+            "critical": false,
+            "damage": 187,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 42,
+            "type": "hit"
+          }
+        },
+        {
+          "frame": 1712,
+          "simulation_seconds": 57.1000000000005,
+          "simulation_clock_seconds": 57.1000000000005,
+          "playback_seconds": 57.0666666666667,
+          "event": {
+            "critical": false,
+            "damage": 187,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 43,
+            "type": "hit"
+          }
+        },
+        {
+          "frame": 1712,
+          "simulation_seconds": 57.1000000000005,
+          "simulation_clock_seconds": 57.1000000000005,
+          "playback_seconds": 57.0666666666667,
+          "event": {
+            "critical": false,
+            "damage": 216,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 44,
+            "type": "hit"
+          }
+        }
+      ],
+      "release": {
+        "frame": 1710,
+        "simulation_seconds": 57.0000000000005,
+        "simulation_clock_seconds": 57.03333333333383,
+        "playback_seconds": 57.0,
+        "event": {
+          "skill": true,
+          "target": 44,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "basic",
+      "commit": {
+        "frame": 1745,
+        "simulation_seconds": 58.2000000000006,
+        "simulation_clock_seconds": 58.2000000000006,
+        "playback_seconds": 58.1666666666667,
+        "event": {
+          "name": "Arcane Bolt",
+          "skill": false,
+          "target": 40,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [
+        {
+          "frame": 1754,
+          "simulation_seconds": 58.5000000000006,
+          "simulation_clock_seconds": 58.5000000000006,
+          "playback_seconds": 58.4666666666667,
+          "event": {
+            "critical": false,
+            "damage": 216,
+            "dead": true,
+            "name": "Arcane Bolt",
+            "skill": false,
+            "target": 40,
+            "type": "hit"
+          }
+        }
+      ],
+      "release": {
+        "frame": 1752,
+        "simulation_seconds": 58.4000000000006,
+        "simulation_clock_seconds": 58.433333333333934,
+        "playback_seconds": 58.4,
+        "event": {
+          "skill": false,
+          "target": 40,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "signature",
+      "commit": {
+        "frame": 2042,
+        "simulation_seconds": 68.1000000000004,
+        "simulation_clock_seconds": 68.1000000000004,
+        "playback_seconds": 68.0666666666667,
+        "event": {
+          "name": "Veil Nova",
+          "skill": true,
+          "target": 52,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [
+        {
+          "frame": 2051,
+          "simulation_seconds": 68.4000000000004,
+          "simulation_clock_seconds": 68.4000000000004,
+          "playback_seconds": 68.3666666666667,
+          "event": {
+            "critical": false,
+            "damage": 594,
+            "dead": false,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 50,
+            "type": "hit"
+          }
+        },
+        {
+          "frame": 2051,
+          "simulation_seconds": 68.4000000000004,
+          "simulation_clock_seconds": 68.4000000000004,
+          "playback_seconds": 68.3666666666667,
+          "event": {
+            "critical": false,
+            "damage": 187,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 51,
+            "type": "hit"
+          }
+        },
+        {
+          "frame": 2051,
+          "simulation_seconds": 68.4000000000004,
+          "simulation_clock_seconds": 68.4000000000004,
+          "playback_seconds": 68.3666666666667,
+          "event": {
+            "critical": false,
+            "damage": 187,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 52,
+            "type": "hit"
+          }
+        }
+      ],
+      "release": {
+        "frame": 2049,
+        "simulation_seconds": 68.3000000000004,
+        "simulation_clock_seconds": 68.33333333333373,
+        "playback_seconds": 68.3,
+        "event": {
+          "skill": true,
+          "target": 52,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "chain",
+      "commit": {
+        "frame": 2084,
+        "simulation_seconds": 69.5000000000003,
+        "simulation_clock_seconds": 69.5000000000003,
+        "playback_seconds": 69.4666666666667,
+        "event": {
+          "ability_id": "chain",
+          "name": "Veil Lightning",
+          "skill": true,
+          "target": 50,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [],
+      "release": {
+        "frame": 2096,
+        "simulation_seconds": 69.9000000000003,
+        "simulation_clock_seconds": 69.9000000000003,
+        "playback_seconds": 69.8666666666667,
+        "event": {
+          "ability_id": "chain",
+          "skill": true,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "starfall",
+      "commit": {
+        "frame": 2126,
+        "simulation_seconds": 70.9000000000002,
+        "simulation_clock_seconds": 70.9000000000002,
+        "playback_seconds": 70.8666666666667,
+        "event": {
+          "ability_id": "starfall",
+          "name": "Ashen Starfall",
+          "skill": true,
+          "target": 50,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [],
+      "release": {
+        "frame": 2153,
+        "simulation_seconds": 71.8000000000002,
+        "simulation_clock_seconds": 71.8000000000002,
+        "playback_seconds": 71.7666666666667,
+        "event": {
+          "ability_id": "starfall",
+          "skill": true,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "basic",
+      "commit": {
+        "frame": 2168,
+        "simulation_seconds": 72.3000000000002,
+        "simulation_clock_seconds": 72.3000000000002,
+        "playback_seconds": 72.2666666666667,
+        "event": {
+          "name": "Arcane Bolt",
+          "skill": false,
+          "target": 50,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [
+        {
+          "frame": 2177,
+          "simulation_seconds": 72.6000000000002,
+          "simulation_clock_seconds": 72.6000000000002,
+          "playback_seconds": 72.5666666666667,
+          "event": {
+            "critical": false,
+            "damage": 216,
+            "dead": false,
+            "name": "Arcane Bolt",
+            "skill": false,
+            "target": 50,
+            "type": "hit"
+          }
+        }
+      ],
+      "release": {
+        "frame": 2175,
+        "simulation_seconds": 72.5000000000002,
+        "simulation_clock_seconds": 72.53333333333353,
+        "playback_seconds": 72.5,
+        "event": {
+          "skill": false,
+          "target": 50,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "basic",
+      "commit": {
+        "frame": 2210,
+        "simulation_seconds": 73.7000000000001,
+        "simulation_clock_seconds": 73.7000000000001,
+        "playback_seconds": 73.6666666666667,
+        "event": {
+          "name": "Arcane Bolt",
+          "skill": false,
+          "target": 50,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [
+        {
+          "frame": 2219,
+          "simulation_seconds": 74.0000000000001,
+          "simulation_clock_seconds": 74.0000000000001,
+          "playback_seconds": 73.9666666666667,
+          "event": {
+            "critical": false,
+            "damage": 216,
+            "dead": false,
+            "name": "Arcane Bolt",
+            "skill": false,
+            "target": 50,
+            "type": "hit"
+          }
+        }
+      ],
+      "release": {
+        "frame": 2217,
+        "simulation_seconds": 73.9000000000001,
+        "simulation_clock_seconds": 73.93333333333344,
+        "playback_seconds": 73.9,
+        "event": {
+          "skill": false,
+          "target": 50,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    },
+    {
+      "style": "signature",
+      "commit": {
+        "frame": 2252,
+        "simulation_seconds": 75.1,
+        "simulation_clock_seconds": 75.1,
+        "playback_seconds": 75.0666666666667,
+        "event": {
+          "name": "Veil Nova",
+          "skill": true,
+          "target": 50,
+          "type": "hero_attack"
+        }
+      },
+      "hit_events": [
+        {
+          "frame": 2261,
+          "simulation_seconds": 75.4,
+          "simulation_clock_seconds": 75.4,
+          "playback_seconds": 75.3666666666667,
+          "event": {
+            "critical": false,
+            "damage": 107,
+            "dead": true,
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 50,
+            "type": "hit"
+          }
+        }
+      ],
+      "release": {
+        "frame": 2259,
+        "simulation_seconds": 75.3,
+        "simulation_clock_seconds": 75.33333333333333,
+        "playback_seconds": 75.3,
+        "event": {
+          "skill": true,
+          "target": 50,
+          "type": "hero_release"
+        }
+      },
+      "release_classification_matches_commit": true
+    }
+  ],
+  "cast_counts": {
+    "commits": 19,
+    "released": 18,
+    "cancelled_before_release": 1,
+    "orphan_releases": 0,
+    "unresolved": 0,
+    "by_style": {
+      "signature": 7,
+      "basic": 7,
+      "starfall": 2,
+      "chain": 3
+    }
+  },
+  "actual_event_counts": {
+    "hero_attack": 19,
+    "hero_release": 18,
+    "nova": 7,
+    "hit": 32,
+    "interrupt": 6,
+    "reinforcement_spawn": 2,
+    "engage": 5,
+    "warning": 5,
+    "evade": 3,
+    "technique_cast": 5,
+    "miss": 3,
+    "impact": 4,
+    "technique": 4,
+    "well": 1,
+    "objective": 3,
+    "boss_phase": 2,
+    "ward": 1,
+    "hero_hit": 1,
+    "finished": 1
+  },
+  "authoritative_frame_trace_sha256": "fe4d24a728c26e5d1d014fabba59042c109e6ee40146cd70fe68ae35e58d6091",
+  "authoritative_trace_scope": "Frame clocks/stage/phase/outcome/HP/pending attack/guardian and all events except presentation-only hero_release; excludes camera and visual poses.",
+  "guardian": {
+    "first_combat": {
+      "frame": 2039,
+      "simulation_seconds": 68.0000000000004,
+      "simulation_clock_seconds": 68.0000000000004,
+      "playback_seconds": 67.9666666666667
+    },
+    "last_combat": {
+      "frame": 2263,
+      "simulation_seconds": 75.4,
+      "simulation_clock_seconds": 75.46666666666667,
+      "playback_seconds": 75.4333333333333
+    },
+    "actual_death": [
+      {
+        "frame": 2261,
+        "simulation_seconds": 75.4,
+        "simulation_clock_seconds": 75.4,
+        "playback_seconds": 75.3666666666667,
+        "event": {
+          "critical": false,
+          "damage": 107,
+          "dead": true,
+          "name": "Veil Nova",
+          "skill": true,
+          "target": 50,
+          "type": "hit"
+        }
+      }
+    ],
+    "phase_events": [
+      {
+        "frame": 2096,
+        "simulation_seconds": 69.9000000000003,
+        "simulation_clock_seconds": 69.9000000000003,
+        "playback_seconds": 69.8666666666667,
+        "event": {
+          "description": "The crown shatters. A cleaving lane now cuts through the ring's safe center.",
+          "from_phase": 0,
+          "name": "The Bell Warden",
+          "phase": 1,
+          "phase_name": "Crown Break",
+          "position": [
+            0.00866597890853882,
+            -67.7920761108398
+          ],
+          "region": 0,
+          "source": 50,
+          "type": "boss_phase"
+        }
+      },
+      {
+        "frame": 2153,
+        "simulation_seconds": 71.8000000000002,
+        "simulation_clock_seconds": 71.8000000000002,
+        "playback_seconds": 71.7666666666667,
+        "event": {
+          "description": "Split bell rings overlap a final cleaving lane. Escape between their edges.",
+          "from_phase": 1,
+          "name": "The Bell Warden",
+          "phase": 2,
+          "phase_name": "Final Toll",
+          "position": [
+            0.00866597890853882,
+            -67.7920761108398
+          ],
+          "region": 0,
+          "source": 50,
+          "type": "boss_phase"
+        }
+      }
+    ],
+    "warning_events": [
+      {
+        "frame": 2099,
+        "simulation_seconds": 70.0000000000003,
+        "simulation_clock_seconds": 70.0000000000003,
+        "playback_seconds": 69.9666666666667,
+        "event": {
+          "aim_target": [
+            0.0,
+            -64.5999984741211
+          ],
+          "awakened": true,
+          "center": [
+            0.0,
+            -64.5999984741211
+          ],
+          "duration": 1.45,
+          "geometry_version": 2,
+          "left": 1.45,
+          "multiplier": 2.592,
+          "name": "Bell Requiem",
+          "origin": [
+            0.00866597890853882,
+            -67.7920761108398
+          ],
+          "pattern": 0,
+          "phase": 1,
+          "phase_name": "Crown Break",
+          "position": [
+            0.0,
+            -64.5999984741211
+          ],
+          "radius": 5.5,
+          "source": 50,
+          "total": 1.45,
+          "type": "warning",
+          "variant": 1,
+          "zones": [
+            {
+              "center": [
+                0.00866597890853882,
+                -67.7920761108398
+              ],
+              "inner": 1.65,
+              "radius": 4.8,
+              "shape": "annulus"
+            },
+            {
+              "center": [
+                0.00866597890853882,
+                -67.7920761108398
+              ],
+              "direction": [
+                -0.999996244907379,
+                -0.00271482951939106
+              ],
+              "length": 5.2,
+              "radius": 0.65,
+              "shape": "beam"
+            }
+          ]
+        }
+      },
+      {
+        "frame": 2156,
+        "simulation_seconds": 71.9000000000002,
+        "simulation_clock_seconds": 71.9000000000002,
+        "playback_seconds": 71.8666666666667,
+        "event": {
+          "aim_target": [
+            1.31803767899896e-08,
+            -66.3850021362305
+          ],
+          "awakened": true,
+          "center": [
+            1.31803767899896e-08,
+            -66.3850021362305
+          ],
+          "duration": 1.3,
+          "geometry_version": 2,
+          "left": 1.3,
+          "multiplier": 2.832,
+          "name": "Bell Requiem",
+          "origin": [
+            0.00866597890853882,
+            -67.7920761108398
+          ],
+          "pattern": 0,
+          "phase": 2,
+          "phase_name": "Final Toll",
+          "position": [
+            1.31803767899896e-08,
+            -66.3850021362305
+          ],
+          "radius": 5.5,
+          "source": 50,
+          "total": 1.3,
+          "type": "warning",
+          "variant": 0,
+          "zones": [
+            {
+              "center": [
+                1.45863842964172,
+                -67.7831497192383
+              ],
+              "inner": 1.2,
+              "radius": 3.3,
+              "shape": "annulus"
+            },
+            {
+              "center": [
+                -1.44130659103394,
+                -67.8010025024414
+              ],
+              "inner": 1.2,
+              "radius": 3.3,
+              "shape": "annulus"
+            },
+            {
+              "center": [
+                0.00866597890853882,
+                -67.7920761108398
+              ],
+              "direction": [
+                -0.00615873886272311,
+                0.999981045722961
+              ],
+              "length": 5.4,
+              "radius": 0.55,
+              "shape": "beam"
+            }
+          ]
+        }
+      }
+    ],
+    "actual_received_hits": [
+      {
+        "frame": 2198,
+        "simulation_seconds": 73.3000000000001,
+        "simulation_clock_seconds": 73.3000000000001,
+        "playback_seconds": 73.2666666666667,
+        "event": {
+          "damage": 23,
+          "source": 50,
+          "type": "hero_hit"
+        }
+      }
+    ],
+    "combat_camera": {
+      "camera_records": 225,
+      "consecutive_transform_changes": 60,
+      "longest_exact_constant_run_frames": 108,
+      "maximum_consecutive_origin_delta_m": 0.752261137890545,
+      "maximum_consecutive_basis_component_delta": 0.001802295446395985,
+      "terminal_exact_static_tail": {
+        "first": {
+          "frame": 2156,
+          "simulation_seconds": 71.9000000000002,
+          "simulation_clock_seconds": 71.9000000000002,
+          "playback_seconds": 71.8666666666667
+        },
+        "last": {
+          "frame": 2263,
+          "simulation_seconds": 75.4,
+          "simulation_clock_seconds": 75.46666666666667,
+          "playback_seconds": 75.4333333333333
+        },
+        "frames": 108,
+        "camera": {
+          "basis": [
+            [
+              0.860291600227356,
+              0.0,
+              -0.509802401065826
+            ],
+            [
+              -0.240947261452675,
+              0.881261646747589,
+              -0.406598538160324
+            ],
+            [
+              0.449269264936447,
+              0.472628772258759,
+              0.758141934871674
+            ]
+          ],
+          "origin": [
+            12.5480175018311,
+            15.0359039306641,
+            -47.7488822937012
+          ]
+        },
+        "event_counts": {
+          "warning": 1,
+          "hero_attack": 3,
+          "hero_release": 3,
+          "hit": 3,
+          "ward": 1,
+          "hero_hit": 1,
+          "impact": 1,
+          "nova": 1
+        },
+        "frames_with_guardian_warning": 42
+      },
+      "scope": "Exact logged camera transforms during combat; room-entry settling may move. No rendered-pixel or visual-quality inference."
+    }
+  },
+  "outcome": {
+    "complete": true,
+    "won": true,
+    "simulation_finished": true,
+    "final_hero_hp": 357,
+    "minimum_recorded_hero_hp": 357,
+    "initial_maximum_hp": 380,
+    "first_finished": {
+      "frame": 2405,
+      "simulation_seconds": 80.1999999999997,
+      "simulation_clock_seconds": 80.1999999999997,
+      "playback_seconds": 80.1666666666667
+    },
+    "result_ui_reached": true,
+    "first_result_ui": {
+      "frame": 2405,
+      "simulation_seconds": 80.1999999999997,
+      "simulation_clock_seconds": 80.1999999999997,
+      "playback_seconds": 80.1666666666667
+    },
+    "result_ui_frames": 91,
+    "last_frame": {
+      "frame": 2495,
+      "simulation_seconds": 80.1999999999997,
+      "simulation_clock_seconds": 80.1999999999997,
+      "playback_seconds": 83.1666666666667
+    },
+    "scope": "Logged outcome and page state; actual result-image appearance requires inspection."
+  },
+  "conservative_projection": {
+    "hero_records": 2471,
+    "outside_viewport_records": 0,
+    "nonintersecting_records": 0,
+    "behind_camera_records": 0,
+    "invisible_actor_records": 0,
+    "skeleton_bone_inventory": [
+      65
+    ],
+    "scope": "Camera subviewport coordinates; current conservative actor pose bounds, including source joint influence envelopes and actual staff geometry. Rectangle overlap is a visibility proxy, not a rendered-pixel occlusion measurement."
+  },
+  "audio": {
+    "sample_rate": 44100,
+    "sample_frames": 3669120,
+    "seconds": 83.2,
+    "channels": 2,
+    "sample_format": "f32le",
+    "native_pcm_sha256": "ae1553e7bb746cff82181785597ef5c7246900008be5f93d2f11cccf67c21316",
+    "encoded_audio": {
+      "codec_name": "aac",
+      "sample_rate": "44100",
+      "channels": 2,
+      "duration": "83.200000"
+    },
+    "mix_summary": {
+      "accepted_cues": 68,
+      "channels": 2,
+      "completed_effects": 67,
+      "cue_clock_scope": "Observe the ordinary director's accepted cues; its existing 80 ms duplicate check uses wall time. Each accepted cue begins at its recorded fixed-step sample boundary.",
+      "eof_padding_scope": "Zero-filled suffix frames in each ended one-shot's first EOF block; concurrent score/other voices retain their real samples.",
+      "eof_silence_frames": 55384,
+      "finite": true,
+      "peak": 0.0984680131077766,
+      "rms": 0.00785427066069722,
+      "sample_format": "f32le",
+      "sample_frames": 3669120,
+      "sample_rate": 44100,
+      "scope": "Native AudioStreamPlayback fixed-step stereo float PCM from actual accepted AudioDirector slots, streams and gain/suspend state; no physical audio loopback.",
+      "seconds": 83.2,
+      "stolen_voices": 1,
+      "stream_pcm_sha256": {
+        "arcane_contact": "47c9d683a3bf0ae29d6558ebcbf3c7d28986d7fd1c38058646b95b6c5e33cd71",
+        "arcane_gather": "c966d31febd460271a7a8a2fc5c4ad895360e102a7cef902f49ad593437f7dc0",
+        "arcane_gather_heavy": "be30f7ecb5689b86d3f8606560f47e7531b6a1f2f9944738dc052dc5be7a1962",
+        "arcane_gather_power": "5c6515ed7c0abdc2ab60691bba12eb636d01dc6a43af2232b1f96d8a2a683007",
+        "arcane_release": "69f6b42419af83f1c638c20f7ee175cc7569d69a6fb3d1ec54653b742db8f6a5",
+        "camp": "24ea25f0f478d7ad2a7b6274b9c6b64ebd43a51cd1655c15e961d58640ad7afb",
+        "dungeon": "3b8e7dc46305bb5fc9c0b3ad7a4184bce94c7e6327a8c68303450df7db33c47a",
+        "hurt": "436ce8eeeada388ac7e0f469603ea04383dbb47da2a553e733a2307c183f32c7",
+        "lightning": "3fe48a782f98b916c06f484dfef5483f3ce124bc4ef12b9010476a11579e89ba",
+        "nova": "54d318a157d20dc85b74fc9fe5c87799b749bb1d937baff55aca75530d7daf6b",
+        "phase_awakened": "a95b82a080f9a52d5ead7912a2e10634b7202e2874dfb924115deff4aa119749",
+        "phase_desperate": "3b775f3e0b7c124f44f863680eef4dabeb2b91a38ce3de72b73b185d9dc4317c",
+        "starfall": "7e72f95fac419cab09c6bc84e4e919997836a3edd78014fa99a60eb823c99c03",
+        "step": "1ab3ee74db2bf697750d106e02abf57e91ca6a6f04baa2602b0c4a44a792c653",
+        "victory": "c2f39f50be6b06e7bbfb0185da947eb158ab7101d000f8b2ea9b95a5127360b1",
+        "ward": "b84471d68160735c5ffbbe76040b07aec60f1ea95610bbb488a2ffc58ed23818",
+        "warning": "3c4e35e40bcab1c31c87c61fcf4080caefdd09ad7745b2731c0b0ed5279e3686"
+      }
+    },
+    "event_counts": {
+      "context": 2,
+      "state": 1,
+      "cue": 68,
+      "effect_eof": 67
+    },
+    "accepted_cue_counts": {
+      "arcane_gather_power": 10,
+      "nova": 7,
+      "arcane_contact": 18,
+      "arcane_gather": 7,
+      "arcane_release": 7,
+      "warning": 5,
+      "step": 3,
+      "arcane_gather_heavy": 2,
+      "starfall": 2,
+      "lightning": 2,
+      "phase_awakened": 1,
+      "phase_desperate": 1,
+      "ward": 1,
+      "hurt": 1,
+      "victory": 1
+    },
+    "first_accepted_cue": {
+      "frame": 2,
+      "simulation_seconds": 0.1,
+      "simulation_clock_seconds": 0.1,
+      "playback_seconds": 0.0666666666666667,
+      "event": {
+        "acceptance_wall_msec": 32007,
+        "key": "arcane_gather_power",
+        "replaced_key": "",
+        "sample_frame": 2940,
+        "slot": 0,
+        "type": "cue"
+      }
+    },
+    "last_accepted_cue": {
+      "frame": 2405,
+      "simulation_seconds": 80.1999999999997,
+      "simulation_clock_seconds": 80.1999999999997,
+      "playback_seconds": 80.1666666666667,
+      "event": {
+        "acceptance_wall_msec": 1666932,
+        "key": "victory",
+        "replaced_key": "",
+        "sample_frame": 3535350,
+        "slot": 1,
+        "type": "cue"
+      }
+    },
+    "stolen_cues": [
+      {
+        "frame": 2177,
+        "simulation_seconds": 72.6000000000002,
+        "simulation_clock_seconds": 72.6000000000002,
+        "playback_seconds": 72.5666666666667,
+        "event": {
+          "acceptance_wall_msec": 1521718,
+          "key": "arcane_contact",
+          "replaced_key": "phase_desperate",
+          "sample_frame": 3200190,
+          "slot": 4,
+          "type": "cue"
+        }
+      }
+    ],
+    "context_and_state_changes": [
+      {
+        "frame": 0,
+        "simulation_seconds": 0.0,
+        "simulation_clock_seconds": 0.0333333333333333,
+        "playback_seconds": 0.0,
+        "event": {
+          "context": "dungeon",
+          "sample_frame": 0,
+          "type": "context"
+        }
+      },
+      {
+        "frame": 0,
+        "simulation_seconds": 0.0,
+        "simulation_clock_seconds": 0.0333333333333333,
+        "playback_seconds": 0.0,
+        "event": {
+          "effects_gain": 0.134400002480565,
+          "music_gain": 0.0699999965558827,
+          "music_paused": false,
+          "preferences": {
+            "battery": false,
+            "effects": 0.7,
+            "haptics": false,
+            "large_text": false,
+            "master": 0.8,
+            "music": 0.35,
+            "numbers": true,
+            "playtest": false,
+            "reduced_motion": false
+          },
+          "sample_frame": 0,
+          "suspended": false,
+          "type": "state"
+        }
+      },
+      {
+        "frame": 2471,
+        "simulation_seconds": 80.1999999999997,
+        "simulation_clock_seconds": 80.1999999999997,
+        "playback_seconds": 82.3666666666667,
+        "event": {
+          "context": "camp",
+          "sample_frame": 3632370,
+          "type": "context"
+        }
+      }
+    ],
+    "effect_eof_witnesses": [
+      {
+        "frame": 9,
+        "simulation_seconds": 0.3,
+        "simulation_clock_seconds": 0.33333333333333326,
+        "playback_seconds": 0.3,
+        "event": {
+          "key": "arcane_gather_power",
+          "sample_frame": 13230,
+          "silence_from_sample_frame": 14398,
+          "slot": 0,
+          "type": "effect_eof",
+          "valid_frames": 1168,
+          "zero_tail_frames": 302
+        }
+      },
+      {
+        "frame": 18,
+        "simulation_seconds": 0.6,
+        "simulation_clock_seconds": 0.6333333333333333,
+        "playback_seconds": 0.6,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 26460,
+          "silence_from_sample_frame": 26746,
+          "slot": 2,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 28,
+        "simulation_seconds": 0.9,
+        "simulation_clock_seconds": 0.9666666666666667,
+        "playback_seconds": 0.933333333333333,
+        "event": {
+          "key": "nova",
+          "sample_frame": 41160,
+          "silence_from_sample_frame": 41886,
+          "slot": 1,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 51,
+        "simulation_seconds": 1.7,
+        "simulation_clock_seconds": 1.7333333333333332,
+        "playback_seconds": 1.7,
+        "event": {
+          "key": "arcane_gather",
+          "sample_frame": 74970,
+          "silence_from_sample_frame": 75256,
+          "slot": 3,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 58,
+        "simulation_seconds": 1.9,
+        "simulation_clock_seconds": 1.9666666666666666,
+        "playback_seconds": 1.93333333333333,
+        "event": {
+          "key": "arcane_release",
+          "sample_frame": 85260,
+          "silence_from_sample_frame": 85546,
+          "slot": 4,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 60,
+        "simulation_seconds": 2.0,
+        "simulation_clock_seconds": 2.033333333333333,
+        "playback_seconds": 2.0,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 88200,
+          "silence_from_sample_frame": 88486,
+          "slot": 5,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 279,
+        "simulation_seconds": 9.29999999999998,
+        "simulation_clock_seconds": 9.333333333333313,
+        "playback_seconds": 9.3,
+        "event": {
+          "key": "arcane_gather_power",
+          "sample_frame": 410130,
+          "silence_from_sample_frame": 411298,
+          "slot": 0,
+          "type": "effect_eof",
+          "valid_frames": 1168,
+          "zero_tail_frames": 302
+        }
+      },
+      {
+        "frame": 288,
+        "simulation_seconds": 9.59999999999998,
+        "simulation_clock_seconds": 9.633333333333313,
+        "playback_seconds": 9.6,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 423360,
+          "silence_from_sample_frame": 423646,
+          "slot": 2,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 298,
+        "simulation_seconds": 9.89999999999998,
+        "simulation_clock_seconds": 9.966666666666647,
+        "playback_seconds": 9.93333333333333,
+        "event": {
+          "key": "nova",
+          "sample_frame": 438060,
+          "silence_from_sample_frame": 438786,
+          "slot": 1,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 314,
+        "simulation_seconds": 10.5,
+        "simulation_clock_seconds": 10.5,
+        "playback_seconds": 10.4666666666667,
+        "event": {
+          "key": "step",
+          "sample_frame": 461580,
+          "silence_from_sample_frame": 462454,
+          "slot": 4,
+          "type": "effect_eof",
+          "valid_frames": 874,
+          "zero_tail_frames": 596
+        }
+      },
+      {
+        "frame": 315,
+        "simulation_seconds": 10.5,
+        "simulation_clock_seconds": 10.533333333333333,
+        "playback_seconds": 10.5,
+        "event": {
+          "key": "warning",
+          "sample_frame": 463050,
+          "silence_from_sample_frame": 463776,
+          "slot": 3,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 342,
+        "simulation_seconds": 11.4,
+        "simulation_clock_seconds": 11.433333333333334,
+        "playback_seconds": 11.4,
+        "event": {
+          "key": "arcane_gather_heavy",
+          "sample_frame": 502740,
+          "silence_from_sample_frame": 503466,
+          "slot": 5,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 354,
+        "simulation_seconds": 11.8,
+        "simulation_clock_seconds": 11.833333333333334,
+        "playback_seconds": 11.8,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 520380,
+          "silence_from_sample_frame": 520666,
+          "slot": 1,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 370,
+        "simulation_seconds": 12.3,
+        "simulation_clock_seconds": 12.366666666666667,
+        "playback_seconds": 12.3333333333333,
+        "event": {
+          "key": "starfall",
+          "sample_frame": 543900,
+          "silence_from_sample_frame": 545362,
+          "slot": 0,
+          "type": "effect_eof",
+          "valid_frames": 1462,
+          "zero_tail_frames": 8
+        }
+      },
+      {
+        "frame": 756,
+        "simulation_seconds": 25.2000000000001,
+        "simulation_clock_seconds": 25.233333333333434,
+        "playback_seconds": 25.2,
+        "event": {
+          "key": "arcane_gather_power",
+          "sample_frame": 1111320,
+          "silence_from_sample_frame": 1112488,
+          "slot": 2,
+          "type": "effect_eof",
+          "valid_frames": 1168,
+          "zero_tail_frames": 302
+        }
+      },
+      {
+        "frame": 765,
+        "simulation_seconds": 25.5000000000001,
+        "simulation_clock_seconds": 25.533333333333434,
+        "playback_seconds": 25.5,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 1124550,
+          "silence_from_sample_frame": 1124836,
+          "slot": 4,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 775,
+        "simulation_seconds": 25.8000000000001,
+        "simulation_clock_seconds": 25.866666666666767,
+        "playback_seconds": 25.8333333333333,
+        "event": {
+          "key": "nova",
+          "sample_frame": 1139250,
+          "silence_from_sample_frame": 1139976,
+          "slot": 3,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 797,
+        "simulation_seconds": 26.6000000000001,
+        "simulation_clock_seconds": 26.6000000000001,
+        "playback_seconds": 26.5666666666667,
+        "event": {
+          "key": "step",
+          "sample_frame": 1171590,
+          "silence_from_sample_frame": 1172464,
+          "slot": 1,
+          "type": "effect_eof",
+          "valid_frames": 874,
+          "zero_tail_frames": 596
+        }
+      },
+      {
+        "frame": 798,
+        "simulation_seconds": 26.6000000000001,
+        "simulation_clock_seconds": 26.633333333333436,
+        "playback_seconds": 26.6,
+        "event": {
+          "key": "arcane_gather_power",
+          "sample_frame": 1173060,
+          "silence_from_sample_frame": 1174228,
+          "slot": 0,
+          "type": "effect_eof",
+          "valid_frames": 1168,
+          "zero_tail_frames": 302
+        }
+      },
+      {
+        "frame": 801,
+        "simulation_seconds": 26.7000000000001,
+        "simulation_clock_seconds": 26.733333333333434,
+        "playback_seconds": 26.7,
+        "event": {
+          "key": "warning",
+          "sample_frame": 1177470,
+          "silence_from_sample_frame": 1178196,
+          "slot": 5,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 840,
+        "simulation_seconds": 28.0000000000001,
+        "simulation_clock_seconds": 28.033333333333434,
+        "playback_seconds": 28.0,
+        "event": {
+          "key": "arcane_gather",
+          "sample_frame": 1234800,
+          "silence_from_sample_frame": 1235086,
+          "slot": 2,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 847,
+        "simulation_seconds": 28.2000000000001,
+        "simulation_clock_seconds": 28.266666666666765,
+        "playback_seconds": 28.2333333333333,
+        "event": {
+          "key": "arcane_release",
+          "sample_frame": 1245090,
+          "silence_from_sample_frame": 1245376,
+          "slot": 3,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 849,
+        "simulation_seconds": 28.3000000000001,
+        "simulation_clock_seconds": 28.333333333333435,
+        "playback_seconds": 28.3,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 1248030,
+          "silence_from_sample_frame": 1248316,
+          "slot": 4,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 879,
+        "simulation_seconds": 29.3000000000001,
+        "simulation_clock_seconds": 29.333333333333435,
+        "playback_seconds": 29.3,
+        "event": {
+          "key": "warning",
+          "sample_frame": 1292130,
+          "silence_from_sample_frame": 1292856,
+          "slot": 5,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 882,
+        "simulation_seconds": 29.4000000000001,
+        "simulation_clock_seconds": 29.433333333333437,
+        "playback_seconds": 29.4,
+        "event": {
+          "key": "arcane_gather",
+          "sample_frame": 1296540,
+          "silence_from_sample_frame": 1296826,
+          "slot": 0,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 889,
+        "simulation_seconds": 29.6000000000002,
+        "simulation_clock_seconds": 29.666666666666867,
+        "playback_seconds": 29.6333333333333,
+        "event": {
+          "key": "arcane_release",
+          "sample_frame": 1306830,
+          "silence_from_sample_frame": 1307116,
+          "slot": 1,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 891,
+        "simulation_seconds": 29.7000000000002,
+        "simulation_clock_seconds": 29.733333333333533,
+        "playback_seconds": 29.7,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 1309770,
+          "silence_from_sample_frame": 1310056,
+          "slot": 2,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 1275,
+        "simulation_seconds": 42.5000000000003,
+        "simulation_clock_seconds": 42.53333333333363,
+        "playback_seconds": 42.5,
+        "event": {
+          "key": "arcane_gather_power",
+          "sample_frame": 1874250,
+          "silence_from_sample_frame": 1875418,
+          "slot": 3,
+          "type": "effect_eof",
+          "valid_frames": 1168,
+          "zero_tail_frames": 302
+        }
+      },
+      {
+        "frame": 1287,
+        "simulation_seconds": 42.9000000000003,
+        "simulation_clock_seconds": 42.93333333333363,
+        "playback_seconds": 42.9,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 1891890,
+          "silence_from_sample_frame": 1892176,
+          "slot": 5,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 1293,
+        "simulation_seconds": 43.1000000000003,
+        "simulation_clock_seconds": 43.13333333333363,
+        "playback_seconds": 43.1,
+        "event": {
+          "key": "lightning",
+          "sample_frame": 1900710,
+          "silence_from_sample_frame": 1901436,
+          "slot": 4,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 1317,
+        "simulation_seconds": 43.9000000000004,
+        "simulation_clock_seconds": 43.93333333333373,
+        "playback_seconds": 43.9,
+        "event": {
+          "key": "arcane_gather_power",
+          "sample_frame": 1935990,
+          "silence_from_sample_frame": 1937158,
+          "slot": 0,
+          "type": "effect_eof",
+          "valid_frames": 1168,
+          "zero_tail_frames": 302
+        }
+      },
+      {
+        "frame": 1326,
+        "simulation_seconds": 44.2000000000004,
+        "simulation_clock_seconds": 44.23333333333373,
+        "playback_seconds": 44.2,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 1949220,
+          "silence_from_sample_frame": 1949506,
+          "slot": 2,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 1336,
+        "simulation_seconds": 44.5000000000004,
+        "simulation_clock_seconds": 44.56666666666707,
+        "playback_seconds": 44.5333333333333,
+        "event": {
+          "key": "nova",
+          "sample_frame": 1963920,
+          "silence_from_sample_frame": 1964646,
+          "slot": 1,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 1359,
+        "simulation_seconds": 45.3000000000004,
+        "simulation_clock_seconds": 45.333333333333734,
+        "playback_seconds": 45.3,
+        "event": {
+          "key": "arcane_gather",
+          "sample_frame": 1997730,
+          "silence_from_sample_frame": 1998016,
+          "slot": 3,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 1366,
+        "simulation_seconds": 45.5000000000004,
+        "simulation_clock_seconds": 45.56666666666707,
+        "playback_seconds": 45.5333333333333,
+        "event": {
+          "key": "arcane_release",
+          "sample_frame": 2008020,
+          "silence_from_sample_frame": 2008306,
+          "slot": 4,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 1368,
+        "simulation_seconds": 45.6000000000004,
+        "simulation_clock_seconds": 45.63333333333373,
+        "playback_seconds": 45.6,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 2010960,
+          "silence_from_sample_frame": 2011246,
+          "slot": 5,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 1710,
+        "simulation_seconds": 57.0000000000005,
+        "simulation_clock_seconds": 57.03333333333383,
+        "playback_seconds": 57.0,
+        "event": {
+          "key": "arcane_gather_power",
+          "sample_frame": 2513700,
+          "silence_from_sample_frame": 2514868,
+          "slot": 0,
+          "type": "effect_eof",
+          "valid_frames": 1168,
+          "zero_tail_frames": 302
+        }
+      },
+      {
+        "frame": 1719,
+        "simulation_seconds": 57.3000000000005,
+        "simulation_clock_seconds": 57.33333333333383,
+        "playback_seconds": 57.3,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 2526930,
+          "silence_from_sample_frame": 2527216,
+          "slot": 2,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 1729,
+        "simulation_seconds": 57.6000000000005,
+        "simulation_clock_seconds": 57.66666666666717,
+        "playback_seconds": 57.6333333333333,
+        "event": {
+          "key": "nova",
+          "sample_frame": 2541630,
+          "silence_from_sample_frame": 2542356,
+          "slot": 1,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 1752,
+        "simulation_seconds": 58.4000000000006,
+        "simulation_clock_seconds": 58.433333333333934,
+        "playback_seconds": 58.4,
+        "event": {
+          "key": "arcane_gather",
+          "sample_frame": 2575440,
+          "silence_from_sample_frame": 2575726,
+          "slot": 3,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 1759,
+        "simulation_seconds": 58.6000000000006,
+        "simulation_clock_seconds": 58.66666666666727,
+        "playback_seconds": 58.6333333333333,
+        "event": {
+          "key": "arcane_release",
+          "sample_frame": 2585730,
+          "silence_from_sample_frame": 2586016,
+          "slot": 4,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 1761,
+        "simulation_seconds": 58.7000000000006,
+        "simulation_clock_seconds": 58.73333333333393,
+        "playback_seconds": 58.7,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 2588670,
+          "silence_from_sample_frame": 2588956,
+          "slot": 5,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 2049,
+        "simulation_seconds": 68.3000000000004,
+        "simulation_clock_seconds": 68.33333333333373,
+        "playback_seconds": 68.3,
+        "event": {
+          "key": "arcane_gather_power",
+          "sample_frame": 3012030,
+          "silence_from_sample_frame": 3013198,
+          "slot": 0,
+          "type": "effect_eof",
+          "valid_frames": 1168,
+          "zero_tail_frames": 302
+        }
+      },
+      {
+        "frame": 2058,
+        "simulation_seconds": 68.6000000000004,
+        "simulation_clock_seconds": 68.63333333333374,
+        "playback_seconds": 68.6,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 3025260,
+          "silence_from_sample_frame": 3025546,
+          "slot": 2,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 2068,
+        "simulation_seconds": 68.9000000000004,
+        "simulation_clock_seconds": 68.96666666666707,
+        "playback_seconds": 68.9333333333333,
+        "event": {
+          "key": "nova",
+          "sample_frame": 3039960,
+          "silence_from_sample_frame": 3040686,
+          "slot": 1,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 2091,
+        "simulation_seconds": 69.7000000000003,
+        "simulation_clock_seconds": 69.73333333333363,
+        "playback_seconds": 69.7,
+        "event": {
+          "key": "arcane_gather_power",
+          "sample_frame": 3073770,
+          "silence_from_sample_frame": 3074938,
+          "slot": 3,
+          "type": "effect_eof",
+          "valid_frames": 1168,
+          "zero_tail_frames": 302
+        }
+      },
+      {
+        "frame": 2103,
+        "simulation_seconds": 70.1000000000003,
+        "simulation_clock_seconds": 70.13333333333364,
+        "playback_seconds": 70.1,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 3091410,
+          "silence_from_sample_frame": 3091696,
+          "slot": 0,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 2109,
+        "simulation_seconds": 70.3000000000003,
+        "simulation_clock_seconds": 70.33333333333363,
+        "playback_seconds": 70.3,
+        "event": {
+          "key": "lightning",
+          "sample_frame": 3100230,
+          "silence_from_sample_frame": 3100956,
+          "slot": 5,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 2115,
+        "simulation_seconds": 70.5000000000003,
+        "simulation_clock_seconds": 70.53333333333363,
+        "playback_seconds": 70.5,
+        "event": {
+          "key": "warning",
+          "sample_frame": 3109050,
+          "silence_from_sample_frame": 3109776,
+          "slot": 1,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 2117,
+        "simulation_seconds": 70.6000000000003,
+        "simulation_clock_seconds": 70.6000000000003,
+        "playback_seconds": 70.5666666666667,
+        "event": {
+          "key": "step",
+          "sample_frame": 3111990,
+          "silence_from_sample_frame": 3112864,
+          "slot": 2,
+          "type": "effect_eof",
+          "valid_frames": 874,
+          "zero_tail_frames": 596
+        }
+      },
+      {
+        "frame": 2134,
+        "simulation_seconds": 71.1000000000002,
+        "simulation_clock_seconds": 71.16666666666686,
+        "playback_seconds": 71.1333333333333,
+        "event": {
+          "key": "phase_awakened",
+          "sample_frame": 3136980,
+          "silence_from_sample_frame": 3138442,
+          "slot": 4,
+          "type": "effect_eof",
+          "valid_frames": 1462,
+          "zero_tail_frames": 8
+        }
+      },
+      {
+        "frame": 2148,
+        "simulation_seconds": 71.6000000000002,
+        "simulation_clock_seconds": 71.63333333333352,
+        "playback_seconds": 71.6,
+        "event": {
+          "key": "arcane_gather_heavy",
+          "sample_frame": 3157560,
+          "silence_from_sample_frame": 3158286,
+          "slot": 3,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 2160,
+        "simulation_seconds": 72.0000000000002,
+        "simulation_clock_seconds": 72.03333333333353,
+        "playback_seconds": 72.0,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 3175200,
+          "silence_from_sample_frame": 3175486,
+          "slot": 0,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 2172,
+        "simulation_seconds": 72.4000000000002,
+        "simulation_clock_seconds": 72.43333333333354,
+        "playback_seconds": 72.4,
+        "event": {
+          "key": "warning",
+          "sample_frame": 3192840,
+          "silence_from_sample_frame": 3193566,
+          "slot": 1,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 2175,
+        "simulation_seconds": 72.5000000000002,
+        "simulation_clock_seconds": 72.53333333333353,
+        "playback_seconds": 72.5,
+        "event": {
+          "key": "arcane_gather",
+          "sample_frame": 3197250,
+          "silence_from_sample_frame": 3197536,
+          "slot": 2,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 2176,
+        "simulation_seconds": 72.5000000000002,
+        "simulation_clock_seconds": 72.56666666666686,
+        "playback_seconds": 72.5333333333333,
+        "event": {
+          "key": "starfall",
+          "sample_frame": 3198720,
+          "silence_from_sample_frame": 3200182,
+          "slot": 5,
+          "type": "effect_eof",
+          "valid_frames": 1462,
+          "zero_tail_frames": 8
+        }
+      },
+      {
+        "frame": 2182,
+        "simulation_seconds": 72.7000000000001,
+        "simulation_clock_seconds": 72.76666666666677,
+        "playback_seconds": 72.7333333333333,
+        "event": {
+          "key": "arcane_release",
+          "sample_frame": 3207540,
+          "silence_from_sample_frame": 3207826,
+          "slot": 3,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 2184,
+        "simulation_seconds": 72.8000000000001,
+        "simulation_clock_seconds": 72.83333333333343,
+        "playback_seconds": 72.8,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 3210480,
+          "silence_from_sample_frame": 3210766,
+          "slot": 4,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 2205,
+        "simulation_seconds": 73.5000000000001,
+        "simulation_clock_seconds": 73.53333333333343,
+        "playback_seconds": 73.5,
+        "event": {
+          "key": "hurt",
+          "sample_frame": 3241350,
+          "silence_from_sample_frame": 3242076,
+          "slot": 0,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 2206,
+        "simulation_seconds": 73.5000000000001,
+        "simulation_clock_seconds": 73.56666666666676,
+        "playback_seconds": 73.5333333333333,
+        "event": {
+          "key": "ward",
+          "sample_frame": 3242820,
+          "silence_from_sample_frame": 3244282,
+          "slot": 5,
+          "type": "effect_eof",
+          "valid_frames": 1462,
+          "zero_tail_frames": 8
+        }
+      },
+      {
+        "frame": 2217,
+        "simulation_seconds": 73.9000000000001,
+        "simulation_clock_seconds": 73.93333333333344,
+        "playback_seconds": 73.9,
+        "event": {
+          "key": "arcane_gather",
+          "sample_frame": 3258990,
+          "silence_from_sample_frame": 3259276,
+          "slot": 1,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 2224,
+        "simulation_seconds": 74.1000000000001,
+        "simulation_clock_seconds": 74.16666666666676,
+        "playback_seconds": 74.1333333333333,
+        "event": {
+          "key": "arcane_release",
+          "sample_frame": 3269280,
+          "silence_from_sample_frame": 3269566,
+          "slot": 2,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 2226,
+        "simulation_seconds": 74.2000000000001,
+        "simulation_clock_seconds": 74.23333333333343,
+        "playback_seconds": 74.2,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 3272220,
+          "silence_from_sample_frame": 3272506,
+          "slot": 3,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 2259,
+        "simulation_seconds": 75.3,
+        "simulation_clock_seconds": 75.33333333333333,
+        "playback_seconds": 75.3,
+        "event": {
+          "key": "arcane_gather_power",
+          "sample_frame": 3320730,
+          "silence_from_sample_frame": 3321898,
+          "slot": 4,
+          "type": "effect_eof",
+          "valid_frames": 1168,
+          "zero_tail_frames": 302
+        }
+      },
+      {
+        "frame": 2268,
+        "simulation_seconds": 75.6,
+        "simulation_clock_seconds": 75.63333333333333,
+        "playback_seconds": 75.6,
+        "event": {
+          "key": "arcane_contact",
+          "sample_frame": 3333960,
+          "silence_from_sample_frame": 3334246,
+          "slot": 0,
+          "type": "effect_eof",
+          "valid_frames": 286,
+          "zero_tail_frames": 1184
+        }
+      },
+      {
+        "frame": 2278,
+        "simulation_seconds": 75.9,
+        "simulation_clock_seconds": 75.96666666666667,
+        "playback_seconds": 75.9333333333333,
+        "event": {
+          "key": "nova",
+          "sample_frame": 3348660,
+          "silence_from_sample_frame": 3349386,
+          "slot": 5,
+          "type": "effect_eof",
+          "valid_frames": 726,
+          "zero_tail_frames": 744
+        }
+      },
+      {
+        "frame": 2458,
+        "simulation_seconds": 80.1999999999997,
+        "simulation_clock_seconds": 80.1999999999997,
+        "playback_seconds": 81.9333333333333,
+        "event": {
+          "key": "victory",
+          "sample_frame": 3613260,
+          "silence_from_sample_frame": 3614722,
+          "slot": 1,
+          "type": "effect_eof",
+          "valid_frames": 1462,
+          "zero_tail_frames": 8
+        }
+      }
+    ],
+    "accepted_cue_timeline": [
+      {
+        "frame": 2,
+        "simulation_seconds": 0.1,
+        "simulation_clock_seconds": 0.1,
+        "playback_seconds": 0.0666666666666667,
+        "event": {
+          "acceptance_wall_msec": 32007,
+          "key": "arcane_gather_power",
+          "replaced_key": "",
+          "sample_frame": 2940,
+          "slot": 0,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 9,
+        "simulation_seconds": 0.3,
+        "simulation_clock_seconds": 0.33333333333333326,
+        "playback_seconds": 0.3,
+        "event": {
+          "acceptance_wall_msec": 38546,
+          "key": "nova",
+          "replaced_key": "",
+          "sample_frame": 13230,
+          "slot": 1,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 11,
+        "simulation_seconds": 0.4,
+        "simulation_clock_seconds": 0.4,
+        "playback_seconds": 0.366666666666667,
+        "event": {
+          "acceptance_wall_msec": 40075,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 16170,
+          "slot": 2,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 44,
+        "simulation_seconds": 1.5,
+        "simulation_clock_seconds": 1.5,
+        "playback_seconds": 1.46666666666667,
+        "event": {
+          "acceptance_wall_msec": 65632,
+          "key": "arcane_gather",
+          "replaced_key": "",
+          "sample_frame": 64680,
+          "slot": 3,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 51,
+        "simulation_seconds": 1.7,
+        "simulation_clock_seconds": 1.7333333333333332,
+        "playback_seconds": 1.7,
+        "event": {
+          "acceptance_wall_msec": 70195,
+          "key": "arcane_release",
+          "replaced_key": "",
+          "sample_frame": 74970,
+          "slot": 4,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 53,
+        "simulation_seconds": 1.8,
+        "simulation_clock_seconds": 1.8,
+        "playback_seconds": 1.76666666666667,
+        "event": {
+          "acceptance_wall_msec": 71534,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 77910,
+          "slot": 5,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 272,
+        "simulation_seconds": 9.09999999999998,
+        "simulation_clock_seconds": 9.09999999999998,
+        "playback_seconds": 9.06666666666667,
+        "event": {
+          "acceptance_wall_msec": 223821,
+          "key": "arcane_gather_power",
+          "replaced_key": "",
+          "sample_frame": 399840,
+          "slot": 0,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 279,
+        "simulation_seconds": 9.29999999999998,
+        "simulation_clock_seconds": 9.333333333333313,
+        "playback_seconds": 9.3,
+        "event": {
+          "acceptance_wall_msec": 229273,
+          "key": "nova",
+          "replaced_key": "",
+          "sample_frame": 410130,
+          "slot": 1,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 281,
+        "simulation_seconds": 9.39999999999998,
+        "simulation_clock_seconds": 9.39999999999998,
+        "playback_seconds": 9.36666666666667,
+        "event": {
+          "acceptance_wall_msec": 231388,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 413070,
+          "slot": 2,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 299,
+        "simulation_seconds": 9.99999999999998,
+        "simulation_clock_seconds": 9.99999999999998,
+        "playback_seconds": 9.96666666666667,
+        "event": {
+          "acceptance_wall_msec": 244698,
+          "key": "warning",
+          "replaced_key": "",
+          "sample_frame": 439530,
+          "slot": 3,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 311,
+        "simulation_seconds": 10.4,
+        "simulation_clock_seconds": 10.4,
+        "playback_seconds": 10.3666666666667,
+        "event": {
+          "acceptance_wall_msec": 253820,
+          "key": "step",
+          "replaced_key": "",
+          "sample_frame": 457170,
+          "slot": 4,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 320,
+        "simulation_seconds": 10.7,
+        "simulation_clock_seconds": 10.7,
+        "playback_seconds": 10.6666666666667,
+        "event": {
+          "acceptance_wall_msec": 260686,
+          "key": "arcane_gather_heavy",
+          "replaced_key": "",
+          "sample_frame": 470400,
+          "slot": 5,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 347,
+        "simulation_seconds": 11.6,
+        "simulation_clock_seconds": 11.6,
+        "playback_seconds": 11.5666666666667,
+        "event": {
+          "acceptance_wall_msec": 280115,
+          "key": "starfall",
+          "replaced_key": "",
+          "sample_frame": 510090,
+          "slot": 0,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 347,
+        "simulation_seconds": 11.6,
+        "simulation_clock_seconds": 11.6,
+        "playback_seconds": 11.5666666666667,
+        "event": {
+          "acceptance_wall_msec": 280115,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 510090,
+          "slot": 1,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 749,
+        "simulation_seconds": 25.0000000000001,
+        "simulation_clock_seconds": 25.0000000000001,
+        "playback_seconds": 24.9666666666667,
+        "event": {
+          "acceptance_wall_msec": 563104,
+          "key": "arcane_gather_power",
+          "replaced_key": "",
+          "sample_frame": 1101030,
+          "slot": 2,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 756,
+        "simulation_seconds": 25.2000000000001,
+        "simulation_clock_seconds": 25.233333333333434,
+        "playback_seconds": 25.2,
+        "event": {
+          "acceptance_wall_msec": 568254,
+          "key": "nova",
+          "replaced_key": "",
+          "sample_frame": 1111320,
+          "slot": 3,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 758,
+        "simulation_seconds": 25.3000000000001,
+        "simulation_clock_seconds": 25.3000000000001,
+        "playback_seconds": 25.2666666666667,
+        "event": {
+          "acceptance_wall_msec": 569825,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 1114260,
+          "slot": 4,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 785,
+        "simulation_seconds": 26.2000000000001,
+        "simulation_clock_seconds": 26.2000000000001,
+        "playback_seconds": 26.1666666666667,
+        "event": {
+          "acceptance_wall_msec": 589136,
+          "key": "warning",
+          "replaced_key": "",
+          "sample_frame": 1153950,
+          "slot": 5,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 791,
+        "simulation_seconds": 26.4000000000001,
+        "simulation_clock_seconds": 26.4000000000001,
+        "playback_seconds": 26.3666666666667,
+        "event": {
+          "acceptance_wall_msec": 593715,
+          "key": "arcane_gather_power",
+          "replaced_key": "",
+          "sample_frame": 1162770,
+          "slot": 0,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 794,
+        "simulation_seconds": 26.5000000000001,
+        "simulation_clock_seconds": 26.5000000000001,
+        "playback_seconds": 26.4666666666667,
+        "event": {
+          "acceptance_wall_msec": 595662,
+          "key": "step",
+          "replaced_key": "",
+          "sample_frame": 1167180,
+          "slot": 1,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 833,
+        "simulation_seconds": 27.8000000000001,
+        "simulation_clock_seconds": 27.8000000000001,
+        "playback_seconds": 27.7666666666667,
+        "event": {
+          "acceptance_wall_msec": 622283,
+          "key": "arcane_gather",
+          "replaced_key": "",
+          "sample_frame": 1224510,
+          "slot": 2,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 840,
+        "simulation_seconds": 28.0000000000001,
+        "simulation_clock_seconds": 28.033333333333434,
+        "playback_seconds": 28.0,
+        "event": {
+          "acceptance_wall_msec": 627195,
+          "key": "arcane_release",
+          "replaced_key": "",
+          "sample_frame": 1234800,
+          "slot": 3,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 842,
+        "simulation_seconds": 28.1000000000001,
+        "simulation_clock_seconds": 28.1000000000001,
+        "playback_seconds": 28.0666666666667,
+        "event": {
+          "acceptance_wall_msec": 628659,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 1237740,
+          "slot": 4,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 863,
+        "simulation_seconds": 28.8000000000001,
+        "simulation_clock_seconds": 28.8000000000001,
+        "playback_seconds": 28.7666666666667,
+        "event": {
+          "acceptance_wall_msec": 644144,
+          "key": "warning",
+          "replaced_key": "",
+          "sample_frame": 1268610,
+          "slot": 5,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 875,
+        "simulation_seconds": 29.2000000000001,
+        "simulation_clock_seconds": 29.2000000000001,
+        "playback_seconds": 29.1666666666667,
+        "event": {
+          "acceptance_wall_msec": 652528,
+          "key": "arcane_gather",
+          "replaced_key": "",
+          "sample_frame": 1286250,
+          "slot": 0,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 882,
+        "simulation_seconds": 29.4000000000001,
+        "simulation_clock_seconds": 29.433333333333437,
+        "playback_seconds": 29.4,
+        "event": {
+          "acceptance_wall_msec": 657012,
+          "key": "arcane_release",
+          "replaced_key": "",
+          "sample_frame": 1296540,
+          "slot": 1,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 884,
+        "simulation_seconds": 29.5000000000001,
+        "simulation_clock_seconds": 29.5000000000001,
+        "playback_seconds": 29.4666666666667,
+        "event": {
+          "acceptance_wall_msec": 658295,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 1299480,
+          "slot": 2,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 1268,
+        "simulation_seconds": 42.3000000000003,
+        "simulation_clock_seconds": 42.3000000000003,
+        "playback_seconds": 42.2666666666667,
+        "event": {
+          "acceptance_wall_msec": 912861,
+          "key": "arcane_gather_power",
+          "replaced_key": "",
+          "sample_frame": 1863960,
+          "slot": 3,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 1280,
+        "simulation_seconds": 42.7000000000003,
+        "simulation_clock_seconds": 42.7000000000003,
+        "playback_seconds": 42.6666666666667,
+        "event": {
+          "acceptance_wall_msec": 920427,
+          "key": "lightning",
+          "replaced_key": "",
+          "sample_frame": 1881600,
+          "slot": 4,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 1280,
+        "simulation_seconds": 42.7000000000003,
+        "simulation_clock_seconds": 42.7000000000003,
+        "playback_seconds": 42.6666666666667,
+        "event": {
+          "acceptance_wall_msec": 920427,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 1881600,
+          "slot": 5,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 1310,
+        "simulation_seconds": 43.7000000000004,
+        "simulation_clock_seconds": 43.7000000000004,
+        "playback_seconds": 43.6666666666667,
+        "event": {
+          "acceptance_wall_msec": 939305,
+          "key": "arcane_gather_power",
+          "replaced_key": "",
+          "sample_frame": 1925700,
+          "slot": 0,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 1317,
+        "simulation_seconds": 43.9000000000004,
+        "simulation_clock_seconds": 43.93333333333373,
+        "playback_seconds": 43.9,
+        "event": {
+          "acceptance_wall_msec": 943662,
+          "key": "nova",
+          "replaced_key": "",
+          "sample_frame": 1935990,
+          "slot": 1,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 1319,
+        "simulation_seconds": 44.0000000000004,
+        "simulation_clock_seconds": 44.0000000000004,
+        "playback_seconds": 43.9666666666667,
+        "event": {
+          "acceptance_wall_msec": 944895,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 1938930,
+          "slot": 2,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 1352,
+        "simulation_seconds": 45.1000000000004,
+        "simulation_clock_seconds": 45.1000000000004,
+        "playback_seconds": 45.0666666666667,
+        "event": {
+          "acceptance_wall_msec": 965389,
+          "key": "arcane_gather",
+          "replaced_key": "",
+          "sample_frame": 1987440,
+          "slot": 3,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 1359,
+        "simulation_seconds": 45.3000000000004,
+        "simulation_clock_seconds": 45.333333333333734,
+        "playback_seconds": 45.3,
+        "event": {
+          "acceptance_wall_msec": 969718,
+          "key": "arcane_release",
+          "replaced_key": "",
+          "sample_frame": 1997730,
+          "slot": 4,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 1361,
+        "simulation_seconds": 45.4000000000004,
+        "simulation_clock_seconds": 45.4000000000004,
+        "playback_seconds": 45.3666666666667,
+        "event": {
+          "acceptance_wall_msec": 970965,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 2000670,
+          "slot": 5,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 1703,
+        "simulation_seconds": 56.8000000000005,
+        "simulation_clock_seconds": 56.8000000000005,
+        "playback_seconds": 56.7666666666667,
+        "event": {
+          "acceptance_wall_msec": 1197512,
+          "key": "arcane_gather_power",
+          "replaced_key": "",
+          "sample_frame": 2503410,
+          "slot": 0,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 1710,
+        "simulation_seconds": 57.0000000000005,
+        "simulation_clock_seconds": 57.03333333333383,
+        "playback_seconds": 57.0,
+        "event": {
+          "acceptance_wall_msec": 1202719,
+          "key": "nova",
+          "replaced_key": "",
+          "sample_frame": 2513700,
+          "slot": 1,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 1712,
+        "simulation_seconds": 57.1000000000005,
+        "simulation_clock_seconds": 57.1000000000005,
+        "playback_seconds": 57.0666666666667,
+        "event": {
+          "acceptance_wall_msec": 1204235,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 2516640,
+          "slot": 2,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 1745,
+        "simulation_seconds": 58.2000000000006,
+        "simulation_clock_seconds": 58.2000000000006,
+        "playback_seconds": 58.1666666666667,
+        "event": {
+          "acceptance_wall_msec": 1228583,
+          "key": "arcane_gather",
+          "replaced_key": "",
+          "sample_frame": 2565150,
+          "slot": 3,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 1752,
+        "simulation_seconds": 58.4000000000006,
+        "simulation_clock_seconds": 58.433333333333934,
+        "playback_seconds": 58.4,
+        "event": {
+          "acceptance_wall_msec": 1233475,
+          "key": "arcane_release",
+          "replaced_key": "",
+          "sample_frame": 2575440,
+          "slot": 4,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 1754,
+        "simulation_seconds": 58.5000000000006,
+        "simulation_clock_seconds": 58.5000000000006,
+        "playback_seconds": 58.4666666666667,
+        "event": {
+          "acceptance_wall_msec": 1234830,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 2578380,
+          "slot": 5,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2042,
+        "simulation_seconds": 68.1000000000004,
+        "simulation_clock_seconds": 68.1000000000004,
+        "playback_seconds": 68.0666666666667,
+        "event": {
+          "acceptance_wall_msec": 1432839,
+          "key": "arcane_gather_power",
+          "replaced_key": "",
+          "sample_frame": 3001740,
+          "slot": 0,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2049,
+        "simulation_seconds": 68.3000000000004,
+        "simulation_clock_seconds": 68.33333333333373,
+        "playback_seconds": 68.3,
+        "event": {
+          "acceptance_wall_msec": 1437626,
+          "key": "nova",
+          "replaced_key": "",
+          "sample_frame": 3012030,
+          "slot": 1,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2051,
+        "simulation_seconds": 68.4000000000004,
+        "simulation_clock_seconds": 68.4000000000004,
+        "playback_seconds": 68.3666666666667,
+        "event": {
+          "acceptance_wall_msec": 1438967,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 3014970,
+          "slot": 2,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2084,
+        "simulation_seconds": 69.5000000000003,
+        "simulation_clock_seconds": 69.5000000000003,
+        "playback_seconds": 69.4666666666667,
+        "event": {
+          "acceptance_wall_msec": 1460776,
+          "key": "arcane_gather_power",
+          "replaced_key": "",
+          "sample_frame": 3063480,
+          "slot": 3,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2096,
+        "simulation_seconds": 69.9000000000003,
+        "simulation_clock_seconds": 69.9000000000003,
+        "playback_seconds": 69.8666666666667,
+        "event": {
+          "acceptance_wall_msec": 1468612,
+          "key": "phase_awakened",
+          "replaced_key": "",
+          "sample_frame": 3081120,
+          "slot": 4,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2096,
+        "simulation_seconds": 69.9000000000003,
+        "simulation_clock_seconds": 69.9000000000003,
+        "playback_seconds": 69.8666666666667,
+        "event": {
+          "acceptance_wall_msec": 1468612,
+          "key": "lightning",
+          "replaced_key": "",
+          "sample_frame": 3081120,
+          "slot": 5,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2096,
+        "simulation_seconds": 69.9000000000003,
+        "simulation_clock_seconds": 69.9000000000003,
+        "playback_seconds": 69.8666666666667,
+        "event": {
+          "acceptance_wall_msec": 1468612,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 3081120,
+          "slot": 0,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2099,
+        "simulation_seconds": 70.0000000000003,
+        "simulation_clock_seconds": 70.0000000000003,
+        "playback_seconds": 69.9666666666667,
+        "event": {
+          "acceptance_wall_msec": 1470506,
+          "key": "warning",
+          "replaced_key": "",
+          "sample_frame": 3085530,
+          "slot": 1,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2114,
+        "simulation_seconds": 70.5000000000003,
+        "simulation_clock_seconds": 70.5000000000003,
+        "playback_seconds": 70.4666666666667,
+        "event": {
+          "acceptance_wall_msec": 1480036,
+          "key": "step",
+          "replaced_key": "",
+          "sample_frame": 3107580,
+          "slot": 2,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2126,
+        "simulation_seconds": 70.9000000000002,
+        "simulation_clock_seconds": 70.9000000000002,
+        "playback_seconds": 70.8666666666667,
+        "event": {
+          "acceptance_wall_msec": 1487950,
+          "key": "arcane_gather_heavy",
+          "replaced_key": "",
+          "sample_frame": 3125220,
+          "slot": 3,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2153,
+        "simulation_seconds": 71.8000000000002,
+        "simulation_clock_seconds": 71.8000000000002,
+        "playback_seconds": 71.7666666666667,
+        "event": {
+          "acceptance_wall_msec": 1506111,
+          "key": "phase_desperate",
+          "replaced_key": "",
+          "sample_frame": 3164910,
+          "slot": 4,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2153,
+        "simulation_seconds": 71.8000000000002,
+        "simulation_clock_seconds": 71.8000000000002,
+        "playback_seconds": 71.7666666666667,
+        "event": {
+          "acceptance_wall_msec": 1506111,
+          "key": "starfall",
+          "replaced_key": "",
+          "sample_frame": 3164910,
+          "slot": 5,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2153,
+        "simulation_seconds": 71.8000000000002,
+        "simulation_clock_seconds": 71.8000000000002,
+        "playback_seconds": 71.7666666666667,
+        "event": {
+          "acceptance_wall_msec": 1506111,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 3164910,
+          "slot": 0,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2156,
+        "simulation_seconds": 71.9000000000002,
+        "simulation_clock_seconds": 71.9000000000002,
+        "playback_seconds": 71.8666666666667,
+        "event": {
+          "acceptance_wall_msec": 1508056,
+          "key": "warning",
+          "replaced_key": "",
+          "sample_frame": 3169320,
+          "slot": 1,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2168,
+        "simulation_seconds": 72.3000000000002,
+        "simulation_clock_seconds": 72.3000000000002,
+        "playback_seconds": 72.2666666666667,
+        "event": {
+          "acceptance_wall_msec": 1515907,
+          "key": "arcane_gather",
+          "replaced_key": "",
+          "sample_frame": 3186960,
+          "slot": 2,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2175,
+        "simulation_seconds": 72.5000000000002,
+        "simulation_clock_seconds": 72.53333333333353,
+        "playback_seconds": 72.5,
+        "event": {
+          "acceptance_wall_msec": 1520479,
+          "key": "arcane_release",
+          "replaced_key": "",
+          "sample_frame": 3197250,
+          "slot": 3,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2177,
+        "simulation_seconds": 72.6000000000002,
+        "simulation_clock_seconds": 72.6000000000002,
+        "playback_seconds": 72.5666666666667,
+        "event": {
+          "acceptance_wall_msec": 1521718,
+          "key": "arcane_contact",
+          "replaced_key": "phase_desperate",
+          "sample_frame": 3200190,
+          "slot": 4,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2198,
+        "simulation_seconds": 73.3000000000001,
+        "simulation_clock_seconds": 73.3000000000001,
+        "playback_seconds": 73.2666666666667,
+        "event": {
+          "acceptance_wall_msec": 1535088,
+          "key": "ward",
+          "replaced_key": "",
+          "sample_frame": 3231060,
+          "slot": 5,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2198,
+        "simulation_seconds": 73.3000000000001,
+        "simulation_clock_seconds": 73.3000000000001,
+        "playback_seconds": 73.2666666666667,
+        "event": {
+          "acceptance_wall_msec": 1535094,
+          "key": "hurt",
+          "replaced_key": "",
+          "sample_frame": 3231060,
+          "slot": 0,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2210,
+        "simulation_seconds": 73.7000000000001,
+        "simulation_clock_seconds": 73.7000000000001,
+        "playback_seconds": 73.6666666666667,
+        "event": {
+          "acceptance_wall_msec": 1542683,
+          "key": "arcane_gather",
+          "replaced_key": "",
+          "sample_frame": 3248700,
+          "slot": 1,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2217,
+        "simulation_seconds": 73.9000000000001,
+        "simulation_clock_seconds": 73.93333333333344,
+        "playback_seconds": 73.9,
+        "event": {
+          "acceptance_wall_msec": 1546861,
+          "key": "arcane_release",
+          "replaced_key": "",
+          "sample_frame": 3258990,
+          "slot": 2,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2219,
+        "simulation_seconds": 74.0000000000001,
+        "simulation_clock_seconds": 74.0000000000001,
+        "playback_seconds": 73.9666666666667,
+        "event": {
+          "acceptance_wall_msec": 1548111,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 3261930,
+          "slot": 3,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2252,
+        "simulation_seconds": 75.1,
+        "simulation_clock_seconds": 75.1,
+        "playback_seconds": 75.0666666666667,
+        "event": {
+          "acceptance_wall_msec": 1568736,
+          "key": "arcane_gather_power",
+          "replaced_key": "",
+          "sample_frame": 3310440,
+          "slot": 4,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2259,
+        "simulation_seconds": 75.3,
+        "simulation_clock_seconds": 75.33333333333333,
+        "playback_seconds": 75.3,
+        "event": {
+          "acceptance_wall_msec": 1573186,
+          "key": "nova",
+          "replaced_key": "",
+          "sample_frame": 3320730,
+          "slot": 5,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2261,
+        "simulation_seconds": 75.4,
+        "simulation_clock_seconds": 75.4,
+        "playback_seconds": 75.3666666666667,
+        "event": {
+          "acceptance_wall_msec": 1574445,
+          "key": "arcane_contact",
+          "replaced_key": "",
+          "sample_frame": 3323670,
+          "slot": 0,
+          "type": "cue"
+        }
+      },
+      {
+        "frame": 2405,
+        "simulation_seconds": 80.1999999999997,
+        "simulation_clock_seconds": 80.1999999999997,
+        "playback_seconds": 80.1666666666667,
+        "event": {
+          "acceptance_wall_msec": 1666932,
+          "key": "victory",
+          "replaced_key": "",
+          "sample_frame": 3535350,
+          "slot": 1,
+          "type": "cue"
+        }
+      }
+    ],
+    "scope": "Native AudioStreamPlayback fixed-step stereo float PCM from actual accepted AudioDirector slots, streams and gain/suspend state; no physical audio loopback.",
+    "cue_clock_scope": "Observe the ordinary director's accepted cues; its existing 80 ms duplicate check uses wall time. Each accepted cue begins at its recorded fixed-step sample boundary."
+  },
+  "source_commit_audit": {
+    "status": "matched",
+    "claimed_source_commit": "ad4d50bb9dbdc07cea42e2306a79fc65bb642489",
+    "matching_files": 168,
+    "compared_files": 168,
+    "disclosed_overlay_allowlist": [],
+    "differences": [],
+    "unallowed_differences": 0,
+    "scope": "SHA256 of exact Git blob bytes versus the immutable capture receipt; allowed instrumentation differences remain explicitly listed."
+  },
+  "source_input_sha256_before": {
+    "Main.tscn": "e2c97bd36e4f81713f36208f513abc7cef049282dd8861b721a5b5217d2df56b",
+    "assets/models/arcanist.glb": "2d20d4f79f650383e0370c00c0debf628dad0926509cb79bccff622a8797b749",
+    "assets/models/bone_arch.glb": "2cca35fb9cf63a75078e2ce8e7aad1fa68d7d5c905d2a8a82ba73ebf6dd2c6b6",
+    "assets/models/broken_pillar.glb": "280ef66c2414030851d42daff0f9846461d8991b39bdbba6ccf6909424ec231a",
+    "assets/models/bulwark.glb": "ff786ffdbf7778baf360e0f8e0f5f5ee33bb9381fdb8426b8ec6cdc15808fcd7",
+    "assets/models/carved_tomb.glb": "691e24da8cdf054401740929636c04afbc5b05a30aacf4f7b0d6946963e0e047",
+    "assets/models/ceremonial_brazier.glb": "de35c9f917ec4b33cedfc8efe49de993cb674a6f8da854a8b842e519534b1979",
+    "assets/models/classes055/ANIMATION2-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/classes055/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/classes055/README.md": "6afbbba7113f93e000ae22aa16d201b5c0af49e1fe34ace923337509bffafbb3",
+    "assets/models/classes055/ranger-native65.glb": "606ec05719144a9bdcfed9283b14117248b00bba65ba1c940d63b555e055363c",
+    "assets/models/classes055/ranger-native65.json": "69b3ee90313564e24c48c8b65f04ab0f08b4da13a064faa99af79a16a6baa80b",
+    "assets/models/drowned_library.glb": "f0cb0c3005c6aff9370760294870b4a0d8aba11d2a2eb8b26876b08eb0d9b0ba",
+    "assets/models/elite.glb": "7b141bbda58a091cb93e25a33a8d747e63a6aaedc82897fe42699cb64914e31d",
+    "assets/models/environment/LICENSE-SOURCE.txt": "734f51678748685f4c3a7e0215a8c31078b29d168d00ee09b99da74b70f8e460",
+    "assets/models/environment/README.md": "5887746bb4783034b6f4a31f703f12e1248ff9f59281fc2abd3b1f7e09909841",
+    "assets/models/environment/archive_bay.glb": "e82bb2c42c24f35d4764b1b87d0aafcd99b74fdf84bf8b741326062e19ab9e5f",
+    "assets/models/environment/archive_bay_broken.glb": "82935fd751a35b3bd1c20e136eab564a8450aa204b7d08bbae1c1698eb961479",
+    "assets/models/environment/archive_end.glb": "beae16988dae51f5b08bbfeda89d77721bdf86829632c4d92b1f51bf229d1421",
+    "assets/models/environment/archive_return.glb": "82a9011de1af7db800bb19635daacd82258b67855c9a26d343885ad024bc3864",
+    "assets/models/environment/archive_solid.glb": "938ae77771a5a0546dd5a180c1772db580d01ba0cd0562ad3b069cf9956c387f",
+    "assets/models/environment/citadel_bay.glb": "7222cab9685ce9db3509acc0fcc52d44ade9f059c8e3557c073285f601c8baa4",
+    "assets/models/environment/citadel_bay_broken.glb": "e6da4e15770bcb4b0e0e8730363f6fd6adf6bb720be1c01214b75b629b109a86",
+    "assets/models/environment/citadel_end.glb": "346079c39da6623e40d558d042e14b6239ada04858356c45329b3245c8ae57ab",
+    "assets/models/environment/citadel_return.glb": "5caf6c72e90262bf704f39e77727a1fabac2f1e8d7a6e45cb04c81b2c57e373e",
+    "assets/models/environment/citadel_solid.glb": "c6e6f002d3fc263b7a531d20cf54db5a20354b775e7baf02bc46af116335b334",
+    "assets/models/environment/manifest.json": "cb6614ec30663d90fe496d3b4fb7021363db0f1b255d1a60634367f81feb4dd5",
+    "assets/models/environment/ossuary_bay.glb": "b091b4b91cf01508de2486ef3b211fdadc4745fd52f53948ec86c5738b59b19a",
+    "assets/models/environment/ossuary_bay_broken.glb": "372a8b993fa239a8b63add20ca89817ba47286b2eafb164cbd86096047dafe4b",
+    "assets/models/environment/ossuary_end.glb": "2ced27ec37cab75c45901ed586446710747f0165660d1587f2738fcedfd49224",
+    "assets/models/environment/ossuary_return.glb": "dd0c7e7483d8bf6525fcfacefa90fd53b1c4424ea5cd9ce6d33a8e68970658f1",
+    "assets/models/environment/ossuary_solid.glb": "6571a7b8a66f3d468ba2e19abe4aa95268627c97f07ad8224c4d65786bc416af",
+    "assets/models/environment/spire_bay.glb": "90c5bd64f62ef94ffefd182a2e09d6a7b77d7cf050ecfdb5a9eaf2a4dce7837f",
+    "assets/models/environment/spire_bay_broken.glb": "43a378cc206a540c31a152ed66f074139463b14c70f8753216933393345f06ff",
+    "assets/models/environment/spire_end.glb": "5e726668d4dc0b241d2e860aa7813a1249da4108bc732314ba90d285cfcaa60e",
+    "assets/models/environment/spire_return.glb": "a16efb4941fb2cb4651ea04ded7466e2a745075aac21de031552e8de31fe3621",
+    "assets/models/environment/spire_solid.glb": "d45c918d7e607babfbb258d79024469caed0a045700faeb6a19691e58b73d186",
+    "assets/models/expedition_table.glb": "7709ec4ff594917c45cb31fb0ab76b6f4ca92cbde20a3c4c2b11460c95bb1320",
+    "assets/models/field_forge.glb": "59c30f79d5c3af7cc62f322295404678df499acde4050a41365d5ea98a6f15ff",
+    "assets/models/furnace.glb": "38468753c8d06f8018be4a92f7c5bc76d037acb89ff310d13b25355e441a846a",
+    "assets/models/furnace_throne.glb": "fec7da39352509db0727de72947f65b6ca6921af4ea9446f54b4a993bdd75d75",
+    "assets/models/gothic_arch.glb": "5d260b7a40aa91d1227878790f6fa30b8259d77fb2f900c7e91b141e540d4b3d",
+    "assets/models/guardian_0.glb": "7de00eef14fe8d0fae29b6e970246bca11c12a3bf06e994d2ef76982d58896ee",
+    "assets/models/guardian_1.glb": "1daa250cc71f41b8247546ad26ae71b42d09a4810efe776a2680961269b183af",
+    "assets/models/guardian_2.glb": "d4bb78e8232e072b29aa86150d79dcbae0072d9d2fa58f9513b5cdac9576d150",
+    "assets/models/guardian_3.glb": "a2c8758fd2746d009acd1daeb433988781c1959391c39bccc7e5e4cd5bce590e",
+    "assets/models/hanging_bell.glb": "5422935a955881704ad8da6d5a4445792e2ecc2c3106a73b19197d7959cdcb0f",
+    "assets/models/hexer.glb": "c48900e153631c55625dcfabf9f372e8c9cc228c84b5b35a256694a2d1769d9c",
+    "assets/models/leaded_lancet.glb": "bf4dcbb0959853d53adbdf32c9f979fa17759ad542695951c745c914b5bb3e4c",
+    "assets/models/nyra052/ANIMATION-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/nyra052/BASE-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/nyra052/MANUFACTURER-OUTFIT-README.txt": "2f87579c277cde1e1ddbd4b8d823bed618728781cb6597b4dee3978c589ff5c4",
+    "assets/models/nyra052/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/nyra052/README.md": "80cd7f90cbd14e9b2331e00d4bdefd4ed64eeff3f4afebdd73c1b84c3268163e",
+    "assets/models/nyra052/arcanist.glb": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "assets/models/nyra052/assembly-report.json": "0010a84fdf4170fc15167f4da38d5771d3bf7b90b99caed8186eed21d8dbe4c7",
+    "assets/models/nyra052/death-grounding.json": "f69e8b6b62387fc4743cbbfb3ab4d4e06581ec4442bf203e49f238ef0a2b6435",
+    "assets/models/nyra052/staff-grip053.glb": "98bd5832256f9a2fdbb68198d1dbf0d2db0b87c9c4d9d28b136cdfe54db0f11c",
+    "assets/models/nyra052/staff-grip053.json": "fa80f22d398ee8d8947a2be4e6b8c8bb64a7d71a1b41b3489171257ea35735dc",
+    "assets/models/nyra054/QUATERNIUS-CC0-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/nyra054/README.md": "e07de588afae90929fb65e5e933fccfc5f916457187fb2afa9910e818a568c45",
+    "assets/models/nyra054/nyra-attire054.glb": "8a96a9bac63a934213ddea77020d1b50dfd57e5270842ada69355925a5e906f1",
+    "assets/models/nyra054/nyra-attire054.json": "9a9c0e980173aa1da03081b97b61c34a9ae2a4ca3469ba79a9df0cf1a4ec63a5",
+    "assets/models/pilgrim_well.glb": "3982edea5472d0280f5cc20be14e8963041aebeeed7940fe09c19e963d93f471",
+    "assets/models/pillar.glb": "e764c2643e8cc91cb06e763413933f5ec61e2141438d8f5afc10054d9247805c",
+    "assets/models/props049/LICENSE-SOURCE.txt": "7660e115fb599237c993ffe69d0abe88152db3ab6a5273118c7538e9b21678c3",
+    "assets/models/props049/README.md": "0d1d8c584163adecb0d5081d938b8ac90b372f748c012cdbad926f8d257ff422",
+    "assets/models/props049/archive_reliquary.glb": "c34e9953d6cd4473cd3151bbe831cbf410e22b77024b1a0c4de62b9a6b7f93f1",
+    "assets/models/props049/citadel_reliquary.glb": "0ccde9aa297ee2294b48b134b6cab5846e048d4ccfdedac022bc3f6a259cfb8d",
+    "assets/models/props049/manifest.json": "fc97b4834472c929fc92ca42716b53d60ad2ef7dee78ad7e0280c6dad33af355",
+    "assets/models/props049/ossuary_reliquary.glb": "a59dfdbfc8570c6792bc07b4d6536c09945d3911844da3ce08ac7ec7cf5a99d4",
+    "assets/models/props049/spire_reliquary.glb": "7c1ba0bf29ae2d4fdd1c9eee014687ea5beff5a26f7e52222417a5ea469e00e2",
+    "assets/models/raider.glb": "3279fd8ed48228e55dbf406f362e82aa59b0b9e6ada2214446de4f22e6159d4e",
+    "assets/models/ranger.glb": "4124fc68843557c82a081ea16bddb379a87ebaa55893e9b899eb19cb22ab0f33",
+    "assets/models/reliquary_altar.glb": "b717c36ca847242c5faa4e15e3bcc1e9a560a3927ce7e62bd19d793bb0598cfe",
+    "assets/models/ruined_vault.glb": "3b2f8400c5887dc50f7c1100f9218c7d56796222cd7f9a12f8e303356a9b5e27",
+    "assets/models/sanctuary_intarsia.glb": "ebc30c10957645239ea734d518f7e46d4e74492bcfe697e4a24f69cc1a376ec2",
+    "assets/models/seal_shrine.glb": "0d8d584c32dba088b6cee34b3ec5a72939dc219739a7be63ba9c180f362598ff",
+    "assets/models/vowkeeper.glb": "aa65795d2770b6738db553a170db1bf8445a3e2820f62db35133b023a65e8d0b",
+    "assets/shaders/aged_stone.gdshader": "81a6675a552598a4735072a0e713ae17494e6603db0e93b5f216d863b1e48041",
+    "assets/shaders/camp_matte.gdshader": "543c89236729d0596031f60144efac898ed596196b383949596b353b7240f338",
+    "assets/shaders/camp_paving.gdshader": "fb4d21ce1f2aade7f3fdd1962130aed60490712105eb2b78119371e0f3c8e7c7",
+    "assets/shaders/character_surface.gdshader": "d57b02bdbe94cc590b624829fd3489126c18d3163e5551a65931041d0056102d",
+    "assets/shaders/combat_telegraph.gdshader": "d9a535479922ec3bf1699f0fee93e738e0a62acafd9716dee4685f7e27493866",
+    "assets/shaders/crafted_surface.gdshader": "fabbfddacac14fd5b243c189da50601374ebb462ca2d493aa93660b359b7a99b",
+    "assets/shaders/crypt_mist.gdshader": "4d7523594f8499015b843e9b5c122bcbf90357a1b6796f620b418501d458a728",
+    "assets/shaders/dungeon_atmosphere.gdshader": "b99a857627f57e4a68d7b56e18c42f39cee5b4b058fef3eaa82679f6d6211ca3",
+    "assets/shaders/dungeon_court.gdshader": "9b621f1d77ed363979dc4d2b6d9b75160c5488d422b93493a54040aedf450bcc",
+    "assets/shaders/dungeon_water.gdshader": "3beefed1c6f9e8fd557eba31d3a826d033475d5af25b34e9295b6753adcf2e9b",
+    "assets/shaders/ember_flame.gdshader": "90ceceebe9b628e347b8b191e60f587be490784c8f230aeabf58aa8f660c8d0e",
+    "assets/shaders/environment_basin.gdshader": "d3b3d42bbc5eed526317cafee7ce22be0b93879c7542374c68e56dffddf46fbf",
+    "assets/shaders/forged_surface.gdshader": "08a29ecba1e8185c4060a3f94978e686cff85ace623b23afa3fabca422f842c6",
+    "assets/shaders/ground_grime.gdshader": "cfdf0f549359c652c1affff94ea5bb2029aec3f12f5e9a81bde3ba3f90a058c8",
+    "assets/shaders/magic_volume.gdshader": "8203ade68c3e85a3f02da2ab22ac1771179a8aa1eeab6166a6acc37cc9d6c82c",
+    "assets/shaders/masonry_surface.gdshader": "d73e6e2cd3fcc94ecaaf8899afafcfb3f42301162df985e5054b212173165b13",
+    "assets/shaders/painted_actor.gdshader": "6a26a281e7c2018bc51180275230380ca842aeb264a08d3eec5f372b4f9f4f65",
+    "assets/shaders/painted_stone.gdshader": "6bfa423bf4b4dceee12bffce2964d955a42e6eca0464fca104c070fd22945eef",
+    "assets/shaders/region_matte.gdshader": "d3977211bc2e5a96d894a23d9d803789a3779152b1a8c7f6237b12b5ca2fff4a",
+    "assets/shaders/ruin_deposit.gdshader": "aeacef77c5a3165038c0ab4c647a97afd31cfc649495e69e517497f9ada1d513",
+    "assets/shaders/ruin_floor.gdshader": "15053ba4b3a41f03f79110ccdf0f610f5da8e04b9ffb6280eec5c7e1e9a72f3b",
+    "assets/shaders/sanctuary_beam.gdshader": "dace078f60919fc5e396d44e7cbd7c842c0f6734bf2417d38e2052d0532014ff",
+    "assets/shaders/sanctuary_glass.gdshader": "7e5eddfb48c07d23008852e0f08b1083271673193aebc1ed03d25c319c79060a",
+    "assets/shaders/veil_gate.gdshader": "41ed87f890fa53e214914abe57b2959157d212d1d1882abc5b8ac7e49319068b",
+    "assets/shaders/ward_surface.gdshader": "5a42adf6e77e88142c5fab64bf07a412226368f96adff302f2ba7a15d2524480",
+    "assets/shaders/weathered_stone.gdshader": "a05dd8129d9b51b95d944c3af2766494bab25c75336f3d13573a6febb805fed9",
+    "project.godot": "06443ae1339db92383984483104457c9b085bd80a8772d0b3ce9b923a9c906f1",
+    "scripts/audio_director.gd": "3c1519b5a1b8c2c222cb94804f70da20ef6f9d9a17a1aea7856ba883b1f73c5a",
+    "scripts/authored_architecture.gd": "e68d8d835cafe1f3b0e24e46060a5ce4add3d9cf9ddeef5e5bce4a934529d899",
+    "scripts/authored_characters.gd": "530d0f0a3c5b84eb4dcd40f60f3fadaa9be89d1bee4c8201f1420d3d2d9247d8",
+    "scripts/battle_art.gd": "7d54a95db37801ee603e4aa5be5cde221cba908e23884edd134b0cf46aa74830",
+    "scripts/boss_patterns.gd": "8a808f6fc59ae0619b19488d2fe4753f0f19ea6b6d0dc31bf98dbd58be87d4bb",
+    "scripts/camp_scene.gd": "30ede3a1073e9605bcf1308096adf01005ac83e16da554c0437d9768686f52ff",
+    "scripts/character_animation.gd": "0a462dc83fa4cb8d7643e8e46bfacd88be6c093e2982acf24a532dcf23c76237",
+    "scripts/character_rig.gd": "dae43c6e1a23a2abfa0c19a9990b8783083f7055ccd15638ce6b3007c05bc483",
+    "scripts/class_avatar_pose.gd": "55c67da5f08f91f3e8861fb6a58b6f19b31e0950657fe391ff274300be26350d",
+    "scripts/class_avatar_rig.gd": "2a19ade9e2f8edf88cd81775ca92329098511c558ce96a8e9e52bb57c2f3f104",
+    "scripts/class_avatar_style.gd": "aef464e19ac01dab4d309e467c941df820ce7d47e07a1115a37f23de4936a166",
+    "scripts/class_loot.gd": "a8d593dc6af163e92298ad8fc627e5004b43646ea99c674c601c119c106e4b76",
+    "scripts/class_relics.gd": "18c540965b7e4f80a0e45ad7d01dfe28d376702d1f3d53b9775b85f9972821e9",
+    "scripts/class_skills.gd": "25e37394f53126478b955108f9d604505e83a8c7fff7e50ef446b34407f06898",
+    "scripts/cloud_save.gd": "50b796e146d93404031828592ce4de5a836b54e48e40ab0241466be2715fea23",
+    "scripts/combat_health_bar.gd": "86cf42d3009ce34ca94059a61d654b09c2b2435b8820c23ce73d50be83726f75",
+    "scripts/combat_readout.gd": "8c3563909c6100ccb034cef1c61589a218e71bf4d9b36424de2de5e68e466a55",
+    "scripts/combat_stances.gd": "d3f7d2a7d16574681ef40bd2bf763595bef7fb3532dbb2cd3c753ddee2855371",
+    "scripts/dungeon_actor.gd": "3350420dc738a66cafdccd7991252bad78e460291361de1cab72af463a978fa8",
+    "scripts/dungeon_layout.gd": "fd66656086e248dd8c42d345351e2a1e22f58ddc6cef4dbfea177d5b70332df7",
+    "scripts/dungeon_lighting.gd": "e95f87d848542a7dd30d690fc9ed9809e26fe78beda64ec3d780a48f8f02654c",
+    "scripts/dungeon_theme.gd": "c57a00e2d2a03afce82ad2dd46f34a104394493662a22f18d44888623586a00a",
+    "scripts/dungeon_world.gd": "cbbc77c35498685ba032c3c9f1c4233e68d749cbfd80b0e8cbcfd134e62fdd81",
+    "scripts/expedition_contract.gd": "05db36bebc7e0231b977ca0b0f33b2cd4967683913479fcfc3a6c2fc86adf837",
+    "scripts/expedition_map.gd": "f2f5febcddc6bb6d06f746c4b803a797b8d8386af8b4ee3ec66cc3caf034a9bf",
+    "scripts/expedition_simulation.gd": "ed4cabb75e65486aa277632ad2d25700bfca4d60e79b7e7fc0a28bbffe6c649b",
+    "scripts/farm_forecast.gd": "a1506505e3da2195d58026ef59fba30a8fe0aaa130cd5de5647fbf5802a8b083",
+    "scripts/fellowship_service.gd": "c8f33d6bf1cb39cd82ac8d2551132e7851e1906b92f699dd7e7dffd2a411601b",
+    "scripts/frame_metrics.gd": "20e0aa3a71a218957dbee8161e4706cebeffdee49d35bb86bc6dedddafb7555d",
+    "scripts/game_preferences.gd": "a7179eea97cb59cb689bdda398a7b8cc712a1cff3296a52533b2000341027cbf",
+    "scripts/gear_advisor.gd": "6dea2eae02252c95fd57b73711e2ae86bf4bf26f5a304f4149d29110cdde2e24",
+    "scripts/hero_art.gd": "ce7a6c4ef5cb52ce870440d0b0494264c4f4091c57608b063eee19a1c0acfcdd",
+    "scripts/hostile_style.gd": "5c63582259c0031559a3ae65fcd9724d8c4962e90c7290dd5da46efa6f0f8020",
+    "scripts/main.gd": "805ad431d458de242e97edc835d3e2a8df6b4b4aa6087fda77e2651cd5aca216",
+    "scripts/mobile_safe_area.gd": "6fc90d1a94100fdde4b8ab06928b92a729069394ce7d80b172bfe733e7e75df3",
+    "scripts/native_equipment_finish.gd": "8d760c59b8257b5c14b43ea4cf883a8baf5320b36e03cb62998a2b66bfd95704",
+    "scripts/oath_combat_rules.gd": "c0b5f85c487237963cdff96b5f2002f03eac65c17dbda483c3393a402c4fd1b2",
+    "scripts/offline_farm.gd": "ee3930fffd691813a7094e1f820cf9e1b0a3d2bd08d0e7a896b2817640844548",
+    "scripts/painted_action_craft.gd": "495f16b7bf9c4a27e31913ac5580856f7f49e0a85d811f0a4aadb17bcdd82c28",
+    "scripts/painted_motion_layers.gd": "4d1cd31ef3b926044fd5a89e72efa5435b385e7601cfbec6918fc6a3d4688282",
+    "scripts/painted_motion_rig.gd": "d8e177331ddfdd0630b8ada2f9558f9895d23342455f65eb3aa4cb9ca22a4138",
+    "scripts/playtest_notes.gd": "9c3a611afdbf524ff2271892985d7c6bc1afdd70ae5fd0ad73db4ea0c734ac44",
+    "scripts/progression_service.gd": "0c3e7387579a3d90077cd1042595ed939487b7cd3524e5b92869e4f4e7f841f4",
+    "scripts/regional_sets.gd": "32236ab325cab5d7ab11dd5b45dfca25cc4b56cd7d5b6dbb3986f3f96bfcbb22",
+    "scripts/regional_stage.gd": "c68d128bed523b771bdde459cf12db91bdde665a5af27d0cc0581ad0f4a61669",
+    "scripts/release_info.gd": "b8723513c5434fae9b587cec073d0dd20d7ba77f99cfe5ebe8d162cd1d2bd3ce",
+    "scripts/render_budget.gd": "99a1f816371991937dabf4cc5830d9cc90990f20214736da218f4921899ac09b",
+    "scripts/room_ground.gd": "2a4b3b1ef37064d0932aed30feb7eddf362a3030b6ba52bfb8ca39702c8a0c93",
+    "scripts/ruin_architecture.gd": "3a77f958110aacaa9c19fb6a8184fe117fa2c793222a1fd17a91dff4639d60a7",
+    "scripts/save_store.gd": "97f5c641866ba935a3467495531008da7459665798867f7c22c11db4121aabfa",
+    "scripts/sculpted_mesh.gd": "57df0f7444b2bd930031069efc7d83edb20750f058f628f7535e7d1a0dc283a1",
+    "scripts/settings_panel.gd": "6d3d5cf798a442893eaeca9494305faebd0fe4a3c5dcf8a8b986bc6a019fe9b5",
+    "scripts/skill_glyph.gd": "0df2f5cdd5ae234ef593ad42f57266c292dddd95da7be3f1b3f1b73064f8d7be",
+    "scripts/source_avatar_combat.gd": "5ded4db5bd00f574d57212aff5b23a6974c61076cc049c11214f20bfac650a48",
+    "scripts/source_avatar_rig.gd": "cd45c34b5c9d2ec82df99390f7eec566fdb93e80b199f691806d3dc7e1e31a1c",
+    "scripts/source_avatar_style.gd": "54ae9ef1b1d12d8379d106797141302be873b58717ab223fb499333f330c6ccc",
+    "scripts/ui_glyph.gd": "e24e98966ab6050a5dcac576a05096c41f8fe6ad671e74253263a9cbc439d406",
+    "tests/arcanist_quality_gameplay_preview.gd": "caa01332459af3eb3e75a7e1e3f728476cf033e5f37dc85b7e5cff8cebcb5af9",
+    "tests/arcanist_quality_gameplay_preview.tscn": "50c6bb5b1508d0662c09348a38f7fbf373145dc23def11d8fa0bb57639aa7023",
+    "tests/attack_gameplay_preview.gd": "12333afd1d7694b13939e48ac67c095f6f832d4eb959d5ef74bf230988748fdc",
+    "tests/native_capture_audio.gd": "f0649e8143a1445e90cbe2c8f13d8626becaf72d408e1a146b1fc93b44faa7d5",
+    "tools/capture_arcanist_quality.py": "86ba3c014061ea6f6da59be808a8d21636b0c9ef1759553bab2310a459e4caa3"
+  },
+  "source_input_sha256_after": {
+    "Main.tscn": "e2c97bd36e4f81713f36208f513abc7cef049282dd8861b721a5b5217d2df56b",
+    "assets/models/arcanist.glb": "2d20d4f79f650383e0370c00c0debf628dad0926509cb79bccff622a8797b749",
+    "assets/models/bone_arch.glb": "2cca35fb9cf63a75078e2ce8e7aad1fa68d7d5c905d2a8a82ba73ebf6dd2c6b6",
+    "assets/models/broken_pillar.glb": "280ef66c2414030851d42daff0f9846461d8991b39bdbba6ccf6909424ec231a",
+    "assets/models/bulwark.glb": "ff786ffdbf7778baf360e0f8e0f5f5ee33bb9381fdb8426b8ec6cdc15808fcd7",
+    "assets/models/carved_tomb.glb": "691e24da8cdf054401740929636c04afbc5b05a30aacf4f7b0d6946963e0e047",
+    "assets/models/ceremonial_brazier.glb": "de35c9f917ec4b33cedfc8efe49de993cb674a6f8da854a8b842e519534b1979",
+    "assets/models/classes055/ANIMATION2-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/classes055/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/classes055/README.md": "6afbbba7113f93e000ae22aa16d201b5c0af49e1fe34ace923337509bffafbb3",
+    "assets/models/classes055/ranger-native65.glb": "606ec05719144a9bdcfed9283b14117248b00bba65ba1c940d63b555e055363c",
+    "assets/models/classes055/ranger-native65.json": "69b3ee90313564e24c48c8b65f04ab0f08b4da13a064faa99af79a16a6baa80b",
+    "assets/models/drowned_library.glb": "f0cb0c3005c6aff9370760294870b4a0d8aba11d2a2eb8b26876b08eb0d9b0ba",
+    "assets/models/elite.glb": "7b141bbda58a091cb93e25a33a8d747e63a6aaedc82897fe42699cb64914e31d",
+    "assets/models/environment/LICENSE-SOURCE.txt": "734f51678748685f4c3a7e0215a8c31078b29d168d00ee09b99da74b70f8e460",
+    "assets/models/environment/README.md": "5887746bb4783034b6f4a31f703f12e1248ff9f59281fc2abd3b1f7e09909841",
+    "assets/models/environment/archive_bay.glb": "e82bb2c42c24f35d4764b1b87d0aafcd99b74fdf84bf8b741326062e19ab9e5f",
+    "assets/models/environment/archive_bay_broken.glb": "82935fd751a35b3bd1c20e136eab564a8450aa204b7d08bbae1c1698eb961479",
+    "assets/models/environment/archive_end.glb": "beae16988dae51f5b08bbfeda89d77721bdf86829632c4d92b1f51bf229d1421",
+    "assets/models/environment/archive_return.glb": "82a9011de1af7db800bb19635daacd82258b67855c9a26d343885ad024bc3864",
+    "assets/models/environment/archive_solid.glb": "938ae77771a5a0546dd5a180c1772db580d01ba0cd0562ad3b069cf9956c387f",
+    "assets/models/environment/citadel_bay.glb": "7222cab9685ce9db3509acc0fcc52d44ade9f059c8e3557c073285f601c8baa4",
+    "assets/models/environment/citadel_bay_broken.glb": "e6da4e15770bcb4b0e0e8730363f6fd6adf6bb720be1c01214b75b629b109a86",
+    "assets/models/environment/citadel_end.glb": "346079c39da6623e40d558d042e14b6239ada04858356c45329b3245c8ae57ab",
+    "assets/models/environment/citadel_return.glb": "5caf6c72e90262bf704f39e77727a1fabac2f1e8d7a6e45cb04c81b2c57e373e",
+    "assets/models/environment/citadel_solid.glb": "c6e6f002d3fc263b7a531d20cf54db5a20354b775e7baf02bc46af116335b334",
+    "assets/models/environment/manifest.json": "cb6614ec30663d90fe496d3b4fb7021363db0f1b255d1a60634367f81feb4dd5",
+    "assets/models/environment/ossuary_bay.glb": "b091b4b91cf01508de2486ef3b211fdadc4745fd52f53948ec86c5738b59b19a",
+    "assets/models/environment/ossuary_bay_broken.glb": "372a8b993fa239a8b63add20ca89817ba47286b2eafb164cbd86096047dafe4b",
+    "assets/models/environment/ossuary_end.glb": "2ced27ec37cab75c45901ed586446710747f0165660d1587f2738fcedfd49224",
+    "assets/models/environment/ossuary_return.glb": "dd0c7e7483d8bf6525fcfacefa90fd53b1c4424ea5cd9ce6d33a8e68970658f1",
+    "assets/models/environment/ossuary_solid.glb": "6571a7b8a66f3d468ba2e19abe4aa95268627c97f07ad8224c4d65786bc416af",
+    "assets/models/environment/spire_bay.glb": "90c5bd64f62ef94ffefd182a2e09d6a7b77d7cf050ecfdb5a9eaf2a4dce7837f",
+    "assets/models/environment/spire_bay_broken.glb": "43a378cc206a540c31a152ed66f074139463b14c70f8753216933393345f06ff",
+    "assets/models/environment/spire_end.glb": "5e726668d4dc0b241d2e860aa7813a1249da4108bc732314ba90d285cfcaa60e",
+    "assets/models/environment/spire_return.glb": "a16efb4941fb2cb4651ea04ded7466e2a745075aac21de031552e8de31fe3621",
+    "assets/models/environment/spire_solid.glb": "d45c918d7e607babfbb258d79024469caed0a045700faeb6a19691e58b73d186",
+    "assets/models/expedition_table.glb": "7709ec4ff594917c45cb31fb0ab76b6f4ca92cbde20a3c4c2b11460c95bb1320",
+    "assets/models/field_forge.glb": "59c30f79d5c3af7cc62f322295404678df499acde4050a41365d5ea98a6f15ff",
+    "assets/models/furnace.glb": "38468753c8d06f8018be4a92f7c5bc76d037acb89ff310d13b25355e441a846a",
+    "assets/models/furnace_throne.glb": "fec7da39352509db0727de72947f65b6ca6921af4ea9446f54b4a993bdd75d75",
+    "assets/models/gothic_arch.glb": "5d260b7a40aa91d1227878790f6fa30b8259d77fb2f900c7e91b141e540d4b3d",
+    "assets/models/guardian_0.glb": "7de00eef14fe8d0fae29b6e970246bca11c12a3bf06e994d2ef76982d58896ee",
+    "assets/models/guardian_1.glb": "1daa250cc71f41b8247546ad26ae71b42d09a4810efe776a2680961269b183af",
+    "assets/models/guardian_2.glb": "d4bb78e8232e072b29aa86150d79dcbae0072d9d2fa58f9513b5cdac9576d150",
+    "assets/models/guardian_3.glb": "a2c8758fd2746d009acd1daeb433988781c1959391c39bccc7e5e4cd5bce590e",
+    "assets/models/hanging_bell.glb": "5422935a955881704ad8da6d5a4445792e2ecc2c3106a73b19197d7959cdcb0f",
+    "assets/models/hexer.glb": "c48900e153631c55625dcfabf9f372e8c9cc228c84b5b35a256694a2d1769d9c",
+    "assets/models/leaded_lancet.glb": "bf4dcbb0959853d53adbdf32c9f979fa17759ad542695951c745c914b5bb3e4c",
+    "assets/models/nyra052/ANIMATION-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/nyra052/BASE-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/nyra052/MANUFACTURER-OUTFIT-README.txt": "2f87579c277cde1e1ddbd4b8d823bed618728781cb6597b4dee3978c589ff5c4",
+    "assets/models/nyra052/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/nyra052/README.md": "80cd7f90cbd14e9b2331e00d4bdefd4ed64eeff3f4afebdd73c1b84c3268163e",
+    "assets/models/nyra052/arcanist.glb": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "assets/models/nyra052/assembly-report.json": "0010a84fdf4170fc15167f4da38d5771d3bf7b90b99caed8186eed21d8dbe4c7",
+    "assets/models/nyra052/death-grounding.json": "f69e8b6b62387fc4743cbbfb3ab4d4e06581ec4442bf203e49f238ef0a2b6435",
+    "assets/models/nyra052/staff-grip053.glb": "98bd5832256f9a2fdbb68198d1dbf0d2db0b87c9c4d9d28b136cdfe54db0f11c",
+    "assets/models/nyra052/staff-grip053.json": "fa80f22d398ee8d8947a2be4e6b8c8bb64a7d71a1b41b3489171257ea35735dc",
+    "assets/models/nyra054/QUATERNIUS-CC0-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/nyra054/README.md": "e07de588afae90929fb65e5e933fccfc5f916457187fb2afa9910e818a568c45",
+    "assets/models/nyra054/nyra-attire054.glb": "8a96a9bac63a934213ddea77020d1b50dfd57e5270842ada69355925a5e906f1",
+    "assets/models/nyra054/nyra-attire054.json": "9a9c0e980173aa1da03081b97b61c34a9ae2a4ca3469ba79a9df0cf1a4ec63a5",
+    "assets/models/pilgrim_well.glb": "3982edea5472d0280f5cc20be14e8963041aebeeed7940fe09c19e963d93f471",
+    "assets/models/pillar.glb": "e764c2643e8cc91cb06e763413933f5ec61e2141438d8f5afc10054d9247805c",
+    "assets/models/props049/LICENSE-SOURCE.txt": "7660e115fb599237c993ffe69d0abe88152db3ab6a5273118c7538e9b21678c3",
+    "assets/models/props049/README.md": "0d1d8c584163adecb0d5081d938b8ac90b372f748c012cdbad926f8d257ff422",
+    "assets/models/props049/archive_reliquary.glb": "c34e9953d6cd4473cd3151bbe831cbf410e22b77024b1a0c4de62b9a6b7f93f1",
+    "assets/models/props049/citadel_reliquary.glb": "0ccde9aa297ee2294b48b134b6cab5846e048d4ccfdedac022bc3f6a259cfb8d",
+    "assets/models/props049/manifest.json": "fc97b4834472c929fc92ca42716b53d60ad2ef7dee78ad7e0280c6dad33af355",
+    "assets/models/props049/ossuary_reliquary.glb": "a59dfdbfc8570c6792bc07b4d6536c09945d3911844da3ce08ac7ec7cf5a99d4",
+    "assets/models/props049/spire_reliquary.glb": "7c1ba0bf29ae2d4fdd1c9eee014687ea5beff5a26f7e52222417a5ea469e00e2",
+    "assets/models/raider.glb": "3279fd8ed48228e55dbf406f362e82aa59b0b9e6ada2214446de4f22e6159d4e",
+    "assets/models/ranger.glb": "4124fc68843557c82a081ea16bddb379a87ebaa55893e9b899eb19cb22ab0f33",
+    "assets/models/reliquary_altar.glb": "b717c36ca847242c5faa4e15e3bcc1e9a560a3927ce7e62bd19d793bb0598cfe",
+    "assets/models/ruined_vault.glb": "3b2f8400c5887dc50f7c1100f9218c7d56796222cd7f9a12f8e303356a9b5e27",
+    "assets/models/sanctuary_intarsia.glb": "ebc30c10957645239ea734d518f7e46d4e74492bcfe697e4a24f69cc1a376ec2",
+    "assets/models/seal_shrine.glb": "0d8d584c32dba088b6cee34b3ec5a72939dc219739a7be63ba9c180f362598ff",
+    "assets/models/vowkeeper.glb": "aa65795d2770b6738db553a170db1bf8445a3e2820f62db35133b023a65e8d0b",
+    "assets/shaders/aged_stone.gdshader": "81a6675a552598a4735072a0e713ae17494e6603db0e93b5f216d863b1e48041",
+    "assets/shaders/camp_matte.gdshader": "543c89236729d0596031f60144efac898ed596196b383949596b353b7240f338",
+    "assets/shaders/camp_paving.gdshader": "fb4d21ce1f2aade7f3fdd1962130aed60490712105eb2b78119371e0f3c8e7c7",
+    "assets/shaders/character_surface.gdshader": "d57b02bdbe94cc590b624829fd3489126c18d3163e5551a65931041d0056102d",
+    "assets/shaders/combat_telegraph.gdshader": "d9a535479922ec3bf1699f0fee93e738e0a62acafd9716dee4685f7e27493866",
+    "assets/shaders/crafted_surface.gdshader": "fabbfddacac14fd5b243c189da50601374ebb462ca2d493aa93660b359b7a99b",
+    "assets/shaders/crypt_mist.gdshader": "4d7523594f8499015b843e9b5c122bcbf90357a1b6796f620b418501d458a728",
+    "assets/shaders/dungeon_atmosphere.gdshader": "b99a857627f57e4a68d7b56e18c42f39cee5b4b058fef3eaa82679f6d6211ca3",
+    "assets/shaders/dungeon_court.gdshader": "9b621f1d77ed363979dc4d2b6d9b75160c5488d422b93493a54040aedf450bcc",
+    "assets/shaders/dungeon_water.gdshader": "3beefed1c6f9e8fd557eba31d3a826d033475d5af25b34e9295b6753adcf2e9b",
+    "assets/shaders/ember_flame.gdshader": "90ceceebe9b628e347b8b191e60f587be490784c8f230aeabf58aa8f660c8d0e",
+    "assets/shaders/environment_basin.gdshader": "d3b3d42bbc5eed526317cafee7ce22be0b93879c7542374c68e56dffddf46fbf",
+    "assets/shaders/forged_surface.gdshader": "08a29ecba1e8185c4060a3f94978e686cff85ace623b23afa3fabca422f842c6",
+    "assets/shaders/ground_grime.gdshader": "cfdf0f549359c652c1affff94ea5bb2029aec3f12f5e9a81bde3ba3f90a058c8",
+    "assets/shaders/magic_volume.gdshader": "8203ade68c3e85a3f02da2ab22ac1771179a8aa1eeab6166a6acc37cc9d6c82c",
+    "assets/shaders/masonry_surface.gdshader": "d73e6e2cd3fcc94ecaaf8899afafcfb3f42301162df985e5054b212173165b13",
+    "assets/shaders/painted_actor.gdshader": "6a26a281e7c2018bc51180275230380ca842aeb264a08d3eec5f372b4f9f4f65",
+    "assets/shaders/painted_stone.gdshader": "6bfa423bf4b4dceee12bffce2964d955a42e6eca0464fca104c070fd22945eef",
+    "assets/shaders/region_matte.gdshader": "d3977211bc2e5a96d894a23d9d803789a3779152b1a8c7f6237b12b5ca2fff4a",
+    "assets/shaders/ruin_deposit.gdshader": "aeacef77c5a3165038c0ab4c647a97afd31cfc649495e69e517497f9ada1d513",
+    "assets/shaders/ruin_floor.gdshader": "15053ba4b3a41f03f79110ccdf0f610f5da8e04b9ffb6280eec5c7e1e9a72f3b",
+    "assets/shaders/sanctuary_beam.gdshader": "dace078f60919fc5e396d44e7cbd7c842c0f6734bf2417d38e2052d0532014ff",
+    "assets/shaders/sanctuary_glass.gdshader": "7e5eddfb48c07d23008852e0f08b1083271673193aebc1ed03d25c319c79060a",
+    "assets/shaders/veil_gate.gdshader": "41ed87f890fa53e214914abe57b2959157d212d1d1882abc5b8ac7e49319068b",
+    "assets/shaders/ward_surface.gdshader": "5a42adf6e77e88142c5fab64bf07a412226368f96adff302f2ba7a15d2524480",
+    "assets/shaders/weathered_stone.gdshader": "a05dd8129d9b51b95d944c3af2766494bab25c75336f3d13573a6febb805fed9",
+    "project.godot": "06443ae1339db92383984483104457c9b085bd80a8772d0b3ce9b923a9c906f1",
+    "scripts/audio_director.gd": "3c1519b5a1b8c2c222cb94804f70da20ef6f9d9a17a1aea7856ba883b1f73c5a",
+    "scripts/authored_architecture.gd": "e68d8d835cafe1f3b0e24e46060a5ce4add3d9cf9ddeef5e5bce4a934529d899",
+    "scripts/authored_characters.gd": "530d0f0a3c5b84eb4dcd40f60f3fadaa9be89d1bee4c8201f1420d3d2d9247d8",
+    "scripts/battle_art.gd": "7d54a95db37801ee603e4aa5be5cde221cba908e23884edd134b0cf46aa74830",
+    "scripts/boss_patterns.gd": "8a808f6fc59ae0619b19488d2fe4753f0f19ea6b6d0dc31bf98dbd58be87d4bb",
+    "scripts/camp_scene.gd": "30ede3a1073e9605bcf1308096adf01005ac83e16da554c0437d9768686f52ff",
+    "scripts/character_animation.gd": "0a462dc83fa4cb8d7643e8e46bfacd88be6c093e2982acf24a532dcf23c76237",
+    "scripts/character_rig.gd": "dae43c6e1a23a2abfa0c19a9990b8783083f7055ccd15638ce6b3007c05bc483",
+    "scripts/class_avatar_pose.gd": "55c67da5f08f91f3e8861fb6a58b6f19b31e0950657fe391ff274300be26350d",
+    "scripts/class_avatar_rig.gd": "2a19ade9e2f8edf88cd81775ca92329098511c558ce96a8e9e52bb57c2f3f104",
+    "scripts/class_avatar_style.gd": "aef464e19ac01dab4d309e467c941df820ce7d47e07a1115a37f23de4936a166",
+    "scripts/class_loot.gd": "a8d593dc6af163e92298ad8fc627e5004b43646ea99c674c601c119c106e4b76",
+    "scripts/class_relics.gd": "18c540965b7e4f80a0e45ad7d01dfe28d376702d1f3d53b9775b85f9972821e9",
+    "scripts/class_skills.gd": "25e37394f53126478b955108f9d604505e83a8c7fff7e50ef446b34407f06898",
+    "scripts/cloud_save.gd": "50b796e146d93404031828592ce4de5a836b54e48e40ab0241466be2715fea23",
+    "scripts/combat_health_bar.gd": "86cf42d3009ce34ca94059a61d654b09c2b2435b8820c23ce73d50be83726f75",
+    "scripts/combat_readout.gd": "8c3563909c6100ccb034cef1c61589a218e71bf4d9b36424de2de5e68e466a55",
+    "scripts/combat_stances.gd": "d3f7d2a7d16574681ef40bd2bf763595bef7fb3532dbb2cd3c753ddee2855371",
+    "scripts/dungeon_actor.gd": "3350420dc738a66cafdccd7991252bad78e460291361de1cab72af463a978fa8",
+    "scripts/dungeon_layout.gd": "fd66656086e248dd8c42d345351e2a1e22f58ddc6cef4dbfea177d5b70332df7",
+    "scripts/dungeon_lighting.gd": "e95f87d848542a7dd30d690fc9ed9809e26fe78beda64ec3d780a48f8f02654c",
+    "scripts/dungeon_theme.gd": "c57a00e2d2a03afce82ad2dd46f34a104394493662a22f18d44888623586a00a",
+    "scripts/dungeon_world.gd": "cbbc77c35498685ba032c3c9f1c4233e68d749cbfd80b0e8cbcfd134e62fdd81",
+    "scripts/expedition_contract.gd": "05db36bebc7e0231b977ca0b0f33b2cd4967683913479fcfc3a6c2fc86adf837",
+    "scripts/expedition_map.gd": "f2f5febcddc6bb6d06f746c4b803a797b8d8386af8b4ee3ec66cc3caf034a9bf",
+    "scripts/expedition_simulation.gd": "ed4cabb75e65486aa277632ad2d25700bfca4d60e79b7e7fc0a28bbffe6c649b",
+    "scripts/farm_forecast.gd": "a1506505e3da2195d58026ef59fba30a8fe0aaa130cd5de5647fbf5802a8b083",
+    "scripts/fellowship_service.gd": "c8f33d6bf1cb39cd82ac8d2551132e7851e1906b92f699dd7e7dffd2a411601b",
+    "scripts/frame_metrics.gd": "20e0aa3a71a218957dbee8161e4706cebeffdee49d35bb86bc6dedddafb7555d",
+    "scripts/game_preferences.gd": "a7179eea97cb59cb689bdda398a7b8cc712a1cff3296a52533b2000341027cbf",
+    "scripts/gear_advisor.gd": "6dea2eae02252c95fd57b73711e2ae86bf4bf26f5a304f4149d29110cdde2e24",
+    "scripts/hero_art.gd": "ce7a6c4ef5cb52ce870440d0b0494264c4f4091c57608b063eee19a1c0acfcdd",
+    "scripts/hostile_style.gd": "5c63582259c0031559a3ae65fcd9724d8c4962e90c7290dd5da46efa6f0f8020",
+    "scripts/main.gd": "805ad431d458de242e97edc835d3e2a8df6b4b4aa6087fda77e2651cd5aca216",
+    "scripts/mobile_safe_area.gd": "6fc90d1a94100fdde4b8ab06928b92a729069394ce7d80b172bfe733e7e75df3",
+    "scripts/native_equipment_finish.gd": "8d760c59b8257b5c14b43ea4cf883a8baf5320b36e03cb62998a2b66bfd95704",
+    "scripts/oath_combat_rules.gd": "c0b5f85c487237963cdff96b5f2002f03eac65c17dbda483c3393a402c4fd1b2",
+    "scripts/offline_farm.gd": "ee3930fffd691813a7094e1f820cf9e1b0a3d2bd08d0e7a896b2817640844548",
+    "scripts/painted_action_craft.gd": "495f16b7bf9c4a27e31913ac5580856f7f49e0a85d811f0a4aadb17bcdd82c28",
+    "scripts/painted_motion_layers.gd": "4d1cd31ef3b926044fd5a89e72efa5435b385e7601cfbec6918fc6a3d4688282",
+    "scripts/painted_motion_rig.gd": "d8e177331ddfdd0630b8ada2f9558f9895d23342455f65eb3aa4cb9ca22a4138",
+    "scripts/playtest_notes.gd": "9c3a611afdbf524ff2271892985d7c6bc1afdd70ae5fd0ad73db4ea0c734ac44",
+    "scripts/progression_service.gd": "0c3e7387579a3d90077cd1042595ed939487b7cd3524e5b92869e4f4e7f841f4",
+    "scripts/regional_sets.gd": "32236ab325cab5d7ab11dd5b45dfca25cc4b56cd7d5b6dbb3986f3f96bfcbb22",
+    "scripts/regional_stage.gd": "c68d128bed523b771bdde459cf12db91bdde665a5af27d0cc0581ad0f4a61669",
+    "scripts/release_info.gd": "b8723513c5434fae9b587cec073d0dd20d7ba77f99cfe5ebe8d162cd1d2bd3ce",
+    "scripts/render_budget.gd": "99a1f816371991937dabf4cc5830d9cc90990f20214736da218f4921899ac09b",
+    "scripts/room_ground.gd": "2a4b3b1ef37064d0932aed30feb7eddf362a3030b6ba52bfb8ca39702c8a0c93",
+    "scripts/ruin_architecture.gd": "3a77f958110aacaa9c19fb6a8184fe117fa2c793222a1fd17a91dff4639d60a7",
+    "scripts/save_store.gd": "97f5c641866ba935a3467495531008da7459665798867f7c22c11db4121aabfa",
+    "scripts/sculpted_mesh.gd": "57df0f7444b2bd930031069efc7d83edb20750f058f628f7535e7d1a0dc283a1",
+    "scripts/settings_panel.gd": "6d3d5cf798a442893eaeca9494305faebd0fe4a3c5dcf8a8b986bc6a019fe9b5",
+    "scripts/skill_glyph.gd": "0df2f5cdd5ae234ef593ad42f57266c292dddd95da7be3f1b3f1b73064f8d7be",
+    "scripts/source_avatar_combat.gd": "5ded4db5bd00f574d57212aff5b23a6974c61076cc049c11214f20bfac650a48",
+    "scripts/source_avatar_rig.gd": "cd45c34b5c9d2ec82df99390f7eec566fdb93e80b199f691806d3dc7e1e31a1c",
+    "scripts/source_avatar_style.gd": "54ae9ef1b1d12d8379d106797141302be873b58717ab223fb499333f330c6ccc",
+    "scripts/ui_glyph.gd": "e24e98966ab6050a5dcac576a05096c41f8fe6ad671e74253263a9cbc439d406",
+    "tests/arcanist_quality_gameplay_preview.gd": "caa01332459af3eb3e75a7e1e3f728476cf033e5f37dc85b7e5cff8cebcb5af9",
+    "tests/arcanist_quality_gameplay_preview.tscn": "50c6bb5b1508d0662c09348a38f7fbf373145dc23def11d8fa0bb57639aa7023",
+    "tests/attack_gameplay_preview.gd": "12333afd1d7694b13939e48ac67c095f6f832d4eb959d5ef74bf230988748fdc",
+    "tests/native_capture_audio.gd": "f0649e8143a1445e90cbe2c8f13d8626becaf72d408e1a146b1fc93b44faa7d5",
+    "tools/capture_arcanist_quality.py": "86ba3c014061ea6f6da59be808a8d21636b0c9ef1759553bab2310a459e4caa3"
+  },
+  "limitations": [
+    "Counts and conservative bounds do not certify visual acceptance or pixel occlusion.",
+    "Fixed-step PCM uses native decoders, not hardware audio loopback or real-time callback recording.",
+    "Capture wall time includes rendering/readback/PNG/transport and is not game FPS.",
+    "Source differences allowed as instrumentation overlays are disclosed, never silently treated as original baseline code."
+  ],
+  "comparison_to_previous": {
+    "setup_equal": {
+      "world_seed": true,
+      "run_seed": true,
+      "initial_stats": true,
+      "selected_skill_loadout": true
+    },
+    "authoritative_frame_trace_identical": true,
+    "before_recording": {
+      "status": "complete",
+      "frames": 2496,
+      "fps": 30,
+      "playback_seconds": 83.2,
+      "simulation_seconds": 80.1999999999997,
+      "advancing_frames": 2406,
+      "ending_settle_frames": 90,
+      "chronology_verified": true,
+      "source_inputs_unchanged": true,
+      "selected_original_pngs_verified": [
+        "selected-frames/frame-00000.png",
+        "selected-frames/frame-00002.png",
+        "selected-frames/frame-00009.png",
+        "selected-frames/frame-00044.png",
+        "selected-frames/frame-00051.png",
+        "selected-frames/frame-00300.png",
+        "selected-frames/frame-00320.png",
+        "selected-frames/frame-00347.png",
+        "selected-frames/frame-00600.png",
+        "selected-frames/frame-00791.png",
+        "selected-frames/frame-00900.png",
+        "selected-frames/frame-01200.png",
+        "selected-frames/frame-01280.png",
+        "selected-frames/frame-01500.png",
+        "selected-frames/frame-01800.png",
+        "selected-frames/frame-02039.png",
+        "selected-frames/frame-02096.png",
+        "selected-frames/frame-02099.png",
+        "selected-frames/frame-02100.png",
+        "selected-frames/frame-02153.png",
+        "selected-frames/frame-02400.png",
+        "selected-frames/frame-02405.png"
+      ],
+      "mp4_sha256": "a7377a8c9b55d9c242d85e4942bf125a73f23bed42d6a724611950325565a16b",
+      "frame_log_sha256": "1d944402c3fb71fc9d3e5876ae7de2195cd904cd91596c97d4f882e2fb26bbe2",
+      "decoded_video": {
+        "width": 1200,
+        "height": 536,
+        "r_frame_rate": "30/1",
+        "duration": "83.200000",
+        "nb_read_frames": "2496"
+      },
+      "full_decode_reported_by_launcher": true,
+      "physical_device_performance": false,
+      "engine": {
+        "build": "official",
+        "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+        "hex": 263938,
+        "major": 4,
+        "minor": 7,
+        "patch": 2,
+        "status": "stable",
+        "string": "4.7.2-stable (official)",
+        "timestamp": 0
+      },
+      "renderer": "gl_compatibility",
+      "video_adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+      "viewport": [
+        1200,
+        536
+      ]
+    },
+    "after_recording": {
+      "status": "complete",
+      "frames": 2496,
+      "fps": 30,
+      "playback_seconds": 83.2,
+      "simulation_seconds": 80.1999999999997,
+      "advancing_frames": 2406,
+      "ending_settle_frames": 90,
+      "chronology_verified": true,
+      "source_inputs_unchanged": true,
+      "selected_original_pngs_verified": [
+        "selected-frames/frame-00000.png",
+        "selected-frames/frame-00002.png",
+        "selected-frames/frame-00009.png",
+        "selected-frames/frame-00044.png",
+        "selected-frames/frame-00051.png",
+        "selected-frames/frame-00300.png",
+        "selected-frames/frame-00320.png",
+        "selected-frames/frame-00347.png",
+        "selected-frames/frame-00600.png",
+        "selected-frames/frame-00791.png",
+        "selected-frames/frame-00900.png",
+        "selected-frames/frame-01200.png",
+        "selected-frames/frame-01280.png",
+        "selected-frames/frame-01500.png",
+        "selected-frames/frame-01800.png",
+        "selected-frames/frame-02039.png",
+        "selected-frames/frame-02096.png",
+        "selected-frames/frame-02099.png",
+        "selected-frames/frame-02100.png",
+        "selected-frames/frame-02153.png",
+        "selected-frames/frame-02400.png",
+        "selected-frames/frame-02405.png"
+      ],
+      "mp4_sha256": "4e3af95ae6bf92a27398cdbd6e6d6f39c45f6297515cd8f076b5492121fffa4e",
+      "frame_log_sha256": "7827333decafbb893be0eca815cbcde73d24ca0b09f13fe57be025a0b87fac39",
+      "decoded_video": {
+        "width": 1200,
+        "height": 536,
+        "r_frame_rate": "30/1",
+        "duration": "83.200000",
+        "nb_read_frames": "2496"
+      },
+      "full_decode_reported_by_launcher": true,
+      "physical_device_performance": false,
+      "engine": {
+        "build": "official",
+        "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+        "hex": 263938,
+        "major": 4,
+        "minor": 7,
+        "patch": 2,
+        "status": "stable",
+        "string": "4.7.2-stable (official)",
+        "timestamp": 0
+      },
+      "renderer": "gl_compatibility",
+      "video_adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+      "viewport": [
+        1200,
+        536
+      ]
+    },
+    "before_outcome": {
+      "complete": true,
+      "won": true,
+      "simulation_finished": true,
+      "final_hero_hp": 357,
+      "minimum_recorded_hero_hp": 357,
+      "initial_maximum_hp": 380,
+      "first_finished": {
+        "frame": 2405,
+        "simulation_seconds": 80.1999999999997,
+        "simulation_clock_seconds": 80.1999999999997,
+        "playback_seconds": 80.1666666666667
+      },
+      "result_ui_reached": true,
+      "first_result_ui": {
+        "frame": 2405,
+        "simulation_seconds": 80.1999999999997,
+        "simulation_clock_seconds": 80.1999999999997,
+        "playback_seconds": 80.1666666666667
+      },
+      "result_ui_frames": 91,
+      "last_frame": {
+        "frame": 2495,
+        "simulation_seconds": 80.1999999999997,
+        "simulation_clock_seconds": 80.1999999999997,
+        "playback_seconds": 83.1666666666667
+      },
+      "scope": "Logged outcome and page state; actual result-image appearance requires inspection."
+    },
+    "after_outcome": {
+      "complete": true,
+      "won": true,
+      "simulation_finished": true,
+      "final_hero_hp": 357,
+      "minimum_recorded_hero_hp": 357,
+      "initial_maximum_hp": 380,
+      "first_finished": {
+        "frame": 2405,
+        "simulation_seconds": 80.1999999999997,
+        "simulation_clock_seconds": 80.1999999999997,
+        "playback_seconds": 80.1666666666667
+      },
+      "result_ui_reached": true,
+      "first_result_ui": {
+        "frame": 2405,
+        "simulation_seconds": 80.1999999999997,
+        "simulation_clock_seconds": 80.1999999999997,
+        "playback_seconds": 80.1666666666667
+      },
+      "result_ui_frames": 91,
+      "last_frame": {
+        "frame": 2495,
+        "simulation_seconds": 80.1999999999997,
+        "simulation_clock_seconds": 80.1999999999997,
+        "playback_seconds": 83.1666666666667
+      },
+      "scope": "Logged outcome and page state; actual result-image appearance requires inspection."
+    },
+    "before_cast_counts": {
+      "commits": 19,
+      "released": 18,
+      "cancelled_before_release": 1,
+      "orphan_releases": 0,
+      "unresolved": 0,
+      "by_style": {
+        "signature": 7,
+        "basic": 7,
+        "starfall": 2,
+        "chain": 3
+      }
+    },
+    "after_cast_counts": {
+      "commits": 19,
+      "released": 18,
+      "cancelled_before_release": 1,
+      "orphan_releases": 0,
+      "unresolved": 0,
+      "by_style": {
+        "signature": 7,
+        "basic": 7,
+        "starfall": 2,
+        "chain": 3
+      }
+    },
+    "before_guardian_camera": {
+      "camera_records": 225,
+      "consecutive_transform_changes": 60,
+      "longest_exact_constant_run_frames": 108,
+      "maximum_consecutive_origin_delta_m": 0.752261137890545,
+      "maximum_consecutive_basis_component_delta": 0.001802295446395985,
+      "terminal_exact_static_tail": {
+        "first": {
+          "frame": 2156,
+          "simulation_seconds": 71.9000000000002,
+          "simulation_clock_seconds": 71.9000000000002,
+          "playback_seconds": 71.8666666666667
+        },
+        "last": {
+          "frame": 2263,
+          "simulation_seconds": 75.4,
+          "simulation_clock_seconds": 75.46666666666667,
+          "playback_seconds": 75.4333333333333
+        },
+        "frames": 108,
+        "camera": {
+          "basis": [
+            [
+              0.860291600227356,
+              0.0,
+              -0.509802401065826
+            ],
+            [
+              -0.240947261452675,
+              0.881261646747589,
+              -0.406598538160324
+            ],
+            [
+              0.449269264936447,
+              0.472628772258759,
+              0.758141934871674
+            ]
+          ],
+          "origin": [
+            12.5480175018311,
+            15.0359039306641,
+            -47.7488822937012
+          ]
+        },
+        "event_counts": {
+          "warning": 1,
+          "hero_attack": 3,
+          "hero_release": 3,
+          "hit": 3,
+          "ward": 1,
+          "hero_hit": 1,
+          "impact": 1,
+          "nova": 1
+        },
+        "frames_with_guardian_warning": 42
+      },
+      "scope": "Exact logged camera transforms during combat; room-entry settling may move. No rendered-pixel or visual-quality inference."
+    },
+    "after_guardian_camera": {
+      "camera_records": 225,
+      "consecutive_transform_changes": 60,
+      "longest_exact_constant_run_frames": 108,
+      "maximum_consecutive_origin_delta_m": 0.752261137890545,
+      "maximum_consecutive_basis_component_delta": 0.001802295446395985,
+      "terminal_exact_static_tail": {
+        "first": {
+          "frame": 2156,
+          "simulation_seconds": 71.9000000000002,
+          "simulation_clock_seconds": 71.9000000000002,
+          "playback_seconds": 71.8666666666667
+        },
+        "last": {
+          "frame": 2263,
+          "simulation_seconds": 75.4,
+          "simulation_clock_seconds": 75.46666666666667,
+          "playback_seconds": 75.4333333333333
+        },
+        "frames": 108,
+        "camera": {
+          "basis": [
+            [
+              0.860291600227356,
+              0.0,
+              -0.509802401065826
+            ],
+            [
+              -0.240947261452675,
+              0.881261646747589,
+              -0.406598538160324
+            ],
+            [
+              0.449269264936447,
+              0.472628772258759,
+              0.758141934871674
+            ]
+          ],
+          "origin": [
+            12.5480175018311,
+            15.0359039306641,
+            -47.7488822937012
+          ]
+        },
+        "event_counts": {
+          "warning": 1,
+          "hero_attack": 3,
+          "hero_release": 3,
+          "hit": 3,
+          "ward": 1,
+          "hero_hit": 1,
+          "impact": 1,
+          "nova": 1
+        },
+        "frames_with_guardian_warning": 42
+      },
+      "scope": "Exact logged camera transforms during combat; room-entry settling may move. No rendered-pixel or visual-quality inference."
+    },
+    "changed_capture_source_paths": [
+      "assets/models/classes055/ANIMATION2-LICENSE.txt",
+      "assets/models/classes055/OUTFIT-LICENSE.txt",
+      "assets/models/classes055/README.md",
+      "assets/models/classes055/ranger-native65.glb",
+      "assets/models/classes055/ranger-native65.json",
+      "assets/shaders/combat_telegraph.gdshader",
+      "assets/shaders/ruin_floor.gdshader",
+      "project.godot",
+      "scripts/character_animation.gd",
+      "scripts/character_rig.gd",
+      "scripts/class_avatar_pose.gd",
+      "scripts/class_avatar_rig.gd",
+      "scripts/class_avatar_style.gd",
+      "scripts/dungeon_actor.gd",
+      "scripts/dungeon_lighting.gd",
+      "scripts/dungeon_theme.gd",
+      "scripts/dungeon_world.gd",
+      "scripts/hostile_style.gd",
+      "scripts/native_equipment_finish.gd",
+      "scripts/source_avatar_combat.gd",
+      "scripts/source_avatar_rig.gd"
+    ],
+    "audio_stream_pcm_identical": true,
+    "before_accepted_cues": {
+      "arcane_gather_power": 10,
+      "nova": 7,
+      "arcane_contact": 18,
+      "arcane_gather": 7,
+      "arcane_release": 7,
+      "warning": 5,
+      "step": 3,
+      "arcane_gather_heavy": 2,
+      "starfall": 2,
+      "lightning": 2,
+      "phase_awakened": 1,
+      "phase_desperate": 1,
+      "ward": 1,
+      "hurt": 1,
+      "victory": 1
+    },
+    "after_accepted_cues": {
+      "arcane_gather_power": 10,
+      "nova": 7,
+      "arcane_contact": 18,
+      "arcane_gather": 7,
+      "arcane_release": 7,
+      "warning": 5,
+      "step": 3,
+      "arcane_gather_heavy": 2,
+      "starfall": 2,
+      "lightning": 2,
+      "phase_awakened": 1,
+      "phase_desperate": 1,
+      "ward": 1,
+      "hurt": 1,
+      "victory": 1
+    },
+    "scope": "Metadata/chronology comparison only; no visual before/after acceptance is inferred."
+  },
+  "comparison_input_sha256": "13472ab94ef9e26ca389f6e74a0a47acd5827c727d39a636226510aad66e5d55"
+}

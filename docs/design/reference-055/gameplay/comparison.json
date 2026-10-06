@@ -1,0 +1,394 @@
+{
+  "setup_equal": {
+    "world_seed": true,
+    "run_seed": true,
+    "initial_stats": true,
+    "selected_skill_loadout": true
+  },
+  "authoritative_frame_trace_identical": true,
+  "before_recording": {
+    "status": "complete",
+    "frames": 2496,
+    "fps": 30,
+    "playback_seconds": 83.2,
+    "simulation_seconds": 80.1999999999997,
+    "advancing_frames": 2406,
+    "ending_settle_frames": 90,
+    "chronology_verified": true,
+    "source_inputs_unchanged": true,
+    "selected_original_pngs_verified": [
+      "selected-frames/frame-00000.png",
+      "selected-frames/frame-00002.png",
+      "selected-frames/frame-00009.png",
+      "selected-frames/frame-00044.png",
+      "selected-frames/frame-00051.png",
+      "selected-frames/frame-00300.png",
+      "selected-frames/frame-00320.png",
+      "selected-frames/frame-00347.png",
+      "selected-frames/frame-00600.png",
+      "selected-frames/frame-00791.png",
+      "selected-frames/frame-00900.png",
+      "selected-frames/frame-01200.png",
+      "selected-frames/frame-01280.png",
+      "selected-frames/frame-01500.png",
+      "selected-frames/frame-01800.png",
+      "selected-frames/frame-02039.png",
+      "selected-frames/frame-02096.png",
+      "selected-frames/frame-02099.png",
+      "selected-frames/frame-02100.png",
+      "selected-frames/frame-02153.png",
+      "selected-frames/frame-02400.png",
+      "selected-frames/frame-02405.png"
+    ],
+    "mp4_sha256": "a7377a8c9b55d9c242d85e4942bf125a73f23bed42d6a724611950325565a16b",
+    "frame_log_sha256": "1d944402c3fb71fc9d3e5876ae7de2195cd904cd91596c97d4f882e2fb26bbe2",
+    "decoded_video": {
+      "width": 1200,
+      "height": 536,
+      "r_frame_rate": "30/1",
+      "duration": "83.200000",
+      "nb_read_frames": "2496"
+    },
+    "full_decode_reported_by_launcher": true,
+    "physical_device_performance": false,
+    "engine": {
+      "build": "official",
+      "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+      "hex": 263938,
+      "major": 4,
+      "minor": 7,
+      "patch": 2,
+      "status": "stable",
+      "string": "4.7.2-stable (official)",
+      "timestamp": 0
+    },
+    "renderer": "gl_compatibility",
+    "video_adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "viewport": [
+      1200,
+      536
+    ]
+  },
+  "after_recording": {
+    "status": "complete",
+    "frames": 2496,
+    "fps": 30,
+    "playback_seconds": 83.2,
+    "simulation_seconds": 80.1999999999997,
+    "advancing_frames": 2406,
+    "ending_settle_frames": 90,
+    "chronology_verified": true,
+    "source_inputs_unchanged": true,
+    "selected_original_pngs_verified": [
+      "selected-frames/frame-00000.png",
+      "selected-frames/frame-00002.png",
+      "selected-frames/frame-00009.png",
+      "selected-frames/frame-00044.png",
+      "selected-frames/frame-00051.png",
+      "selected-frames/frame-00300.png",
+      "selected-frames/frame-00320.png",
+      "selected-frames/frame-00347.png",
+      "selected-frames/frame-00600.png",
+      "selected-frames/frame-00791.png",
+      "selected-frames/frame-00900.png",
+      "selected-frames/frame-01200.png",
+      "selected-frames/frame-01280.png",
+      "selected-frames/frame-01500.png",
+      "selected-frames/frame-01800.png",
+      "selected-frames/frame-02039.png",
+      "selected-frames/frame-02096.png",
+      "selected-frames/frame-02099.png",
+      "selected-frames/frame-02100.png",
+      "selected-frames/frame-02153.png",
+      "selected-frames/frame-02400.png",
+      "selected-frames/frame-02405.png"
+    ],
+    "mp4_sha256": "4e3af95ae6bf92a27398cdbd6e6d6f39c45f6297515cd8f076b5492121fffa4e",
+    "frame_log_sha256": "7827333decafbb893be0eca815cbcde73d24ca0b09f13fe57be025a0b87fac39",
+    "decoded_video": {
+      "width": 1200,
+      "height": 536,
+      "r_frame_rate": "30/1",
+      "duration": "83.200000",
+      "nb_read_frames": "2496"
+    },
+    "full_decode_reported_by_launcher": true,
+    "physical_device_performance": false,
+    "engine": {
+      "build": "official",
+      "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+      "hex": 263938,
+      "major": 4,
+      "minor": 7,
+      "patch": 2,
+      "status": "stable",
+      "string": "4.7.2-stable (official)",
+      "timestamp": 0
+    },
+    "renderer": "gl_compatibility",
+    "video_adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "viewport": [
+      1200,
+      536
+    ]
+  },
+  "before_outcome": {
+    "complete": true,
+    "won": true,
+    "simulation_finished": true,
+    "final_hero_hp": 357,
+    "minimum_recorded_hero_hp": 357,
+    "initial_maximum_hp": 380,
+    "first_finished": {
+      "frame": 2405,
+      "simulation_seconds": 80.1999999999997,
+      "simulation_clock_seconds": 80.1999999999997,
+      "playback_seconds": 80.1666666666667
+    },
+    "result_ui_reached": true,
+    "first_result_ui": {
+      "frame": 2405,
+      "simulation_seconds": 80.1999999999997,
+      "simulation_clock_seconds": 80.1999999999997,
+      "playback_seconds": 80.1666666666667
+    },
+    "result_ui_frames": 91,
+    "last_frame": {
+      "frame": 2495,
+      "simulation_seconds": 80.1999999999997,
+      "simulation_clock_seconds": 80.1999999999997,
+      "playback_seconds": 83.1666666666667
+    },
+    "scope": "Logged outcome and page state; actual result-image appearance requires inspection."
+  },
+  "after_outcome": {
+    "complete": true,
+    "won": true,
+    "simulation_finished": true,
+    "final_hero_hp": 357,
+    "minimum_recorded_hero_hp": 357,
+    "initial_maximum_hp": 380,
+    "first_finished": {
+      "frame": 2405,
+      "simulation_seconds": 80.1999999999997,
+      "simulation_clock_seconds": 80.1999999999997,
+      "playback_seconds": 80.1666666666667
+    },
+    "result_ui_reached": true,
+    "first_result_ui": {
+      "frame": 2405,
+      "simulation_seconds": 80.1999999999997,
+      "simulation_clock_seconds": 80.1999999999997,
+      "playback_seconds": 80.1666666666667
+    },
+    "result_ui_frames": 91,
+    "last_frame": {
+      "frame": 2495,
+      "simulation_seconds": 80.1999999999997,
+      "simulation_clock_seconds": 80.1999999999997,
+      "playback_seconds": 83.1666666666667
+    },
+    "scope": "Logged outcome and page state; actual result-image appearance requires inspection."
+  },
+  "before_cast_counts": {
+    "commits": 19,
+    "released": 18,
+    "cancelled_before_release": 1,
+    "orphan_releases": 0,
+    "unresolved": 0,
+    "by_style": {
+      "signature": 7,
+      "basic": 7,
+      "starfall": 2,
+      "chain": 3
+    }
+  },
+  "after_cast_counts": {
+    "commits": 19,
+    "released": 18,
+    "cancelled_before_release": 1,
+    "orphan_releases": 0,
+    "unresolved": 0,
+    "by_style": {
+      "signature": 7,
+      "basic": 7,
+      "starfall": 2,
+      "chain": 3
+    }
+  },
+  "before_guardian_camera": {
+    "camera_records": 225,
+    "consecutive_transform_changes": 60,
+    "longest_exact_constant_run_frames": 108,
+    "maximum_consecutive_origin_delta_m": 0.752261137890545,
+    "maximum_consecutive_basis_component_delta": 0.001802295446395985,
+    "terminal_exact_static_tail": {
+      "first": {
+        "frame": 2156,
+        "simulation_seconds": 71.9000000000002,
+        "simulation_clock_seconds": 71.9000000000002,
+        "playback_seconds": 71.8666666666667
+      },
+      "last": {
+        "frame": 2263,
+        "simulation_seconds": 75.4,
+        "simulation_clock_seconds": 75.46666666666667,
+        "playback_seconds": 75.4333333333333
+      },
+      "frames": 108,
+      "camera": {
+        "basis": [
+          [
+            0.860291600227356,
+            0.0,
+            -0.509802401065826
+          ],
+          [
+            -0.240947261452675,
+            0.881261646747589,
+            -0.406598538160324
+          ],
+          [
+            0.449269264936447,
+            0.472628772258759,
+            0.758141934871674
+          ]
+        ],
+        "origin": [
+          12.5480175018311,
+          15.0359039306641,
+          -47.7488822937012
+        ]
+      },
+      "event_counts": {
+        "warning": 1,
+        "hero_attack": 3,
+        "hero_release": 3,
+        "hit": 3,
+        "ward": 1,
+        "hero_hit": 1,
+        "impact": 1,
+        "nova": 1
+      },
+      "frames_with_guardian_warning": 42
+    },
+    "scope": "Exact logged camera transforms during combat; room-entry settling may move. No rendered-pixel or visual-quality inference."
+  },
+  "after_guardian_camera": {
+    "camera_records": 225,
+    "consecutive_transform_changes": 60,
+    "longest_exact_constant_run_frames": 108,
+    "maximum_consecutive_origin_delta_m": 0.752261137890545,
+    "maximum_consecutive_basis_component_delta": 0.001802295446395985,
+    "terminal_exact_static_tail": {
+      "first": {
+        "frame": 2156,
+        "simulation_seconds": 71.9000000000002,
+        "simulation_clock_seconds": 71.9000000000002,
+        "playback_seconds": 71.8666666666667
+      },
+      "last": {
+        "frame": 2263,
+        "simulation_seconds": 75.4,
+        "simulation_clock_seconds": 75.46666666666667,
+        "playback_seconds": 75.4333333333333
+      },
+      "frames": 108,
+      "camera": {
+        "basis": [
+          [
+            0.860291600227356,
+            0.0,
+            -0.509802401065826
+          ],
+          [
+            -0.240947261452675,
+            0.881261646747589,
+            -0.406598538160324
+          ],
+          [
+            0.449269264936447,
+            0.472628772258759,
+            0.758141934871674
+          ]
+        ],
+        "origin": [
+          12.5480175018311,
+          15.0359039306641,
+          -47.7488822937012
+        ]
+      },
+      "event_counts": {
+        "warning": 1,
+        "hero_attack": 3,
+        "hero_release": 3,
+        "hit": 3,
+        "ward": 1,
+        "hero_hit": 1,
+        "impact": 1,
+        "nova": 1
+      },
+      "frames_with_guardian_warning": 42
+    },
+    "scope": "Exact logged camera transforms during combat; room-entry settling may move. No rendered-pixel or visual-quality inference."
+  },
+  "changed_capture_source_paths": [
+    "assets/models/classes055/ANIMATION2-LICENSE.txt",
+    "assets/models/classes055/OUTFIT-LICENSE.txt",
+    "assets/models/classes055/README.md",
+    "assets/models/classes055/ranger-native65.glb",
+    "assets/models/classes055/ranger-native65.json",
+    "assets/shaders/combat_telegraph.gdshader",
+    "assets/shaders/ruin_floor.gdshader",
+    "project.godot",
+    "scripts/character_animation.gd",
+    "scripts/character_rig.gd",
+    "scripts/class_avatar_pose.gd",
+    "scripts/class_avatar_rig.gd",
+    "scripts/class_avatar_style.gd",
+    "scripts/dungeon_actor.gd",
+    "scripts/dungeon_lighting.gd",
+    "scripts/dungeon_theme.gd",
+    "scripts/dungeon_world.gd",
+    "scripts/hostile_style.gd",
+    "scripts/native_equipment_finish.gd",
+    "scripts/source_avatar_combat.gd",
+    "scripts/source_avatar_rig.gd"
+  ],
+  "audio_stream_pcm_identical": true,
+  "before_accepted_cues": {
+    "arcane_gather_power": 10,
+    "nova": 7,
+    "arcane_contact": 18,
+    "arcane_gather": 7,
+    "arcane_release": 7,
+    "warning": 5,
+    "step": 3,
+    "arcane_gather_heavy": 2,
+    "starfall": 2,
+    "lightning": 2,
+    "phase_awakened": 1,
+    "phase_desperate": 1,
+    "ward": 1,
+    "hurt": 1,
+    "victory": 1
+  },
+  "after_accepted_cues": {
+    "arcane_gather_power": 10,
+    "nova": 7,
+    "arcane_contact": 18,
+    "arcane_gather": 7,
+    "arcane_release": 7,
+    "warning": 5,
+    "step": 3,
+    "arcane_gather_heavy": 2,
+    "starfall": 2,
+    "lightning": 2,
+    "phase_awakened": 1,
+    "phase_desperate": 1,
+    "ward": 1,
+    "hurt": 1,
+    "victory": 1
+  },
+  "scope": "Metadata/chronology comparison only; no visual before/after acceptance is inferred."
+}

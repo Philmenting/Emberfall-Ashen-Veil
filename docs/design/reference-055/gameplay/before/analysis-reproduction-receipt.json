@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-06T20:59:25.027971+00:00",
+  "timestamp_scope": "Receipt creation time; the preceding successful reproduction did not record its start/end UTC timestamps.",
+  "scope": "Actual read-only Python reproduction of archived BEFORE analysis from a fresh complete temporary copy of the repository capture with original PCM restored using gzip -dc. No Godot, ffmpeg, capture or gameplay source mutation.",
+  "capture": "before",
+  "source_commit": "4b152d0fc8b99cf51569585af2695bf3554416ed",
+  "explicit_allow_overlay": [
+    "project.godot",
+    "scripts/audio_director.gd",
+    "tests/arcanist_quality_gameplay_preview.gd",
+    "tests/native_capture_audio.gd",
+    "tools/capture_arcanist_quality.py"
+  ],
+  "capture_receipt_sha256": "944ce1f1b389f4a223e90a286633068e6c0bce3dc07f7a2055e913da437a8bae",
+  "archived_analysis_sha256": "13472ab94ef9e26ca389f6e74a0a47acd5827c727d39a636226510aad66e5d55",
+  "gzip": {
+    "file": "native-game-audio.f32le.gz",
+    "bytes": 12716386,
+    "sha256": "68165e45535ed270bcb482ba6621030be758024ca867c17f27046411c1982d70"
+  },
+  "actual_restored_pcm": {
+    "file": "native-game-audio.f32le",
+    "bytes": 29352960,
+    "sha256": "ae1553e7bb746cff82181785597ef5c7246900008be5f93d2f11cccf67c21316",
+    "method": "gzip -dc of the repository gzip into the self-created temporary capture; no AAC conversion"
+  },
+  "helper": {
+    "file": "../analyze_capture055.py",
+    "bytes": 23303,
+    "sha256": "aa3f0e8c7c287cd9cd685056282a4edc4431fea1c7d08c983be33ad006b589dc"
+  },
+  "actual_execution": {
+    "helper_exit_code": 0,
+    "gzip_exit_code": 0,
+    "repo_argument": "/workspace/Emberfall-Ashen-Veil",
+    "output_mode": "stdout redirected to a new temporary before-analysis.json",
+    "comparison_reference": "analysis.json",
+    "comparison_equal_keys": [
+      "recording",
+      "setup",
+      "six_stations",
+      "attack_phrases",
+      "cast_counts",
+      "actual_event_counts",
+      "authoritative_frame_trace_sha256",
+      "guardian",
+      "outcome",
+      "audio",
+      "source_commit_audit"
+    ],
+    "comparison_different_keys": [],
+    "comparison_scope": "Listed report sections compared by parsed JSON equality; whole report differs in creation time and temporary absolute capture path."
+  },
+  "cleanup": {
+    "completed": true,
+    "scope": "Only the fresh tempfile.mkdtemp(prefix=emberfall-analysis-055.) directory created by this reproduction, including its copied capture, restored PCM and regenerated report, was removed in the verification finally block. Original repository and scratch capture/analysis files were not removed."
+  },
+  "limitations": [
+    "Successful hash/chronology/state reproduction does not constitute visual acceptance or physical-device/touch acceptance.",
+    "AFTER reproduction was not run."
+  ]
+}

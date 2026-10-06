@@ -1,0 +1,72 @@
+2026-10-06T20:06:07.4665084Z HEAD is now at d7d10a8 Merge ad4d50bb9dbdc07cea42e2306a79fc65bb642489 into 610c343073e7186589cba92c3fefb55a4db68e12
+2026-10-06T20:06:07.7225078Z Pkg.Desc=Android SDK Command-line Tools
+2026-10-06T20:06:10.1976954Z Accepting Android SDK licenses
+2026-10-06T20:06:13.7897407Z 1.1 The Google TV Add-on for the Android Software Development Kit (referred to in this License Agreement as the "Google TV Add-on" and specifically including the Android system files, packaged APIs, and Google APIs add-ons) is licensed to you subject to the terms of this License Agreement. This License Agreement forms a legally binding contract between you and Google in relation to your use of the Google TV Add-on.
+2026-10-06T20:06:13.8089761Z To get started with the Android XR Emulator System Image SDK, you must agree to the following terms and conditions. As described below, please note that this is a preview, emulated version of the Android XR OS, subject to change, that you use at your own risk.
+2026-10-06T20:06:13.8090762Z This is the Android XR Emulator System Image SDK License Agreement
+2026-10-06T20:06:13.8092567Z 1.1 The Android Android XR Emulator System Image SDK (referred to in the License Agreement as the "SDK" and specifically including the Android system files,, packaged APIs, library files (if and when they are made available), and Google applications and APIs add-ons) is licensed to you subject to the terms of the License Agreement. The License Agreement forms a legally binding contract between you and Google in relation to your use of the SDK.
+2026-10-06T20:06:13.8152884Z 8. Using Android APIs
+2026-10-06T20:06:13.8158929Z 8.1.2 If you use any API to retrieve a user's data from Google, you acknowledge and agree that you shall retrieve data only with the user's explicit consent and only when, and for the limited purposes for which, the user has given you permission to do so. If you use the Android Recognition Service API, documented at the following URL: https://developer.android.com/reference/android/speech/RecognitionService, as updated from time to time, you acknowledge that the use of the API is subject to the Data Processing Addendum for Products where Google is a Data Processor, which is located at the following URL: https://privacy.google.com/businesses/gdprprocessorterms/, as updated from time to time. By clicking to accept, you hereby agree to the terms of the Data Processing Addendum for Products where Google is a Data Processor.
+2026-10-06T20:06:13.8223372Z 1.1 The Android Software Development Kit (referred to in the License Agreement as the "SDK" and specifically including the Android system files, packaged APIs, and Google APIs add-ons) is licensed to you subject to the terms of the License Agreement. The License Agreement forms a legally binding contract between you and Google in relation to your use of the SDK.
+2026-10-06T20:06:13.8247594Z 3.2 You may not use this SDK to develop applications for other platforms (including non-compatible implementations of Android) or to develop another SDK. You are of course free to develop applications for other platforms, including non-compatible implementations of Android, provided that this SDK is not used for that purpose.
+2026-10-06T20:06:13.8321700Z 8. Using Android APIs
+2026-10-06T20:06:13.8328405Z 8.1.2 If you use any API to retrieve a user's data from Google, you acknowledge and agree that you shall retrieve data only with the user's explicit consent and only when, and for the limited purposes for which, the user has given you permission to do so. If you use the Android Recognition Service API, documented at the following URL: https://developer.android.com/reference/android/speech/RecognitionService, as updated from time to time, you acknowledge that the use of the API is subject to the Data Processing Addendum for Products where Google is a Data Processor, which is located at the following URL: https://privacy.google.com/businesses/gdprprocessorterms/, as updated from time to time. By clicking to accept, you hereby agree to the terms of the Data Processing Addendum for Products where Google is a Data Processor.
+2026-10-06T20:06:13.8374560Z To get started with the Android SDK Preview, you must agree to the following terms and conditions. As described below, please note that this is a preview version of the Android SDK, subject to change, that you use at your own risk. The Android SDK Preview is not a stable release, and may contain errors and defects that can result in serious damage to your computer systems, devices and data.
+2026-10-06T20:06:13.8375948Z This is the Android SDK Preview License Agreement (the "License Agreement").
+2026-10-06T20:06:13.8378274Z 1.1 The Android SDK Preview (referred to in the License Agreement as the “Preview” and specifically including the Android system files, packaged APIs, and Preview library files, if and when they are made available) is licensed to you subject to the terms of the License Agreement. The License Agreement forms a legally binding contract between you and Google in relation to your use of the Preview.
+2026-10-06T20:06:13.8423921Z 4.7 The Preview is in development, and your testing and feedback are an important part of the development process. By using the Preview, you acknowledge that implementation of some features are still under development and that you should not rely on the Preview having the full functionality of a stable release. You agree not to publicly distribute or ship any application using this Preview as this Preview will no longer be supported after the official Android SDK is released.
+2026-10-06T20:06:13.8449405Z 9.4 The License Agreement will automatically terminate without notice or other action upon the earlier of: (A) when Google ceases to provide the Preview or certain parts of the Preview to users in the country in which you are resident or from which you use the service; and (B) Google issues a final release version of the Android SDK.
+2026-10-06T20:06:13.8497439Z 1.1 The Glass Development Kit (referred to in this License Agreement as the "GDK" and specifically including the Android system files, packaged APIs, and GDK library files, if and when they are made available) is licensed to you subject to the terms of this License Agreement. This License Agreement forms a legally binding contract between you and Google in relation to your use of the GDK.
+2026-10-06T20:06:13.8540393Z 3.9 Your use of any Android system files, packaged APIs, or other components of the GDK which are part of the Android Software Development Kit is subject to the terms of the Android Software Development Kit License Agreement located at http://developer.android.com/sdk/terms.html. These terms are hereby incorporated by reference into this License Agreement.
+2026-10-06T20:06:13.8687242Z MIPS Technologies, Inc. (“MIPS”) Internal Evaluation License Agreement for MIPS Android™ System Images for Android Software Development Kit (SDK): This Internal Evaluation License Agreement (this "Agreement") is entered into by and between MIPS and you (as an individual developer or a legal entity -- identified below as “Recipient”). MIPS shall make the Evaluation Software available to Recipient as described in accordance with the terms and conditions set forth below.
+2026-10-06T20:06:13.8700958Z 1.2 “Evaluation Software” shall mean MIPS Android™ emulator system images for Android Software Development Kit (SDK), as made available to Recipient.
+2026-10-06T20:08:51.7879290Z DUNGEON SMOKE: 55 checks, 0 failures
+2026-10-06T20:09:03.9456971Z PERSISTENCE SMOKE: 89 checks, 0 failures
+2026-10-06T20:09:07.5868369Z FELLOWSHIP UI SMOKE: 11 checks, 0 failures
+2026-10-06T20:09:10.5194044Z COMBAT MOVEMENT SMOKE: 8 checks, 0 failures
+2026-10-06T20:09:45.6690096Z BETA FLOW SMOKE: 46 checks, 0 failures
+2026-10-06T20:09:50.4134936Z COMBAT STANCES SMOKE: 140 checks, 0 failures
+2026-10-06T20:09:53.1716590Z RECOVERY SMOKE: 48 checks, 0 failures
+2026-10-06T20:09:54.0207836Z Ran 34 tests in 0.161s
+2026-10-06T20:10:11.4857927Z COMBINED OATHS / PHASES SMOKE: 338 checks, 0 failures
+2026-10-06T20:10:17.3053196Z CHARACTER EQUIPMENT SMOKE: 38 checks, 0 failures
+2026-10-06T20:10:37.5817134Z CHARACTER THREE D SMOKE: 150 checks, 0 failures
+2026-10-06T20:10:45.6414167Z PRESENTATION SMOKE: 77 checks, 0 failures
+2026-10-06T20:10:57.4160168Z MAIN COMBINED RULES SMOKE: 156 checks, 0 failures
+2026-10-06T20:11:09.9397716Z CAMP HUD SMOKE: 44 checks, 0 failures
+2026-10-06T20:11:41.0857623Z WORLD FRAMING SMOKE: 900 checks, 0 failures
+2026-10-06T20:11:48.8651095Z AUTHORED ART SMOKE: 105 checks, 0 failures
+2026-10-06T20:11:49.6636569Z [36;1mgrep -F "package: name='com.philmenting.emberfallashenveil.test029' versionCode='$beta_version_code' versionName='$online_version_name'" <<< "$apk_info"[0m
+2026-10-06T20:11:49.6639103Z [36;1mgrep -F "package: name='com.philmenting.emberfallashenveil.closedbeta' versionCode='$beta_version_code' versionName='$beta_version_name'" <<< "$closed_beta_info"[0m
+2026-10-06T20:11:49.6640408Z [36;1mgrep -F "sdkVersion:'24'" <<< "$closed_beta_info"[0m
+2026-10-06T20:11:49.6640783Z [36;1mgrep -F "targetSdkVersion:'36'" <<< "$closed_beta_info"[0m
+2026-10-06T20:11:55.5611079Z Godot Android template uses Android Gradle Plugin 8.10.1 for API 36.
+2026-10-06T20:13:59.4856864Z Verifies
+2026-10-06T20:13:59.4858526Z Verified using v1 scheme (JAR signing): false
+2026-10-06T20:13:59.4859529Z Verified using v2 scheme (APK Signature Scheme v2): true
+2026-10-06T20:13:59.4860409Z Verified using v3 scheme (APK Signature Scheme v3): true
+2026-10-06T20:13:59.4861153Z Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+2026-10-06T20:13:59.4861893Z Verified using v4 scheme (APK Signature Scheme v4): false
+2026-10-06T20:13:59.9097459Z Verifies
+2026-10-06T20:13:59.9108522Z Verified using v1 scheme (JAR signing): false
+2026-10-06T20:13:59.9109572Z Verified using v2 scheme (APK Signature Scheme v2): true
+2026-10-06T20:13:59.9110297Z Verified using v3 scheme (APK Signature Scheme v3): true
+2026-10-06T20:13:59.9111015Z Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+2026-10-06T20:13:59.9111735Z Verified using v4 scheme (APK Signature Scheme v4): false
+2026-10-06T20:14:00.3642162Z package: name='com.philmenting.emberfallashenveil.test029' versionCode='54' versionName='0.48.0-online-test' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'
+2026-10-06T20:14:00.3701620Z package: name='com.philmenting.emberfallashenveil.closedbeta' versionCode='54' versionName='0.48.0-beta.1' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'
+2026-10-06T20:14:00.3732267Z sdkVersion:'24'
+2026-10-06T20:14:00.3748044Z targetSdkVersion:'36'
+2026-10-06T20:14:33.6789666Z REGIONS SMOKE: 36 checks, 0 failures
+2026-10-06T20:15:19.5333771Z GEAR / FORECAST SMOKE: 38 checks, 0 failures
+2026-10-06T20:15:28.3659241Z ONBOARDING SMOKE: 19 checks, 0 failures
+2026-10-06T20:15:34.8837025Z OPTIONS SMOKE: 82 checks, 0 failures
+2026-10-06T20:15:35.5429765Z CLOUD IDENTITY SMOKE: 14 checks, 0 failures
+2026-10-06T20:15:40.4743072Z MANA WARD SMOKE: 27 checks, 0 failures
+2026-10-06T20:16:14.0228486Z BOSS PATTERNS SMOKE: 122 checks, 0 failures
+2026-10-06T20:16:18.0342051Z CLASS LOOT SMOKE: 29 checks, 0 failures
+2026-10-06T20:16:37.2475646Z ARCANE TACTICS SMOKE: 29 checks, 0 failures
+2026-10-06T20:17:37.8577954Z JOURNEY SMOKE: 413 checks, 0 failures
+2026-10-06T20:17:58.9683730Z SKILL ROTATION SMOKE: 135 checks, 0 failures
+2026-10-06T20:18:29.1189795Z CONTRACTS SMOKE: 68 checks, 0 failures
+2026-10-06T20:18:36.9375330Z VISUALS SMOKE: 73 checks, 0 failures

@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "actual_capture_launcher_exit": 0,
+  "decoded_frame_index": 2495,
+  "decoded_frame_file": "decoded-ending-frame-02495.png",
+  "decoded_frame_sha256": "566356d0426653b1a94dd6e224784b7898ed108802e8aab1f56de2b6b88bdada",
+  "source_video_sha256": "a7377a8c9b55d9c242d85e4942bf125a73f23bed42d6a724611950325565a16b",
+  "scope": "Unscaled final frame decoded from the lossily H.264-encoded native viewport video; this PNG is not an original native source PNG. Visually confirms DUNGEON CLEARED, +428 XP, +190 GOLD, class relic, 80.2s/26 foes/12 skills/3 evasions. The 91 logged page=loot frames include the held result-builder delay and do not imply 91 visible result frames.",
+  "selected_native_png_pixel_changes": "None; only selected-frames/ files are original native PNGs."
+}

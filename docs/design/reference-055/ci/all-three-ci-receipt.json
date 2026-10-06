@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "observed_at": "2026-10-06T20:24:38.244299+00:00",
+  "source_commit": "ad4d50bb9dbdc07cea42e2306a79fc65bb642489",
+  "actual_ci_checkout": "d7d10a856b913ba07eb056c783564a8eebe915e4",
+  "source_and_checkout_tree": "e6b3ca7a18af16f82ef9a883df82f6a71a597b1a",
+  "tree_binding_verified": true,
+  "all_three_source_workflows_completed_success": true,
+  "workflows": [
+    {
+      "name": "Gameplay Quality",
+      "run_id": 37523667376,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37523667376"
+    },
+    {
+      "name": "Android Debug APK",
+      "run_id": 37523667981,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37523667981"
+    },
+    {
+      "name": "Android Beta Runtime",
+      "run_id": 37523666852,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37523666852"
+    }
+  ],
+  "receipts": [
+    "gameplay-receipt.json",
+    "android-debug-receipt.json",
+    "android-runtime-receipt.json",
+    "source-checkout-tree-binding.json"
+  ],
+  "gameplay_quality": {
+    "godot_suites": 45,
+    "godot_checks": 5300,
+    "godot_failures": 0,
+    "python_contracts": 39,
+    "exported_pck_checks": 20,
+    "exported_pck_failures": 0,
+    "server_syntax_and_progression": "pass"
+  },
+  "android_debug": {
+    "godot_suites": 28,
+    "godot_checks": 3290,
+    "godot_failures": 0,
+    "python_contracts": 34,
+    "debug_apk_closed_beta_ci_apk_aab": "passed export validation"
+  },
+  "android_runtime": {
+    "python_contracts": 34,
+    "qa_packages_exported": 4,
+    "verified_markers": 5,
+    "environment": "Android 16 emulator, x86_64",
+    "independent_original_image_review": "Four original regional scenes and four Bell Warden motion stills reviewed; unchanged source PNGs and scoped observations in ../android/receipt.json."
+  },
+  "physical_device_measured": false,
+  "physical_device_status": "unavailable",
+  "physical_performance_thermal_battery_touch": "not_tested",
+  "scope": "Hosted source-tree regression, SDK packaging and Android emulator evidence. These CI successes do not grant beta readiness or replace an actual physical-device run. QA source-revision content may identify the PR merge checkout; it must not be mislabelled as independently attested head SHA."
+}

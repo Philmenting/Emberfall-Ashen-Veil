@@ -1,0 +1,1687 @@
+﻿2026-10-06T20:04:31.0312278Z Current runner version: '2.337.0'
+2026-10-06T20:04:31.0340005Z ##[group]Runner Image Provisioner
+2026-10-06T20:04:31.0341155Z Hosted Compute Agent
+2026-10-06T20:04:31.0341981Z Version: 20260901.588
+2026-10-06T20:04:31.0342735Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-06T20:04:31.0343737Z Build Date: 2026-09-01T19:56:44Z
+2026-10-06T20:04:31.0344559Z Worker ID: {6a597a8a-b506-415e-8234-7ddc35ac22cf}
+2026-10-06T20:04:31.0345405Z Azure Region: eastus
+2026-10-06T20:04:31.0346122Z ##[endgroup]
+2026-10-06T20:04:31.0347726Z ##[group]Operating System
+2026-10-06T20:04:31.0348555Z Ubuntu
+2026-10-06T20:04:31.0349175Z 24.04.5
+2026-10-06T20:04:31.0349844Z LTS
+2026-10-06T20:04:31.0350513Z ##[endgroup]
+2026-10-06T20:04:31.0351336Z ##[group]Runner Image
+2026-10-06T20:04:31.0352178Z Image: ubuntu-24.04
+2026-10-06T20:04:31.0352865Z Version: 20260927.320.1
+2026-10-06T20:04:31.0354518Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-06T20:04:31.0356578Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+2026-10-06T20:04:31.0357803Z ##[endgroup]
+2026-10-06T20:04:31.0359174Z ##[group]GITHUB_TOKEN Permissions
+2026-10-06T20:04:31.0361721Z Contents: read
+2026-10-06T20:04:31.0362555Z Metadata: read
+2026-10-06T20:04:31.0363266Z ##[endgroup]
+2026-10-06T20:04:31.0365615Z Secret source: Actions
+2026-10-06T20:04:31.0366927Z Cache mode: write
+2026-10-06T20:04:31.0367868Z Prepare workflow directory
+2026-10-06T20:04:31.0745719Z Prepare all required actions
+2026-10-06T20:04:31.0802888Z Getting action download info
+2026-10-06T20:04:31.2524578Z Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-06T20:04:31.3638424Z Download action repository 'actions/upload-artifact@v7' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-10-06T20:04:31.6227403Z Complete job name: regression
+2026-10-06T20:04:31.6846709Z ##[group]Run actions/checkout@v7
+2026-10-06T20:04:31.6847409Z with:
+2026-10-06T20:04:31.6847802Z   repository: Philmenting/Emberfall-Ashen-Veil
+2026-10-06T20:04:31.6851371Z   token: ***
+2026-10-06T20:04:31.6851728Z   ssh-strict: true
+2026-10-06T20:04:31.6852082Z   ssh-user: git
+2026-10-06T20:04:31.6852439Z   persist-credentials: true
+2026-10-06T20:04:31.6852830Z   clean: true
+2026-10-06T20:04:31.6853195Z   sparse-checkout-cone-mode: true
+2026-10-06T20:04:31.6853608Z   fetch-depth: 1
+2026-10-06T20:04:31.6853956Z   fetch-tags: false
+2026-10-06T20:04:31.6854302Z   show-progress: true
+2026-10-06T20:04:31.6854660Z   lfs: false
+2026-10-06T20:04:31.6854993Z   submodules: false
+2026-10-06T20:04:31.6855354Z   set-safe-directory: true
+2026-10-06T20:04:31.6855752Z   allow-unsafe-pr-checkout: false
+2026-10-06T20:04:31.6856308Z ##[endgroup]
+2026-10-06T20:04:31.7692222Z Syncing repository: Philmenting/Emberfall-Ashen-Veil
+2026-10-06T20:04:31.7694247Z ##[group]Getting Git version info
+2026-10-06T20:04:31.7695360Z Working directory is '/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil'
+2026-10-06T20:04:31.7696823Z [command]/usr/bin/git version
+2026-10-06T20:04:31.8289685Z git version 2.55.0
+2026-10-06T20:04:31.8305984Z ##[endgroup]
+2026-10-06T20:04:31.8315304Z Temporarily overriding HOME='/home/runner/work/_temp/fa738950-0bca-4628-91bb-ed9f7bdd0a7b' before making global git config changes
+2026-10-06T20:04:31.8316460Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-06T20:04:31.8320446Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil
+2026-10-06T20:04:31.8362176Z Deleting the contents of '/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil'
+2026-10-06T20:04:31.8364776Z ##[group]Determining repository object format
+2026-10-06T20:04:31.8365946Z ##[endgroup]
+2026-10-06T20:04:31.8366682Z ##[group]Initializing the repository
+2026-10-06T20:04:31.8369270Z [command]/usr/bin/git init /home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil
+2026-10-06T20:04:31.8454086Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-06T20:04:31.8455014Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-06T20:04:31.8455818Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-06T20:04:31.8456607Z hint: call:
+2026-10-06T20:04:31.8456966Z hint:
+2026-10-06T20:04:31.8457538Z hint: 	git config --global init.defaultBranch <name>
+2026-10-06T20:04:31.8458301Z hint:
+2026-10-06T20:04:31.8459032Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-06T20:04:31.8460185Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-06T20:04:31.8461257Z hint:
+2026-10-06T20:04:31.8461778Z hint: 	git branch -m <name>
+2026-10-06T20:04:31.8462371Z hint:
+2026-10-06T20:04:31.8463228Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-06T20:04:31.8464715Z Initialized empty Git repository in /home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/.git/
+2026-10-06T20:04:31.8467130Z [command]/usr/bin/git remote add origin https://github.com/Philmenting/Emberfall-Ashen-Veil
+2026-10-06T20:04:31.8508699Z ##[endgroup]
+2026-10-06T20:04:31.8509312Z ##[group]Disabling automatic garbage collection
+2026-10-06T20:04:31.8511603Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-06T20:04:31.8540075Z ##[endgroup]
+2026-10-06T20:04:31.8541022Z ##[group]Setting up auth
+2026-10-06T20:04:31.8541472Z Removing SSH command configuration
+2026-10-06T20:04:31.8544750Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-06T20:04:31.8573576Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-06T20:04:31.8865641Z Removing HTTP extra header
+2026-10-06T20:04:31.8869866Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-06T20:04:31.8898927Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-06T20:04:31.9085550Z Removing includeIf entries pointing to credentials config files
+2026-10-06T20:04:31.9089462Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-06T20:04:31.9118321Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-06T20:04:31.9310593Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-45a225d8-d849-464b-a785-9e6745c4b02b.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-06T20:04:31.9347479Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/.git.path /home/runner/work/_temp/git-credentials-45a225d8-d849-464b-a785-9e6745c4b02b.config
+2026-10-06T20:04:31.9378156Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-45a225d8-d849-464b-a785-9e6745c4b02b.config
+2026-10-06T20:04:31.9410516Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-45a225d8-d849-464b-a785-9e6745c4b02b.config
+2026-10-06T20:04:31.9443945Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-45a225d8-d849-464b-a785-9e6745c4b02b.config
+2026-10-06T20:04:31.9472322Z ##[endgroup]
+2026-10-06T20:04:31.9473214Z ##[group]Fetching the repository
+2026-10-06T20:04:31.9479321Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +d7d10a856b913ba07eb056c783564a8eebe915e4:refs/remotes/pull/5/merge
+2026-10-06T20:05:51.9069671Z From https://github.com/Philmenting/Emberfall-Ashen-Veil
+2026-10-06T20:05:51.9070551Z  * [new ref]         d7d10a856b913ba07eb056c783564a8eebe915e4 -> pull/5/merge
+2026-10-06T20:05:51.9073392Z ##[endgroup]
+2026-10-06T20:05:51.9074006Z ##[group]Determining the checkout info
+2026-10-06T20:05:51.9074646Z ##[endgroup]
+2026-10-06T20:05:51.9078966Z [command]/usr/bin/git sparse-checkout disable
+2026-10-06T20:05:51.9127179Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-06T20:05:51.9155524Z ##[group]Checking out the ref
+2026-10-06T20:05:51.9158401Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/5/merge
+2026-10-06T20:05:52.9868698Z Updating files:  75% (1217/1619)
+2026-10-06T20:05:52.9875248Z Updating files:  76% (1231/1619)
+2026-10-06T20:05:52.9884227Z Updating files:  77% (1247/1619)
+2026-10-06T20:05:52.9891020Z Updating files:  78% (1263/1619)
+2026-10-06T20:05:52.9902188Z Updating files:  79% (1280/1619)
+2026-10-06T20:05:52.9912471Z Updating files:  80% (1296/1619)
+2026-10-06T20:05:52.9918905Z Updating files:  81% (1312/1619)
+2026-10-06T20:05:52.9925776Z Updating files:  82% (1328/1619)
+2026-10-06T20:05:52.9935368Z Updating files:  83% (1344/1619)
+2026-10-06T20:05:52.9941034Z Updating files:  84% (1360/1619)
+2026-10-06T20:05:52.9945765Z Updating files:  85% (1377/1619)
+2026-10-06T20:05:52.9951324Z Updating files:  86% (1393/1619)
+2026-10-06T20:05:52.9957273Z Updating files:  87% (1409/1619)
+2026-10-06T20:05:52.9966372Z Updating files:  88% (1425/1619)
+2026-10-06T20:05:52.9973579Z Updating files:  89% (1441/1619)
+2026-10-06T20:05:52.9981229Z Updating files:  90% (1458/1619)
+2026-10-06T20:05:53.0001252Z Updating files:  91% (1474/1619)
+2026-10-06T20:05:53.0008173Z Updating files:  92% (1490/1619)
+2026-10-06T20:05:53.0016209Z Updating files:  93% (1506/1619)
+2026-10-06T20:05:53.0023598Z Updating files:  94% (1522/1619)
+2026-10-06T20:05:53.0031120Z Updating files:  95% (1539/1619)
+2026-10-06T20:05:53.0037293Z Updating files:  96% (1555/1619)
+2026-10-06T20:05:53.0044690Z Updating files:  97% (1571/1619)
+2026-10-06T20:05:53.0053326Z Updating files:  98% (1587/1619)
+2026-10-06T20:05:53.0064112Z Updating files:  99% (1603/1619)
+2026-10-06T20:05:53.0064459Z Updating files: 100% (1619/1619)
+2026-10-06T20:05:53.0064783Z Updating files: 100% (1619/1619), done.
+2026-10-06T20:05:53.0235625Z Note: switching to 'refs/remotes/pull/5/merge'.
+2026-10-06T20:05:53.0235958Z 
+2026-10-06T20:05:53.0236327Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-06T20:05:53.0236950Z changes and commit them, and you can discard any commits you make in this
+2026-10-06T20:05:53.0237605Z state without impacting any branches by switching back to a branch.
+2026-10-06T20:05:53.0237946Z 
+2026-10-06T20:05:53.0238183Z If you want to create a new branch to retain commits you create, you may
+2026-10-06T20:05:53.0238749Z do so (now or later) by using -c with the switch command. Example:
+2026-10-06T20:05:53.0239095Z 
+2026-10-06T20:05:53.0239224Z   git switch -c <new-branch-name>
+2026-10-06T20:05:53.0239450Z 
+2026-10-06T20:05:53.0239584Z Or undo this operation with:
+2026-10-06T20:05:53.0239786Z 
+2026-10-06T20:05:53.0239906Z   git switch -
+2026-10-06T20:05:53.0240060Z 
+2026-10-06T20:05:53.0240320Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-06T20:05:53.0240709Z 
+2026-10-06T20:05:53.0241305Z HEAD is now at d7d10a8 Merge ad4d50bb9dbdc07cea42e2306a79fc65bb642489 into 610c343073e7186589cba92c3fefb55a4db68e12
+2026-10-06T20:05:53.0366421Z ##[endgroup]
+2026-10-06T20:05:53.0408791Z [command]/usr/bin/git log -1 --format=%H
+2026-10-06T20:05:53.0436410Z d7d10a856b913ba07eb056c783564a8eebe915e4
+2026-10-06T20:05:53.0691997Z ##[group]Run mkdir -p "$RUNNER_TEMP/godot"
+2026-10-06T20:05:53.0692381Z [36;1mmkdir -p "$RUNNER_TEMP/godot"[0m
+2026-10-06T20:05:53.0692732Z [36;1mcurl --fail --location --retry 3 --output "$RUNNER_TEMP/godot/godot.zip" \[0m
+2026-10-06T20:05:53.0693337Z [36;1m  https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip[0m
+2026-10-06T20:05:53.0694052Z [36;1munzip -q "$RUNNER_TEMP/godot/godot.zip" -d "$RUNNER_TEMP/godot"[0m
+2026-10-06T20:05:53.0694476Z [36;1msudo install -m 0755 "$RUNNER_TEMP/godot/Godot_v4.7.2-stable_linux.x86_64" /usr/local/bin/godot[0m
+2026-10-06T20:05:53.1730667Z shell: /usr/bin/bash -e {0}
+2026-10-06T20:05:53.1731225Z ##[endgroup]
+2026-10-06T20:05:53.2105762Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-10-06T20:05:53.2106541Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-10-06T20:05:53.2107368Z 
+2026-10-06T20:05:53.2370522Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-10-06T20:05:53.2371352Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-10-06T20:05:53.6023268Z 
+2026-10-06T20:05:53.6023790Z 100 74.2M  100 74.2M    0     0   189M      0 --:--:-- --:--:-- --:--:--  189M
+2026-10-06T20:05:54.5483105Z ##[group]Run godot --headless --path . --editor --import --quit
+2026-10-06T20:05:54.5483514Z [36;1mgodot --headless --path . --editor --import --quit[0m
+2026-10-06T20:05:54.5542133Z shell: /usr/bin/bash -e {0}
+2026-10-06T20:05:54.5542357Z ##[endgroup]
+2026-10-06T20:05:54.6286892Z Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+2026-10-06T20:05:54.6779936Z 
+2026-10-06T20:06:00.3344150Z [   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+2026-10-06T20:06:00.3344874Z [   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+2026-10-06T20:06:00.3380017Z [  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+2026-10-06T20:06:00.3585805Z [  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+2026-10-06T20:06:00.3586607Z [  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+2026-10-06T20:06:00.7148899Z [  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+2026-10-06T20:06:00.7149669Z [  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+2026-10-06T20:06:00.7150301Z [92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+2026-10-06T20:06:00.7150667Z [0m
+2026-10-06T20:06:01.0582518Z [   0% ] [90m[1mupdate_scripts_classes[22m | Started Registering global classes... (180 steps)[39m[0m
+2026-10-06T20:06:01.0583321Z [   0% ] [90m[1mupdate_scripts_classes[22m | NakamaAPI[39m[0m
+2026-10-06T20:06:01.0583874Z [   0% ] [90m[1mupdate_scripts_classes[22m | NakamaRTAPI[39m[0m
+2026-10-06T20:06:01.0584446Z [   1% ] [90m[1mupdate_scripts_classes[22m | NakamaRTMessage[39m[0m
+2026-10-06T20:06:01.0585014Z [   1% ] [90m[1mupdate_scripts_classes[22m | NakamaSession[39m[0m
+2026-10-06T20:06:01.0585592Z [   2% ] [90m[1mupdate_scripts_classes[22m | NakamaStorageObjectId[39m[0m
+2026-10-06T20:06:01.0586215Z [   2% ] [90m[1mupdate_scripts_classes[22m | NakamaWriteStorageObject[39m[0m
+2026-10-06T20:06:01.0586780Z [   3% ] [90m[1mupdate_scripts_classes[22m | NakamaClient[39m[0m
+2026-10-06T20:06:01.0587338Z [   3% ] [90m[1mupdate_scripts_classes[22m | NakamaHTTPAdapter[39m[0m
+2026-10-06T20:06:01.0587924Z [   4% ] [90m[1mupdate_scripts_classes[22m | SatoriAsyncResult[39m[0m
+2026-10-06T20:06:01.0588520Z [   4% ] [90m[1mupdate_scripts_classes[22m | SatoriException[39m[0m
+2026-10-06T20:06:01.0589119Z [   5% ] [90m[1mupdate_scripts_classes[22m | SatoriLogger[39m[0m
+2026-10-06T20:06:01.0589735Z [   6% ] [90m[1mupdate_scripts_classes[22m | SatoriSerializer[39m[0m
+2026-10-06T20:06:01.0590288Z [   6% ] [90m[1mupdate_scripts_classes[22m | Event[39m[0m
+2026-10-06T20:06:01.0590783Z [   7% ] [90m[1mupdate_scripts_classes[22m | SatoriAPI[39m[0m
+2026-10-06T20:06:01.0591548Z [   7% ] [90m[1mupdate_scripts_classes[22m | SatoriClient[39m[0m
+2026-10-06T20:06:01.0592178Z [   8% ] [90m[1mupdate_scripts_classes[22m | SatoriHTTPAdapter[39m[0m
+2026-10-06T20:06:01.0592755Z [   8% ] [90m[1mupdate_scripts_classes[22m | SatoriSession[39m[0m
+2026-10-06T20:06:01.0593722Z [   9% ] [90m[1mupdate_scripts_classes[22m | NakamaSocket[39m[0m
+2026-10-06T20:06:01.0594343Z [   9% ] [90m[1mupdate_scripts_classes[22m | NakamaSocketAdapter[39m[0m
+2026-10-06T20:06:01.0594965Z [  10% ] [90m[1mupdate_scripts_classes[22m | NakamaAsyncResult[39m[0m
+2026-10-06T20:06:01.0595578Z [  11% ] [90m[1mupdate_scripts_classes[22m | NakamaException[39m[0m
+2026-10-06T20:06:01.0596157Z [  11% ] [90m[1mupdate_scripts_classes[22m | NakamaLogger[39m[0m
+2026-10-06T20:06:01.0596796Z [  12% ] [90m[1mupdate_scripts_classes[22m | NakamaMultiplayerBridge[39m[0m
+2026-10-06T20:06:01.0597481Z [  12% ] [90m[1mupdate_scripts_classes[22m | NakamaMultiplayerPeer[39m[0m
+2026-10-06T20:06:01.0598117Z [  13% ] [90m[1mupdate_scripts_classes[22m | NakamaSerializer[39m[0m
+2026-10-06T20:06:01.0598653Z [  13% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0599415Z [  14% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0599909Z [  14% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0600366Z [  15% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0600994Z [  16% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0601473Z [  16% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0601951Z [  17% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0602428Z [  17% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0602907Z [  18% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0603409Z [  18% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0603880Z [  19% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0604365Z [  19% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0604847Z [  20% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0605326Z [  20% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0605807Z [  21% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0606267Z [  22% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0606731Z [  22% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0607193Z [  23% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0607651Z [  23% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0608045Z [  24% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0609402Z [  24% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0609890Z [  25% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0610370Z [  25% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0611108Z [  26% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0611610Z [  27% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0612088Z [  27% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0612559Z [  28% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0613041Z [  28% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0613514Z [  29% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0613979Z [  29% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0614449Z [  30% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0614918Z [  30% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0615380Z [  31% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0615836Z [  32% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0616307Z [  32% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0616799Z [  33% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0617335Z [  33% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0618022Z [  34% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0618484Z [  34% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0618950Z [  35% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0619409Z [  35% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0619880Z [  36% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0620345Z [  37% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0621004Z [  37% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0621481Z [  38% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0621954Z [  38% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0622412Z [  39% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0622867Z [  39% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0623560Z [  40% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0624038Z [  40% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0624500Z [  41% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0624942Z [  41% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0625417Z [  42% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0625886Z [  43% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0626359Z [  43% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0626809Z [  44% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0627253Z [  44% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0627702Z [  45% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0628184Z [  45% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0628685Z [  46% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0629162Z [  46% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0629642Z [  47% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0630169Z [  48% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0630711Z [  48% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0631348Z [  49% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0631818Z [  49% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0632292Z [  50% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0632778Z [  50% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0633250Z [  51% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0633713Z [  51% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0634207Z [  52% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0634670Z [  53% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0635140Z [  53% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0635585Z [  54% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0636023Z [  54% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0636471Z [  55% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0636941Z [  55% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0637382Z [  56% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0637830Z [  56% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0638272Z [  57% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0638720Z [  58% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0639185Z [  58% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0639659Z [  59% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0640133Z [  59% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0640995Z [  60% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0641489Z [  60% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0641958Z [  61% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0642435Z [  61% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0642905Z [  62% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0643379Z [  62% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0643846Z [  63% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0644313Z [  64% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0644786Z [  64% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0645255Z [  65% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0645729Z [  65% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0646399Z [  66% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0646887Z [  66% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0647350Z [  67% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0647808Z [  67% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0648264Z [  68% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0648696Z [  69% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0649158Z [  69% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0649625Z [  70% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0650105Z [  70% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0650579Z [  71% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0651243Z [  71% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0651729Z [  72% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0652201Z [  72% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0652671Z [  73% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0653141Z [  74% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0653607Z [  74% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0654078Z [  75% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0654577Z [  75% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0655061Z [  76% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0655528Z [  76% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0655992Z [  77% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0656455Z [  77% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0656916Z [  78% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0657400Z [  79% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0657875Z [  79% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0658352Z [  80% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0658845Z [  80% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0659312Z [  81% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0659780Z [  81% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0660245Z [  82% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0660710Z [  82% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0661338Z [  83% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0661788Z [  83% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0662253Z [  84% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0662719Z [  85% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0663191Z [  85% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0663933Z [  86% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0664423Z [  86% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0664887Z [  87% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0665360Z [  87% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0665830Z [  88% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0666296Z [  88% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0666759Z [  89% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0667219Z [  90% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0667718Z [  90% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0668190Z [  91% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0668662Z [  91% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0669329Z [  92% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0669812Z [  92% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0670281Z [  93% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0670748Z [  93% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0671396Z [  94% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0671873Z [  95% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0672352Z [  95% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0672814Z [  96% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0673281Z [  96% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0673752Z [  97% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0674217Z [  97% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0674684Z [  98% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0675169Z [  98% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+2026-10-06T20:06:01.0675644Z [92m[ DONE ][39m [1mupdate_scripts_classes[22m
+2026-10-06T20:06:01.0676023Z [0m
+2026-10-06T20:06:01.0676556Z [   0% ] [90m[1m_update_scan_actions[22m | Started Scanning actions... (104 steps)[39m[0m
+2026-10-06T20:06:01.0677243Z [   0% ] [90m[1m_update_scan_actions[22m | arcanist.png[39m[0m
+2026-10-06T20:06:01.0677853Z [   0% ] [90m[1m_update_scan_actions[22m | bulwark.png[39m[0m
+2026-10-06T20:06:01.0678396Z [   1% ] [90m[1m_update_scan_actions[22m | elite.png[39m[0m
+2026-10-06T20:06:01.0678922Z [   2% ] [90m[1m_update_scan_actions[22m | guardian_0.png[39m[0m
+2026-10-06T20:06:01.0679481Z [   3% ] [90m[1m_update_scan_actions[22m | guardian_1.png[39m[0m
+2026-10-06T20:06:01.0680078Z [   4% ] [90m[1m_update_scan_actions[22m | guardian_2.png[39m[0m
+2026-10-06T20:06:01.0680644Z [   5% ] [90m[1m_update_scan_actions[22m | guardian_3.png[39m[0m
+2026-10-06T20:06:01.0681369Z [   6% ] [90m[1m_update_scan_actions[22m | hexer.png[39m[0m
+2026-10-06T20:06:01.0681923Z [   7% ] [90m[1m_update_scan_actions[22m | raider.png[39m[0m
+2026-10-06T20:06:01.0682463Z [   8% ] [90m[1m_update_scan_actions[22m | ranger.png[39m[0m
+2026-10-06T20:06:01.0683028Z [   9% ] [90m[1m_update_scan_actions[22m | vowkeeper.png[39m[0m
+2026-10-06T20:06:01.0683600Z [  10% ] [90m[1m_update_scan_actions[22m | arcanist.png[39m[0m
+2026-10-06T20:06:01.0684169Z [  11% ] [90m[1m_update_scan_actions[22m | guardian_0.png[39m[0m
+2026-10-06T20:06:01.0684736Z [  12% ] [90m[1m_update_scan_actions[22m | guardian_1.png[39m[0m
+2026-10-06T20:06:01.0685292Z [  13% ] [90m[1m_update_scan_actions[22m | guardian_2.png[39m[0m
+2026-10-06T20:06:01.0685849Z [  14% ] [90m[1m_update_scan_actions[22m | guardian_3.png[39m[0m
+2026-10-06T20:06:01.0686402Z [  15% ] [90m[1m_update_scan_actions[22m | hostiles.png[39m[0m
+2026-10-06T20:06:01.0686965Z [  16% ] [90m[1m_update_scan_actions[22m | ranger.png[39m[0m
+2026-10-06T20:06:01.0687755Z [  17% ] [90m[1m_update_scan_actions[22m | vowkeeper.png[39m[0m
+2026-10-06T20:06:01.0688277Z [  18% ] [90m[1m_update_scan_actions[22m | Cinzel.ttf[39m[0m
+2026-10-06T20:06:01.0688790Z [  19% ] [90m[1m_update_scan_actions[22m | Lora.ttf[39m[0m
+2026-10-06T20:06:01.0689348Z [  20% ] [90m[1m_update_scan_actions[22m | material-atlas.png[39m[0m
+2026-10-06T20:06:01.0690010Z [  20% ] [90m[1m_update_scan_actions[22m | Bricks096_1K-PNG_Color.png[39m[0m
+2026-10-06T20:06:01.0690687Z [  21% ] [90m[1m_update_scan_actions[22m | Bricks096_1K-PNG_NormalGL.png[39m[0m
+2026-10-06T20:06:01.0691535Z [  22% ] [90m[1m_update_scan_actions[22m | Bricks096_1K-PNG_Roughness.png[39m[0m
+2026-10-06T20:06:01.0692212Z [  23% ] [90m[1m_update_scan_actions[22m | Metal063_1K-JPG_Color.jpg[39m[0m
+2026-10-06T20:06:01.0692886Z [  24% ] [90m[1m_update_scan_actions[22m | Metal063_1K-JPG_Roughness.jpg[39m[0m
+2026-10-06T20:06:01.0693807Z [  25% ] [90m[1m_update_scan_actions[22m | nyra-face-albedo.png[39m[0m
+2026-10-06T20:06:01.0694467Z [  26% ] [90m[1m_update_scan_actions[22m | ruin-floor-albedo.png[39m[0m
+2026-10-06T20:06:01.0695101Z [  27% ] [90m[1m_update_scan_actions[22m | Rock030_1K-JPG_Color.jpg[39m[0m
+2026-10-06T20:06:01.0695768Z [  28% ] [90m[1m_update_scan_actions[22m | Rock030_1K-JPG_NormalGL.jpg[39m[0m
+2026-10-06T20:06:01.0696440Z [  29% ] [90m[1m_update_scan_actions[22m | Rock030_1K-JPG_Roughness.jpg[39m[0m
+2026-10-06T20:06:01.0697086Z [  30% ] [90m[1m_update_scan_actions[22m | ranger-native65.glb[39m[0m
+2026-10-06T20:06:01.0697685Z [  31% ] [90m[1m_update_scan_actions[22m | archive_bay.glb[39m[0m
+2026-10-06T20:06:01.0698343Z [  32% ] [90m[1m_update_scan_actions[22m | archive_bay_broken.glb[39m[0m
+2026-10-06T20:06:01.0698944Z [  33% ] [90m[1m_update_scan_actions[22m | archive_end.glb[39m[0m
+2026-10-06T20:06:01.0699517Z [  34% ] [90m[1m_update_scan_actions[22m | archive_return.glb[39m[0m
+2026-10-06T20:06:01.0700113Z [  35% ] [90m[1m_update_scan_actions[22m | archive_solid.glb[39m[0m
+2026-10-06T20:06:01.0700674Z [  36% ] [90m[1m_update_scan_actions[22m | citadel_bay.glb[39m[0m
+2026-10-06T20:06:01.0701418Z [  37% ] [90m[1m_update_scan_actions[22m | citadel_bay_broken.glb[39m[0m
+2026-10-06T20:06:01.0701995Z [  38% ] [90m[1m_update_scan_actions[22m | citadel_end.glb[39m[0m
+2026-10-06T20:06:01.0702563Z [  39% ] [90m[1m_update_scan_actions[22m | citadel_return.glb[39m[0m
+2026-10-06T20:06:01.0703177Z [  40% ] [90m[1m_update_scan_actions[22m | citadel_solid.glb[39m[0m
+2026-10-06T20:06:01.0703759Z [  40% ] [90m[1m_update_scan_actions[22m | ossuary_bay.glb[39m[0m
+2026-10-06T20:06:01.0704363Z [  41% ] [90m[1m_update_scan_actions[22m | ossuary_bay_broken.glb[39m[0m
+2026-10-06T20:06:01.0704960Z [  42% ] [90m[1m_update_scan_actions[22m | ossuary_end.glb[39m[0m
+2026-10-06T20:06:01.0705534Z [  43% ] [90m[1m_update_scan_actions[22m | ossuary_return.glb[39m[0m
+2026-10-06T20:06:01.0706153Z [  44% ] [90m[1m_update_scan_actions[22m | ossuary_solid.glb[39m[0m
+2026-10-06T20:06:01.0706722Z [  45% ] [90m[1m_update_scan_actions[22m | spire_bay.glb[39m[0m
+2026-10-06T20:06:01.0707316Z [  46% ] [90m[1m_update_scan_actions[22m | spire_bay_broken.glb[39m[0m
+2026-10-06T20:06:01.0707914Z [  47% ] [90m[1m_update_scan_actions[22m | spire_end.glb[39m[0m
+2026-10-06T20:06:01.0708475Z [  48% ] [90m[1m_update_scan_actions[22m | spire_return.glb[39m[0m
+2026-10-06T20:06:01.0709067Z [  49% ] [90m[1m_update_scan_actions[22m | spire_solid.glb[39m[0m
+2026-10-06T20:06:01.0709621Z [  50% ] [90m[1m_update_scan_actions[22m | arcanist.glb[39m[0m
+2026-10-06T20:06:01.0710178Z [  51% ] [90m[1m_update_scan_actions[22m | staff-grip053.glb[39m[0m
+2026-10-06T20:06:01.0711629Z [  52% ] [90m[1m_update_scan_actions[22m | nyra-attire054.glb[39m[0m
+2026-10-06T20:06:01.0713324Z [  53% ] [90m[1m_update_scan_actions[22m | archive_reliquary.glb[39m[0m
+2026-10-06T20:06:01.0714925Z [  54% ] [90m[1m_update_scan_actions[22m | citadel_reliquary.glb[39m[0m
+2026-10-06T20:06:01.0716527Z [  55% ] [90m[1m_update_scan_actions[22m | ossuary_reliquary.glb[39m[0m
+2026-10-06T20:06:01.0718006Z [  56% ] [90m[1m_update_scan_actions[22m | spire_reliquary.glb[39m[0m
+2026-10-06T20:06:01.0719447Z [  57% ] [90m[1m_update_scan_actions[22m | arcanist.glb[39m[0m
+2026-10-06T20:06:01.0720982Z [  58% ] [90m[1m_update_scan_actions[22m | bone_arch.glb[39m[0m
+2026-10-06T20:06:01.0731751Z [  59% ] [90m[1m_update_scan_actions[22m | broken_pillar.glb[39m[0m
+2026-10-06T20:06:01.0741804Z [  60% ] [90m[1m_update_scan_actions[22m | bulwark.glb[39m[0m
+2026-10-06T20:06:01.0742698Z [  60% ] [90m[1m_update_scan_actions[22m | carved_tomb.glb[39m[0m
+2026-10-06T20:06:01.0743380Z [  61% ] [90m[1m_update_scan_actions[22m | ceremonial_brazier.glb[39m[0m
+2026-10-06T20:06:01.0744029Z [  62% ] [90m[1m_update_scan_actions[22m | drowned_library.glb[39m[0m
+2026-10-06T20:06:01.0744854Z [  63% ] [90m[1m_update_scan_actions[22m | elite.glb[39m[0m
+2026-10-06T20:06:01.0745440Z [  64% ] [90m[1m_update_scan_actions[22m | expedition_table.glb[39m[0m
+2026-10-06T20:06:01.0746045Z [  65% ] [90m[1m_update_scan_actions[22m | field_forge.glb[39m[0m
+2026-10-06T20:06:01.0746629Z [  66% ] [90m[1m_update_scan_actions[22m | furnace.glb[39m[0m
+2026-10-06T20:06:01.0747207Z [  67% ] [90m[1m_update_scan_actions[22m | furnace_throne.glb[39m[0m
+2026-10-06T20:06:01.0747790Z [  68% ] [90m[1m_update_scan_actions[22m | gothic_arch.glb[39m[0m
+2026-10-06T20:06:01.0748347Z [  69% ] [90m[1m_update_scan_actions[22m | guardian_0.glb[39m[0m
+2026-10-06T20:06:01.0748908Z [  70% ] [90m[1m_update_scan_actions[22m | guardian_1.glb[39m[0m
+2026-10-06T20:06:01.0749456Z [  71% ] [90m[1m_update_scan_actions[22m | guardian_2.glb[39m[0m
+2026-10-06T20:06:01.0749982Z [  72% ] [90m[1m_update_scan_actions[22m | guardian_3.glb[39m[0m
+2026-10-06T20:06:01.0750520Z [  73% ] [90m[1m_update_scan_actions[22m | hanging_bell.glb[39m[0m
+2026-10-06T20:06:01.0751275Z [  74% ] [90m[1m_update_scan_actions[22m | hexer.glb[39m[0m
+2026-10-06T20:06:01.0751831Z [  75% ] [90m[1m_update_scan_actions[22m | leaded_lancet.glb[39m[0m
+2026-10-06T20:06:01.0752468Z [  76% ] [90m[1m_update_scan_actions[22m | pilgrim_well.glb[39m[0m
+2026-10-06T20:06:01.0753090Z [  77% ] [90m[1m_update_scan_actions[22m | pillar.glb[39m[0m
+2026-10-06T20:06:01.0753582Z [  78% ] [90m[1m_update_scan_actions[22m | raider.glb[39m[0m
+2026-10-06T20:06:01.0754101Z [  79% ] [90m[1m_update_scan_actions[22m | ranger.glb[39m[0m
+2026-10-06T20:06:01.0754651Z [  80% ] [90m[1m_update_scan_actions[22m | reliquary_altar.glb[39m[0m
+2026-10-06T20:06:01.0755235Z [  80% ] [90m[1m_update_scan_actions[22m | ruined_vault.glb[39m[0m
+2026-10-06T20:06:01.0755835Z [  81% ] [90m[1m_update_scan_actions[22m | sanctuary_intarsia.glb[39m[0m
+2026-10-06T20:06:01.0756442Z [  82% ] [90m[1m_update_scan_actions[22m | seal_shrine.glb[39m[0m
+2026-10-06T20:06:01.0757276Z [  83% ] [90m[1m_update_scan_actions[22m | vowkeeper.glb[39m[0m
+2026-10-06T20:06:01.0757965Z [  84% ] [90m[1m_update_scan_actions[22m | archive.png[39m[0m
+2026-10-06T20:06:01.0758606Z [  85% ] [90m[1m_update_scan_actions[22m | camp.png[39m[0m
+2026-10-06T20:06:01.0759205Z [  86% ] [90m[1m_update_scan_actions[22m | citadel.png[39m[0m
+2026-10-06T20:06:01.0759846Z [  87% ] [90m[1m_update_scan_actions[22m | ossuary.png[39m[0m
+2026-10-06T20:06:01.0760442Z [  88% ] [90m[1m_update_scan_actions[22m | spire.png[39m[0m
+2026-10-06T20:06:01.0761308Z [  89% ] [90m[1m_update_scan_actions[22m | camp-matte.png[39m[0m
+2026-10-06T20:06:01.0762805Z [  90% ] [90m[1m_update_scan_actions[22m | camp-stations.png[39m[0m
+2026-10-06T20:06:01.0764125Z [  91% ] [90m[1m_update_scan_actions[22m | painted-stone.png[39m[0m
+2026-10-06T20:06:01.0765339Z [  92% ] [90m[1m_update_scan_actions[22m | region-atlas.png[39m[0m
+2026-10-06T20:06:01.0766520Z [  93% ] [90m[1m_update_scan_actions[22m | app_icon.png[39m[0m
+2026-10-06T20:06:01.0767607Z [  94% ] [90m[1m_update_scan_actions[22m | app_icon.svg[39m[0m
+2026-10-06T20:06:01.0768772Z [  95% ] [90m[1m_update_scan_actions[22m | cinder_knight.webp[39m[0m
+2026-10-06T20:06:01.0769988Z [  96% ] [90m[1m_update_scan_actions[22m | hollow_spire_corridor.webp[39m[0m
+2026-10-06T20:06:01.0771253Z [  97% ] [90m[1m_update_scan_actions[22m | nyra_portrait.webp[39m[0m
+2026-10-06T20:06:01.0772351Z [  98% ] [90m[1m_update_scan_actions[22m | nyra_runner.webp[39m[0m
+2026-10-06T20:06:01.0773003Z [92m[ DONE ][39m [1m_update_scan_actions[22m
+2026-10-06T20:06:01.0773451Z [0m
+2026-10-06T20:06:01.0774107Z [   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (104 steps)[39m[0m
+2026-10-06T20:06:01.0774830Z [   0% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0775576Z [   0% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0776832Z [   1% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0777724Z [   2% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0778759Z [   3% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0779755Z [   4% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0780993Z [   5% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0782118Z [   6% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0783064Z [   7% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0784063Z [   8% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0785077Z [   9% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0786084Z [  10% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0787150Z [  11% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0788342Z [  12% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0789338Z [  13% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0790318Z [  14% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0791381Z [  15% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0792348Z [  16% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0793336Z [  17% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0794345Z [  18% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0795306Z [  19% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0796260Z [  20% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0797356Z [  20% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0798533Z [  21% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0811757Z [  22% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0812816Z [  23% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0813478Z [  24% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0814084Z [  25% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0814671Z [  26% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0815257Z [  27% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0815866Z [  28% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0816400Z [  29% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0816989Z [  30% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0819575Z [  31% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0820184Z [  32% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0820766Z [  33% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0821497Z [  34% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0822025Z [  35% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0822621Z [  36% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0823210Z [  37% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0823805Z [  38% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0824608Z [  39% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0831771Z [  40% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0852092Z [  40% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0852762Z [  41% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0853385Z [  42% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0853988Z [  43% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0854601Z [  44% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0855217Z [  45% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0855826Z [  46% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0856419Z [  47% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0857015Z [  48% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0857617Z [  49% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0858225Z [  50% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0859030Z [  51% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0859805Z [  52% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0860551Z [  53% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0861399Z [  54% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0862062Z [  55% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0862733Z [  56% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0863385Z [  57% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0864077Z [  58% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0864727Z [  59% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0865374Z [  60% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0866014Z [  60% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0866657Z [  61% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0867313Z [  62% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0867975Z [  63% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0868625Z [  64% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0869277Z [  65% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0869931Z [  66% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0870603Z [  67% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0871805Z [  68% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0872655Z [  69% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0873454Z [  70% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0874222Z [  71% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0875024Z [  72% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0875791Z [  73% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0876530Z [  74% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0877286Z [  75% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0878038Z [  76% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0879006Z [  77% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0879813Z [  78% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0880574Z [  79% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0881528Z [  80% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0882298Z [  80% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0883030Z [  81% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0883768Z [  82% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0884513Z [  83% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0885247Z [  84% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0885989Z [  85% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0886763Z [  86% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0887584Z [  87% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0888334Z [  88% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0889072Z [  89% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0889817Z [  90% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0890556Z [  91% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0891427Z [  92% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0892191Z [  93% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0892928Z [  94% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0893675Z [  95% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0894428Z [  96% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0895156Z [  97% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0895883Z [  98% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+2026-10-06T20:06:01.0896678Z [   0% ] [90m[1mreimport[22m | Executing pre-reimport operations...[39m[0m
+2026-10-06T20:06:01.0897699Z [   0% ] [90m[1mpreload_reimporting_scene[22m | Started Preparing scenes for reload (1 steps)[39m[0m
+2026-10-06T20:06:01.0898657Z [   0% ] [90m[1mpreload_reimporting_scene[22m | Analyzing scene [empty][39m[0m
+2026-10-06T20:06:01.0899524Z [  50% ] [90m[1mpreload_reimporting_scene[22m | Preparation done.[39m[0m
+2026-10-06T20:06:01.0900254Z [92m[ DONE ][39m [1mpreload_reimporting_scene[22m
+2026-10-06T20:06:01.0900803Z [0m
+2026-10-06T20:06:01.0901416Z [   0% ] [90m[1mreimport[22m | Lora.ttf[39m[0m
+2026-10-06T20:06:01.0929586Z [   0% ] [90m[1mreimport[22m | Cinzel.ttf[39m[0m
+2026-10-06T20:06:01.0947882Z [   1% ] [90m[1mreimport[22m | Lora.ttf[39m[0m
+2026-10-06T20:06:01.2242240Z [   2% ] [90m[1mreimport[22m | Cinzel.ttf[39m[0m
+2026-10-06T20:06:01.3492036Z [   3% ] [90m[1mreimport[22m | Metal063_1K-JPG_Color.jpg[39m[0m
+2026-10-06T20:06:01.4385182Z [   4% ] [90m[1mreimport[22m | Metal063_1K-JPG_Roughness.jpg[39m[0m
+2026-10-06T20:06:01.4732263Z [   5% ] [90m[1mreimport[22m | nyra-face-albedo.png[39m[0m
+2026-10-06T20:06:01.5422146Z [   6% ] [90m[1mreimport[22m | ruin-floor-albedo.png[39m[0m
+2026-10-06T20:06:01.5682067Z [   7% ] [90m[1mreimport[22m | Rock030_1K-JPG_Color.jpg[39m[0m
+2026-10-06T20:06:01.6262426Z [   8% ] [90m[1mreimport[22m | Rock030_1K-JPG_NormalGL.jpg[39m[0m
+2026-10-06T20:06:01.9953485Z [   9% ] [90m[1mreimport[22m | Rock030_1K-JPG_Roughness.jpg[39m[0m
+2026-10-06T20:06:02.0001597Z [  10% ] [90m[1mreimport[22m | archive.png[39m[0m
+2026-10-06T20:06:02.0332014Z [  11% ] [90m[1mreimport[22m | camp.png[39m[0m
+2026-10-06T20:06:02.4012086Z [  12% ] [90m[1mreimport[22m | citadel.png[39m[0m
+2026-10-06T20:06:02.4081735Z [  13% ] [90m[1mreimport[22m | ossuary.png[39m[0m
+2026-10-06T20:06:02.5332007Z [  14% ] [90m[1mreimport[22m | spire.png[39m[0m
+2026-10-06T20:06:02.7652066Z [  15% ] [90m[1mreimport[22m | camp-matte.png[39m[0m
+2026-10-06T20:06:02.8305142Z [  16% ] [90m[1mreimport[22m | camp-stations.png[39m[0m
+2026-10-06T20:06:02.9032302Z [  17% ] [90m[1mreimport[22m | painted-stone.png[39m[0m
+2026-10-06T20:06:02.9532129Z [  18% ] [90m[1mreimport[22m | region-atlas.png[39m[0m
+2026-10-06T20:06:03.0222224Z [  19% ] [90m[1mreimport[22m | app_icon.png[39m[0m
+2026-10-06T20:06:03.0642060Z [  20% ] [90m[1mreimport[22m | app_icon.svg[39m[0m
+2026-10-06T20:06:03.2352115Z [  20% ] [90m[1mreimport[22m | cinder_knight.webp[39m[0m
+2026-10-06T20:06:03.2401633Z [  21% ] [90m[1mreimport[22m | hollow_spire_corridor.webp[39m[0m
+2026-10-06T20:06:03.2461368Z [  22% ] [90m[1mreimport[22m | nyra_portrait.webp[39m[0m
+2026-10-06T20:06:03.7472283Z [  23% ] [90m[1mreimport[22m | nyra_runner.webp[39m[0m
+2026-10-06T20:06:03.8302880Z [  24% ] [90m[1mreimport[22m | arcanist.png[39m[0m
+2026-10-06T20:06:03.8467132Z [  25% ] [90m[1mreimport[22m | bulwark.png[39m[0m
+2026-10-06T20:06:04.4811995Z [  26% ] [90m[1mreimport[22m | elite.png[39m[0m
+2026-10-06T20:06:04.5722017Z [  27% ] [90m[1mreimport[22m | guardian_0.png[39m[0m
+2026-10-06T20:06:04.9902975Z [  28% ] [90m[1mreimport[22m | guardian_1.png[39m[0m
+2026-10-06T20:06:05.1692095Z [  29% ] [90m[1mreimport[22m | guardian_2.png[39m[0m
+2026-10-06T20:06:05.3132011Z [  30% ] [90m[1mreimport[22m | guardian_3.png[39m[0m
+2026-10-06T20:06:05.6886986Z [  31% ] [90m[1mreimport[22m | hexer.png[39m[0m
+2026-10-06T20:06:05.9461495Z [  32% ] [90m[1mreimport[22m | raider.png[39m[0m
+2026-10-06T20:06:06.2032197Z [  33% ] [90m[1mreimport[22m | ranger.png[39m[0m
+2026-10-06T20:06:06.3701105Z [  34% ] [90m[1mreimport[22m | vowkeeper.png[39m[0m
+2026-10-06T20:06:06.7695826Z [  35% ] [90m[1mreimport[22m | arcanist.png[39m[0m
+2026-10-06T20:06:06.8031661Z [  36% ] [90m[1mreimport[22m | guardian_0.png[39m[0m
+2026-10-06T20:06:06.8811956Z [  37% ] [90m[1mreimport[22m | guardian_1.png[39m[0m
+2026-10-06T20:06:06.9222025Z [  38% ] [90m[1mreimport[22m | guardian_2.png[39m[0m
+2026-10-06T20:06:07.1582155Z [  39% ] [90m[1mreimport[22m | Bricks096_1K-PNG_Roughness.png[39m[0m
+2026-10-06T20:06:07.3162340Z [  40% ] [90m[1mreimport[22m | Bricks096_1K-PNG_NormalGL.png[39m[0m
+2026-10-06T20:06:07.6202179Z [  40% ] [90m[1mreimport[22m | Bricks096_1K-PNG_Color.png[39m[0m
+2026-10-06T20:06:07.7212117Z [  41% ] [90m[1mreimport[22m | material-atlas.png[39m[0m
+2026-10-06T20:06:07.9563361Z [  42% ] [90m[1mreimport[22m | vowkeeper.png[39m[0m
+2026-10-06T20:06:08.2803162Z [  43% ] [90m[1mreimport[22m | ranger.png[39m[0m
+2026-10-06T20:06:08.4968502Z [  44% ] [90m[1mreimport[22m | ranger.glb[39m[0m
+2026-10-06T20:06:08.4970382Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:08.4971641Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:08.5675215Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:08.5675855Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:08.5824320Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:08.5824794Z [0m
+2026-10-06T20:06:08.5860086Z [  45% ] [90m[1mreimport[22m | raider.glb[39m[0m
+2026-10-06T20:06:08.5862219Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:08.5862852Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:08.6253848Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:08.6254506Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:08.6325320Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:08.6346429Z [0m
+2026-10-06T20:06:08.6348701Z [  46% ] [90m[1mreimport[22m | pillar.glb[39m[0m
+2026-10-06T20:06:08.6350552Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:08.6351342Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:08.6413523Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:08.6414080Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:08.6430564Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:08.6431085Z [0m
+2026-10-06T20:06:08.6440200Z [  47% ] [90m[1mreimport[22m | pilgrim_well.glb[39m[0m
+2026-10-06T20:06:08.6441863Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:08.6442496Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:08.6515868Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:08.6516448Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:08.6535343Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:08.6535762Z [0m
+2026-10-06T20:06:08.6545234Z [  48% ] [90m[1mreimport[22m | leaded_lancet.glb[39m[0m
+2026-10-06T20:06:08.6546660Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:08.6547267Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:08.6661423Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:08.6662009Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:08.6693583Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:08.6693993Z [0m
+2026-10-06T20:06:08.6705622Z [  49% ] [90m[1mreimport[22m | hexer.glb[39m[0m
+2026-10-06T20:06:08.6707285Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:08.6707901Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:08.7354495Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:08.7355212Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:08.7484459Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:08.7484907Z [0m
+2026-10-06T20:06:08.7522690Z [  50% ] [90m[1mreimport[22m | hanging_bell.glb[39m[0m
+2026-10-06T20:06:08.7524676Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:08.7525316Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:08.7631500Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:08.7632044Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:08.7660501Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:08.7661147Z [0m
+2026-10-06T20:06:08.7672406Z [  51% ] [90m[1mreimport[22m | guardian_3.glb[39m[0m
+2026-10-06T20:06:08.7674266Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:08.7674875Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:08.8153591Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:08.8154222Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:08.8255868Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:08.8256330Z [0m
+2026-10-06T20:06:08.8282654Z [  52% ] [90m[1mreimport[22m | guardian_2.glb[39m[0m
+2026-10-06T20:06:08.8284351Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:08.8284973Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:08.8999845Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:08.9000527Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:08.9126846Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:08.9127280Z [0m
+2026-10-06T20:06:08.9161046Z [  53% ] [90m[1mreimport[22m | guardian_1.glb[39m[0m
+2026-10-06T20:06:08.9162803Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:08.9163424Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:08.9859744Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:08.9860416Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:08.9990116Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:08.9990490Z [0m
+2026-10-06T20:06:09.0024577Z [  54% ] [90m[1mreimport[22m | guardian_0.glb[39m[0m
+2026-10-06T20:06:09.0026258Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:09.0026885Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:09.0607337Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:09.0607896Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:09.0733760Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:09.0734148Z [0m
+2026-10-06T20:06:09.0767620Z [  55% ] [90m[1mreimport[22m | gothic_arch.glb[39m[0m
+2026-10-06T20:06:09.0769317Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:09.0770042Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:09.0920106Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:09.0920725Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:09.0952139Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:09.0952688Z [0m
+2026-10-06T20:06:09.0967882Z [  56% ] [90m[1mreimport[22m | reliquary_altar.glb[39m[0m
+2026-10-06T20:06:09.0969738Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:09.0970367Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:09.1152027Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:09.1161286Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:09.1201294Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:09.1211470Z [0m
+2026-10-06T20:06:09.1211951Z [  57% ] [90m[1mreimport[22m | ruined_vault.glb[39m[0m
+2026-10-06T20:06:09.1231434Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:09.1241639Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:09.1338463Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:09.1338937Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:09.1363856Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:09.1364198Z [0m
+2026-10-06T20:06:09.1375740Z [  58% ] [90m[1mreimport[22m | sanctuary_intarsia.glb[39m[0m
+2026-10-06T20:06:09.1378087Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:09.1378631Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:09.1511734Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:09.1512198Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:09.1544060Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:09.1544484Z [0m
+2026-10-06T20:06:09.1557392Z [  59% ] [90m[1mreimport[22m | seal_shrine.glb[39m[0m
+2026-10-06T20:06:09.1559154Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:09.1559792Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:09.1618107Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:09.1618683Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:09.1639353Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:09.1639786Z [0m
+2026-10-06T20:06:09.1650443Z [  60% ] [90m[1mreimport[22m | vowkeeper.glb[39m[0m
+2026-10-06T20:06:09.1652207Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:09.1652859Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:09.2347007Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:09.2347502Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:09.2489090Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:09.2489371Z [0m
+2026-10-06T20:06:09.2523781Z [  60% ] [90m[1mreimport[22m | citadel_bay.glb[39m[0m
+2026-10-06T20:06:09.2526261Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:09.2526678Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:09.2630491Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:09.2631090Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:09.2669447Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:09.2669731Z [0m
+2026-10-06T20:06:09.2689504Z [  61% ] [90m[1mreimport[22m | archive_solid.glb[39m[0m
+2026-10-06T20:06:09.2691751Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:09.2692284Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:09.2709541Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:09.2709954Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:09.2722151Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:09.2722511Z [0m
+2026-10-06T20:06:09.2730130Z [  62% ] [90m[1mreimport[22m | archive_return.glb[39m[0m
+2026-10-06T20:06:09.2732306Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:09.2732707Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:09.2768699Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:09.2769201Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:09.2786051Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:09.2786397Z [0m
+2026-10-06T20:06:09.2796569Z [  63% ] [90m[1mreimport[22m | archive_end.glb[39m[0m
+2026-10-06T20:06:09.2798533Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:09.2799064Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:09.2825695Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:09.2826117Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:09.2840216Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:09.2840496Z [0m
+2026-10-06T20:06:09.2850006Z [  64% ] [90m[1mreimport[22m | archive_bay_broken.glb[39m[0m
+2026-10-06T20:06:09.2852177Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:09.2852567Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:09.2946490Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:09.2946969Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:09.2984495Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:09.2984838Z [0m
+2026-10-06T20:06:09.3004324Z [  65% ] [90m[1mreimport[22m | archive_bay.glb[39m[0m
+2026-10-06T20:06:09.3006672Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:09.3007232Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:09.3104459Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:09.3104917Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:09.3142116Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:09.3142453Z [0m
+2026-10-06T20:06:09.3162723Z [  66% ] [90m[1mreimport[22m | ranger-native65.glb[39m[0m
+2026-10-06T20:06:09.3165081Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:09.3165662Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:11.3405662Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:11.3406173Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:11.3569578Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:11.3569854Z [0m
+2026-10-06T20:06:11.3714325Z [  67% ] [90m[1mreimport[22m | citadel_bay_broken.glb[39m[0m
+2026-10-06T20:06:11.3716495Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:11.3716881Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:11.3829436Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:11.3829895Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:11.3866928Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:11.3867231Z [0m
+2026-10-06T20:06:11.3887414Z [  68% ] [90m[1mreimport[22m | citadel_end.glb[39m[0m
+2026-10-06T20:06:11.3889365Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:11.3889778Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:11.3918670Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:11.3919156Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:11.3934357Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:11.3934678Z [0m
+2026-10-06T20:06:11.3943925Z [  69% ] [90m[1mreimport[22m | citadel_return.glb[39m[0m
+2026-10-06T20:06:11.3946040Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:11.3946419Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:11.3985934Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:11.3986406Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:11.4005790Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:11.4006097Z [0m
+2026-10-06T20:06:11.4017095Z [  70% ] [90m[1mreimport[22m | citadel_solid.glb[39m[0m
+2026-10-06T20:06:11.4019001Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:11.4019515Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:11.4038039Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:11.4038506Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:11.4049994Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:11.4050307Z [0m
+2026-10-06T20:06:11.4058168Z [  71% ] [90m[1mreimport[22m | ossuary_bay.glb[39m[0m
+2026-10-06T20:06:11.4059982Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:11.4060495Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:11.4175646Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:11.4176115Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:11.4217557Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:11.4217875Z [0m
+2026-10-06T20:06:11.4240078Z [  72% ] [90m[1mreimport[22m | ossuary_bay_broken.glb[39m[0m
+2026-10-06T20:06:11.4242212Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:11.4242728Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:11.4360253Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:11.4360747Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:11.4402386Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:11.4403015Z [0m
+2026-10-06T20:06:11.4425052Z [  73% ] [90m[1mreimport[22m | ossuary_end.glb[39m[0m
+2026-10-06T20:06:11.4427187Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:11.4427701Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:11.4456139Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:11.4456615Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:11.4470501Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:11.4470810Z [0m
+2026-10-06T20:06:11.4480001Z [  74% ] [90m[1mreimport[22m | ossuary_return.glb[39m[0m
+2026-10-06T20:06:11.4482094Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:11.4482612Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:11.4515183Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:11.4515647Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:11.4530527Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:11.4530947Z [0m
+2026-10-06T20:06:11.4540618Z [  75% ] [90m[1mreimport[22m | ossuary_solid.glb[39m[0m
+2026-10-06T20:06:11.4542732Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:11.4543253Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:11.4561802Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:11.4562259Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:11.4573982Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:11.4574288Z [0m
+2026-10-06T20:06:11.4581977Z [  76% ] [90m[1mreimport[22m | spire_bay.glb[39m[0m
+2026-10-06T20:06:11.4583883Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:11.4584417Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:11.4688712Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:11.4689200Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:11.4728930Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:11.4729238Z [0m
+2026-10-06T20:06:11.4749308Z [  77% ] [90m[1mreimport[22m | spire_bay_broken.glb[39m[0m
+2026-10-06T20:06:11.4751539Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:11.4752065Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:11.4846612Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:11.4847078Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:11.4882841Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:11.4883145Z [0m
+2026-10-06T20:06:11.4902441Z [  78% ] [90m[1mreimport[22m | spire_end.glb[39m[0m
+2026-10-06T20:06:11.4904630Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:11.4905176Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:11.4933707Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:11.4934165Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:11.4947966Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:11.4948272Z [0m
+2026-10-06T20:06:11.4957307Z [  79% ] [90m[1mreimport[22m | spire_return.glb[39m[0m
+2026-10-06T20:06:11.4959166Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:11.4959679Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:11.4990270Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:11.4990729Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:11.5007222Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:11.5007520Z [0m
+2026-10-06T20:06:11.5016821Z [  80% ] [90m[1mreimport[22m | spire_solid.glb[39m[0m
+2026-10-06T20:06:11.5018640Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:11.5019373Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:11.5036427Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:11.5036883Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:11.5047915Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:11.5055990Z [0m
+2026-10-06T20:06:11.5056310Z [  80% ] [90m[1mreimport[22m | arcanist.glb[39m[0m
+2026-10-06T20:06:11.5057790Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:11.5058312Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:23.9993071Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:23.9993614Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.0188440Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.0188834Z [0m
+2026-10-06T20:06:24.0626794Z [  81% ] [90m[1mreimport[22m | staff-grip053.glb[39m[0m
+2026-10-06T20:06:24.0628026Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.0628567Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.0718977Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.0719498Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.0743601Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.0743856Z [0m
+2026-10-06T20:06:24.0764415Z [  82% ] [90m[1mreimport[22m | furnace_throne.glb[39m[0m
+2026-10-06T20:06:24.0766641Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.0767159Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.0832498Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.0832968Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.0855566Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.0855883Z [0m
+2026-10-06T20:06:24.0865569Z [  83% ] [90m[1mreimport[22m | furnace.glb[39m[0m
+2026-10-06T20:06:24.0867686Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.0868204Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.0969053Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.0969516Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.0994796Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.0995106Z [0m
+2026-10-06T20:06:24.1005514Z [  84% ] [90m[1mreimport[22m | field_forge.glb[39m[0m
+2026-10-06T20:06:24.1007399Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.1007915Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.1175553Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.1176034Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.1221806Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.1222115Z [0m
+2026-10-06T20:06:24.1239109Z [  85% ] [90m[1mreimport[22m | expedition_table.glb[39m[0m
+2026-10-06T20:06:24.1241281Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.1241801Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.1356724Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.1357202Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.1392755Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.1393062Z [0m
+2026-10-06T20:06:24.1405772Z [  86% ] [90m[1mreimport[22m | elite.glb[39m[0m
+2026-10-06T20:06:24.1407841Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.1408355Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.1839485Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.1840351Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.1933242Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.1933602Z [0m
+2026-10-06T20:06:24.1958406Z [  87% ] [90m[1mreimport[22m | drowned_library.glb[39m[0m
+2026-10-06T20:06:24.1961204Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.1961707Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.2397419Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.2397792Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.2491949Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.2492278Z [0m
+2026-10-06T20:06:24.2532133Z [  88% ] [90m[1mreimport[22m | ceremonial_brazier.glb[39m[0m
+2026-10-06T20:06:24.2534388Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.2535240Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.2623315Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.2623782Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.2646570Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.2646917Z [0m
+2026-10-06T20:06:24.2657450Z [  89% ] [90m[1mreimport[22m | carved_tomb.glb[39m[0m
+2026-10-06T20:06:24.2659638Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.2660186Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.2792704Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.2793048Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.2822055Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.2822307Z [0m
+2026-10-06T20:06:24.2834100Z [  90% ] [90m[1mreimport[22m | bulwark.glb[39m[0m
+2026-10-06T20:06:24.2836157Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.2836515Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.3277759Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.3278258Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.3375180Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.3375525Z [0m
+2026-10-06T20:06:24.3401125Z [  91% ] [90m[1mreimport[22m | broken_pillar.glb[39m[0m
+2026-10-06T20:06:24.3403267Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.3403809Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.3436816Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.3437310Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.3449913Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.3450259Z [0m
+2026-10-06T20:06:24.3457814Z [  92% ] [90m[1mreimport[22m | bone_arch.glb[39m[0m
+2026-10-06T20:06:24.3459740Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.3460302Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.3546328Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.3547141Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.3569476Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.3569813Z [0m
+2026-10-06T20:06:24.3579687Z [  93% ] [90m[1mreimport[22m | arcanist.glb[39m[0m
+2026-10-06T20:06:24.3581428Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.3581946Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.4259331Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.4259832Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.4404167Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.4404540Z [0m
+2026-10-06T20:06:24.4439418Z [  94% ] [90m[1mreimport[22m | spire_reliquary.glb[39m[0m
+2026-10-06T20:06:24.4445219Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.4445657Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.4524337Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.4524680Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.4553921Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.4554156Z [0m
+2026-10-06T20:06:24.4570509Z [  95% ] [90m[1mreimport[22m | ossuary_reliquary.glb[39m[0m
+2026-10-06T20:06:24.4572913Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.4573277Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.4625364Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.4625687Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.4646333Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.4646624Z [0m
+2026-10-06T20:06:24.4658348Z [  96% ] [90m[1mreimport[22m | citadel_reliquary.glb[39m[0m
+2026-10-06T20:06:24.4660391Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.4660739Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.4720588Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.4721174Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.4742928Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.4743169Z [0m
+2026-10-06T20:06:24.4756902Z [  97% ] [90m[1mreimport[22m | archive_reliquary.glb[39m[0m
+2026-10-06T20:06:24.4758943Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.4759283Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.4841186Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.4841496Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.4869960Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.4870178Z [0m
+2026-10-06T20:06:24.4887011Z [  98% ] [90m[1mreimport[22m | nyra-attire054.glb[39m[0m
+2026-10-06T20:06:24.4889198Z [   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+2026-10-06T20:06:24.4889539Z [   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+2026-10-06T20:06:24.5038914Z [   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+2026-10-06T20:06:24.5039357Z [  99% ] [90m[1mimport[22m | Saving...[39m[0m
+2026-10-06T20:06:24.5085032Z [92m[ DONE ][39m [1mimport[22m
+2026-10-06T20:06:24.5085282Z [0m
+2026-10-06T20:06:24.5099669Z [  99% ] [90m[1mreimport[22m | Finalizing Asset Import...[39m[0m
+2026-10-06T20:06:24.5111023Z [92m[ DONE ][39m [1mreimport[22m
+2026-10-06T20:06:24.5111354Z [0m
+2026-10-06T20:06:24.5111773Z [   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (104 steps)[39m[0m
+2026-10-06T20:06:24.5112212Z [   0% ] [90m[1mreimport[22m | Executing post-reimport operations...[39m[0m
+2026-10-06T20:06:24.5112525Z [92m[ DONE ][39m [1mreimport[22m
+2026-10-06T20:06:24.5112725Z [0m
+2026-10-06T20:06:24.5187897Z [   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+2026-10-06T20:06:24.5188544Z [   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+2026-10-06T20:06:24.5189057Z [  16% ] [90m[1mloading_editor_layout[22m | Loading docks...[39m[0m
+2026-10-06T20:06:24.5189483Z [92m[ DONE ][39m [1mloading_editor_layout[22m
+2026-10-06T20:06:24.5189800Z [0m
+2026-10-06T20:06:27.1212250Z cannot connect to daemon at tcp:5037: Connection refused
+2026-10-06T20:06:28.2239274Z ##[group]Run mkdir -p build
+2026-10-06T20:06:28.2239535Z [36;1mmkdir -p build[0m
+2026-10-06T20:06:28.2239889Z [36;1mgodot --headless --path . --export-pack 'Android Closed Beta APK' build/native-avatar-smoke.pck[0m
+2026-10-06T20:06:28.2240262Z [36;1mcd "$RUNNER_TEMP"[0m
+2026-10-06T20:06:28.2240732Z [36;1mtimeout 60s godot --headless --main-pack "$GITHUB_WORKSPACE/build/native-avatar-smoke.pck" \[0m
+2026-10-06T20:06:28.2241383Z [36;1m  --script "$GITHUB_WORKSPACE/tests/source_avatar_export_smoke.gd"[0m
+2026-10-06T20:06:28.2298339Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-06T20:06:28.2298612Z ##[endgroup]
+2026-10-06T20:06:28.2657455Z Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+2026-10-06T20:06:28.2891120Z 
+2026-10-06T20:06:29.7650140Z [   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+2026-10-06T20:06:29.7651509Z [   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+2026-10-06T20:06:29.7683641Z [  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+2026-10-06T20:06:29.8923758Z [  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+2026-10-06T20:06:30.2207206Z [  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+2026-10-06T20:06:30.2207918Z [  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+2026-10-06T20:06:30.2208540Z [  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+2026-10-06T20:06:30.2209036Z [92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+2026-10-06T20:06:30.2209386Z [0m
+2026-10-06T20:06:30.4921868Z [   0% ] [90m[1msavepack[22m | Started Packing (102 steps)[39m[0m
+2026-10-06T20:06:30.5261349Z [   1% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/api/NakamaAPI.gdc[39m[0m
+2026-10-06T20:06:30.5280218Z [   1% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/api/NakamaRTAPI.gdc[39m[0m
+2026-10-06T20:06:30.5292268Z [   1% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/api/NakamaRTMessage.gdc[39m[0m
+2026-10-06T20:06:30.5297120Z [   2% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/api/NakamaSession.gdc[39m[0m
+2026-10-06T20:06:30.5299712Z [   2% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/api/NakamaStorageObjectId.gdc[39m[0m
+2026-10-06T20:06:30.5302446Z [   3% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/api/NakamaWriteStorageObject.gdc[39m[0m
+2026-10-06T20:06:30.5324778Z [   3% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/client/NakamaClient.gdc[39m[0m
+2026-10-06T20:06:30.5331256Z [   4% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/client/NakamaHTTPAdapter.gdc[39m[0m
+2026-10-06T20:06:30.5333976Z [   4% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/utils/SatoriAsyncResult.gdc[39m[0m
+2026-10-06T20:06:30.5336628Z [   5% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/utils/SatoriException.gdc[39m[0m
+2026-10-06T20:06:30.5339337Z [   5% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/utils/SatoriLogger.gdc[39m[0m
+2026-10-06T20:06:30.5345134Z [   5% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/utils/SatoriSerializer.gdc[39m[0m
+2026-10-06T20:06:30.5348348Z [   6% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/Event.gdc[39m[0m
+2026-10-06T20:06:30.5378739Z [   6% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/SatoriAPI.gdc[39m[0m
+2026-10-06T20:06:30.5384411Z [   7% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/SatoriClient.gdc[39m[0m
+2026-10-06T20:06:30.5391017Z [   7% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/SatoriHttpAdapter.gdc[39m[0m
+2026-10-06T20:06:30.5394915Z [   8% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/SatoriSession.gdc[39m[0m
+2026-10-06T20:06:30.5410010Z [   8% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/socket/NakamaSocket.gdc[39m[0m
+2026-10-06T20:06:30.5413894Z [   9% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/socket/NakamaSocketAdapter.gdc[39m[0m
+2026-10-06T20:06:30.5416331Z [   9% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/utils/NakamaAsyncResult.gdc[39m[0m
+2026-10-06T20:06:30.5418872Z [   9% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/utils/NakamaException.gdc[39m[0m
+2026-10-06T20:06:30.5421566Z [  10% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/utils/NakamaLogger.gdc[39m[0m
+2026-10-06T20:06:30.5430119Z [  10% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/utils/NakamaMultiplayerBridge.gdc[39m[0m
+2026-10-06T20:06:30.5434227Z [  11% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/utils/NakamaMultiplayerPeer.gdc[39m[0m
+2026-10-06T20:06:30.5439457Z [  11% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/utils/NakamaSerializer.gdc[39m[0m
+2026-10-06T20:06:30.5442705Z [  12% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Nakama.gdc[39m[0m
+2026-10-06T20:06:30.5445286Z [  12% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori.gdc[39m[0m
+2026-10-06T20:06:30.5446905Z [  13% ] [90m[1msavepack[22m | Storing File: res://assets/animations/bodyphrase-048/proof.json[39m[0m
+2026-10-06T20:06:30.5449748Z [  13% ] [90m[1msavepack[22m | Storing File: res://assets/animations/bodyphrase-049/proof.json[39m[0m
+2026-10-06T20:06:30.5468028Z [  13% ] [90m[1msavepack[22m | Storing File: res://assets/animations/vowkeeper_sword_foundation.gdc[39m[0m
+2026-10-06T20:06:30.5480706Z [  14% ] [90m[1msavepack[22m | Storing File: res://scripts/cloud_save.gdc[39m[0m
+2026-10-06T20:06:30.5484710Z [  14% ] [90m[1msavepack[22m | Storing File: res://scripts/sculpted_mesh.gdc[39m[0m
+2026-10-06T20:06:30.5487041Z [  15% ] [90m[1msavepack[22m | Storing File: res://scripts/game_preferences.gdc[39m[0m
+2026-10-06T20:06:30.5496253Z [  15% ] [90m[1msavepack[22m | Storing File: res://scripts/class_avatar_pose.gdc[39m[0m
+2026-10-06T20:06:30.5517877Z [  16% ] [90m[1msavepack[22m | Storing File: res://scripts/ruin_architecture.gdc[39m[0m
+2026-10-06T20:06:30.5568828Z [  16% ] [90m[1msavepack[22m | Storing File: res://scripts/expedition_simulation.gdc[39m[0m
+2026-10-06T20:06:30.5582513Z [  17% ] [90m[1msavepack[22m | Storing File: res://scripts/dungeon_layout.gdc[39m[0m
+2026-10-06T20:06:30.5585237Z [  17% ] [90m[1msavepack[22m | Storing File: res://scripts/combat_stances.gdc[39m[0m
+2026-10-06T20:06:30.5711583Z [  17% ] [90m[1msavepack[22m | Storing File: res://scripts/main.gdc[39m[0m
+2026-10-06T20:06:30.5714965Z [  18% ] [90m[1msavepack[22m | Storing File: res://scripts/skill_glyph.gdc[39m[0m
+2026-10-06T20:06:30.5719821Z [  18% ] [90m[1msavepack[22m | Storing File: res://scripts/class_loot.gdc[39m[0m
+2026-10-06T20:06:30.5722826Z [  19% ] [90m[1msavepack[22m | Storing File: res://scripts/regional_sets.gdc[39m[0m
+2026-10-06T20:06:30.5795764Z [  19% ] [90m[1msavepack[22m | Storing File: res://scripts/dungeon_world.gdc[39m[0m
+2026-10-06T20:06:30.5799431Z [  20% ] [90m[1msavepack[22m | Storing File: res://scripts/dungeon_lighting.gdc[39m[0m
+2026-10-06T20:06:30.5819097Z [  20% ] [90m[1msavepack[22m | Storing File: res://scripts/character_rig.gdc[39m[0m
+2026-10-06T20:06:30.5822309Z [  21% ] [90m[1msavepack[22m | Storing File: res://scripts/expedition_map.gdc[39m[0m
+2026-10-06T20:06:30.5833034Z [  21% ] [90m[1msavepack[22m | Storing File: res://scripts/boss_patterns.gdc[39m[0m
+2026-10-06T20:06:30.5865721Z [  21% ] [90m[1msavepack[22m | Storing File: res://scripts/settings_panel.gdc[39m[0m
+2026-10-06T20:06:30.5873592Z [  22% ] [90m[1msavepack[22m | Storing File: res://scripts/save_store.gdc[39m[0m
+2026-10-06T20:06:30.5878562Z [  22% ] [90m[1msavepack[22m | Storing File: res://scripts/ui_glyph.gdc[39m[0m
+2026-10-06T20:06:30.5885557Z [  23% ] [90m[1msavepack[22m | Storing File: res://scripts/expedition_contract.gdc[39m[0m
+2026-10-06T20:06:30.5889862Z [  23% ] [90m[1msavepack[22m | Storing File: res://scripts/room_ground.gdc[39m[0m
+2026-10-06T20:06:30.5903586Z [  24% ] [90m[1msavepack[22m | Storing File: res://scripts/class_avatar_rig.gdc[39m[0m
+2026-10-06T20:06:30.5905995Z [  24% ] [90m[1msavepack[22m | Storing File: res://scripts/mobile_safe_area.gdc[39m[0m
+2026-10-06T20:06:30.5907524Z [  25% ] [90m[1msavepack[22m | Storing File: res://assets/models/classes055/ANIMATION2-LICENSE.txt[39m[0m
+2026-10-06T20:06:30.5926228Z [  25% ] [90m[1msavepack[22m | Storing File: res://scripts/dungeon_actor.gdc[39m[0m
+2026-10-06T20:06:32.2719786Z [  26% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-bcb0d2eb5949c52b6a65bfe9de3e985b-Main.scn[39m[0m
+2026-10-06T20:06:32.2724609Z [  26% ] [90m[1msavepack[22m | Storing File: res://scripts/class_skills.gdc[39m[0m
+2026-10-06T20:06:32.2729420Z [  26% ] [90m[1msavepack[22m | Storing File: res://scripts/dungeon_theme.gdc[39m[0m
+2026-10-06T20:06:32.2731214Z [  27% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra054/QUATERNIUS-CC0-LICENSE.txt[39m[0m
+2026-10-06T20:06:32.2742382Z [  27% ] [90m[1msavepack[22m | Storing File: res://scripts/fellowship_service.gdc[39m[0m
+2026-10-06T20:06:32.2752763Z [  28% ] [90m[1msavepack[22m | Storing File: res://scripts/class_avatar_style.gdc[39m[0m
+2026-10-06T20:06:32.2767490Z [  28% ] [90m[1msavepack[22m | Storing File: res://scripts/camp_scene.gdc[39m[0m
+2026-10-06T20:06:32.2772252Z [  29% ] [90m[1msavepack[22m | Storing File: res://scripts/progression_service.gdc[39m[0m
+2026-10-06T20:06:32.2775449Z [  29% ] [90m[1msavepack[22m | Storing File: res://scripts/class_relics.gdc[39m[0m
+2026-10-06T20:06:32.2779174Z [  30% ] [90m[1msavepack[22m | Storing File: res://scripts/farm_forecast.gdc[39m[0m
+2026-10-06T20:06:32.2780498Z [  30% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/OUTFIT-LICENSE.txt[39m[0m
+2026-10-06T20:06:32.2785409Z [  30% ] [90m[1msavepack[22m | Storing File: res://scripts/battle_art.gdc[39m[0m
+2026-10-06T20:06:32.2791845Z [  31% ] [90m[1msavepack[22m | Storing File: res://scripts/source_avatar_style.gdc[39m[0m
+2026-10-06T20:06:32.2793388Z [  31% ] [90m[1msavepack[22m | Storing File: res://assets/models/classes055/OUTFIT-LICENSE.txt[39m[0m
+2026-10-06T20:06:32.2794684Z [  32% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/ANIMATION-LICENSE.txt[39m[0m
+2026-10-06T20:06:32.2798609Z [  32% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/Cinzel.ttf-1e003c02bd9f5caf99829299b24c9916.fontdata[39m[0m
+2026-10-06T20:06:32.2799561Z [  32% ] [90m[1msavepack[22m | Storing File: res://assets/fonts/Cinzel.ttf.import[39m[0m
+2026-10-06T20:06:32.2803708Z [  33% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/Lora.ttf-ab235624946333bac5af92b83fa760cd.fontdata[39m[0m
+2026-10-06T20:06:32.2804605Z [  33% ] [90m[1msavepack[22m | Storing File: res://assets/fonts/Lora.ttf.import[39m[0m
+2026-10-06T20:06:32.2807479Z [  33% ] [90m[1msavepack[22m | Storing File: res://scripts/combat_health_bar.gdc[39m[0m
+2026-10-06T20:06:32.2810726Z [  33% ] [90m[1msavepack[22m | Storing File: res://scripts/regional_stage.gdc[39m[0m
+2026-10-06T20:06:32.2856285Z [  33% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/material-atlas.png-d2ef03e38b931e86c4bd2e43848185b7.ctex[39m[0m
+2026-10-06T20:06:32.2857626Z [  33% ] [90m[1msavepack[22m | Storing File: res://assets/materials/field-surfaces/material-atlas.png.import[39m[0m
+2026-10-06T20:06:32.2858566Z [  33% ] [90m[1msavepack[22m | Storing File: res://assets/materials/masonry/Bricks096-api.json[39m[0m
+2026-10-06T20:06:32.2867539Z [  34% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/Bricks096_1K-PNG_Color.png-96514fad640d6d30da4657340ba505cc.etc2.ctex[39m[0m
+2026-10-06T20:06:32.2868653Z [  34% ] [90m[1msavepack[22m | Storing File: res://assets/materials/masonry/Bricks096_1K-PNG_Color.png.import[39m[0m
+2026-10-06T20:06:32.2883471Z [  34% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/Bricks096_1K-PNG_NormalGL.png-dd3048f795a07f2c1034b273535930a3.etc2.ctex[39m[0m
+2026-10-06T20:06:32.2884660Z [  34% ] [90m[1msavepack[22m | Storing File: res://assets/materials/masonry/Bricks096_1K-PNG_NormalGL.png.import[39m[0m
+2026-10-06T20:06:32.2892921Z [  35% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/Bricks096_1K-PNG_Roughness.png-bcd6d5af63c81d428be0f6d738159434.etc2.ctex[39m[0m
+2026-10-06T20:06:32.2894113Z [  35% ] [90m[1msavepack[22m | Storing File: res://assets/materials/masonry/Bricks096_1K-PNG_Roughness.png.import[39m[0m
+2026-10-06T20:06:32.2895039Z [  35% ] [90m[1msavepack[22m | Storing File: res://assets/materials/masonry/manifest.json[39m[0m
+2026-10-06T20:06:32.2922668Z [  36% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/Metal063_1K-JPG_Color.jpg-ec5410a5800e87b2625174344b313cbc.ctex[39m[0m
+2026-10-06T20:06:32.2923592Z [  36% ] [90m[1msavepack[22m | Storing File: res://assets/materials/metal/Metal063_1K-JPG_Color.jpg.import[39m[0m
+2026-10-06T20:06:32.2937668Z [  36% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/Metal063_1K-JPG_Roughness.jpg-1e98403cced51621af4952b86e8a979f.ctex[39m[0m
+2026-10-06T20:06:32.2938378Z [  36% ] [90m[1msavepack[22m | Storing File: res://assets/materials/metal/Metal063_1K-JPG_Roughness.jpg.import[39m[0m
+2026-10-06T20:06:32.2944532Z [  37% ] [90m[1msavepack[22m | Storing File: res://scripts/hero_art.gdc[39m[0m
+2026-10-06T20:06:32.2948254Z [  37% ] [90m[1msavepack[22m | Storing File: res://scripts/offline_farm.gdc[39m[0m
+2026-10-06T20:06:32.2979831Z [  37% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/nyra-face-albedo.png-bb02a2970f37df74d6e3a1504768bb5b.ctex[39m[0m
+2026-10-06T20:06:32.2981105Z [  37% ] [90m[1msavepack[22m | Storing File: res://assets/materials/nyra-face/nyra-face-albedo.png.import[39m[0m
+2026-10-06T20:06:32.3025101Z [  38% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ruin-floor-albedo.png-3123e49e0c3c94746731caaf6dc19ffa.ctex[39m[0m
+2026-10-06T20:06:32.3026215Z [  38% ] [90m[1msavepack[22m | Storing File: res://assets/materials/ruin-floor/ruin-floor-albedo.png.import[39m[0m
+2026-10-06T20:06:32.3027192Z [  38% ] [90m[1msavepack[22m | Storing File: res://assets/materials/ruin-floor/ruin-floor-albedo.png.json[39m[0m
+2026-10-06T20:06:32.3041786Z [  39% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/Rock030_1K-JPG_Color.jpg-df41745e8b7471faa2015f4b47bedb90.etc2.ctex[39m[0m
+2026-10-06T20:06:32.3042477Z [  39% ] [90m[1msavepack[22m | Storing File: res://assets/materials/stone/Rock030_1K-JPG_Color.jpg.import[39m[0m
+2026-10-06T20:06:32.3069287Z [  39% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/Rock030_1K-JPG_NormalGL.jpg-3d4806f1d670e87dd2f1c6f1e64ab6d9.etc2.ctex[39m[0m
+2026-10-06T20:06:32.3070435Z [  39% ] [90m[1msavepack[22m | Storing File: res://assets/materials/stone/Rock030_1K-JPG_NormalGL.jpg.import[39m[0m
+2026-10-06T20:06:32.3084865Z [  40% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/Rock030_1K-JPG_Roughness.jpg-c19eadd4b7b214882683c5bb785ae1cf.etc2.ctex[39m[0m
+2026-10-06T20:06:32.3086022Z [  40% ] [90m[1msavepack[22m | Storing File: res://assets/materials/stone/Rock030_1K-JPG_Roughness.jpg.import[39m[0m
+2026-10-06T20:06:32.3104003Z [  40% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ranger-native65.glb-490a9a1d119fb29561568ed604ef6b9b.scn[39m[0m
+2026-10-06T20:06:32.3105241Z [  40% ] [90m[1msavepack[22m | Storing File: res://assets/models/classes055/ranger-native65.glb.import[39m[0m
+2026-10-06T20:06:32.3106344Z [  41% ] [90m[1msavepack[22m | Storing File: res://assets/models/classes055/ranger-native65.json[39m[0m
+2026-10-06T20:06:32.3127016Z [  41% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ranger-native65_T_Ranger_BaseColor.png-ff67b1e975b2afb02237cd2a6bd56758.ctex[39m[0m
+2026-10-06T20:06:32.3128496Z [  41% ] [90m[1msavepack[22m | Storing File: res://assets/models/classes055/ranger-native65_T_Ranger_BaseColor.png.import[39m[0m
+2026-10-06T20:06:32.3152819Z [  41% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ranger-native65_T_Ranger_Normal.png-00c1fb347948f3be6090a6f6350dc28c.ctex[39m[0m
+2026-10-06T20:06:32.3154132Z [  41% ] [90m[1msavepack[22m | Storing File: res://assets/models/classes055/ranger-native65_T_Ranger_Normal.png.import[39m[0m
+2026-10-06T20:06:32.3173404Z [  42% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ranger-native65_T_Ranger_ORM.png-fcf5a8da72a6bc3ef0996a0e7d537cbb.ctex[39m[0m
+2026-10-06T20:06:32.3174756Z [  42% ] [90m[1msavepack[22m | Storing File: res://assets/models/classes055/ranger-native65_T_Ranger_ORM.png.import[39m[0m
+2026-10-06T20:06:32.3240723Z [  42% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ranger-native65_T_Regular_Female_Dark_BaseColor.png-00a086a6e3cfcee3029995975694db80.ctex[39m[0m
+2026-10-06T20:06:32.3242412Z [  42% ] [90m[1msavepack[22m | Storing File: res://assets/models/classes055/ranger-native65_T_Regular_Female_Dark_BaseColor.png.import[39m[0m
+2026-10-06T20:06:32.3243739Z [  43% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ranger-native65_T_Regular_Female_Normal.png-1997afbb1dae25209f91890382330d17.ctex[39m[0m
+2026-10-06T20:06:32.3245024Z [  43% ] [90m[1msavepack[22m | Storing File: res://assets/models/classes055/ranger-native65_T_Regular_Female_Normal.png.import[39m[0m
+2026-10-06T20:06:32.3246270Z [  43% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ranger-native65_T_Regular_Female_Roughness.png-d50a7ea1ea0dc2069bf0c9f7224f0008.ctex[39m[0m
+2026-10-06T20:06:32.3247562Z [  43% ] [90m[1msavepack[22m | Storing File: res://assets/models/classes055/ranger-native65_T_Regular_Female_Roughness.png.import[39m[0m
+2026-10-06T20:06:32.3248650Z [  44% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/archive_bay.glb-ff07994c46c125554a2fd1460b02e814.scn[39m[0m
+2026-10-06T20:06:32.3249606Z [  44% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/archive_bay.glb.import[39m[0m
+2026-10-06T20:06:32.3250586Z [  44% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/archive_bay_broken.glb-62c9b9c48b44c6975a0edb2ebe0012cd.scn[39m[0m
+2026-10-06T20:06:32.3251733Z [  44% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/archive_bay_broken.glb.import[39m[0m
+2026-10-06T20:06:32.3252729Z [  45% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/archive_end.glb-86312c95d60b4dcb64579584d96f1fe1.scn[39m[0m
+2026-10-06T20:06:32.3253669Z [  45% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/archive_end.glb.import[39m[0m
+2026-10-06T20:06:32.3254616Z [  45% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/archive_return.glb-479e0f40dcfc73b28888d160483f7bda.scn[39m[0m
+2026-10-06T20:06:32.3255648Z [  45% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/archive_return.glb.import[39m[0m
+2026-10-06T20:06:32.3256714Z [  45% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/archive_solid.glb-729974781d738c97909a31e44a048c3e.scn[39m[0m
+2026-10-06T20:06:32.3257741Z [  45% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/archive_solid.glb.import[39m[0m
+2026-10-06T20:06:32.3259408Z [  46% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/citadel_bay.glb-e9484dce93d5a626d83678cb4a25a8f7.scn[39m[0m
+2026-10-06T20:06:32.3260493Z [  46% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/citadel_bay.glb.import[39m[0m
+2026-10-06T20:06:32.3266308Z [  46% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/citadel_bay_broken.glb-23fc37b64c57a3d4053a76507cd3eb36.scn[39m[0m
+2026-10-06T20:06:32.3267207Z [  46% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/citadel_bay_broken.glb.import[39m[0m
+2026-10-06T20:06:32.3269517Z [  47% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/citadel_end.glb-14b82078a057700512a7996b64011fa2.scn[39m[0m
+2026-10-06T20:06:32.3270133Z [  47% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/citadel_end.glb.import[39m[0m
+2026-10-06T20:06:32.3273557Z [  47% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/citadel_return.glb-8c7f348e4c3c24f47246fe2c54342807.scn[39m[0m
+2026-10-06T20:06:32.3274228Z [  47% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/citadel_return.glb.import[39m[0m
+2026-10-06T20:06:32.3276572Z [  48% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/citadel_solid.glb-6fb17af5901e7287d9e68c1e6a2a5a41.scn[39m[0m
+2026-10-06T20:06:32.3277210Z [  48% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/citadel_solid.glb.import[39m[0m
+2026-10-06T20:06:32.3278488Z [  48% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/manifest.json[39m[0m
+2026-10-06T20:06:32.3285522Z [  49% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ossuary_bay.glb-1904a44fd1c4436880a364abce08dce7.scn[39m[0m
+2026-10-06T20:06:32.3286136Z [  49% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/ossuary_bay.glb.import[39m[0m
+2026-10-06T20:06:32.3292570Z [  49% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ossuary_bay_broken.glb-1af785b3a5f82e3c839ba29f6bffd08b.scn[39m[0m
+2026-10-06T20:06:32.3293259Z [  49% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/ossuary_bay_broken.glb.import[39m[0m
+2026-10-06T20:06:32.3296037Z [  50% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ossuary_end.glb-495736fc180ea23df3f97f7f6471f8ce.scn[39m[0m
+2026-10-06T20:06:32.3296660Z [  50% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/ossuary_end.glb.import[39m[0m
+2026-10-06T20:06:32.3299657Z [  50% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ossuary_return.glb-22f4302f4e0dba664c934ae4dcea2588.scn[39m[0m
+2026-10-06T20:06:32.3300270Z [  50% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/ossuary_return.glb.import[39m[0m
+2026-10-06T20:06:32.3302857Z [  50% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ossuary_solid.glb-89a36bb4201dbb371c888a6a592c86f1.scn[39m[0m
+2026-10-06T20:06:32.3303468Z [  50% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/ossuary_solid.glb.import[39m[0m
+2026-10-06T20:06:32.3309075Z [  51% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/spire_bay.glb-772c070b1ba390b36326c3e661c64708.scn[39m[0m
+2026-10-06T20:06:32.3309695Z [  51% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/spire_bay.glb.import[39m[0m
+2026-10-06T20:06:32.3315307Z [  51% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/spire_bay_broken.glb-698754b96b38ed297f50eed7c5c83883.scn[39m[0m
+2026-10-06T20:06:32.3315950Z [  51% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/spire_bay_broken.glb.import[39m[0m
+2026-10-06T20:06:32.3318593Z [  52% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/spire_end.glb-99d2c2b983dd6d0098f70ad6bd36780d.scn[39m[0m
+2026-10-06T20:06:32.3319178Z [  52% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/spire_end.glb.import[39m[0m
+2026-10-06T20:06:32.3322228Z [  52% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/spire_return.glb-255514099209b783c710a62b5fe7a365.scn[39m[0m
+2026-10-06T20:06:32.3322831Z [  52% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/spire_return.glb.import[39m[0m
+2026-10-06T20:06:32.3324969Z [  53% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/spire_solid.glb-fc0d3f080a5b7f138e06b737e11eb426.scn[39m[0m
+2026-10-06T20:06:32.3325738Z [  53% ] [90m[1msavepack[22m | Storing File: res://assets/models/environment/spire_solid.glb.import[39m[0m
+2026-10-06T20:06:32.3341922Z [  53% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/arcanist.glb-3c1ca8c50ced7b1bb080bf14de9adaed.scn[39m[0m
+2026-10-06T20:06:32.3342521Z [  53% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/arcanist.glb.import[39m[0m
+2026-10-06T20:06:32.3345467Z [  54% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/arcanist_T_Eye_Brown.png-3a92388c855c4da3ed5ebb1b643499f8.ctex[39m[0m
+2026-10-06T20:06:32.3346128Z [  54% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/arcanist_T_Eye_Brown.png.import[39m[0m
+2026-10-06T20:06:32.3348656Z [  54% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/arcanist_T_Eye_Normal.png-d0e0e49e164be7d7911a341e15c97457.ctex[39m[0m
+2026-10-06T20:06:32.3349341Z [  54% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/arcanist_T_Eye_Normal.png.import[39m[0m
+2026-10-06T20:06:32.3388076Z [  54% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/arcanist_T_Hair_2_BaseColor.png-491283e19764193163ba098b4d521c9f.ctex[39m[0m
+2026-10-06T20:06:32.3388793Z [  54% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/arcanist_T_Hair_2_BaseColor.png.import[39m[0m
+2026-10-06T20:06:32.3427099Z [  55% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/arcanist_T_Hair_2_BaseColor_11.png-526fe5432cb9f52b3893ed62755d71e0.ctex[39m[0m
+2026-10-06T20:06:32.3427796Z [  55% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/arcanist_T_Hair_2_BaseColor_11.png.import[39m[0m
+2026-10-06T20:06:32.3516869Z [  55% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/arcanist_T_Hair_2_Normal.png-9ae3f019e71cf1589212a91a398a11ab.ctex[39m[0m
+2026-10-06T20:06:32.3517560Z [  55% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/arcanist_T_Hair_2_Normal.png.import[39m[0m
+2026-10-06T20:06:32.3606169Z [  56% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/arcanist_T_Hair_2_Normal_10.png-1d503becafcd8baaa9d264bfdce54d26.ctex[39m[0m
+2026-10-06T20:06:32.3606892Z [  56% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/arcanist_T_Hair_2_Normal_10.png.import[39m[0m
+2026-10-06T20:06:32.3650304Z [  56% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/arcanist_T_Peasant_BaseColor.png-6b09cfec62fbd623789b2cbd35745052.ctex[39m[0m
+2026-10-06T20:06:32.3651181Z [  56% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/arcanist_T_Peasant_BaseColor.png.import[39m[0m
+2026-10-06T20:06:32.3716080Z [  57% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/arcanist_T_Peasant_Normal.png-61c608e65908e28cafb164dc6f8aec0f.ctex[39m[0m
+2026-10-06T20:06:32.3717016Z [  57% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/arcanist_T_Peasant_Normal.png.import[39m[0m
+2026-10-06T20:06:32.3764087Z [  57% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/arcanist_T_Peasant_ORM.png-823dd445cb815571be80b548d7b1bbed.ctex[39m[0m
+2026-10-06T20:06:32.3764776Z [  57% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/arcanist_T_Peasant_ORM.png.import[39m[0m
+2026-10-06T20:06:32.3796245Z [  58% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/arcanist_T_Superhero_Female_Dark_BaseColor.png-eba1e7513f09f85bed5afd85ad1e21bf.ctex[39m[0m
+2026-10-06T20:06:32.3797509Z [  58% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/arcanist_T_Superhero_Female_Dark_BaseColor.png.import[39m[0m
+2026-10-06T20:06:32.3861909Z [  58% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/arcanist_T_Superhero_Female_Normal.png-f21166227b7849545871db8bf89ff960.ctex[39m[0m
+2026-10-06T20:06:32.3863093Z [  58% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/arcanist_T_Superhero_Female_Normal.png.import[39m[0m
+2026-10-06T20:06:32.3908879Z [  58% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/arcanist_T_Superhero_Female_Roughness.png-ae8ddc75d3e365a9d4e9f502d16746dc.ctex[39m[0m
+2026-10-06T20:06:32.3910129Z [  58% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/arcanist_T_Superhero_Female_Roughness.png.import[39m[0m
+2026-10-06T20:06:32.3911273Z [  59% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/assembly-report.json[39m[0m
+2026-10-06T20:06:32.3912210Z [  59% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/death-grounding.json[39m[0m
+2026-10-06T20:06:32.3915976Z [  60% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/staff-grip053.glb-538fafc9510c5e213bbca84ab940ad6c.scn[39m[0m
+2026-10-06T20:06:32.3916614Z [  60% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/staff-grip053.glb.import[39m[0m
+2026-10-06T20:06:32.3917637Z [  60% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/staff-grip053.json[39m[0m
+2026-10-06T20:06:32.3923863Z [  61% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/nyra-attire054.glb-759cfa99cd6f687501ba1ecfc94c2b72.scn[39m[0m
+2026-10-06T20:06:32.3924914Z [  61% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra054/nyra-attire054.glb.import[39m[0m
+2026-10-06T20:06:32.3925772Z [  61% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra054/nyra-attire054.json[39m[0m
+2026-10-06T20:06:32.3931521Z [  62% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/archive_reliquary.glb-db05fb09173078618ff81ab5542c8f0a.scn[39m[0m
+2026-10-06T20:06:32.3932208Z [  62% ] [90m[1msavepack[22m | Storing File: res://assets/models/props049/archive_reliquary.glb.import[39m[0m
+2026-10-06T20:06:32.3936850Z [  62% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/citadel_reliquary.glb-e149ce130a2000779f0a5d36d6ec4ded.scn[39m[0m
+2026-10-06T20:06:32.3937914Z [  62% ] [90m[1msavepack[22m | Storing File: res://assets/models/props049/citadel_reliquary.glb.import[39m[0m
+2026-10-06T20:06:32.3938792Z [  62% ] [90m[1msavepack[22m | Storing File: res://assets/models/props049/manifest.json[39m[0m
+2026-10-06T20:06:32.3943287Z [  63% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ossuary_reliquary.glb-692346c48540b0d34e8f113690076a52.scn[39m[0m
+2026-10-06T20:06:32.3944376Z [  63% ] [90m[1msavepack[22m | Storing File: res://assets/models/props049/ossuary_reliquary.glb.import[39m[0m
+2026-10-06T20:06:32.3948789Z [  63% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/spire_reliquary.glb-763af3f107c1da50e00446a758b1db9a.scn[39m[0m
+2026-10-06T20:06:32.3949803Z [  63% ] [90m[1msavepack[22m | Storing File: res://assets/models/props049/spire_reliquary.glb.import[39m[0m
+2026-10-06T20:06:32.3968690Z [  64% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/arcanist.glb-5004bdb3c2653fcf413604205fcf0367.scn[39m[0m
+2026-10-06T20:06:32.3969598Z [  64% ] [90m[1msavepack[22m | Storing File: res://assets/models/arcanist.glb.import[39m[0m
+2026-10-06T20:06:32.3974132Z [  64% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/bone_arch.glb-6f3011358c8e0905418e94b9a13a30c6.scn[39m[0m
+2026-10-06T20:06:32.3974745Z [  64% ] [90m[1msavepack[22m | Storing File: res://assets/models/bone_arch.glb.import[39m[0m
+2026-10-06T20:06:32.3977940Z [  65% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/broken_pillar.glb-516c6c58bc674ca85d971a4912f65352.scn[39m[0m
+2026-10-06T20:06:32.3978895Z [  65% ] [90m[1msavepack[22m | Storing File: res://assets/models/broken_pillar.glb.import[39m[0m
+2026-10-06T20:06:32.3992356Z [  65% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/bulwark.glb-9daf7d8282e45d3e1755ac7e3cc072e0.scn[39m[0m
+2026-10-06T20:06:32.3993294Z [  65% ] [90m[1msavepack[22m | Storing File: res://assets/models/bulwark.glb.import[39m[0m
+2026-10-06T20:06:32.3998593Z [  66% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/carved_tomb.glb-1342e4177e3bf34445a3f0625bfcaadb.scn[39m[0m
+2026-10-06T20:06:32.3999395Z [  66% ] [90m[1msavepack[22m | Storing File: res://assets/models/carved_tomb.glb.import[39m[0m
+2026-10-06T20:06:32.4003527Z [  66% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ceremonial_brazier.glb-424edd82adb6f8d60d4f27e953676a75.scn[39m[0m
+2026-10-06T20:06:32.4004158Z [  66% ] [90m[1msavepack[22m | Storing File: res://assets/models/ceremonial_brazier.glb.import[39m[0m
+2026-10-06T20:06:32.4016888Z [  66% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/drowned_library.glb-158fcdb2e20b53a6fa6e5459b54bb694.scn[39m[0m
+2026-10-06T20:06:32.4017501Z [  66% ] [90m[1msavepack[22m | Storing File: res://assets/models/drowned_library.glb.import[39m[0m
+2026-10-06T20:06:32.4029828Z [  66% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/elite.glb-8cb06f9536a564d85872e4f2ace2fbf5.scn[39m[0m
+2026-10-06T20:06:32.4030372Z [  66% ] [90m[1msavepack[22m | Storing File: res://assets/models/elite.glb.import[39m[0m
+2026-10-06T20:06:32.4035057Z [  66% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/expedition_table.glb-e7ad277c014b7d43674970541d41273f.scn[39m[0m
+2026-10-06T20:06:32.4035673Z [  66% ] [90m[1msavepack[22m | Storing File: res://assets/models/expedition_table.glb.import[39m[0m
+2026-10-06T20:06:32.4041881Z [  67% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/field_forge.glb-6c3f0b0867b0fd3d23ce6c1ced123e35.scn[39m[0m
+2026-10-06T20:06:32.4042843Z [  67% ] [90m[1msavepack[22m | Storing File: res://assets/models/field_forge.glb.import[39m[0m
+2026-10-06T20:06:32.4047253Z [  67% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/furnace.glb-a3f2271114d78038efb7789efcc2084f.scn[39m[0m
+2026-10-06T20:06:32.4048179Z [  67% ] [90m[1msavepack[22m | Storing File: res://assets/models/furnace.glb.import[39m[0m
+2026-10-06T20:06:32.4051343Z [  68% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/furnace_throne.glb-23bd2b9a69f9ef9523f28ea87cad0282.scn[39m[0m
+2026-10-06T20:06:32.4052362Z [  68% ] [90m[1msavepack[22m | Storing File: res://assets/models/furnace_throne.glb.import[39m[0m
+2026-10-06T20:06:32.4057502Z [  68% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/gothic_arch.glb-b1ced3826c210ff06a1b7ec0bb595469.scn[39m[0m
+2026-10-06T20:06:32.4058437Z [  68% ] [90m[1msavepack[22m | Storing File: res://assets/models/gothic_arch.glb.import[39m[0m
+2026-10-06T20:06:32.4074804Z [  69% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/guardian_0.glb-e505398dad9424304a21a1940946aaee.scn[39m[0m
+2026-10-06T20:06:32.4075737Z [  69% ] [90m[1msavepack[22m | Storing File: res://assets/models/guardian_0.glb.import[39m[0m
+2026-10-06T20:06:32.4093695Z [  69% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/guardian_1.glb-01b49232e4d939d2ee88563cf2cd0202.scn[39m[0m
+2026-10-06T20:06:32.4094605Z [  69% ] [90m[1msavepack[22m | Storing File: res://assets/models/guardian_1.glb.import[39m[0m
+2026-10-06T20:06:32.4112419Z [  69% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/guardian_2.glb-863b7105932d4a5346a6fb87d9d8f70d.scn[39m[0m
+2026-10-06T20:06:32.4113325Z [  69% ] [90m[1msavepack[22m | Storing File: res://assets/models/guardian_2.glb.import[39m[0m
+2026-10-06T20:06:32.4126358Z [  70% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/guardian_3.glb-8ef6846d9374c20d4f8c6addc3e4d2f9.scn[39m[0m
+2026-10-06T20:06:32.4127279Z [  70% ] [90m[1msavepack[22m | Storing File: res://assets/models/guardian_3.glb.import[39m[0m
+2026-10-06T20:06:32.4131907Z [  70% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/hanging_bell.glb-6bb48c68b30f052700ce7074e2058738.scn[39m[0m
+2026-10-06T20:06:32.4132870Z [  70% ] [90m[1msavepack[22m | Storing File: res://assets/models/hanging_bell.glb.import[39m[0m
+2026-10-06T20:06:32.4149888Z [  71% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/hexer.glb-9d251cb82a4d4bdc8400c1d95e364c8b.scn[39m[0m
+2026-10-06T20:06:32.4151124Z [  71% ] [90m[1msavepack[22m | Storing File: res://assets/models/hexer.glb.import[39m[0m
+2026-10-06T20:06:32.4155262Z [  71% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/leaded_lancet.glb-337432674d0bacdafd8971e3859142aa.scn[39m[0m
+2026-10-06T20:06:32.4156224Z [  71% ] [90m[1msavepack[22m | Storing File: res://assets/models/leaded_lancet.glb.import[39m[0m
+2026-10-06T20:06:32.4159555Z [  72% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/pilgrim_well.glb-c252c7e4d80ce50d549babfb023c60bb.scn[39m[0m
+2026-10-06T20:06:32.4160511Z [  72% ] [90m[1msavepack[22m | Storing File: res://assets/models/pilgrim_well.glb.import[39m[0m
+2026-10-06T20:06:32.4163871Z [  72% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/pillar.glb-8fe894eddbe22220964a70cbd50ae07b.scn[39m[0m
+2026-10-06T20:06:32.4164766Z [  72% ] [90m[1msavepack[22m | Storing File: res://assets/models/pillar.glb.import[39m[0m
+2026-10-06T20:06:32.4175697Z [  73% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/raider.glb-1f99c273da4e962a7987c83e798c6687.scn[39m[0m
+2026-10-06T20:06:32.4176575Z [  73% ] [90m[1msavepack[22m | Storing File: res://assets/models/raider.glb.import[39m[0m
+2026-10-06T20:06:32.4194628Z [  73% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ranger.glb-2cd432b83dd188329004b7e562197ce7.scn[39m[0m
+2026-10-06T20:06:32.4195525Z [  73% ] [90m[1msavepack[22m | Storing File: res://assets/models/ranger.glb.import[39m[0m
+2026-10-06T20:06:32.4200460Z [  74% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/reliquary_altar.glb-acf9ad4ddc101c137057d5db75f2d126.scn[39m[0m
+2026-10-06T20:06:32.4201599Z [  74% ] [90m[1msavepack[22m | Storing File: res://assets/models/reliquary_altar.glb.import[39m[0m
+2026-10-06T20:06:32.4205313Z [  74% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ruined_vault.glb-2940559253e8ee532f2cb898abb920e0.scn[39m[0m
+2026-10-06T20:06:32.4206267Z [  74% ] [90m[1msavepack[22m | Storing File: res://assets/models/ruined_vault.glb.import[39m[0m
+2026-10-06T20:06:32.4211702Z [  74% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/sanctuary_intarsia.glb-fc78226f71a4031be2450a3b74a18609.scn[39m[0m
+2026-10-06T20:06:32.4212757Z [  74% ] [90m[1msavepack[22m | Storing File: res://assets/models/sanctuary_intarsia.glb.import[39m[0m
+2026-10-06T20:06:32.4215707Z [  75% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/seal_shrine.glb-8ac19114c88a8c00e25731c4f30ac788.scn[39m[0m
+2026-10-06T20:06:32.4216659Z [  75% ] [90m[1msavepack[22m | Storing File: res://assets/models/seal_shrine.glb.import[39m[0m
+2026-10-06T20:06:32.4234628Z [  75% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/vowkeeper.glb-3d6ebad1e9dfb61f4bd9576d3bff2025.scn[39m[0m
+2026-10-06T20:06:32.4235568Z [  75% ] [90m[1msavepack[22m | Storing File: res://assets/models/vowkeeper.glb.import[39m[0m
+2026-10-06T20:06:32.4236351Z [  76% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/aged_stone.gdshader[39m[0m
+2026-10-06T20:06:32.4237111Z [  76% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/camp_matte.gdshader[39m[0m
+2026-10-06T20:06:32.4237871Z [  77% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/camp_paving.gdshader[39m[0m
+2026-10-06T20:06:32.4238683Z [  77% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/character_surface.gdshader[39m[0m
+2026-10-06T20:06:32.4239503Z [  78% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/combat_telegraph.gdshader[39m[0m
+2026-10-06T20:06:32.4240486Z [  78% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/crafted_surface.gdshader[39m[0m
+2026-10-06T20:06:32.4241456Z [  78% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/crypt_mist.gdshader[39m[0m
+2026-10-06T20:06:32.4242274Z [  79% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/dungeon_atmosphere.gdshader[39m[0m
+2026-10-06T20:06:32.4243233Z [  79% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/dungeon_court.gdshader[39m[0m
+2026-10-06T20:06:32.4251839Z [  80% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/dungeon_water.gdshader[39m[0m
+2026-10-06T20:06:32.4261993Z [  80% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/ember_flame.gdshader[39m[0m
+2026-10-06T20:06:32.4262791Z [  81% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/environment_basin.gdshader[39m[0m
+2026-10-06T20:06:32.4263544Z [  81% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/forged_surface.gdshader[39m[0m
+2026-10-06T20:06:32.4264344Z [  82% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/ground_grime.gdshader[39m[0m
+2026-10-06T20:06:32.4265174Z [  82% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/magic_volume.gdshader[39m[0m
+2026-10-06T20:06:32.4266022Z [  82% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/masonry_surface.gdshader[39m[0m
+2026-10-06T20:06:32.4266754Z [  83% ] [90m[1msavepack[22m | Storing File: res://scripts/playtest_notes.gdc[39m[0m
+2026-10-06T20:06:32.4267482Z [  83% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/painted_stone.gdshader[39m[0m
+2026-10-06T20:06:32.4268246Z [  84% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/region_matte.gdshader[39m[0m
+2026-10-06T20:06:32.4268999Z [  84% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/ruin_deposit.gdshader[39m[0m
+2026-10-06T20:06:32.4269754Z [  85% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/ruin_floor.gdshader[39m[0m
+2026-10-06T20:06:32.4270667Z [  85% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/sanctuary_beam.gdshader[39m[0m
+2026-10-06T20:06:32.4271649Z [  86% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/sanctuary_glass.gdshader[39m[0m
+2026-10-06T20:06:32.4272457Z [  86% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/veil_gate.gdshader[39m[0m
+2026-10-06T20:06:32.4273291Z [  86% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/ward_surface.gdshader[39m[0m
+2026-10-06T20:06:32.4274149Z [  87% ] [90m[1msavepack[22m | Storing File: res://assets/shaders/weathered_stone.gdshader[39m[0m
+2026-10-06T20:06:32.4274949Z [  87% ] [90m[1msavepack[22m | Storing File: res://scripts/hostile_style.gdc[39m[0m
+2026-10-06T20:06:32.4301284Z [  88% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/archive.png-0c275731e847baf349ba6c4a8d26a9c8.ctex[39m[0m
+2026-10-06T20:06:32.4302277Z [  88% ] [90m[1msavepack[22m | Storing File: res://assets/world/ashen-realms/archive.png.import[39m[0m
+2026-10-06T20:06:32.4305633Z [  88% ] [90m[1msavepack[22m | Storing File: res://scripts/oath_combat_rules.gdc[39m[0m
+2026-10-06T20:06:32.4339156Z [  89% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp.png-cd4448e832b49b45d15605665d6806b7.ctex[39m[0m
+2026-10-06T20:06:32.4340103Z [  89% ] [90m[1msavepack[22m | Storing File: res://assets/world/ashen-realms/camp.png.import[39m[0m
+2026-10-06T20:06:32.4389585Z [  89% ] [90m[1msavepack[22m | Storing File: res://scripts/character_animation.gdc[39m[0m
+2026-10-06T20:06:32.4421685Z [  90% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/citadel.png-809923b9d1a4d74a401967c2c8707e8e.ctex[39m[0m
+2026-10-06T20:06:32.4422673Z [  90% ] [90m[1msavepack[22m | Storing File: res://assets/world/ashen-realms/citadel.png.import[39m[0m
+2026-10-06T20:06:32.4425089Z [  90% ] [90m[1msavepack[22m | Storing File: res://scripts/render_budget.gdc[39m[0m
+2026-10-06T20:06:32.4427927Z [  90% ] [90m[1msavepack[22m | Storing File: res://scripts/release_info.gdc[39m[0m
+2026-10-06T20:06:32.4459838Z [  91% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ossuary.png-5c7897dc7f87654da5101b72d17d6b4f.ctex[39m[0m
+2026-10-06T20:06:32.4461004Z [  91% ] [90m[1msavepack[22m | Storing File: res://assets/world/ashen-realms/ossuary.png.import[39m[0m
+2026-10-06T20:06:32.4465630Z [  91% ] [90m[1msavepack[22m | Storing File: res://scripts/frame_metrics.gdc[39m[0m
+2026-10-06T20:06:32.4497156Z [  92% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/spire.png-8d81d9bb7e5fb7027f24a58564697528.ctex[39m[0m
+2026-10-06T20:06:32.4498126Z [  92% ] [90m[1msavepack[22m | Storing File: res://assets/world/ashen-realms/spire.png.import[39m[0m
+2026-10-06T20:06:32.4501196Z [  92% ] [90m[1msavepack[22m | Storing File: res://scripts/gear_advisor.gdc[39m[0m
+2026-10-06T20:06:32.4506175Z [  93% ] [90m[1msavepack[22m | Storing File: res://scripts/native_equipment_finish.gdc[39m[0m
+2026-10-06T20:06:32.4511105Z [  93% ] [90m[1msavepack[22m | Storing File: res://scripts/combat_readout.gdc[39m[0m
+2026-10-06T20:06:32.4520993Z [  94% ] [90m[1msavepack[22m | Storing File: res://scripts/source_avatar_combat.gdc[39m[0m
+2026-10-06T20:06:32.4539421Z [  94% ] [90m[1msavepack[22m | Storing File: res://scripts/source_avatar_rig.gdc[39m[0m
+2026-10-06T20:06:32.4542951Z [  94% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/app_icon.png-5d640de2395e757a338ed9ab80ddb512.ctex[39m[0m
+2026-10-06T20:06:32.4543512Z [  94% ] [90m[1msavepack[22m | Storing File: res://assets/app_icon.png.import[39m[0m
+2026-10-06T20:06:32.4546300Z [  95% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/app_icon.svg-178bb982ce83b4c21063f1a6b4ae8feb.ctex[39m[0m
+2026-10-06T20:06:32.4546830Z [  95% ] [90m[1msavepack[22m | Storing File: res://assets/app_icon.svg.import[39m[0m
+2026-10-06T20:06:32.4547728Z [  95% ] [90m[1msavepack[22m | Storing File: res://assets/fonts/Cinzel-OFL.txt[39m[0m
+2026-10-06T20:06:32.4549020Z [  96% ] [90m[1msavepack[22m | Storing File: res://assets/models/nyra052/BASE-LICENSE.txt[39m[0m
+2026-10-06T20:06:32.4550200Z [  96% ] [90m[1msavepack[22m | Storing File: res://assets/animations/LICENSE-Quaternius.txt[39m[0m
+2026-10-06T20:06:32.4551759Z [  97% ] [90m[1msavepack[22m | Storing File: res://assets/fonts/Lora-OFL.txt[39m[0m
+2026-10-06T20:06:32.4562189Z [  97% ] [90m[1msavepack[22m | Storing File: res://scripts/audio_director.gdc[39m[0m
+2026-10-06T20:06:32.4565678Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/authored_architecture.gdc[39m[0m
+2026-10-06T20:06:32.4568461Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/authored_characters.gdc[39m[0m
+2026-10-06T20:06:32.4570268Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/api/NakamaAPI.gd.remap[39m[0m
+2026-10-06T20:06:32.4571319Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/api/NakamaRTAPI.gd.remap[39m[0m
+2026-10-06T20:06:32.4572288Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/api/NakamaRTMessage.gd.remap[39m[0m
+2026-10-06T20:06:32.4573196Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/api/NakamaSession.gd.remap[39m[0m
+2026-10-06T20:06:32.4574230Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/api/NakamaStorageObjectId.gd.remap[39m[0m
+2026-10-06T20:06:32.4575323Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/api/NakamaWriteStorageObject.gd.remap[39m[0m
+2026-10-06T20:06:32.4576335Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/client/NakamaClient.gd.remap[39m[0m
+2026-10-06T20:06:32.4577400Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/client/NakamaHTTPAdapter.gd.remap[39m[0m
+2026-10-06T20:06:32.4578810Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/utils/SatoriAsyncResult.gd.remap[39m[0m
+2026-10-06T20:06:32.4579998Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/utils/SatoriException.gd.remap[39m[0m
+2026-10-06T20:06:32.4581209Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/utils/SatoriLogger.gd.remap[39m[0m
+2026-10-06T20:06:32.4582605Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/utils/SatoriSerializer.gd.remap[39m[0m
+2026-10-06T20:06:32.4583676Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/Event.gd.remap[39m[0m
+2026-10-06T20:06:32.4584722Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/SatoriAPI.gd.remap[39m[0m
+2026-10-06T20:06:32.4585778Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/SatoriClient.gd.remap[39m[0m
+2026-10-06T20:06:32.4586852Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/SatoriHttpAdapter.gd.remap[39m[0m
+2026-10-06T20:06:32.4587669Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori/SatoriSession.gd.remap[39m[0m
+2026-10-06T20:06:32.4588270Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/socket/NakamaSocket.gd.remap[39m[0m
+2026-10-06T20:06:32.4588884Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/socket/NakamaSocketAdapter.gd.remap[39m[0m
+2026-10-06T20:06:32.4589501Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/utils/NakamaAsyncResult.gd.remap[39m[0m
+2026-10-06T20:06:32.4590105Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/utils/NakamaException.gd.remap[39m[0m
+2026-10-06T20:06:32.4590691Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/utils/NakamaLogger.gd.remap[39m[0m
+2026-10-06T20:06:32.4591451Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/utils/NakamaMultiplayerBridge.gd.remap[39m[0m
+2026-10-06T20:06:32.4592100Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/utils/NakamaMultiplayerPeer.gd.remap[39m[0m
+2026-10-06T20:06:32.4592722Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/utils/NakamaSerializer.gd.remap[39m[0m
+2026-10-06T20:06:32.4593284Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Nakama.gd.remap[39m[0m
+2026-10-06T20:06:32.4593797Z [  98% ] [90m[1msavepack[22m | Storing File: res://addons/com.heroiclabs.nakama/Satori.gd.remap[39m[0m
+2026-10-06T20:06:32.4594332Z [  98% ] [90m[1msavepack[22m | Storing File: res://assets/animations/vowkeeper_sword_foundation.gd.remap[39m[0m
+2026-10-06T20:06:32.4594831Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/cloud_save.gd.remap[39m[0m
+2026-10-06T20:06:32.4595284Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/sculpted_mesh.gd.remap[39m[0m
+2026-10-06T20:06:32.4595737Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/game_preferences.gd.remap[39m[0m
+2026-10-06T20:06:32.4596196Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/class_avatar_pose.gd.remap[39m[0m
+2026-10-06T20:06:32.4596661Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/ruin_architecture.gd.remap[39m[0m
+2026-10-06T20:06:32.4597134Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/expedition_simulation.gd.remap[39m[0m
+2026-10-06T20:06:32.4597596Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/dungeon_layout.gd.remap[39m[0m
+2026-10-06T20:06:32.4598035Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/combat_stances.gd.remap[39m[0m
+2026-10-06T20:06:32.4598461Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/main.gd.remap[39m[0m
+2026-10-06T20:06:32.4599039Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/skill_glyph.gd.remap[39m[0m
+2026-10-06T20:06:32.4599480Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/class_loot.gd.remap[39m[0m
+2026-10-06T20:06:32.4599919Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/regional_sets.gd.remap[39m[0m
+2026-10-06T20:06:32.4600467Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/dungeon_world.gd.remap[39m[0m
+2026-10-06T20:06:32.4600999Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/dungeon_lighting.gd.remap[39m[0m
+2026-10-06T20:06:32.4601453Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/character_rig.gd.remap[39m[0m
+2026-10-06T20:06:32.4601898Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/expedition_map.gd.remap[39m[0m
+2026-10-06T20:06:32.4602338Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/boss_patterns.gd.remap[39m[0m
+2026-10-06T20:06:32.4602806Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/settings_panel.gd.remap[39m[0m
+2026-10-06T20:06:32.4603242Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/save_store.gd.remap[39m[0m
+2026-10-06T20:06:32.4603666Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/ui_glyph.gd.remap[39m[0m
+2026-10-06T20:06:32.4604120Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/expedition_contract.gd.remap[39m[0m
+2026-10-06T20:06:32.4604581Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/room_ground.gd.remap[39m[0m
+2026-10-06T20:06:32.4605023Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/class_avatar_rig.gd.remap[39m[0m
+2026-10-06T20:06:32.4605477Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/mobile_safe_area.gd.remap[39m[0m
+2026-10-06T20:06:32.4605917Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/dungeon_actor.gd.remap[39m[0m
+2026-10-06T20:06:32.4606356Z [  98% ] [90m[1msavepack[22m | Storing File: res://Main.tscn.remap[39m[0m
+2026-10-06T20:06:32.4606794Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/class_skills.gd.remap[39m[0m
+2026-10-06T20:06:32.4607233Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/dungeon_theme.gd.remap[39m[0m
+2026-10-06T20:06:32.4607687Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/fellowship_service.gd.remap[39m[0m
+2026-10-06T20:06:32.4608155Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/class_avatar_style.gd.remap[39m[0m
+2026-10-06T20:06:32.4608601Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/camp_scene.gd.remap[39m[0m
+2026-10-06T20:06:32.4609052Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/progression_service.gd.remap[39m[0m
+2026-10-06T20:06:32.4609499Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/class_relics.gd.remap[39m[0m
+2026-10-06T20:06:32.4609931Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/farm_forecast.gd.remap[39m[0m
+2026-10-06T20:06:32.4610365Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/battle_art.gd.remap[39m[0m
+2026-10-06T20:06:32.4610908Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/source_avatar_style.gd.remap[39m[0m
+2026-10-06T20:06:32.4611492Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/combat_health_bar.gd.remap[39m[0m
+2026-10-06T20:06:32.4612071Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/regional_stage.gd.remap[39m[0m
+2026-10-06T20:06:32.4612607Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/hero_art.gd.remap[39m[0m
+2026-10-06T20:06:32.4613040Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/offline_farm.gd.remap[39m[0m
+2026-10-06T20:06:32.4613486Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/playtest_notes.gd.remap[39m[0m
+2026-10-06T20:06:32.4613926Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/hostile_style.gd.remap[39m[0m
+2026-10-06T20:06:32.4614569Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/oath_combat_rules.gd.remap[39m[0m
+2026-10-06T20:06:32.4615166Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/character_animation.gd.remap[39m[0m
+2026-10-06T20:06:32.4615636Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/render_budget.gd.remap[39m[0m
+2026-10-06T20:06:32.4616224Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/release_info.gd.remap[39m[0m
+2026-10-06T20:06:32.4616655Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/frame_metrics.gd.remap[39m[0m
+2026-10-06T20:06:32.4617085Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/gear_advisor.gd.remap[39m[0m
+2026-10-06T20:06:32.4617552Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/native_equipment_finish.gd.remap[39m[0m
+2026-10-06T20:06:32.4618019Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/combat_readout.gd.remap[39m[0m
+2026-10-06T20:06:32.4618488Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/source_avatar_combat.gd.remap[39m[0m
+2026-10-06T20:06:32.4618957Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/source_avatar_rig.gd.remap[39m[0m
+2026-10-06T20:06:32.4619503Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/audio_director.gd.remap[39m[0m
+2026-10-06T20:06:32.4620022Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/authored_architecture.gd.remap[39m[0m
+2026-10-06T20:06:32.4620511Z [  98% ] [90m[1msavepack[22m | Storing File: res://scripts/authored_characters.gd.remap[39m[0m
+2026-10-06T20:06:32.4621095Z [  98% ] [90m[1msavepack[22m | Storing File: res://.godot/global_script_class_cache.cfg[39m[0m
+2026-10-06T20:06:32.4621539Z [  98% ] [90m[1msavepack[22m | Storing File: res://assets/app_icon.png[39m[0m
+2026-10-06T20:06:32.4621939Z [  98% ] [90m[1msavepack[22m | Storing File: res://.godot/uid_cache.bin[39m[0m
+2026-10-06T20:06:32.4622336Z [  98% ] [90m[1msavepack[22m | Storing File: res://project.binary[39m[0m
+2026-10-06T20:06:32.4623609Z [92m[ DONE ][39m [1msavepack[22m
+2026-10-06T20:06:32.4623822Z [0m
+2026-10-06T20:06:33.0594411Z cannot connect to daemon at tcp:5037: Connection refused
+2026-10-06T20:06:33.2894952Z Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+2026-10-06T20:06:33.3128569Z 
+2026-10-06T20:06:35.1336697Z EXPORTED AVATAR SMOKE: 20 checks, 0 failures
+2026-10-06T20:06:35.2933400Z ##[group]Run mkdir -p build/reports
+2026-10-06T20:06:35.2933766Z [36;1mmkdir -p build/reports[0m
+2026-10-06T20:06:35.2934153Z [36;1mpython3 -m unittest discover -s tests -p 'test_*.py' -v 2>&1 | tee build/reports/python-contracts.log[0m
+2026-10-06T20:06:35.2934671Z [36;1mpython3 scripts/run_beta_checks.py 2>&1 | tee build/reports/gameplay-quality.log[0m
+2026-10-06T20:06:35.2990183Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-06T20:06:35.2990459Z ##[endgroup]
+2026-10-06T20:06:35.6535543Z test_complete_profile_is_measurement_with_touch_pending_and_no_release_pass (test_android_device_probe.ObserverLifecycle.test_complete_profile_is_measurement_with_touch_pending_and_no_release_pass) ... ok
+2026-10-06T20:06:36.0374007Z test_live_failure_never_becomes_a_profile_pass (test_android_device_probe.ObserverLifecycle.test_live_failure_never_becomes_a_profile_pass) ... ok
+2026-10-06T20:06:36.0375437Z test_all_known_emulator_signals_are_refused (test_android_device_probe.ProbeContracts.test_all_known_emulator_signals_are_refused) ... ok
+2026-10-06T20:06:36.0377922Z test_android_service_parsers_preserve_units_and_missing_data (test_android_device_probe.ProbeContracts.test_android_service_parsers_preserve_units_and_missing_data) ... ok
+2026-10-06T20:06:36.0385464Z test_fixture_requires_all_distinct_cases_matching_apk_and_real_time (test_android_device_probe.ProbeContracts.test_fixture_requires_all_distinct_cases_matching_apk_and_real_time) ... ok
+2026-10-06T20:06:36.0386674Z test_identity_is_bounded_and_does_not_store_raw_serial (test_android_device_probe.ProbeContracts.test_identity_is_bounded_and_does_not_store_raw_serial) ... ok
+2026-10-06T20:06:36.0405321Z test_manifest_gate_refuses_shipping_or_online_or_nondebuggable_apks (test_android_device_probe.ProbeContracts.test_manifest_gate_refuses_shipping_or_online_or_nondebuggable_apks) ... ok
+2026-10-06T20:06:36.0413909Z test_missing_adb_is_explicit_unavailable_not_a_measurement (test_android_device_probe.ProbeContracts.test_missing_adb_is_explicit_unavailable_not_a_measurement) ... ok
+2026-10-06T20:06:36.0414968Z test_process_cpu_stat_accepts_names_with_spaces_and_parentheses (test_android_device_probe.ProbeContracts.test_process_cpu_stat_accepts_names_with_spaces_and_parentheses) ... ok
+2026-10-06T20:06:36.0417716Z test_subprocess_target_is_selected_without_a_host_shell (test_android_device_probe.ProbeContracts.test_subprocess_target_is_selected_without_a_host_shell) ... ok
+2026-10-06T20:06:36.0419385Z test_target_selection_never_implicitly_chooses_among_multiple_devices (test_android_device_probe.ProbeContracts.test_target_selection_never_implicitly_chooses_among_multiple_devices) ... ok
+2026-10-06T20:06:36.0423231Z test_unavailable_optional_services_do_not_hide_other_samples (test_android_device_probe.ProbeContracts.test_unavailable_optional_services_do_not_hide_other_samples) ... ok
+2026-10-06T20:06:36.0424771Z test_usb_charging_or_missing_power_state_never_claims_battery_drain (test_android_device_probe.ProbeContracts.test_usb_charging_or_missing_power_state_never_claims_battery_drain) ... ok
+2026-10-06T20:06:36.0459744Z test_activity_error_with_zero_adb_exit_fails_before_waiting (test_android_release.AndroidRuntimeChecks.test_activity_error_with_zero_adb_exit_fails_before_waiting) ... ok
+2026-10-06T20:06:36.0494124Z test_evidence_write_errors_do_not_replace_original_process_failure (test_android_release.AndroidRuntimeChecks.test_evidence_write_errors_do_not_replace_original_process_failure) ... ok
+2026-10-06T20:06:36.0553879Z test_live_process_start_grace_and_both_markers_pass (test_android_release.AndroidRuntimeChecks.test_live_process_start_grace_and_both_markers_pass) ... ok
+2026-10-06T20:06:36.0634064Z test_live_process_without_marker_still_times_out_at_original_deadline (test_android_release.AndroidRuntimeChecks.test_live_process_without_marker_still_times_out_at_original_deadline) ... ok
+2026-10-06T20:06:36.0663129Z test_missing_device_preserves_original_failure_and_other_diagnostics (test_android_release.AndroidRuntimeChecks.test_missing_device_preserves_original_failure_and_other_diagnostics) ... ok
+2026-10-06T20:06:36.0706040Z test_observed_process_loss_fails_even_if_a_marker_was_buffered (test_android_release.AndroidRuntimeChecks.test_observed_process_loss_fails_even_if_a_marker_was_buffered) ... ok
+2026-10-06T20:06:36.0794879Z test_pidof_absence_during_grace_is_not_a_transport_error (test_android_release.AndroidRuntimeChecks.test_pidof_absence_during_grace_is_not_a_transport_error) ... ok
+2026-10-06T20:06:36.0829488Z test_runtime_error_precedes_marker_success (test_android_release.AndroidRuntimeChecks.test_runtime_error_precedes_marker_success) ... ok
+2026-10-06T20:06:36.0960373Z test_unrequested_process_restart_does_not_pass_from_old_marker (test_android_release.AndroidRuntimeChecks.test_unrequested_process_restart_does_not_pass_from_old_marker) ... ok
+2026-10-06T20:06:36.1051429Z test_all_four_packages_share_one_import_and_use_their_actual_scene_architecture (test_android_release.QaExportChecks.test_all_four_packages_share_one_import_and_use_their_actual_scene_architecture) ... ok
+2026-10-06T20:06:36.1203282Z test_crash_and_zero_exit_import_errors_stop_before_export_without_retry (test_android_release.QaExportChecks.test_crash_and_zero_exit_import_errors_stop_before_export_without_retry) ... ok
+2026-10-06T20:06:36.1248046Z test_existing_editor_section_keeps_other_settings (test_android_release.QaExportChecks.test_existing_editor_section_keeps_other_settings) ... ok
+2026-10-06T20:06:36.1319540Z test_export_error_stops_remaining_packages (test_android_release.QaExportChecks.test_export_error_stops_remaining_packages) ... ok
+2026-10-06T20:06:36.1376588Z test_export_success_without_artifact_fails (test_android_release.QaExportChecks.test_export_success_without_artifact_fails) ... ok
+2026-10-06T20:06:36.3015666Z test_qa_preserves_runtime_json_licences_and_offline_filter (test_android_release.QaExportChecks.test_qa_preserves_runtime_json_licences_and_offline_filter) ... ok
+2026-10-06T20:06:36.3081266Z test_serial_import_isolated_from_shipping_settings_and_assets (test_android_release.QaExportChecks.test_serial_import_isolated_from_shipping_settings_and_assets) ... ok
+2026-10-06T20:06:36.3082385Z test_16kb_segment_passes (test_android_release.ReleaseChecks.test_16kb_segment_passes) ... ok
+2026-10-06T20:06:36.3083294Z test_4kb_and_misaligned_segments_fail (test_android_release.ReleaseChecks.test_4kb_and_misaligned_segments_fail) ... ok
+2026-10-06T20:06:36.3093480Z test_current_release_identity_and_store_limits (test_android_release.ReleaseChecks.test_current_release_identity_and_store_limits) ... ok
+2026-10-06T20:06:36.3098731Z test_missing_arm64_library_fails (test_android_release.ReleaseChecks.test_missing_arm64_library_fails) ... ok
+2026-10-06T20:06:36.3133264Z test_missing_publication_details_never_report_ready (test_android_release.ReleaseChecks.test_missing_publication_details_never_report_ready) ... ok
+2026-10-06T20:06:36.3135072Z test_actual_simulation_and_continuous_video_clock_are_both_checked (test_gameplay_capture.AudioChronologyContracts.test_actual_simulation_and_continuous_video_clock_are_both_checked) ... ok
+2026-10-06T20:06:36.3136604Z test_cue_cannot_be_shifted_to_an_unrecorded_audio_boundary (test_gameplay_capture.AudioChronologyContracts.test_cue_cannot_be_shifted_to_an_unrecorded_audio_boundary) ... ok
+2026-10-06T20:06:36.3138031Z test_dropped_or_overlapping_native_samples_are_rejected (test_gameplay_capture.AudioChronologyContracts.test_dropped_or_overlapping_native_samples_are_rejected) ... ok
+2026-10-06T20:06:36.3201131Z test_normal_and_fractional_rates_have_no_accumulated_drift (test_gameplay_capture.AudioChronologyContracts.test_normal_and_fractional_rates_have_no_accumulated_drift) ... ok
+2026-10-06T20:06:36.3202365Z test_rate_and_channel_changes_are_rejected (test_gameplay_capture.AudioChronologyContracts.test_rate_and_channel_changes_are_rejected) ... ok
+2026-10-06T20:06:36.3202879Z 
+2026-10-06T20:06:36.3203024Z ----------------------------------------------------------------------
+2026-10-06T20:06:36.3203513Z Ran 39 tests in 0.671s
+2026-10-06T20:06:36.3203634Z 
+2026-10-06T20:06:36.3203719Z OK
+2026-10-06T20:06:36.3204134Z {"status": "measured_touch_pending", "report": "/tmp/tmp9q2qc9up/output/device-profile.json", "reason": null, "physical_device_measured": true}
+2026-10-06T20:06:36.3204960Z {"status": "failed", "report": "/tmp/tmppq98gq0p/output/device-profile.json", "reason": "Activity start reported an error: Error type 3\nError: Activity does not exist", "physical_device_measured": false}
+2026-10-06T20:06:36.3205815Z {"status": "failed", "report": "/tmp/tmpx85wh3vq/output/device-profile.json", "reason": "The QA process disappeared or failed to start", "physical_device_measured": false}
+2026-10-06T20:06:36.3206618Z {"status": "failed", "report": "/tmp/tmphde02zd3/output/device-profile.json", "reason": "The QA process restarted before finishing the profile", "physical_device_measured": false}
+2026-10-06T20:06:36.3207392Z {"status": "failed", "report": "/tmp/tmpf2snddb9/output/device-profile.json", "reason": "The fixture failed: missing combat", "physical_device_measured": false}
+2026-10-06T20:06:36.3208213Z {"status": "failed", "report": "/tmp/tmpr6ektq6f/output/device-profile.json", "reason": "The QA process reported a script/runtime/shader error; see qa-logcat.txt", "physical_device_measured": false}
+2026-10-06T20:06:36.3209092Z {"status": "failed", "report": "/tmp/tmpmlvb24vg/output/device-profile.json", "reason": "Timed out without all six real-time class/quality measurements", "physical_device_measured": false}
+2026-10-06T20:06:36.3209945Z {"status": "unavailable", "report": "/tmp/tmp24y_zkyx/device-profile.json", "reason": "adb is unavailable; no physical Android device could be inspected", "physical_device_measured": false}
+2026-10-06T20:06:36.3761711Z RUN beta_flow_smoke.gd
+2026-10-06T20:07:03.6817658Z PASS BETA FLOW SMOKE: 46 checks
+2026-10-06T20:07:03.6818047Z RUN combat_stances_smoke.gd
+2026-10-06T20:07:07.3707311Z PASS COMBAT STANCES SMOKE: 140 checks
+2026-10-06T20:07:07.3707961Z RUN combat_movement_smoke.gd
+2026-10-06T20:07:09.6702155Z PASS COMBAT MOVEMENT SMOKE: 8 checks
+2026-10-06T20:07:09.6702454Z RUN journey_smoke.gd
+2026-10-06T20:07:56.5963038Z PASS JOURNEY SMOKE: 413 checks
+2026-10-06T20:07:56.5963308Z RUN dungeon_smoke.gd
+2026-10-06T20:09:05.4607640Z PASS DUNGEON SMOKE: 55 checks
+2026-10-06T20:09:05.4607981Z RUN persistence_smoke.gd
+2026-10-06T20:09:15.3801112Z PASS PERSISTENCE SMOKE: 89 checks
+2026-10-06T20:09:15.3801420Z RUN arcane_tactics_smoke.gd
+2026-10-06T20:09:30.6919170Z PASS ARCANE TACTICS SMOKE: 29 checks
+2026-10-06T20:09:30.6919572Z RUN boss_patterns_smoke.gd
+2026-10-06T20:09:56.8835099Z PASS BOSS PATTERNS SMOKE: 122 checks
+2026-10-06T20:09:56.8835528Z RUN class_loot_smoke.gd
+2026-10-06T20:10:00.0158112Z PASS CLASS LOOT SMOKE: 29 checks
+2026-10-06T20:10:00.0158512Z RUN contracts_smoke.gd
+2026-10-06T20:10:23.3355498Z PASS CONTRACTS SMOKE: 68 checks
+2026-10-06T20:10:23.3356007Z RUN combined_oaths_phases_smoke.gd
+2026-10-06T20:10:36.8802719Z PASS COMBINED OATHS / PHASES SMOKE: 338 checks
+2026-10-06T20:10:36.8803187Z RUN main_combined_rules_smoke.gd
+2026-10-06T20:10:45.9618558Z PASS MAIN COMBINED RULES SMOKE: 156 checks
+2026-10-06T20:10:45.9618971Z RUN gear_forecast_smoke.gd
+2026-10-06T20:11:20.9888572Z PASS GEAR / FORECAST SMOKE: 38 checks
+2026-10-06T20:11:20.9889898Z RUN gear_goals_smoke.gd
+2026-10-06T20:11:25.7969856Z PASS GEAR GOALS SMOKE: 114 checks
+2026-10-06T20:11:25.7970134Z RUN regions_smoke.gd
+2026-10-06T20:11:33.8586965Z PASS REGIONS SMOKE: 36 checks
+2026-10-06T20:11:33.8587354Z RUN onboarding_smoke.gd
+2026-10-06T20:11:40.5275654Z PASS ONBOARDING SMOKE: 19 checks
+2026-10-06T20:11:40.5276046Z RUN success_loop_smoke.gd
+2026-10-06T20:11:43.2873845Z PASS SUCCESS LOOP SMOKE: 87 checks
+2026-10-06T20:11:43.2874133Z RUN recovery_smoke.gd
+2026-10-06T20:11:45.3948904Z PASS RECOVERY SMOKE: 48 checks
+2026-10-06T20:11:45.3949178Z RUN options_smoke.gd
+2026-10-06T20:11:50.4787376Z PASS OPTIONS SMOKE: 82 checks
+2026-10-06T20:11:50.4787664Z RUN skill_rotation_smoke.gd
+2026-10-06T20:12:06.5373041Z PASS SKILL ROTATION SMOKE: 135 checks
+2026-10-06T20:12:06.5373432Z RUN visuals_smoke.gd
+2026-10-06T20:12:12.7408592Z PASS VISUALS SMOKE: 73 checks
+2026-10-06T20:12:12.7408995Z RUN world_framing_smoke.gd
+2026-10-06T20:12:37.6291289Z PASS WORLD FRAMING SMOKE: 900 checks
+2026-10-06T20:12:37.6291584Z RUN authored_art_smoke.gd
+2026-10-06T20:12:43.6428655Z PASS AUTHORED ART SMOKE: 105 checks
+2026-10-06T20:12:43.6428954Z RUN character_equipment_smoke.gd
+2026-10-06T20:12:48.3631078Z PASS CHARACTER EQUIPMENT SMOKE: 38 checks
+2026-10-06T20:12:48.3631408Z RUN native_equipment_finish_smoke.gd
+2026-10-06T20:12:52.5197257Z PASS NATIVE EQUIPMENT FINISH SMOKE: 129 checks
+2026-10-06T20:12:52.5197565Z RUN presentation_smoke.gd
+2026-10-06T20:12:59.2823508Z PASS PRESENTATION SMOKE: 77 checks
+2026-10-06T20:12:59.2823949Z RUN frame_metrics_smoke.gd
+2026-10-06T20:12:59.8096476Z PASS FRAME METRICS SMOKE: 10 checks
+2026-10-06T20:12:59.8096889Z RUN room_ground_smoke.gd
+2026-10-06T20:13:00.3334970Z PASS ROOM GROUND SMOKE: 19 checks
+2026-10-06T20:13:00.3335284Z RUN character_3d_smoke.gd
+2026-10-06T20:13:16.2053482Z PASS CHARACTER THREE D SMOKE: 150 checks
+2026-10-06T20:13:16.2053906Z RUN source_avatar_smoke.gd
+2026-10-06T20:13:18.7799773Z PASS SOURCE AVATAR: 39 checks
+2026-10-06T20:13:18.7800203Z RUN source_avatar_grip_smoke.gd
+2026-10-06T20:13:21.5377090Z PASS SOURCE AVATAR GRIP: 296 checks
+2026-10-06T20:13:21.5377480Z RUN source_avatar_attack_smoke.gd
+2026-10-06T20:13:26.0645212Z PASS SOURCE AVATAR ATTACK: 120 checks
+2026-10-06T20:13:26.0645503Z RUN source_avatar_style_smoke.gd
+2026-10-06T20:13:28.3574763Z PASS SOURCE AVATAR STYLE SMOKE: 131 checks
+2026-10-06T20:13:28.3575069Z RUN class_avatar_quality_smoke.gd
+2026-10-06T20:13:33.2552188Z PASS CLASS AVATAR QUALITY SMOKE: 398 checks
+2026-10-06T20:13:33.2552491Z RUN guardian_presentation_smoke.gd
+2026-10-06T20:13:40.8504309Z PASS GUARDIAN PRESENTATION SMOKE: 274 checks
+2026-10-06T20:13:40.8504745Z RUN hostile_quality_smoke.gd
+2026-10-06T20:13:46.4905105Z PASS HOSTILE QUALITY SMOKE: 81 checks
+2026-10-06T20:13:46.4905404Z RUN dungeon_lighting_smoke.gd
+2026-10-06T20:13:51.7661011Z PASS DUNGEON LIGHTING SMOKE: 60 checks
+2026-10-06T20:13:51.7661437Z RUN combat_audio_smoke.gd
+2026-10-06T20:13:53.0334344Z PASS COMBAT AUDIO SMOKE: 61 checks
+2026-10-06T20:13:53.0334635Z RUN native_capture_audio_smoke.gd
+2026-10-06T20:13:54.2074668Z PASS NATIVE CAPTURE AUDIO SMOKE: 79 checks
+2026-10-06T20:13:54.2075103Z RUN animation_craft_smoke.gd
+2026-10-06T20:14:05.5261610Z PASS ANIMATION CRAFT SMOKE: 55 checks
+2026-10-06T20:14:05.5262006Z RUN camp_hud_smoke.gd
+2026-10-06T20:14:15.1703749Z PASS CAMP HUD SMOKE: 44 checks
+2026-10-06T20:14:15.1704163Z RUN combat_readability_smoke.gd
+2026-10-06T20:14:25.0052905Z PASS COMBAT READABILITY SMOKE: 57 checks
+2026-10-06T20:14:25.0053210Z RUN fellowship_ui_smoke.gd
+2026-10-06T20:14:27.8597064Z PASS FELLOWSHIP UI SMOKE: 11 checks
+2026-10-06T20:14:27.8597471Z RUN cloud_identity_smoke.gd
+2026-10-06T20:14:28.2900677Z PASS CLOUD IDENTITY SMOKE: 14 checks
+2026-10-06T20:14:28.2901251Z RUN mana_ward_smoke.gd
+2026-10-06T20:14:32.5156455Z PASS MANA WARD SMOKE: 27 checks
+2026-10-06T20:14:32.5156808Z PASS emberfall.js
+2026-10-06T20:14:32.5157073Z PASS progression_runtime_test.js
+2026-10-06T20:14:32.5157684Z PROGRESSION RUNTIME: server-owned profile, bounded AFK settlement, allowlists, inventory and replay protection passed.
+2026-10-06T20:14:32.5158369Z BETA CHECKS: 45 Godot suites, 5300 checks, 0 failures
+2026-10-06T20:14:32.5264122Z ##[group]Run actions/upload-artifact@v7
+2026-10-06T20:14:32.5264362Z with:
+2026-10-06T20:14:32.5264544Z   name: emberfall-gameplay-quality
+2026-10-06T20:14:32.5264758Z   path: build/reports/*.log
+2026-10-06T20:14:32.5264950Z   if-no-files-found: ignore
+2026-10-06T20:14:32.5265132Z   retention-days: 14
+2026-10-06T20:14:32.5265309Z   compression-level: 6
+2026-10-06T20:14:32.5265491Z   overwrite: false
+2026-10-06T20:14:32.5265667Z   include-hidden-files: false
+2026-10-06T20:14:32.5265868Z   archive: true
+2026-10-06T20:14:32.5266049Z ##[endgroup]
+2026-10-06T20:14:32.6451744Z With the provided path, there will be 2 files uploaded
+2026-10-06T20:14:32.6472125Z Artifact name is valid!
+2026-10-06T20:14:32.6472532Z Root directory input is valid!
+2026-10-06T20:14:32.8619311Z Uploading artifact: emberfall-gameplay-quality.zip
+2026-10-06T20:14:32.8653656Z Beginning upload of artifact content to blob storage
+2026-10-06T20:14:32.9208358Z Uploaded bytes 3172
+2026-10-06T20:14:32.9336166Z Finished uploading artifact content to blob storage!
+2026-10-06T20:14:32.9336945Z SHA256 digest of uploaded artifact is 307e132d5b23216313e227e8659c7fde6631baf07955122352da142815312d5a
+2026-10-06T20:14:32.9337495Z Finalizing artifact upload
+2026-10-06T20:14:33.1825112Z Artifact emberfall-gameplay-quality successfully finalized. Artifact ID 11442510389
+2026-10-06T20:14:33.1826165Z Artifact emberfall-gameplay-quality has been successfully uploaded! Final size is 3172 bytes. Artifact ID is 11442510389
+2026-10-06T20:14:33.1828936Z Artifact download URL: https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37523667376/artifacts/11442510389
+2026-10-06T20:14:33.1996029Z Post job cleanup.
+2026-10-06T20:14:33.2702830Z [command]/usr/bin/git version
+2026-10-06T20:14:33.2745497Z git version 2.55.0
+2026-10-06T20:14:33.2797867Z Temporarily overriding HOME='/home/runner/work/_temp/65bb2a52-e755-4010-be3a-5198725265e3' before making global git config changes
+2026-10-06T20:14:33.2798906Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-06T20:14:33.2803322Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil
+2026-10-06T20:14:33.2834538Z Removing SSH command configuration
+2026-10-06T20:14:33.2840668Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-06T20:14:33.2875076Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-06T20:14:33.3086288Z Removing HTTP extra header
+2026-10-06T20:14:33.3095333Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-06T20:14:33.3126667Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-06T20:14:33.3334765Z Removing includeIf entries pointing to credentials config files
+2026-10-06T20:14:33.3341533Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-06T20:14:33.3381013Z includeif.gitdir:/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/.git.path
+2026-10-06T20:14:33.3381981Z includeif.gitdir:/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/.git/worktrees/*.path
+2026-10-06T20:14:33.3383532Z includeif.gitdir:/github/workspace/.git.path
+2026-10-06T20:14:33.3384083Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-06T20:14:33.3391950Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/.git.path
+2026-10-06T20:14:33.3418754Z /home/runner/work/_temp/git-credentials-45a225d8-d849-464b-a785-9e6745c4b02b.config
+2026-10-06T20:14:33.3437460Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-45a225d8\-d849\-464b\-a785\-9e6745c4b02b\.config
+2026-10-06T20:14:33.3475633Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/.git/worktrees/*.path
+2026-10-06T20:14:33.3501322Z /home/runner/work/_temp/git-credentials-45a225d8-d849-464b-a785-9e6745c4b02b.config
+2026-10-06T20:14:33.3506032Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-45a225d8\-d849\-464b\-a785\-9e6745c4b02b\.config
+2026-10-06T20:14:33.3547234Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-06T20:14:33.3570694Z /github/runner_temp/git-credentials-45a225d8-d849-464b-a785-9e6745c4b02b.config
+2026-10-06T20:14:33.3576519Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-45a225d8\-d849\-464b\-a785\-9e6745c4b02b\.config
+2026-10-06T20:14:33.4759225Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-06T20:14:33.4785966Z /github/runner_temp/git-credentials-45a225d8-d849-464b-a785-9e6745c4b02b.config
+2026-10-06T20:14:33.4793234Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-45a225d8\-d849\-464b\-a785\-9e6745c4b02b\.config
+2026-10-06T20:14:33.4827697Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-06T20:14:33.5015910Z Removing credentials config '/home/runner/work/_temp/git-credentials-45a225d8-d849-464b-a785-9e6745c4b02b.config'
+2026-10-06T20:14:33.5138458Z Cleaning up orphan processes

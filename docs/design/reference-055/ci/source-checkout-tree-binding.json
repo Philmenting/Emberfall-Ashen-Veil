@@ -1,0 +1,24 @@
+{
+  "observed_at": "2026-10-06T20:21:15.238625+00:00",
+  "source_head": "ad4d50bb9dbdc07cea42e2306a79fc65bb642489",
+  "actual_ci_checkout": "d7d10a856b913ba07eb056c783564a8eebe915e4",
+  "commits": [
+    {
+      "sha": "ad4d50bb9dbdc07cea42e2306a79fc65bb642489",
+      "tree_sha": "e6b3ca7a18af16f82ef9a883df82f6a71a597b1a",
+      "parents": [
+        "4b152d0fc8b99cf51569585af2695bf3554416ed"
+      ]
+    },
+    {
+      "sha": "d7d10a856b913ba07eb056c783564a8eebe915e4",
+      "tree_sha": "e6b3ca7a18af16f82ef9a883df82f6a71a597b1a",
+      "parents": [
+        "610c343073e7186589cba92c3fefb55a4db68e12",
+        "ad4d50bb9dbdc07cea42e2306a79fc65bb642489"
+      ]
+    }
+  ],
+  "trees_identical": true,
+  "scope": "GitHub Git commit API confirms the PR merge checkout tree equals the source head tree. Actual checkout is independently recorded in each original job log. This does not claim independently embedded APK head attestation."
+}
