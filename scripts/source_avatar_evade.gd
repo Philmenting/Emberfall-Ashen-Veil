@@ -3,8 +3,10 @@ extends RefCounted
 ## explicit procedural pose, not an artist-authored dodge clip. The actual
 ## simulation supplies the path; this helper never moves an actor or changes
 ## invulnerability, attacks, damage, cooldowns or simulation clocks.
-const STRIDE_SOURCE := 1.50
-const STANCE_END := .23
+# A half-cycle lateral step must leave room for the native knee to bend.
+# This visual stride changes no simulation distance or escape duration.
+const STRIDE_SOURCE := 1.00
+const STANCE_END := .50
 const FOOT_CLEARANCE_SOURCE := .065
 const CROUCH_SOURCE := .19
 
@@ -67,7 +69,11 @@ static func apply(rig: RefCounted, actor: Variant, phase: float, state: Dictiona
 		var calf: int = skeleton.find_bone("calf_" + suffix)
 		var foot: int = skeleton.find_bone("foot_" + suffix)
 		var current := skeleton.get_bone_global_pose(foot)
-		var offset := 0.0 if side == int(state.lead_side) else .5
+		# Open with the outside foot while the inside foot holds the ground.
+		# Each support lasts half a cycle: the outside foot lands before the
+		# trailing foot catches up. A shorter stance lets both feet swing at
+		# once and can carry the trailing foot across the outside ankle.
+		var offset := .5 if side == int(state.lead_side) else 0.0
 		var cycle := travelled / stride_world + offset
 		var gait_phase := fposmod(cycle, 1.0)
 		var swing := clampf((gait_phase - STANCE_END) / (1.0 - STANCE_END), 0.0, 1.0)

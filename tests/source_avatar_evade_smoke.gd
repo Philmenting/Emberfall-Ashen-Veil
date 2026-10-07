@@ -9,6 +9,7 @@ const Bot = preload("res://tests/balance_survey_bot.gd")
 const RealSkinAudit = preload("res://tests/source_avatar_skin.gd")
 var evade_metrics: Dictionary = {}
 var production_metrics: Dictionary = {}
+var choreography_metrics: Dictionary = {}
 
 func pose_evade(actor: Node3D, state: Dictionary, phase: float, distance_progress: float) -> void:
 	actor.global_position = state.origin + state.direction_world * state.distance_world * distance_progress
@@ -69,6 +70,96 @@ func complete_native_lengths(rig: RefCounted) -> bool:
 		if absf(actual - original) > .00002:
 			return false
 	return true
+
+func actual_sole_transverse(rig: RefCounted, transverse: Vector3) -> Dictionary:
+	# These are the original indexed Feet vertices and their actual four
+	# skin weights/inverse binds. The source-side labels are captured before
+	# posing; a world X guess would change meaning with actor orientation.
+	var poses: Array[Transform3D] = []
+	for bone in rig.skeleton.get_bone_count():
+		poses.append(rig.skeleton.get_bone_global_pose(bone))
+	var sums: Array[float] = [0.0, 0.0]
+	var counts: Array[int] = [0, 0]
+	var left_minimum := INF
+	var right_maximum := -INF
+	for probe in rig.floor_probes:
+		var point := Vector3.ZERO
+		for influence in probe.bones.size():
+			point += (poses[probe.bones[influence]] * probe.binds[influence] * probe.point) * probe.weights[influence]
+		var projection: float = (rig.motion_node.global_transform * point).dot(transverse)
+		sums[probe.side] += projection
+		counts[probe.side] += 1
+		if probe.side == 0:
+			left_minimum = minf(left_minimum, projection)
+		else:
+			right_maximum = maxf(right_maximum, projection)
+	assert(counts[0] > 0 and counts[1] > 0, "Both actual indexed weighted native soles must be present")
+	return {"signed_center_separation_m": sums[0] / counts[0] - sums[1] / counts[1], "signed_projection_gap_m": left_minimum - right_maximum}
+
+func audit_step_choreography(actor: Node3D) -> void:
+	var rig = actor.motion_rig
+	var paths: Array[Dictionary] = []
+	for direction_index in 8:
+		for complete_cycles in [false, true]:
+			actor.position = Vector3(2.7, .13, -1.4)
+			actor.rotation.y = .63
+			rig.pose("evade", 0.0)
+			rig.apply_actor_postprocess(actor, "evade", 0.0, 0.0, true)
+			# Local +X is the original native left side. Capture this basis
+			# once from the source guard, before any evade pelvis rotation.
+			var transverse: Vector3 = rig.motion_node.global_basis.orthonormalized().x
+			var forward: Vector3 = rig.motion_node.global_basis.orthonormalized().z
+			var direction := (transverse * cos(direction_index * TAU / 8.0) + forward * sin(direction_index * TAU / 8.0)).normalized()
+			var distance: float = Evade.STRIDE_SOURCE * rig.motion_node.global_basis.x.length() * 3.0 if complete_cycles else 2.4
+			var initial_separation := (world_bone(actor, "foot_l").origin - world_bone(actor, "foot_r").origin).dot(transverse)
+			check(initial_separation > .10, String(actor.kind) + ": the original source basis and native left/right ankle labels agree before directional posing")
+			var state := Evade.begin(actor, actor.global_position, actor.global_position + direction * distance)
+			var minimum_ankle := INF
+			var minimum_sole_center := INF
+			var minimum_sole_gap := INF
+			var minimum_floor := INF
+			var minimum_outfit := INF
+			var minimum_weapon := INF
+			var native_lengths := true
+			var original_actor_transform := true
+			var opening_separation := initial_separation
+			for frame in 131:
+				var progress := minf(float(frame) / 120.0, 1.0)
+				# Real actor travel drives phase to .78, then settles to the
+				# original guard without adding any actor displacement.
+				var phase := progress * .78 if frame <= 120 else .78 + .22 * float(frame - 120) / 10.0
+				actor.global_position = state.origin + state.direction_world * state.distance_world * progress
+				var before := actor.transform
+				rig.pose("evade", 0.0)
+				Evade.apply(rig, actor, phase, state)
+				rig.apply_actor_postprocess(actor, "evade", phase, 0.0, true)
+				original_actor_transform = original_actor_transform and actor.transform == before
+				var signed_ankle := (world_bone(actor, "foot_l").origin - world_bone(actor, "foot_r").origin).dot(transverse)
+				var soles := actual_sole_transverse(rig, transverse)
+				minimum_ankle = minf(minimum_ankle, signed_ankle)
+				minimum_sole_center = minf(minimum_sole_center, soles.signed_center_separation_m)
+				minimum_sole_gap = minf(minimum_sole_gap, soles.signed_projection_gap_m)
+				minimum_floor = minf(minimum_floor, weighted_sole_minimum(rig))
+				# Exact half-cycle landings are the widest requested poses.
+				# Audit every indexed weighted garment and held prop there,
+				# rather than relying on the ankle/floor probes alone.
+				if complete_cycles and frame in [20, 60, 100]:
+					minimum_outfit = minf(minimum_outfit, RealSkinAudit.actual_bounds(rig, rig.style.accessories).position.y)
+					minimum_weapon = minf(minimum_weapon, indexed_weapon_minimum(actor))
+				native_lengths = native_lengths and complete_native_lengths(rig)
+				if frame == 15:
+					opening_separation = signed_ankle
+			var label := String(actor.kind) + " source direction " + str(direction_index) + (" three complete cycles" if complete_cycles else " normal 2.4 m path")
+			check(minimum_ankle >= initial_separation * .80, label + ": native ankles retain signed lateral order and at least 80% of their original guarded separation throughout all 131 travel/recovery phases; minimum=" + str(minimum_ankle))
+			check(minimum_sole_center > .10 and minimum_sole_gap >= .002, label + ": actual weighted boot centres keep their source side and their projected sole edges never overlap; centre=" + str(minimum_sole_center) + " gap=" + str(minimum_sole_gap))
+			check(minimum_floor >= .0025, label + ": every sampled weighted sole retains the existing 2.5 mm ground-clearance requirement")
+			check(native_lengths and original_actor_transform, label + ": all 131 poses preserve all 65 source rests, unit bone scales, anatomical segment lengths and actual actor movement")
+			if complete_cycles:
+				check(minimum_outfit >= .0015 and minimum_weapon >= .002, label + ": every actual indexed garment and weapon retains the original ground-clearance requirements at each exact half-cycle landing; outfit=" + str(minimum_outfit) + " weapon=" + str(minimum_weapon))
+			if absf(direction.dot(transverse)) > .6:
+				check(opening_separation > initial_separation + .025, label + ": the outside foot opens the escape before the trailing foot follows")
+			paths.append({"source_direction_index": direction_index, "distance_world_m": distance, "complete_stride_cycles": 3 if complete_cycles else distance / (Evade.STRIDE_SOURCE * float(state.scale_world)), "actual_progress_samples": 121, "actual_recovery_samples": 10, "initial_signed_native_ankle_separation_m": initial_separation, "minimum_signed_native_ankle_separation_m": minimum_ankle, "minimum_signed_weighted_sole_center_separation_m": minimum_sole_center, "minimum_signed_weighted_sole_projection_gap_m": minimum_sole_gap, "minimum_actual_weighted_sole_source_y_m": minimum_floor, "opening_signed_ankle_separation_m": opening_separation, "minimum_actual_outfit_y_at_halfcycle_landings_m": minimum_outfit if complete_cycles else null, "minimum_actual_weapon_y_at_halfcycle_landings_m": minimum_weapon if complete_cycles else null})
+	choreography_metrics[String(actor.kind)] = paths
 
 func audit_class(class_key: String) -> void:
 	var actor = Actor.new()
@@ -139,7 +230,7 @@ func audit_class(class_key: String) -> void:
 		pose_evade(actor, state, .40, .05)
 		var held_pose: Dictionary = rig._capture_source_pose()
 		var held_weapon: Transform3D = rig.weapon.transform
-		var support := "foot_l" if state.lead_side == 0 else "foot_r"
+		var support := "foot_r" if state.lead_side == 0 else "foot_l"
 		var support_world := world_bone(actor, support).origin
 		for held in 4:
 			pose_evade(actor, state, .40, .05)
@@ -148,6 +239,14 @@ func audit_class(class_key: String) -> void:
 		var drift := world_bone(actor, support).origin.distance_to(support_world)
 		maximum_support_drift = maxf(maximum_support_drift, drift)
 		check(drift < .001, class_key + ": actual support ankle holds its world anchor during the real low-step stance; drift=" + str(drift))
+		var stride_world: float = Evade.STRIDE_SOURCE * float(state.scale_world)
+		var outside := "foot_l" if state.lead_side == 0 else "foot_r"
+		pose_evade(actor, state, .40, .60 * stride_world / float(state.distance_world))
+		var landed_outside := world_bone(actor, outside).origin
+		pose_evade(actor, state, .40, .65 * stride_world / float(state.distance_world))
+		var landed_drift := world_bone(actor, outside).origin.distance_to(landed_outside)
+		maximum_support_drift = maxf(maximum_support_drift, landed_drift)
+		check(landed_drift < .001, class_key + ": landed outside ankle becomes the exact world support while the trailing foot follows; drift=" + str(landed_drift))
 		pose_evade(actor, state, .55, .50)
 		var midpoint: Dictionary = rig._capture_source_pose()
 		pose_evade(actor, state, .22, .10)
@@ -162,6 +261,7 @@ func audit_class(class_key: String) -> void:
 		rig.apply_actor_postprocess(actor, "walk", .31, 0.0, true)
 		check(rig._capture_source_pose() == walked, class_key + ": ordinary source walking retains no cancelled evade pose")
 	evade_metrics[class_key] = {"directions": 8, "native_bones": 65, "minimum_crouch_world_m": minimum_drop, "maximum_crouch_world_m": maximum_drop, "minimum_directional_chest_lean_world_m": minimum_lean, "maximum_world_support_drift_m": maximum_support_drift, "minimum_weighted_boot_source_y_m": minimum_floor, "minimum_all_weighted_source_and_accessory_y_m": minimum_whole_outfit, "minimum_actual_indexed_weapon_source_y_m": minimum_weapon}
+	audit_step_choreography(actor)
 	actor.free()
 
 func audit_actor_lifecycle(class_key: String) -> void:
@@ -273,8 +373,8 @@ func audit_world_event_and_restore() -> void:
 		if world.hero.evade_time >= 0.0 and world.hero.evade_phase >= .15 and world.hero.evade_phase <= .73:
 			var state: Dictionary = world.hero.evade_state
 			var travelled: float = (world.hero.global_position - state.origin).dot(state.direction_world)
-			if travelled < .23 * 1.50 * float(state.scale_world):
-				var side := "foot_l" if state.lead_side == 0 else "foot_r"
+			if travelled < Evade.STANCE_END * Evade.STRIDE_SOURCE * float(state.scale_world):
+				var side := "foot_r" if state.lead_side == 0 else "foot_l"
 				var current_support := world_bone(world.hero, side).origin
 				if support_samples > 0:
 					maximum_support_drift = maxf(maximum_support_drift, current_support.distance_to(previous_support))
@@ -317,7 +417,7 @@ func run() -> void:
 		audit_class(class_key)
 		audit_actor_lifecycle(class_key)
 	audit_world_event_and_restore()
-	print(JSON.stringify({"suite": "source_avatar_evade_smoke", "checks": checks, "failures": failures.size(), "poses": poses, "source": "procedural native65 low step on actual simulation displacement; no authored dodge clip", "metrics": evade_metrics, "production_metrics": production_metrics, "maximum_class_grip_gap_m": maximum_class_gap, "maximum_class_grip_penetration_m": maximum_class_penetration, "maximum_staff_grip_gap_m": widest_finger_gap, "maximum_staff_grip_penetration_m": worst_penetration}))
+	print(JSON.stringify({"suite": "source_avatar_evade_smoke", "checks": checks, "failures": failures.size(), "poses": poses, "source": "procedural native65 low step on actual simulation displacement; no authored dodge clip", "metrics": evade_metrics, "choreography_metrics": choreography_metrics, "production_metrics": production_metrics, "maximum_class_grip_gap_m": maximum_class_gap, "maximum_class_grip_penetration_m": maximum_class_penetration, "maximum_staff_grip_gap_m": widest_finger_gap, "maximum_staff_grip_penetration_m": worst_penetration}))
 	print("SOURCE AVATAR EVADE SMOKE: %d checks, %d failures" % [checks, failures.size()])
 	arm_surfaces.clear()
 	await process_frame
