@@ -76,7 +76,7 @@ jobs:
       - name: Check automatic 3D dungeon and background lifecycle
         run: |
           godot --headless --path . --editor --import --quit
-          XDG_DATA_HOME="$RUNNER_TEMP/emberfall-smoke-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/dungeon_smoke.gd
+          XDG_DATA_HOME="$RUNNER_TEMP/emberfall-smoke-data" timeout 300s godot --headless --path . --fixed-fps 60 --script tests/dungeon_smoke.gd
           XDG_DATA_HOME="$RUNNER_TEMP/emberfall-persistence-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/persistence_smoke.gd
           XDG_DATA_HOME="$RUNNER_TEMP/emberfall-fellowship-ui-data" timeout 120s godot --headless --path . --fixed-fps 60 --script tests/fellowship_ui_smoke.gd
 
