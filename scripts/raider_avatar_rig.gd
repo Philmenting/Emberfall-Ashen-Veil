@@ -68,8 +68,10 @@ func build(parent: Node3D,appearance: String) -> void:
 	# Original actual anatomy height excludes the held extended weapon.
 	source_height=float(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/raider056/raider-native65.json")).source_height_m)
 	assert(source_height>1.7 and source_height<2.2)
-	assert(rendered_triangles<=20000)
+	assert(rendered_triangles<=triangle_budget())
 	build_ok=true
+
+func triangle_budget() -> int:return 20000
 
 func _build_axe() -> void:
 	weapon=Node3D.new();weapon.name="HeldRaiderAxe";motion_node.add_child(weapon)

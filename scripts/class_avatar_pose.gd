@@ -19,34 +19,78 @@ static func apply_bow(rig: RefCounted,clip: String,time: float,after_blend: bool
 		else:
 			draw=smoothstep(.08,.78 if action=="basic" else .90,phase)*peak
 			aim=smoothstep(0,.36,phase)
+	var release=Vector3.ZERO
+	if recovering:release=Vector3(-.14,.035,-.045)*sin(smoothstep(0,.44,phase)*PI)
+	if after_blend:
+		# The clean bow state follows the same interrupted-pose blend as
+		# the chest. Re-solving contact must not snap the arms to a new idle
+		# draw state after an attack has just been cancelled by an escape.
+		draw=float(rig.class_pose_state.get("draw",draw))
+		aim=float(rig.class_pose_state.get("aim",aim))
+		release=rig.class_pose_state.get("release",release)
 	var skeleton: Skeleton3D=rig.skeleton
 	if not after_blend:
+		var soles: Array[Transform3D]=[]
+		var poles: Array[Vector3]=[]
+		for suffix in ["l","r"]:
+			soles.append(skeleton.get_bone_global_pose(skeleton.find_bone("foot_"+suffix)))
+			poles.append(skeleton.get_bone_global_pose(skeleton.find_bone("calf_"+suffix)).origin-skeleton.get_bone_global_pose(skeleton.find_bone("thigh_"+suffix)).origin)
 		var turn=-.22-.30*aim
 		for names in [["pelvis",.22],["spine_01",.28],["spine_03",.50]]:
 			var bone=skeleton.find_bone(names[0])
 			rig._global_rotation(bone,Basis(Vector3.UP,turn*float(names[1]))*skeleton.get_bone_global_pose(bone).basis)
 		var head=skeleton.find_bone("Head")
 		rig._global_rotation(head,Basis(Vector3.UP,-turn*.48)*skeleton.get_bone_global_pose(head).basis)
+		if casting:
+			# The archer keeps the aimed bow steady while the draw hand
+			# follows through. A second hip dip during early recovery moves
+			# that real aim point; only the committed draw loads the hips.
+			var load=smoothstep(.05,.31,phase)*(1.0-smoothstep(.55,1.0,phase)) if not recovering else 0.0
+			var depth=.034 if action=="basic" else (.046 if action=="skill" else .056)
+			rig.offset_cast_pelvis(Vector3(.018*load,-depth*load,-.012*load))
+			var spine=skeleton.find_bone("spine_01")
+			rig._global_rotation(spine,Basis(Vector3.RIGHT,-.045*load)*skeleton.get_bone_global_pose(spine).basis)
+		# The draw loads the hips under the native planted boots. Native
+		# turn/load cannot yaw the soles around the pelvis or stretch a leg.
+		rig.hold_cast_soles(soles,poles)
 	var chest=skeleton.get_bone_global_pose(skeleton.find_bone("spine_03")).origin
-	var grip=chest+Vector3(.20,-.20,.16).lerp(Vector3(.17,-.055,.49),aim)
+	# A full draw reaches shoulder/jaw height. Keeping it at the old low
+	# chest height pulled the actual string hand behind the torso silhouette.
+	var grip=chest+Vector3(.20,-.20,.16).lerp(Vector3(.17,.24,.49),aim)
 	# Arrow rides above the actual gripping fingers, instead of travelling
 	# through the middle of the fist inherited from the legacy prop origin.
 	var nock=grip+Vector3(0,rig.bow_rest_height,-(.34+draw)*rig.class_weapon_scale)
-	var release=Vector3.ZERO
-	if recovering:release=Vector3(-.14,.035,-.045)*sin(smoothstep(0,.44,phase)*PI)
 	var hand_basis=rig._frame(Vector3.UP,Vector3.LEFT)*rig.grasp_frame.inverse()
 	# The left grip is mirrored from the already measured right aperture.
 	# Present the palm toward flight: the shaft sits in front of the wrist,
 	# so its lower half clears the actual weighted forearm at a low guard.
 	var left_basis=rig._frame(Vector3.UP,Vector3.LEFT)*rig.bow_grasp_frame.inverse()
 	var left_hand=grip-left_basis*rig.bow_grip_center
-	rig._solve_cast_chain(skeleton.find_bone("upperarm_l"),skeleton.find_bone("lowerarm_l"),skeleton.find_bone("hand_l"),left_hand,Vector3(.65,-.40,-.25))
+	rig._solve_cast_chain(skeleton.find_bone("upperarm_l"),skeleton.find_bone("lowerarm_l"),skeleton.find_bone("hand_l"),left_hand,rig.bow_elbow_pole)
 	rig._global_rotation(skeleton.find_bone("hand_l"),left_basis)
 	var hook_local: Vector3=rig.bow_hook_local
 	var right_hand=nock+release-hand_basis*hook_local
 	rig._solve_cast_chain(skeleton.find_bone("upperarm_r"),skeleton.find_bone("lowerarm_r"),skeleton.find_bone("hand_r"),right_hand,Vector3(-.65,.22,-.48))
 	rig._global_rotation(skeleton.find_bone("hand_r"),hand_basis)
-	rig.class_pose_state={"draw":draw,"aim":aim,"nocked":casting and not recovering,"hook_local":hook_local}
+	rig.class_pose_state={"draw":draw,"aim":aim,"nocked":casting and not recovering,"hook_local":hook_local,"release":release}
+
+static func apply_sword_weight(rig: RefCounted,clip: String,time: float) -> void:
+	# The original sword clip retains its blade arc. A small planted hip load
+	# leads its existing strike rather than enlarging every native arm angle.
+	var recovering=clip.begins_with("recover")
+	var phase=clampf(time/rig.RECOVERY if recovering else time,0,1)
+	var action=clip.get_slice("_",1)
+	var load=smoothstep(.04,.29,phase)*(1.0-smoothstep(.56,1.0,phase)) if not recovering else smoothstep(0,.12,phase)*(1.0-smoothstep(.12,.44,phase))*.34
+	if load<=0.0:return
+	var skeleton: Skeleton3D=rig.skeleton
+	var soles: Array[Transform3D]=[]
+	var poles: Array[Vector3]=[]
+	for suffix in ["l","r"]:
+		soles.append(skeleton.get_bone_global_pose(skeleton.find_bone("foot_"+suffix)))
+		poles.append(skeleton.get_bone_global_pose(skeleton.find_bone("calf_"+suffix)).origin-skeleton.get_bone_global_pose(skeleton.find_bone("thigh_"+suffix)).origin)
+	var depth=.022 if action=="basic" else (.034 if action=="skill" else .048)
+	rig.offset_cast_pelvis(Vector3(.012*load,-depth*load,.008*load))
+	rig.hold_cast_soles(soles,poles)
 
 static func fit_bow_fingers(rig: RefCounted) -> void:
 	for bone in rig.bow_grip_pose:rig.skeleton.set_bone_pose_rotation(bone,rig.bow_grip_pose[bone])

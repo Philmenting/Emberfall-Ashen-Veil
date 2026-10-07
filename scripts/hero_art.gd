@@ -77,7 +77,8 @@ func configure(class_key: String, equipped: Dictionary = {}) -> void:
 		actor.kind=character_class
 		stage.add_child(actor)
 	actor.configure_equipment(equipment,character_class)
-	actor.surface_material.set_shader_parameter("portrait_crop",portrait)
+	if actor.surface_material!=null:
+		actor.surface_material.set_shader_parameter("portrait_crop",portrait)
 	actor.reduced_motion=reduced_motion
 	actor.animate(0.0,false)
 	_resize()

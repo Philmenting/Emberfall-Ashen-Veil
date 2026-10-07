@@ -111,6 +111,13 @@ jobs:
       - name: Check native 3D animation, planted steps and real impact timing
         run: timeout 120s godot --headless --path . --script tests/character_3d_smoke.gd
 
+      - name: Check native combat transitions and visibility operation budgets
+        run: |
+          timeout 120s godot --headless --path . --script tests/native_motion_transition_smoke.gd
+          timeout 120s godot --headless --path . --script tests/avatar_attire_quality_smoke.gd
+          timeout 120s godot --headless --path . --script tests/native_hostile_smoke.gd
+          timeout 120s godot --headless --path . --script tests/render_budget_smoke.gd
+
       - name: Check animated presentation, adaptive rendering and accessible HUD
         run: XDG_DATA_HOME="$RUNNER_TEMP/emberfall-presentation" timeout 120s godot --headless --path . --script tests/presentation_smoke.gd
 

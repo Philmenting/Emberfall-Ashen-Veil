@@ -5,6 +5,7 @@ const Rig=preload("res://scripts/character_rig.gd")
 const SourceAvatar=preload("res://scripts/source_avatar_rig.gd")
 const ClassAvatar=preload("res://scripts/class_avatar_rig.gd")
 const RaiderAvatar=preload("res://scripts/raider_avatar_rig.gd")
+const NativeHostile=preload("res://scripts/native_hostile_rig.gd")
 const EquipmentFinish=preload("res://scripts/native_equipment_finish.gd")
 const Evade=preload("res://scripts/source_avatar_evade.gd")
 const HEROES: Array[String]=["Vowkeeper","Arcanist","Ranger"]
@@ -98,8 +99,11 @@ func _load_appearance() -> void:
 	if motion_rig!=null:
 		if source_avatar: motion_rig.dispose()
 		else: motion_rig.player.free(); motion_rig.skeleton.free()
-	source_avatar=SourceAvatar.has_appearance(appearance_key) or ClassAvatar.has_appearance(appearance_key) or RaiderAvatar.has_appearance(appearance_key)
-	motion_rig=RaiderAvatar.new() if RaiderAvatar.has_appearance(appearance_key) else (ClassAvatar.new() if ClassAvatar.has_appearance(appearance_key) else (SourceAvatar.new() if source_avatar else Rig.new()))
+	source_avatar=SourceAvatar.has_appearance(appearance_key) or ClassAvatar.has_appearance(appearance_key) or RaiderAvatar.has_appearance(appearance_key) or NativeHostile.has_appearance(appearance_key)
+	if NativeHostile.has_appearance(appearance_key): motion_rig=NativeHostile.new()
+	elif RaiderAvatar.has_appearance(appearance_key): motion_rig=RaiderAvatar.new()
+	elif ClassAvatar.has_appearance(appearance_key): motion_rig=ClassAvatar.new()
+	else: motion_rig=SourceAvatar.new() if source_avatar else Rig.new()
 	motion_rig.build(body,appearance_key)
 	appearance_cache[appearance_key]=motion_rig.mesh
 	body.scale=Vector3.ONE*figure_height/motion_rig.source_height
@@ -107,23 +111,27 @@ func _load_appearance() -> void:
 		model=MeshInstance3D.new(); model.name="SkinnedCharacter"; model.layers=2; body.add_child(model)
 		model.extra_cull_margin=figure_height
 		model.ignore_occlusion_culling=true
+	if source_avatar:
+		# Native parts own their actual PBR materials. A hidden legacy shader
+		# would allocate an unused material and receive writes every frame.
+		surface_material=null
+	elif surface_material==null:
 		surface_material=ShaderMaterial.new()
 		surface_material.shader=preload("res://assets/shaders/character_surface.gdshader")
 		surface_material.set_shader_parameter("face_albedo",preload("res://assets/materials/nyra-face/nyra-face-albedo.png"))
 		surface_material.set_shader_parameter("field_surfaces",preload("res://assets/materials/field-surfaces/material-atlas.png"))
 		surface_material.set_shader_parameter("metal_grain",preload("res://assets/materials/metal/Metal063_1K-JPG_Color.jpg"))
 		surface_material.set_shader_parameter("metal_roughness",preload("res://assets/materials/metal/Metal063_1K-JPG_Roughness.jpg"))
-		model.material_override=surface_material
 	model.visible=not source_avatar
 	model.material_override=null if source_avatar else surface_material
 	model.mesh=motion_rig.mesh; model.skin=motion_rig.skin
 	if source_avatar: motion_rig.configure_rendering(model)
-	if motion_rig.body_material!=null:
+	if surface_material!=null and motion_rig.body_material!=null:
 		var authored_material: StandardMaterial3D=motion_rig.body_material
 		surface_material.set_shader_parameter("body_albedo",authored_material.albedo_texture)
 		surface_material.set_shader_parameter("body_normal",authored_material.normal_texture)
 		surface_material.set_shader_parameter("body_orm",authored_material.roughness_texture)
-	else:
+	elif surface_material!=null:
 		# A reused portrait/actor switching to legacy geometry must not retain
 		# the previous complete character's atlases through its ShaderMaterial.
 		for parameter in ["body_albedo","body_normal","body_orm"]:
@@ -141,7 +149,7 @@ func configure_equipment(equipment: Dictionary,class_key: String="") -> void:
 	if boss or hostile: return
 	if class_key in HEROES and class_key!=kind:
 		kind=class_key; _load_appearance(); _apply_motion(0.0)
-	surface_material.set_shader_parameter("equipment_enabled",true)
+	if surface_material!=null: surface_material.set_shader_parameter("equipment_enabled",true)
 	equipment_grades.clear()
 	var uniforms: Dictionary={"Weapon":"weapon","Helmet":"helm","Chest":"chest","Gloves":"gloves","Boots":"boots","Amulet":"accent"}
 	for slot in uniforms:
@@ -149,8 +157,9 @@ func configure_equipment(equipment: Dictionary,class_key: String="") -> void:
 		var quality:=String(item.get("quality",item.get("rarity","COMMON"))).to_upper()
 		var rank: int=GEAR_RANKS.get(quality,0)
 		equipment_grades[slot]=rank
-		surface_material.set_shader_parameter(uniforms[slot]+"_rank",float(rank))
-		surface_material.set_shader_parameter(uniforms[slot]+"_tint",GEAR_TINTS[rank])
+		if surface_material!=null:
+			surface_material.set_shader_parameter(uniforms[slot]+"_rank",float(rank))
+			surface_material.set_shader_parameter(uniforms[slot]+"_tint",GEAR_TINTS[rank])
 	if source_avatar: native_equipment_finish.apply(motion_rig,equipment_grades)
 
 func set_boss_phase(value: int) -> void:
@@ -158,6 +167,8 @@ func set_boss_phase(value: int) -> void:
 	if surface_material!=null:
 		surface_material.set_shader_parameter("boss_surface",boss)
 		surface_material.set_shader_parameter("boss_phase",float(boss_phase))
+	if source_avatar and motion_rig!=null and motion_rig.has_method("set_boss_phase"):
+		motion_rig.set_boss_phase(boss_phase)
 
 func visual_height() -> float:
 	return figure_height*scale.y if death_time<0.0 else maxf(0.0,pose_bounds().end.y)*scale.y
@@ -282,11 +293,12 @@ func set_readability(value: float,focus: float=0.0) -> void:
 	if source_avatar: motion_rig.set_visual_readability(emphasis,silhouette_focus)
 
 func set_defeated_readability(value: float) -> void:
-	if death_time<0.0 or surface_material==null: return
+	if death_time<0.0: return
 	# Living combatants keep their contrast floor. Settled bodies relinquish
 	# visual emphasis without changing death, reward or animation clocks.
-	surface_material.set_shader_parameter("readability",clampf(value,.10,1.0))
-	surface_material.set_shader_parameter("silhouette_focus",0.0)
+	if surface_material!=null:
+		surface_material.set_shader_parameter("readability",clampf(value,.10,1.0))
+		surface_material.set_shader_parameter("silhouette_focus",0.0)
 	if source_avatar: motion_rig.set_visual_readability(clampf(value,.10,1.0),0.0)
 
 func set_telegraph(remaining_seconds: float,total_seconds: float=-1.0) -> void:
@@ -392,8 +404,13 @@ func _apply_motion(delta: float=0.0,contact: bool=false) -> void:
 	if source_avatar:
 		if contact: blend_age=1.0
 		else: blend_age+=delta
-		if blend_age<blend_duration and not blend_pose.is_empty(): motion_rig.blend_from(blend_pose,smoothstep(0,blend_duration,blend_age))
 		if clip=="evade": Evade.apply(motion_rig,self,time,evade_state)
+		if not hostile and not boss:
+			# Blend the complete directional evade/cast base before the fresh
+			# recoil and weapon fit. The evade must not replace a blended pose.
+			motion_rig.blend_native_transition(self,clip,time,delta,contact,blend_duration)
+		elif blend_age<blend_duration and not blend_pose.is_empty():
+			motion_rig.blend_from(blend_pose,smoothstep(0,blend_duration,blend_age))
 		motion_rig.apply_actor_postprocess(self,clip,time,delta,contact)
 		return
 	if clip=="death":

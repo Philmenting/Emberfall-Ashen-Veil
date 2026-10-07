@@ -24,6 +24,27 @@ func project_bounds(world: Node3D,actor: Node3D,bounds: AABB) -> Dictionary:
 				far_depth=maxf(far_depth,-world.camera.to_local(point).z)
 	return {"rect":Rect2(low,high-low),"far":far_depth}
 
+func opaque_geometry_snapshot(actor: Node3D) -> Array:
+	var result: Array=[]
+	var meshes: Array=actor.motion_rig.motion_node.find_children("*","MeshInstance3D",true,false) if actor.source_avatar else [actor.model]
+	for part: MeshInstance3D in meshes:
+		if not part.is_visible_in_tree(): continue
+		var materials: Array=[]
+		for slot in part.mesh.get_surface_count():materials.append(part.get_active_material(slot))
+		result.append([part,part.mesh,part.skin,part.cast_shadow,materials])
+	return result
+
+func opaque_geometry_unchanged(records: Array) -> bool:
+	if records.is_empty(): return false
+	for record in records:
+		var part: MeshInstance3D=record[0]
+		if not is_instance_valid(part) or not part.is_visible_in_tree() or part.mesh!=record[1] or part.skin!=record[2] or part.cast_shadow!=record[3]: return false
+		for slot in part.mesh.get_surface_count():
+			var material=part.get_active_material(slot)
+			if material!=record[4][slot] or not material is StandardMaterial3D: return false
+			if material.transparency!=BaseMaterial3D.TRANSPARENCY_DISABLED or material.albedo_color.a<.999: return false
+	return true
+
 func exercise_release_delivery(game: Node) -> void:
 	for style in ["basic","signature","chain"]:
 		for step_seconds in [1.0/60.0,.6,2.0]:
@@ -98,8 +119,8 @@ func run_checks() -> void:
 		var world: Node3D=World.new(); world.simulation=sim; world.region_index=region; world.character_class="Arcanist"; world.active=false
 		root.add_child(world)
 		var guardian: Node3D=world.actor_by_id[50]
-		var original_material: Material=guardian.model.material_override
-		var original_shadow: int=guardian.model.cast_shadow
+		var guardian_geometry: Array=opaque_geometry_snapshot(guardian)
+		check(guardian.source_avatar and guardian.surface_material==null and guardian.model.material_override==null and guardian.motion_rig.skeleton.get_bone_count()==65 and guardian_geometry.size()>8,"region %d: occlusion audit observes the actual complete native guardian body and held props without a hidden compatibility shader" % region)
 		check(world.hero.source_avatar and not world.hero.model.visible and world.hero.motion_rig.surfaces.size()==8,"region %d: coverage fixture renders the actual eight authored source surfaces" % region)
 		world._position_camera()
 		var shot: Transform3D=world.camera.transform
@@ -120,10 +141,10 @@ func run_checks() -> void:
 				var enemy_screen: Dictionary=world._project_body(guardian)
 				var overlaps: bool=enemy_screen.rect.intersects(actual_screen.rect) and enemy_screen.near<actual_screen.far
 				check(not overlaps or world.combat_readability.enabled,"region %d %s: a foreground guardian enables the hero's exact-geometry depth visibility pass" % [region,style])
-				check(guardian.model.material_override==original_material and guardian.model.cast_shadow==original_shadow,"region %d %s: visibility keeps the guardian's original opaque body, weapon material and complete shadow" % [region,style])
+				check(opaque_geometry_unchanged(guardian_geometry),"region %d %s: visibility preserves every actual opaque guardian body/weapon mesh, skin, owned material and original shadow mode" % [region,style])
 				check(sim.encode_snapshot()==before and world.camera.transform==shot,"region %d %s: body visibility changes neither combat authority nor settled camera" % [region,style])
 		world.hero.position=natural_position
-		check(guardian.model.get_parent().get_node_or_null("UnmaskedBodyShadow")==null and guardian.model.cast_shadow==original_shadow,"region %d: the original weighted guardian shadow needs no duplicate cutaway compensation pass" % region)
+		check(guardian.model.get_parent().get_node_or_null("UnmaskedBodyShadow")==null and opaque_geometry_unchanged(guardian_geometry),"region %d: the actual weighted native guardian shadow needs no duplicate cutaway compensation pass" % region)
 		world.hero.cancel_attack()
 		world.hero.strike("basic",.3,true); world.hero.sync_attack(.14); world.hero.animate(0,false)
 		sim.pending_attack={"target":50,"skill":false,"left":.14}; world._update_cast_focus()

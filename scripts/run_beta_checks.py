@@ -49,9 +49,13 @@ GODOT_SUITES = (
     "source_avatar_attack",
     "source_avatar_attack_contact",
     "source_avatar_evade",
+    "native_motion_transition",
     "raider_native",
+    "native_hostile",
     "combat_occlusion",
+    "render_budget",
     "source_avatar_style",
+    "avatar_attire_quality",
     "class_avatar_quality",
     "guardian_presentation",
     "hostile_quality",
@@ -73,6 +77,23 @@ SUMMARY = re.compile(
 ENGINE_ERROR = re.compile(
     r"(?:^|\n)\s*(?:(?:SCRIPT|SHADER)\s+)?ERROR:|Parse Error:", re.IGNORECASE
 )
+ENGINE_WARNING = re.compile(
+    r"WARNING:.*(?:couldn.t resolve|shader|script|track|rendering|gpu|vulkan|opengl|uniform|material|parse)",
+    re.IGNORECASE,
+)
+INTENTIONAL_CORRUPT_CONFIG = (
+    "ERROR: ConfigFile parse error at <string>:0: Unexpected EOF while parsing simple tag."
+)
+
+
+def unexpected_engine_diagnostic(suite: str, output: str) -> bool:
+    # Persistence writes exactly two '[broken' slot contents and parses
+    # those strings with ConfigFile. Keep only that exact EOF exception;
+    # every other engine/script/shader diagnostic remains a failed suite.
+    lines = output.splitlines()
+    if suite == "persistence" and lines.count(INTENTIONAL_CORRUPT_CONFIG) == 2:
+        output = "\n".join(line for line in lines if line != INTENTIONAL_CORRUPT_CONFIG)
+    return bool(ENGINE_ERROR.search(output) or ENGINE_WARNING.search(output))
 
 
 def report_failure(name: str, output: str) -> None:
@@ -149,14 +170,7 @@ def main() -> int:
                 continue
             output = result.stdout + result.stderr
             matches = list(SUMMARY.finditer(output))
-            # Legacy save-corruption suites deliberately exercise ConfigFile errors.
-            # The new source-avatar suites must also reject other engine diagnostics.
-            source_engine_error = (suite.startswith("source_avatar") or suite in (
-                "guardian_presentation", "combat_audio", "class_avatar_quality",
-                "hostile_quality", "dungeon_lighting", "native_capture_audio", "native_equipment_finish",
-                "raider_native", "combat_occlusion",
-            )) and ENGINE_ERROR.search(output)
-            if result.returncode != 0 or not matches or "SCRIPT ERROR:" in output or source_engine_error:
+            if result.returncode != 0 or not matches or unexpected_engine_diagnostic(suite, output):
                 failures.append(suite)
                 report_failure(suite, output)
                 continue

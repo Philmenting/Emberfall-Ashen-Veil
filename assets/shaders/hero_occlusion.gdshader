@@ -24,7 +24,8 @@ void fragment() {
             foreground_depth + depth_margin >= body_depth) {
         discard;
     }
-    float edge = pow(1.0 - max(dot(normalize(NORMAL), normalize(VIEW)), 0.0), 2.0);
+    float edge = 1.0 - max(dot(normalize(NORMAL), normalize(VIEW)), 0.0);
+    edge *= edge;
     ALBEDO = silhouette_color.rgb * (0.58 + edge * 0.28);
     // Only this narrow visibility accent blends over a blocker. The outline
     // carries the shape; its low interior fill preserves the guardian finish.

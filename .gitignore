@@ -29,3 +29,7 @@ assets/models/classes055/ranger-native65_T_*.png
 assets/models/classes055/ranger-native65_T_*.png.import
 assets/models/raider056/raider-native65_T_*.png
 assets/models/raider056/raider-native65_T_*.png.import
+
+# Godot extracts embedded textures from the shared native hostile outfit.
+assets/models/hostiles057/male-clothing-native65_T_*.png
+assets/models/hostiles057/male-clothing-native65_T_*.png.import

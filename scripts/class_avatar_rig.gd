@@ -24,6 +24,11 @@ var bow_grasp_frame:=Basis.IDENTITY
 var bow_hook_local:=Vector3(0,.064,.006)
 var bow_hook_probe: Dictionary={}
 var bow_rest_height:=.045
+var bow_elbow_pole:=Vector3(.70,-.50,-.40)
+var sword_idle_soles: Array[Transform3D]=[]
+var sword_idle_poles: Array[Vector3]=[]
+var sword_idle_hand:=Transform3D.IDENTITY
+var sword_idle_chest:=Vector3.ZERO
 
 static func has_appearance(appearance: String) -> bool:return appearance in ["Vowkeeper","Ranger"]
 
@@ -84,6 +89,11 @@ func build(parent: Node3D,appearance: String) -> void:
 	# Native sword fingers define the unused hand and the bow's thumb/index
 	# draw hook; the physical weapon hand gets the verified fitted aperture.
 	_sample("Sword_Idle",0.0);sword_idle_pose=_capture_source_pose()
+	sword_idle_hand=skeleton.get_bone_global_pose(skeleton.find_bone("hand_r"))
+	sword_idle_chest=skeleton.get_bone_global_pose(skeleton.find_bone("spine_03")).origin
+	for suffix in ["l","r"]:
+		sword_idle_soles.append(skeleton.get_bone_global_pose(skeleton.find_bone("foot_"+suffix)))
+		sword_idle_poles.append(skeleton.get_bone_global_pose(skeleton.find_bone("calf_"+suffix)).origin-skeleton.get_bone_global_pose(skeleton.find_bone("thigh_"+suffix)).origin)
 	var profile=JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/nyra052/staff-grip053.json"))
 	var center=profile.hand_local_origin;grip_center=Vector3(center[0],center[1],center[2])
 	var axis=profile.hand_local_axis;grip_axis=Vector3(axis[0],axis[1],axis[2]).normalized()
@@ -178,11 +188,18 @@ func pose(clip: String,time: float) -> void:
 		else:_sample("Idle_Loop",fposmod(time,player.get_animation("Idle_Loop").length))
 		ClassPose.apply_bow(self,clip,time)
 	_apply_weapon_fingers();_update_weapon()
+	if style!=null:style.update_motion(clip,time)
 
 func _sword_pose(clip: String,time: float) -> void:
 	if clip=="evade":_sample("Sword_Idle",0.0);return
 	if clip=="death":_sample("Death01",clampf(time/.90,0,1)*player.get_animation("Death01").length);return
-	if clip=="walk":_sample("Walk_Loop",fposmod(time,1.0)*player.get_animation("Walk_Loop").length);return
+	if clip=="walk":
+		_sample("Walk_Loop",fposmod(time,1.0)*player.get_animation("Walk_Loop").length)
+		# There is no authored armed walk in the Standard source. Keep the
+		# measured sword grip in a low native guard while the free arm and
+		# legs retain real gait, instead of swinging the blade behind the head.
+		_carry_sword_guard()
+		return
 	if clip.begins_with("windup") or clip.begins_with("recover"):
 		var action=clip.get_slice("_",1)
 		var source="Sword_Regular_A" if action=="basic" else ("Sword_Regular_B" if action=="skill" else "Sword_Regular_C")
@@ -191,13 +208,41 @@ func _sword_pose(clip: String,time: float) -> void:
 		var recovering=clip.begins_with("recover")
 		var phase=clampf(time/RECOVERY if recovering else time,0,1)
 		_sample(source,lerpf(release,length,phase) if recovering else release*phase)
+		var sampled_hand=skeleton.get_bone_global_pose(skeleton.find_bone("hand_r"))
+		var sampled_chest=skeleton.get_bone_global_pose(skeleton.find_bone("spine_03")).origin
+		var entry=1.0
+		if not recovering:
+			entry=smoothstep(0.0,.46,phase)
+			for bone in skeleton.get_bone_count():
+				skeleton.set_bone_pose_rotation(bone,sword_idle_pose.rotations[bone].slerp(skeleton.get_bone_pose_rotation(bone),entry))
+			skeleton.force_update_all_bone_transforms()
 		if recovering:
 			var settle=smoothstep(.45,1.0,phase)
 			for i in skeleton.get_bone_count():
 				skeleton.set_bone_pose_rotation(i,skeleton.get_bone_pose_rotation(i).slerp(sword_idle_pose.rotations[i],settle))
 				skeleton.set_bone_pose_position(i,skeleton.get_bone_pose_position(i).lerp(sword_idle_pose.positions[i],settle))
 			skeleton.force_update_all_bone_transforms()
+		# These artist sword phrases contain rootless travelling leg poses.
+		# World travel belongs to the simulation, so load the hips over the
+		# real combat guard's feet instead of snapping into an airborne stride.
+		# Solve after recovery settles the native pelvis and leg rotations;
+		# a later all-bone settle would undo these real stance anchors.
+		hold_cast_soles(sword_idle_soles,sword_idle_poles)
+		ClassPose.apply_sword_weight(self,clip,time)
+		if not recovering and entry<1.0:
+			# Blend a rigid sword in global hand space. Independently blending
+			# native shoulder, elbow and wrist would wind the blade around the
+			# body during the brief guard-to-source chamber.
+			var shift=skeleton.get_bone_global_pose(skeleton.find_bone("spine_03")).origin-sampled_chest
+			var target=sword_idle_hand.origin.lerp(sampled_hand.origin,entry)+shift*entry
+			_solve_cast_chain(skeleton.find_bone("upperarm_r"),skeleton.find_bone("lowerarm_r"),skeleton.find_bone("hand_r"),target,Vector3(-.50,-.30,-.30))
+			_global_rotation(skeleton.find_bone("hand_r"),sword_idle_hand.basis.slerp(sampled_hand.basis,entry))
 	else:_sample("Sword_Idle",fposmod(time,player.get_animation("Sword_Idle").length))
+
+func _carry_sword_guard() -> void:
+	var target=sword_idle_hand.origin+skeleton.get_bone_global_pose(skeleton.find_bone("spine_03")).origin-sword_idle_chest
+	_solve_cast_chain(skeleton.find_bone("upperarm_r"),skeleton.find_bone("lowerarm_r"),skeleton.find_bone("hand_r"),target,Vector3(-.50,-.30,-.30))
+	_global_rotation(skeleton.find_bone("hand_r"),sword_idle_hand.basis)
 
 func _apply_weapon_fingers() -> void:
 	if key=="Vowkeeper":
@@ -221,6 +266,7 @@ func weapon_tip() -> Vector3:
 	return motion_node.transform*(weapon.transform*Vector3(0,1.39,0))
 
 func apply_actor_postprocess(actor: Variant,clip: String,time: float,_delta: float,_contact: bool) -> void:
+	if style!=null:style.update_motion(clip,time,actor.reduced_motion)
 	motion_node.position.y=.009
 	var low=INF
 	var probes=weighted_probes if clip=="death" else floor_probes
@@ -239,6 +285,7 @@ func apply_actor_postprocess(actor: Variant,clip: String,time: float,_delta: flo
 	if clip!="death" and actor.hit_strength>0.0 and not actor.reduced_motion:
 		var influence=.22 if actor.attack_time>=0.0 and actor.release_time<0.0 else (.45 if actor.attack_time>=0.0 else 1.0)
 		Combat.apply_recoil(self,actor,influence)
+	if key=="Vowkeeper" and clip=="walk":_carry_sword_guard()
 	_apply_weapon_fingers()
 	if key=="Ranger" and clip!="death":ClassPose.apply_bow(self,clip,time,true)
 	_update_weapon()
@@ -258,6 +305,7 @@ func refresh_bounds() -> void:
 		if not populated[bone]:continue
 		var box=motion_node.transform*(skeleton.get_bone_global_pose(bone)*bone_bounds[bone])
 		bounds=box if first else bounds.merge(box);first=false
+	if style!=null:bounds=bounds.merge(style.current_bounds())
 	if weapon!=null:
 		for part in weapon.find_children("*","MeshInstance3D",true,false):
 			var local=part.transform

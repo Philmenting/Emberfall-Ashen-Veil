@@ -3,8 +3,8 @@ const Actor=preload("res://scripts/dungeon_actor.gd")
 const Budget=preload("res://scripts/render_budget.gd")
 const Main=preload("res://scripts/main.gd")
 const SourceSkin=preload("res://tests/source_avatar_skin.gd")
-const SOURCE_SURFACE_COUNTS={"Arcanist":8,"Vowkeeper":10,"Ranger":12,"raider":8}
-const ACCESSORY_COUNTS={"Arcanist":11,"Vowkeeper":3,"Ranger":0,"raider":0}
+const SOURCE_SURFACE_COUNTS={"Arcanist":8,"Vowkeeper":10,"Ranger":12,"raider":8,"hexer":11,"bulwark":14,"elite":13,"guardian_0":13,"guardian_1":12,"guardian_2":12,"guardian_3":13}
+const ACCESSORY_COUNTS={"Arcanist":11,"Vowkeeper":3,"Ranger":0,"raider":0,"hexer":0,"bulwark":4,"elite":3,"guardian_0":3,"guardian_1":1,"guardian_2":1,"guardian_3":3}
 var checks:=0
 var failures:=0
 func _initialize() -> void: run_checks.call_deferred()
@@ -14,12 +14,15 @@ func check(value: bool,message: String) -> void:
 	else: failures+=1; push_error(message)
 
 func run_checks() -> void:
-	for kind in ["Vowkeeper","Arcanist","Ranger","raider","boss"]:
-		var actor:=Actor.new(); actor.kind=kind; actor.boss=kind=="boss"; actor.hostile=kind in ["raider","boss"]; root.add_child(actor)
+	for kind in Actor.HEROES+Actor.HOSTILES+["guardian_0","guardian_1","guardian_2","guardian_3"]:
+		var actor:=Actor.new(); actor.boss=kind.begins_with("guardian_");actor.kind="boss" if actor.boss else kind; actor.hostile=actor.boss or kind in Actor.HOSTILES
+		if actor.boss:actor.region_index=int(kind.right(1))
+		root.add_child(actor)
 		var mesh: MeshInstance3D=actor.model
 		var source_geometry: Array=[]
 		if actor.source_avatar:
 			for surface in complete_source_surfaces(actor): source_geometry.append([surface,surface.mesh,surface.skin])
+			check(actor.surface_material==null and actor.model.material_override==null,kind+": native presentation allocates no obsolete hidden compatibility shader or texture maps")
 			check(source_surfaces_rendered(actor) and actor.get_node_or_null("ContactShadow") is MeshInstance3D,kind+": complete class-specific rendered source surfaces and accessories plus contact shadow; compatibility proxy stays hidden")
 			var material_slots_present:=true
 			for surface in complete_source_surfaces(actor):
@@ -142,7 +145,8 @@ func source_geometry_unchanged(actor: Node3D,original: Array) -> bool:
 
 func complete_source_surfaces(actor: Node3D) -> Array:
 	var result: Array=actor.motion_rig.surfaces.duplicate()
-	result.append_array(source_accessories(actor))
+	for surface in source_accessories(actor):
+		if not result.has(surface):result.append(surface)
 	return result
 
 func source_accessories(actor: Node3D) -> Array:
@@ -150,11 +154,7 @@ func source_accessories(actor: Node3D) -> Array:
 
 func complete_source_bounds(actor: Node3D) -> AABB:
 	var rig: RefCounted=actor.motion_rig
-	var result:=SourceSkin.actual_bounds(rig,source_accessories(actor))
-	if actor.appearance_key=="raider":
-		for point in rig.weapon_points:
-			result=result.expand(rig.motion_node.transform*(rig.weapon.transform*point))
-	return result
+	return SourceSkin.actual_figure_bounds(rig,source_accessories(actor))
 
 func actual_visible_triangles(rig: RefCounted) -> int:
 	var count:=0

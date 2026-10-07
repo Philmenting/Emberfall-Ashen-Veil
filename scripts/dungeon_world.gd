@@ -678,7 +678,8 @@ func _update_combat_readability(delta: float) -> void:
 	if hero.death_time<0.0: hero.set_readability(1.0,.62)
 	var hero_screen:=camera.unproject_position(hero.position+Vector3.UP*hero.figure_height*.55)
 	var viewport_width:=maxf(1.0,get_viewport().get_visible_rect().size.x)
-	var window:=_hero_occlusion_window()
+	var can_reveal: bool=phase=="combat" and hero.death_time<0.0
+	var window:=_hero_occlusion_window() if can_reveal else {"rect":Rect2(),"far":0.0}
 	var foreground_overlap:=false
 	for id_value in actor_by_id:
 		var actor: Node3D=actor_by_id[id_value]
@@ -692,11 +693,12 @@ func _update_combat_readability(delta: float) -> void:
 		var goal:=.62 if crowded and not important else 1.0
 		var focus:=.44 if id_value==simulation.target_id else 0.0
 		actor.set_readability(lerpf(actor.emphasis,goal,1.0-exp(-delta*9.0)),focus)
-		if phase=="combat" and hero.death_time<0.0:
-			var enemy_window:=_project_body(actor)
+		if can_reveal:
+			# A native held hammer or staff can cover the hero independently
+			# of its owner's torso; exact scene depth still chooses fragments.
+			var enemy_window:=_project_body(actor,true)
 			if window.rect.intersects(enemy_window.rect) and enemy_window.near<window.far:
 				foreground_overlap=true
-	var can_reveal: bool=phase=="combat" and hero.death_time<0.0
 	if can_reveal and not foreground_overlap:
 		foreground_overlap=CombatReadability.dressing_overlaps(camera,window.rect,window.far,occluder_batches)
 	# Reveal Nyra's real hidden shape instead of punching a pixel grid into a

@@ -77,11 +77,19 @@ func run_checks() -> void:
 		root.add_child(first)
 		var second:=Actor.new(); second.kind="boss"; second.hostile=true; second.boss=true; second.region_index=region
 		root.add_child(second)
-		var first_parts:=first.find_children("*","MeshInstance3D",true,false)
-		var second_parts:=second.find_children("*","MeshInstance3D",true,false)
-		var shared:=first_parts.size()==second_parts.size()
-		for index in range(first_parts.size()-1): shared=shared and first_parts[index].mesh==second_parts[index].mesh
-		check(shared and first_parts.size()==2 and first.model.skin==second.model.skin,"guardian %d: cached runtime uses one shared volumetric surface plus contact shadow" % region)
+		var first_parts: Array=[];var second_parts: Array=[]
+		for part: MeshInstance3D in first.motion_rig.motion_node.find_children("*","MeshInstance3D",true,false):
+			if part.is_visible_in_tree():first_parts.append(part)
+		for part: MeshInstance3D in second.motion_rig.motion_node.find_children("*","MeshInstance3D",true,false):
+			if part.is_visible_in_tree():second_parts.append(part)
+		var shared:=first_parts.size()==second_parts.size() and first_parts.size()>8
+		for index in first_parts.size():
+			if index>=second_parts.size():shared=false;continue
+			var a: MeshInstance3D=first_parts[index];var b: MeshInstance3D=second_parts[index]
+			shared=shared and a.name==b.name and a.mesh==b.mesh and a.skin==b.skin and a.is_visible_in_tree() and b.is_visible_in_tree()
+			for slot in a.mesh.get_surface_count():
+				shared=shared and a.get_active_material(slot) is StandardMaterial3D and b.get_active_material(slot) is StandardMaterial3D and a.get_active_material(slot)!=b.get_active_material(slot)
+		check(shared and first.source_avatar and second.source_avatar and not first.model.visible and first.motion_rig.skeleton.get_bone_count()==65 and first.get_node_or_null("ContactShadow") is MeshInstance3D,"guardian %d: actual native body/prop meshes and skins share cached immutable resources while every visible PBR override and contact shadow belongs to its actor" % region)
 		first.strike("telegraph"); first.animate(0.2,false); first.react(); first.animate(0.06,false)
 		first.die(); first.animate(1.0,false)
 		check(first.body.position.is_finite() and first.pose_frame==5 and first.appearance_key=="guardian_%d" % region,"guardian %d: actual 3D attack, impact and defeat states remain finite" % region)

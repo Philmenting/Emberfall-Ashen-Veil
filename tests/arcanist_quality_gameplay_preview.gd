@@ -22,6 +22,11 @@ var previous_render_loop_enabled := true
 var capture_portraits: Array = []
 var native_audio: RefCounted
 var audio_file: FileAccess
+var capture_class := "Arcanist"
+var capture_prefix := false
+var bone_detail := "all"
+var simulation_only := false
+const CLASS_CAPTURE_LOADOUTS := {"Arcanist": ["chain", "starfall"], "Ranger": ["rain", "marked"], "Vowkeeper": ["sunder", "judgment"]}
 
 func _exit_tree() -> void:
 	_restore_render_loop()
@@ -63,6 +68,16 @@ func _record() -> void:
 			stream_port = int(argument.trim_prefix("--stream-port="))
 		if argument.begins_with("--max-simulation-seconds="):
 			max_simulation_seconds = float(argument.trim_prefix("--max-simulation-seconds="))
+		if argument.begins_with("--capture-class="): capture_class = argument.trim_prefix("--capture-class=")
+		if argument.begins_with("--bone-detail="): bone_detail = argument.trim_prefix("--bone-detail=")
+		if argument == "--prefix-recording": capture_prefix = true
+		if argument == "--simulation-only": simulation_only = true
+	if not CLASS_CAPTURE_LOADOUTS.has(capture_class) or bone_detail not in ["all", "hero", "none"]:
+		_capture_error("Choose a supported ordinary class and read-only bone detail mode.")
+		return
+	if simulation_only:
+		await _run_simulation_preflight()
+		return
 	if stream_port < 1 or stream_port > 65535 or max_simulation_seconds <= 0.0 or max_simulation_seconds > 240.0:
 		_capture_error("Provide a localhost stream port and a simulation limit in (0, 240].")
 		return
@@ -82,19 +97,19 @@ func _record() -> void:
 	stream.set_no_delay(true)
 	get_window().size = Vector2i(1200, 536)
 	await get_tree().process_frame
-	character_class = "Arcanist"
+	character_class = capture_class
 	floor_number = 1
 	auto_repeat = false
 	# Use the same available technique equip action as the player's Armory.
-	# Chain, Starfall and the always-equipped signature exercise all cast phrases.
-	_equip_technique("chain", 0)
-	_equip_technique("starfall", 1)
+	# Two class-valid player-selectable techniques exercise ordinary attack phrases.
+	# This is the actual Armory action; base gear/stats and combat clocks are unchanged.
+	for slot in 2: _equip_technique(CLASS_CAPTURE_LOADOUTS[capture_class][slot], slot)
 	_start_run(1)
 	_manual()
 	await _settle_renderer()
 	_capture_portrait_nodes()
 	if not run_arena.world.hero.source_avatar:
-		_capture_error("The ordinary Arcanist did not load the native source avatar.")
+		_capture_error("The ordinary " + capture_class + " did not load the native source avatar.")
 		return
 	native_audio = NativeAudio.new()
 	native_audio.attach(audio)
@@ -111,7 +126,11 @@ func _record() -> void:
 		return
 	var metadata: Dictionary = {
 		"schema": 1,
-		"scope": "Continuous ordinary floor-1 Arcanist expedition; original Main HUD, camera, effects, gear and damage; no travel cuts or stat overrides.",
+		"scope": "Continuous ordinary floor-1 " + capture_class + " expedition; original Main HUD, camera, effects, gear and damage; no travel cuts or stat overrides.",
+		"character_class": capture_class,
+		"recording_kind": "ordinary_expedition_prefix" if capture_prefix else "ordinary_expedition",
+		"bone_detail": bone_detail,
+		"pose_metadata_scope": "Actual per-frame root/body/animation state; selected native bone transforms only when bone_detail explicitly requests them. No metadata omission changes rendered animation or simulation.",
 		"simulation_step_seconds": CAPTURE_STEP,
 		"playback_fps": 30,
 		"maximum_simulation_seconds": max_simulation_seconds,
@@ -120,7 +139,8 @@ func _record() -> void:
 		"run_seed": expedition.run_seed,
 		"initial_stats": _json_value(expedition.stats),
 		"selected_skill_loadout": _json_value(Skills.normalize(character_class, skill_loadouts.get(character_class))),
-		"loadout_scope": "Player-selectable Chain and Starfall equipped through the ordinary Armory action; unchanged starting gear and combat formulas.",
+		"loadout_scope": "Class-valid player-selectable techniques equipped through the ordinary Armory action; unchanged starting gear and combat formulas.",
+		"initial_equipment": _json_value(equipment),
 		"platform": OS.get_name(),
 		"engine_version": Engine.get_version_info(),
 		"device": OS.get_model_name(),
@@ -128,8 +148,10 @@ func _record() -> void:
 		"video_adapter": RenderingServer.get_video_adapter_name(),
 		"video_adapter_vendor": RenderingServer.get_video_adapter_vendor(),
 		"viewport": [get_window().size.x, get_window().size.y],
-		"source_model_sha256": FileAccess.get_sha256("res://assets/models/nyra052/arcanist.glb"),
-		"staff_sha256": FileAccess.get_sha256("res://assets/models/nyra052/staff-grip053.glb"),
+		"source_model_path": "res://assets/models/nyra052/arcanist.glb" if capture_class == "Arcanist" else "res://assets/models/classes055/ranger-native65.glb",
+		"source_model_sha256": FileAccess.get_sha256("res://assets/models/nyra052/arcanist.glb" if capture_class == "Arcanist" else "res://assets/models/classes055/ranger-native65.glb"),
+		"staff_sha256": FileAccess.get_sha256("res://assets/models/nyra052/staff-grip053.glb") if capture_class == "Arcanist" else null,
+		"class_weapon_path": "res://assets/models/nyra052/staff-grip053.glb" if capture_class == "Arcanist" else ("res://assets/models/ranger.glb" if capture_class == "Ranger" else "res://assets/models/vowkeeper.glb"),
 		"grip_profile_sha256": FileAccess.get_sha256("res://assets/models/nyra052/staff-grip053.json"),
 		"death_grounding_sha256": FileAccess.get_sha256("res://assets/models/nyra052/death-grounding.json"),
 		"cast_director_sha256": FileAccess.get_sha256("res://scripts/source_avatar_combat.gd"),
@@ -208,6 +230,12 @@ func _record() -> void:
 		"simulation_elapsed": expedition.elapsed,
 		"simulation_finished": expedition.finished,
 		"won": expedition.won,
+		"character_class": capture_class,
+		"final_page": page,
+		"run_succeeded": run_succeeded,
+		"run_boss_defeated": run_boss_defeated,
+		"recovered_loot": _json_value(run_loot),
+		"run_reward": _json_value(run_reward),
 		"guardian_seen": guardian_seen,
 		"guardian_warning_seen": guardian_warning_seen,
 		"settle_frames_recorded": settle,
@@ -221,6 +249,63 @@ func _record() -> void:
 	_restore_render_loop()
 	print("ARCANIST_QUALITY_CAPTURE_COMPLETE " if summary.complete else "ARCANIST_QUALITY_CAPTURE_INCOMPLETE ", JSON.stringify(summary))
 	get_tree().quit(0)
+
+func _run_simulation_preflight() -> void:
+	# Run the ordinary Main/world event path at the same fixed step, without
+	# recording/rendering pixels. This predicts outcomes, never visual quality.
+	character_class = capture_class
+	floor_number = 1
+	auto_repeat = false
+	for slot in 2: _equip_technique(CLASS_CAPTURE_LOADOUTS[capture_class][slot], slot)
+	_start_run(1)
+	_manual()
+	var initial: Dictionary = _json_value(expedition.stats)
+	# The ordinary SubViewport becomes part of its scene after deferred UI
+	# replacement. Match capture warmup without advancing the simulation.
+	for unused in 4: await get_tree().process_frame
+	var event_counts: Dictionary = {}
+	var guardian_frames := 0
+	var warning_frames := 0
+	var settle := 0
+	var limit := ceili(max_simulation_seconds / CAPTURE_STEP)
+	while frame_index < limit + SETTLE_FRAMES:
+		pending_frame_events.clear()
+		if not expedition.finished and frame_index < limit:
+			run_arena.world._process(CAPTURE_STEP)
+		elif expedition.finished:
+			settle += 1
+			result_frames = settle
+			if is_instance_valid(run_arena) and is_instance_valid(run_arena.world): run_arena.world._process(CAPTURE_STEP)
+			if holding_result_ui and settle == 66:
+				holding_result_ui = false
+				_build_ui()
+		else: break
+		for event in pending_frame_events: event_counts[event.type] = int(event_counts.get(event.type, 0)) + 1
+		var guardian: Dictionary = expedition.enemy_by_id(50)
+		if expedition.stage == 5 and expedition.phase == "combat" and not guardian.is_empty():
+			guardian_frames += 1
+			if not guardian.warning.is_empty(): warning_frames += 1
+		frame_index += 1
+		# Flush the actual deferred scene changes; this is not an acceleration
+		# of simulation time, and its wall time is not a frame rate benchmark.
+		await get_tree().process_frame
+		if expedition.finished and settle >= SETTLE_FRAMES: break
+	var summary := {
+		"scope": "Simulation-only ordinary class preflight through the real Main/world event path. No recorded/rendered viewport or audio and no physical-device performance claim.",
+		"character_class": capture_class, "frames": frame_index, "playback_seconds": frame_index * CAPTURE_STEP,
+		"simulation_elapsed": expedition.elapsed, "world_seed": world_seed, "run_seed": expedition.run_seed,
+		"initial_stats": initial, "initial_equipment": _json_value(equipment),
+		"selected_skill_loadout": _json_value(Skills.normalize(character_class, skill_loadouts.get(character_class))),
+		"simulation_finished": expedition.finished, "won": expedition.won,
+		"complete": expedition.finished and settle >= SETTLE_FRAMES,
+		"settle_frames_recorded": settle, "guardian_seen": guardian_frames > 0, "guardian_warning_seen": warning_frames > 0,
+		"guardian_combat_frames": guardian_frames, "guardian_warning_frames": warning_frames,
+		"final_page": page, "run_succeeded": run_succeeded, "run_boss_defeated": run_boss_defeated,
+		"recovered_loot": _json_value(run_loot), "run_reward": _json_value(run_reward), "event_counts": event_counts
+	}
+	if not _write_json("simulation-preflight.json", summary): return
+	print("CLASS_QUALITY_SIMULATION_PREFLIGHT ", JSON.stringify(summary))
+	get_tree().quit(0 if summary.complete and summary.won and summary.guardian_seen and not run_loot.is_empty() else 1)
 
 func _frame_record(now: int, advanced: bool) -> Dictionary:
 	var record: Dictionary = {
@@ -241,6 +326,16 @@ func _frame_record(now: int, advanced: bool) -> Dictionary:
 		"capture_frame_interval_ms": float(now - previous_frame_usec) / 1000.0
 	}
 	var guardian: Dictionary = expedition.enemy_by_id(50)
+	if not capture_prefix:
+		var enemy_state: Array = []
+		for wave in expedition.waves:
+			for enemy in wave:
+				enemy_state.append({"id": enemy.id, "role": enemy.role, "hp": enemy.hp,
+					"position": _json_value(enemy.pos), "spawned": enemy.get("spawned", true),
+					"warning": _json_value(enemy.warning)})
+		record["ordinary_full_authority"] = {"hero_position": _json_value(expedition.hero_pos),
+			"hero_mana": expedition.hero_mana, "target_id": expedition.target_id,
+			"dodging": expedition.dodging, "enemies": enemy_state}
 	if not guardian.is_empty():
 		record["guardian"] = {"hp": guardian.hp, "maximum_hp": guardian.max_hp, "warning": _json_value(guardian.warning), "boss_phase": guardian.get("boss_phase", 0)}
 		if expedition.stage == 5 and expedition.phase == "combat":

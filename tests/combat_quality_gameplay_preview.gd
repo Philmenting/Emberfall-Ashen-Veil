@@ -13,10 +13,11 @@ const CaptureClips = preload("res://scripts/character_animation.gd")
 
 func _write_json(filename: String, value: Dictionary) -> bool:
 	if filename in ["capture-metadata.json", "capture-summary.json"]:
-		value["recording_kind"] = "ordinary_expedition_prefix"
-		value["prefix_playback_seconds"] = max_simulation_seconds
+		value["recording_kind"] = "ordinary_expedition_prefix" if capture_prefix else "ordinary_expedition"
+		if capture_prefix: value["prefix_playback_seconds"] = max_simulation_seconds
 	if filename == "capture-metadata.json":
-		value["scope"] = "Exact chronological start of the ordinary floor-1 Arcanist expedition; original HUD, camera, gear, damage, seed and loadout. This 20–30 second prefix is not a completed dungeon or a victory."
+		if capture_prefix:
+			value["scope"] = "Exact chronological start of the ordinary floor-1 " + capture_class + " expedition; original HUD, camera, gear, damage, seed and loadout. This 20–30 second prefix is not a completed dungeon or a victory."
 		value["pose_observation_scope"] = "Read-only actual root/body and selected native bone world transforms; all original simulation, camera, visual and audio processing remains inherited unchanged."
 		value["native_raider_model_sha256"] = FileAccess.get_sha256("res://assets/models/raider056/raider-native65.glb")
 	return super._write_json(filename, value)
@@ -37,13 +38,20 @@ func _frame_record(now: int, advanced: bool) -> Dictionary:
 		record["hero_pose"] = _observed_pose(world.hero)
 		record["prefix_pose_markers"] = _first_cast_pose_markers(world.hero)
 		var raiders: Array = []
+		var actors: Array = []
 		for actor_id in world.actor_by_id:
 			var actor: Node3D = world.actor_by_id[actor_id]
-			if actor.kind != "raider": continue
 			var observation := _observed_pose(actor)
 			observation["id"] = actor_id
-			raiders.append(observation)
+			observation["kind"] = actor.kind
+			actors.append(observation)
+			if actor.kind == "raider": raiders.append(observation)
 		record["raider_poses"] = raiders
+		# Preserve the historical prefix ledger; full recordings use one compact
+		# continuous actor list instead of duplicating the same Raider poses twice.
+		if not capture_prefix:
+			record.erase("raider_poses")
+			record["actor_poses"] = actors
 	return record
 
 func _first_cast_pose_markers(hero: Node3D) -> Array:
@@ -81,6 +89,7 @@ func _observed_pose(actor: Node3D) -> Dictionary:
 		"root": _transform_record(actor.global_transform),
 		"body": _transform_record(actor.body.global_transform),
 		"source_avatar": actor.source_avatar,
+		"skeleton_bones": actor.motion_rig.skeleton.get_bone_count(),
 		"attack_time": actor.attack_time,
 		"release_time": actor.release_time,
 		"impact_time": actor.impact_time,
@@ -93,11 +102,22 @@ func _observed_pose(actor: Node3D) -> Dictionary:
 	}
 	if not actor.source_avatar: return observation
 	var rig: RefCounted = actor.motion_rig
+	observation["native_model"] = _transform_record(rig.motion_node.global_transform)
+	if actor.kind in CaptureActor.HEROES and rig.style != null:
+		var attire: Variant = rig.style.get("attire_motion")
+		if attire != null:
+			var parts: Array = []
+			for part in attire.records:
+				parts.append({"name": str(part.part.name), "slot": part.slot, "mode": part.mode,
+					"source_space_displacement_limit": part.limit, "active_vertices": part.active.size()})
+			observation["attire_motion"] = {"max_source_space_displacement": attire.max_displacement,
+				"uploaded_bytes_total": attire.uploaded_bytes, "upload_calls_total": attire.upload_calls,
+				"moved_vertex_count": attire.moved_vertex_count, "reduced_motion": attire.reduced_mode, "parts": parts}
+	if bone_detail == "none" or (bone_detail == "hero" and actor.kind not in ["Arcanist", "Ranger", "Vowkeeper"]): return observation
 	var bones: Dictionary = {}
 	for name in ["pelvis", "spine_01", "spine_03", "Head", "upperarm_l", "upperarm_r", "hand_l", "hand_r", "thigh_l", "thigh_r", "foot_l", "foot_r"]:
 		var bone: int = rig.skeleton.find_bone(name)
 		if bone >= 0:
 			bones[name] = _transform_record(rig.skeleton.global_transform * rig.skeleton.get_bone_global_pose(bone))
 	observation["bones_world"] = bones
-	observation["native_model"] = _transform_record(rig.motion_node.global_transform)
 	return observation

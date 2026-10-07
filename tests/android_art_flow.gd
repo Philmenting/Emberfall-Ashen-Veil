@@ -1,6 +1,8 @@
 extends "res://scripts/main.gd"
 ## Android graphics inspection fixture: actual assets, all classes and four guardians.
 ## Extra Life only keeps the presentation fixture alive; this is not a balance test.
+const NativeSkinAudit=preload("res://tests/source_avatar_skin.gd")
+const GUARDIAN_ACTIONS=["Sword_Regular_C","Spell_Simple_Shoot","Spell_Simple_Enter","Sword_Regular_C"]
 func _ready() -> void:
 	save_store=SaveStore.new("user://android-art-inspection")
 	super._ready()
@@ -43,7 +45,7 @@ func _inspect_regions() -> void:
 		Engine.max_fps=60
 		motion.append(await _inspect_motion(region))
 		print("ANDROID_ART_REGION_PASS ",region," ",REGIONS[region].boss," ",capture.get_width(),"x",capture.get_height())
-	var report: Dictionary={"schema":1,"scenario":"frozen guardian render workload; separately stepped real combat animation","platform":OS.get_name(),"device":OS.get_model_name(),"renderer":RenderingServer.get_current_rendering_method(),"resolution":{"width":get_viewport().get_visible_rect().size.x,"height":get_viewport().get_visible_rect().size.y},"measurements":measurements,"motion":motion}
+	var report: Dictionary={"schema":2,"scenario":"frozen guardian render workload; separately stepped real native65 combat animation","platform":OS.get_name(),"device":OS.get_model_name(),"renderer":RenderingServer.get_current_rendering_method(),"resolution":{"width":get_viewport().get_visible_rect().size.x,"height":get_viewport().get_visible_rect().size.y},"measurements":measurements,"motion":motion}
 	var output:=FileAccess.open("user://art-performance.json",FileAccess.WRITE)
 	if output==null:
 		print("ANDROID_ART_FAIL performance report write failed"); return
@@ -56,12 +58,18 @@ func _inspect_motion(region: int) -> Dictionary:
 	var world: Node3D=run_arena.world
 	world.set_process(false); world.active=true
 	var guardian: Node3D=world.actor_by_id[50]
-	var previous: Transform3D=guardian.motion_rig.skeleton.get_bone_global_pose(3)
+	var skeleton: Skeleton3D=guardian.motion_rig.skeleton
+	var head:=skeleton.find_bone("Head")
+	if head<0:
+		print("ANDROID_ART_FAIL motion ",region," native head bone missing")
+		world.active=false
+		return {"region":region,"passed":false}
+	var previous: Transform3D=skeleton.get_bone_global_pose(head)
 	var changed:=0; var hashes: Array=[]
 	var before: float=expedition.elapsed
 	for frame in range(20):
 		world._process(.05)
-		var pose: Transform3D=guardian.motion_rig.skeleton.get_bone_global_pose(3)
+		var pose: Transform3D=skeleton.get_bone_global_pose(head)
 		if not pose.is_equal_approx(previous): changed+=1
 		previous=pose
 		await get_tree().process_frame
@@ -74,12 +82,35 @@ func _inspect_motion(region: int) -> Dictionary:
 	world.active=false
 	var unique: Dictionary={}
 	for value in hashes: unique[value]=true
-	var bones: int=guardian.motion_rig.skeleton.get_bone_count()
-	var clips: int=guardian.motion_rig.library.get_animation_list().size()
-	var depth: float=guardian.model.mesh.get_aabb().size.z
-	var valid: bool=changed>=6 and unique.size()==4 and expedition.elapsed>before+.8 and guardian.model.skin!=null and bones==29 and clips==9 and depth>.30
+	var bones:=skeleton.get_bone_count()
+	var player: AnimationPlayer=guardian.motion_rig.player
+	var bound_clips: Array[String]=[]
+	for clip in player.get_animation_list():
+		if _clip_targets_skeleton(player,skeleton,clip):bound_clips.append(String(clip))
+	var required: Array[String]=["Walk_Loop","Hit_Chest","Death01",GUARDIAN_ACTIONS[region]]
+	var required_bound:=true
+	for clip in required:required_bound=required_bound and bound_clips.has(clip)
+	var visible_skinned:=0;var visible_props:=0;var actual_triangles:=0
+	for part: MeshInstance3D in guardian.motion_rig.motion_node.find_children("*","MeshInstance3D",true,false):
+		if not part.is_visible_in_tree() or part.mesh==null:continue
+		if part.skin!=null:visible_skinned+=1
+		else:visible_props+=1
+		for slot in part.mesh.get_surface_count():
+			var arrays: Array=part.mesh.surface_get_arrays(slot)
+			actual_triangles+=(arrays[Mesh.ARRAY_VERTEX].size() if arrays[Mesh.ARRAY_INDEX].is_empty() else arrays[Mesh.ARRAY_INDEX].size())/3
+	var depth:=NativeSkinAudit.actual_figure_bounds(guardian.motion_rig).size.z
+	var valid: bool=changed>=6 and unique.size()==4 and expedition.elapsed>before+.8 and guardian.source_avatar and guardian.surface_material==null and bones==65 and required_bound and visible_skinned>8 and visible_props>0 and actual_triangles==guardian.motion_rig.rendered_triangles and actual_triangles<=40000 and depth>.30
 	print("ANDROID_MOTION_REGION_PASS " if valid else "ANDROID_ART_FAIL motion ",region," bone_changes=",changed," unique_frames=",unique.size())
-	return {"region":region,"frames":20,"simulation_step_seconds":.05,"bone_changes":changed,"unique_rendered_frames":unique.size(),"skeleton_bones":bones,"native_clips":clips,"source_depth":depth,"captures":[0,5,11,17],"passed":valid,"physical_device_performance":false}
+	return {"region":region,"frames":20,"simulation_step_seconds":.05,"simulation_advanced_seconds":expedition.elapsed-before,"bone_changes":changed,"bone_name":skeleton.get_bone_name(head),"unique_rendered_frames":unique.size(),"skeleton_bones":bones,"native_clips":bound_clips.size(),"bound_native_clips":bound_clips,"required_native_clips":required,"visible_skinned_meshes":visible_skinned,"visible_rigid_props":visible_props,"visible_triangles":actual_triangles,"weighted_figure_depth":depth,"captures":[0,5,11,17],"passed":valid,"physical_device_performance":false}
+
+func _clip_targets_skeleton(player: AnimationPlayer,skeleton: Skeleton3D,clip: StringName) -> bool:
+	var animation:=player.get_animation(clip)
+	if animation==null or animation.get_track_count()==0:return false
+	var animation_root:=player.get_node(player.root_node)
+	for track in animation.get_track_count():
+		var path:=animation.track_get_path(track)
+		if path.get_subname_count()!=1 or animation_root.get_node_or_null(NodePath(path.get_concatenated_names()))!=skeleton or skeleton.find_bone(path.get_subname(0))<0:return false
+	return true
 
 func _measure_render(region: int,battery: bool) -> Dictionary:
 	var frame_ms: Array[float]=[]

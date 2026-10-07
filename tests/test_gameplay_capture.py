@@ -176,5 +176,77 @@ class OrdinaryComparisonContracts(unittest.TestCase):
                 ANALYSIS.scan_pcm(directory, 1, require_exact_length=True)
 
 
+class FullExpeditionContracts(unittest.TestCase):
+    @staticmethod
+    def summary():
+        return {"frames": 2496, "complete": True, "simulation_finished": True, "won": True,
+                "guardian_seen": True, "guardian_warning_seen": True, "settle_frames_recorded": 90,
+                "final_page": "loot", "run_succeeded": True, "run_boss_defeated": True,
+                "recovered_loot": [{"slot": "Amulet", "quality": "RARE"}]}
+
+    def test_real_guardian_victory_and_original_loot_outcome_are_all_required(self):
+        CAPTURE.verify_full_summary(self.summary(), 2496)
+        for key in ("complete", "simulation_finished", "won", "guardian_seen", "guardian_warning_seen",
+                    "run_succeeded", "run_boss_defeated"):
+            with self.subTest(key=key):
+                summary = self.summary()
+                summary[key] = False
+                with self.assertRaises(RuntimeError):
+                    CAPTURE.verify_full_summary(summary, 2496)
+        for field, value in (("recovered_loot", []), ("final_page", "run"), ("settle_frames_recorded", 89)):
+            with self.subTest(field=field):
+                summary = self.summary()
+                summary[field] = value
+                with self.assertRaises(RuntimeError):
+                    CAPTURE.verify_full_summary(summary, 2496)
+
+    def test_explicit_full_recording_keeps_the_wrapper_from_inserting_a_prefix(self):
+        arguments = ["--output", "/tmp/capture", "--class", "Ranger", "--full"]
+        self.assertEqual(PREFIX.prefix_arguments(arguments), arguments)
+
+    def test_lossless_pcm_archive_round_trip_is_checked_before_original_removal(self):
+        with tempfile.TemporaryDirectory() as location:
+            source = Path(location) / "native-game-audio.f32le"
+            samples = struct.pack("<4f", .25, -.25, .5, -.5) * 100
+            source.write_bytes(samples)
+            receipt = CAPTURE.compress_pcm(source, CAPTURE.digest(source))
+            self.assertFalse(source.exists())
+            self.assertTrue(receipt["round_trip_verified"])
+            self.assertEqual(gzip.decompress((source.parent / receipt["file"]).read_bytes()), samples)
+            source.write_bytes(samples)
+            with self.assertRaisesRegex(RuntimeError, "round-trip"):
+                CAPTURE.compress_pcm(source, "0" * 64)
+            self.assertEqual(source.read_bytes(), samples)
+
+    def test_nonfinite_native_transform_or_secondary_motion_state_is_rejected(self):
+        CAPTURE.verify_finite_state({"root": [0, 1.2, -3], "attire_motion": {"max": .01}})
+        for invalid in (float("nan"), float("inf"), float("-inf")):
+            with self.assertRaisesRegex(RuntimeError, "Nonfinite"):
+                CAPTURE.verify_finite_state({"hero_pose": {"root": {"origin": [0, invalid, 0]}}})
+
+    def test_only_independent_wall_time_can_be_excluded_from_actual_audio_comparison(self):
+        before, after = OrdinaryComparisonContracts.row(), OrdinaryComparisonContracts.row()
+        left = {"type": "cue", "key": "nova", "sample_frame": 0, "acceptance_wall_msec": 125}
+        right = {**left, "acceptance_wall_msec": 731}
+        before["audio"] = {"accepted_state_events": [left]}
+        after["audio"] = {"accepted_state_events": [right]}
+        result = ANALYSIS.compare_rows([before], [after])
+        self.assertFalse(result["accepted_audio_events_equal"])
+        self.assertTrue(result["accepted_audio_content_equal_excluding_acceptance_wall_msec"])
+        self.assertEqual(result["walltime_only_audio_difference_frames"], [0])
+        after["audio"]["accepted_state_events"][0]["sample_frame"] += 1470
+        self.assertEqual(ANALYSIS.compare_rows([before], [after])["audio_content_difference_frames"], [0])
+
+    def test_full_simulation_positions_and_mana_cannot_hide_behind_presentation_poses(self):
+        before, after = OrdinaryComparisonContracts.row(), OrdinaryComparisonContracts.row()
+        before["ordinary_full_authority"] = {"hero_position": [0, 1], "hero_mana": 240,
+                                             "enemies": [{"id": 50, "position": [3, 4], "hp": 500}]}
+        after["ordinary_full_authority"] = {"hero_position": [0, 1], "hero_mana": 240,
+                                            "enemies": [{"id": 50, "position": [3, 4], "hp": 500}]}
+        self.assertTrue(ANALYSIS.compare_rows([before], [after])["authoritative_trace_equal"])
+        after["ordinary_full_authority"]["enemies"][0]["position"][0] += .01
+        self.assertEqual(ANALYSIS.compare_rows([before], [after])["authoritative_difference_frames"], [0])
+
+
 if __name__ == "__main__":
     unittest.main()

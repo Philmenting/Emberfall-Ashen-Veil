@@ -23,12 +23,14 @@ const PHRASES := {
 		],
 	},
 	"skill": {
-		# Gather above the left shoulder, open the chest, sweep down and out.
+		# The short signature opens the silhouette outside the shoulder first,
+		# then sweeps into its established higher release. Distinct passing
+		# keys keep its brief ordinary cast readable without slowing combat.
 		"windup": [
 			[0.0, Vector3(.24, -.30, .06), Vector3.ZERO, Vector3.ZERO, Vector3.ZERO, Vector3.ZERO],
-			[.34, Vector3(.28, .36, .15), Vector3(-.045, -.135, -.055), Vector3(-.100, -.285, -.085), Vector3(-.26, -.08, -.17), Vector3(-.040, -.065, -.020)],
-			[.57, Vector3(.32, .41, .25), Vector3(-.025, -.090, -.040), Vector3(-.080, -.190, -.095), Vector3(-.23, -.05, -.13), Vector3(-.030, -.060, -.010)],
-			[.82, Vector3(.25, .30, .36), Vector3(.025, .095, .025), Vector3(.040, .175, -.025), Vector3(-.12, -.025, -.04), Vector3(.030, -.030, .030)],
+			[.34, Vector3(.44, .34, .16), Vector3(-.045, -.135, -.055), Vector3(-.100, -.285, -.085), Vector3(-.26, -.08, -.17), Vector3(-.040, -.065, -.020)],
+			[.57, Vector3(.43, .42, .25), Vector3(-.025, -.090, -.040), Vector3(-.080, -.190, -.095), Vector3(-.23, -.05, -.13), Vector3(-.030, -.060, -.010)],
+			[.82, Vector3(.30, .30, .39), Vector3(.025, .095, .025), Vector3(.040, .175, -.025), Vector3(-.12, -.025, -.04), Vector3(.030, -.030, .030)],
 			[1.0, Vector3(.12, .24, .44), Vector3(.045, .180, .040), Vector3(.120, .310, .035), Vector3(-.08, 0, 0), Vector3(.035, -.025, .035)],
 		],
 		"recover": [

@@ -1,5 +1,6 @@
 """Regression tests for native page-size checks and release identity/listing gates."""
 import contextlib
+import copy
 import configparser
 import io
 import json
@@ -17,7 +18,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from android_native_check import verify_elf, verify_bundle_native
 from check_play_release import validate
 from export_android_qa import QaPackage, build_packages, prepare_stage, write_preset
-from android_beta_smoke import main as run_android_smoke
+from android_beta_smoke import main as run_android_smoke, validate_art_report
 
 
 def elf(alignment=16384, address=16384):
@@ -339,6 +340,73 @@ class AndroidRuntimeChecks(unittest.TestCase):
         self.assertIn("ANDROID_RUNTIME_DIAGNOSTIC_UNAVAILABLE: No space left", device.console)
         self.assertLess(device.console.index("QA process disappeared"), device.console.index("No space left"))
         self.assertEqual(device.launch, 1)
+
+
+class AndroidNativeArtReportChecks(unittest.TestCase):
+    """Observer gates must reject old proxy receipts and incomplete native evidence."""
+    def report(self):
+        actions = ["Sword_Regular_C", "Spell_Simple_Shoot", "Spell_Simple_Enter", "Sword_Regular_C"]
+        measurements = [{"region": region, "quality": quality, "frames": 30,
+                         "median_frame_ms": 20., "p95_frame_ms": 25., "median_draw_calls": 30.}
+                        for region in range(4) for quality in ["balanced", "battery"]]
+        motion = []
+        for region, action in enumerate(actions):
+            required = ["Walk_Loop", "Hit_Chest", "Death01", action]
+            bound = required + ["Sword_Idle"]
+            motion.append({"region": region, "passed": True, "frames": 20,
+                           "simulation_step_seconds": .05, "simulation_advanced_seconds": 1.,
+                           "bone_changes": 10, "bone_name": "Head", "unique_rendered_frames": 4,
+                           "skeleton_bones": 65, "native_clips": len(bound), "bound_native_clips": bound,
+                           "required_native_clips": required, "visible_skinned_meshes": 12,
+                           "visible_rigid_props": 2, "visible_triangles": 31058,
+                           "weighted_figure_depth": .8, "captures": [0, 5, 11, 17],
+                           "physical_device_performance": False})
+        return {"schema": 2, "measurements": measurements, "motion": motion}
+
+    def test_complete_bound_native_scene_receipt_passes(self):
+        report = self.report()
+        self.assertEqual(validate_art_report(report), report["motion"])
+
+    def test_old_hidden_proxy_receipt_cannot_pass(self):
+        report = self.report()
+        report["schema"] = 1
+        for row in report["motion"]:
+            row.update(skeleton_bones=29, native_clips=9, source_depth=.8)
+        with self.assertRaises(RuntimeError):
+            validate_art_report(report)
+
+    def test_missing_native_clip_binding_anatomy_or_visible_geometry_fails(self):
+        mutations = [
+            {"skeleton_bones": 29}, {"bone_name": "Bone3"},
+            {"bound_native_clips": ["Walk_Loop", "Hit_Chest", "Death01", "Sword_Idle"], "native_clips": 4},
+            {"required_native_clips": ["Walk_Loop", "Hit_Chest", "Death01", "Spell_Simple_Shoot"]},
+            {"visible_skinned_meshes": 0}, {"visible_rigid_props": 0}, {"visible_triangles": 40001},
+            {"weighted_figure_depth": .30}, {"weighted_figure_depth": float("nan")},
+            {"physical_device_performance": True},
+        ]
+        for mutation in mutations:
+            with self.subTest(mutation=mutation):
+                report = self.report()
+                report["motion"][0].update(mutation)
+                with self.assertRaises(RuntimeError):
+                    validate_art_report(report)
+
+    def test_original_motion_sampling_and_progress_thresholds_are_required(self):
+        for mutation in [{"bone_changes": 5}, {"unique_rendered_frames": 3}, {"frames": 19},
+                         {"simulation_step_seconds": .1}, {"simulation_advanced_seconds": .8},
+                         {"captures": [0, 5, 11]}, {"passed": False}]:
+            with self.subTest(mutation=mutation):
+                report = self.report()
+                report["motion"][0].update(mutation)
+                with self.assertRaises(RuntimeError):
+                    validate_art_report(report)
+
+    def test_duplicate_or_missing_scenarios_are_rejected(self):
+        for key in ["measurements", "motion"]:
+            report = self.report()
+            report[key].append(copy.deepcopy(report[key][0]))
+            with self.subTest(key=key), self.assertRaises(RuntimeError):
+                validate_art_report(report)
 
 
 if __name__ == "__main__": unittest.main()

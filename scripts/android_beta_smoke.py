@@ -12,12 +12,42 @@ import time
 
 PACKAGE = "com.philmenting.emberfallashenveil.betaqa"
 START_GRACE_SECONDS = 30
+GUARDIAN_NATIVE_ACTIONS = ("Sword_Regular_C", "Spell_Simple_Shoot", "Spell_Simple_Enter", "Sword_Regular_C")
 
 
 class QaFailure(RuntimeError):
     def __init__(self, kind, message):
         super().__init__(message)
         self.kind = kind
+
+
+def validate_art_report(metrics):
+    """Check actual native skins and bound clips, never the hidden API proxy."""
+    expected = {(region, quality) for region in range(4) for quality in ["balanced", "battery"]}
+    measurements = metrics.get("measurements", [])
+    if metrics.get("schema") != 2 or len(measurements) != 8 or {(row["region"], row["quality"]) for row in measurements} != expected:
+        raise RuntimeError("Android render report is missing a quality/region scenario")
+    for row in measurements:
+        if row["frames"] != 30 or not all(math.isfinite(row[key]) and row[key] > 0 for key in ["median_frame_ms", "p95_frame_ms", "median_draw_calls"]):
+            raise RuntimeError("Android render report contains invalid measurements")
+    motion = metrics.get("motion", [])
+    if len(motion) != 4 or {row.get("region") for row in motion} != set(range(4)):
+        raise RuntimeError("Android motion evidence is missing a guardian")
+    for row in motion:
+        expected_clips = {"Walk_Loop", "Hit_Chest", "Death01", GUARDIAN_NATIVE_ACTIONS[row["region"]]}
+        bound = row.get("bound_native_clips", [])
+        required = row.get("required_native_clips", [])
+        if (not row["passed"] or row["frames"] != 20 or row.get("simulation_step_seconds") != .05
+                or not math.isfinite(row.get("simulation_advanced_seconds", 0)) or row.get("simulation_advanced_seconds", 0) <= .8
+                or row["bone_changes"] < 6 or row.get("bone_name") != "Head" or row["unique_rendered_frames"] != 4
+                or row.get("skeleton_bones") != 65 or row.get("native_clips") != len(bound)
+                or len(bound) != len(set(bound)) or set(required) != expected_clips or not expected_clips.issubset(bound)
+                or row.get("visible_skinned_meshes", 0) <= 8 or row.get("visible_rigid_props", 0) < 1
+                or not 0 < row.get("visible_triangles", 0) <= 40000
+                or not math.isfinite(row.get("weighted_figure_depth", 0)) or row.get("weighted_figure_depth", 0) <= .30
+                or row.get("captures") != [0, 5, 11, 17] or row.get("physical_device_performance") is not False):
+            raise RuntimeError("Native animation failed to advance or render its actual weighted body and held props")
+    return motion
 
 
 class RuntimeMonitor:
@@ -209,28 +239,18 @@ def main() -> int:
                     raise RuntimeError(f"Android graphics capture {region} missing or invalid")
                 (args.output / f"android-region-{region}.png").write_bytes(capture.stdout)
             metrics = json.loads(adb("exec-out", "run-as", PACKAGE, "cat", "files/art-performance.json"))
-            expected = {(region, quality) for region in range(4) for quality in ["balanced", "battery"]}
-            if metrics.get("schema") != 1 or {(row["region"], row["quality"]) for row in metrics["measurements"]} != expected:
-                raise RuntimeError("Android render report is missing a quality/region scenario")
-            for row in metrics["measurements"]:
-                if row["frames"] != 30 or not all(math.isfinite(row[key]) and row[key] > 0 for key in ["median_frame_ms", "p95_frame_ms", "median_draw_calls"]):
-                    raise RuntimeError("Android render report contains invalid measurements")
+            motion = validate_art_report(metrics)
             (args.output / "android-render-performance.json").write_text(json.dumps(metrics, indent=2))
             # Moving native skins advance with actual combat. These are not
             # physical-device frame-rate measurements.
-            motion = metrics.get("motion", [])
-            if {row.get("region") for row in motion} != set(range(4)):
-                raise RuntimeError("Android motion evidence is missing a guardian")
             for row in motion:
-                if not row["passed"] or row["frames"] != 20 or row["bone_changes"] < 6 or row["unique_rendered_frames"] != 4 or row.get("skeleton_bones") != 29 or row.get("native_clips") != 9 or not math.isfinite(row.get("source_depth", 0)) or row.get("source_depth", 0) <= .30:
-                    raise RuntimeError("Native animation failed to advance or render")
                 for frame in row["captures"]:
                     filename = f"motion-region-{row['region']}-{frame:02d}.png"
                     capture = subprocess.run([args.adb, "exec-out", "run-as", PACKAGE, "cat", "files/"+filename], capture_output=True, timeout=60)
                     if capture.returncode or not capture.stdout.startswith(b"\x89PNG\r\n\x1a\n"):
                         raise RuntimeError("Android moving frame missing: "+filename)
                     (args.output / ("android-"+filename)).write_bytes(capture.stdout)
-            print("ANDROID ART VERIFIED: four guardian scenes, native 29-bone 3D skins, lit materials and moving screenshots")
+            print("ANDROID ART VERIFIED: four guardian scenes, native 65-bone 3D skins, bound artist clips, actual body/prop geometry, lit materials and moving screenshots")
             monitor.finish("passed")
             return 0
         log = await_marker("ANDROID_BETA_PASS exact AFK ledger", "first-launch.log")

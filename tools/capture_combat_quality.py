@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Record 30 ordinary seconds with the original game HUD, simulation and sound.
+"""Record an ordinary class expedition with the original HUD, simulation and sound.
 
 This is a chronological prefix, not a completed dungeon or a performance test.
 The underlying full-expedition capture tool remains available unchanged by default.
@@ -12,7 +12,7 @@ from capture_arcanist_quality import main
 
 def prefix_arguments(arguments):
     arguments = list(arguments)
-    if not any(item == "--prefix-seconds" or item.startswith("--prefix-seconds=")
+    if "--full" not in arguments and not any(item == "--prefix-seconds" or item.startswith("--prefix-seconds=")
                for item in arguments):
         arguments += ["--prefix-seconds", "30"]
     return arguments

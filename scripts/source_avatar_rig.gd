@@ -5,6 +5,7 @@ const AVATAR=preload("res://assets/models/nyra052/arcanist.glb")
 const WEAPON=preload("res://assets/models/nyra052/staff-grip053.glb")
 const Style=preload("res://scripts/source_avatar_style.gd")
 const Combat=preload("res://scripts/source_avatar_combat.gd")
+const MotionTransition=preload("res://scripts/native_motion_transition.gd")
 const RECOVERY:=.34
 const STAFF_SCALE:=.75
 const STAFF_GRIP:=Vector3(0,-.147,0)
@@ -42,6 +43,8 @@ var source_rest_pose: Dictionary={}
 var death_grounding: Array=[]
 var weapon_points: PackedVector3Array=PackedVector3Array()
 var planted_basis: Array[Basis]=[Basis.IDENTITY,Basis.IDENTITY]
+var planted_toes: Array[Dictionary]=[{},{}]
+var motion_transition: RefCounted=MotionTransition.new()
 
 static func has_appearance(appearance: String) -> bool:
 	return appearance=="Arcanist"
@@ -190,6 +193,7 @@ func pose(clip: String,time: float) -> void:
 	for bone in fingers:skeleton.set_bone_pose_rotation(bone,fingers[bone])
 	skeleton.force_update_all_bone_transforms()
 	_update_weapon()
+	if style!=null:style.update_motion(clip,time)
 
 func capture_pose() -> Array[Transform3D]:
 	var result: Array[Transform3D]=[]
@@ -201,6 +205,8 @@ func blend_from(previous: Array[Transform3D],amount: float) -> void:
 		skeleton.set_bone_pose_position(i,previous[i].origin.lerp(current.origin,amount))
 		skeleton.set_bone_pose_rotation(i,previous[i].basis.get_rotation_quaternion().slerp(current.basis.get_rotation_quaternion(),amount))
 	skeleton.force_update_all_bone_transforms();_update_weapon()
+func blend_native_transition(actor: Variant,clip: String,time: float,delta: float,contact: bool,duration: float) -> void:
+	motion_transition.apply(self,actor,clip,time,delta,contact,duration)
 func _update_weapon() -> void:
 	if weapon==null:return
 	var hand=skeleton.get_bone_global_pose(skeleton.find_bone("hand_r"))
@@ -221,6 +227,7 @@ func dispose() -> void:
 	if is_instance_valid(motion_node):motion_node.free()
 func set_visual_readability(_value: float,_focus: float) -> void:pass
 func apply_actor_postprocess(actor: Variant,clip: String,time: float,_delta: float,_contact: bool) -> void:
+	if style!=null:style.update_motion(clip,time,actor.reduced_motion)
 	motion_node.position.y=.009
 	if clip!="death":
 		var low=INF
@@ -301,7 +308,7 @@ func solve_cast_arm(target: Vector3,wrist: Basis) -> void:
 	_solve_cast_chain(upper,lower,hand,target,Vector3(.65,-.60,-.28))
 	_global_rotation(hand,wrist)
 
-func hold_cast_soles(soles: Array[Transform3D],poles: Array[Vector3]) -> void:
+func hold_cast_soles(soles: Array[Transform3D],poles: Array[Vector3],preserve_native_twist: bool=false) -> void:
 	# A native pelvis turn can raise a hip a few millimetres beyond leg reach.
 	# Lower the pelvis only as far as necessary, then solve both planted soles
 	# together. The thigh/calf/ankle translations and scales remain original.
@@ -328,8 +335,32 @@ func hold_cast_soles(soles: Array[Transform3D],poles: Array[Vector3]) -> void:
 		var thigh=skeleton.find_bone("thigh_"+suffix)
 		var calf=skeleton.find_bone("calf_"+suffix)
 		var foot=skeleton.find_bone("foot_"+suffix)
-		_solve_cast_chain(thigh,calf,foot,soles[side].origin,poles[side])
+		if preserve_native_twist:_solve_walk_chain(thigh,calf,foot,soles[side].origin,poles[side])
+		else:_solve_cast_chain(thigh,calf,foot,soles[side].origin,poles[side])
 		_global_rotation(foot,soles[side].basis)
+
+func _solve_walk_chain(upper: int,lower: int,end: int,target: Vector3,pole: Vector3) -> void:
+	# Native mixed calf/ankle skin depends on the artist's joint twist as
+	# well as joint origins. Swing the current FK frames toward the new
+	# endpoint instead of replacing their roll with a rest-plane frame.
+	var start=skeleton.get_bone_global_pose(upper).origin
+	var a=(rest[lower].origin-rest[upper].origin).length()
+	var b=(rest[end].origin-rest[lower].origin).length()
+	var direction=(target-start).normalized()
+	var distance=clampf(start.distance_to(target),absf(a-b)+.001,a+b-.0002)
+	var bend=pole-direction*pole.dot(direction)
+	if bend.length_squared()<.000001:bend=Vector3.BACK-direction*Vector3.BACK.dot(direction)
+	var along=(a*a-b*b+distance*distance)/(2.0*distance)
+	var elbow=start+direction*along+bend.normalized()*sqrt(maxf(0.0,a*a-along*along))
+	var finish=start+direction*distance
+	var original_upper=skeleton.get_bone_global_pose(upper)
+	var original_axis=skeleton.get_bone_global_pose(lower).origin-original_upper.origin
+	var swing=Basis(Quaternion(original_axis.normalized(),(elbow-start).normalized()))
+	_global_rotation(upper,swing*original_upper.basis)
+	var original_lower=skeleton.get_bone_global_pose(lower)
+	original_axis=skeleton.get_bone_global_pose(end).origin-original_lower.origin
+	swing=Basis(Quaternion(original_axis.normalized(),(finish-elbow).normalized()))
+	_global_rotation(lower,swing*original_lower.basis)
 
 func _solve_cast_chain(upper: int,lower: int,end: int,target: Vector3,pole: Vector3) -> void:
 	var start=skeleton.get_bone_global_pose(upper).origin
@@ -383,46 +414,35 @@ func _plant_feet(actor: Variant) -> void:
 		for i in probe.bones.size():point+=(skeleton.get_bone_global_pose(probe.bones[i])*probe.binds[i]*probe.point)*probe.weights[i]
 		minima[probe.side]=minf(minima[probe.side],point.y)
 	var support=0 if minima[0]<minima[1] else 1
+	var soles: Array[Transform3D]=[]
+	var poles: Array[Vector3]=[]
 	for side in 2:
-		if side!=support:actor.plant_active[side]=false;continue
 		var suffix="l" if side==0 else "r"
 		var thigh=skeleton.find_bone("thigh_"+suffix)
 		var calf=skeleton.find_bone("calf_"+suffix)
 		var foot=skeleton.find_bone("foot_"+suffix)
 		var current=skeleton.get_bone_global_pose(foot)
-		if not actor.plant_active[side]:
-			actor.plant_points[side]=actor.body.to_global(motion_node.transform*current.origin);actor.plant_active[side]=true
-			planted_basis[side]=current.basis
-		var target=motion_node.transform.affine_inverse()*actor.body.to_local(actor.plant_points[side])
-		var start=skeleton.get_bone_global_pose(thigh).origin
-		var first=rest[calf].origin-rest[thigh].origin
-		var second=rest[foot].origin-rest[calf].origin
-		var a=first.length();var b=second.length()
-		# Keep native leg lengths. Adapt pelvis height when a planted ankle
-		# would otherwise lie beyond the retargeted leg's reach.
-		var reach=a+b-.0002
-		if start.distance_to(target)>reach:
-			var horizontal=Vector2(start.x-target.x,start.z-target.z).length_squared()
-			if horizontal<reach*reach:
-				var shift=target.y+sqrt(reach*reach-horizontal)-start.y
-				var pelvis=skeleton.find_bone("pelvis")
-				var parent=skeleton.get_bone_parent(pelvis)
-				var global=skeleton.get_bone_global_pose(pelvis)
-				global.origin.y+=minf(0.0,shift)
-				skeleton.set_bone_pose_position(pelvis,skeleton.get_bone_global_pose(parent).affine_inverse()*global.origin)
-				skeleton.force_update_all_bone_transforms()
-				start=skeleton.get_bone_global_pose(thigh).origin
-		var direction=(target-start).normalized();var distance=clampf(start.distance_to(target),absf(a-b)+.001,a+b-.0002)
-		var knee=skeleton.get_bone_global_pose(calf).origin
-		var bend=knee-start-direction*(knee-start).dot(direction)
-		if bend.length_squared()<.000001:bend=Vector3.BACK-direction*direction.z
-		bend=bend.normalized()
-		var along=(a*a-b*b+distance*distance)/(2.0*distance)
-		var elbow=start+direction*along+bend*sqrt(maxf(0.0,a*a-along*along))
-		var finish=start+direction*distance
-		var normal=(elbow-start).cross(finish-elbow)
-		var rest_normal=first.cross(second)
-		if rest_normal.length_squared()<.000001:rest_normal=rest[thigh].basis.z-first.normalized()*rest[thigh].basis.z.dot(first.normalized())
-		_global_rotation(thigh,_frame(elbow-start,normal)*_frame(first,rest_normal).inverse()*rest[thigh].basis)
-		_global_rotation(calf,_frame(finish-elbow,normal)*_frame(second,rest_normal).inverse()*rest[calf].basis)
-		_global_rotation(foot,planted_basis[side])
+		# Snapshot both original ankles before any common hip correction.
+		# Solving only the planted leg after lowering the pelvis drags the
+		# untouched swing leg, including its mixed calf/foot skin, into the floor.
+		poles.append(skeleton.get_bone_global_pose(calf).origin-skeleton.get_bone_global_pose(thigh).origin)
+		if side==support:
+			if not actor.plant_active[side]:
+				actor.plant_points[side]=actor.body.to_global(motion_node.transform*current.origin);actor.plant_active[side]=true
+				planted_basis[side]=current.basis
+				# Source walk toes counter-rotate against its changing foot.
+				# Once that foot is planted, retain the real touchdown toes
+				# too, rather than driving their weighted sole through the floor.
+				planted_toes[side].clear()
+				for name in ["ball_"+suffix,"ball_leaf_"+suffix]:
+					var toe=skeleton.find_bone(name)
+					if toe>=0:planted_toes[side][toe]=skeleton.get_bone_pose_rotation(toe)
+			current=Transform3D(planted_basis[side],motion_node.transform.affine_inverse()*actor.body.to_local(actor.plant_points[side]))
+		else:actor.plant_active[side]=false
+		soles.append(current)
+	# The existing native-length solver lowers the shared pelvis only as far
+	# as needed, then reconstructs both chains. The free ankle retains its
+	# actual authored swing instead of inheriting the support's pelvis drop.
+	hold_cast_soles(soles,poles,true)
+	for toe in planted_toes[support]:skeleton.set_bone_pose_rotation(toe,planted_toes[support][toe])
+	skeleton.force_update_all_bone_transforms()

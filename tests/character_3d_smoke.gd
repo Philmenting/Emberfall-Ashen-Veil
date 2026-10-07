@@ -5,7 +5,7 @@ const Actor=preload("res://scripts/dungeon_actor.gd")
 const Sim=preload("res://scripts/expedition_simulation.gd")
 const World=preload("res://scripts/dungeon_world.gd")
 const Bot=preload("res://tests/balance_survey_bot.gd")
-const SOURCE_SURFACE_COUNTS={"Arcanist":8,"Vowkeeper":10,"Ranger":12,"raider":8}
+const SOURCE_SURFACE_COUNTS={"Arcanist":8,"Vowkeeper":10,"Ranger":12,"raider":8,"hexer":11,"bulwark":14,"elite":13,"guardian_0":13,"guardian_1":12,"guardian_2":12,"guardian_3":13}
 var checks:=0
 var failures:=0
 func _initialize() -> void: run_checks.call_deferred()
@@ -238,22 +238,150 @@ func check_source_avatar(actor: Node3D) -> void:
 				valid=valid and absf(sum-1.0)<.0001 and a[Mesh.ARRAY_VERTEX][index].is_finite() and a[Mesh.ARRAY_NORMAL][index].is_finite()
 	var triangle_budget:=20000 if class_key=="raider" else 40000
 	check(valid and rig.rendered_triangles<=triangle_budget,class_key+": normalized actual body/accessory skin weights, finite geometry and full render budget")
+	check_source_walk(actor)
+	actor.animate(.4,false)
 	actor.strike("basic",.30,true);actor.sync_attack(.02);actor.animate(.10,false)
 	var before=rig.capture_pose();actor.animate(0,false)
 	check(rig.capture_pose()==before and actor.release_time<0.0,class_key+": zero-time update preserves pose and simulation contact")
 	actor.animate(1.0,false)
 	check(actor.release_time<0.0,class_key+": renderer cannot invent held damage")
 	check(actor.release_attack() and not actor.release_attack(),class_key+": actual source contact releases exactly once")
+	check_source_rigid_props(actor)
 	actor.animate(.5,false);actor.reduced_motion=true;actor.animate(.5,false)
 	var quiet=rig.capture_pose();var clock=actor.clock;actor.animate(.3,false)
 	check(rig.capture_pose()==quiet and actor.clock==clock,class_key+": Reduced Motion freezes decorative source idle")
-	actor.reduced_motion=false;actor.die()
+	actor.reduced_motion=false
+	var standing_head: Vector3=actor.body.to_global(rig.motion_node.transform*rig.skeleton.get_bone_global_pose(rig.skeleton.find_bone("Head")).origin)
+	actor.die()
+	var falling_head:=standing_head
+	var collapse_trace: Array=[]
+	var native_collapse_phase: float=actor.COLLAPSE_DURATION/3.0
+	# Death01 first recoils against the native combat guard. The unmodified
+	# artist curve compresses after that first response: at one-third of
+	# the existing .90s interval the original head has clearly descended.
+	# Observe that chronological curve, retaining the same 10 cm threshold.
+	for t in [.0,.22,native_collapse_phase,.45,.60,.68,.75,.90]:
+		actor.animate(t-actor.death_time,false)
+		var current_head: Vector3=actor.body.to_global(rig.motion_node.transform*rig.skeleton.get_bone_global_pose(rig.skeleton.find_bone("Head")).origin)
+		if is_equal_approx(t,native_collapse_phase):falling_head=current_head
+		collapse_trace.append({"time":t,"world_head_y":current_head.y,"drop_from_original_guard":standing_head.y-current_head.y})
+	print("NATIVE_COLLAPSE_TRACE ",class_key," ",JSON.stringify(collapse_trace))
+	check(falling_head.y<standing_head.y-.10 and actor.death_time>=native_collapse_phase,class_key+": actual native articulated defeat lowers the head by 10 cm in its original one-third collapse phase rather than replacing the rendered body")
 	var floor_clear=true;var final_floor=INF
 	for time in [.22,.45,.68,.90]:
 		rig.pose("death",time);rig.apply_actor_postprocess(actor,"death",time,0.0,true)
 		final_floor=complete_source_bounds(rig).position.y*actor.body.scale.y
 		floor_clear=floor_clear and final_floor>-.035
 	check(floor_clear and final_floor<.065,class_key+": all actually skinned falling surfaces clear the floor and the corpse rests on it")
+	actor.animate(1.1,false)
+	var variants_grounded:=true
+	for lean in [-1.0,0.0,1.0]:
+		actor.death_lean=lean;actor.animate(0,false)
+		var actual_floor: float=complete_source_bounds(rig).position.y*actor.body.scale.y
+		variants_grounded=variants_grounded and actual_floor>-.035 and actual_floor<.065
+	check(variants_grounded,class_key+": every actual runtime corpse variant preserves the complete native body/prop ground contact")
+
+func native_boot_probes(rig: RefCounted) -> Array:
+	var result: Array=[]
+	for surface: MeshInstance3D in rig.surfaces:
+		if not String(surface.name).contains("Feet"): continue
+		for slot in surface.mesh.get_surface_count():
+			var arrays: Array=surface.mesh.surface_get_arrays(slot)
+			var used: Dictionary={}
+			for index in arrays[Mesh.ARRAY_INDEX]:used[index]=true
+			for index in used:
+				var vertex: Vector3=arrays[Mesh.ARRAY_VERTEX][index]
+				if vertex.y>=.055:continue
+				var influences: Array=[];var sides:=Vector2.ZERO
+				for influence in 4:
+					var weight: float=arrays[Mesh.ARRAY_WEIGHTS][index*4+influence]
+					if weight<=0:continue
+					var bind: int=arrays[Mesh.ARRAY_BONES][index*4+influence]
+					var name: String=String(surface.skin.get_bind_name(bind))
+					var bone: int=rig.skeleton.find_bone(name) if not name.is_empty() else surface.skin.get_bind_bone(bind)
+					assert(bone>=0,"A real native boot influence must resolve")
+					var bone_name:=String(rig.skeleton.get_bone_name(bone))
+					if bone_name.ends_with("_l"):sides.x+=weight
+					elif bone_name.ends_with("_r"):sides.y+=weight
+					influences.append([bone,surface.skin.get_bind_pose(bind)*vertex,weight])
+				assert(maxf(sides.x,sides.y)>.5,"Native sole side is determined by its real anatomical influences")
+				result.append({"side":0 if sides.x>sides.y else 1,"influences":influences})
+	return result
+
+func native_boot_minima(actor: Node3D,probes: Array) -> Vector2:
+	var rig: RefCounted=actor.motion_rig
+	var poses: Array[Transform3D]=[]
+	for bone in rig.skeleton.get_bone_count():poses.append(rig.skeleton.get_bone_global_pose(bone))
+	var result:=Vector2(INF,INF)
+	for probe in probes:
+		var point:=Vector3.ZERO
+		for influence in probe.influences:point+=(poses[influence[0]]*influence[1])*influence[2]
+		var world: Vector3=actor.body.to_global(rig.motion_node.transform*point)
+		result[probe.side]=minf(result[probe.side],world.y)
+	return result
+
+func check_source_walk(actor: Node3D) -> void:
+	var rig: RefCounted=actor.motion_rig
+	var key: String=actor.appearance_key
+	var probes:=native_boot_probes(rig)
+	check(probes.size()>100,key+": walking oracle reconstructs actual indexed boot soles through all four original mixed native skin influences")
+	var grounded:=true;var raised:=false;var locked:=true;var finite:=true
+	var previous: Array[Vector3]=[Vector3.ZERO,Vector3.ZERO];var old_active: Array[bool]=[false,false]
+	var stable_samples:=0;var max_drift:=0.0;var minimum:=INF;var maximum_lift:=0.0
+	var loaded_minimum:=INF;var free_minimum:=INF;var loaded_maximum:=-INF
+	var worst_loaded: Dictionary={}
+	for frame in 120:
+		var displacement:=Vector3(0,0,-2.0/60.0)
+		actor.position+=displacement;actor.follow_travel(displacement);actor.animate(1.0/60.0,true,2.0)
+		var minima:=native_boot_minima(actor,probes)
+		var side:=0 if actor.plant_active[0] else 1
+		var ankle: Vector3=actor.body.to_global(rig.motion_node.transform*rig.skeleton.get_bone_global_pose(rig.skeleton.find_bone("foot_l" if side==0 else "foot_r")).origin)
+		if frame>12:
+			if minima[side]<loaded_minimum:
+				var named_poses: Dictionary={}
+				for name in ["pelvis","thigh_l","calf_l","foot_l","ball_l","thigh_r","calf_r","foot_r","ball_r"]:
+					var bone: int=rig.skeleton.find_bone(name)
+					if bone<0:continue
+					var pose: Transform3D=rig.skeleton.get_bone_global_pose(bone)
+					named_poses[name]={"origin":[pose.origin.x,pose.origin.y,pose.origin.z],"basis_x":[pose.basis.x.x,pose.basis.x.y,pose.basis.x.z],"basis_y":[pose.basis.y.x,pose.basis.y.y,pose.basis.y.z],"basis_z":[pose.basis.z.x,pose.basis.z.y,pose.basis.z.z]}
+				worst_loaded={"frame":frame,"plant_active":actor.plant_active.duplicate(),"loaded_side":side,"gait_phase":actor.gait_phase,"min_loaded_world_y":minima[side],"min_free_world_y":minima[1-side],"motion_y":rig.motion_node.position.y,"source_named_poses":named_poses}
+			minimum=minf(minimum,minf(minima.x,minima.y));maximum_lift=maxf(maximum_lift,minima[1-side])
+			loaded_minimum=minf(loaded_minimum,minima[side]);free_minimum=minf(free_minimum,minima[1-side]);loaded_maximum=maxf(loaded_maximum,minima[side])
+			grounded=grounded and absf(minima[side])<.04 and minima[1-side]>-.035
+			raised=raised or minima[1-side]>.07
+			locked=locked and actor.plant_active[side] and not actor.plant_active[1-side] and ankle.distance_to(actor.plant_points[side])<.008
+			if actor.plant_active[side] and old_active[side]:
+				var drift:=ankle.distance_to(previous[side]);max_drift=maxf(max_drift,drift)
+				locked=locked and drift<.008;stable_samples+=1
+		finite=finite and minima.is_finite() and ankle.is_finite() and actor.pose_bounds().position.is_finite()
+		previous[side]=ankle;old_active=actor.plant_active.duplicate()
+	check(grounded and raised and finite,key+": native walking keeps the actually weighted loaded sole on the floor while the other original boot visibly clears it")
+	check(locked and stable_samples>30,key+": real native stance ankle stays planted in world space during authoritative actor travel")
+	print("NATIVE_WALK_METRIC ",key," boot_probes=",probes.size()," stable_samples=",stable_samples," max_world_stance_drift=",max_drift," min_world_boot_y=",minimum," min_world_loaded_y=",loaded_minimum," max_world_loaded_y=",loaded_maximum," min_world_free_y=",free_minimum," max_world_free_lift=",maximum_lift)
+	print("NATIVE_WALK_WORST ",key," ",JSON.stringify(worst_loaded))
+
+func check_source_rigid_props(actor: Node3D) -> void:
+	var rig: RefCounted=actor.motion_rig;var snapshots: Array=[]
+	for part: MeshInstance3D in rig.motion_node.find_children("*","MeshInstance3D",true,false):
+		if not part.is_visible_in_tree() or part.skin!=null or not part.mesh is ArrayMesh:continue
+		for slot in part.mesh.get_surface_count():
+			var arrays: Array=part.mesh.surface_get_arrays(slot);var used: Dictionary={}
+			for index in arrays[Mesh.ARRAY_INDEX]:used[index]=true
+			if used.is_empty():continue
+			var first: Vector3=arrays[Mesh.ARRAY_VERTEX][used.keys()[0]];var far:=first;var distance:=0.0
+			for index in used:
+				var point: Vector3=arrays[Mesh.ARRAY_VERTEX][index]
+				if first.distance_squared_to(point)>distance:distance=first.distance_squared_to(point);far=point
+			snapshots.append([part,part.mesh,first,far,part.to_global(first).distance_to(part.to_global(far))])
+	var rigid:=not snapshots.is_empty();var maximum_error:=0.0
+	for frame in 22:
+		actor.animate(1.0/60.0,false)
+		for original in snapshots:
+			var part: MeshInstance3D=original[0]
+			var error:=absf(part.to_global(original[2]).distance_to(part.to_global(original[3]))-original[4])
+			maximum_error=maxf(maximum_error,error);rigid=rigid and error<.0002 and part.mesh==original[1]
+	check(rigid,actor.appearance_key+": every actual indexed rigid weapon/arrow/prop keeps its original immutable mesh and physical length during recovery")
+	print("NATIVE_RIGID_PROP_METRIC ",actor.appearance_key," surfaces=",snapshots.size()," max_world_length_error=",maximum_error)
 func check_source_cast(fighter: Node3D,style: String) -> void:
 	var origin=fighter.transform;var clear=true;var released=false
 	fighter.strike(style,.30,true)
@@ -266,18 +394,15 @@ func check_source_cast(fighter: Node3D,style: String) -> void:
 
 func complete_source_surfaces(rig: RefCounted) -> Array:
 	var result: Array=rig.surfaces.duplicate()
-	result.append_array(source_accessories(rig))
+	for surface in source_accessories(rig):
+		if not result.has(surface):result.append(surface)
 	return result
 
 func source_accessories(rig: RefCounted) -> Array:
 	return rig.style.accessories if rig.style!=null else []
 
 func complete_source_bounds(rig: RefCounted) -> AABB:
-	var result:=SourceSkin.actual_bounds(rig,source_accessories(rig))
-	if rig.key=="raider":
-		for point in rig.weapon_points:
-			result=result.expand(rig.motion_node.transform*(rig.weapon.transform*point))
-	return result
+	return SourceSkin.actual_figure_bounds(rig,source_accessories(rig))
 
 func indexed_axis_endpoints(mesh: Mesh,axis: int) -> PackedVector3Array:
 	# Recover the real mesh's endpoint-ring centres from indexed vertices;
@@ -320,7 +445,7 @@ func actual_string_geometry(rig: RefCounted) -> Dictionary:
 func check_native_bow_release(ranger: Node3D) -> void:
 	var rig=ranger.motion_rig;var skeleton: Skeleton3D=rig.skeleton
 	var left_hand:=skeleton.find_bone("hand_l");var right_hand:=skeleton.find_bone("hand_r")
-	ranger.strike("basic",.6,true);ranger.sync_attack(.10);ranger.animate(.15,false)
+	ranger.strike("basic",.6,true);ranger.sync_attack(ranger.PROJECTILE_RELEASE_LEAD);ranger.animate(.15,false)
 	var drawn:=actual_string_geometry(rig)
 	var physical_strings: bool=drawn.valid and drawn.joins.size()==2 and drawn.ends.size()==2
 	check(physical_strings,"Ranger draws two visible indexed volumetric string meshes")
@@ -353,4 +478,5 @@ func check_native_bow_release(ranger: Node3D) -> void:
 	native_outward.y=0.0;native_outward=native_outward.normalized()
 	var hand_displacement: Vector3=skeleton.get_bone_global_pose(right_hand).origin-release_hand
 	var grip_after: Vector3=skeleton.get_bone_global_pose(left_hand)*rig.bow_grip_center
+	print("NATIVE_BOW_RELEASE_METRIC line_distance=",recovered_nock.distance_to(returned_line),"; nock_join=",recovered_nock.distance_to(recovered.joins[1]),"; bow_grip_distance=",bow_grip.distance_to(grip_after),"; draw_hand_outward=",hand_displacement.dot(native_outward),"; arrow_visible=",rig.bow_arrow.visible)
 	check(recovered.valid and recovered_nock.distance_to(recovered.joins[1])<.0001 and recovered_nock.distance_to(returned_line)<.0001 and not rig.bow_arrow.visible and bow_grip.distance_to(grip_after)<.008 and hand_displacement.dot(native_outward)>.08,"real string returns to its endpoint line while the named bow hand holds aim and native draw hand follows through outward; side="+str(hand_displacement.dot(native_outward)))

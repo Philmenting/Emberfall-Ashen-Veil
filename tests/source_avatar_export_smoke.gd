@@ -1,6 +1,10 @@
 extends SceneTree
-const ClassRig=preload("res://scripts/class_avatar_rig.gd")
 const RaiderRig=preload("res://scripts/raider_avatar_rig.gd")
+const NativeHostileRig=preload("res://scripts/native_hostile_rig.gd")
+const NativeClothing=preload("res://assets/models/hostiles057/male-clothing-native65.glb")
+const SkinAudit=preload("source_avatar_skin.gd")
+const NATIVE_SURFACE_COUNTS={"hexer":11,"bulwark":14,"elite":13,"guardian_0":13,"guardian_1":12,"guardian_2":12,"guardian_3":13}
+const NATIVE_ROLE_CLIPS={"hexer":"Spell_Simple_Shoot","bulwark":"Sword_Regular_A","elite":"Sword_Regular_B","guardian_0":"Sword_Regular_C","guardian_1":"Spell_Simple_Shoot","guardian_2":"Spell_Simple_Enter","guardian_3":"Sword_Regular_C"}
 ## Run outside the checkout with --main-pack and this script's absolute path.
 ## This exercises exported resources, including FileAccess JSON dependencies.
 var checks := 0
@@ -32,6 +36,8 @@ func run() -> void:
 		check(FileAccess.file_exists("res://assets/models/classes055/"+filename),"Native class source license ships: "+filename)
 	for filename in ["raider-native65.json","axe-grip.json","death-grounding.json","axe-fitted.json","BASE-LICENSE.txt","OUTFIT-LICENSE.txt","ANIMATION1-LICENSE.txt","ANIMATION2-LICENSE.txt","WEAPON-LICENSE.txt"]:
 		check(FileAccess.file_exists("res://assets/models/raider056/"+filename),"Native Raider runtime/source file ships: "+filename)
+	for filename in ["manifest.json","death-grounding.json","BASE-LICENSE.txt","OUTFIT-LICENSE.txt","ANIMATION1-LICENSE.txt","ANIMATION2-LICENSE.txt"]:
+		check(FileAccess.file_exists("res://assets/models/hostiles057/"+filename),"Complete native role runtime/source file ships: "+filename)
 	if failures:
 		call_deferred("finish")
 		return
@@ -61,7 +67,11 @@ func run() -> void:
 	for class_key in ["Vowkeeper","Ranger"]:
 		var class_parent := Node3D.new()
 		root.add_child(class_parent)
-		var class_rig = ClassRig.new()
+		# The external package fixture owns this script only for the live rig.
+		# A global hero preload plus native-style inheritance pins its packed
+		# resource graph during Godot 4.7.2 shutdown. Normal local ownership
+		# releases it without touching any production static cache.
+		var class_rig = load("res://scripts/class_avatar_rig.gd").new()
 		class_rig.build(class_parent,class_key)
 		class_rig.pose("windup_basic",.7)
 		check(class_rig.build_ok and class_rig.skeleton.get_bone_count()==65 and class_rig.surfaces.size()>=8,class_key+": complete native class scene loads from the exported package")
@@ -81,4 +91,23 @@ func run() -> void:
 	check(raider.player.has_animation("Walk_Loop") and raider.player.has_animation("Hit_Chest"),"Exported native Raider retains artist movement and damage clips")
 	raider.dispose();raider_parent.free()
 	raider=null;raider_parent=null
+	var role_manifest=JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/hostiles057/manifest.json"))
+	var outfit: Node3D=NativeClothing.instantiate()
+	var outfit_triangles:=0
+	for part: MeshInstance3D in outfit.find_children("*","MeshInstance3D",true,false):
+		for slot in part.mesh.get_surface_count():outfit_triangles+=part.mesh.surface_get_arrays(slot)[Mesh.ARRAY_INDEX].size()/3
+	outfit.free()
+	check(typeof(role_manifest)==TYPE_DICTIONARY and int(role_manifest.native_bones)==65 and int(role_manifest.cloth_triangles)==13460 and outfit_triangles==int(role_manifest.cloth_triangles) and role_manifest.weapons.size()==7,"Exported native role manifest matches the actual cuff-fitted shared garment triangle inventory and all seven fitted props")
+	for role_key in NATIVE_SURFACE_COUNTS:
+		var role_parent:=Node3D.new();root.add_child(role_parent)
+		var native:=NativeHostileRig.new();native.build(role_parent,role_key)
+		native.pose("windup_heavy",.7)
+		check(native.build_ok and native.skeleton.get_bone_count()==65 and native.surfaces.size()==NATIVE_SURFACE_COUNTS[role_key],role_key+": complete native body and exact visible role armor inventory load from the exported resource package")
+		var actual_triangles:=0
+		for part: MeshInstance3D in native.motion_node.find_children("*","MeshInstance3D",true,false):
+			if not part.is_visible_in_tree(): continue
+			for slot in part.mesh.get_surface_count():actual_triangles+=part.mesh.surface_get_arrays(slot)[Mesh.ARRAY_INDEX].size()/3
+		check(actual_triangles==native.rendered_triangles and actual_triangles<=40000 and native.weapon_grip_position().is_finite() and SkinAudit.actual_figure_bounds(native).size.z>.30,role_key+": every actual weighted body/armor and indexed held prop retains the packaged full render budget and real volume")
+		check(native.player.current_animation==NATIVE_ROLE_CLIPS[role_key] and native.player.has_animation("Walk_Loop") and native.player.has_animation("Hit_Chest") and native.player.has_animation("Death01"),role_key+": actual native role action, movement, hit and death clips survive packaging")
+		native.dispose();role_parent.free();native=null;role_parent=null
 	call_deferred("finish")

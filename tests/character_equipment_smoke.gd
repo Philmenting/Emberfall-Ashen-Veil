@@ -19,7 +19,7 @@ func run_checks() -> void:
 	for slot in uniforms:
 		check(hero.equipment_grades[slot]==2 and hero.equipped_items[slot].quality=="RARE",slot+": actual rarity binds to the native avatar equipment data and material finish")
 	var peer:=Actor.new(); peer.kind="Arcanist"; root.add_child(peer)
-	check(source_peers_match(hero,peer,true),"source peers share all eight immutable meshes and native skins with independent actual PBR overrides")
+	check(source_peers_match(hero,peer,true),"source peers share immutable body geometry and native skins; designated secondary buffers and actual PBR overrides remain independent")
 	var material: StandardMaterial3D=hero.motion_rig.surfaces[0].get_active_material(0)
 	var peer_material: StandardMaterial3D=peer.motion_rig.surfaces[0].get_active_material(0)
 	var original_color:=material.albedo_color
@@ -49,7 +49,7 @@ func run_checks() -> void:
 		var portrait:=HeroArt.new(); portrait.configure(class_key,gear); portrait.size=Vector2(140,140); root.add_child(portrait)
 		portrait.set_presentation(true,true)
 		if hero.source_avatar:
-			check(portrait.actor.appearance_key==class_key and source_peers_match(hero,portrait.actor,true) and portrait.actor.equipment_grades.Weapon==4,class_key+": portrait and battle render the same complete source meshes and native skins with bound gear data")
+			check(portrait.actor.appearance_key==class_key and source_peers_match(hero,portrait.actor,true) and portrait.actor.equipment_grades.Weapon==4,class_key+": portrait and battle render the same complete native topology and skins with independent secondary buffers and bound gear data")
 		else:
 			check(portrait.actor.appearance_key==class_key and portrait.actor.model.mesh==hero.model.mesh and portrait.actor.equipment_grades.Weapon==4,class_key+": portrait and battle render the same equipped spatial heroine")
 		check(portrait.viewport.render_target_update_mode==SubViewport.UPDATE_ONCE and portrait.camera.position.z<0,class_key+": Battery portrait keeps the real face view without continuous rendering")
@@ -65,19 +65,25 @@ func run_checks() -> void:
 		portrait.free()
 	for kind in Actor.HOSTILES:
 		var enemy:=Actor.new(); enemy.kind=kind; enemy.hostile=true; root.add_child(enemy)
-		check(enemy.appearance_key==kind and enemy.model.skin!=null,kind+": live hostile uses its own volumetric model")
+		check(enemy.appearance_key==kind and enemy.source_avatar and source_surfaces_rendered(enemy) and enemy.motion_rig.skeleton.get_bone_count()==65,kind+": live hostile renders its complete clothed native65 body rather than the hidden compatibility proxy")
 		enemy.free()
-	var first:=Actor.new(); first.boss=true; root.add_child(first)
-	var second:=Actor.new(); second.boss=true; root.add_child(second)
-	first.set_boss_phase(2)
-	check(first.boss_phase==2 and float(first.surface_material.get_shader_parameter("boss_phase"))==2 and second.boss_phase==0,"phase illumination stays independent per guardian")
-	check(first.figure_height==4.6 and first.model.mesh==second.model.mesh,"monumental guardians share authored geometry at their real body scale")
-	first.free(); second.free(); hero.free(); peer.free()
+	for region in 4:
+		var first:=Actor.new(); first.boss=true;first.region_index=region;root.add_child(first)
+		var second:=Actor.new();second.boss=true;second.region_index=region;root.add_child(second)
+		var phase_before:=actual_phase_materials(first)
+		var peer_before:=actual_phase_materials(second)
+		first.set_boss_phase(2)
+		check(first.boss_phase==2 and second.boss_phase==0 and not phase_before.is_empty() and actual_phase_materials(first)!=phase_before and actual_phase_materials(second)==peer_before,"guardian %d: phase illumination changes actual visible native PBR materials and leaves the living peer unchanged" % region)
+		check(first.figure_height==4.6 and first.source_avatar and source_peers_match(first,second,true) and first.body.scale.is_equal_approx(Vector3.ONE*4.6/1.810080),"guardian %d: monumental actors share complete actual clothed native anatomy and original binds at the real uniform body scale" % region)
+		first.set_boss_phase(0)
+		check(actual_phase_materials(first)==phase_before and actual_phase_materials(second)==peer_before,"guardian %d: reset to phase zero restores every original visible role pigment and restrained prop emission without accumulation" % region)
+		first.free();second.free()
+	hero.free(); peer.free()
 	print("CHARACTER EQUIPMENT SMOKE: %d checks, %d failures" % [checks,failures])
 	quit(1 if failures else 0)
 
 func source_surfaces_rendered(actor: Node3D) -> bool:
-	if not actor.source_avatar or actor.model.visible or actor.motion_rig.surfaces.is_empty(): return false
+	if not actor.source_avatar or actor.model.visible or actor.surface_material!=null or actor.model.material_override!=null or actor.motion_rig.surfaces.is_empty(): return false
 	for surface in actor.motion_rig.surfaces:
 		if not surface.is_visible_in_tree() or surface.mesh==null or surface.skin==null or surface.get_node_or_null(surface.skeleton)!=actor.motion_rig.skeleton: return false
 	return true
@@ -99,7 +105,19 @@ func source_peers_match(first: Node3D,second: Node3D,independent_materials: bool
 	for index in first.motion_rig.surfaces.size():
 		var a: MeshInstance3D=first.motion_rig.surfaces[index]
 		var b: MeshInstance3D=second.motion_rig.surfaces[index]
-		if a.name!=b.name or a.mesh!=b.mesh or a.skin!=b.skin: return false
+		var dynamic_a: bool=first.motion_rig.style!=null and first.motion_rig.style.has_method("motion_owns") and first.motion_rig.style.motion_owns(a)
+		var dynamic_b: bool=second.motion_rig.style!=null and second.motion_rig.style.has_method("motion_owns") and second.motion_rig.style.motion_owns(b)
+		if a.name!=b.name or dynamic_a!=dynamic_b or a.skin!=b.skin: return false
+		if dynamic_a:
+			if a.mesh==b.mesh or a.mesh.get_surface_count()!=b.mesh.get_surface_count(): return false
+			for slot in a.mesh.get_surface_count():
+				var left: Array=a.mesh.surface_get_arrays(slot)
+				var right: Array=b.mesh.surface_get_arrays(slot)
+				# Secondary detail owns only positions. Native topology, original
+				# four skin influences and UV material seams still agree exactly.
+				for channel in [Mesh.ARRAY_INDEX,Mesh.ARRAY_BONES,Mesh.ARRAY_WEIGHTS,Mesh.ARRAY_TEX_UV]:
+					if left[channel]!=right[channel]: return false
+		elif a.mesh!=b.mesh: return false
 		for slot in a.mesh.get_surface_count():
 			var material=a.get_active_material(slot)
 			var peer_material=b.get_active_material(slot)
@@ -107,3 +125,14 @@ func source_peers_match(first: Node3D,second: Node3D,independent_materials: bool
 			if independent_materials and (a.get_surface_override_material(slot)==null or b.get_surface_override_material(slot)==null or material==peer_material): return false
 			if material.albedo_texture!=peer_material.albedo_texture or material.normal_texture!=peer_material.normal_texture or material.roughness_texture!=peer_material.roughness_texture: return false
 	return true
+
+func actual_phase_materials(actor: Node3D) -> Dictionary:
+	var result: Dictionary={}
+	if not actor.source_avatar: return result
+	for part: MeshInstance3D in actor.motion_rig.motion_node.find_children("*","MeshInstance3D",true,false):
+		if not part.is_visible_in_tree(): continue
+		for slot in part.mesh.get_surface_count():
+			var material:=part.get_active_material(slot) as StandardMaterial3D
+			if material==null: return {}
+			result[material]=[material.albedo_color,material.emission,material.emission_enabled,material.emission_energy_multiplier,material.transparency]
+	return result

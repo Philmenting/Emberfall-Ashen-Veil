@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stream a continuous, ordinary Arcanist expedition into an MP4 and native evidence.
+"""Stream a continuous ordinary class expedition into an MP4 and native evidence.
 
 Godot renders its actual Main viewport. Every chronological PNG is encoded, but
 only bounded selected original frames are retained on disk. Fixed 30 Hz playback
@@ -9,6 +9,7 @@ PNG encoding and transport. Root must assign the exclusive native renderer slot.
 from __future__ import annotations
 
 import argparse
+import gzip
 import hashlib
 import json
 import math
@@ -46,7 +47,7 @@ def runtime_hashes(root: Path, additional_input_paths=()) -> dict[str, str]:
         if directory.is_dir():
             paths.update(path for path in directory.rglob(pattern) if path.is_file()
                          and not path.name.endswith((".import", ".uid"))
-                         and not path.name.startswith(("arcanist_T_", "ranger-native65_T_", "raider-native65_T_")))
+                         and not path.name.startswith(("arcanist_T_", "ranger-native65_T_", "raider-native65_T_", "male-clothing-native65_T_")))
     paths.update(root / "tests" / name for name in [
         "attack_gameplay_preview.gd", "arcanist_quality_gameplay_preview.gd",
         "arcanist_quality_gameplay_preview.tscn",
@@ -54,8 +55,24 @@ def runtime_hashes(root: Path, additional_input_paths=()) -> dict[str, str]:
     ])
     paths.add(Path(__file__).resolve())
     paths.update(Path(path).resolve() for path in additional_input_paths)
-    return {str(path.relative_to(root)): digest(path) for path in sorted(paths)
-            if path.is_file() and path.is_relative_to(root)}
+    hashes = {}
+    for path in sorted(paths):
+        if not path.is_file():
+            continue
+        if path.is_relative_to(root):
+            relative = str(path.relative_to(root))
+        elif path.parent.name == "tools" and path.name in ("capture_arcanist_quality.py", "capture_combat_quality.py"):
+            # A sparse historical production root can use this identical
+            # external capture runner. Bind its actual bytes explicitly;
+            # never let --root silently omit the executing fixture.
+            relative = "tools/" + path.name
+        else:
+            raise ValueError("An external runtime input has no disclosed fixture identity: " + str(path))
+        value = digest(path)
+        if relative in hashes and hashes[relative] != value:
+            raise ValueError("Conflicting physical files for one captured input: " + relative)
+        hashes[relative] = value
+    return hashes
 
 
 def receive_exact(connection: socket.socket, size: int, *, allow_eof: bool = False) -> bytes | None:
@@ -93,6 +110,18 @@ def verify_record(record: dict, frame: int, previous_clock: float) -> float:
     if not math.isclose(float(record["playback_seconds"]), frame / 30, abs_tol=0.0001):
         raise RuntimeError("The viewport playback clock is not a continuous 30 Hz sequence")
     return clock
+
+
+def verify_finite_state(value, path="frame") -> None:
+    """Reject nonfinite actual transforms/state, independently of engine assertions."""
+    if isinstance(value, float) and not math.isfinite(value):
+        raise RuntimeError("Nonfinite native capture state at " + path)
+    if isinstance(value, dict):
+        for key, child in value.items():
+            verify_finite_state(child, path + "." + str(key))
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            verify_finite_state(child, path + "[" + str(index) + "]")
 
 
 def verify_audio_record(record: dict, frame: int, previous_sample: int, sample_rate: int | None) -> tuple[int, int]:
@@ -166,6 +195,41 @@ def verify_prefix_summary(summary: dict, seconds: int, received_frames: int) -> 
         raise RuntimeError("An ordinary prefix must contain advancing gameplay without result settling")
 
 
+def verify_full_summary(summary: dict, received_frames: int) -> None:
+    """Completion requires an actual victory, guardian observation and recovered loot."""
+    if received_frames <= 0 or summary.get("frames") != received_frames:
+        raise RuntimeError("The full expedition frame count does not match its recording")
+    for key in ("complete", "simulation_finished", "won", "guardian_seen", "guardian_warning_seen"):
+        if summary.get(key) is not True:
+            raise RuntimeError("The full expedition lacks actual victory/guardian evidence: " + key)
+    if summary.get("settle_frames_recorded") != 90:
+        raise RuntimeError("The full expedition did not retain all 90 original ending frames")
+    if (summary.get("final_page") != "loot" or not summary.get("run_succeeded")
+            or not summary.get("run_boss_defeated") or not summary.get("recovered_loot")):
+        raise RuntimeError("The full expedition did not reach the real recovered-loot outcome")
+
+
+def compress_pcm(path: Path, expected_sha256: str) -> dict:
+    """Keep a lossless verified archive; never delete PCM until round-trip validation."""
+    destination = path.with_suffix(path.suffix + ".gz")
+    with path.open("rb") as source, destination.open("wb") as target:
+        with gzip.GzipFile(filename="", mode="wb", fileobj=target, mtime=0) as archive:
+            shutil.copyfileobj(source, archive)
+    value = hashlib.sha256()
+    restored = 0
+    with gzip.open(destination, "rb") as stream:
+        for block in iter(lambda: stream.read(65536), b""):
+            restored += len(block)
+            value.update(block)
+    if restored != path.stat().st_size or value.hexdigest() != expected_sha256:
+        raise RuntimeError("The lossless native PCM archive failed exact round-trip validation")
+    evidence = {"file": destination.name, "compressed_sha256": digest(destination),
+                "compressed_bytes": destination.stat().st_size, "uncompressed_bytes": restored,
+                "uncompressed_sha256": value.hexdigest(), "round_trip_verified": True}
+    path.unlink()
+    return evidence
+
+
 def write_json(path: Path, value: dict) -> None:
     path.write_text(json.dumps(value, indent=2) + "\n")
 
@@ -181,6 +245,12 @@ def main(argv=None, *, additional_input_paths=()) -> int:
                         help="Use a smaller limit only for a transport/fixture probe; incomplete recordings are labeled")
     parser.add_argument("--prefix-seconds", type=int, choices=range(20, 31),
                         help="Record an exact ordinary 20–30 second expedition prefix, explicitly unfinished")
+    parser.add_argument("--full", action="store_true",
+                        help="Require a continuous actual victory through the guardian and original recovered-loot UI")
+    parser.add_argument("--class", dest="character_class", choices=("Arcanist", "Ranger", "Vowkeeper"), default="Arcanist")
+    parser.add_argument("--bone-detail", choices=("all", "hero", "none"),
+                        help="Read-only pose metadata; full mode defaults to none, historical prefixes to all")
+    parser.add_argument("--compress-pcm", action="store_true", help="Archive original PCM losslessly after mux/decode validation")
     parser.add_argument("--timeout-seconds", type=float, default=7200.0,
                         help="Whole capture wall-clock deadline; software rendering can be much slower than playback")
     parser.add_argument("--exclusive-render-slot", action="store_true",
@@ -194,14 +264,18 @@ def main(argv=None, *, additional_input_paths=()) -> int:
         parser.error("Simulation limit must be in (0, 240] and the wall-clock timeout positive")
     if args.prefix_seconds is not None and args.max_simulation_seconds != 240.0:
         parser.error("Use either --prefix-seconds or a non-default --max-simulation-seconds probe")
+    if args.full and (args.prefix_seconds is not None or args.max_simulation_seconds != 240.0):
+        parser.error("--full cannot be combined with a prefix or a shortened simulation probe")
     simulation_limit = args.prefix_seconds or args.max_simulation_seconds
     prefix = args.prefix_seconds is not None
-    movie_name = f"ordinary-arcanist-first{args.prefix_seconds}s.mp4" if prefix else "ordinary-arcanist-complete.mp4"
-    fixture = "combat_quality_gameplay_preview" if prefix else "arcanist_quality_gameplay_preview"
+    class_slug = args.character_class.lower()
+    movie_name = f"ordinary-{class_slug}-first{args.prefix_seconds}s.mp4" if prefix else f"ordinary-{class_slug}-complete.mp4"
+    fixture = "combat_quality_gameplay_preview" if prefix or args.full else "arcanist_quality_gameplay_preview"
+    bone_detail = args.bone_detail or ("none" if args.full else "all")
     output = args.output.resolve()
     root = args.root.resolve()
     fixture_inputs = tuple(additional_input_paths)
-    if prefix:
+    if fixture == "combat_quality_gameplay_preview":
         fixture_inputs += (root / "tests" / (fixture + ".gd"), root / "tests" / (fixture + ".tscn"))
     if output.exists() and any(output.iterdir()):
         parser.error("Use a fresh output directory; existing evidence is never overwritten")
@@ -219,6 +293,9 @@ def main(argv=None, *, additional_input_paths=()) -> int:
         "maximum_simulation_seconds": simulation_limit,
         "recording_kind": "ordinary_expedition_prefix" if prefix else "ordinary_expedition",
         "mp4_file": movie_name,
+        "character_class": args.character_class,
+        "full_victory_required": args.full,
+        "bone_detail": bone_detail,
     }
     if prefix:
         receipt.update(prefix_seconds=args.prefix_seconds, prefix_frames=args.prefix_seconds * 30,
@@ -244,13 +321,18 @@ def main(argv=None, *, additional_input_paths=()) -> int:
             command = [args.godot, "--path", str(root), "--audio-driver", "Dummy",
                        "--resolution", "1200x536", "res://tests/" + fixture + ".tscn",
                        "--", "--capture-dir=" + str(output), "--stream-port=" + str(port),
-                       "--max-simulation-seconds=" + str(simulation_limit)]
+                       "--max-simulation-seconds=" + str(simulation_limit),
+                       "--capture-class=" + args.character_class, "--bone-detail=" + bone_detail]
+            if prefix:
+                command.append("--prefix-recording")
             xdg = output / "xdg"
             environment = os.environ.copy()
             environment.update(DISPLAY=args.display, XDG_DATA_HOME=str(xdg / "data"),
                                XDG_CONFIG_HOME=str(xdg / "config"), XDG_CACHE_HOME=str(xdg / "cache"))
             receipt["godot_command"] = command
             receipt["display"] = args.display
+            receipt["capture_runner_path"] = str(Path(__file__).resolve())
+            receipt["llvmpipe_thread_environment"] = environment.get("LP_NUM_THREADS")
             write_json(output / "receipt.json", receipt)
             process = subprocess.Popen(command, cwd=root, env=environment, stdin=subprocess.DEVNULL,
                                        stdout=engine_log, stderr=subprocess.STDOUT)
@@ -285,6 +367,7 @@ def main(argv=None, *, additional_input_paths=()) -> int:
                 if not line:
                     raise RuntimeError("A viewport frame has no flushed chronological metadata")
                 record = json.loads(line)
+                verify_finite_state(record)
                 simulation_clock = verify_record(record, frame_count, simulation_clock)
                 audio_sample_frames, audio_sample_rate = verify_audio_record(
                     record, frame_count, audio_sample_frames, audio_sample_rate)
@@ -293,7 +376,7 @@ def main(argv=None, *, additional_input_paths=()) -> int:
                     frame_size = dimensions
                 if dimensions != frame_size or dimensions != (1200, 536):
                     raise RuntimeError(f"Unexpected or changing viewport dimensions: {dimensions}")
-                reasons = selected_reasons(record, selected, combat_prefix=prefix)
+                reasons = selected_reasons(record, selected, combat_prefix=prefix or args.full)
                 if reasons:
                     if len(selected_frames) >= 64:
                         raise RuntimeError("The selected-frame evidence exceeded its bounded size")
@@ -316,6 +399,8 @@ def main(argv=None, *, additional_input_paths=()) -> int:
                 encoder.stdin.close()
             encoder_code = encoder.wait(timeout=120)
             engine_code = process.wait(timeout=30)
+            receipt["godot_process_exit"] = engine_code
+            receipt["ffmpeg_process_exit"] = encoder_code
             if encoder_code or engine_code:
                 raise RuntimeError(f"Native process or encoder failed: godot={engine_code}, ffmpeg={encoder_code}")
         summary = json.loads((output / "capture-summary.json").read_text())
@@ -323,6 +408,8 @@ def main(argv=None, *, additional_input_paths=()) -> int:
             raise RuntimeError("The final simulation summary does not match the encoded frame count")
         if prefix:
             verify_prefix_summary(summary, args.prefix_seconds, frame_count)
+        if args.full:
+            verify_full_summary(summary, frame_count)
         native_pcm = output / "native-game-audio.f32le"
         audio_summary = summary["audio"]
         if (native_pcm.stat().st_size != audio_sample_frames * 2 * 4
@@ -381,6 +468,9 @@ def main(argv=None, *, additional_input_paths=()) -> int:
                        frame_log_sha256=digest(output / "frames.jsonl"), continuous_simulation_verified=True)
         receipt.update(native_audio=audio_summary, native_pcm_sha256=digest(native_pcm),
                        encoded_audio=encoded_audio[0], continuous_audio_samples_verified=True)
+        receipt["ffmpeg_full_decode_exit"] = decode.returncode
+        if args.compress_pcm:
+            receipt["native_pcm_lossless_archive"] = compress_pcm(native_pcm, receipt["native_pcm_sha256"])
         write_json(output / "receipt.json", receipt)
         (output / "viewport-video-only.mp4").unlink()
         print("CAPTURE VERIFIED", receipt["status"], frame_count, "chronological frames;", output, flush=True)

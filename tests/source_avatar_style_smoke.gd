@@ -8,6 +8,7 @@ var failures: Array[String]=[]
 var probes: Array=[]
 var poses:=0
 var maximum_floor_shift:=0.0
+var native_readback:=false
 
 func check(value: bool,message: String) -> void:
 	checks+=1
@@ -75,14 +76,14 @@ func cache_actual_attire(rig: Variant,style: Variant) -> void:
 					var local=part.skin.get_bind_pose(bind)*vertices[index]
 					var restored=rig.skeleton.get_bone_global_rest(bone)*local
 					native_rest_valid=native_rest_valid and restored.distance_to(vertices[index])<.0001
-					influences.append([bone,local,weight])
+					influences.append([bone,part.skin.get_bind_pose(bind),weight])
 				if absf(total-1.0)>largest_weight_error:
 					largest_weight_error=absf(total-1.0)
 					largest_weight_vertex=String(part.name)+" vertex "+str(index)+" sum "+str(total)+" weights "+str([weights[index*4],weights[index*4+1],weights[index*4+2],weights[index*4+3]])
 				minimum_weight_sum=minf(minimum_weight_sum,total)
 				maximum_weight_sum=maxf(maximum_weight_sum,total)
 				weights_valid=weights_valid and absf(total-1.0)<=packed_sum_budget
-				probes.append({"mesh":String(part.name),"influences":influences})
+				probes.append({"mesh":String(part.name),"part":part,"slot":slot,"index":index,"influences":influences})
 	print("ACTUAL ATTIRE WEIGHTS: max normalization error=",largest_weight_error,"; missing binds=",missing_binds,"; wrong strides=",wrong_stride,"; minsum=",minimum_weight_sum,"; maxsum=",maximum_weight_sum,"; worst=",largest_weight_vertex)
 	check(indexed>1500,"Audit exercises real indexed added geometry, not sockets or proxy bounds")
 	check(weights_valid,"All four actual attire influences resolve and normalize within the measured UNORM16 four-influence precision budget")
@@ -94,9 +95,17 @@ func actual_attire_bounds(rig: Variant) -> AABB:
 	var result:=AABB()
 	var transforms: Array[Transform3D]=[]
 	for bone in rig.skeleton.get_bone_count():transforms.append(rig.skeleton.get_bone_global_pose(bone))
+	var actual_vertices: Dictionary={}
 	for record in probes:
+		var key=str(record.part.get_instance_id())+":"+str(record.slot)
+		if not actual_vertices.has(key):
+			# Read the renderer's current vertex region on every pose. Cached
+			# imported positions would omit the new secondary textile uploads.
+			var arrays: Array=record.part.mesh.surface_get_arrays(record.slot)
+			actual_vertices[key]=arrays[Mesh.ARRAY_VERTEX]
+		var vertex: Vector3=actual_vertices[key][record.index]
 		var point=Vector3.ZERO
-		for influence in record.influences:point+=(transforms[influence[0]]*influence[1])*influence[2]
+		for influence in record.influences:point+=(transforms[influence[0]]*influence[1]*vertex)*influence[2]
 		point=rig.motion_node.transform*point
 		if not point.is_finite():return AABB(Vector3(-INF,-INF,-INF),Vector3(INF,INF,INF))
 		result=AABB(point,Vector3.ZERO) if first else result.expand(point)
@@ -107,6 +116,7 @@ func audit_pose(actor: Node3D,label: String,time: float) -> void:
 	var rig=actor.motion_rig
 	rig.pose(label,time)
 	rig.apply_actor_postprocess(actor,label,time,0.0,true)
+	if native_readback:RenderingServer.force_sync()
 	var box=actual_attire_bounds(rig)
 	check(box.position.is_finite() and box.size.is_finite() and box.size.y<2.8 and box.size.x<3.0,label+": actually weighted attire stays finite and proportional")
 	check(box.position.y>=-.001,label+": actual cloth/metal clears the source floor, min_y="+str(box.position.y))
@@ -116,6 +126,15 @@ func audit_pose(actor: Node3D,label: String,time: float) -> void:
 	poses+=1
 
 func run() -> void:
+	native_readback=DisplayServer.get_name()!="headless" and not RenderingServer.get_video_adapter_name().is_empty()
+	if "--require-gpu" in OS.get_cmdline_user_args() and not native_readback:
+		push_error("Source style GPU verification requires an actual native GL/Vulkan renderer")
+		quit(1)
+		return
+	if not native_readback:
+		print("SOURCE AVATAR STYLE ORACLE: imported-surface readback only; Dummy secondary vertex-region updates are no-op")
+	else:
+		print("SOURCE AVATAR STYLE ORACLE: native renderer readback includes current secondary vertex-region uploads")
 	var actor=Actor.new();actor.kind="Arcanist";root.add_child(actor)
 	var peer=Actor.new();peer.kind="Arcanist";root.add_child(peer)
 	var rig=actor.motion_rig
@@ -132,7 +151,14 @@ func run() -> void:
 		var part: MeshInstance3D=style.accessories[index]
 		var other: MeshInstance3D=peer_style.accessories[index]
 		check(part.is_visible_in_tree() and part.layers==2 and part.get_node_or_null(part.skeleton)==rig.skeleton and part.skin!=null,String(part.name)+": actual renderer follows native skeleton")
-		check(part.mesh==other.mesh and part.skin==other.skin and part.get_active_material(0)!=other.get_active_material(0),String(part.name)+": immutable geometry is shared and visible materials are independent")
+		var dynamic: bool=style.motion_owns(part)
+		var peer_dynamic: bool=peer_style.motion_owns(other)
+		var mesh_ownership: bool=part.mesh!=other.mesh if dynamic else part.mesh==other.mesh
+		check(dynamic==peer_dynamic and mesh_ownership and part.skin==other.skin and part.get_active_material(0)!=other.get_active_material(0),String(part.name)+": immutable static geometry is shared; designated secondary buffers and visible materials remain independent")
+		if dynamic:
+			var a: Array=part.mesh.surface_get_arrays(0)
+			var b: Array=other.mesh.surface_get_arrays(0)
+			check(a[Mesh.ARRAY_INDEX]==b[Mesh.ARRAY_INDEX] and a[Mesh.ARRAY_BONES]==b[Mesh.ARRAY_BONES] and a[Mesh.ARRAY_WEIGHTS]==b[Mesh.ARRAY_WEIGHTS] and a[Mesh.ARRAY_TEX_UV]==b[Mesh.ARRAY_TEX_UV],String(part.name)+": independent secondary buffers preserve exact original topology, native weights and UV seams")
 	var material: StandardMaterial3D=style.accessories[0].get_active_material(0)
 	var peer_material: StandardMaterial3D=peer_style.accessories[0].get_active_material(0)
 	var original_color:=material.albedo_color

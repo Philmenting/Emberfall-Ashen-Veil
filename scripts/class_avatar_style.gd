@@ -5,11 +5,14 @@ extends RefCounted
 var accessories: Array[MeshInstance3D]=[]
 var triangle_count:=0
 var rig_ref: WeakRef
+const AttireMotion=preload("res://scripts/avatar_attire_motion.gd")
+var attire_motion: RefCounted
 static var armor_cache: Dictionary={}
 
 func apply(source_rig: RefCounted) -> void:
 	rig_ref=weakref(source_rig)
 	var rig=source_rig
+	attire_motion=AttireMotion.new();attire_motion.setup(rig)
 	var skin_material: StandardMaterial3D
 	for surface: MeshInstance3D in rig.surfaces:
 		for slot in surface.mesh.get_surface_count():
@@ -19,6 +22,11 @@ func apply(source_rig: RefCounted) -> void:
 				break
 	for surface: MeshInstance3D in rig.surfaces:
 		var name=String(surface.name)
+		if name in ["Female_Ranger_Arms","Female_Ranger_Body","Female_Ranger_Head_Hood","Female_Ranger_Body_Belt_1","Female_Ranger_Body_Belt_2"] or (rig.key=="Ranger" and name=="Female_Ranger_Arms_Bracer"):
+			AttireMotion.soften_textile(surface)
+		if name.contains("Hair_Buns"):attire_motion.add(surface,"hair")
+		elif name=="Female_Ranger_Head_Hood":attire_motion.add(surface,"hood")
+		elif name=="Female_Ranger_Body":attire_motion.add(surface,"tunic")
 		for slot in surface.mesh.get_surface_count():
 			var material=surface.get_active_material(slot) as StandardMaterial3D
 			if material==null:continue
@@ -34,8 +42,11 @@ func apply(source_rig: RefCounted) -> void:
 			elif name.contains("Eyes"):
 				material.roughness=.23
 			elif name.contains("Ranger") and not String(material.resource_name).contains("Regular_Female"):
-				material.albedo_color=Color(.39,.46,.36) if rig.key=="Ranger" else Color(.68,.22,.18)
-				material.roughness=.85
+				var leather=name.contains("Belt") or name.contains("Feet") or name.contains("Bracer")
+				material.albedo_color=Color(.43,.35,.27) if leather else (Color(.40,.47,.34) if rig.key=="Ranger" else Color(.64,.215,.18))
+				material.roughness=.66 if leather else .89
+				material.metallic=0.0;material.metallic_specular=.34 if leather else .22
+				material.normal_scale=.70 if leather else .48
 	if rig.key!="Vowkeeper":return
 	for surface: MeshInstance3D in rig.surfaces:
 		var name=String(surface.name)
@@ -90,8 +101,14 @@ func _shell(source: MeshInstance3D,region: int,label: String,color: Color,offset
 		rig.triangles=original_triangles
 
 func current_bounds() -> AABB:
-	# Accessory vertices were indexed directly into the rig's native boxes.
-	return AABB()
+	# Steel remains in the inherited boxes; secondary textile/hair gets its
+	# own bounded native-skin envelope without enlarging actor geometry.
+	return attire_motion.current_bounds() if attire_motion!=null else AABB()
+
+func update_motion(clip: String,time: float,disable: Variant=null) -> void:
+	if attire_motion!=null:attire_motion.update(clip,time,disable)
+
+func motion_owns(part: MeshInstance3D) -> bool:return attire_motion!=null and attire_motion.owns(part)
 
 func hem_floor_offset() -> float:return 0.0
 

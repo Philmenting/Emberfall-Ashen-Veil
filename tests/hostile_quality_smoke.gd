@@ -5,6 +5,7 @@ const Actor=preload("res://scripts/dungeon_actor.gd")
 const Rig=preload("res://scripts/character_rig.gd")
 const Style=preload("res://scripts/hostile_style.gd")
 const SourceSkin=preload("res://tests/source_avatar_skin.gd")
+const NATIVE_SURFACE_COUNTS={"raider":8,"hexer":11,"bulwark":14,"elite":13,"guardian_0":13,"guardian_1":12,"guardian_2":12,"guardian_3":13}
 var checks:=0
 var failures:=0
 
@@ -111,14 +112,11 @@ func run_checks() -> void:
 		print("HOSTILE_METRIC ",key," length=",max_length_error," bone=",length_bone," join=",max_continuity," max_emission=",max_emission)
 		actor.free()
 	var distinct:=true
-	var roles: Array[String]=["hexer","bulwark","elite","guardian_0"]
+	var roles: Array[String]=["raider","hexer","bulwark","elite","guardian_0"]
+	# Role comparisons use the same actual anatomical/world-facing landmarks
+	# normalized by figure height, including the actual held prop tip.
 	for index in roles.size()-1:
-		for other in range(index+1,roles.size()): distinct=distinct and pose_error(contacts[roles[index]],contacts[roles[other]])>.08
-	# The new Raider's native65 indices cannot be compared with legacy29
-	# local poses. Compare the same actual anatomical/world-facing landmarks
-	# after normalizing actor height instead of treating different ABIs as one.
-	for key in roles:
-		distinct=distinct and landmark_error(silhouettes["raider"],silhouettes[key])>.08
+		for other in range(index+1,roles.size()):distinct=distinct and landmark_error(silhouettes[roles[index]],silhouettes[roles[other]])>.08
 	check(distinct,"ordinary scavenger, caster, shield bearer, elite and Bell Warden contacts carry distinct native action silhouettes")
 	print("HOSTILE QUALITY SMOKE: %d checks, %d failures" % [checks,failures])
 	quit(1 if failures else 0)
@@ -134,14 +132,21 @@ func check_native_hostile(actor: Node3D) -> PackedVector3Array:
 	for original in originals:
 		var surface: MeshInstance3D=original[0]
 		for slot in surface.mesh.get_surface_count():actual_triangles+=surface.mesh.surface_get_arrays(slot)[Mesh.ARRAY_INDEX].size()/3
-	var profile=JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/raider056/raider-native65.json"))
+	var profile=JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/raider056/raider-native65.json" if key=="raider" else "res://assets/models/hostiles057/manifest.json"))
 	var lengths:=true; var scales:=true; var finite:=true; var grounded:=true
 	var identity:=true; var continuity:=true
 	var max_length_error:=0.0; var length_bone:=""; var max_continuity:=0.0
 	var silhouette:=PackedVector3Array()
-	check(rig.skeleton.get_bone_count()==65 and rig.surfaces.size()==8 and rig.weapon.get_child_count()>0 and actual_triangles==rig.rendered_triangles and actual_triangles==int(profile.total_visible_triangles) and actual_triangles<=20000,key+": complete original native65 male anatomy, clothing and indexed axe match the actual measured render budget")
+	var profile_valid: bool=actual_triangles==int(profile.total_visible_triangles) if key=="raider" else int(profile.native_bones)==65 and profile.weapons.has(key)
+	var triangle_budget:=20000 if key=="raider" else 40000
+	check(rig.skeleton.get_bone_count()==65 and rig.surfaces.size()==NATIVE_SURFACE_COUNTS[key] and rig.weapon.get_child_count()>0 and actual_triangles==rig.rendered_triangles and profile_valid and actual_triangles<=triangle_budget,key+": exact complete native65 male anatomy, role clothing/armor and indexed held prop match the actual measured render budget")
+	if key!="raider":
+		var prop_triangles:=0
+		for part: MeshInstance3D in rig.weapon.get_children():
+			for slot in part.mesh.get_surface_count():prop_triangles+=part.mesh.surface_get_arrays(slot)[Mesh.ARRAY_INDEX].size()/3
+		check(prop_triangles==int(profile.weapons[key].triangles),key+": actual indexed held role prop matches the independently built asset manifest")
 	for action in ["basic","skill","heavy"]:
-		var duration: float=rig.ATTACK_RECOVERY
+		var duration: float=rig.ATTACK_RECOVERY if key=="raider" else Style.recovery_seconds(key,action)
 		rig.pose("windup_"+action,1.0)
 		rig.apply_actor_postprocess(actor,"windup_"+action,1.0,0.0,true)
 		var contact: Array[Transform3D]=rig.capture_pose()
@@ -172,9 +177,9 @@ func check_native_hostile(actor: Node3D) -> PackedVector3Array:
 					identity=identity and original[0].mesh==original[1]
 					if original[2]!=null:identity=identity and original[0].skin==original[2]
 	check(lengths and scales and finite,key+": all native actions keep finite unit-scale joints and original anatomical child-chain lengths")
-	check(identity and actor.transform==world_before,key+": all eight body surfaces and actual rigid axe meshes remain immutable while the actor stays fixed")
-	check(continuity,key+": all65 joints and actual indexed axe contact join recovery continuously")
-	check(grounded,key+": actual indexed mixed-bind body, garments and rigid axe clear the floor across all action phases")
+	check(identity and actor.transform==world_before,key+": every actual clothed body/armor surface and rigid role prop remains immutable while the actor stays fixed")
+	check(continuity,key+": all65 joints and actual indexed prop contact join recovery continuously")
+	check(grounded,key+": actual indexed mixed-bind body, garments, armor and rigid role prop clear the floor across all action phases")
 	actor.last_clip="";actor.anticipation=.72;actor.animate(.10,false)
 	var prepared: Array[Transform3D]=rig.capture_pose()
 	actor.react_from(actor.position+Vector3(1,0,0),Vector3.ZERO,.8);actor.animate(.04,false)
@@ -196,16 +201,15 @@ func check_native_hostile(actor: Node3D) -> PackedVector3Array:
 			materials_valid=materials_valid and material!=null
 			if material==null:continue
 			var color: Color=material.albedo_color
-			materials_valid=materials_valid and color.r>=0.0 and color.g>=0.0 and color.b>=0.0 and maxf(color.r,maxf(color.g,color.b))<=1.0 and material.metallic>=0.0 and material.metallic<=1.0 and material.roughness>=0.0 and material.roughness<=1.0 and not material.emission_enabled and material.transparency==BaseMaterial3D.TRANSPARENCY_DISABLED
-			if original[2]!=null:materials_valid=materials_valid and material.albedo_texture!=null and material.normal_texture!=null
-	check(materials_valid,key+": original color/normal maps and opaque non-emissive PBR materials retain physically bounded pigments, metal and roughness")
+			materials_valid=materials_valid and color.r>=0.0 and color.g>=0.0 and color.b>=0.0 and maxf(color.r,maxf(color.g,color.b))<=1.0 and material.metallic>=0.0 and material.metallic<=1.0 and material.roughness>=0.0 and material.roughness<=1.0 and (not material.emission_enabled or material.emission_energy_multiplier<=.600001) and material.transparency==BaseMaterial3D.TRANSPARENCY_DISABLED
+			if original[2]!=null:materials_valid=materials_valid and not material.emission_enabled
+			if original[2]!=null and not String(surface.name).begins_with("Hostile057_"):materials_valid=materials_valid and material.albedo_texture!=null and material.normal_texture!=null
+	check(materials_valid,key+": original source color/normal maps and opaque PBR retain bounded pigments, metal, roughness and restrained prop-only emission")
 	print("HOSTILE_METRIC ",key," length=",max_length_error," bone=",length_bone," join=",max_continuity," actual_triangles=",rig.rendered_triangles)
 	return silhouette
 
 func native_floor(rig: RefCounted) -> float:
-	var minimum:=SourceSkin.actual_bounds(rig).position.y
-	for point in rig.weapon_points:minimum=minf(minimum,(rig.motion_node.transform*(rig.weapon.transform*point)).y)
-	return minimum
+	return SourceSkin.actual_figure_bounds(rig).position.y
 
 func contact_landmarks(actor: Node3D) -> PackedVector3Array:
 	var rig: RefCounted=actor.motion_rig

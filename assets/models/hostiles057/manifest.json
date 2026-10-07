@@ -1,0 +1,216 @@
+{
+  "outfit": {
+    "bytes": 2383964,
+    "sha256": "7e22257441e5db1eba78390991375956569d433f847b4c9526c2fb1c7025c2b8"
+  },
+  "native_bones": 65,
+  "original_rest_identical_to_raider056": true,
+  "cloth_parts": [
+    {
+      "name": "Male_Ranger_Acc_Pauldron",
+      "triangles": 1376,
+      "used_vertices": 1092,
+      "geometry_normals_uv_weights_unchanged": true
+    },
+    {
+      "name": "Male_Ranger_Arms",
+      "triangles": 1382,
+      "used_vertices": 862,
+      "geometry_normals_uv_weights_unchanged": false,
+      "wrist_glove_clip": {
+        "wrist_cuff_original_rest_x_m": 0.6731998663999016,
+        "source_triangles": 3048,
+        "discarded_overlapping_glove_triangles": 1698,
+        "clipped_boundary_source_triangles": 66,
+        "retained_source_normals_uvs_skin_weights_unchanged": true,
+        "source_sleeve_position_normal_outset_m": 0.004,
+        "cut_edge_attributes_interpolated_from_original": true,
+        "original_body_hands_and_binds_unchanged": true
+      }
+    },
+    {
+      "name": "Male_Ranger_Arms_Bracer",
+      "triangles": 3636,
+      "used_vertices": 4000,
+      "geometry_normals_uv_weights_unchanged": true
+    },
+    {
+      "name": "Male_Ranger_Body",
+      "triangles": 2998,
+      "used_vertices": 2825,
+      "geometry_normals_uv_weights_unchanged": true
+    },
+    {
+      "name": "Male_Ranger_Body_Belt_1",
+      "triangles": 804,
+      "used_vertices": 928,
+      "geometry_normals_uv_weights_unchanged": true
+    },
+    {
+      "name": "Male_Ranger_Head_Hood",
+      "triangles": 2136,
+      "used_vertices": 1240,
+      "geometry_normals_uv_weights_unchanged": true
+    },
+    {
+      "name": "Male_Ranger_Legs",
+      "triangles": 1128,
+      "used_vertices": 644,
+      "geometry_normals_uv_weights_unchanged": true
+    }
+  ],
+  "cloth_triangles": 13460,
+  "outfit_texture_limit": 512,
+  "weapons": {
+    "hexer": {
+      "bytes": 200360,
+      "sha256": "c94101c59d0e187aa43da82a27f41aabd41f483c7e1abe383b2f80195e23a07f",
+      "triangles": 7874,
+      "original_project_model": "assets/models/hexer.glb",
+      "original_project_model_sha256": "c48900e153631c55625dcfabf9f372e8c9cc228c84b5b35a256694a2d1769d9c",
+      "runtime_uniform_scale": 0.55,
+      "grip_source_point": [
+        0,
+        0.035,
+        0
+      ],
+      "runtime_grip_circumradius_m": 0.018,
+      "runtime_fit_halfspan_m": 0.065,
+      "runtime_taper_halfspan_m": 0.1,
+      "provenance": "Existing Emberfall project-generated role prop; not a newly sourced Quaternius weapon"
+    },
+    "bulwark": {
+      "bytes": 32408,
+      "sha256": "22d5d48c6689d20362263dd803c05f11d7ac995d699f05ca2d502e673987839d",
+      "triangles": 988,
+      "original_project_model": "assets/models/bulwark.glb",
+      "original_project_model_sha256": "ff786ffdbf7778baf360e0f8e0f5f5ee33bb9381fdb8426b8ec6cdc15808fcd7",
+      "runtime_uniform_scale": 0.55,
+      "grip_source_point": [
+        0,
+        0.035,
+        0
+      ],
+      "runtime_grip_circumradius_m": 0.018,
+      "runtime_fit_halfspan_m": 0.065,
+      "runtime_taper_halfspan_m": 0.1,
+      "provenance": "Existing Emberfall project-generated role prop; not a newly sourced Quaternius weapon"
+    },
+    "elite": {
+      "bytes": 32192,
+      "sha256": "130909f79f951cac28f16dca94bc0d22c818d7198b512b9d73000086229ab0c5",
+      "triangles": 988,
+      "original_project_model": "assets/models/elite.glb",
+      "original_project_model_sha256": "7b141bbda58a091cb93e25a33a8d747e63a6aaedc82897fe42699cb64914e31d",
+      "runtime_uniform_scale": 0.55,
+      "grip_source_point": [
+        0,
+        0.035,
+        0
+      ],
+      "runtime_grip_circumradius_m": 0.018,
+      "runtime_fit_halfspan_m": 0.065,
+      "runtime_taper_halfspan_m": 0.1,
+      "provenance": "Existing Emberfall project-generated role prop; not a newly sourced Quaternius weapon"
+    },
+    "guardian_0": {
+      "bytes": 86728,
+      "sha256": "03a9db65e0eda7549111968d2e4c6e1148bf0d36d0181416afb53c0953458b7c",
+      "triangles": 3368,
+      "original_project_model": "assets/models/guardian_0.glb",
+      "original_project_model_sha256": "7de00eef14fe8d0fae29b6e970246bca11c12a3bf06e994d2ef76982d58896ee",
+      "runtime_uniform_scale": 0.55,
+      "grip_source_point": [
+        0,
+        0.035,
+        0
+      ],
+      "runtime_grip_circumradius_m": 0.018,
+      "runtime_fit_halfspan_m": 0.065,
+      "runtime_taper_halfspan_m": 0.1,
+      "provenance": "Existing Emberfall project-generated role prop; not a newly sourced Quaternius weapon"
+    },
+    "guardian_1": {
+      "bytes": 188992,
+      "sha256": "db5c8ce6a1fc899cfd2b65d8c01fe1f44b597a52d9da76a946d3b0ebf1a8b280",
+      "triangles": 7384,
+      "original_project_model": "assets/models/guardian_1.glb",
+      "original_project_model_sha256": "1daa250cc71f41b8247546ad26ae71b42d09a4810efe776a2680961269b183af",
+      "runtime_uniform_scale": 0.55,
+      "grip_source_point": [
+        0,
+        0.035,
+        0
+      ],
+      "runtime_grip_circumradius_m": 0.018,
+      "runtime_fit_halfspan_m": 0.065,
+      "runtime_taper_halfspan_m": 0.1,
+      "provenance": "Existing Emberfall project-generated role prop; not a newly sourced Quaternius weapon"
+    },
+    "guardian_2": {
+      "bytes": 181068,
+      "sha256": "65d072cc6b598a59715f2499ada328ea3a174872fcb4c0bae000fd469818ab81",
+      "triangles": 7062,
+      "original_project_model": "assets/models/guardian_2.glb",
+      "original_project_model_sha256": "d4bb78e8232e072b29aa86150d79dcbae0072d9d2fa58f9513b5cdac9576d150",
+      "runtime_uniform_scale": 0.55,
+      "grip_source_point": [
+        0,
+        0.035,
+        0
+      ],
+      "runtime_grip_circumradius_m": 0.018,
+      "runtime_fit_halfspan_m": 0.065,
+      "runtime_taper_halfspan_m": 0.1,
+      "provenance": "Existing Emberfall project-generated role prop; not a newly sourced Quaternius weapon"
+    },
+    "guardian_3": {
+      "bytes": 32460,
+      "sha256": "6d4b5d9716517a863c79f0e28e8cd543e410b012ae9e86c13205dd270a109ce8",
+      "triangles": 1012,
+      "original_project_model": "assets/models/guardian_3.glb",
+      "original_project_model_sha256": "a2c8758fd2746d009acd1daeb433988781c1959391c39bccc7e5e4cd5bce590e",
+      "runtime_uniform_scale": 0.55,
+      "grip_source_point": [
+        0,
+        0.035,
+        0
+      ],
+      "runtime_grip_circumradius_m": 0.018,
+      "runtime_fit_halfspan_m": 0.065,
+      "runtime_taper_halfspan_m": 0.1,
+      "provenance": "Existing Emberfall project-generated role prop; not a newly sourced Quaternius weapon"
+    }
+  },
+  "source_files": {
+    "/workspace/scratch/emberfall-character-source-052/modular-character-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/T_Ranger_Normal.png": "dd64da2af3180f0c8f0b721cfc5f0d2720c351b97da8285c6cf49e7717c84147",
+    "/workspace/scratch/emberfall-character-source-052/modular-character-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/T_Ranger_BaseColor.png": "846ef2170b04ee584ad83bb8a1e86dab57a9a43b1193204505912c274d949925",
+    "/workspace/scratch/emberfall-character-source-052/modular-character-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/T_Ranger_ORM.png": "aca03d2fba12508ef07d5968ca22267fb207ea26ae898b6b2def8a296bd44f1c",
+    "/workspace/scratch/quaternius-uam-inspection/extracted/Universal Animation Library[Standard]/Unreal-Godot/UAL1_Standard.glb": "69591853d817488edaa8fd9bf8fc1d821eaeaf789f8627b3cd23b41c4ed67997",
+    "/workspace/scratch/quaternius-uam-inspection/universal-animation-library-2/extracted/Universal Animation Library 2[Standard]/Unreal-Godot/UAL2_Standard.glb": "8cee20ab1bc55130092447e810e26df22dd2803eccc54f52137a7d54d7ab88a8",
+    "/workspace/scratch/emberfall-character-source-052/modular-character-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Male_Ranger.gltf": "e1033a212332d84d98c19bc4927c621635478d0aa15d13c79da68d3ba9e0196f",
+    "/workspace/scratch/emberfall-character-source-052/modular-character-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Male_Ranger.bin": "5bbb0d42cb324c6c27ce00417e68a876d92978f07d161f83590f0d7c0570eff6",
+    "/workspace/scratch/emberfall-character-source-052/modular-character-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Male_Peasant.gltf": "8f5a6cf6c1cf96e0a0f8e1a861b4245d42b7f88d44e5076da3d48f3fc52f4e76",
+    "assets/models/raider056/raider-native65.glb": "8a89cbeb87691222f80a522145e7203139483adba17cd85edd0adff369da59b4",
+    "assets/models/raider056/axe-grip.json": "966c0d7a5484e64e5e371cb4386c93fd7026bf9fa3fc4b9b7f9c5e71d8c4dc9d",
+    "assets/models/hexer.glb": "c48900e153631c55625dcfabf9f372e8c9cc228c84b5b35a256694a2d1769d9c",
+    "assets/models/bulwark.glb": "ff786ffdbf7778baf360e0f8e0f5f5ee33bb9381fdb8426b8ec6cdc15808fcd7",
+    "assets/models/elite.glb": "7b141bbda58a091cb93e25a33a8d747e63a6aaedc82897fe42699cb64914e31d",
+    "assets/models/guardian_0.glb": "7de00eef14fe8d0fae29b6e970246bca11c12a3bf06e994d2ef76982d58896ee",
+    "assets/models/guardian_1.glb": "1daa250cc71f41b8247546ad26ae71b42d09a4810efe776a2680961269b183af",
+    "assets/models/guardian_2.glb": "d4bb78e8232e072b29aa86150d79dcbae0072d9d2fa58f9513b5cdac9576d150",
+    "assets/models/guardian_3.glb": "a2c8758fd2746d009acd1daeb433988781c1959391c39bccc7e5e4cd5bce590e",
+    "assets/models/raider056/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/raider056/BASE-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/raider056/ANIMATION1-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/raider056/ANIMATION2-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061"
+  },
+  "animations": [
+    "Spell_Simple_Enter",
+    "Spell_Simple_Idle_Loop",
+    "Spell_Simple_Shoot",
+    "Sword_Block",
+    "Sword_Regular_C"
+  ],
+  "scope": "One shared original cloth asset; existing verified original male head/hands/boots shared at runtime. Cloth replaces Peasant cloth, not an overlapping second tunic. Ranger glove ends cut10mm before original wrist to expose verified hands; sleeve positions move4mm along original normals to clear coplanar bare forearms. Retained sleeve normals, UVs and skin weights preserve source attributes and new cuff-edge attributes interpolate originals. All other cloth geometry, body anatomy, native rest and binds remain unchanged. Project prop grip fitted separately."
+}

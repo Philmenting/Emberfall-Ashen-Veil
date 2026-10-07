@@ -23,35 +23,69 @@ func actual_boot_floors(rig: RefCounted) -> Vector2:
 		low[probe.side]=minf(low[probe.side],point.y)
 	return low
 
-func check_native_sword_boot_support(hero: Node3D) -> void:
+func check_native_sword_boot_support(hero: Node3D,action: String="basic") -> void:
 	var rig: RefCounted=hero.motion_rig
 	var feet: Array[int]=[rig.skeleton.find_bone("foot_l"),rig.skeleton.find_bone("foot_r")]
 	check(hero.source_avatar and rig.skeleton.get_bone_count()==65 and feet[0]>=0 and feet[1]>=0,"sword support uses both named native65 boots")
 	var reference:=Actor.new();root.add_child(reference)
 	var source: RefCounted=reference.motion_rig
-	var release: float=source.player.get_animation("Sword_Regular_A").length*.62
-	var original_motion:=true
+	var source_clip: String="Sword_Regular_A" if action=="basic" else ("Sword_Regular_B" if action=="skill" else "Sword_Regular_C")
+	var release: float=source.player.get_animation(source_clip).length*(.62 if action=="basic" else (.56 if action=="skill" else .67))
+	source._sample("Sword_Idle",0.0)
+	var guard: Array[Transform3D]=[]
+	for side in 2:guard.append(source.skeleton.get_bone_global_pose(source.skeleton.find_bone("foot_l" if side==0 else "foot_r")))
+	# Earlier direction assertions deliberately leave a turn in progress.
+	# Begin this independent stance fixture already facing its held target.
+	hero.rotation.y=hero.desired_yaw
+	var anchor: Vector3=hero.global_position
+	var planted: Array[Vector3]=[]
+	var guard_support:=true
 	var clearance:=true
 	var starts:=Vector2.ZERO
 	var peak:=Vector2.ZERO
-	var path: Array[Vector3]=[]
+	var original_starts:=Vector2.ZERO
+	var original_peak:=Vector2.ZERO
+	var original_path: Array[Vector3]=[]
+	var max_world_drift:=0.0
+	var hip_start:=0.0
+	var hip_low:=INF
+	var hip_high:=-INF
+	var hip_curve: Array[float]=[]
+	var pelvis: int=rig.skeleton.find_bone("pelvis")
 	for sample in range(31):
 		var phase:=float(sample)/30.0
-		hero.sync_attack(hero.attack_duration*(1.0-phase));hero.animate(0.0,false)
-		# Read the unmodified artist sample independently of the production
-		# actor's clip selector, blending, floor offset and weapon posing.
-		source._sample("Sword_Regular_A",release*phase)
+		# A fresh committed cast needs real elapsed blend time; zero-delta
+		# redraws would hold its initial native transition at amount=0.
+		hero.sync_attack(hero.attack_duration*(1.0-phase))
+		hero.animate(0.0 if sample==0 else hero.attack_duration/30.0,false)
+		# Preserve the original two-boot hop as an independent source oracle.
+		# Direct native sampling bypasses production selection, blending and IK.
+		source._sample(source_clip,release*phase)
+		var original_floor:=actual_boot_floors(source)
+		if sample==0:original_starts=original_floor
+		original_peak=Vector2(maxf(original_peak.x,original_floor.x),maxf(original_peak.y,original_floor.y))
+		original_path.append(source._point("foot_l"));original_path.append(source._point("foot_r"))
 		for side in 2:
-			original_motion=original_motion and rig.skeleton.get_bone_global_pose(feet[side]).is_equal_approx(source.skeleton.get_bone_global_pose(source.skeleton.find_bone("foot_l" if side==0 else "foot_r")))
+			var foot: Transform3D=rig.skeleton.get_bone_global_pose(feet[side])
+			guard_support=guard_support and foot.is_equal_approx(guard[side])
+			var actual_world: Vector3=rig.skeleton.to_global(foot.origin)
+			if sample==0:planted.append(actual_world)
+			max_world_drift=maxf(max_world_drift,actual_world.distance_to(planted[side]))
 		var floor:=actual_boot_floors(rig)
-		if sample==0:starts=floor
+		if sample==0:starts=floor;hip_start=rig.skeleton.to_global(rig.skeleton.get_bone_global_pose(pelvis).origin).y
 		peak=Vector2(maxf(peak.x,floor.x),maxf(peak.y,floor.y))
+		var actual_hip: float=rig.skeleton.to_global(rig.skeleton.get_bone_global_pose(pelvis).origin).y
+		hip_low=minf(hip_low,actual_hip);hip_high=maxf(hip_high,actual_hip);hip_curve.append(actual_hip)
 		clearance=clearance and floor.is_finite() and minf(floor.x,floor.y)>=.0029
-		path.append(rig._point("foot_l"));path.append(rig._point("foot_r"))
-	check(original_motion,"both actual native feet follow the original artist Sword A transforms throughout preparation")
-	# Sword A contains a two-boot hop, not the former synthetic one-boot
-	# lunge. Preserve its real weight movement and measure its visible soles.
-	check(peak.x>starts.x+.10 and peak.y>starts.y+.10 and path[0].distance_to(path[-2])>.25 and path[1].distance_to(path[-1])>.20,"the original sword hop lifts both actually weighted boots and carries both native feet through the cut")
+	if action=="basic":check(original_peak.x>original_starts.x+.10 and original_peak.y>original_starts.y+.10 and original_path[0].distance_to(original_path[-2])>.25 and original_path[1].distance_to(original_path[-1])>.20,"the independently sampled original Sword A still lifts both weighted boots over 10 cm and preserves its complete native travelling foot paths")
+	check(guard_support,"the production sword preparation holds both actual native SwordIdle Foot transforms while the original source supplies the upper-body cut")
+	if action=="basic":
+		check(hip_start-hip_low>.005,"the production basic preparation lowers the actual pelvis over 5 mm from its already committed chamber above planted support")
+	else:
+		# B/C begin below their subsequent chamber. Retain the same physical
+		# 5 mm movement criterion over their measured preparation curve.
+		check(hip_high-hip_low>.005,"the actual "+action+" preparation moves its pelvis through over 5 mm above planted support")
+	var recovery_guard:=true
 	var contact: Array[Transform3D]=[]
 	for foot in feet:contact.append(rig.skeleton.get_bone_global_pose(foot))
 	hero.release_attack()
@@ -62,10 +96,20 @@ func check_native_sword_boot_support(hero: Node3D) -> void:
 		hero.animate(.34/30.0,false)
 		var floor:=actual_boot_floors(rig)
 		clearance=clearance and floor.is_finite() and minf(floor.x,floor.y)>=.0029
+		for side in 2:
+			var foot: Transform3D=rig.skeleton.get_bone_global_pose(feet[side])
+			recovery_guard=recovery_guard and foot.is_equal_approx(guard[side])
+			max_world_drift=maxf(max_world_drift,rig.skeleton.to_global(foot.origin).distance_to(planted[side]))
 	var landed:=actual_boot_floors(rig)
-	check(clearance,"all actual weighted sword soles clear the floor throughout the complete hop and recovery")
-	check(minf(landed.x,landed.y)<=.0031 and landed.x<.02 and landed.y<.02 and peak.x-landed.x>.10 and peak.y-landed.y>.10,"the complete native sword recovery lands a real support sole at 3 mm and returns both boots to their grounded guard")
-	print("NATIVE SWORD SUPPORT: start=",starts," peak=",peak," landed=",landed," foot_l travel=",path[0].distance_to(path[-2])," foot_r travel=",path[1].distance_to(path[-1]))
+	var returned:=true
+	for side in 2:returned=returned and rig.skeleton.get_bone_global_pose(feet[side]).is_equal_approx(guard[side])
+	check(recovery_guard,"each actual intermediate "+action+" recovery retains both original native SwordIdle Foot transforms")
+	check(max_world_drift<.008 and hero.global_position.is_equal_approx(anchor),"both actual sword feet remain within 8 mm of their world stance throughout preparation and recovery without moving the simulation actor")
+	check(clearance,"all actual weighted production sword soles clear 2.9 mm throughout the complete planted preparation and recovery")
+	check(minf(landed.x,landed.y)<=.0031 and landed.x<.02 and landed.y<.02 and returned,"the complete native sword recovery returns both actual Foot transforms to guard with a real support sole at 3 mm and both boots below 20 mm")
+	print("NATIVE SWORD SUPPORT ",action,": start=",starts," peak=",peak," landed=",landed," max_world_stance_drift=",max_world_drift," initial_to_low_hip_delta=",hip_start-hip_low," actual_preparation_hip_range=",hip_high-hip_low)
+	print("ACTUAL SWORD HIP CURVE ",action," phase=i/30: ",hip_curve)
+	print("ORIGINAL NATIVE SWORD SOURCE ",action,": start=",original_starts," peak=",original_peak," foot_l travel=",original_path[0].distance_to(original_path[-2])," foot_r travel=",original_path[1].distance_to(original_path[-1]))
 	reference.free()
 
 func run_checks() -> void:
@@ -78,6 +122,11 @@ func run_checks() -> void:
 	hero.face_toward(Vector3(-1,0,0))
 	check(hero.desired_yaw==cast_yaw,"an in-flight cast holds its target orientation")
 	check_native_sword_boot_support(hero)
+	for action in ["skill","heavy"]:
+		var support:=Actor.new();root.add_child(support)
+		support.strike("signature" if action=="skill" else "sunder",.5,true)
+		check_native_sword_boot_support(support,action)
+		support.free()
 	hero.animate(.07,false); hero.strike("sunder",.10,true); hero.sync_attack(.085); hero.animate(.008,false)
 	check(hero.external_release and hero.release_time<0.0 and hero.release_attack(),"a following real cast owns its countdown even during recovery")
 	hero.animate(.5,false); hero.strike("basic",.4,true); hero.retreat(); hero.animate(.15,true,2.0)
