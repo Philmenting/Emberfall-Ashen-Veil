@@ -1,0 +1,116 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Rendered indexed original faceted axe grip fits actual18mm circumradius male finger aperture; radii 0.01705035753548 / 0.02122112549841
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_axe_mesh (res://tests/raider_native_smoke.gd:169)
+       [2] run (res://tests/raider_native_smoke.gd:189)
+ERROR: Native idle 0.0: contact uses eight actual indexed wooden shaft facets over the entire hand band
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:64)
+       [2] run (res://tests/raider_native_smoke.gd:192)
+ERROR: Native idle 0.5: contact uses eight actual indexed wooden shaft facets over the entire hand band
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:64)
+       [2] run (res://tests/raider_native_smoke.gd:192)
+ERROR: Native walk 0.0: contact uses eight actual indexed wooden shaft facets over the entire hand band
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:64)
+       [2] run (res://tests/raider_native_smoke.gd:192)
+ERROR: Native walk 0.25: contact uses eight actual indexed wooden shaft facets over the entire hand band
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:64)
+       [2] run (res://tests/raider_native_smoke.gd:192)
+ERROR: Native walk 0.5: contact uses eight actual indexed wooden shaft facets over the entire hand band
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:64)
+       [2] run (res://tests/raider_native_smoke.gd:192)
+ERROR: Native walk 0.75: contact uses eight actual indexed wooden shaft facets over the entire hand band
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:64)
+       [2] run (res://tests/raider_native_smoke.gd:192)
+ERROR: Native windup_jab 0.0: contact uses eight actual indexed wooden shaft facets over the entire hand band
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:64)
+       [2] run (res://tests/raider_native_smoke.gd:192)
+ERROR: Native windup_jab 0.25: contact uses eight actual indexed wooden shaft facets over the entire hand band
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:64)
+       [2] run (res://tests/raider_native_smoke.gd:192)
+ERROR: Native windup_jab 0.65: contact uses eight actual indexed wooden shaft facets over the entire hand band
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:64)
+       [2] run (res://tests/raider_native_smoke.gd:192)
+ERROR: Native windup_jab 1.0: contact uses eight actual indexed wooden shaft facets over the entire hand band
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:64)
+       [2] run (res://tests/raider_native_smoke.gd:192)
+ERROR: Native recover_jab 0.0: contact uses eight actual indexed wooden shaft facets over the entire hand band
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:64)
+       [2] run (res://tests/raider_native_smoke.gd:192)
+ERROR: Native recover_jab 0.08: contact uses eight actual indexed wooden shaft facets over the entire hand band
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:64)
+       [2] run (res://tests/raider_native_smoke.gd:192)
+ERROR: Native recover_jab 0.17: contact uses eight actual indexed wooden shaft facets over the entire hand band
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:64)
+       [2] run (res://tests/raider_native_smoke.gd:192)
+ERROR: Native recover_jab 0.3: contact uses eight actual indexed wooden shaft facets over the entire hand band
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:64)
+       [2] run (res://tests/raider_native_smoke.gd:192)
+ERROR: Production authored Hit_Chest overlay: contact uses eight actual indexed wooden shaft facets over the entire hand band
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:64)
+       [2] run (res://tests/raider_native_smoke.gd:210)
+RAIDER_NATIVE_SMOKE checks=316 failures=16 poses=15 max_finger_gap_m=0.0 max_penetration_m=0.00080012607574 max_actual_thumb_gap_m=0.00025786049082
+RAIDER NATIVE SMOKE: 316 checks, 16 failures
+FAIL Rendered indexed original faceted axe grip fits actual18mm circumradius male finger aperture; radii 0.01705035753548 / 0.02122112549841
+FAIL Native idle 0.0: contact uses eight actual indexed wooden shaft facets over the entire hand band
+FAIL Native idle 0.5: contact uses eight actual indexed wooden shaft facets over the entire hand band
+FAIL Native walk 0.0: contact uses eight actual indexed wooden shaft facets over the entire hand band
+FAIL Native walk 0.25: contact uses eight actual indexed wooden shaft facets over the entire hand band
+FAIL Native walk 0.5: contact uses eight actual indexed wooden shaft facets over the entire hand band
+FAIL Native walk 0.75: contact uses eight actual indexed wooden shaft facets over the entire hand band
+FAIL Native windup_jab 0.0: contact uses eight actual indexed wooden shaft facets over the entire hand band
+FAIL Native windup_jab 0.25: contact uses eight actual indexed wooden shaft facets over the entire hand band
+FAIL Native windup_jab 0.65: contact uses eight actual indexed wooden shaft facets over the entire hand band
+FAIL Native windup_jab 1.0: contact uses eight actual indexed wooden shaft facets over the entire hand band
+FAIL Native recover_jab 0.0: contact uses eight actual indexed wooden shaft facets over the entire hand band
+FAIL Native recover_jab 0.08: contact uses eight actual indexed wooden shaft facets over the entire hand band
+FAIL Native recover_jab 0.17: contact uses eight actual indexed wooden shaft facets over the entire hand band
+FAIL Native recover_jab 0.3: contact uses eight actual indexed wooden shaft facets over the entire hand band
+FAIL Production authored Hit_Chest overlay: contact uses eight actual indexed wooden shaft facets over the entire hand band

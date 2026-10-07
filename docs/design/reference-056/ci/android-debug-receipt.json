@@ -1,0 +1,171 @@
+{
+  "schema": 1,
+  "observed_at": "2026-10-07T05:59:43.444417+00:00",
+  "source_commit": "5e72fc6fad38f7dc829d313d8df0de8289f52573",
+  "actual_checkout_commit": "750cb2e6660623a60fc436ec732ce046b211253e",
+  "workflow": "Android Debug APK",
+  "workflow_run": 37576383412,
+  "job_id": 112646109710,
+  "run_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37576383412",
+  "job_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37576383412/job/112646109710",
+  "run_conclusion": "success",
+  "job_conclusion": "success",
+  "python_test_runs": [
+    34
+  ],
+  "suites": [
+    {
+      "suite": "Z DUNGEON SMOKE",
+      "checks": 55,
+      "failures": 0
+    },
+    {
+      "suite": "Z PERSISTENCE SMOKE",
+      "checks": 89,
+      "failures": 0
+    },
+    {
+      "suite": "Z FELLOWSHIP UI SMOKE",
+      "checks": 11,
+      "failures": 0
+    },
+    {
+      "suite": "Z COMBAT MOVEMENT SMOKE",
+      "checks": 8,
+      "failures": 0
+    },
+    {
+      "suite": "Z BETA FLOW SMOKE",
+      "checks": 46,
+      "failures": 0
+    },
+    {
+      "suite": "Z COMBAT STANCES SMOKE",
+      "checks": 140,
+      "failures": 0
+    },
+    {
+      "suite": "Z RECOVERY SMOKE",
+      "checks": 48,
+      "failures": 0
+    },
+    {
+      "suite": "Z COMBINED OATHS / PHASES SMOKE",
+      "checks": 338,
+      "failures": 0
+    },
+    {
+      "suite": "Z CHARACTER EQUIPMENT SMOKE",
+      "checks": 38,
+      "failures": 0
+    },
+    {
+      "suite": "Z CHARACTER THREE D SMOKE",
+      "checks": 144,
+      "failures": 0
+    },
+    {
+      "suite": "Z PRESENTATION SMOKE",
+      "checks": 91,
+      "failures": 0
+    },
+    {
+      "suite": "Z MAIN COMBINED RULES SMOKE",
+      "checks": 156,
+      "failures": 0
+    },
+    {
+      "suite": "Z CAMP HUD SMOKE",
+      "checks": 44,
+      "failures": 0
+    },
+    {
+      "suite": "Z WORLD FRAMING SMOKE",
+      "checks": 900,
+      "failures": 0
+    },
+    {
+      "suite": "Z AUTHORED ART SMOKE",
+      "checks": 105,
+      "failures": 0
+    },
+    {
+      "suite": "Z REGIONS SMOKE",
+      "checks": 36,
+      "failures": 0
+    },
+    {
+      "suite": "Z GEAR / FORECAST SMOKE",
+      "checks": 38,
+      "failures": 0
+    },
+    {
+      "suite": "Z ONBOARDING SMOKE",
+      "checks": 19,
+      "failures": 0
+    },
+    {
+      "suite": "Z OPTIONS SMOKE",
+      "checks": 82,
+      "failures": 0
+    },
+    {
+      "suite": "Z CLOUD IDENTITY SMOKE",
+      "checks": 14,
+      "failures": 0
+    },
+    {
+      "suite": "Z MANA WARD SMOKE",
+      "checks": 27,
+      "failures": 0
+    },
+    {
+      "suite": "Z BOSS PATTERNS SMOKE",
+      "checks": 122,
+      "failures": 0
+    },
+    {
+      "suite": "Z CLASS LOOT SMOKE",
+      "checks": 29,
+      "failures": 0
+    },
+    {
+      "suite": "Z ARCANE TACTICS SMOKE",
+      "checks": 29,
+      "failures": 0
+    },
+    {
+      "suite": "Z JOURNEY SMOKE",
+      "checks": 413,
+      "failures": 0
+    },
+    {
+      "suite": "Z SKILL ROTATION SMOKE",
+      "checks": 135,
+      "failures": 0
+    },
+    {
+      "suite": "Z CONTRACTS SMOKE",
+      "checks": 68,
+      "failures": 0
+    },
+    {
+      "suite": "Z VISUALS SMOKE",
+      "checks": 73,
+      "failures": 0
+    }
+  ],
+  "exported_pck_results": [],
+  "verified_android_markers": [],
+  "diagnostic_lines": [
+    "2026-10-07T05:36:02.0272780Z ERROR: ConfigFile parse error at <string>:0: Unexpected EOF while parsing simple tag.",
+    "2026-10-07T05:36:02.0299495Z ERROR: ConfigFile parse error at <string>:0: Unexpected EOF while parsing simple tag."
+  ],
+  "original_log_sha256": "70444eaa54a181167028dc39f89d5bc7e229015b4842fbbf158d18f684081983",
+  "original_log_bytes": 659287,
+  "summary_sha256": "c71d9543613cf9d645d341728fb4d60127f2f6db3dbc2522f28105f83c941f80",
+  "scope": "Actual current-source hosted CI source-tree, resource/package, and Android emulator checks only. No physical phone frame-time, thermals, battery, touch or beta-readiness assertion.",
+  "godot_suites": 28,
+  "godot_checks": 3298,
+  "godot_failures": 0
+}

@@ -1,0 +1,127 @@
+{
+  "method": "Native rest-relative local rotation; source closing axis retained, all factors positive; no bone position/scale edit",
+  "maximum_actual_hinge_degrees": 102.14854028992944,
+  "minimum_native_axis_dot": 0.9999999999999998,
+  "joints": [
+    {
+      "bone": "middle_02_r",
+      "original_degrees": 77.1211204248827,
+      "fitted_degrees": 102.14854028992944,
+      "native_closing_axis_dot": 1.0000000000000002
+    },
+    {
+      "bone": "ring_02_r",
+      "original_degrees": 77.12111455751426,
+      "fitted_degrees": 101.31544033164764,
+      "native_closing_axis_dot": 1.0000000000000002
+    },
+    {
+      "bone": "pinky_02_r",
+      "original_degrees": 77.17080916297168,
+      "fitted_degrees": 88.38217150242068,
+      "native_closing_axis_dot": 1.0
+    },
+    {
+      "bone": "index_02_r",
+      "original_degrees": 77.12111862014474,
+      "fitted_degrees": 85.8802555105757,
+      "native_closing_axis_dot": 0.9999999999999998
+    },
+    {
+      "bone": "thumb_03_r",
+      "original_degrees": 86.81896640244479,
+      "fitted_degrees": 83.55232537165168,
+      "native_closing_axis_dot": 1.0
+    },
+    {
+      "bone": "pinky_01_r",
+      "original_degrees": 83.91336643158336,
+      "fitted_degrees": 41.201150997479985,
+      "native_closing_axis_dot": 1.0000000000000002
+    },
+    {
+      "bone": "ring_01_r",
+      "original_degrees": 78.04078987245249,
+      "fitted_degrees": 39.90878626827772,
+      "native_closing_axis_dot": 1.0000000000000002
+    },
+    {
+      "bone": "index_03_r",
+      "original_degrees": 77.1211683749912,
+      "fitted_degrees": 36.575840808414085,
+      "native_closing_axis_dot": 1.0
+    },
+    {
+      "bone": "middle_01_r",
+      "original_degrees": 78.0408165771766,
+      "fitted_degrees": 31.12362377045533,
+      "native_closing_axis_dot": 1.0
+    },
+    {
+      "bone": "pinky_03_r",
+      "original_degrees": 77.12109847478179,
+      "fitted_degrees": 28.336393954958833,
+      "native_closing_axis_dot": 1.0000000000000004
+    },
+    {
+      "bone": "thumb_02_r",
+      "original_degrees": 25.521652718146257,
+      "fitted_degrees": 24.561378590392753,
+      "native_closing_axis_dot": 0.9999999999999999
+    },
+    {
+      "bone": "index_01_r",
+      "original_degrees": 78.04079048282539,
+      "fitted_degrees": 23.7839048634775,
+      "native_closing_axis_dot": 1.0000000000000002
+    },
+    {
+      "bone": "ring_03_r",
+      "original_degrees": 77.12115495853884,
+      "fitted_degrees": 19.789695682799543,
+      "native_closing_axis_dot": 1.0000000000000002
+    },
+    {
+      "bone": "middle_03_r",
+      "original_degrees": 77.12119055379827,
+      "fitted_degrees": 19.280341932203534,
+      "native_closing_axis_dot": 0.9999999999999999
+    },
+    {
+      "bone": "thumb_01_r",
+      "original_degrees": 11.938306602298095,
+      "fitted_degrees": 11.48911858295943,
+      "native_closing_axis_dot": 1.0
+    },
+    {
+      "bone": "thumb_04_leaf_r",
+      "original_degrees": 8.537722892687301e-07,
+      "fitted_degrees": 8.216484180204074e-07,
+      "native_closing_axis_dot": 1.0
+    },
+    {
+      "bone": "pinky_04_leaf_r",
+      "original_degrees": 1.5092726373085894e-06,
+      "fitted_degrees": 7.41047214356328e-07,
+      "native_closing_axis_dot": 1.0
+    },
+    {
+      "bone": "index_04_leaf_r",
+      "original_degrees": 2.238613391817419e-06,
+      "fitted_degrees": 6.822721553809881e-07,
+      "native_closing_axis_dot": 1.0
+    },
+    {
+      "bone": "ring_04_leaf_r",
+      "original_degrees": 9.545479654263974e-07,
+      "fitted_degrees": 4.881682242104102e-07,
+      "native_closing_axis_dot": 1.0
+    },
+    {
+      "bone": "middle_04_leaf_r",
+      "original_degrees": 9.364793208727755e-07,
+      "fitted_degrees": 3.7347931971517575e-07,
+      "native_closing_axis_dot": 1.0
+    }
+  ]
+}

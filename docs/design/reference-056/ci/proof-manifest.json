@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "source_commit": "5e72fc6fad38f7dc829d313d8df0de8289f52573",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 5168,
+      "sha256": "9982b97373483bb3fa3b0970b95c7589abe317f363d6f0c9858ebfc1b327eea6"
+    },
+    {
+      "path": "all-three-ci-receipt.json",
+      "bytes": 15857,
+      "sha256": "220bccc787b78b6a23a6cf5efa04013fdce32140d6be33abc9e9fb60cbffd071"
+    },
+    {
+      "path": "android-debug-artifacts.json",
+      "bytes": 896,
+      "sha256": "d5eaff048c9a22285d391c1e244ba739afec097185847e4d539f6ba6d7b0df73"
+    },
+    {
+      "path": "android-debug-jobs.json",
+      "bytes": 13727,
+      "sha256": "9660803e0ae3b86a9dd5a850e63719a4761d3e73577e1d6845f511287cee25c6"
+    },
+    {
+      "path": "android-debug-original-job.log",
+      "bytes": 659287,
+      "sha256": "70444eaa54a181167028dc39f89d5bc7e229015b4842fbbf158d18f684081983"
+    },
+    {
+      "path": "android-debug-receipt.json",
+      "bytes": 4014,
+      "sha256": "47c68aa50cb50bff1750fa493499c60ca3f2797308d59b9a9d4238531cea203b"
+    },
+    {
+      "path": "android-debug-run.json",
+      "bytes": 15429,
+      "sha256": "132f1201f35fd4aa2586a45488d536b54850c4d28918b69bf4f6473640555b86"
+    },
+    {
+      "path": "android-debug-summary.log",
+      "bytes": 1136,
+      "sha256": "c71d9543613cf9d645d341728fb4d60127f2f6db3dbc2522f28105f83c941f80"
+    },
+    {
+      "path": "android-runtime-artifacts.json",
+      "bytes": 1750,
+      "sha256": "494a02df29cdaa4260517cac8ebcacdbd657017817ceb86d16b42830acc3f134"
+    },
+    {
+      "path": "android-runtime-jobs.json",
+      "bytes": 5378,
+      "sha256": "957cc887e6807d9f04cba156c976a8fc8803ad246971b0413e31fe661fbb09e8"
+    },
+    {
+      "path": "android-runtime-original-job.log",
+      "bytes": 330094,
+      "sha256": "6d0c3fd3fe9dffac242db1e0bdb63cb7e432dc0052d9ef33f53839f7d7617909"
+    },
+    {
+      "path": "android-runtime-receipt.json",
+      "bytes": 2903,
+      "sha256": "8fd595aea8daa818125af024397b5c2a6cf8590140101ec9e2a9df6d58a54116"
+    },
+    {
+      "path": "android-runtime-run.json",
+      "bytes": 15439,
+      "sha256": "d8b773eac75f5c0c6ecb6e69aaf7b515d45737506633153c3258e6f63f50ce99"
+    },
+    {
+      "path": "android-runtime-summary.log",
+      "bytes": 2233,
+      "sha256": "0912e4e15ffd96393c675ad94d2cb3a04e8d91f8dff8b98d773b8831abff3956"
+    },
+    {
+      "path": "checkout-commit-raw.json",
+      "bytes": 2932,
+      "sha256": "71e927c1f87b3d1aabeaeb2249fecc1218f7a7544a4361f09ae281e21148813a"
+    },
+    {
+      "path": "final-runs.json",
+      "bytes": 49326,
+      "sha256": "dd0c8b64284d74ec8eff35e7882e82e74c2eda8a051e9ad8956035813cd7944b"
+    },
+    {
+      "path": "gameplay-artifacts.json",
+      "bytes": 870,
+      "sha256": "a77b6335232cb1f2b61eb77a17a7732258412d39df81f0517b53be147b653e1a"
+    },
+    {
+      "path": "gameplay-jobs.json",
+      "bytes": 3531,
+      "sha256": "42282f35d8b9c322a25c088551842fb80dcdeb676fb7a4aff924cf279bba8dab"
+    },
+    {
+      "path": "gameplay-original-job.log",
+      "bytes": 185649,
+      "sha256": "ca186fa81aee86bf3a11b8f323e312c6bf497e3952f204d65550cd8a6d9736f9"
+    },
+    {
+      "path": "gameplay-receipt.json",
+      "bytes": 5749,
+      "sha256": "7dc756a78adb557cc63b46ef55d0aad80746b654e7f802ba30a1321e128f8819"
+    },
+    {
+      "path": "gameplay-run.json",
+      "bytes": 15431,
+      "sha256": "1219dbb3963f1cabc68a9224afb9b449537e68864e32ef4bb0cb640725072385"
+    },
+    {
+      "path": "gameplay-summary.log",
+      "bytes": 3661,
+      "sha256": "9e45ef6370465dcd7a1922422b170536fdae1503bf5882e3222d2ac1481f99ba"
+    },
+    {
+      "path": "initial-runs.json",
+      "bytes": 49312,
+      "sha256": "76acf505ee4361d1daf07ef3054d96faaa2ff5176fedc3e7fd471d6f51b2bd4e"
+    },
+    {
+      "path": "prepare_ci_receipts.py",
+      "bytes": 5188,
+      "sha256": "dc77a36f2e1fb17ab83a7cb3da1114158911c7dc6b2d58328931fbda1da95521"
+    },
+    {
+      "path": "source-checkout-tree-binding.json",
+      "bytes": 1237,
+      "sha256": "26f6aa744d469fe2682a83830d3974a441ef04587d9e6e7b8f59e0b8aea81bd1"
+    },
+    {
+      "path": "source-commit-raw.json",
+      "bytes": 1414,
+      "sha256": "301df35c4d77c19650a0935d4fb226f25b173888d8b3cc3499df8276161343e0"
+    }
+  ],
+  "original_logs_decoded_utf8_without_modification": true,
+  "binary_artifacts_downloaded": false
+}

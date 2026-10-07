@@ -8,17 +8,18 @@ Der aktuelle Quellstand liegt auf [`improve/animation-craft`](https://github.com
 
 - Alle drei Spielerklassen verwenden kompatible erwachsene Quaternius-Figuren mit vollständigem 65-Knochen-Skelett und nativen Händen/Fingern. Ranger trägt das originale Ranger-Outfit; Vowkeeper erhält angepasste Stahlteile auf der kompatiblen Körper-/Kleidungsquelle.
 - Der Stabgriff wurde anhand der tatsächlich animierten Handgeometrie korrigiert: angepasste Finger, passender Schaft und eine Stützarmhaltung ohne gestreckte Knochen.
-- Arcanists Basiszauber, Signatur und Starfall erhalten weiterlaufende Bewegungskurven, Nachschwingen, Trefferreaktion und saubere Abbruchübergänge. Vowkeeper verwendet originale Sword-Regular-A/B/C-Clips; Rangers Bogenziehen und Auslösen sind eigene Bewegungen auf den unveränderten nativen Armlängen.
-- Die vorhandenen Gegner-/Wächtermodelle behalten ihre bisherigen 29-Knochen-Skelette und erhalten abgestimmte Metall-/Stoffmaterialien sowie passendere Vorbereitung, Schlag und Erholung. Der erste Wächter fängt seinen schweren Glockenschlag sichtbar ab.
+- Arcanists Basiszauber, Signatur und Starfall verlagern jetzt das Körpergewicht über Hüfte, gebeugte Knie, Brust und Schultern. Die Figur fängt ihre Bewegung nach dem Auslösen ab; der Stab bleibt an der tatsächlich animierten Hand. Vowkeeper verwendet originale Sword-Regular-A/B/C-Clips; Rangers Bogenziehen und Auslösen sind eigene Bewegungen auf den unveränderten nativen Armlängen.
+- Der gewöhnliche Raider verwendet einen zusammenhängenden bekleideten Quaternius-Körper mit erwachsenem Gesicht, 65 nativen Knochen, originalen Bewegungs- und Trefferclips sowie einer angepassten Quaternius-Axt. Die übrigen sieben Gegner-/Wächtertypen behalten ihre 29-Knochen-Skelette. Der erste Wächter fängt seinen schweren Glockenschlag sichtbar ab.
+- Alle drei Spielerklassen erhalten einen eigenen niedrigen, gerichteten Ausweichschritt mit Bodenkontakt und einem Übergang zurück in die Kampfhaltung. Der Schritt folgt der tatsächlichen Ausweichbewegung der Simulation.
 - Regionale Raumlichter und neutralere Figurenfüllung trennen Körper, Kleidung und Waffen deutlicher vom ruhigeren Boden. Warnkonturen bleiben erhalten; die Lichtüberarbeitung fügt keine zusätzlichen Lichter oder Renderpässe hinzu.
-- Die Kampfinszenierung verbessert Nyras Sichtbarkeit vor großen Gegnern, setzt Zaubereffekte an der tatsächlichen Hand und am Treffer an und unterscheidet Vorbereitung, Auslösung und Kontakt auch im Sound.
+- Ein dezenter Konturpass macht Nyra bei tatsächlicher Verdeckung durch große Gegner erkennbar. Gegner und Schatten bleiben geschlossen; das bisherige Dither-Ausblenden entfällt. Zaubereffekte sitzen an der tatsächlichen Hand und am Treffer; Vorbereitung, Auslösung und Kontakt unterscheiden sich auch im Sound.
 - Regionale Ruinen, Reliquiare, Zaubereffekte und Bodenkontakt enthalten die fortgesetzten Überarbeitungen nach dem früheren 0.48-Teststand.
 - Drei Klassen, vier Regionen, autonome Kämpfe, Schwüre, Ausrüstung, Beute, wiederholte Expeditionen und Offline-Fortschritt bleiben erhalten.
 - Ein isolierter ARM64-Gerätebeobachter für normale Kämpfe, Framezeiten, Speicher und verfügbare Wärme-/Akkudaten ist vorbereitet. Der tatsächliche Verfügbarkeitstest findet keine physische adb-Verbindung; Telefonmessung und Touch-Abnahme bleiben offen.
 
-[Qualitätsüberarbeitung 055 und Prüfstand](docs/QUALITY_055.md) · [Native Klassenbilder](docs/design/reference-055/classes/README.md) · [Gegnerbilder](docs/design/reference-055/hostile/README.md) · [Erhaltener Stabgriff](docs/design/reference-053/grip-idle-0.4-front.png) · [Künstlerquellen und Lizenzen](assets/models/classes055/README.md)
+[Qualitätsüberarbeitung 056 und Prüfstand](docs/QUALITY_056.md) · [Angriffsposen](docs/design/reference-056/attacks/README.md) · [Ausweichposen](docs/design/reference-056/evade/README.md) · [Bossverdeckung](docs/design/reference-056/combat-readability/README.md) · [Raider-Quellen und Lizenzen](assets/models/raider056/README.md)
 
-Die aktuellen Klassen- und Gegnerbilder zeigen echte Spielmodelle unter diagnostischem Desktoplicht. Die vollständige aktuelle Gameplay-CI besteht mit 45 Godot-Suiten und 5.300 Prüfungen. Auch beide Android-CI-Läufe sind erfolgreich. Die [beiden vollständigen Vergleichsvideos mit Ton](docs/design/reference-055/gameplay/README.md) sind geprüft: jeweils 83,2 Sekunden vom ersten Kampf bis zur Beuteanzeige, mit identischem autoritativem Spielablauf. Die Quellen- und Griffprüfungen belegen konkrete technische Eigenschaften; eine allgemeine visuelle Beta-Freigabe oder Diablo-Immortal-Qualität wird damit nicht behauptet. Die gespeicherte Paketkennung bleibt `0.48.0-beta.1`, Android-Version-Code `54`; diese Integration erhöht keine Release-Version. Die [054-Nachweise](docs/quality054.md) bleiben historische Belege für ihren damaligen Quellstand.
+Die vollständige aktuelle Gameplay-CI besteht mit **49 Godot-Suiten und 7.734 Prüfungen**, 48 Python-Tests sowie 32 Prüfungen exportierter Figurenressourcen. Auch Android-Builds, Bundlevalidierung und Android-Laufzeitprüfung sind erfolgreich; [Originalprotokolle und Quellbindung](docs/design/reference-056/ci/README.md) dokumentieren alle drei Läufe. Die [30-Sekunden-Vergleichsfilme mit Ton](docs/design/reference-056/gameplay/README.md) zeigen den normalen Kampf mit denselben 900 autoritativen Spiel- und Kameraframes. Der [Sichtbericht](docs/design/reference-056/gameplay/MOTION_REVIEW.md) bestätigt tiefere Lastposen, gerichtetes niedriges Ausweichen und den lesbareren Raider; Signatur und Starfall bleiben bei der kleinen Figur kurz beziehungsweise moderat. Die Studio- und Griffnachweise belegen einzelne technische Eigenschaften. Die Paketkennung bleibt `0.48.0-beta.1`, Android-Version-Code `54`. Die [vollständigen 055-Filme bis zur Beute](docs/design/reference-055/gameplay/README.md) und [054-Nachweise](docs/quality054.md) bleiben historische Belege für ihre damaligen Quellen; eine allgemeine visuelle Beta-Freigabe wird hier nicht behauptet.
 
 ## Lokal starten
 
@@ -37,12 +38,12 @@ Godot erzeugt Importcache und die aus dem eingebetteten Charakter-GLB extrahiert
 
 ```sh
 python3 scripts/run_beta_checks.py
-python3 scripts/run_beta_checks.py --suite source_avatar_attack --suite class_avatar_quality --suite hostile_quality --suite dungeon_lighting --suite native_capture_audio
+python3 scripts/run_beta_checks.py --suite source_avatar_attack_contact --suite source_avatar_evade --suite raider_native --suite combat_occlusion
 python3 -m unittest discover -s tests -p test_android_release.py -v
 python3 -m unittest discover -s tests -p test_android_device_probe.py -v
 ```
 
-Bei abweichendem Programmnamen setzt `GODOT_BIN` den Pfad zu Godot 4.7.2. Der vollständige Runner umfasst 45 Godot-Suiten mit isolierten Spielständen sowie die Syntax- und Laufzeitprüfung des Servermoduls. Die GitHub-Workflows prüfen Gameplay und Android separat. Der Android-QA-Export importiert die isolierte Projektkopie einmal und erzeugt daraus alle Prüf-APKs. Der genaue Nachweisstand steht im [Qualitätsbericht](docs/QUALITY_055.md). Google Play wird ausschließlich über den manuellen Veröffentlichungsworkflow bedient.
+Bei abweichendem Programmnamen setzt `GODOT_BIN` den Pfad zu Godot 4.7.2. Der vollständige Runner umfasst 49 Godot-Suiten mit isolierten Spielständen sowie die Syntax- und Laufzeitprüfung des Servermoduls. Die GitHub-Workflows prüfen Gameplay und Android separat. Der Android-QA-Export importiert die isolierte Projektkopie einmal und erzeugt daraus alle Prüf-APKs. Der genaue Nachweisstand steht im [Qualitätsbericht](docs/QUALITY_056.md). Google Play wird ausschließlich über den manuellen Veröffentlichungsworkflow bedient.
 
 ## Projekt und Quellen
 

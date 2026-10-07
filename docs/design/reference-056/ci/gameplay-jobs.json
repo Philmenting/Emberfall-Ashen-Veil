@@ -1,0 +1,105 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 112646109974,
+      "run_id": 37576383396,
+      "workflow_name": "Gameplay Quality",
+      "head_branch": "improve/animation-craft",
+      "run_url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/actions/runs/37576383396",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUp1_Uc8AAAAaOjs7Fg",
+      "head_sha": "5e72fc6fad38f7dc829d313d8df0de8289f52573",
+      "url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/actions/jobs/112646109974",
+      "html_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37576383396/job/112646109974",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-07T05:27:22Z",
+      "started_at": "2026-10-07T05:27:24Z",
+      "completed_at": "2026-10-07T05:42:24Z",
+      "name": "regression",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-07T05:27:24Z",
+          "completed_at": "2026-10-07T05:27:25Z"
+        },
+        {
+          "name": "Check out game",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-07T05:27:25Z",
+          "completed_at": "2026-10-07T05:28:53Z"
+        },
+        {
+          "name": "Install Godot 4.7.2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-07T05:28:53Z",
+          "completed_at": "2026-10-07T05:28:55Z"
+        },
+        {
+          "name": "Import native assets",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-07T05:28:55Z",
+          "completed_at": "2026-10-07T05:29:36Z"
+        },
+        {
+          "name": "Verify native avatar data in the Android resource package",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-07T05:29:36Z",
+          "completed_at": "2026-10-07T05:29:44Z"
+        },
+        {
+          "name": "Check gameplay, saves, AFK, presentation and server rules",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-07T05:29:44Z",
+          "completed_at": "2026-10-07T05:42:21Z"
+        },
+        {
+          "name": "Retain regression report",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-07T05:42:21Z",
+          "completed_at": "2026-10-07T05:42:22Z"
+        },
+        {
+          "name": "Post Check out game",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-07T05:42:22Z",
+          "completed_at": "2026-10-07T05:42:22Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-07T05:42:22Z",
+          "completed_at": "2026-10-07T05:42:22Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/check-runs/112646109974",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000001612,
+      "runner_name": "GitHub Actions 1000001612",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

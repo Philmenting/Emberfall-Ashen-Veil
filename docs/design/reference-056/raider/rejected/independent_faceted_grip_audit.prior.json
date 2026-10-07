@@ -1,0 +1,97 @@
+{
+  "scope": "Original native Sword_Idle(0) with final fitted local finger rotations; actual indexed weighted skin versus actual central wood facets. The separate section comparison establishes whether that central hull remains valid throughout +/-55mm. Unsigned contact distances, not a full animation sweep or signed penetration test.",
+  "engine_used": false,
+  "source_mutated": false,
+  "contact_limit_m": 0.003,
+  "actual_wood_hull_vertices": 8,
+  "actual_wood_hull_cross_section_m": [
+    [
+      -0.0129121693,
+      0.0125409567
+    ],
+    [
+      -0.0179992993,
+      -5.57276e-05
+    ],
+    [
+      -0.0128423293,
+      -0.0126109234
+    ],
+    [
+      6e-10,
+      -0.0179999992
+    ],
+    [
+      0.0128423293,
+      -0.0126109238
+    ],
+    [
+      0.0179992993,
+      -5.57275e-05
+    ],
+    [
+      0.0129121701,
+      0.0125409569
+    ],
+    [
+      2e-09,
+      0.0179999992
+    ]
+  ],
+  "constant_extrusion_maximum_deviation_m": 0.006952882685959713,
+  "constant_extrusion_section_deviation_m": {
+    "-0.055": 0.006023798102280528,
+    "-0.0275": 0.006952882685959713,
+    "0.0275": 0.006228817861643727,
+    "0.055": 0.006726038617778956
+  },
+  "constant_extrusion_hand_band_pass": false,
+  "digits": {
+    "hand": {
+      "axial_clipped_triangles": 261,
+      "minimum_axis_radius_m": 0.017648139403656764,
+      "actual_facet_distance_at_nearest_axis_patch_m": 0.000915285742326507,
+      "minimum_actual_facet_boundary_distance_m": 0.0
+    },
+    "thumb": {
+      "axial_clipped_triangles": 352,
+      "minimum_axis_radius_m": 0.0196060454751585,
+      "actual_facet_distance_at_nearest_axis_patch_m": 0.0027336880102688194,
+      "minimum_actual_facet_boundary_distance_m": 0.00206714208358355
+    },
+    "index": {
+      "axial_clipped_triangles": 239,
+      "minimum_axis_radius_m": 0.018099054875915843,
+      "actual_facet_distance_at_nearest_axis_patch_m": 0.0011220371280895466,
+      "minimum_actual_facet_boundary_distance_m": 0.0004227380228778974
+    },
+    "middle": {
+      "axial_clipped_triangles": 252,
+      "minimum_axis_radius_m": 0.017199911180700418,
+      "actual_facet_distance_at_nearest_axis_patch_m": 0.0002733408073271041,
+      "minimum_actual_facet_boundary_distance_m": 4.099110291524616e-05
+    },
+    "ring": {
+      "axial_clipped_triangles": 267,
+      "minimum_axis_radius_m": 0.0172161646234558,
+      "actual_facet_distance_at_nearest_axis_patch_m": 0.0006242493223652941,
+      "minimum_actual_facet_boundary_distance_m": 0.00039954325575009
+    },
+    "pinky": {
+      "axial_clipped_triangles": 289,
+      "minimum_axis_radius_m": 0.018922235483828903,
+      "actual_facet_distance_at_nearest_axis_patch_m": 0.0009275776851209926,
+      "minimum_actual_facet_boundary_distance_m": 0.0009275776851209926
+    }
+  },
+  "final_five_digits_nearest_axis_patch_contact_pass": true,
+  "generic_cylinder_audit_limitation": "A circumradius cylinder can produce false-positive contact for other profiles; actual facets are measured here.",
+  "inputs_sha256": {
+    "/workspace/scratch/emberfall-quality-056/raider/build_raider056.final.py": "38e7c652d10600c02301ef7ec9839f3e280602637c4fc531623da5d9a8814ee3",
+    "/workspace/scratch/emberfall-quality-056/raider/fitter-work/raider-native65.glb": "8a89cbeb87691222f80a522145e7203139483adba17cd85edd0adff369da59b4",
+    "/workspace/scratch/emberfall-quality-056/raider/fitter-work/axe-grip.json": "84cf3ce94b9b5decdb1e4199b4a3afc645c0bbbadb5a7bd35804b90c3bb2ad8a",
+    "/workspace/Emberfall-Ashen-Veil/assets/models/raider056/axe-fitted.glb": "215ebc8589defc28efb60727feeab1696de345637dcc7f0816b4c234599f13d0",
+    "/workspace/scratch/emberfall-quality-056/raider/independent_faceted_grip_audit.py": "76ef57646f53f53d67b29d62fc1c817aaf36d10377aa93a42463f477d8f85b5b"
+  },
+  "complete_hand_band_contact_pass": false
+}

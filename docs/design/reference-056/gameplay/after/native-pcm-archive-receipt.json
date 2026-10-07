@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "compression": "gzip lossless original900frame nativeStereoPCM",
+  "native_pcm_sha256": "0cc976e2548be532070a43e12e5e1f5b6d783f8e30b9379561b4ca24ba150ffc",
+  "native_pcm_bytes": 10584000,
+  "archive_sha256": "c056b3427b2d2af359c867e16d7bff44cfce6cc547b51df1781532b1285ff853",
+  "archive_bytes": 4592606,
+  "decompression_original_bytes_sha256_verified": true
+}

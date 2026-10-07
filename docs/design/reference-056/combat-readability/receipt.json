@@ -1,0 +1,151 @@
+{
+  "engine": "Godot 4.7.2.stable.official.ed1daf0bf",
+  "renderer": "gl_compatibility Mesa 25.0.7 llvmpipe LLVM19.1.7",
+  "audio": "Dummy; still images only",
+  "resolution": [
+    1200,
+    536
+  ],
+  "native_accepted_process_exit": 0,
+  "occlusion_smoke_process_exit": 0,
+  "occlusion_smoke_checks": 25,
+  "occlusion_smoke_failures": 0,
+  "guardian_smoke_process_exit": 0,
+  "guardian_smoke_checks": 274,
+  "guardian_smoke_failures": 0,
+  "guardian_smoke_scope": "Passed before final faint-fill and per-bone depth-guard tuning; final integrated suite is reported separately by the root quality receipt.",
+  "native_fixture_scope": "Arcanist/Bell Warden boosted-Life inspection, natural and deliberately overlapping renderer-only hero positions, each with accent disabled/enabled; not a normal balance, physical phone or continuous animation test.",
+  "native_camera_and_simulation_unchanged": true,
+  "accepted_shader_errors": 0,
+  "accepted_script_errors": 0,
+  "accepted_compile_errors": 0,
+  "source_scope": "Leaf helper, shader and fixture hashes below remained unchanged for the accepted render. Final World broad-phase then expanded from hero skin to include the actual held prop; both accepted fixtures were already enabled=true. The final integrated gameplay movie verifies final World source. Concurrent attack/evade/raider integration was not frozen for this isolated pass.",
+  "leaf_sources": [
+    {
+      "path": "scripts/combat_readability.gd",
+      "sha256": "8bcc257f5342a3ca91bac1e519040c31f8fdd48dd202d0d99ba7859c9a78083d"
+    },
+    {
+      "path": "assets/shaders/hero_occlusion.gdshader",
+      "sha256": "b03c434d9075fe73e8cefb83a8662e4541fb3590673bb8d2df6ecd805aeef155"
+    },
+    {
+      "path": "tests/combat_occlusion_smoke.gd",
+      "sha256": "8df28b483414ea6caa31f200985e4c65efb90701555f76904857784cb8349a0d"
+    },
+    {
+      "path": "tests/combat_occlusion_preview.gd",
+      "sha256": "2447c1dd27c7e68ff15456d4214688e5f09d15ec92ecf89e74f27960df13480e"
+    },
+    {
+      "path": "tests/combat_occlusion_preview.tscn",
+      "sha256": "1473740ecf2070465c6fad7505fcc5ba2274bb15385e16abdb42c3e34be114a7"
+    }
+  ],
+  "rejected_attempts": [
+    {
+      "log": "guardian-smoke.log",
+      "process_exit": 130,
+      "reason": "Stopped after World can_reveal inference parse error; explicit bool fixed."
+    },
+    {
+      "log": "native-first.log",
+      "process_exit": 1,
+      "reason": "Fixture captured before the normal UI camera layout completed; fixture now waits six frames before invariance snapshot."
+    },
+    {
+      "log": "native-final.log",
+      "process_exit": 0,
+      "accepted": false,
+      "reason": "A concurrent new evade script had a current inference parse error. Rendering continued from already loaded script resources, therefore this exit-0 attempt is rejected as verification evidence. Clean rerun native-accepted passed after that source was fixed."
+    }
+  ],
+  "files": [
+    {
+      "path": "occlusion-smoke.log",
+      "bytes": 2419,
+      "sha256": "af58406c112f2f5169e6614fb8508e3013bd4af0c752415ea2f27a8c78bce2d9"
+    },
+    {
+      "path": "guardian-smoke.log",
+      "bytes": 919,
+      "sha256": "289f88105414b7115ff83dab3fe10020fc5868ca4ff4ac2d9cc8b2b398405b19"
+    },
+    {
+      "path": "guardian-smoke-final.log",
+      "bytes": 28517,
+      "sha256": "29038ea86afea83d6d0bb910729beddf36ded557f791832588765904a054e502"
+    },
+    {
+      "path": "native-first.log",
+      "bytes": 828,
+      "sha256": "df63aa410c3e58a5620ec4d9f17a18ae87b613db1181eaa9b8e94057335f0a5b"
+    },
+    {
+      "path": "native-second.log",
+      "bytes": 749,
+      "sha256": "27abe9d7f39893ba37d8191564370bf6426cfae575130ceeb32f064ca19537fa"
+    },
+    {
+      "path": "native-final.log",
+      "bytes": 1623,
+      "sha256": "d96b47d2381d8bf882c6361ee8d6538ad467652a6850e1c8cbd0fa83fdcd6b24"
+    },
+    {
+      "path": "occlusion-smoke-final.log",
+      "bytes": 2419,
+      "sha256": "af58406c112f2f5169e6614fb8508e3013bd4af0c752415ea2f27a8c78bce2d9"
+    },
+    {
+      "path": "native-accepted.log",
+      "bytes": 749,
+      "sha256": "27abe9d7f39893ba37d8191564370bf6426cfae575130ceeb32f064ca19537fa"
+    },
+    {
+      "path": "boss-natural-opaque.png",
+      "bytes": 831098,
+      "sha256": "162dfb141e27c2bbe1dac7001f59cd5a89df6d966f050c508c88902868159211",
+      "dimensions": [
+        1200,
+        536
+      ],
+      "original_native_png": true
+    },
+    {
+      "path": "boss-natural-reveal.png",
+      "bytes": 830673,
+      "sha256": "e54381f12de2983314c124c265e263abf91ea2650653d673fdb6a51bb82ce12e",
+      "dimensions": [
+        1200,
+        536
+      ],
+      "original_native_png": true
+    },
+    {
+      "path": "boss-overlap-opaque.png",
+      "bytes": 829629,
+      "sha256": "e2c483fe3900224c5414905b6eea6e21377b4c79361d6e09155c0327562dc217",
+      "dimensions": [
+        1200,
+        536
+      ],
+      "original_native_png": true
+    },
+    {
+      "path": "boss-overlap-reveal.png",
+      "bytes": 830447,
+      "sha256": "e393843a9a50fb13561e8ed890dacfc9cc7e3c78cd7864dfcfc0a7316c919102",
+      "dimensions": [
+        1200,
+        536
+      ],
+      "original_native_png": true
+    }
+  ],
+  "limits": [
+    "Actual actors and Boss materials remain opaque. Only the separate occluded hero accent blends a .10 interior fill and an edge accent; it never discards a hostile or warning fragment.",
+    "The depth guard is conservative and intentionally cannot reveal a rear arm through Nyra herself. A blocker inside the hero nearest-depth envelope may leave a small partial occlusion.",
+    "Extra hero mesh passes are hidden when broad-phase has no blocker, during travel and after death; no physical device frame-time claim.",
+    "Sparse still frames verify silhouette/material continuity, not continuous combat motion quality."
+  ]
+}

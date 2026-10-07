@@ -1,0 +1,103 @@
+{
+	"fixture": "source_avatar_evade_preview",
+	"records": [
+		{
+			"actor_clip": "idle",
+			"class": "Arcanist",
+			"complete_actual_body_and_weapon_in_frame": true,
+			"evade_phase": 0.0,
+			"file": "arcanist-source-guard.png",
+			"image_height": 720,
+			"image_width": 960,
+			"minimum_actual_indexed_weapon_source_y_m": 0.899757504463196,
+			"minimum_all_weighted_source_and_accessory_y_m": 0.00300000049173832,
+			"world_position": [
+				0.0,
+				0.0,
+				0.0
+			]
+		},
+		{
+			"actor_clip": "evade",
+			"class": "Arcanist",
+			"complete_actual_body_and_weapon_in_frame": true,
+			"evade_phase": 0.39,
+			"file": "arcanist-actual-lowstep.png",
+			"image_height": 720,
+			"image_width": 960,
+			"minimum_actual_indexed_weapon_source_y_m": 0.699674367904663,
+			"minimum_all_weighted_source_and_accessory_y_m": 0.0106964893639088,
+			"world_position": [
+				0.0,
+				0.0,
+				0.0
+			]
+		},
+		{
+			"actor_clip": "idle",
+			"class": "Ranger",
+			"complete_actual_body_and_weapon_in_frame": true,
+			"evade_phase": 0.0,
+			"file": "ranger-source-guard.png",
+			"image_height": 720,
+			"image_width": 960,
+			"minimum_actual_indexed_weapon_source_y_m": 0.608588397502899,
+			"minimum_all_weighted_source_and_accessory_y_m": 0.00299999956041574,
+			"world_position": [
+				0.0,
+				0.0,
+				0.0
+			]
+		},
+		{
+			"actor_clip": "evade",
+			"class": "Ranger",
+			"complete_actual_body_and_weapon_in_frame": true,
+			"evade_phase": 0.39,
+			"file": "ranger-actual-lowstep.png",
+			"image_height": 720,
+			"image_width": 960,
+			"minimum_actual_indexed_weapon_source_y_m": 0.411384075880051,
+			"minimum_all_weighted_source_and_accessory_y_m": 0.0107902847230434,
+			"world_position": [
+				0.0,
+				0.0,
+				0.0
+			]
+		},
+		{
+			"actor_clip": "idle",
+			"class": "Vowkeeper",
+			"complete_actual_body_and_weapon_in_frame": true,
+			"evade_phase": 0.0,
+			"file": "vowkeeper-source-guard.png",
+			"image_height": 720,
+			"image_width": 960,
+			"minimum_actual_indexed_weapon_source_y_m": 0.767245709896088,
+			"minimum_all_weighted_source_and_accessory_y_m": 0.00299999956041574,
+			"world_position": [
+				0.0,
+				0.0,
+				0.0
+			]
+		},
+		{
+			"actor_clip": "evade",
+			"class": "Vowkeeper",
+			"complete_actual_body_and_weapon_in_frame": true,
+			"evade_phase": 0.39,
+			"file": "vowkeeper-actual-lowstep.png",
+			"image_height": 720,
+			"image_width": 960,
+			"minimum_actual_indexed_weapon_source_y_m": 0.486734598875046,
+			"minimum_all_weighted_source_and_accessory_y_m": 0.0145475976169109,
+			"world_position": [
+				0.0,
+				0.0,
+				0.0
+			]
+		}
+	],
+	"renderer": "actual Godot native frames",
+	"scope": "three production native65 actor APIs, fixed studio camera, original body/skin/attire/materials/weapon; diagnostic stills, not continuous game playback"
+}

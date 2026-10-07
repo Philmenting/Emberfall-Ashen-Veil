@@ -1,0 +1,35 @@
+{
+  "sha": "5e72fc6fad38f7dc829d313d8df0de8289f52573",
+  "node_id": "C_kwDOUp1_UdoAKDVlNzJmYzZmYWQzOGY3ZGM4MjlkMzEzZDhkZjBkZTgyODlmNTI1NzM",
+  "url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/git/commits/5e72fc6fad38f7dc829d313d8df0de8289f52573",
+  "html_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/commit/5e72fc6fad38f7dc829d313d8df0de8289f52573",
+  "author": {
+    "name": "Philipp Holzwarth",
+    "email": "philippholzwarth@freenet.de",
+    "date": "2026-10-07T05:26:45Z"
+  },
+  "committer": {
+    "name": "Philipp Holzwarth",
+    "email": "philippholzwarth@freenet.de",
+    "date": "2026-10-07T05:26:45Z"
+  },
+  "tree": {
+    "sha": "05754daf53dfaf28e12b0fdcf26572373a0c5585",
+    "url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/git/trees/05754daf53dfaf28e12b0fdcf26572373a0c5585"
+  },
+  "message": "Improve native combat weight, Raider anatomy and directional evade",
+  "parents": [
+    {
+      "sha": "6b382e3dbdedce4e7d2a6d466b218ed959501242",
+      "url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/git/commits/6b382e3dbdedce4e7d2a6d466b218ed959501242",
+      "html_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/commit/6b382e3dbdedce4e7d2a6d466b218ed959501242"
+    }
+  ],
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}

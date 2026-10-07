@@ -1,0 +1,12 @@
+RUN character_3d_smoke.gd
+PASS CHARACTER THREE D SMOKE: 144 checks
+RUN presentation_smoke.gd
+PASS PRESENTATION SMOKE: 91 checks
+RUN hostile_quality_smoke.gd
+PASS HOSTILE QUALITY SMOKE: 82 checks
+RUN raider_native_smoke.gd
+PASS RAIDER NATIVE SMOKE: 324 checks
+PASS emberfall.js
+PASS progression_runtime_test.js
+PROGRESSION RUNTIME: server-owned profile, bounded AFK settlement, allowlists, inventory and replay protection passed.
+BETA CHECKS: 4 Godot suites, 641 checks, 0 failures

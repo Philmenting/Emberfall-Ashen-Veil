@@ -1,0 +1,40 @@
+{
+  "sha": "750cb2e6660623a60fc436ec732ce046b211253e",
+  "node_id": "C_kwDOUp1_UdoAKDc1MGNiMmU2NjYwNjIzYTYwZmM0MzZlYzczMmNlMDQ2YjIxMTI1M2U",
+  "url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/git/commits/750cb2e6660623a60fc436ec732ce046b211253e",
+  "html_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/commit/750cb2e6660623a60fc436ec732ce046b211253e",
+  "author": {
+    "name": "Philmenting",
+    "email": "philippholzwarth2207@gmail.com",
+    "date": "2026-10-07T05:27:18Z"
+  },
+  "committer": {
+    "name": "GitHub",
+    "email": "noreply@github.com",
+    "date": "2026-10-07T05:27:18Z"
+  },
+  "tree": {
+    "sha": "05754daf53dfaf28e12b0fdcf26572373a0c5585",
+    "url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/git/trees/05754daf53dfaf28e12b0fdcf26572373a0c5585"
+  },
+  "message": "Merge 5e72fc6fad38f7dc829d313d8df0de8289f52573 into 610c343073e7186589cba92c3fefb55a4db68e12",
+  "parents": [
+    {
+      "sha": "610c343073e7186589cba92c3fefb55a4db68e12",
+      "url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/git/commits/610c343073e7186589cba92c3fefb55a4db68e12",
+      "html_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/commit/610c343073e7186589cba92c3fefb55a4db68e12"
+    },
+    {
+      "sha": "5e72fc6fad38f7dc829d313d8df0de8289f52573",
+      "url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/git/commits/5e72fc6fad38f7dc829d313d8df0de8289f52573",
+      "html_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/commit/5e72fc6fad38f7dc829d313d8df0de8289f52573"
+    }
+  ],
+  "verification": {
+    "verified": true,
+    "reason": "valid",
+    "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqxdg2CRC1aQ7uu5UhlAAA4B8QAC5sYFghtnhikPJXn4zYUNRj\n4g8K4/iaC7TA2LxBt/AJYnrtTGj1C4CeRS8pFVGDQsThMnHW+wswzZs/zUeLzyj6\nuuGHOCMmCwCadZsvz3lniCn7xTfqFG9lZLBytQ4MdjL9evrcluVReOqEcroF5uxQ\nzNfL9QJZDr+inkznWwbGV435421pLpRYvRjtlvzsLw/xvkUZPyMKrsj1c9vamsST\n9xCRTUDKTgbc541BaZwlyfZxryr2WkiXzfyYKXxQO0zytGw78WenQ7NFGfZP5fAH\nIW4Sd8K2ruMtBZxoyFfVoj0SgCVnTxc/fgBgQomeTch9QC05RBFJiZSU/4AIgMpo\nJeYKnIqcBkEj84/sqQNoIOxmgcVtYaIiIbk+KHomTvj+jDxbzh3NOojAk4xEQLwq\nt3pFiEIRk/PAdIu7qDuKSub4rF7bkHI1Wi2OZRNoa2+54cZC+aHTktB9uk5BbrHM\nai2f3/MVznC4S/XEK0ZhlYalasU4+lixrldT8+peM0k5uMKdN6+/OmWPyEO1ho+p\n3q/qIPdlh04UzNsPkTBrChJ5JilnDGZBXW9hKtfdo1nZ+kiINu6zHrNSEDgRI4ov\n5hqnOOMXCiw0g2Nlso3eCbCF2smTVJ3Zl0iH5MMi2pPvfyA8X5Vgxp+1Hc4vJ3QH\nQKUNNZk5TbQZCtDUBegU\n=3qSW\n-----END PGP SIGNATURE-----\n",
+    "payload": "tree 05754daf53dfaf28e12b0fdcf26572373a0c5585\nparent 610c343073e7186589cba92c3fefb55a4db68e12\nparent 5e72fc6fad38f7dc829d313d8df0de8289f52573\nauthor Philmenting <philippholzwarth2207@gmail.com> 1791350838 +0000\ncommitter GitHub <noreply@github.com> 1791350838 +0000\n\nMerge 5e72fc6fad38f7dc829d313d8df0de8289f52573 into 610c343073e7186589cba92c3fefb55a4db68e12\n",
+    "verified_at": "2026-10-07T05:27:19Z"
+  }
+}

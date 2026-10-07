@@ -1,0 +1,13 @@
+2026-10-07T05:29:17.4675603Z HEAD is now at 750cb2e Merge 5e72fc6fad38f7dc829d313d8df0de8289f52573 into 610c343073e7186589cba92c3fefb55a4db68e12
+2026-10-07T05:29:17.4859624Z [command]/usr/bin/git log -1 --format=%H
+2026-10-07T05:36:02.0272780Z ERROR: ConfigFile parse error at <string>:0: Unexpected EOF while parsing simple tag.
+2026-10-07T05:36:02.0299495Z ERROR: ConfigFile parse error at <string>:0: Unexpected EOF while parsing simple tag.
+2026-10-07T05:36:47.4810960Z Ran 34 tests in 0.237s
+2026-10-07T05:40:26.7382464Z Verified using v2 scheme (APK Signature Scheme v2): true
+2026-10-07T05:40:26.7383421Z Verified using v3 scheme (APK Signature Scheme v3): true
+2026-10-07T05:40:26.7384344Z Verified using v4 scheme (APK Signature Scheme v4): false
+2026-10-07T05:40:27.0822416Z Verified using v2 scheme (APK Signature Scheme v2): true
+2026-10-07T05:40:27.0823053Z Verified using v3 scheme (APK Signature Scheme v3): true
+2026-10-07T05:40:27.0824401Z Verified using v4 scheme (APK Signature Scheme v4): false
+2026-10-07T05:40:33.6678059Z ANDROID AAB VERIFIED
+2026-10-07T05:40:33.6679994Z Bundle structure and JAR signature: valid

@@ -1,0 +1,109 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Native idle 0.0: thumb opposes at least three finger contacts around the shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:172)
+       [2] run (res://tests/raider_native_smoke.gd:222)
+ERROR: Native idle 0.5: thumb opposes at least three finger contacts around the shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:172)
+       [2] run (res://tests/raider_native_smoke.gd:222)
+ERROR: Native walk 0.0: thumb opposes at least three finger contacts around the shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:172)
+       [2] run (res://tests/raider_native_smoke.gd:222)
+ERROR: Native walk 0.25: thumb opposes at least three finger contacts around the shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:172)
+       [2] run (res://tests/raider_native_smoke.gd:222)
+ERROR: Native walk 0.5: thumb opposes at least three finger contacts around the shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:172)
+       [2] run (res://tests/raider_native_smoke.gd:222)
+ERROR: Native walk 0.75: thumb opposes at least three finger contacts around the shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:172)
+       [2] run (res://tests/raider_native_smoke.gd:222)
+ERROR: Native windup_jab 0.0: thumb opposes at least three finger contacts around the shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:172)
+       [2] run (res://tests/raider_native_smoke.gd:222)
+ERROR: Native windup_jab 0.25: thumb opposes at least three finger contacts around the shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:172)
+       [2] run (res://tests/raider_native_smoke.gd:222)
+ERROR: Native windup_jab 0.65: thumb opposes at least three finger contacts around the shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:172)
+       [2] run (res://tests/raider_native_smoke.gd:222)
+ERROR: Native windup_jab 1.0: thumb opposes at least three finger contacts around the shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:172)
+       [2] run (res://tests/raider_native_smoke.gd:222)
+ERROR: Native recover_jab 0.0: thumb opposes at least three finger contacts around the shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:172)
+       [2] run (res://tests/raider_native_smoke.gd:222)
+ERROR: Native recover_jab 0.08: thumb opposes at least three finger contacts around the shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:172)
+       [2] run (res://tests/raider_native_smoke.gd:222)
+ERROR: Native recover_jab 0.17: thumb opposes at least three finger contacts around the shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:172)
+       [2] run (res://tests/raider_native_smoke.gd:222)
+ERROR: Native recover_jab 0.3: thumb opposes at least three finger contacts around the shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:172)
+       [2] run (res://tests/raider_native_smoke.gd:222)
+ERROR: Production authored Hit_Chest overlay: thumb opposes at least three finger contacts around the shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:172)
+       [2] run (res://tests/raider_native_smoke.gd:240)
+RAIDER_NATIVE_SMOKE checks=316 failures=15 poses=15 max_finger_gap_m=0.00094097829424 max_penetration_m=0.00080012607574 max_actual_thumb_gap_m=0.00245637819171
+RAIDER NATIVE SMOKE: 316 checks, 15 failures
+FAIL Native idle 0.0: thumb opposes at least three finger contacts around the shaft
+FAIL Native idle 0.5: thumb opposes at least three finger contacts around the shaft
+FAIL Native walk 0.0: thumb opposes at least three finger contacts around the shaft
+FAIL Native walk 0.25: thumb opposes at least three finger contacts around the shaft
+FAIL Native walk 0.5: thumb opposes at least three finger contacts around the shaft
+FAIL Native walk 0.75: thumb opposes at least three finger contacts around the shaft
+FAIL Native windup_jab 0.0: thumb opposes at least three finger contacts around the shaft
+FAIL Native windup_jab 0.25: thumb opposes at least three finger contacts around the shaft
+FAIL Native windup_jab 0.65: thumb opposes at least three finger contacts around the shaft
+FAIL Native windup_jab 1.0: thumb opposes at least three finger contacts around the shaft
+FAIL Native recover_jab 0.0: thumb opposes at least three finger contacts around the shaft
+FAIL Native recover_jab 0.08: thumb opposes at least three finger contacts around the shaft
+FAIL Native recover_jab 0.17: thumb opposes at least three finger contacts around the shaft
+FAIL Native recover_jab 0.3: thumb opposes at least three finger contacts around the shaft
+FAIL Production authored Hit_Chest overlay: thumb opposes at least three finger contacts around the shaft

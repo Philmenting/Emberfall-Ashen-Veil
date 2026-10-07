@@ -1,0 +1,26 @@
+{
+  "receipt": "/workspace/scratch/emberfall-quality-056/raider/independent_faceted_grip_audit.json",
+  "actual_hull_vertices": 8,
+  "pass": true,
+  "five_digit_actual_nearest_axis_patch_gap_mm": {
+    "thumb": 3.1176081552456334,
+    "index": 1.7185743611635416,
+    "middle": 0.6417620494274423,
+    "ring": 0.9861345082324391,
+    "pinky": 1.2620316076642923
+  },
+  "five_digit_actual_3d_wood_surface_gap_mm": {
+    "thumb": 2.4568904661379274,
+    "index": 0.8123164308956421,
+    "middle": 0.40564829985530004,
+    "ring": 0.7070941337752633,
+    "pinky": 1.208152103871448
+  },
+  "opposition_minimum_dot_by_finger": {
+    "index": -0.9999541380583884,
+    "middle": 0.6814991313085943,
+    "ring": -0.9832006152319271,
+    "pinky": -0.9987718999899978
+  },
+  "opposition_fingers": 3
+}

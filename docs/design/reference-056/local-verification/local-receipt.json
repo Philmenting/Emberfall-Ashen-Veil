@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "source_commit": "5e72fc6fad38f7dc829d313d8df0de8289f52573",
+  "final_affected_suites": 4,
+  "final_affected_checks": 641,
+  "final_affected_failures": 0,
+  "exported_avatar_checks": 32,
+  "exported_avatar_failures": 0,
+  "broad_earlier_suites": 45,
+  "broad_earlier_checks": 7093,
+  "broad_earlier_failures": 0,
+  "python_tests": 48,
+  "python_failures": 0,
+  "original_files": [
+    {
+      "file": "regression-remaining45.log",
+      "bytes": 3146,
+      "sha256": "b506567f783f57ed49fd0c58a5853bb15a7b9bbd6e34656e6e3db1a6a9eb70d7"
+    },
+    {
+      "file": "python-regression-final.log",
+      "bytes": 9564,
+      "sha256": "2959868f7c27c4e02b46af2aba864f3a96ccc20456ee5dfe6e48a5d4d8217816"
+    },
+    {
+      "file": "receipt.json",
+      "bytes": 2834,
+      "sha256": "e3944c07246f401781b582fbd93777242f46ebced5976fab82e1dd872dec96f3"
+    },
+    {
+      "file": "editor-import.log",
+      "bytes": 1342,
+      "sha256": "18b830e220eb0d217959132aceda4b56cb37ed7f040fc80e8d8425e7e1356090"
+    },
+    {
+      "file": "affected-suites.log",
+      "bytes": 481,
+      "sha256": "da6cc78e24900ad73e9765fd0860effe63fe741d0b3b543993417e82c89ea984"
+    },
+    {
+      "file": "export-pack.log",
+      "bytes": 52797,
+      "sha256": "30c894c4a9e303ea9530d25009d6421408c6f36640479a6e2aa14e4709c3141d"
+    },
+    {
+      "file": "exported-resources.log",
+      "bytes": 118,
+      "sha256": "bc0832e5e755a040d1e6a736ab67fcece13b86adc887a881b6221a02b63a64cc"
+    }
+  ],
+  "scope": "45-suite broad run and Python run preceded the final Raider hilt shift/material registration. Four affected suites and exported 32-check resource package then ran on unchanged final source. The separate hosted all-49 run is the complete final-source regression. Python device-probe unit fixtures are simulated devices, not physical phone measurements."
+}

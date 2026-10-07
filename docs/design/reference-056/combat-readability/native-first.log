@@ -1,0 +1,14 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+OCCLUSION_CAPTURE boss-natural-opaque
+OCCLUSION_CAPTURE boss-natural-reveal
+OCCLUSION_CAPTURE boss-overlap-opaque
+OCCLUSION_CAPTURE boss-overlap-reveal
+ERROR: OCCLUSION_CAPTURE_FAIL inspection altered combat or camera
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _capture_cases (res://tests/combat_occlusion_preview.gd:40)
+       [1] _capture (res://tests/combat_occlusion_preview.gd:48)

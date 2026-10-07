@@ -1,0 +1,24 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+SCRIPT ERROR: Parse Error: Cannot infer the type of "current" variable because the value doesn't have a set type.
+          at: GDScript::reload (res://scripts/source_avatar_evade.gd:110)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/dungeon_actor.gd:0)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/hero_art.gd:0)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/main.gd:0)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://tests/combat_occlusion_preview.gd:0)
+ERROR: Failed to load script "res://tests/combat_occlusion_preview.gd" with error "Compilation failed".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+OCCLUSION_FIXTURE natural enabled=true nearest_depth=23.726001739502
+OCCLUSION_CAPTURE boss-natural-opaque
+OCCLUSION_CAPTURE boss-natural-reveal
+OCCLUSION_FIXTURE overlap enabled=true nearest_depth=27.2886161804199
+OCCLUSION_CAPTURE boss-overlap-opaque
+OCCLUSION_CAPTURE boss-overlap-reveal
+OCCLUSION_CAPTURE_PASS four original PNG frames; original camera and simulation preserved

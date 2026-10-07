@@ -1,0 +1,424 @@
+{
+  "schema": 1,
+  "documented_at_utc": "2026-10-07T04:36:01.777578+00:00",
+  "engine": "Godot 4.7.2.stable.official.ed1daf0bf",
+  "headless": true,
+  "source_commit": null,
+  "source_scope": "Local working-tree validation. Current owned combat and attack leaf hashes match their accepted local runs; the canonical-banner contact script was separately rerun with actual exit0/295checks/39poses. Shared actor, rig, class, world and raider integration remained concurrent; these leaf hashes are not a final whole-source commit or frozen package claim.",
+  "leaf_sources": [
+    {
+      "path": "scripts/source_avatar_combat.gd",
+      "sha256": "567c47ab144411cb85cd829878484d45fac4cc0d133f4c50f5462f7db4053318"
+    },
+    {
+      "path": "tests/source_avatar_attack_smoke.gd",
+      "sha256": "078ccc668df367a895265b5d3c82aa10822a4e3d5c39af89fea902acb1426137"
+    },
+    {
+      "path": "tests/source_avatar_attack_contact_smoke.gd",
+      "sha256": "9552f7011c85354adc7966eaceab6bce9f58176d7123e0d1145c563617ead918"
+    },
+    {
+      "path": "tests/source_avatar_grip_smoke.gd",
+      "sha256": "aaec82b37a8c57aebc96867b73ea6c3b045073ac1c16899fcfb59f1c9427ef63"
+    }
+  ],
+  "original_avatar_asset": {
+    "path": "assets/models/nyra052/arcanist.glb",
+    "sha256": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "modified_for_this_attack_pass": false,
+    "native_bones": 65,
+    "original_surfaces": 8
+  },
+  "results": [
+    {
+      "log": "attack.log",
+      "original_scratch_log": "/workspace/scratch/emberfall-quality-056/attack/attack-first.log",
+      "script": "res://tests/source_avatar_attack_smoke.gd",
+      "actual_process_exit": 0,
+      "exit_evidence": "Actual exec process completion, not inferred only from the output banner.",
+      "checks": 172,
+      "failures": 0,
+      "poses": null,
+      "bytes": 2281,
+      "sha256": "605276552a41437efc6471cc987d9b02a2006998c158885e1eb7fbb1f20b1ac8"
+    },
+    {
+      "log": "attack-contact.log",
+      "original_scratch_log": "/workspace/scratch/emberfall-quality-056/attack/attack-contact-canonical.log",
+      "script": "res://tests/source_avatar_attack_contact_smoke.gd",
+      "actual_process_exit": 0,
+      "exit_evidence": "Actual exec process completion, not inferred only from the output banner.",
+      "checks": 295,
+      "failures": 0,
+      "poses": 39,
+      "bytes": 246,
+      "sha256": "c512f87353c60bf929c9b27a2337bd360841442d5909db1480009c490b47ecf6",
+      "canonical_runner_banner": true
+    },
+    {
+      "log": "grip.log",
+      "original_scratch_log": "/workspace/scratch/emberfall-quality-056/attack/grip-final.log",
+      "script": "res://tests/source_avatar_grip_smoke.gd",
+      "actual_process_exit": 0,
+      "exit_evidence": "Actual exec process completion, not inferred only from the output banner.",
+      "checks": 296,
+      "failures": 0,
+      "poses": 40,
+      "bytes": 230,
+      "sha256": "9b5f41e43cea0f6bb338fe38e4614d4ef9ccc1aceecd6faf0a5f1360d5341c32"
+    }
+  ],
+  "historical_baseline": {
+    "source_commit": "ad4d50bb9dbdc07cea42e2306a79fc65bb642489",
+    "combat_sha256": "5ded4db5bd00f574d57212aff5b23a6974c61076cc049c11214f20bfac650a48",
+    "passed_attack_checks": 120,
+    "passed_grip_checks": 296,
+    "ci_receipt": "../../reference-055/ci/gameplay-receipt.json",
+    "ci_receipt_sha256": "bf861157396dc73e8e0b990ec870d2a4f29819055ccddd0defea65d0198d64c2",
+    "visual_review": "../../reference-055/gameplay/MOTION_REVIEW.md",
+    "visual_review_sha256": "874c74db4a0ac0622f814468b185698516d56b7cc72ef10610dfdd32689dccb9",
+    "visual_finding": "The free-hand change was subtle in the ordinary game view; torso and boots remained very quiet.",
+    "comparable_full_body_rms_measurement_available": false
+  },
+  "current_geometric_baseline": "Independent second production Arcanist, same native original source sample at every compared phase, with ordinary floor grounding and support-staff solve but no Combat.apply overlay. This is an artist-clip control, distinct from the historical 055 combat overlay.",
+  "metrics_space": "Native source rig with motion_node orientation and floor offset, before additional Actor.body scaling. Values copied from unmodified original success log; body step samples are at normalized 1/60 phase, not a hardware FPS measurement.",
+  "body_motion_probe_scope": {
+    "mesh": "Nyra_Female_Peasant_Body",
+    "indexed_vertices": 1730,
+    "original_skin_influences_per_vertex": 4,
+    "excludes": [
+      "hair",
+      "face",
+      "separate native65 attire accessories"
+    ]
+  },
+  "weighted_boot_scope": {
+    "physical_indexed_floor_vertices": 356,
+    "source_vertex_y_upper_bound_m": 0.055,
+    "vertices_with_nonzero_original_calf_weight": 204,
+    "maximum_original_calf_weight": 0.4910164773464203,
+    "mean_original_calf_weight": 0.11097303427379118,
+    "boot_center_definition": "Arithmetic mean of indexed original floorprobes per boot; not pressure center or area-weighted contact.",
+    "bone_contact_test": "Both original foot_l/foot_r global origins within .0001m and original global bases preserved.",
+    "all_tested_windup_and_recovery_floor_minimum_m": 0.0029,
+    "tested_horizontal_center_limit_m": 0.008,
+    "tested_horizontal_vertex_limit_m": 0.02,
+    "printed_maxima_scope": "Windup only; recovery is separately checked against the same limits but its exact maxima are not emitted by the log."
+  },
+  "metrics": {
+    "basic": {
+      "load_phase": 0.33,
+      "catch_recovery_phase": 0.14,
+      "load_pelvis_delta_m": [
+        0.024248,
+        -0.044122,
+        0.009143
+      ],
+      "catch_pelvis_delta_m": [
+        -0.033832,
+        -0.029872,
+        -0.029558
+      ],
+      "load_knee_flexion_delta_rad": 0.32884310185909,
+      "catch_knee_flexion_delta_rad": 0.21579183638096,
+      "load_body_rms_m": 0.0608228444539,
+      "catch_body_rms_m": 0.09438092518622,
+      "windup_boot_center_max_horizontal_delta_m": 0.00119703196073,
+      "windup_boot_vertex_max_horizontal_delta_m": 0.01125883031636,
+      "windup_body_max_rms_step_m": 0.01036651795308,
+      "passing_glove_speed_m_per_normalized_phase": 0.4241595743224,
+      "catch_time_after_confirmed_release_s": 0.04760000000000001,
+      "load_knee_flexion_delta_degrees": 18.84132185851649,
+      "lateral_load_to_catch_transfer_m_from_rounded_log_positions": 0.05808
+    },
+    "skill": {
+      "load_phase": 0.34,
+      "catch_recovery_phase": 0.16,
+      "load_pelvis_delta_m": [
+        0.03912,
+        -0.06456,
+        0.019059
+      ],
+      "catch_pelvis_delta_m": [
+        -0.033686,
+        -0.044719,
+        -0.028179
+      ],
+      "load_knee_flexion_delta_rad": 0.44544936716557,
+      "catch_knee_flexion_delta_rad": 0.30449251830578,
+      "load_body_rms_m": 0.09405608967514,
+      "catch_body_rms_m": 0.12194859786379,
+      "windup_boot_center_max_horizontal_delta_m": 0.00170734524727,
+      "windup_boot_vertex_max_horizontal_delta_m": 0.01550681516528,
+      "windup_body_max_rms_step_m": 0.01256080127834,
+      "passing_glove_speed_m_per_normalized_phase": 0.78580359695479,
+      "catch_time_after_confirmed_release_s": 0.054400000000000004,
+      "load_knee_flexion_delta_degrees": 25.52236872536055,
+      "lateral_load_to_catch_transfer_m_from_rounded_log_positions": 0.07280600000000001
+    },
+    "heavy": {
+      "load_phase": 0.32,
+      "catch_recovery_phase": 0.18,
+      "load_pelvis_delta_m": [
+        0.039729,
+        -0.09468,
+        0.024507
+      ],
+      "catch_pelvis_delta_m": [
+        -0.031806,
+        -0.083891,
+        -0.023225
+      ],
+      "load_knee_flexion_delta_rad": 0.60119999945164,
+      "catch_knee_flexion_delta_rad": 0.50990729033947,
+      "load_body_rms_m": 0.13161906693594,
+      "catch_body_rms_m": 0.16306115581308,
+      "windup_boot_center_max_horizontal_delta_m": 0.00209143808049,
+      "windup_boot_vertex_max_horizontal_delta_m": 0.01813985407352,
+      "windup_body_max_rms_step_m": 0.01846282393274,
+      "passing_glove_speed_m_per_normalized_phase": 0.84954936755821,
+      "catch_time_after_confirmed_release_s": 0.061200000000000004,
+      "load_knee_flexion_delta_degrees": 34.44622261184638,
+      "lateral_load_to_catch_transfer_m_from_rounded_log_positions": 0.071535
+    }
+  },
+  "actual_staff_contact": {
+    "peak_load_and_catch_39_poses": {
+      "maximum_arm_shaft_penetration_m": 0.00047286118567,
+      "maximum_finger_gap_m": 0.00246476118267
+    },
+    "existing_40_transition_poses": {
+      "maximum_arm_shaft_penetration_m": 0.00047248865664,
+      "maximum_finger_gap_m": 0.00246464383602
+    },
+    "scope": "Actual indexed arm/finger triangles reconstructed using every original skin influence; existing audit reused by the additional attack_contact smoke."
+  },
+  "hair_scope": {
+    "mesh": "Nyra_Hair_Buns",
+    "indexed_vertices": 3501,
+    "original_weighted_bones": [
+      "Head"
+    ],
+    "secondary_hair_physics_added": false,
+    "checked_only_in_coarse_eight_surface_bounds": true
+  },
+  "unchanged_authority": [
+    "simulation damage",
+    "cooldowns",
+    "projectile release confirmation",
+    "existing .34s recovery duration",
+    "camera transforms"
+  ],
+  "visual_followup": {
+    "status": "Six-native-still diagnostic and selected ordinary30s gameplay motion review completed; actual capture900frames30.000seconds, launcherexit0 and fullA/Vdecode passed.",
+    "fixture": "tests/combat_quality_gameplay_preview.gd",
+    "capture_tool": "tools/capture_combat_quality.py",
+    "record_file": "frames.jsonl",
+    "pose_fields": [
+      "hero_pose.clip",
+      "hero_pose.attack_time",
+      "hero_pose.release_time",
+      "hero_pose.bones_world",
+      "prefix_pose_markers"
+    ],
+    "existing_studio_fixture": "tests/source_avatar_grip_scene_preview.gd",
+    "existing_studio_limit": "Only hardcoded basic windup .65/1 and recovery .14 seconds; no CLI to select load/catch for all three phrases.",
+    "coverage_rule": "No visual evidence is claimed for a phrase absent from the actual ordinary prefix; decoded MP4 frames must be labeled as lossy decodes.",
+    "bounded_studio_fixture": {
+      "path": "tests/source_avatar_attack_preview.gd",
+      "sha256": "0d96ef7aa01b03ac73a9b457466d651c100ed49cf3c23d8ff133a571b0a6e800",
+      "status": "Actual native six-image run completed; 49checks/0failures and actual process exit0. All original six PNGs independently viewed.",
+      "expected_images": 6,
+      "resolution": [
+        1200,
+        1200
+      ],
+      "scope": "Directly posed actual production Actor load/catch stills, plus complete weighted main/garment/actual live prop World-floor and camera-fit checks. Diagnostic static posing only.",
+      "native_receipt": "native/receipt.json",
+      "native_log": "native/native-preview.log",
+      "visual_findings": [
+        "The knees flex visibly in all three load poses, most deeply in heavy-load; both legs retain a plausible forward/outward bend rather than an inverted or straight stretched knee.",
+        "Fixed-camera load/catch pairs show an actual lateral hip transfer and clearer torso/shoulder rotation, with different compact/high/low free-hand loading silhouettes.",
+        "The supported right hand remains visibly around the staff, and the complete staff remains upright and inside all six frames.",
+        "Angular sleeve and coat-tail shapes remain; hair buns remain static Head skin and dark boots/coat reveal limited material detail.",
+        "These six sparse posed stills establish silhouette/knee direction at their exact phases, not continuous motion quality in the ordinary HUD view."
+      ]
+    },
+    "ordinary_gameplay": {
+      "source_commit": "5e72fc6fad38f7dc829d313d8df0de8289f52573",
+      "actual_launcher_exit": 0,
+      "frames": 900,
+      "playback_seconds": 30.0,
+      "full_h264_aac_decode": "passed",
+      "capture_display": ":108",
+      "mp4": "../gameplay/after/ordinary-arcanist-first30s.mp4",
+      "mp4_sha256": "e70cc296afe940f75c19004da8220b9fefb4faa3fd3e8ed10518066590f007f3",
+      "capture_execution_receipt": "../gameplay/capture-execution-receipt.json",
+      "capture_conditions": "../gameplay/README.md",
+      "independent_selected_frame_review": "../gameplay/MOTION_REVIEW.md",
+      "native_after_frames_viewed": [
+        4,
+        6,
+        8,
+        11,
+        14,
+        15,
+        19,
+        44,
+        46,
+        48,
+        50,
+        51,
+        53,
+        56,
+        300,
+        311,
+        314,
+        317,
+        320,
+        323,
+        326,
+        328,
+        336,
+        343,
+        347,
+        348,
+        351,
+        600
+      ],
+      "before_h264_mp4_decode_frames_viewed": [
+        4,
+        46,
+        317,
+        328,
+        793,
+        794,
+        799
+      ],
+      "after_h264_mp4_decode_frames_viewed": [
+        791,
+        793,
+        794,
+        796,
+        799,
+        803,
+        806
+      ],
+      "additional_cancel_decode_scratch_bytes": 7692180,
+      "actual_coverage": [
+        "basic windup/release/recovery",
+        "signature windup/release/recovery",
+        "starfall windup/release/recovery",
+        "first directed evade",
+        "actual early chain windup cancel at794"
+      ],
+      "visual_findings": [
+        "Basic46 and Heavy328 have visibly broader flexed knees and lower pelvis than matched055 H.264decodes; forward drive and return are visible, amplitude remains moderate.",
+        "Signature is brief and compact in ordinary small game figure.",
+        "First evade lowers hips/shoulders and steps right out of actual warning rather than ordinary upright walk.",
+        "Staff remains visibly supported in reviewed poses; early cancel fast whole-actor displacement already exists in BEFORE and is not an independent staff jump.",
+        "Angular comparatively rigid robe and static hair remain; small figure pixels cannot establish millimetre finger/sole contact."
+      ],
+      "scope": "Selected actual native/explicitly lossy-decoded frame sequences, independently reviewed by two readers; not continuous real-time judgment of all900frames, no completed dungeon, guardian fight, physicaldeviceFPS or visualreleaseclaim."
+    }
+  },
+  "limits": [
+    "Anatomical and contact checks do not establish natural knee-bend direction; inspect actual normal game image sequences.",
+    "Body RMS reconstructs one original outfit mesh, not every hair, head or separate attire vertex. Eight-main-surface bounds are not continuous hair or attire collision validation.",
+    "Original calf-weighted boot geometry flexes; planted foot bones do not imply a rigid sole mesh.",
+    "No physical Android frame-time, AAA quality or visual release readiness claim."
+  ],
+  "native_preview": {
+    "actual_process_exit": 0,
+    "engine": "Godot 4.7.2.stable.official.ed1daf0bf",
+    "renderer": "gl_compatibility Mesa25.0.7 llvmpipeLLVM19.1.7",
+    "display": ":108",
+    "audio_driver": "Dummy",
+    "checks": 49,
+    "failures": 0,
+    "original_native_images": 6,
+    "source_hashes_from_native_run": {
+      "scripts/source_avatar_combat.gd": "567c47ab144411cb85cd829878484d45fac4cc0d133f4c50f5462f7db4053318",
+      "tests/source_avatar_attack_preview.gd": "0d96ef7aa01b03ac73a9b457466d651c100ed49cf3c23d8ff133a571b0a6e800"
+    },
+    "files": [
+      {
+        "path": "native/basic-load.png",
+        "bytes": 156969,
+        "sha256": "19ea594e8b6b0656e3c92184fe2c08d447419d6351b98004ef40454e4409df65",
+        "original_native_png": true,
+        "dimensions": [
+          1200,
+          1200
+        ]
+      },
+      {
+        "path": "native/basic-catch.png",
+        "bytes": 162182,
+        "sha256": "4fafd9f66c83ae3f5956ff2b5db9b7fd16760d37c155da6468f4a777a3b01d17",
+        "original_native_png": true,
+        "dimensions": [
+          1200,
+          1200
+        ]
+      },
+      {
+        "path": "native/skill-load.png",
+        "bytes": 158181,
+        "sha256": "5ecc649acae8032c029a1a8e9d71454d6077b7bec646d3a47fcac2c3bbbbd74e",
+        "original_native_png": true,
+        "dimensions": [
+          1200,
+          1200
+        ]
+      },
+      {
+        "path": "native/skill-catch.png",
+        "bytes": 162441,
+        "sha256": "d827720398ec39b243781f89a78337656f1ae0822fc6778aff299905298de23e",
+        "original_native_png": true,
+        "dimensions": [
+          1200,
+          1200
+        ]
+      },
+      {
+        "path": "native/heavy-load.png",
+        "bytes": 158611,
+        "sha256": "1c4f8f0d1bff820d21b8eeb2b91144509ee660d7b21ac354014f13f8fb2cc273",
+        "original_native_png": true,
+        "dimensions": [
+          1200,
+          1200
+        ]
+      },
+      {
+        "path": "native/heavy-catch.png",
+        "bytes": 162608,
+        "sha256": "8af51fba34e3287780a16c6385c04588e8d58becaeedb537c8250e51d660e1d4",
+        "original_native_png": true,
+        "dimensions": [
+          1200,
+          1200
+        ]
+      },
+      {
+        "path": "native/receipt.json",
+        "bytes": 14619,
+        "sha256": "c387b0948e5f1d65a83bc670772ba7270b577a12a232ae74d69db1a74305d77b"
+      },
+      {
+        "path": "native/native-preview.log",
+        "bytes": 1124,
+        "sha256": "15968fa92f60a104374fe903e1845b08f80d1b7e16c7ff1bec267030db29d42c"
+      }
+    ],
+    "all_main_and_separate_attire_world_floor_min_m": 0.00348648708313704,
+    "actual_prop_world_floor_min_m": 0.938616037368774,
+    "scope": "Six diagnostic original native stills of directly posed production Actor skin, attire and staff. No World simulation, ordinary HUD, continuous motion, game FPS or visual acceptance claim.",
+    "actual_indexed_geometry_audit": "All indexed original main-skin and separate garment vertices, each with every original skin influence; all indexed live prop vertices. World units after actual production Actor.body scaling.",
+    "accepted_script_shader_compile_errors": 0,
+    "driver_warning": "V-Sync mode cannot be changed on the software driver; not a shader/script error."
+  }
+}
