@@ -4,7 +4,9 @@ extends Node3D
 const Rig=preload("res://scripts/character_rig.gd")
 const SourceAvatar=preload("res://scripts/source_avatar_rig.gd")
 const ClassAvatar=preload("res://scripts/class_avatar_rig.gd")
+const RaiderAvatar=preload("res://scripts/raider_avatar_rig.gd")
 const EquipmentFinish=preload("res://scripts/native_equipment_finish.gd")
+const Evade=preload("res://scripts/source_avatar_evade.gd")
 const HEROES: Array[String]=["Vowkeeper","Arcanist","Ranger"]
 const HOSTILES: Array[String]=["raider","bulwark","hexer","elite"]
 const GEAR_RANKS: Dictionary={"COMMON":0,"UNCOMMON":1,"RARE":2,"EPIC":3,"LEGENDARY":4}
@@ -53,6 +55,13 @@ var boss_phase:=0
 var telegraph_left:=0.0
 var telegraph_duration:=0.0
 var retreat_time:=-1.0
+var evade_time:=-1.0
+var evade_duration:=0.0
+var evade_phase:=0.0
+var evade_state: Dictionary={}
+var evade_path_active:=false
+var evade_settle_time:=0.0
+var evade_settle_phase:=0.0
 var anticipation:=0.0
 var emphasis:=1.0
 var silhouette_focus:=0.0
@@ -89,8 +98,8 @@ func _load_appearance() -> void:
 	if motion_rig!=null:
 		if source_avatar: motion_rig.dispose()
 		else: motion_rig.player.free(); motion_rig.skeleton.free()
-	source_avatar=SourceAvatar.has_appearance(appearance_key) or ClassAvatar.has_appearance(appearance_key)
-	motion_rig=ClassAvatar.new() if ClassAvatar.has_appearance(appearance_key) else (SourceAvatar.new() if source_avatar else Rig.new())
+	source_avatar=SourceAvatar.has_appearance(appearance_key) or ClassAvatar.has_appearance(appearance_key) or RaiderAvatar.has_appearance(appearance_key)
+	motion_rig=RaiderAvatar.new() if RaiderAvatar.has_appearance(appearance_key) else (ClassAvatar.new() if ClassAvatar.has_appearance(appearance_key) else (SourceAvatar.new() if source_avatar else Rig.new()))
 	motion_rig.build(body,appearance_key)
 	appearance_cache[appearance_key]=motion_rig.mesh
 	body.scale=Vector3.ONE*figure_height/motion_rig.source_height
@@ -122,6 +131,7 @@ func _load_appearance() -> void:
 	model.skeleton=model.get_path_to(motion_rig.skeleton)
 	last_clip=""; blend_pose.clear(); blend_age=1.0
 	plant_active=[false,false]
+	_stop_evade()
 
 func configure_equipment(equipment: Dictionary,class_key: String="") -> void:
 	equipped_items=equipment.duplicate(true)
@@ -184,6 +194,9 @@ func follow_travel(displacement: Vector3,_camera_position: Vector3=Vector3.ZERO)
 
 func strike(style: String="basic",windup_seconds: float=.30,wait_for_hit: bool=false,warning_release: bool=false) -> void:
 	if death_time>=0.0: return
+	# A newly committed attack immediately owns the pose. The completed dodge
+	# may supply the blend source, but never delays a simulation cast.
+	_stop_evade()
 	if style=="heavy":
 		var ordinary_hostile := hostile and telegraph_left<=0.0 and not warning_release
 		telegraph_left=0.0; attack_queued=false; attack_time=0.0
@@ -216,6 +229,40 @@ func cancel_attack() -> void:
 func retreat() -> void:
 	cancel_attack(); retreat_time=0.0
 
+func begin_evade(simulation_origin: Vector3,goal: Vector3) -> void:
+	if death_time>=0.0: return
+	retreat()
+	if not source_avatar or hostile or boss: return
+	var state:=Evade.begin(self,simulation_origin,goal)
+	if state.is_empty(): return
+	attack_time=-1.0; release_time=-1.0
+	attack_queued=false; external_release=false
+	evade_state=state; evade_time=0.0; evade_phase=0.0
+	evade_duration=float(state.distance_world)/6.8+.14
+	evade_path_active=true; evade_settle_time=0.0; evade_settle_phase=0.0
+
+func sync_evade(path_active: bool) -> void:
+	if evade_time<0.0: return
+	if evade_path_active and not path_active:
+		evade_settle_time=0.0
+		evade_settle_phase=maxf(evade_phase,Evade.path_progress(self,evade_state)*.78)
+	evade_path_active=path_active
+
+func _stop_evade() -> void:
+	evade_time=-1.0; evade_phase=0.0
+	evade_state.clear(); evade_path_active=false
+
+func _advance_evade(delta: float) -> void:
+	if evade_time<0.0: return
+	evade_time+=delta
+	var path_phase:=Evade.path_progress(self,evade_state)*.78
+	if evade_path_active:
+		evade_phase=maxf(evade_phase,path_phase)
+	else:
+		evade_settle_time+=delta
+		evade_phase=maxf(path_phase,lerpf(evade_settle_phase,1.0,smoothstep(0.0,.14,evade_settle_time)))
+		if evade_settle_time>=.14: _stop_evade()
+
 func react(direction: float=0.0,intensity: float=1.0) -> void:
 	if death_time>=0.0: return
 	if impact_time<0.0 or intensity>recoil_intensity+.15:
@@ -232,6 +279,7 @@ func set_readability(value: float,focus: float=0.0) -> void:
 		surface_material.set_shader_parameter("readability",emphasis)
 		surface_material.set_shader_parameter("silhouette_focus",silhouette_focus)
 		surface_material.set_shader_parameter("focus_tint",Color("f1dbac") if not hostile else Color("dcba80"))
+	if source_avatar: motion_rig.set_visual_readability(emphasis,silhouette_focus)
 
 func set_defeated_readability(value: float) -> void:
 	if death_time<0.0 or surface_material==null: return
@@ -239,6 +287,7 @@ func set_defeated_readability(value: float) -> void:
 	# visual emphasis without changing death, reward or animation clocks.
 	surface_material.set_shader_parameter("readability",clampf(value,.10,1.0))
 	surface_material.set_shader_parameter("silhouette_focus",0.0)
+	if source_avatar: motion_rig.set_visual_readability(clampf(value,.10,1.0),0.0)
 
 func set_telegraph(remaining_seconds: float,total_seconds: float=-1.0) -> void:
 	if total_seconds>0.0: telegraph_duration=total_seconds
@@ -250,11 +299,13 @@ func die() -> void:
 	if death_time>=0.0: return
 	death_time=0.0; attack_time=-1.0; release_time=-1.0
 	attack_queued=false; telegraph_left=0.0; plant_active=[false,false]
+	_stop_evade()
 
 func animate(delta: float,walking: bool,horizontal_speed: float=-1.0) -> void:
 	if body==null: return
 	delta=maxf(0.0,delta)
 	if not reduced_motion: clock+=delta
+	_advance_evade(delta)
 	if death_time>=0.0:
 		death_time+=delta; pose_frame=5 if death_time>=COLLAPSE_DURATION else 0
 		_apply_motion(delta)
@@ -328,6 +379,8 @@ func _apply_motion(delta: float=0.0,contact: bool=false) -> void:
 		# Ordinary hostile hits already expose their final cooldown fraction.
 		# Use that real preparation window instead of appearing at contact.
 		clip="windup_"+Rig.Clips.hostile_action(appearance_key); time=clampf(anticipation,0,1); blend_duration=.035
+	elif evade_time>=0.0:
+		clip="evade"; time=evade_phase; blend_duration=.055
 	elif gait_blend>.04:
 		clip="walk"; time=fposmod(gait_phase,TAU)/TAU
 	if clip!=last_clip:
@@ -340,6 +393,7 @@ func _apply_motion(delta: float=0.0,contact: bool=false) -> void:
 		if contact: blend_age=1.0
 		else: blend_age+=delta
 		if blend_age<blend_duration and not blend_pose.is_empty(): motion_rig.blend_from(blend_pose,smoothstep(0,blend_duration,blend_age))
+		if clip=="evade": Evade.apply(motion_rig,self,time,evade_state)
 		motion_rig.apply_actor_postprocess(self,clip,time,delta,contact)
 		return
 	if clip=="death":

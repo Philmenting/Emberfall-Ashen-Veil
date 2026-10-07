@@ -3,8 +3,8 @@ const Actor=preload("res://scripts/dungeon_actor.gd")
 const Budget=preload("res://scripts/render_budget.gd")
 const Main=preload("res://scripts/main.gd")
 const SourceSkin=preload("res://tests/source_avatar_skin.gd")
-const SOURCE_SURFACE_COUNTS={"Arcanist":8,"Vowkeeper":10,"Ranger":12}
-const ACCESSORY_COUNTS={"Arcanist":11,"Vowkeeper":3,"Ranger":0}
+const SOURCE_SURFACE_COUNTS={"Arcanist":8,"Vowkeeper":10,"Ranger":12,"raider":8}
+const ACCESSORY_COUNTS={"Arcanist":11,"Vowkeeper":3,"Ranger":0,"raider":0}
 var checks:=0
 var failures:=0
 func _initialize() -> void: run_checks.call_deferred()
@@ -14,8 +14,8 @@ func check(value: bool,message: String) -> void:
 	else: failures+=1; push_error(message)
 
 func run_checks() -> void:
-	for kind in ["Vowkeeper","Arcanist","Ranger","boss"]:
-		var actor:=Actor.new(); actor.kind=kind; actor.boss=kind=="boss"; root.add_child(actor)
+	for kind in ["Vowkeeper","Arcanist","Ranger","raider","boss"]:
+		var actor:=Actor.new(); actor.kind=kind; actor.boss=kind=="boss"; actor.hostile=kind in ["raider","boss"]; root.add_child(actor)
 		var mesh: MeshInstance3D=actor.model
 		var source_geometry: Array=[]
 		if actor.source_avatar:
@@ -27,7 +27,8 @@ func run_checks() -> void:
 				for slot in surface.mesh.get_surface_count():
 					material_slots_present=material_slots_present and surface.get_active_material(slot)!=null
 			var visible_triangles:=actual_visible_triangles(actor.motion_rig)
-			check(actor.motion_rig.surfaces.size()==SOURCE_SURFACE_COUNTS[kind] and material_slots_present and visible_triangles<=40000 and actor.motion_rig.rendered_triangles<=40000,kind+": exact class source mesh inventory, bound material slots and full actual outfit/accessory/weapon triangle budget; visible="+str(visible_triangles))
+			var triangle_budget:=20000 if kind=="raider" else 40000
+			check(actor.motion_rig.surfaces.size()==SOURCE_SURFACE_COUNTS[kind] and material_slots_present and visible_triangles<=triangle_budget and actor.motion_rig.rendered_triangles<=triangle_budget,kind+": exact class source mesh inventory, bound material slots and full actual outfit/accessory/weapon triangle budget; visible="+str(visible_triangles))
 			check(complete_source_bounds(actor).size.z>.30,kind+": all four skin influences give the complete rendered figure and accessories real depth")
 			check(source_surfaces_rendered(actor) and actor.motion_rig.skeleton.get_bone_count()==65 and actor.motion_rig.player.has_animation("Walk_Loop") and actor.motion_rig.player.has_animation("Death01"),kind+": original native65 skin and authored walking/death clips drive the visible surfaces")
 		else:
@@ -126,7 +127,7 @@ func run_checks() -> void:
 func source_surfaces_rendered(actor: Node3D) -> bool:
 	if not actor.source_avatar or actor.model.visible: return false
 	if actor.motion_rig.surfaces.size()!=int(SOURCE_SURFACE_COUNTS.get(actor.appearance_key,-1)): return false
-	if actor.motion_rig.style.accessories.size()!=int(ACCESSORY_COUNTS.get(actor.appearance_key,-1)): return false
+	if source_accessories(actor).size()!=int(ACCESSORY_COUNTS.get(actor.appearance_key,-1)): return false
 	for surface in complete_source_surfaces(actor):
 		if not surface.is_visible_in_tree() or surface.mesh==null or surface.skin==null or surface.get_node_or_null(surface.skeleton)!=actor.motion_rig.skeleton: return false
 	return true
@@ -141,11 +142,19 @@ func source_geometry_unchanged(actor: Node3D,original: Array) -> bool:
 
 func complete_source_surfaces(actor: Node3D) -> Array:
 	var result: Array=actor.motion_rig.surfaces.duplicate()
-	result.append_array(actor.motion_rig.style.accessories)
+	result.append_array(source_accessories(actor))
 	return result
 
+func source_accessories(actor: Node3D) -> Array:
+	return actor.motion_rig.style.accessories if actor.motion_rig.style!=null else []
+
 func complete_source_bounds(actor: Node3D) -> AABB:
-	return SourceSkin.actual_bounds(actor.motion_rig,actor.motion_rig.style.accessories)
+	var rig: RefCounted=actor.motion_rig
+	var result:=SourceSkin.actual_bounds(rig,source_accessories(actor))
+	if actor.appearance_key=="raider":
+		for point in rig.weapon_points:
+			result=result.expand(rig.motion_node.transform*(rig.weapon.transform*point))
+	return result
 
 func actual_visible_triangles(rig: RefCounted) -> int:
 	var count:=0

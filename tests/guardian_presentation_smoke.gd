@@ -98,6 +98,8 @@ func run_checks() -> void:
 		var world: Node3D=World.new(); world.simulation=sim; world.region_index=region; world.character_class="Arcanist"; world.active=false
 		root.add_child(world)
 		var guardian: Node3D=world.actor_by_id[50]
+		var original_material: Material=guardian.model.material_override
+		var original_shadow: int=guardian.model.cast_shadow
 		check(world.hero.source_avatar and not world.hero.model.visible and world.hero.motion_rig.surfaces.size()==8,"region %d: coverage fixture renders the actual eight authored source surfaces" % region)
 		world._position_camera()
 		var shot: Transform3D=world.camera.transform
@@ -114,16 +116,14 @@ func run_checks() -> void:
 				var actual: AABB=world.hero.body.transform*SkinAudit.actual_bounds(world.hero.motion_rig,world.hero.motion_rig.style.accessories)
 				var actual_screen:=project_bounds(world,world.hero,actual)
 				var window: Dictionary=world._hero_occlusion_window()
-				check(window.rect.grow(.05).encloses(actual_screen.rect) and window.far+.05>=actual_screen.far,"region %d %s: cutaway encloses the complete actually weighted hero body in this cast" % [region,style])
+				check(window.rect.grow(.05).encloses(actual_screen.rect) and window.far+.05>=actual_screen.far,"region %d %s: overlap projection encloses the complete actually weighted hero body in this cast" % [region,style])
 				var enemy_screen: Dictionary=world._project_body(guardian)
 				var overlaps: bool=enemy_screen.rect.intersects(actual_screen.rect) and enemy_screen.near<actual_screen.far
-				var amount: float=guardian.surface_material.get_shader_parameter("hero_cutaway")
-				check(not overlaps or amount>=.85,"region %d %s: foreground guardian body relinquishes opacity where it conceals Nyra" % [region,style])
-				check(is_equal_approx(float(guardian.surface_material.get_shader_parameter("hero_view_depth")),float(window.far)+.025) if amount>0.0 else true,"region %d %s: cutaway is restricted to geometry before the actual hero skin" % [region,style])
+				check(not overlaps or world.combat_readability.enabled,"region %d %s: a foreground guardian enables the hero's exact-geometry depth visibility pass" % [region,style])
+				check(guardian.model.material_override==original_material and guardian.model.cast_shadow==original_shadow,"region %d %s: visibility keeps the guardian's original opaque body, weapon material and complete shadow" % [region,style])
 				check(sim.encode_snapshot()==before and world.camera.transform==shot,"region %d %s: body visibility changes neither combat authority nor settled camera" % [region,style])
 		world.hero.position=natural_position
-		var full_shadow: MeshInstance3D=guardian.model.get_parent().get_node_or_null("UnmaskedBodyShadow")
-		check(full_shadow!=null and full_shadow.mesh==guardian.model.mesh and full_shadow.skin==guardian.model.skin and full_shadow.cast_shadow==GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY and float(full_shadow.material_override.get_shader_parameter("hero_cutaway"))==0.0,"region %d: cutaway retains the complete original weighted shadow in its separate shadow-only pass" % region)
+		check(guardian.model.get_parent().get_node_or_null("UnmaskedBodyShadow")==null and guardian.model.cast_shadow==original_shadow,"region %d: the original weighted guardian shadow needs no duplicate cutaway compensation pass" % region)
 		world.hero.cancel_attack()
 		world.hero.strike("basic",.3,true); world.hero.sync_attack(.14); world.hero.animate(0,false)
 		sim.pending_attack={"target":50,"skill":false,"left":.14}; world._update_cast_focus()

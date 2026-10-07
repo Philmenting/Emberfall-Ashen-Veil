@@ -4,9 +4,11 @@ extends SceneTree
 const Actor = preload("res://scripts/dungeon_actor.gd")
 const SkinAudit = preload("res://tests/source_avatar_skin.gd")
 const SourceRig = preload("res://scripts/source_avatar_rig.gd")
+const Combat = preload("res://scripts/source_avatar_combat.gd")
 var checks := 0
 var failures: Array[String] = []
 var hand_probes: Array = []
+var body_probes: Array = []
 
 func _initialize() -> void:
 	call_deferred("run")
@@ -55,6 +57,108 @@ func rendered_hand(rig: RefCounted) -> Vector3:
 		center += rig.motion_node.transform * point
 	return center / float(hand_probes.size())
 
+func cache_rendered_body(rig: RefCounted) -> void:
+	for surface in rig.surfaces:
+		if not String(surface.name).ends_with("_Body"):
+			continue
+		for slot in surface.mesh.get_surface_count():
+			var arrays = surface.mesh.surface_get_arrays(slot)
+			var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+			var binds: PackedInt32Array = arrays[Mesh.ARRAY_BONES]
+			var weights: PackedFloat32Array = arrays[Mesh.ARRAY_WEIGHTS]
+			var used := {}
+			for index in arrays[Mesh.ARRAY_INDEX]:
+				used[index] = true
+			for index in used:
+				var influences: Array = []
+				for influence in 4:
+					var weight := weights[index * 4 + influence]
+					if weight <= 0.0:
+						continue
+					var bind := binds[index * 4 + influence]
+					var name: StringName = surface.skin.get_bind_name(bind)
+					var bone: int = rig.skeleton.find_bone(name) if name != &"" else surface.skin.get_bind_bone(bind)
+					influences.append([bone, surface.skin.get_bind_pose(bind) * vertices[index], weight])
+				body_probes.append(influences)
+	check(body_probes.size() > 100, "Body motion uses indexed, actually rendered outfit vertices")
+
+func rendered_body(rig: RefCounted) -> Array[Vector3]:
+	var points: Array[Vector3] = []
+	for influences in body_probes:
+		var point := Vector3.ZERO
+		for influence in influences:
+			point += (rig.skeleton.get_bone_global_pose(influence[0]) * influence[1]) * influence[2]
+		points.append(rig.motion_node.transform * point)
+	return points
+
+func rendered_soles(rig: RefCounted) -> Array[Vector3]:
+	var points: Array[Vector3] = []
+	for probe in rig.floor_probes:
+		var point := Vector3.ZERO
+		for influence in probe.bones.size():
+			point += (rig.skeleton.get_bone_global_pose(probe.bones[influence]) * probe.binds[influence] * probe.point) * probe.weights[influence]
+		points.append(rig.motion_node.transform * point)
+	return points
+
+func knee_flexion(rig: RefCounted) -> float:
+	var total := 0.0
+	for suffix in ["l", "r"]:
+		var hip: Vector3 = rig.skeleton.get_bone_global_pose(rig.skeleton.find_bone("thigh_" + suffix)).origin
+		var knee: Vector3 = rig.skeleton.get_bone_global_pose(rig.skeleton.find_bone("calf_" + suffix)).origin
+		var ankle: Vector3 = rig.skeleton.get_bone_global_pose(rig.skeleton.find_bone("foot_" + suffix)).origin
+		total += (knee - hip).angle_to(ankle - knee)
+	return total * .5
+
+func pose_source_control(actor: Node3D, clip: String, time: float) -> void:
+	# Independent control: the identical immutable artist clip, without the
+	# combat overlay. Normal floor grounding and staff support still run.
+	var sample := Combat.source_sample(clip, time)
+	actor.motion_rig._sample(sample.action, sample.time)
+	actor.motion_rig.apply_actor_postprocess(actor, clip, time, 0.0, true)
+
+func whole_body_metrics(actor: Node3D, control: Node3D, clip: String, time: float) -> Dictionary:
+	pose_actor(actor, clip, time)
+	pose_source_control(control, clip, time)
+	var rig = actor.motion_rig
+	var reference = control.motion_rig
+	var pelvis: int = rig.skeleton.find_bone("pelvis")
+	var chest: int = rig.skeleton.find_bone("spine_03")
+	var body := rendered_body(rig)
+	var original := rendered_body(reference)
+	var squared_motion := 0.0
+	for index in body.size():
+		squared_motion += body[index].distance_squared_to(original[index])
+	return {
+		"pelvis": rig.motion_node.transform * rig.skeleton.get_bone_global_pose(pelvis).origin - reference.motion_node.transform * reference.skeleton.get_bone_global_pose(pelvis).origin,
+		"chest": (rig.skeleton.get_bone_global_pose(chest).basis * reference.skeleton.get_bone_global_pose(chest).basis.inverse()).get_rotation_quaternion(),
+		"knee": knee_flexion(rig) - knee_flexion(reference),
+		"body_rms": sqrt(squared_motion / float(body.size())),
+	}
+
+func contact_metrics(rig: RefCounted, reference: RefCounted) -> Dictionary:
+	var result := {"floor": true, "ankles": true, "vertex": 0.0, "center": 0.0}
+	var soles := rendered_soles(rig)
+	var originals := rendered_soles(reference)
+	var contact_delta := [Vector2.ZERO, Vector2.ZERO]
+	var contact_count := [0, 0]
+	for index in soles.size():
+		var drift := Vector2(soles[index].x - originals[index].x, soles[index].z - originals[index].z)
+		result.vertex = maxf(result.vertex, drift.length())
+		result.floor = result.floor and soles[index].y >= .0029
+		var side: int = rig.floor_probes[index].side
+		contact_delta[side] += drift
+		contact_count[side] += 1
+	for side in 2:
+		result.center = maxf(result.center, contact_delta[side].length() / float(contact_count[side]))
+	for suffix in ["l", "r"]:
+		var foot: int = rig.skeleton.find_bone("foot_" + suffix)
+		var actual: Transform3D = rig.skeleton.get_bone_global_pose(foot)
+		var original: Transform3D = reference.skeleton.get_bone_global_pose(foot)
+		result.ankles = result.ankles and actual.origin.distance_to(original.origin) < .0001 and actual.basis.is_equal_approx(original.basis)
+	var head: int = rig.skeleton.find_bone("Head")
+	result.gaze = rig.skeleton.get_bone_global_pose(head).basis.get_rotation_quaternion().angle_to(reference.skeleton.get_bone_global_pose(head).basis.get_rotation_quaternion())
+	return result
+
 func pose_actor(actor: Node3D, clip: String, time: float) -> void:
 	actor.motion_rig.pose(clip, time)
 	actor.motion_rig.apply_actor_postprocess(actor, clip, time, 0.0, true)
@@ -69,6 +173,10 @@ func run() -> void:
 	for clip in ["Spell_Simple_Enter", "Spell_Simple_Shoot", "Spell_Simple_Exit", "Idle_Loop", "Walk_Loop", "Death01"]:
 		check(rig.player.has_animation(clip), "Source animation remains available: " + clip)
 	cache_rendered_hand(rig)
+	cache_rendered_body(rig)
+	var source_control = Actor.new()
+	source_control.kind = "Arcanist"
+	root.add_child(source_control)
 	var records := {}
 	for action in ["basic", "skill", "heavy"]:
 		var windup: String = "windup_" + String(action)
@@ -87,9 +195,30 @@ func run() -> void:
 		var staff_upright := true
 		var maximum_step := 0.0
 		var maximum_step_frame := 0
+		var previous_body: Array[Vector3] = []
+		var largest_body_step := 0.0
+		var largest_sole_drift := 0.0
+		var largest_contact_drift := 0.0
+		var sole_transforms_fixed := true
+		var physical_floor_clear := true
+		var largest_gaze_turn := 0.0
 		for frame in 61:
 			pose_actor(actor, windup, frame / 60.0)
+			pose_source_control(source_control, windup, frame / 60.0)
 			path.append(rendered_hand(rig))
+			var body := rendered_body(rig)
+			if not previous_body.is_empty():
+				var body_step := 0.0
+				for index in body.size():
+					body_step += body[index].distance_squared_to(previous_body[index])
+				largest_body_step = maxf(largest_body_step, sqrt(body_step / float(body.size())))
+			previous_body = body
+			var contacts := contact_metrics(rig, source_control.motion_rig)
+			largest_sole_drift = maxf(largest_sole_drift, contacts.vertex)
+			largest_contact_drift = maxf(largest_contact_drift, contacts.center)
+			physical_floor_clear = physical_floor_clear and contacts.floor
+			sole_transforms_fixed = sole_transforms_fixed and contacts.ankles
+			largest_gaze_turn = maxf(largest_gaze_turn, contacts.gaze)
 			if frame > 0:
 				var step: float = path[-1].distance_to(path[-2])
 				if step > maximum_step:
@@ -118,9 +247,31 @@ func run() -> void:
 		check(native_lengths_exact, action + ": both native legs, arms and every finger retain their original parent-child lengths")
 		check(scales_exact and source_rest_exact, action + ": all 65 original rests and unit pose scales remain unchanged")
 		check(fingers_exact and staff_upright, action + ": fitted right fingers and upright staff remain supported")
+		check(sole_transforms_fixed, action + ": both original native ankle transforms remain planted throughout the load transfer")
+		check(physical_floor_clear, action + ": all actually weighted physical bootfloor vertices remain above the floor")
+		check(largest_contact_drift < .008 and largest_sole_drift < .020, action + ": weighted boot contacts remain planted while their original calf-weighted leather flexes; center " + str(largest_contact_drift) + ", vertex " + str(largest_sole_drift))
+		check(largest_body_step < .035, action + ": the actually weighted outfit has a continuous whole-body windup; RMS step " + str(largest_body_step))
+		check(largest_gaze_turn < .35, action + ": stronger hips and shoulders leave the original target-facing gaze within 20 degrees")
 		check(maximum_step < .065, action + ": visible casting hand follows a continuous windup; largest normalized-frame step " + str(maximum_step))
 		print("ATTACK PATH ", action, ": largest step frame ", maximum_step_frame, " from ", path[maxi(0, maximum_step_frame - 1)], " to ", path[maximum_step_frame], "; load ", path[24], "; release ", path[60])
 		check(path[0].distance_to(path[-1]) > .35, action + ": actual rendered left hand performs a substantial cast")
+		# Load and follow-through must move the physical figure, not merely an
+		# empty hand socket. Compare weighted outfit, native pelvis and geometric
+		# knee flexion against the same original source samples on a second actor.
+		var load_phase: float = {"basic": .33, "skill": .34, "heavy": .32}[action]
+		var follow_phase: float = {"basic": .14, "skill": .16, "heavy": .18}[action]
+		var load := whole_body_metrics(actor, source_control, windup, load_phase)
+		var caught := whole_body_metrics(actor, source_control, recovery, follow_phase * Combat.RECOVERY)
+		var minimum_load: float = {"basic": .030, "skill": .045, "heavy": .065}[action]
+		var minimum_knee: float = {"basic": .20, "skill": .24, "heavy": .30}[action]
+		var minimum_body: float = {"basic": .025, "skill": .040, "heavy": .055}[action]
+		var minimum_transfer: float = {"basic": .040, "skill": .055, "heavy": .060}[action]
+		var minimum_turn: float = {"basic": .40, "skill": .65, "heavy": .80}[action]
+		check(load.pelvis.y < -minimum_load and load.knee > minimum_knee, action + ": the real pelvis lowers into visibly flexed native knees, rather than lowering the whole model")
+		check(load.body_rms > minimum_body, action + ": the actually rendered outfit visibly participates in the load")
+		check(absf(caught.pelvis.x - load.pelvis.x) > minimum_transfer, action + ": physical pelvis transfers weight sideways through the release")
+		check(load.chest.angle_to(caught.chest) > minimum_turn, action + ": native chest and shoulders turn through a substantial full-body follow-through")
+		print("ATTACK BODY ", action, ": load ", load, "; catch ", caught, "; boot center ", largest_contact_drift, "; boot vertex ", largest_sole_drift, "; body RMS step ", largest_body_step)
 		# A passing hand/chest key must not behave as a tiny stop. Measure
 		# the actual weighted glove, including its imported source torso, on
 		# both sides of the late passing key rather than checking curve code.
@@ -152,12 +303,54 @@ func run() -> void:
 		pose_actor(actor, recovery, 0.0)
 		var previous: Vector3 = rendered_hand(rig)
 		var recovery_step := 0.0
+		previous_body = rendered_body(rig)
+		var body_recovery_step := 0.0
+		var recovery_floor_clear := true
+		var recovery_ankles_fixed := true
+		var recovery_contact_drift := 0.0
+		var recovery_sole_drift := 0.0
+		var recovery_gaze_turn := 0.0
+		var recovery_support_exact := true
+		var recovery_lengths_exact := true
 		for frame in range(1, 61):
 			pose_actor(actor, recovery, frame / 60.0 * SourceRig.RECOVERY)
+			pose_source_control(source_control, recovery, frame / 60.0 * SourceRig.RECOVERY)
+			var contacts := contact_metrics(rig, source_control.motion_rig)
+			recovery_floor_clear = recovery_floor_clear and contacts.floor
+			recovery_ankles_fixed = recovery_ankles_fixed and contacts.ankles
+			recovery_contact_drift = maxf(recovery_contact_drift, contacts.center)
+			recovery_sole_drift = maxf(recovery_sole_drift, contacts.vertex)
+			recovery_gaze_turn = maxf(recovery_gaze_turn, contacts.gaze)
+			for bone in rig.grip_pose:
+				recovery_support_exact = recovery_support_exact and rig.skeleton.get_bone_pose_rotation(bone).is_equal_approx(rig.grip_pose[bone])
+			var shaft: Vector3 = (rig.motion_node.basis * rig.weapon.basis * Vector3.UP).normalized()
+			recovery_support_exact = recovery_support_exact and shaft.dot(Vector3.UP) > .98
+			for bone in 65:
+				var parent: int = rig.skeleton.get_bone_parent(bone)
+				if parent >= 0 and String(rig.skeleton.get_bone_name(bone)) not in ["root", "pelvis"]:
+					var length: float = rig.skeleton.get_bone_global_pose(bone).origin.distance_to(rig.skeleton.get_bone_global_pose(parent).origin)
+					var original: float = rig.rest[bone].origin.distance_to(rig.rest[parent].origin)
+					recovery_lengths_exact = recovery_lengths_exact and absf(length - original) < .00001
 			var point := rendered_hand(rig)
 			recovery_step = maxf(recovery_step, point.distance_to(previous))
 			previous = point
+			var body := rendered_body(rig)
+			var body_step := 0.0
+			for index in body.size():
+				body_step += body[index].distance_squared_to(previous_body[index])
+			body_recovery_step = maxf(body_recovery_step, sqrt(body_step / float(body.size())))
+			previous_body = body
 		check(recovery_step < .065, action + ": visible recovery is continuous; largest normalized-frame step " + str(recovery_step))
+		check(body_recovery_step < .035, action + ": the weighted full body settles continuously after discharge; RMS step " + str(body_recovery_step))
+		check(recovery_floor_clear and recovery_ankles_fixed, action + ": the physical bootfloor and original ankle contacts also stay planted through the stronger catch and recovery")
+		check(recovery_contact_drift < .008 and recovery_sole_drift < .020, action + ": recovery preserves weighted boot contacts; center " + str(recovery_contact_drift) + ", vertex " + str(recovery_sole_drift))
+		check(recovery_gaze_turn < .35, action + ": the head keeps sight of the original target through the strongest shoulder catch")
+		check(recovery_support_exact and recovery_lengths_exact, action + ": stronger follow-through keeps the fitted supporting fingers, upright staff and all original native segment lengths")
+		pose_source_control(source_control, recovery, Combat.RECOVERY)
+		var settled := true
+		for bone in 65:
+			settled = settled and rig.skeleton.get_bone_pose(bone).is_equal_approx(source_control.motion_rig.skeleton.get_bone_pose(bone))
+		check(settled, action + ": all original bones return to the clean artist clip after full-body recovery")
 		pose_actor(actor, windup, .65)
 		var stable_pose: Array[Transform3D] = rig.capture_pose()
 		for repeat in 12:
@@ -180,6 +373,7 @@ func run() -> void:
 	check(records.basic[24].y - records.heavy[24].y > .12, "Heavy chambers the actual glove lower than the basic cast")
 	check(records.skill[60].y - records.basic[60].y > .075, "Signature releases from its own higher actual palm trajectory")
 	check(records.skill[39].distance_to(records.heavy[39]) > .45, "Signature sweep and heavy load have visibly different weighted hand paths")
+	source_control.free()
 	actor.free()
 	# Exercise simulation-controlled launch timing through the normal actor,
 	# including the actual left hand from which DungeonWorld spawns a spell.
@@ -322,11 +516,17 @@ func run() -> void:
 			actor.sync_attack(float(remaining))
 			actor.animate(0.0, false)
 			var before_cancel: Vector3 = rendered_hand(actor.motion_rig)
+			var before_cancel_body := rendered_body(actor.motion_rig)
 			actor.retreat()
 			actor.animate(0.0, true, 2.0)
 			control.animate(0.0, true, 2.0)
 			check(actor.attack_time < 0.0 and actor.release_time < 0.0 and not actor.attack_queued and not actor.external_release, style + ": real retreat cancels the unreleased cast without a damage confirmation")
 			check(rendered_hand(actor.motion_rig).distance_to(before_cancel) < .002, style + ": cancellation enters locomotion from the current visible glove without a pose snap")
+			var cancelled_body := rendered_body(actor.motion_rig)
+			var cancel_body_step := 0.0
+			for index in cancelled_body.size():
+				cancel_body_step += cancelled_body[index].distance_squared_to(before_cancel_body[index])
+			check(sqrt(cancel_body_step / float(cancelled_body.size())) < .002, style + ": cancellation preserves the currently weighted full-body pose on its entry frame")
 			for frame in 20:
 				actor.animate(1.0 / 60.0, true, 2.0)
 				control.animate(1.0 / 60.0, true, 2.0)

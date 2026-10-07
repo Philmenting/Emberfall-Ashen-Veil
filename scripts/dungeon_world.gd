@@ -15,6 +15,7 @@ const Actor = preload("res://scripts/dungeon_actor.gd")
 const Ruins = preload("res://scripts/ruin_architecture.gd")
 const ThemeData = preload("res://scripts/dungeon_theme.gd")
 const Lighting = preload("res://scripts/dungeon_lighting.gd")
+const CombatReadability = preload("res://scripts/combat_readability.gd")
 const REGION_BACKDROPS = [preload("res://assets/world/ashen-realms/spire.png"),preload("res://assets/world/ashen-realms/archive.png"),preload("res://assets/world/ashen-realms/ossuary.png"),preload("res://assets/world/ashen-realms/citadel.png")]
 const BossPatterns = preload("res://scripts/boss_patterns.gd")
 const CAMERA_BOOM := Vector3(8.0,9.3,13.5)
@@ -74,6 +75,7 @@ var framing_pan := Vector3.ZERO
 var shot_bottom := -1.0
 var presentation_events: Array[Dictionary]=[]
 var cast_focus: MeshInstance3D
+var combat_readability: RefCounted=CombatReadability.new()
 
 func character_cache_keys() -> Array[String]:
 	var keys: Array[String]=[character_class]
@@ -613,6 +615,10 @@ func _process(delta: float) -> void:
 		bar.position = actor.position+Vector3(0,3.8 if enemy.role=="boss" else 2.5,0)
 		bar.scale.x = maxf(0.01,float(enemy.hp)/float(enemy.max_hp))
 	for event in updates: _show_event(event)
+	if simulation.dodging and hero.evade_time<0.0:
+		# Restore an in-flight dodge from its actual remaining path as well.
+		hero.begin_evade(to_global(_point(simulation.hero_pos)),to_global(_point(simulation.dodge_goal)))
+	hero.sync_evade(simulation.dodging)
 	if not simulation.pending_attack.is_empty(): hero.sync_attack(maxf(0.0,float(simulation.pending_attack.left)-simulation.accumulator))
 	elif hero.external_release and hero.release_time<0.0: hero.cancel_attack()
 	hero.follow_travel(hero.position-previous,camera.position)
@@ -673,10 +679,9 @@ func _update_combat_readability(delta: float) -> void:
 	var hero_screen:=camera.unproject_position(hero.position+Vector3.UP*hero.figure_height*.55)
 	var viewport_width:=maxf(1.0,get_viewport().get_visible_rect().size.x)
 	var window:=_hero_occlusion_window()
+	var foreground_overlap:=false
 	for id_value in actor_by_id:
 		var actor: Node3D=actor_by_id[id_value]
-		if actor.surface_material!=null:
-			actor.surface_material.set_shader_parameter("hero_cutaway",0.0)
 		if actor.death_time>=0.0 or not actor.visible: continue
 		var enemy: Dictionary=simulation.enemy_by_id(id_value)
 		var important: bool=id_value==simulation.target_id or not enemy.warning.is_empty() or actor.boss
@@ -687,34 +692,16 @@ func _update_combat_readability(delta: float) -> void:
 		var goal:=.62 if crowded and not important else 1.0
 		var focus:=.44 if id_value==simulation.target_id else 0.0
 		actor.set_readability(lerpf(actor.emphasis,goal,1.0-exp(-delta*9.0)),focus)
-		if phase=="combat" and hero.death_time<0.0 and actor.surface_material!=null:
+		if phase=="combat" and hero.death_time<0.0:
 			var enemy_window:=_project_body(actor)
 			if window.rect.intersects(enemy_window.rect) and enemy_window.near<window.far:
-				_preserve_body_shadow(actor)
-				# Local cutaway reveals the actual hero through a foreground body;
-				# the guardian's remaining silhouette, weapon and warning stay opaque.
-				actor.surface_material.set_shader_parameter("hero_cutaway",.875)
-				actor.surface_material.set_shader_parameter("hero_window_center",window.center)
-				actor.surface_material.set_shader_parameter("hero_window_extent",window.extent)
-				actor.surface_material.set_shader_parameter("hero_view_depth",window.far+.025)
-
-func _preserve_body_shadow(actor: Node3D) -> void:
-	# Fragment discard also runs when a spatial material renders a shadow map.
-	# Share the exact mesh/skin in an invisible shadow-only pass with no cutaway;
-	# the visible instance gives up its former shadow pass, preserving draw count.
-	if actor.model.get_parent().has_node("UnmaskedBodyShadow"): return
-	var shadow:=MeshInstance3D.new()
-	shadow.name="UnmaskedBodyShadow"
-	shadow.mesh=actor.model.mesh; shadow.skin=actor.model.skin
-	shadow.layers=actor.model.layers
-	shadow.transform=actor.model.transform
-	actor.model.get_parent().add_child(shadow)
-	shadow.skeleton=shadow.get_path_to(actor.motion_rig.skeleton)
-	shadow.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
-	shadow.material_override=actor.surface_material.duplicate()
-	shadow.material_override.set_shader_parameter("hero_cutaway",0.0)
-	shadow.extra_cull_margin=actor.model.extra_cull_margin
-	actor.model.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+				foreground_overlap=true
+	var can_reveal: bool=phase=="combat" and hero.death_time<0.0
+	if can_reveal and not foreground_overlap:
+		foreground_overlap=CombatReadability.dressing_overlaps(camera,window.rect,window.far,occluder_batches)
+	# Reveal Nyra's real hidden shape instead of punching a pixel grid into a
+	# raider or guardian. Original body/weapon materials and shadows stay opaque.
+	combat_readability.update(hero,camera,can_reveal and foreground_overlap)
 
 func _body_skin_bounds(actor: Node3D) -> AABB:
 	if not actor.source_avatar: return actor.pose_bounds()
@@ -729,8 +716,8 @@ func _body_skin_bounds(actor: Node3D) -> AABB:
 	if rig.style!=null: result=result.merge(actor.body.transform*rig.style.current_bounds())
 	return result
 
-func _project_body(actor: Node3D) -> Dictionary:
-	var bounds:=_body_skin_bounds(actor)
+func _project_body(actor: Node3D,include_held_prop: bool=false) -> Dictionary:
+	var bounds: AABB=actor.pose_bounds() if include_held_prop else _body_skin_bounds(actor)
 	var low:=Vector2(INF,INF); var high:=Vector2(-INF,-INF)
 	var near_depth:=INF; var far_depth:=0.0
 	for x in [bounds.position.x,bounds.end.x]:
@@ -744,14 +731,12 @@ func _project_body(actor: Node3D) -> Dictionary:
 	return {"rect":Rect2(low,high-low),"near":near_depth,"far":far_depth}
 
 func _hero_occlusion_window() -> Dictionary:
-	var projected:=_project_body(hero)
+	# A forearm or staff can cross a foreground body while Nyra's torso stays
+	# unobstructed. Include the complete held prop in this enabling broad phase;
+	# the shader still reveals only the real occluded skin/weapon fragments.
+	var projected:=_project_body(hero,true)
 	var rect: Rect2=projected.rect.grow(3.0)
 	projected.rect=rect
-	# FRAGCOORD has a bottom-left origin in the spatial compatibility shader.
-	projected.center=Vector2(rect.get_center().x,get_viewport().get_visible_rect().size.y-rect.get_center().y)
-	# Place the soft transition beyond skin extrema so the head, casting hand
-	# and support feet remain readable instead of receiving only its faint edge.
-	projected.extent=rect.size*.65+Vector2(2.0,2.0)
 	return projected
 
 func _position_camera(delta: float=0.0) -> void:
@@ -1034,7 +1019,7 @@ func _show_event(event: Dictionary) -> void:
 		"guard":
 			_float_text(hero.position+Vector3(0,2.6,0),"GUARD +"+str(event.heal),Color("91d1ae"))
 		"evade", "backstep":
-			hero.retreat()
+			hero.begin_evade(to_global(_point(event.position)),to_global(_point(event.goal)))
 			projectile_cast_style=""
 			for effect in effects:
 				if effect.kind=="projectile": effect.age=effect.life

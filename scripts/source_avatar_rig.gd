@@ -178,6 +178,7 @@ func _restore_source_pose(poses: Dictionary) -> void:
 
 func pose(clip: String,time: float) -> void:
 	if clip=="idle":_sample("Idle_Loop",fposmod(time,player.get_animation("Idle_Loop").length))
+	elif clip=="evade":_sample("Idle_Loop",0.0)
 	elif clip=="walk":_sample("Walk_Loop",fposmod(time,1.0)*player.get_animation("Walk_Loop").length)
 	elif clip.begins_with("windup") or clip.begins_with("recover"):
 		var sample := Combat.source_sample(clip,time)
@@ -281,6 +282,16 @@ func _global_rotation(bone: int,basis: Basis) -> void:
 	var parent=skeleton.get_bone_parent(bone)
 	var local=basis if parent<0 else skeleton.get_bone_global_pose(parent).basis.inverse()*basis
 	skeleton.set_bone_pose_rotation(bone,local.orthonormalized().get_rotation_quaternion())
+	skeleton.force_update_all_bone_transforms()
+
+func offset_cast_pelvis(offset: Vector3) -> void:
+	# Move the freshly sampled hip inside the native rig. Leg IK still owns
+	# the planted soles; anatomical rest lengths and skin binds stay intact.
+	var pelvis:=skeleton.find_bone("pelvis")
+	var parent:=skeleton.get_bone_parent(pelvis)
+	var target:=skeleton.get_bone_global_pose(pelvis).origin+offset
+	var local:=target if parent<0 else skeleton.get_bone_global_pose(parent).affine_inverse()*target
+	skeleton.set_bone_pose_position(pelvis,local)
 	skeleton.force_update_all_bone_transforms()
 
 func solve_cast_arm(target: Vector3,wrist: Basis) -> void:

@@ -5,7 +5,7 @@ const Actor=preload("res://scripts/dungeon_actor.gd")
 const Sim=preload("res://scripts/expedition_simulation.gd")
 const World=preload("res://scripts/dungeon_world.gd")
 const Bot=preload("res://tests/balance_survey_bot.gd")
-const SOURCE_SURFACE_COUNTS={"Arcanist":8,"Vowkeeper":10,"Ranger":12}
+const SOURCE_SURFACE_COUNTS={"Arcanist":8,"Vowkeeper":10,"Ranger":12,"raider":8}
 var checks:=0
 var failures:=0
 func _initialize() -> void: run_checks.call_deferred()
@@ -236,7 +236,8 @@ func check_source_avatar(actor: Node3D) -> void:
 				var sum=0.0
 				for influence in 4:sum+=a[Mesh.ARRAY_WEIGHTS][index*4+influence]
 				valid=valid and absf(sum-1.0)<.0001 and a[Mesh.ARRAY_VERTEX][index].is_finite() and a[Mesh.ARRAY_NORMAL][index].is_finite()
-	check(valid and rig.rendered_triangles<=40000,class_key+": normalized actual body/accessory skin weights, finite geometry and full render budget")
+	var triangle_budget:=20000 if class_key=="raider" else 40000
+	check(valid and rig.rendered_triangles<=triangle_budget,class_key+": normalized actual body/accessory skin weights, finite geometry and full render budget")
 	actor.strike("basic",.30,true);actor.sync_attack(.02);actor.animate(.10,false)
 	var before=rig.capture_pose();actor.animate(0,false)
 	check(rig.capture_pose()==before and actor.release_time<0.0,class_key+": zero-time update preserves pose and simulation contact")
@@ -250,7 +251,7 @@ func check_source_avatar(actor: Node3D) -> void:
 	var floor_clear=true;var final_floor=INF
 	for time in [.22,.45,.68,.90]:
 		rig.pose("death",time);rig.apply_actor_postprocess(actor,"death",time,0.0,true)
-		final_floor=SourceSkin.actual_bounds(rig,rig.style.accessories).position.y*actor.body.scale.y
+		final_floor=complete_source_bounds(rig).position.y*actor.body.scale.y
 		floor_clear=floor_clear and final_floor>-.035
 	check(floor_clear and final_floor<.065,class_key+": all actually skinned falling surfaces clear the floor and the corpse rests on it")
 func check_source_cast(fighter: Node3D,style: String) -> void:
@@ -260,12 +261,22 @@ func check_source_cast(fighter: Node3D,style: String) -> void:
 		var elapsed=float(frame)/60.0
 		fighter.sync_attack(maxf(0.0,.30-elapsed));fighter.animate(1.0/60.0,false)
 		if elapsed>=.215 and not released:released=fighter.release_attack()
-		clear=clear and SourceSkin.actual_bounds(fighter.motion_rig,fighter.motion_rig.style.accessories).position.y>-.01 and fighter.transform==origin
+		clear=clear and SourceSkin.actual_bounds(fighter.motion_rig,source_accessories(fighter.motion_rig)).position.y>-.01 and fighter.transform==origin
 	check(clear and released,fighter.appearance_key+" "+style+": actual 60-Hz source cast and recovery stay grounded without moving the world actor")
 
 func complete_source_surfaces(rig: RefCounted) -> Array:
 	var result: Array=rig.surfaces.duplicate()
-	result.append_array(rig.style.accessories)
+	result.append_array(source_accessories(rig))
+	return result
+
+func source_accessories(rig: RefCounted) -> Array:
+	return rig.style.accessories if rig.style!=null else []
+
+func complete_source_bounds(rig: RefCounted) -> AABB:
+	var result:=SourceSkin.actual_bounds(rig,source_accessories(rig))
+	if rig.key=="raider":
+		for point in rig.weapon_points:
+			result=result.expand(rig.motion_node.transform*(rig.weapon.transform*point))
 	return result
 
 func indexed_axis_endpoints(mesh: Mesh,axis: int) -> PackedVector3Array:

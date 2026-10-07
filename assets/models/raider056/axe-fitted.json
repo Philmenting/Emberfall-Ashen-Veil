@@ -1,0 +1,64 @@
+{
+  "source_url": "https://poly.pizza/m/o54NXjRI4V",
+  "author_source_url": "https://quaternius.com/packs/medievalweapons.html",
+  "download_url": "https://static.poly.pizza/654d4ee5-e217-4c23-b8e1-92e16226b21a.glb",
+  "author": "Quaternius",
+  "license": "CC0 1.0 Public Domain",
+  "source_sha256": "b4eedc707dabb98883f0e18a096953dbea164b9d2d40a657bd44805886f33b8d",
+  "fitted_sha256": "215ebc8589defc28efb60727feeab1696de345637dcc7f0816b4c234599f13d0",
+  "source_bytes": 54604,
+  "fitted_bytes": 84664,
+  "triangles": 1098,
+  "original_uniform_normalization_scale": 0.7939018879888501,
+  "source_axis_rotation_xyzw": [
+    -0.707106828689575,
+    0.0,
+    0.0,
+    0.707106709480286
+  ],
+  "normalized_body_independent_height_m": 1.25,
+  "runtime_uniform_scale": 0.55,
+  "runtime_full_fit_halfspan_m": 0.065,
+  "runtime_taper_halfspan_m": 0.1,
+  "runtime_physical_grip_circumradius_m": 0.018,
+  "grip_source_point": [
+    0,
+    0.035,
+    0
+  ],
+  "parts": [
+    {
+      "material": "DarkWood",
+      "triangles": 214,
+      "original_triangles": 150,
+      "exact_grip_axial_face_splits": true,
+      "original_sharp_steel_shape_normals_unchanged": false,
+      "wood_grip_only_radially_fitted": true
+    },
+    {
+      "material": "LightWood",
+      "triangles": 500,
+      "original_triangles": 432,
+      "exact_grip_axial_face_splits": true,
+      "original_sharp_steel_shape_normals_unchanged": false,
+      "wood_grip_only_radially_fitted": true
+    },
+    {
+      "material": "Steel",
+      "triangles": 351,
+      "original_triangles": 351,
+      "exact_grip_axial_face_splits": false,
+      "original_sharp_steel_shape_normals_unchanged": true,
+      "wood_grip_only_radially_fitted": false
+    },
+    {
+      "material": "LightSteel",
+      "triangles": 33,
+      "original_triangles": 33,
+      "exact_grip_axial_face_splits": false,
+      "original_sharp_steel_shape_normals_unchanged": true,
+      "wood_grip_only_radially_fitted": false
+    }
+  ],
+  "scope": "Source steel outline, sharp authored edge, bevel and hard normals retained under rigid/uniform normalization; only wooden grip narrowed to real native finger span; no soft procedural axe blades"
+}

@@ -47,6 +47,10 @@ GODOT_SUITES = (
     "source_avatar",
     "source_avatar_grip",
     "source_avatar_attack",
+    "source_avatar_attack_contact",
+    "source_avatar_evade",
+    "raider_native",
+    "combat_occlusion",
     "source_avatar_style",
     "class_avatar_quality",
     "guardian_presentation",
@@ -150,6 +154,7 @@ def main() -> int:
             source_engine_error = (suite.startswith("source_avatar") or suite in (
                 "guardian_presentation", "combat_audio", "class_avatar_quality",
                 "hostile_quality", "dungeon_lighting", "native_capture_audio", "native_equipment_finish",
+                "raider_native", "combat_occlusion",
             )) and ENGINE_ERROR.search(output)
             if result.returncode != 0 or not matches or "SCRIPT ERROR:" in output or source_engine_error:
                 failures.append(suite)

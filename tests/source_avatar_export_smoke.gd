@@ -1,5 +1,6 @@
 extends SceneTree
 const ClassRig=preload("res://scripts/class_avatar_rig.gd")
+const RaiderRig=preload("res://scripts/raider_avatar_rig.gd")
 ## Run outside the checkout with --main-pack and this script's absolute path.
 ## This exercises exported resources, including FileAccess JSON dependencies.
 var checks := 0
@@ -29,6 +30,8 @@ func run() -> void:
 	check(FileAccess.file_exists("res://assets/models/nyra054/QUATERNIUS-CC0-LICENSE.txt"), "Added native attire source license ships in the package")
 	for filename in ["OUTFIT-LICENSE.txt","ANIMATION2-LICENSE.txt"]:
 		check(FileAccess.file_exists("res://assets/models/classes055/"+filename),"Native class source license ships: "+filename)
+	for filename in ["raider-native65.json","axe-grip.json","death-grounding.json","axe-fitted.json","BASE-LICENSE.txt","OUTFIT-LICENSE.txt","ANIMATION1-LICENSE.txt","ANIMATION2-LICENSE.txt","WEAPON-LICENSE.txt"]:
+		check(FileAccess.file_exists("res://assets/models/raider056/"+filename),"Native Raider runtime/source file ships: "+filename)
 	if failures:
 		call_deferred("finish")
 		return
@@ -68,4 +71,14 @@ func run() -> void:
 		class_parent.free()
 		class_rig=null
 		class_parent=null
+	var raider_parent:=Node3D.new()
+	root.add_child(raider_parent)
+	var raider:=RaiderRig.new()
+	raider.build(raider_parent,"raider")
+	raider.pose("windup_jab",.7)
+	check(raider.build_ok and raider.skeleton.get_bone_count()==65 and raider.surfaces.size()>=8,"Complete native Raider loads from exported GLB and JSON data")
+	check(raider.rendered_triangles<=20000 and raider.weapon_grip_position().is_finite(),"Exported original Raider and held axe retain full visible budget and real grip")
+	check(raider.player.has_animation("Walk_Loop") and raider.player.has_animation("Hit_Chest"),"Exported native Raider retains artist movement and damage clips")
+	raider.dispose();raider_parent.free()
+	raider=null;raider_parent=null
 	call_deferred("finish")

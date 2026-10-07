@@ -174,11 +174,13 @@ func pose(clip: String,time: float) -> void:
 			# native support pose identical at windup(1) and recovery(0),
 			# where the production contact event intentionally skips blending.
 			_sample("Idle_Loop",0.0)
+		elif clip=="evade":_sample("Idle_Loop",0.0)
 		else:_sample("Idle_Loop",fposmod(time,player.get_animation("Idle_Loop").length))
 		ClassPose.apply_bow(self,clip,time)
 	_apply_weapon_fingers();_update_weapon()
 
 func _sword_pose(clip: String,time: float) -> void:
+	if clip=="evade":_sample("Sword_Idle",0.0);return
 	if clip=="death":_sample("Death01",clampf(time/.90,0,1)*player.get_animation("Death01").length);return
 	if clip=="walk":_sample("Walk_Loop",fposmod(time,1.0)*player.get_animation("Walk_Loop").length);return
 	if clip.begins_with("windup") or clip.begins_with("recover"):
