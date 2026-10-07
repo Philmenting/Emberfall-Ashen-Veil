@@ -1,0 +1,38 @@
+{
+  "observed_at": "2026-10-07T21:09:01.678711+00:00",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "workflows": [
+    {
+      "workflow": "Gameplay Quality",
+      "run": 37686979998,
+      "attempt": 1,
+      "status": "in_progress",
+      "conclusion": null,
+      "job_id": 113017205608,
+      "job_status": "in_progress",
+      "job_conclusion": null
+    },
+    {
+      "workflow": "Android Debug APK",
+      "run": 37686979978,
+      "attempt": 1,
+      "status": "in_progress",
+      "conclusion": null,
+      "job_id": 113017204783,
+      "job_status": "in_progress",
+      "job_conclusion": null
+    },
+    {
+      "workflow": "Android Beta Runtime",
+      "run": 37686980000,
+      "attempt": 1,
+      "status": "in_progress",
+      "conclusion": null,
+      "job_id": 113017205393,
+      "job_status": "in_progress",
+      "job_conclusion": null
+    }
+  ],
+  "binary_artifacts_downloaded": false,
+  "original_log_transport": "GitHub connector decoded UTF-8 with explicit transport receipts"
+}

@@ -1,0 +1,262 @@
+{
+  "review_time_utc": "2026-10-07T17:54:13.043609+00:00",
+  "scope": "Independent read-only review of stored original diagnostic images and receipts; no Engine rerun. Historical source was explicitly not frozen; this is not final commit verification.",
+  "verified_receipt_files": [
+    {
+      "path": "headless-attire-smoke.log",
+      "expected_sha256": "b782956dfd78cd311d3bc5b7807d8a62163472623e8b667d6430075a5fa9cc36",
+      "actual_sha256": "b782956dfd78cd311d3bc5b7807d8a62163472623e8b667d6430075a5fa9cc36",
+      "bytes": 3959
+    },
+    {
+      "path": "headless-source-style.log",
+      "expected_sha256": "e395d46678c6f085592820038312ff44711498b0c2a033f8f8cafb70c4b196fa",
+      "actual_sha256": "e395d46678c6f085592820038312ff44711498b0c2a033f8f8cafb70c4b196fa",
+      "bytes": 598
+    },
+    {
+      "path": "headless-native-equipment.log",
+      "expected_sha256": "ca70a11ab76e6196af1ee7b7c9778154fa40989ddb1bf67682922f55d3e3df19",
+      "actual_sha256": "ca70a11ab76e6196af1ee7b7c9778154fa40989ddb1bf67682922f55d3e3df19",
+      "bytes": 14184
+    },
+    {
+      "path": "native-gpu-attire-smoke.log",
+      "expected_sha256": "2604d8e1e4e1cdd381e3c30d023589a8cc94b884e84dc640d8c0dab1dbe91952",
+      "actual_sha256": "2604d8e1e4e1cdd381e3c30d023589a8cc94b884e84dc640d8c0dab1dbe91952",
+      "bytes": 1080
+    },
+    {
+      "path": "native-gpu-attire-smoke-retry-5.log",
+      "expected_sha256": "9b1a14fee67d0fa05128694f368a5d1c05e8c6bd95afbb74a68776b974d833d7",
+      "actual_sha256": "9b1a14fee67d0fa05128694f368a5d1c05e8c6bd95afbb74a68776b974d833d7",
+      "bytes": 4219
+    },
+    {
+      "path": "native-production-studio.log",
+      "expected_sha256": "4acc409c6c5576b0908f6526d626a14d39b85f779c78eec22191be20e78f0a15",
+      "actual_sha256": "4acc409c6c5576b0908f6526d626a14d39b85f779c78eec22191be20e78f0a15",
+      "bytes": 439
+    },
+    {
+      "path": "headless-native-equipment-after-portrait-fix.log",
+      "expected_sha256": "303d670418b9ffa7d301bccb8e8d6f1f5889fed309b69c87309ef38e5329305a",
+      "actual_sha256": "303d670418b9ffa7d301bccb8e8d6f1f5889fed309b69c87309ef38e5329305a",
+      "bytes": 12000
+    },
+    {
+      "path": "native-gpu-attire-smoke-retry-8.log",
+      "expected_sha256": "9b1a14fee67d0fa05128694f368a5d1c05e8c6bd95afbb74a68776b974d833d7",
+      "actual_sha256": "9b1a14fee67d0fa05128694f368a5d1c05e8c6bd95afbb74a68776b974d833d7",
+      "bytes": 4219
+    },
+    {
+      "path": "native-production-studio-retry-9.log",
+      "expected_sha256": "4acc409c6c5576b0908f6526d626a14d39b85f779c78eec22191be20e78f0a15",
+      "actual_sha256": "4acc409c6c5576b0908f6526d626a14d39b85f779c78eec22191be20e78f0a15",
+      "bytes": 439
+    },
+    {
+      "path": "native/arcanist-cast-front.png",
+      "expected_sha256": "a800fef687d9dad78b29b37643413877d47c9ac72ff13fa5cfbd64d61604bc79",
+      "actual_sha256": "a800fef687d9dad78b29b37643413877d47c9ac72ff13fa5cfbd64d61604bc79",
+      "bytes": 163447
+    },
+    {
+      "path": "native/arcanist-cast-rear.png",
+      "expected_sha256": "7b6ed3b4f9bddfb4436fb43d06c34fb5dd9637e34473b6ef6ec28db981d2490f",
+      "actual_sha256": "7b6ed3b4f9bddfb4436fb43d06c34fb5dd9637e34473b6ef6ec28db981d2490f",
+      "bytes": 149504
+    },
+    {
+      "path": "native/arcanist-idle-front.png",
+      "expected_sha256": "f6d4d3e726b1090f127760d62f08de08a8d8887f3e2521d159ae8d4458883e0b",
+      "actual_sha256": "f6d4d3e726b1090f127760d62f08de08a8d8887f3e2521d159ae8d4458883e0b",
+      "bytes": 167523
+    },
+    {
+      "path": "native/arcanist-walk-rear.png",
+      "expected_sha256": "224c6a35b930e28ca647e08214777831e8515b9fbb7f7fd51428d71095b521a3",
+      "actual_sha256": "224c6a35b930e28ca647e08214777831e8515b9fbb7f7fd51428d71095b521a3",
+      "bytes": 144807
+    },
+    {
+      "path": "native/native-receipt.json",
+      "expected_sha256": "003f86b5ee4ac1a8aee65e6e36b5eda544cba2a964ceb8c8455b3ac98c2afd43",
+      "actual_sha256": "003f86b5ee4ac1a8aee65e6e36b5eda544cba2a964ceb8c8455b3ac98c2afd43",
+      "bytes": 3699
+    },
+    {
+      "path": "native/ranger-cast-front.png",
+      "expected_sha256": "04f6a086573d63caba458ec15ddd7071bdc571dcd4ded260453a032df7f9a8b1",
+      "actual_sha256": "04f6a086573d63caba458ec15ddd7071bdc571dcd4ded260453a032df7f9a8b1",
+      "bytes": 133775
+    },
+    {
+      "path": "native/ranger-cast-rear.png",
+      "expected_sha256": "53745f8e33e7994d2f19242305bac759bb8ed8a40cac760b9d3bf42862088528",
+      "actual_sha256": "53745f8e33e7994d2f19242305bac759bb8ed8a40cac760b9d3bf42862088528",
+      "bytes": 103026
+    },
+    {
+      "path": "native/ranger-idle-front.png",
+      "expected_sha256": "9fe4da2dd57d373d6c12eaebd80d8b9f2626bfa8d5dc1b0f4bc9d7278fce4034",
+      "actual_sha256": "9fe4da2dd57d373d6c12eaebd80d8b9f2626bfa8d5dc1b0f4bc9d7278fce4034",
+      "bytes": 128423
+    },
+    {
+      "path": "native/ranger-walk-rear.png",
+      "expected_sha256": "74206714862565a250b90096299408354ed343d4664e913ced3603d0e6f13076",
+      "actual_sha256": "74206714862565a250b90096299408354ed343d4664e913ced3603d0e6f13076",
+      "bytes": 103772
+    },
+    {
+      "path": "native/vowkeeper-cast-front.png",
+      "expected_sha256": "f76ed1dc570702f62e2ed7c6824dc76f2c51c0577a804fa8abc7c69386d0d2b7",
+      "actual_sha256": "f76ed1dc570702f62e2ed7c6824dc76f2c51c0577a804fa8abc7c69386d0d2b7",
+      "bytes": 135289
+    },
+    {
+      "path": "native/vowkeeper-cast-rear.png",
+      "expected_sha256": "524df479272f97ffb329563abe2f6f58b869dfac738194c1e6b858509152c837",
+      "actual_sha256": "524df479272f97ffb329563abe2f6f58b869dfac738194c1e6b858509152c837",
+      "bytes": 120428
+    },
+    {
+      "path": "native/vowkeeper-idle-front.png",
+      "expected_sha256": "31991d81e3a7354e7653f1a52efaf522bd407df617cef22ae2f9acb8ca878d62",
+      "actual_sha256": "31991d81e3a7354e7653f1a52efaf522bd407df617cef22ae2f9acb8ca878d62",
+      "bytes": 139497
+    },
+    {
+      "path": "native/vowkeeper-walk-rear.png",
+      "expected_sha256": "f74afd862a6f836b6e94b92102be6e428e5e63bf4aad86843a3e488883119eb3",
+      "actual_sha256": "f74afd862a6f836b6e94b92102be6e428e5e63bf4aad86843a3e488883119eb3",
+      "bytes": 116999
+    },
+    {
+      "path": "native-first-tone/arcanist-cast-front.png",
+      "expected_sha256": "cdfa609ebf7a06f2d85bb87591643fad6ba5dd93912cb295d905482bad3a6441",
+      "actual_sha256": "cdfa609ebf7a06f2d85bb87591643fad6ba5dd93912cb295d905482bad3a6441",
+      "bytes": 155744
+    },
+    {
+      "path": "native-first-tone/arcanist-cast-rear.png",
+      "expected_sha256": "39236dfb47c499e778692cb1e8c98ea2071188127df1e65830af17ef27764afd",
+      "actual_sha256": "39236dfb47c499e778692cb1e8c98ea2071188127df1e65830af17ef27764afd",
+      "bytes": 141847
+    },
+    {
+      "path": "native-first-tone/arcanist-idle-front.png",
+      "expected_sha256": "dc040cde2984405f423674067819e475d4366a53d7542516b4c2a26a53c8bb40",
+      "actual_sha256": "dc040cde2984405f423674067819e475d4366a53d7542516b4c2a26a53c8bb40",
+      "bytes": 158939
+    },
+    {
+      "path": "native-first-tone/arcanist-walk-rear.png",
+      "expected_sha256": "500bd4abfd15e0410f95c7daeb4e8046966c70186b54d74016e916f4222ca7e3",
+      "actual_sha256": "500bd4abfd15e0410f95c7daeb4e8046966c70186b54d74016e916f4222ca7e3",
+      "bytes": 138216
+    },
+    {
+      "path": "native-first-tone/native-receipt.json",
+      "expected_sha256": "003f86b5ee4ac1a8aee65e6e36b5eda544cba2a964ceb8c8455b3ac98c2afd43",
+      "actual_sha256": "003f86b5ee4ac1a8aee65e6e36b5eda544cba2a964ceb8c8455b3ac98c2afd43",
+      "bytes": 3699
+    },
+    {
+      "path": "native-first-tone/ranger-cast-front.png",
+      "expected_sha256": "04f6a086573d63caba458ec15ddd7071bdc571dcd4ded260453a032df7f9a8b1",
+      "actual_sha256": "04f6a086573d63caba458ec15ddd7071bdc571dcd4ded260453a032df7f9a8b1",
+      "bytes": 133775
+    },
+    {
+      "path": "native-first-tone/ranger-cast-rear.png",
+      "expected_sha256": "53745f8e33e7994d2f19242305bac759bb8ed8a40cac760b9d3bf42862088528",
+      "actual_sha256": "53745f8e33e7994d2f19242305bac759bb8ed8a40cac760b9d3bf42862088528",
+      "bytes": 103026
+    },
+    {
+      "path": "native-first-tone/ranger-idle-front.png",
+      "expected_sha256": "9fe4da2dd57d373d6c12eaebd80d8b9f2626bfa8d5dc1b0f4bc9d7278fce4034",
+      "actual_sha256": "9fe4da2dd57d373d6c12eaebd80d8b9f2626bfa8d5dc1b0f4bc9d7278fce4034",
+      "bytes": 128423
+    },
+    {
+      "path": "native-first-tone/ranger-walk-rear.png",
+      "expected_sha256": "74206714862565a250b90096299408354ed343d4664e913ced3603d0e6f13076",
+      "actual_sha256": "74206714862565a250b90096299408354ed343d4664e913ced3603d0e6f13076",
+      "bytes": 103772
+    },
+    {
+      "path": "native-first-tone/vowkeeper-cast-front.png",
+      "expected_sha256": "f76ed1dc570702f62e2ed7c6824dc76f2c51c0577a804fa8abc7c69386d0d2b7",
+      "actual_sha256": "f76ed1dc570702f62e2ed7c6824dc76f2c51c0577a804fa8abc7c69386d0d2b7",
+      "bytes": 135289
+    },
+    {
+      "path": "native-first-tone/vowkeeper-cast-rear.png",
+      "expected_sha256": "524df479272f97ffb329563abe2f6f58b869dfac738194c1e6b858509152c837",
+      "actual_sha256": "524df479272f97ffb329563abe2f6f58b869dfac738194c1e6b858509152c837",
+      "bytes": 120428
+    },
+    {
+      "path": "native-first-tone/vowkeeper-idle-front.png",
+      "expected_sha256": "31991d81e3a7354e7653f1a52efaf522bd407df617cef22ae2f9acb8ca878d62",
+      "actual_sha256": "31991d81e3a7354e7653f1a52efaf522bd407df617cef22ae2f9acb8ca878d62",
+      "bytes": 139497
+    },
+    {
+      "path": "native-first-tone/vowkeeper-walk-rear.png",
+      "expected_sha256": "f74afd862a6f836b6e94b92102be6e428e5e63bf4aad86843a3e488883119eb3",
+      "actual_sha256": "f74afd862a6f836b6e94b92102be6e428e5e63bf4aad86843a3e488883119eb3",
+      "bytes": 116999
+    }
+  ],
+  "original_pngs_visually_reviewed_at_1200x1200": [
+    "arcanist-cast-front.png",
+    "arcanist-cast-rear.png",
+    "arcanist-idle-front.png",
+    "arcanist-walk-rear.png",
+    "ranger-cast-front.png",
+    "ranger-cast-rear.png",
+    "ranger-idle-front.png",
+    "ranger-walk-rear.png",
+    "vowkeeper-cast-front.png",
+    "vowkeeper-cast-rear.png",
+    "vowkeeper-idle-front.png",
+    "vowkeeper-walk-rear.png"
+  ],
+  "observations": [
+    "Cloth, leather, bronze and steel remain visibly separated.",
+    "No visibly detached hands, staff parts or armor bindings found in these twelve static poses.",
+    "The authored bun hair and wardrobe silhouette remain stylized; this pass does not establish commercial character quality.",
+    "Static diagnostic poses cannot establish temporal continuity, ordinary full-run quality, native device frame time or physical audio behavior."
+  ],
+  "diagnostic_acceptance": {
+    "headless_attire": {
+      "checks": 306,
+      "failures": 0,
+      "gpu_readback_poses": 0
+    },
+    "native_attire_final": {
+      "checks": 339,
+      "failures": 0,
+      "gpu_readback_poses": 33
+    },
+    "native_equipment_after_portrait_fix": {
+      "checks": 129,
+      "failures": 0
+    },
+    "headless_source_style": {
+      "checks": 135,
+      "failures": 0,
+      "scope": "before final coat tone correction"
+    },
+    "rejected": "Initial equipment run had six SCRIPT ERROR diagnostics despite exit 0. Initial native display startup exited 1. First-tone images are retained diagnostic history, not final finish."
+  },
+  "hardware_probe": {
+    "adb_available_in_current_PATH": false,
+    "physical_phone_performance_claim": false
+  }
+}

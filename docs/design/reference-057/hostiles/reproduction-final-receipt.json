@@ -1,0 +1,90 @@
+{
+  "command": [
+    "python3",
+    "tools/art/build_hostiles057.py",
+    "--source-root",
+    "/workspace/scratch/emberfall-character-source-052",
+    "--animation1",
+    "/workspace/scratch/quaternius-uam-inspection/extracted/Universal Animation Library[Standard]/Unreal-Godot/UAL1_Standard.glb",
+    "--animation2",
+    "/workspace/scratch/quaternius-uam-inspection/universal-animation-library-2/extracted/Universal Animation Library 2[Standard]/Unreal-Godot/UAL2_Standard.glb",
+    "--output-dir",
+    "/workspace/scratch/emberfall-quality-057/hostiles/reproduction-final"
+  ],
+  "actual_builder_process_exit": 0,
+  "wall_seconds": 13.781441688537598,
+  "byte_identical_all_glbs_manifest_grounding_raw_licenses": true,
+  "files": {
+    "ANIMATION1-LICENSE.txt": {
+      "byte_identical": true,
+      "bytes": 332,
+      "sha256": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061"
+    },
+    "ANIMATION2-LICENSE.txt": {
+      "byte_identical": true,
+      "bytes": 332,
+      "sha256": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061"
+    },
+    "BASE-LICENSE.txt": {
+      "byte_identical": true,
+      "bytes": 806,
+      "sha256": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e"
+    },
+    "OUTFIT-LICENSE.txt": {
+      "byte_identical": true,
+      "bytes": 728,
+      "sha256": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb"
+    },
+    "bulwark-fitted.glb": {
+      "byte_identical": true,
+      "bytes": 32408,
+      "sha256": "22d5d48c6689d20362263dd803c05f11d7ac995d699f05ca2d502e673987839d"
+    },
+    "death-grounding.json": {
+      "byte_identical": true,
+      "bytes": 29472,
+      "sha256": "436cabdd797a4f8d7dab1ba4b3476666f3b0b2c44de66ff7fa6fadb8160dff24"
+    },
+    "elite-fitted.glb": {
+      "byte_identical": true,
+      "bytes": 32192,
+      "sha256": "130909f79f951cac28f16dca94bc0d22c818d7198b512b9d73000086229ab0c5"
+    },
+    "guardian_0-fitted.glb": {
+      "byte_identical": true,
+      "bytes": 86728,
+      "sha256": "03a9db65e0eda7549111968d2e4c6e1148bf0d36d0181416afb53c0953458b7c"
+    },
+    "guardian_1-fitted.glb": {
+      "byte_identical": true,
+      "bytes": 188992,
+      "sha256": "db5c8ce6a1fc899cfd2b65d8c01fe1f44b597a52d9da76a946d3b0ebf1a8b280"
+    },
+    "guardian_2-fitted.glb": {
+      "byte_identical": true,
+      "bytes": 181068,
+      "sha256": "65d072cc6b598a59715f2499ada328ea3a174872fcb4c0bae000fd469818ab81"
+    },
+    "guardian_3-fitted.glb": {
+      "byte_identical": true,
+      "bytes": 32460,
+      "sha256": "6d4b5d9716517a863c79f0e28e8cd543e410b012ae9e86c13205dd270a109ce8"
+    },
+    "hexer-fitted.glb": {
+      "byte_identical": true,
+      "bytes": 200360,
+      "sha256": "c94101c59d0e187aa43da82a27f41aabd41f483c7e1abe383b2f80195e23a07f"
+    },
+    "male-clothing-native65.glb": {
+      "byte_identical": true,
+      "bytes": 2383964,
+      "sha256": "7e22257441e5db1eba78390991375956569d433f847b4c9526c2fb1c7025c2b8"
+    },
+    "manifest.json": {
+      "byte_identical": true,
+      "bytes": 10693,
+      "sha256": "7ef6393140647f27e062ef660a3b8654a1fdc321e03cd795c80b8a34b99bb002"
+    }
+  },
+  "scope": "Independent deterministic final offline rebuild; renderer/physical proofs are separate. No phone performance claim."
+}

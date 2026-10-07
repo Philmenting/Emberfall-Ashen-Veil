@@ -1,0 +1,53 @@
+{
+  "observed_at": "2026-10-07T20:52:57.896682+00:00",
+  "source_commit": "02a3fc905e55a4e64cbece4eb6b07c65c1bf4afb",
+  "historical_source_only": true,
+  "binary_artifacts_downloaded": false,
+  "runs": [
+    {
+      "key": "gameplay",
+      "run": 37680231176,
+      "head_sha": "02a3fc905e55a4e64cbece4eb6b07c65c1bf4afb",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "jobs": [
+        {
+          "id": 112994050691,
+          "name": "regression",
+          "status": "completed",
+          "conclusion": "cancelled"
+        }
+      ]
+    },
+    {
+      "key": "android-debug",
+      "run": 37680231278,
+      "head_sha": "02a3fc905e55a4e64cbece4eb6b07c65c1bf4afb",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "id": 112994050264,
+          "name": "android-debug",
+          "status": "completed",
+          "conclusion": "failure"
+        }
+      ]
+    },
+    {
+      "key": "android-runtime",
+      "run": 37680231428,
+      "head_sha": "02a3fc905e55a4e64cbece4eb6b07c65c1bf4afb",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 112994053046,
+          "name": "offline-runtime",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ]
+}

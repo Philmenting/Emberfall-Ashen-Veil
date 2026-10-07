@@ -1,0 +1,6 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SOURCE AVATAR STYLE ORACLE: imported-surface readback only; Dummy secondary vertex-region updates are no-op
+ACTUAL ATTIRE WEIGHTS: max normalization error=0.00004581362009; missing binds=0; wrong strides=0; minsum=0.99995418637991; maxsum=1.00000001862645; worst=Nyra054_Open_Coat_Bodice vertex 1425 sum 0.99995418637991 weights [0.69710838794708, 0.17424276471138, 0.10028228908777, 0.02832074463367]
+SOURCE AVATAR STYLE POSES: 32; remaining death garment floor offset: 0.0
+SOURCE AVATAR STYLE SMOKE: 135 checks, 0 failures

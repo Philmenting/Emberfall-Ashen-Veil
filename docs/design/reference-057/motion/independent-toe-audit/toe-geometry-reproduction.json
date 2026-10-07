@@ -1,0 +1,346 @@
+{
+  "schema": 1,
+  "analysis_executed_utc": "2026-10-07T19:01:57.960334+00:00",
+  "scope": "New independent mathematical reproduction of historical pre-toe-lock Engine trace; no Godot invocation and no current post-fix runtime claim",
+  "inputs": {
+    "original_glb": {
+      "path": "/workspace/Emberfall-Ashen-Veil/assets/models/raider056/raider-native65.glb",
+      "sha256": "8a89cbeb87691222f80a522145e7203139483adba17cd85edd0adff369da59b4"
+    },
+    "historical_engine_trace": {
+      "path": "/workspace/scratch/emberfall-quality-057/independent-toe-audit/20261007T190024Z/original-pre-toe-lock-engine-trace.log",
+      "sha256": "adac06690f7da1d3dadaa10301d1db7c9bf55368dc7fb921f98c4e741becce5f"
+    },
+    "reproduction_script": {
+      "path": "/workspace/scratch/emberfall-quality-057/independent-toe-audit/20261007T190024Z/reproduce_toe_geometry.py",
+      "sha256": "0d9038a6392c774dcabf56730864fd1f4161babb7020b29039883f159994bdf5"
+    }
+  },
+  "historical_trace_frame": 41,
+  "historical_trace_gait_phase": 3.94159692086157,
+  "historical_trace_world_min_y": -0.0401044450700283,
+  "guardian_height_m": 4.6,
+  "original_source_height_m": 1.81008,
+  "uniform_scale": 2.541324140369486,
+  "historical_motion_y": 0.00899999961256981,
+  "source_indexed_boot_probes": 346,
+  "nonzero_influence_vertex_counts": {
+    "foot_l": 147,
+    "calf_l": 59,
+    "root": 2,
+    "ball_l": 103,
+    "foot_r": 147,
+    "calf_r": 59,
+    "ball_r": 103
+  },
+  "excluded_probes_with_unlogged_root_pose": [
+    {
+      "original_glb_vertex": 9,
+      "bones": [
+        "root"
+      ]
+    },
+    {
+      "original_glb_vertex": 948,
+      "bones": [
+        "root"
+      ]
+    }
+  ],
+  "lowest_five_original_left_boot_vertices": [
+    {
+      "mesh_node": "Male_Peasant_Feet",
+      "slot": 0,
+      "original_glb_vertex": 177,
+      "rest_position": [
+        0.09728913754224777,
+        0.005264908075332642,
+        0.15547609329223633
+      ],
+      "source_y": -0.024780924573777646,
+      "world_y": -0.040104445561276875,
+      "influences": [
+        {
+          "bone": "ball_l",
+          "weight": 1.0,
+          "joint_local": [
+            -0.00668913871049881,
+            0.10077586770057678,
+            -0.009935093112289906
+          ],
+          "source_y_contribution": -0.024780924573777646
+        }
+      ]
+    },
+    {
+      "mesh_node": "Male_Peasant_Feet",
+      "slot": 0,
+      "original_glb_vertex": 65,
+      "rest_position": [
+        0.12383446097373962,
+        0.0074991583824157715,
+        0.15748339891433716
+      ],
+      "source_y": -0.024692230849740898,
+      "world_y": -0.03987904605928302,
+      "influences": [
+        {
+          "bone": "ball_l",
+          "weight": 1.0,
+          "joint_local": [
+            -0.03323446214199066,
+            0.10278317332267761,
+            -0.007700845133513212
+          ],
+          "source_y_contribution": -0.024692230849740898
+        }
+      ]
+    },
+    {
+      "mesh_node": "Male_Peasant_Feet",
+      "slot": 0,
+      "original_glb_vertex": 66,
+      "rest_position": [
+        0.12383446097373962,
+        0.0074991583824157715,
+        0.15748339891433716
+      ],
+      "source_y": -0.024692230849740898,
+      "world_y": -0.03987904605928302,
+      "influences": [
+        {
+          "bone": "ball_l",
+          "weight": 1.0,
+          "joint_local": [
+            -0.03323446214199066,
+            0.10278317332267761,
+            -0.007700845133513212
+          ],
+          "source_y_contribution": -0.024692230849740898
+        }
+      ]
+    },
+    {
+      "mesh_node": "Male_Peasant_Feet",
+      "slot": 0,
+      "original_glb_vertex": 59,
+      "rest_position": [
+        0.068817138671875,
+        0.005771547555923462,
+        0.1578458547592163
+      ],
+      "source_y": -0.024606770580967968,
+      "world_y": -0.0396618638152079,
+      "influences": [
+        {
+          "bone": "ball_l",
+          "weight": 1.0,
+          "joint_local": [
+            0.021782860159873962,
+            0.10314562916755676,
+            -0.009428450837731361
+          ],
+          "source_y_contribution": -0.024606770580967968
+        }
+      ]
+    },
+    {
+      "mesh_node": "Male_Peasant_Feet",
+      "slot": 0,
+      "original_glb_vertex": 60,
+      "rest_position": [
+        0.068817138671875,
+        0.005771547555923462,
+        0.1578458547592163
+      ],
+      "source_y": -0.024606770580967968,
+      "world_y": -0.0396618638152079,
+      "influences": [
+        {
+          "bone": "ball_l",
+          "weight": 1.0,
+          "joint_local": [
+            0.021782860159873962,
+            0.10314562916755676,
+            -0.009428450837731361
+          ],
+          "source_y_contribution": -0.024606770580967968
+        }
+      ]
+    }
+  ],
+  "worst_vertex_reproduction_absolute_error_m": 4.912485765395935e-10,
+  "ball_l_current_local_at_historical_worst_frame": [
+    [
+      -1.0000000007171435,
+      5.4182280689989596e-08,
+      2.692251229160642e-08,
+      2.3904963564191917e-09
+    ],
+    [
+      3.554760104615125e-08,
+      0.8939237919727228,
+      -0.44821954559450083,
+      0.15907371447294988
+    ],
+    [
+      -4.682180284411486e-08,
+      -0.44821964506223766,
+      -0.8939234975781698,
+      -1.4471158493734038e-08
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "ball_l_original_rest_local": [
+    [
+      -1.0000001077629617,
+      1.1841795888322976e-15,
+      -8.742278998239795e-08,
+      0.0
+    ],
+    [
+      3.918461026092919e-08,
+      0.8939234683042756,
+      -0.44821963839838036,
+      0.15907371044158936
+    ],
+    [
+      7.814928359879918e-08,
+      -0.448219638398382,
+      -0.8939235760672377,
+      -6.51925802230835e-09
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "maximum_component_difference_current_ball_local_vs_rest": 3.2366844715525644e-07,
+  "counterfactual_same_fixed_foot_and_calf_with_ball_rest_local_min_y": -0.04010438141621119,
+  "original_walk_toe_rotation_curves": [
+    {
+      "bone": "ball_l",
+      "keys": 41,
+      "interpolation": "LINEAR",
+      "largest_rest_delta_degrees": 25.306314562318,
+      "largest_delta_key_time": 0.6666666865348816,
+      "selected_original_keys": [
+        {
+          "original_key_time": 0.6333333253860474,
+          "rest_delta_degrees": 24.809367523214913,
+          "original_xyzw": [
+            0.008494586683809757,
+            -0.9009685516357422,
+            0.43380117416381836,
+            0.00013637065421789885
+          ]
+        },
+        {
+          "original_key_time": 0.8333333134651184,
+          "rest_delta_degrees": 0.0,
+          "original_xyzw": [
+            -2.3256010450722897e-08,
+            -0.9731196165084839,
+            0.23030035197734833,
+            -1.8733116391445037e-08
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "ball_leaf_l",
+      "keys": 41,
+      "interpolation": "LINEAR",
+      "largest_rest_delta_degrees": 0.0,
+      "largest_delta_key_time": 0.0,
+      "selected_original_keys": [
+        {
+          "original_key_time": 0.6333333253860474,
+          "rest_delta_degrees": 0.0,
+          "original_xyzw": [
+            1.4901159417490817e-08,
+            -4.371139183945161e-08,
+            4.287330954394052e-15,
+            1.0
+          ]
+        },
+        {
+          "original_key_time": 0.8333333134651184,
+          "rest_delta_degrees": 0.0,
+          "original_xyzw": [
+            1.4901161193847656e-08,
+            -4.371138473402425e-08,
+            -2.368279503627994e-16,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "ball_r",
+      "keys": 41,
+      "interpolation": "LINEAR",
+      "largest_rest_delta_degrees": 16.666335055887654,
+      "largest_delta_key_time": 0.0,
+      "selected_original_keys": [
+        {
+          "original_key_time": 0.6333333253860474,
+          "rest_delta_degrees": 0.0,
+          "original_xyzw": [
+            3.745898169427164e-08,
+            -0.9731196165084839,
+            0.23030032217502594,
+            1.5449307610992946e-08
+          ]
+        },
+        {
+          "original_key_time": 0.8333333134651184,
+          "rest_delta_degrees": 2.607284105417395,
+          "original_xyzw": [
+            -0.0005610392545349896,
+            -0.9676299095153809,
+            0.25237277150154114,
+            -0.00011934786743950099
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "ball_leaf_r",
+      "keys": 41,
+      "interpolation": "LINEAR",
+      "largest_rest_delta_degrees": 0.0,
+      "largest_delta_key_time": 0.0,
+      "selected_original_keys": [
+        {
+          "original_key_time": 0.6333333253860474,
+          "rest_delta_degrees": 0.0,
+          "original_xyzw": [
+            1.4901161193847656e-08,
+            -4.371139183945161e-08,
+            2.07261206547704e-16,
+            1.0
+          ]
+        },
+        {
+          "original_key_time": 0.8333333134651184,
+          "rest_delta_degrees": 0.0,
+          "original_xyzw": [
+            1.4901159417490817e-08,
+            -4.371139183945161e-08,
+            6.374726021201726e-16,
+            1.0
+          ]
+        }
+      ]
+    }
+  ],
+  "interpretation": "A fixed foot transform does not fix 100%-ball-weighted toe sole vertices while original Walk_Loop continues to animate ball_l locally; preserve actual touchdown toe orientation only for the planted support side. This calculation does not fabricate the touchdown event or replace a post-fix runtime test."
+}

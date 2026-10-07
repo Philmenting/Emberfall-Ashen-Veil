@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "observed_at": "2026-10-07T21:37:16.085833+00:00",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "actual_exit_code": 0,
+  "copied_or_derived_files": 192,
+  "copied_file_bytes": 5980046,
+  "all_original_copies_byte_identical": true,
+  "proof_manifest_sha256": "a16d62ff8c3e4eef4b1025c337ea705c0972092cdc8541f0bb8013bc178ba61c",
+  "stage_tool_sha256": "ec250f4d39e67528f139b32695f0b4d200e877e8f48bfbcb8516b2ad2c19419c",
+  "engine_run": false,
+  "network_used": false,
+  "git_mutated": false,
+  "binary_artifacts_downloaded": false,
+  "scope": "Final exact-source CI leaf and clearly separate immutable history. Manifest excludes itself and this staging receipt."
+}

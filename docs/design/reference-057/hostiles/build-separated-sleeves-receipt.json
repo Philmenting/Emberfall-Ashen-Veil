@@ -1,0 +1,18 @@
+{
+  "command": [
+    "python3",
+    "tools/art/build_hostiles057.py",
+    "--source-root",
+    "/workspace/scratch/emberfall-character-source-052",
+    "--animation1",
+    "/workspace/scratch/quaternius-uam-inspection/extracted/Universal Animation Library[Standard]/Unreal-Godot/UAL1_Standard.glb",
+    "--animation2",
+    "/workspace/scratch/quaternius-uam-inspection/universal-animation-library-2/extracted/Universal Animation Library 2[Standard]/Unreal-Godot/UAL2_Standard.glb"
+  ],
+  "actual_process_exit": 0,
+  "wall_seconds": 12.608944654464722,
+  "engine_errors": [],
+  "required_marker": null,
+  "required_marker_present": true,
+  "LP_NUM_THREADS": "4"
+}

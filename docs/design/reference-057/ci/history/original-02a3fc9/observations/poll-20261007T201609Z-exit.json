@@ -1,0 +1,1 @@
+{"command": ["python3", "/workspace/scratch/emberfall-quality-057/ci/collect_ci_receipts.py", "collect", "--source", "02a3fc905e55a4e64cbece4eb6b07c65c1bf4afb", "--directory", "/workspace/scratch/emberfall-quality-057/ci/final-current"], "actual_exit_code": 2, "observed_at": "2026-10-07T20:16:16.670885+00:00"}

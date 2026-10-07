@@ -1,0 +1,302 @@
+{
+  "scope": "Original rejected files retained byte-for-byte in scratch; selected originals copied byte-identically here. Rejected runs are not final acceptance.",
+  "scratch_root": "/workspace/scratch/emberfall-quality-057/hostiles",
+  "files": {
+    "build-separated-sleeves-receipt.json.rejected-hit44mm": {
+      "bytes": 662,
+      "sha256": "8521cd272fab18a77c4caea67c44a5d024375eaa90ae01568dc5ba9992bdf131"
+    },
+    "build-separated-sleeves-receipt.json.rejected-raised-belt-collision": {
+      "bytes": 662,
+      "sha256": "18daeae2f2dfbc0033ff6c3f0aeee5f7e6845d2b30e0f072c37aca7a011de06e"
+    },
+    "build-separated-sleeves.log.rejected-hit44mm": {
+      "bytes": 671,
+      "sha256": "f58b67f202c812b8fbcfb14a79e51152cdc7b8dbd0072ebb625b78181033a473"
+    },
+    "build-separated-sleeves.log.rejected-raised-belt-collision": {
+      "bytes": 671,
+      "sha256": "f58b67f202c812b8fbcfb14a79e51152cdc7b8dbd0072ebb625b78181033a473"
+    },
+    "diagnose-sleeve.log": {
+      "bytes": 1072,
+      "sha256": "f2f98d66468174b9da1c9b6ef807468af87001014126c98047014d97707772e3"
+    },
+    "import-separated-sleeves-receipt.json.rejected-hit44mm": {
+      "bytes": 405,
+      "sha256": "471a86ac3634c48f59ccd58028b693a1d29bb43689b9d55b255ad5161b554ca8"
+    },
+    "import-separated-sleeves-receipt.json.rejected-raised-belt-collision": {
+      "bytes": 405,
+      "sha256": "aebc97370943ac2e37a0474ba44681a6b2641b8dd53170388c87bb77ad17d7d5"
+    },
+    "import-separated-sleeves.log.rejected-hit44mm": {
+      "bytes": 2155,
+      "sha256": "a64e0ce9049bb8b52aaf86af8e901dc7f53757d6d13b56b043b3676af41feba0"
+    },
+    "import-separated-sleeves.log.rejected-raised-belt-collision": {
+      "bytes": 3934,
+      "sha256": "6275de4d83fa0370d32be66821907752e23db4e8929c904970c659388a975837"
+    },
+    "native-hostile-preview-receipt.json.rejected-coplanar-sleeves": {
+      "bytes": 4677,
+      "sha256": "4bba84bf3d96f673af75ff566c67c15a18f32c25a976a6899d5183b404ea1815"
+    },
+    "native-hostile-preview-receipt.json.rejected-raised-belt-collision": {
+      "bytes": 4726,
+      "sha256": "9f7921a2b270a310ce76d17d7e239f9588f0b8a694e6a60f1778f904ac9124cb"
+    },
+    "native-hostile-preview.log.rejected-coplanar-sleeves": {
+      "bytes": 447,
+      "sha256": "0bd16e4031365e1412b74db6f57d2723b1a84db93b0c822db4fd51a50f6ef0a7"
+    },
+    "native-hostile-preview.log.rejected-raised-belt-collision": {
+      "bytes": 447,
+      "sha256": "0bd16e4031365e1412b74db6f57d2723b1a84db93b0c822db4fd51a50f6ef0a7"
+    },
+    "native-hostile-smoke-initial.log": {
+      "bytes": 49412,
+      "sha256": "8d372f11b07cc0dfce1c55e46b4de20d96aec7e677a6173355d37a4511844a54"
+    },
+    "native-hostile-smoke-separated-sleeves-receipt.json.rejected-hit44mm": {
+      "bytes": 1048,
+      "sha256": "ebe6363f30f2dbc29027a7e35a8443a4a8e74b2cee4ab180d61ec4e522ed0c95"
+    },
+    "native-hostile-smoke-separated-sleeves-receipt.json.rejected-raised-belt-collision": {
+      "bytes": 445,
+      "sha256": "56a097faa7427f9b8b9d3e5002f5a539f1cd22b16a63667b3e5b7b2dca2463ae"
+    },
+    "native-hostile-smoke-separated-sleeves.log.rejected-hit44mm": {
+      "bytes": 3412,
+      "sha256": "fc8767c22caf53f3b336a8652ed0d1126e3e924836d14c7689eb188117a4c092"
+    },
+    "native-hostile-smoke-separated-sleeves.log.rejected-raised-belt-collision": {
+      "bytes": 965,
+      "sha256": "ac9ea5ac663e61b9a7addf0af840cb37d76f0079d2f4dc30e8cac16510d6fe46"
+    },
+    "native.rejected-coplanar-sleeves/bulwark-death.png": {
+      "bytes": 75611,
+      "sha256": "81b6fc0681b64470fcf57c50806db64195c838e5ee5253bda3a6df7351652a3a"
+    },
+    "native.rejected-coplanar-sleeves/bulwark-guard.png": {
+      "bytes": 108463,
+      "sha256": "9c3a0a9d74452c42810c4d92f08d58330a504ec84d36d70dbb35f49d9c3b34eb"
+    },
+    "native.rejected-coplanar-sleeves/bulwark-load.png": {
+      "bytes": 86825,
+      "sha256": "94ee6895b7451de92e4a4336fc7434e8f66580e9270d9873497cb8b5f693971c"
+    },
+    "native.rejected-coplanar-sleeves/bulwark-release.png": {
+      "bytes": 94886,
+      "sha256": "80d0b05b5fd7fef0594fa5ee2ecb1cc35458e43cd3f1c2887b5c467dcb32c0d3"
+    },
+    "native.rejected-coplanar-sleeves/elite-death.png": {
+      "bytes": 76504,
+      "sha256": "aa552c812a4417d01afb84b61d693c703aea9656f12a356e4b6d787969dcdb78"
+    },
+    "native.rejected-coplanar-sleeves/elite-guard.png": {
+      "bytes": 108286,
+      "sha256": "e0ef4d781eb859e8b6a30f2f6b08ef0aace09b9d8b70e1d620c40ea39055a27b"
+    },
+    "native.rejected-coplanar-sleeves/elite-load.png": {
+      "bytes": 85656,
+      "sha256": "eb898f1f9cea449aeaa32a00de90d88e414d47ad255d7a4ff33b2c44c54ccba0"
+    },
+    "native.rejected-coplanar-sleeves/elite-release.png": {
+      "bytes": 102831,
+      "sha256": "f136a22fc2ae53fa0229afb1f983cb1d04121fe1bb68775c88071c318a46f1a7"
+    },
+    "native.rejected-coplanar-sleeves/guardian_0-death.png": {
+      "bytes": 78453,
+      "sha256": "9f8dc770bfa007dd1669585ff75901849e31f364dd0dfc61cff88cb2bd499372"
+    },
+    "native.rejected-coplanar-sleeves/guardian_0-guard.png": {
+      "bytes": 115393,
+      "sha256": "fc6fc24d91e95024cacba1382e58b150b14a5be79387c9a69596909a254368fe"
+    },
+    "native.rejected-coplanar-sleeves/guardian_0-load.png": {
+      "bytes": 101518,
+      "sha256": "69b6014ee635530c3ea149171b411f826a173cc84c73544e26df1d6924dfda4f"
+    },
+    "native.rejected-coplanar-sleeves/guardian_0-release.png": {
+      "bytes": 99849,
+      "sha256": "32df554bc1bb500c11e5d729ab511b978d361f9bfa386f9e78ba2ad4f745a107"
+    },
+    "native.rejected-coplanar-sleeves/guardian_1-death.png": {
+      "bytes": 76914,
+      "sha256": "7608c79cc7ebce6b881e29a7e9bc8a0f65652b7ef71adb2c285fa113b0be591a"
+    },
+    "native.rejected-coplanar-sleeves/guardian_1-guard.png": {
+      "bytes": 110592,
+      "sha256": "7297b122a7748bc5bef52381379d9cdb032ca2e02de433a6363a3f78f5e8c981"
+    },
+    "native.rejected-coplanar-sleeves/guardian_1-load.png": {
+      "bytes": 111777,
+      "sha256": "e778cdda207ae3d824d48d346aecd70a9454ec5899e7cb734b1927cd57eccf51"
+    },
+    "native.rejected-coplanar-sleeves/guardian_1-release.png": {
+      "bytes": 111291,
+      "sha256": "9251d63aed804458d6810fc2aef2ed3451cec360cb4359f698c2e733a9db0f83"
+    },
+    "native.rejected-coplanar-sleeves/guardian_2-death.png": {
+      "bytes": 76233,
+      "sha256": "ddba6d0cc597e1b057a1a821f0b206efb5ef47b8922419d9961d8594d1a3be3f"
+    },
+    "native.rejected-coplanar-sleeves/guardian_2-guard.png": {
+      "bytes": 109977,
+      "sha256": "fa8c155583d534c1789fe01a5bbbd11a1a76b32069574800f5db6a526d767366"
+    },
+    "native.rejected-coplanar-sleeves/guardian_2-load.png": {
+      "bytes": 110106,
+      "sha256": "6830490cddf2cecd158b61c1fc4f3e23941a959c39c1c432baa1b4e601ac54f8"
+    },
+    "native.rejected-coplanar-sleeves/guardian_2-release.png": {
+      "bytes": 110575,
+      "sha256": "ea22a1e6841f6c077bf785a8bbbb553ced240597fb3728a6141fefeaf38bdd49"
+    },
+    "native.rejected-coplanar-sleeves/guardian_3-death.png": {
+      "bytes": 80007,
+      "sha256": "60b3499c50e3024c78f686e83e7dfc96f68a088e7cd36fbc565f95e156d02bac"
+    },
+    "native.rejected-coplanar-sleeves/guardian_3-guard.png": {
+      "bytes": 117757,
+      "sha256": "d133b89f64faae7e19c4e97c04f3d37fbdf994bbe62fbcfc7a8792d71038e230"
+    },
+    "native.rejected-coplanar-sleeves/guardian_3-load.png": {
+      "bytes": 104515,
+      "sha256": "6e46fb814b3824bcd1767975d110119e93a526c359537024fa7c052ab2fe67ed"
+    },
+    "native.rejected-coplanar-sleeves/guardian_3-release.png": {
+      "bytes": 102825,
+      "sha256": "73af9caf8499e66f65f36c572b8793c06c5147fe6c1003121c44550f4614c8d8"
+    },
+    "native.rejected-coplanar-sleeves/hexer-death.png": {
+      "bytes": 77720,
+      "sha256": "eeaed33c422b2369ef9b33a8fae45301a224673cdbed3aac279eb12be42f4485"
+    },
+    "native.rejected-coplanar-sleeves/hexer-guard.png": {
+      "bytes": 109951,
+      "sha256": "a16876e3725c69ca3147d06adf678ba3ef30f6474fc9a8de301bfc583166fdc3"
+    },
+    "native.rejected-coplanar-sleeves/hexer-load.png": {
+      "bytes": 110973,
+      "sha256": "a4bd7dd8856a39657c859834848b43827f2120567932bfc7f24af6ad100a1c44"
+    },
+    "native.rejected-coplanar-sleeves/hexer-release.png": {
+      "bytes": 110068,
+      "sha256": "6801b12b8b474b688bb163590742ebb59bbaefb669dac4e358b180a4bf80a706"
+    },
+    "native.rejected-raised-belt-collision/bulwark-death.png": {
+      "bytes": 75357,
+      "sha256": "79c5aea0c2c5744fa264016d4f381df61a885f76f26537f1b4a4805fca41f6ba"
+    },
+    "native.rejected-raised-belt-collision/bulwark-guard.png": {
+      "bytes": 108405,
+      "sha256": "ce398337ddda761de1df58f633d9618017af790041e47f1c2c3749fe68581f7b"
+    },
+    "native.rejected-raised-belt-collision/bulwark-load.png": {
+      "bytes": 86917,
+      "sha256": "0a9c766ec3a2badd6c1fdfeafeea7c1728204213f1904b3d2af33a55d8d61261"
+    },
+    "native.rejected-raised-belt-collision/bulwark-release.png": {
+      "bytes": 94778,
+      "sha256": "34834dba1e3face1ef5407a3d3939133fadf2595a588b320fd407ea584ccac0b"
+    },
+    "native.rejected-raised-belt-collision/elite-death.png": {
+      "bytes": 76213,
+      "sha256": "5bee4ef2798c98b4c6cb14704ecd226e350f87bf071bc050c0b24dcaa3b04717"
+    },
+    "native.rejected-raised-belt-collision/elite-guard.png": {
+      "bytes": 108237,
+      "sha256": "a38fc047920e808e6d12f31fbc35d6b12b7db381aefa6e6b23f6cb634456dbcd"
+    },
+    "native.rejected-raised-belt-collision/elite-load.png": {
+      "bytes": 85409,
+      "sha256": "42545f90fb44f5053f4df83d3a2fe63c0b63f4c43ffcc5a25b61e0313fb505ed"
+    },
+    "native.rejected-raised-belt-collision/elite-release.png": {
+      "bytes": 102908,
+      "sha256": "6159537196a5c9f4692b31dbd8e6fd392c92e2a65cf55572f383c28e927ebdc8"
+    },
+    "native.rejected-raised-belt-collision/guardian_0-death.png": {
+      "bytes": 77703,
+      "sha256": "84599705d4d3c1b839ae42a7cf91ba0c6116431a21f04b67ae400f05e268a5bd"
+    },
+    "native.rejected-raised-belt-collision/guardian_0-guard.png": {
+      "bytes": 115346,
+      "sha256": "144175088eac1510e826174bafe9a82ea6139cc3a5617a9ff336fe8ed4b39beb"
+    },
+    "native.rejected-raised-belt-collision/guardian_0-load.png": {
+      "bytes": 101108,
+      "sha256": "27b9a26373f17fdf7520189fb5b6cdb7d2b726c91b0a0f8c53f8ee68528645ca"
+    },
+    "native.rejected-raised-belt-collision/guardian_0-release.png": {
+      "bytes": 99265,
+      "sha256": "d7c32ae41a9aa720bb2f5209276221e13ce2845f48df2f5cfc2642585c20b08b"
+    },
+    "native.rejected-raised-belt-collision/guardian_1-death.png": {
+      "bytes": 75364,
+      "sha256": "5185fee6a401067069b2ef92089199b279117660a2ca3e218bcb8f22a7793038"
+    },
+    "native.rejected-raised-belt-collision/guardian_1-guard.png": {
+      "bytes": 108540,
+      "sha256": "5315f2f24de41c6ecef045f35445535c552642e6f4247b17081563e5e1a21414"
+    },
+    "native.rejected-raised-belt-collision/guardian_1-load.png": {
+      "bytes": 109630,
+      "sha256": "f61d92d4fd285ef0102a08c89c24377c5d92c911d309aa7b9fd73d4a85a1a0ee"
+    },
+    "native.rejected-raised-belt-collision/guardian_1-release.png": {
+      "bytes": 109225,
+      "sha256": "5c1e9a40ffea6fa02f0d63c14f499c9652b939cfe5bb88af728eecb8f3d0c865"
+    },
+    "native.rejected-raised-belt-collision/guardian_2-death.png": {
+      "bytes": 74713,
+      "sha256": "acda85574ae90e0980d3dbf3221a24b94831000990bfea3944390f3e2a2a89e5"
+    },
+    "native.rejected-raised-belt-collision/guardian_2-guard.png": {
+      "bytes": 108250,
+      "sha256": "5f3b69bea3d8be839ee7ded829d14814c6b7c8bca51b7902f3248e458ab9fbe2"
+    },
+    "native.rejected-raised-belt-collision/guardian_2-load.png": {
+      "bytes": 108924,
+      "sha256": "99e64a27fbe5fbd0485d587f48ed71a211ab73b5f68f67d51b3c46847dafd31a"
+    },
+    "native.rejected-raised-belt-collision/guardian_2-release.png": {
+      "bytes": 108418,
+      "sha256": "7ee6f9d0c3f7e9e5c022490bba16eae10282937941f3eab33d5cac44695a9c48"
+    },
+    "native.rejected-raised-belt-collision/guardian_3-death.png": {
+      "bytes": 79224,
+      "sha256": "c4ceaffbd3d25404b78b993aae4618005dab39b8708cd05d2ba10df8333b73d1"
+    },
+    "native.rejected-raised-belt-collision/guardian_3-guard.png": {
+      "bytes": 117652,
+      "sha256": "9c4005b3ae64aa539e4d0f2069880a72cf3b8101dd83c8d056dbe9c0ddecd795"
+    },
+    "native.rejected-raised-belt-collision/guardian_3-load.png": {
+      "bytes": 104423,
+      "sha256": "88656f4bf1539f26a4c6f6b2a8b6c5d19ca1dbbcda5a43521af8807f93121f24"
+    },
+    "native.rejected-raised-belt-collision/guardian_3-release.png": {
+      "bytes": 102179,
+      "sha256": "5cf3aa3f76ac7f1070006719dd4e32a5a085cfd3bb5c63331ae81101e9da41fa"
+    },
+    "native.rejected-raised-belt-collision/hexer-death.png": {
+      "bytes": 77163,
+      "sha256": "b5cf452f56b1379b3117a73ac223c09cce95749daf118e5d6df5161a5319c80e"
+    },
+    "native.rejected-raised-belt-collision/hexer-guard.png": {
+      "bytes": 109334,
+      "sha256": "89a5bf86c7a73ab881f27ff73eb82c870c712a1a5e816de105ce9c7a7c90231e"
+    },
+    "native.rejected-raised-belt-collision/hexer-load.png": {
+      "bytes": 109963,
+      "sha256": "cba5dc7fc22cc48e78b297b72be2f4764597988d307779216edb632f5af2175e"
+    },
+    "native.rejected-raised-belt-collision/hexer-release.png": {
+      "bytes": 109919,
+      "sha256": "0349a7f8649f46bb94be83b52685c0d3746c1ee6a72c4db9179071b884558a3a"
+    }
+  }
+}

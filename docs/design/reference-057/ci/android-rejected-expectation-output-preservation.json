@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "preserved_at": "2026-10-07T21:23:56.756705+00:00",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "original_tool_chunk_id": "bd7904",
+  "actual_original_tool_exit_code": 1,
+  "original_tool_stdout_log": "android-rejected-expectation-original-tool-output.log",
+  "original_tool_stdout_sha256": "d40eaa31165dbb7eeba618fb0a102cff3a7c4b124b652031073c94c4e79176cf",
+  "preservation_method": "Literal copy of the already completed exec_command output; not a rerun or a newly timestamped execution.",
+  "rejected_assertion": "godot_suites == 32 and godot_checks == 8947 and godot_failures == 0",
+  "actual_parsed_values": {
+    "godot_suites": 32,
+    "godot_checks": 8503,
+    "godot_failures": 0
+  },
+  "scope": "Scratch evidence expectation failed, while the actual hosted job succeeded. The committed 32-suite inventory omits SourceAvatarEvade; the separate full 53-suite run contains its +444 checks."
+}

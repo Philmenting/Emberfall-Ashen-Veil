@@ -1,0 +1,42 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ATTIRE VERIFICATION SCOPE: headless CPU upload/bounds oracle; Dummy vertex updates are no-op
+ATTIRE BUFFER Vowkeeper Vowkeeper/idle/0.4: max offset=0.00033984123729 m; actual min_y=0.7471216917038
+ATTIRE BUFFER Vowkeeper Vowkeeper/walk/0.125: max offset=0.00364988227375 m; actual min_y=0.88605117797852
+ATTIRE BUFFER Vowkeeper Vowkeeper/walk/0.375: max offset=0.00446715345606 m; actual min_y=0.92506915330887
+ATTIRE BUFFER Vowkeeper Vowkeeper/windup_basic/0.7: max offset=0.00348788453266 m; actual min_y=0.83591800928116
+ATTIRE BUFFER Vowkeeper Vowkeeper/windup_skill/1.0: max offset=0.00483714742586 m; actual min_y=0.84342926740646
+ATTIRE BUFFER Vowkeeper Vowkeeper/windup_heavy/0.8: max offset=0.00535047706217 m; actual min_y=0.8034325838089
+ATTIRE BUFFER Vowkeeper Vowkeeper/recover_heavy/0.1: max offset=0.00247320369817 m; actual min_y=0.86338406801224
+ATTIRE BUFFER Vowkeeper Vowkeeper/recover_heavy/0.34: max offset=0.0 m; actual min_y=0.71298915147781
+ATTIRE BUFFER Vowkeeper Vowkeeper/evade/0.5: max offset=0.00656469352543 m; actual min_y=0.71027225255966
+ATTIRE BUFFER Vowkeeper Vowkeeper/death/0.36: max offset=0.0 m; actual min_y=0.00299999862909
+ATTIRE BUFFER Vowkeeper Vowkeeper/death/0.9: max offset=0.0 m; actual min_y=0.00299999862909
+ATTIRE BUDGET Vowkeeper: records=2; movable vertices=1284; dirty vertex upload bytes=75432
+ATTIRE BUFFER Arcanist Arcanist/idle/0.4: max offset=0.00074241874972 m; actual min_y=0.5192214846611
+ATTIRE BUFFER Arcanist Arcanist/walk/0.125: max offset=0.00796588510275 m; actual min_y=0.52811801433563
+ATTIRE BUFFER Arcanist Arcanist/walk/0.375: max offset=0.00968917552382 m; actual min_y=0.57691890001297
+ATTIRE BUFFER Arcanist Arcanist/windup_basic/0.7: max offset=0.00760031258687 m; actual min_y=0.50459420681
+ATTIRE BUFFER Arcanist Arcanist/windup_skill/1.0: max offset=0.01050000172108 m; actual min_y=0.50774890184402
+ATTIRE BUFFER Arcanist Arcanist/windup_heavy/0.8: max offset=0.01163112744689 m; actual min_y=0.46747642755508
+ATTIRE BUFFER Arcanist Arcanist/recover_heavy/0.1: max offset=0.00536461686715 m; actual min_y=0.47079142928123
+ATTIRE BUFFER Arcanist Arcanist/recover_heavy/0.34: max offset=0.0 m; actual min_y=0.5264378786087
+ATTIRE BUFFER Arcanist Arcanist/evade/0.5: max offset=0.01425000280142 m; actual min_y=0.52463173866272
+ATTIRE BUFFER Arcanist Arcanist/death/0.36: max offset=0.0 m; actual min_y=0.01183157972991
+ATTIRE BUFFER Arcanist Arcanist/death/0.9: max offset=0.0 m; actual min_y=0.00621072947979
+ATTIRE BUDGET Arcanist: records=5; movable vertices=1661; dirty vertex upload bytes=50004
+ATTIRE BUFFER Ranger Ranger/idle/0.4: max offset=0.00033984123729 m; actual min_y=0.88814461231232
+ATTIRE BUFFER Ranger Ranger/walk/0.125: max offset=0.00364988227375 m; actual min_y=0.88736593723297
+ATTIRE BUFFER Ranger Ranger/walk/0.375: max offset=0.00446715345606 m; actual min_y=0.92373645305634
+ATTIRE BUFFER Ranger Ranger/windup_basic/0.7: max offset=0.00348788453266 m; actual min_y=0.8792427778244
+ATTIRE BUFFER Ranger Ranger/windup_skill/1.0: max offset=0.00483714742586 m; actual min_y=0.89289802312851
+ATTIRE BUFFER Ranger Ranger/windup_heavy/0.8: max offset=0.00535047706217 m; actual min_y=0.88143402338028
+ATTIRE BUFFER Ranger Ranger/recover_heavy/0.1: max offset=0.00247320369817 m; actual min_y=0.89289802312851
+ATTIRE BUFFER Ranger Ranger/recover_heavy/0.34: max offset=0.0 m; actual min_y=0.89047420024872
+ATTIRE BUFFER Ranger Ranger/evade/0.5: max offset=0.00656469352543 m; actual min_y=0.89047420024872
+ATTIRE BUFFER Ranger Ranger/death/0.36: max offset=0.0 m; actual min_y=0.00299999862909
+ATTIRE BUFFER Ranger Ranger/death/0.9: max offset=0.0 m; actual min_y=0.00299999862909
+ATTIRE BUDGET Ranger: records=2; movable vertices=662; dirty vertex upload bytes=48300
+AVATAR ATTIRE QUALITY POSES: 33
+AVATAR ATTIRE GPU READBACK POSES: 0
+AVATAR ATTIRE QUALITY SMOKE: 306 checks, 0 failures

@@ -1,0 +1,32 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Arcanist moves between attacks at walking speed
+PASS: spacing is visible in the action and grants no Mana or dodge reset
+PASS: committed casting remains stationary and completes normally
+PASS: spacing does not enter an announced ground hazard
+PASS: Vowkeeper: Arcanist spacing is not applied
+PASS: Ranger: Arcanist spacing is not applied
+PASS: old expeditions retain stationary spell recovery
+PASS: repositioning remains inside the narrow bridge and encounter area
+PASS: Nova uses legacy 3.2 radius without hitting beyond it
+PASS: Nova presentation receives the actual impact center and radius
+PASS: Nova uses 4.5 radius without hitting beyond it
+PASS: Nova presentation receives the actual impact center and radius
+PASS: checkpoint after repositioning restores exactly
+PASS: resumed tactics preserve final combat and RNG
+PASS: invalid tactics flag rejected: -1
+PASS: invalid tactics flag rejected: 2
+PASS: invalid tactics flag rejected: 1.0
+PASS: invalid tactics flag rejected: enabled
+PASS: region 0: all 64 Arcanist tactics outcomes match live/skip
+PASS: region 1: all 64 Arcanist tactics outcomes match live/skip
+PASS: region 2: all 64 Arcanist tactics outcomes match live/skip
+PASS: region 3: all 64 Arcanist tactics outcomes match live/skip
+PASS: exact 0.9 Arcanist reference on floor 1.0
+PASS: exact 0.9 Arcanist reference on floor 11.0
+PASS: exact 0.9 Arcanist reference on floor 21.0
+PASS: exact 0.9 Arcanist reference on floor 31.0
+PASS: new Arcanist expeditions enable the tactics rules
+PASS: world displays a Nova pulse with the simulated radius
+PASS: Nova effect expires and releases its scene node
+ARCANE TACTICS SMOKE: 29 checks, 0 failures

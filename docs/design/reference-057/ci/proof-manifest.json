@@ -1,0 +1,1735 @@
+{
+  "schema": 1,
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "source_tree": "e491d100b89c7b9eae92885d28053086f77c8563",
+  "all_final_runs_completed_successfully": true,
+  "binary_artifacts_downloaded": false,
+  "historical_results_contribute_to_current_quality": false,
+  "files": [
+    {
+      "path": "all-three-ci-receipt.json",
+      "sha256": "95f5dea8e429865c8018b5726a6491015c70afab539597ba48711278ca64a6ec",
+      "bytes": 20470,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/all-three-ci-receipt.json",
+      "original_sha256": "95f5dea8e429865c8018b5726a6491015c70afab539597ba48711278ca64a6ec",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-debug-artifacts.json",
+      "sha256": "7847684f0579f0a8a973e41fd9dc5844d32f7b480426b75c96446100bcaad9f0",
+      "bytes": 793,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-debug-artifacts.json",
+      "original_sha256": "7847684f0579f0a8a973e41fd9dc5844d32f7b480426b75c96446100bcaad9f0",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-debug-checkout-commit-raw.json",
+      "sha256": "fad428a572b07ee0453f4ca09d249b6e16ce8862f8992c910690edd928064782",
+      "bytes": 2729,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-debug-checkout-commit-raw.json",
+      "original_sha256": "fad428a572b07ee0453f4ca09d249b6e16ce8862f8992c910690edd928064782",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-debug-jobs-page-1.json",
+      "sha256": "a22bb78ae430986d635bbcf60fd03b598d6657d41610b33e6cb2a7ad3dcf20a0",
+      "bytes": 9653,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-debug-jobs-page-1.json",
+      "original_sha256": "a22bb78ae430986d635bbcf60fd03b598d6657d41610b33e6cb2a7ad3dcf20a0",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-debug-jobs.json",
+      "sha256": "a22bb78ae430986d635bbcf60fd03b598d6657d41610b33e6cb2a7ad3dcf20a0",
+      "bytes": 9653,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-debug-jobs.json",
+      "original_sha256": "a22bb78ae430986d635bbcf60fd03b598d6657d41610b33e6cb2a7ad3dcf20a0",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-debug-log-transport.json",
+      "sha256": "3f4bd0df67007354df95610d68d7a44e45cd8b7f4abe9457cf9ce81743125781",
+      "bytes": 721,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-debug-log-transport.json",
+      "original_sha256": "3f4bd0df67007354df95610d68d7a44e45cd8b7f4abe9457cf9ce81743125781",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-debug-original-job.log",
+      "sha256": "c60e7161439232c8ca35d22d2fac4730c8437f1b50607a51b12060ecbe0406c1",
+      "bytes": 870763,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-debug-original-job.log",
+      "original_sha256": "c60e7161439232c8ca35d22d2fac4730c8437f1b50607a51b12060ecbe0406c1",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-debug-receipt.json",
+      "sha256": "c71be3b411b941bc9eb6b8c51602b3b2df0219a22518b56438c4bbbb89481ee0",
+      "bytes": 6400,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-debug-receipt.json",
+      "original_sha256": "c71be3b411b941bc9eb6b8c51602b3b2df0219a22518b56438c4bbbb89481ee0",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-debug-run.json",
+      "sha256": "21ca4c17f7101495183462dd92ac179f694d43916d31922126cc4db3d69b3e25",
+      "bytes": 13879,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-debug-run.json",
+      "original_sha256": "21ca4c17f7101495183462dd92ac179f694d43916d31922126cc4db3d69b3e25",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-debug-summary.log",
+      "sha256": "8d3f1b00d2c86ec642e0dc9e3eaf8256cdd7d113178fc948e99930bcd38c0e51",
+      "bytes": 4923,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-debug-summary.log",
+      "original_sha256": "8d3f1b00d2c86ec642e0dc9e3eaf8256cdd7d113178fc948e99930bcd38c0e51",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-expected-total-correction.json",
+      "sha256": "4f550e7002473e86cebeaac5d2017a09c8fd02ca880e92764dfb3edd141c74b4",
+      "bytes": 1621,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-expected-total-correction.json",
+      "original_sha256": "4f550e7002473e86cebeaac5d2017a09c8fd02ca880e92764dfb3edd141c74b4",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-rejected-expectation-original-tool-output.log",
+      "sha256": "d40eaa31165dbb7eeba618fb0a102cff3a7c4b124b652031073c94c4e79176cf",
+      "bytes": 88,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-rejected-expectation-original-tool-output.log",
+      "original_sha256": "d40eaa31165dbb7eeba618fb0a102cff3a7c4b124b652031073c94c4e79176cf",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-rejected-expectation-output-preservation.json",
+      "sha256": "3b2e74a06f78fc12f9b780a404ded33da9960b7eceeb0fc7b266d2dfbedd31f1",
+      "bytes": 940,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-rejected-expectation-output-preservation.json",
+      "original_sha256": "3b2e74a06f78fc12f9b780a404ded33da9960b7eceeb0fc7b266d2dfbedd31f1",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-runtime-artifacts.json",
+      "sha256": "8b04d9ae662b952c6b81cbc4ecaf71b2bd5ad3662b93b7d40bff7fed9130e339",
+      "bytes": 1537,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-runtime-artifacts.json",
+      "original_sha256": "8b04d9ae662b952c6b81cbc4ecaf71b2bd5ad3662b93b7d40bff7fed9130e339",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-runtime-checkout-commit-raw.json",
+      "sha256": "fad428a572b07ee0453f4ca09d249b6e16ce8862f8992c910690edd928064782",
+      "bytes": 2729,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-runtime-checkout-commit-raw.json",
+      "original_sha256": "fad428a572b07ee0453f4ca09d249b6e16ce8862f8992c910690edd928064782",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-runtime-jobs-page-1.json",
+      "sha256": "00958737c12e30747fedbd75f2502a41a163dc4af57e4481674bceda53d6648a",
+      "bytes": 3708,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-runtime-jobs-page-1.json",
+      "original_sha256": "00958737c12e30747fedbd75f2502a41a163dc4af57e4481674bceda53d6648a",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-runtime-jobs.json",
+      "sha256": "00958737c12e30747fedbd75f2502a41a163dc4af57e4481674bceda53d6648a",
+      "bytes": 3708,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-runtime-jobs.json",
+      "original_sha256": "00958737c12e30747fedbd75f2502a41a163dc4af57e4481674bceda53d6648a",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-runtime-log-transport.json",
+      "sha256": "0c7264570c94a74fff9801e73706cf6519a24f3d1518ecb0ec626afafa03ce7b",
+      "bytes": 721,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-runtime-log-transport.json",
+      "original_sha256": "0c7264570c94a74fff9801e73706cf6519a24f3d1518ecb0ec626afafa03ce7b",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-runtime-original-job.log",
+      "sha256": "a26d0dfee265b09183e40b5095ab12d9aa5c972650776da1e6c48edb18735200",
+      "bytes": 338449,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-runtime-original-job.log",
+      "original_sha256": "a26d0dfee265b09183e40b5095ab12d9aa5c972650776da1e6c48edb18735200",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-runtime-receipt.json",
+      "sha256": "3b519aaed8918aa85a2defb1dc85601bc5d6c1e9bc0d9f90b26164ac98ae76be",
+      "bytes": 4160,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-runtime-receipt.json",
+      "original_sha256": "3b519aaed8918aa85a2defb1dc85601bc5d6c1e9bc0d9f90b26164ac98ae76be",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-runtime-run.json",
+      "sha256": "6a81eb375944cbf9fb80ac6f37b1ec74bdb5d6dd1688a871944fb70a2bb42d0b",
+      "bytes": 13889,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-runtime-run.json",
+      "original_sha256": "6a81eb375944cbf9fb80ac6f37b1ec74bdb5d6dd1688a871944fb70a2bb42d0b",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "android-runtime-summary.log",
+      "sha256": "43414b9594ca5f39c1c5845962ebb773156891de4f34b5ec0bcad72158657a2f",
+      "bytes": 1670,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/android-runtime-summary.log",
+      "original_sha256": "43414b9594ca5f39c1c5845962ebb773156891de4f34b5ec0bcad72158657a2f",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status-20261007T210604757293Z.json",
+      "sha256": "7eee3bc6f6ccff4f123aa87594d8c5574613ebc77637fce61a1f59da5c147420",
+      "bytes": 589,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status-20261007T210604757293Z.json",
+      "original_sha256": "7eee3bc6f6ccff4f123aa87594d8c5574613ebc77637fce61a1f59da5c147420",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status-20261007T210655623910Z.json",
+      "sha256": "750b37951bc60d71cc1e9b7d2dcc232dd4742c5aeb2096922cc57349a427aee9",
+      "bytes": 1024,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status-20261007T210655623910Z.json",
+      "original_sha256": "750b37951bc60d71cc1e9b7d2dcc232dd4742c5aeb2096922cc57349a427aee9",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status-20261007T210901678878Z.json",
+      "sha256": "1107eedec319b500fa9f2af6212caae1c9a3460fdb9e96b246a00f2ef13ad30d",
+      "bytes": 1024,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status-20261007T210901678878Z.json",
+      "original_sha256": "1107eedec319b500fa9f2af6212caae1c9a3460fdb9e96b246a00f2ef13ad30d",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status-20261007T211107496815Z.json",
+      "sha256": "4e69c8ccb6f2dd102370068ac7a3e3b9a910d89e0def8dbd0aaf8e49bf60b8d7",
+      "bytes": 1024,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status-20261007T211107496815Z.json",
+      "original_sha256": "4e69c8ccb6f2dd102370068ac7a3e3b9a910d89e0def8dbd0aaf8e49bf60b8d7",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status-20261007T211313858393Z.json",
+      "sha256": "dd59227f36d78fdaf8bd870d68534822c24d09b783c473854631a0a13d793f86",
+      "bytes": 1024,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status-20261007T211313858393Z.json",
+      "original_sha256": "dd59227f36d78fdaf8bd870d68534822c24d09b783c473854631a0a13d793f86",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status-20261007T211519961835Z.json",
+      "sha256": "7e0978667fc9a8acf850a283608852ee5d23033741d15677ca19bba0aba13abd",
+      "bytes": 1024,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status-20261007T211519961835Z.json",
+      "original_sha256": "7e0978667fc9a8acf850a283608852ee5d23033741d15677ca19bba0aba13abd",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status-20261007T211726138261Z.json",
+      "sha256": "d6af7ee9a29991fc6b6ee3a15d5e730aa3581dfdc7cc4d9e355ca5a2aa85eaec",
+      "bytes": 1024,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status-20261007T211726138261Z.json",
+      "original_sha256": "d6af7ee9a29991fc6b6ee3a15d5e730aa3581dfdc7cc4d9e355ca5a2aa85eaec",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status-20261007T211932012566Z.json",
+      "sha256": "275a9a6e286d27e1d77c5cb7e96220ff02fe04f969dcdecd372df3e8d9d5b064",
+      "bytes": 1030,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status-20261007T211932012566Z.json",
+      "original_sha256": "275a9a6e286d27e1d77c5cb7e96220ff02fe04f969dcdecd372df3e8d9d5b064",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status-20261007T212138202780Z.json",
+      "sha256": "c234a572bffe3f6a5a5b63342ffe551803f03159c88b6b1bc228751c8a093cd4",
+      "bytes": 1036,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status-20261007T212138202780Z.json",
+      "original_sha256": "c234a572bffe3f6a5a5b63342ffe551803f03159c88b6b1bc228751c8a093cd4",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status-20261007T212343914613Z.json",
+      "sha256": "287683344a8f8a061a857eb9d64130c18f467eaaf18c0b718087472da2f2ae52",
+      "bytes": 1036,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status-20261007T212343914613Z.json",
+      "original_sha256": "287683344a8f8a061a857eb9d64130c18f467eaaf18c0b718087472da2f2ae52",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status-20261007T212549955998Z.json",
+      "sha256": "569f72872010955ea2892c26f71e3b414f88873e3f8d1b45645578e3ac519832",
+      "bytes": 1036,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status-20261007T212549955998Z.json",
+      "original_sha256": "569f72872010955ea2892c26f71e3b414f88873e3f8d1b45645578e3ac519832",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status-20261007T212756183624Z.json",
+      "sha256": "fee7511929974f3f8f5a61914bcce1a438d58aba10be1bedb2449d1219f3e9a5",
+      "bytes": 1036,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status-20261007T212756183624Z.json",
+      "original_sha256": "fee7511929974f3f8f5a61914bcce1a438d58aba10be1bedb2449d1219f3e9a5",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status-20261007T213001787505Z.json",
+      "sha256": "977c39e621ebc459dfdf5c4bc36e49f93c84b7a85c4ca0612f67dcacfdcff950",
+      "bytes": 1036,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status-20261007T213001787505Z.json",
+      "original_sha256": "977c39e621ebc459dfdf5c4bc36e49f93c84b7a85c4ca0612f67dcacfdcff950",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status-20261007T213207191158Z.json",
+      "sha256": "4f1f32a1465ee106a43eb5f1ad605fd527fc74a26f218a5685e572ab4667877a",
+      "bytes": 1036,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status-20261007T213207191158Z.json",
+      "original_sha256": "4f1f32a1465ee106a43eb5f1ad605fd527fc74a26f218a5685e572ab4667877a",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status-20261007T213413057030Z.json",
+      "sha256": "37067a5b72719ea7097b24f06a24f8351a1779f388e307559f8713e6e8c7598a",
+      "bytes": 1042,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status-20261007T213413057030Z.json",
+      "original_sha256": "37067a5b72719ea7097b24f06a24f8351a1779f388e307559f8713e6e8c7598a",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status-20261007T213628907020Z.json",
+      "sha256": "1c17a930462001a8f980ccfbdb1e8c5a46f2ad2a0fc7510ea5e53f35214addc0",
+      "bytes": 1042,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status-20261007T213628907020Z.json",
+      "original_sha256": "1c17a930462001a8f980ccfbdb1e8c5a46f2ad2a0fc7510ea5e53f35214addc0",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "collection-status.json",
+      "sha256": "1c17a930462001a8f980ccfbdb1e8c5a46f2ad2a0fc7510ea5e53f35214addc0",
+      "bytes": 1042,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/collection-status.json",
+      "original_sha256": "1c17a930462001a8f980ccfbdb1e8c5a46f2ad2a0fc7510ea5e53f35214addc0",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "detached-watcher.log",
+      "sha256": "5dd252cad99737b389b81b79c3b14fb4792af0652a5720a93d824dae3bc370a8",
+      "bytes": 15848,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/detached-watcher.log",
+      "original_sha256": "5dd252cad99737b389b81b79c3b14fb4792af0652a5720a93d824dae3bc370a8",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "gameplay-artifacts.json",
+      "sha256": "2089c05debe928f0b0fe15b072eb3cd95a64f598baf3ddf0eace8aa8fa31c68a",
+      "bytes": 767,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/gameplay-artifacts.json",
+      "original_sha256": "2089c05debe928f0b0fe15b072eb3cd95a64f598baf3ddf0eace8aa8fa31c68a",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "gameplay-checkout-commit-raw.json",
+      "sha256": "fad428a572b07ee0453f4ca09d249b6e16ce8862f8992c910690edd928064782",
+      "bytes": 2729,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/gameplay-checkout-commit-raw.json",
+      "original_sha256": "fad428a572b07ee0453f4ca09d249b6e16ce8862f8992c910690edd928064782",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "gameplay-jobs-page-1.json",
+      "sha256": "fc43c7aa7358bc0ac59cd0ea89ca7cda8d2f24afbc40117be7645958e0f55225",
+      "bytes": 2491,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/gameplay-jobs-page-1.json",
+      "original_sha256": "fc43c7aa7358bc0ac59cd0ea89ca7cda8d2f24afbc40117be7645958e0f55225",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "gameplay-jobs.json",
+      "sha256": "fc43c7aa7358bc0ac59cd0ea89ca7cda8d2f24afbc40117be7645958e0f55225",
+      "bytes": 2491,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/gameplay-jobs.json",
+      "original_sha256": "fc43c7aa7358bc0ac59cd0ea89ca7cda8d2f24afbc40117be7645958e0f55225",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "gameplay-log-transport.json",
+      "sha256": "f326de69ddcef05a38e157183c822a10d014de041e061c63be597867a64c672b",
+      "bytes": 721,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/gameplay-log-transport.json",
+      "original_sha256": "f326de69ddcef05a38e157183c822a10d014de041e061c63be597867a64c672b",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "gameplay-original-job.log",
+      "sha256": "0ba80302fed7701b7f451c8e3dd736ded9b260242063d8bbbd65e11169b8ca84",
+      "bytes": 201568,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/gameplay-original-job.log",
+      "original_sha256": "0ba80302fed7701b7f451c8e3dd736ded9b260242063d8bbbd65e11169b8ca84",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "gameplay-receipt.json",
+      "sha256": "5791a107ab40388ad7753b94e055179dd33f4dfa0d69a1f1eecf5874a5dc6793",
+      "bytes": 6641,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/gameplay-receipt.json",
+      "original_sha256": "5791a107ab40388ad7753b94e055179dd33f4dfa0d69a1f1eecf5874a5dc6793",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "gameplay-run.json",
+      "sha256": "904f1fd024573ace2db3d4201f250f0a8a0fd95e30bf856e8ceef81fc3d0a3cb",
+      "bytes": 13881,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/gameplay-run.json",
+      "original_sha256": "904f1fd024573ace2db3d4201f250f0a8a0fd95e30bf856e8ceef81fc3d0a3cb",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "gameplay-summary.log",
+      "sha256": "299cbae686766b85139b0646d645a43a451d6ff8279f69afc12283e5a2e80df1",
+      "bytes": 3985,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/gameplay-summary.log",
+      "original_sha256": "299cbae686766b85139b0646d645a43a451d6ff8279f69afc12283e5a2e80df1",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "independent-verification-receipt.json",
+      "sha256": "8a8c4d1837fd8c0aedf3347419719b91a38572924bb93f057c56e2ddb221a007",
+      "bytes": 5737,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/independent-verification-receipt.json",
+      "original_sha256": "8a8c4d1837fd8c0aedf3347419719b91a38572924bb93f057c56e2ddb221a007",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "metadata-poll-20261007T210649511350Z.log",
+      "sha256": "76e6bcad95c9721fdec47e84f9582983b7fb74d13d77b01346359d23a9d93f4e",
+      "bytes": 692,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/metadata-poll-20261007T210649511350Z.log",
+      "original_sha256": "76e6bcad95c9721fdec47e84f9582983b7fb74d13d77b01346359d23a9d93f4e",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "metadata-poll-20261007T210855663263Z.log",
+      "sha256": "76e6bcad95c9721fdec47e84f9582983b7fb74d13d77b01346359d23a9d93f4e",
+      "bytes": 692,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/metadata-poll-20261007T210855663263Z.log",
+      "original_sha256": "76e6bcad95c9721fdec47e84f9582983b7fb74d13d77b01346359d23a9d93f4e",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "metadata-poll-20261007T211101728015Z.log",
+      "sha256": "76e6bcad95c9721fdec47e84f9582983b7fb74d13d77b01346359d23a9d93f4e",
+      "bytes": 692,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/metadata-poll-20261007T211101728015Z.log",
+      "original_sha256": "76e6bcad95c9721fdec47e84f9582983b7fb74d13d77b01346359d23a9d93f4e",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "metadata-poll-20261007T211307538851Z.log",
+      "sha256": "76e6bcad95c9721fdec47e84f9582983b7fb74d13d77b01346359d23a9d93f4e",
+      "bytes": 692,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/metadata-poll-20261007T211307538851Z.log",
+      "original_sha256": "76e6bcad95c9721fdec47e84f9582983b7fb74d13d77b01346359d23a9d93f4e",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "metadata-poll-20261007T211513894062Z.log",
+      "sha256": "76e6bcad95c9721fdec47e84f9582983b7fb74d13d77b01346359d23a9d93f4e",
+      "bytes": 692,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/metadata-poll-20261007T211513894062Z.log",
+      "original_sha256": "76e6bcad95c9721fdec47e84f9582983b7fb74d13d77b01346359d23a9d93f4e",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "metadata-poll-20261007T211719990033Z.log",
+      "sha256": "76e6bcad95c9721fdec47e84f9582983b7fb74d13d77b01346359d23a9d93f4e",
+      "bytes": 692,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/metadata-poll-20261007T211719990033Z.log",
+      "original_sha256": "76e6bcad95c9721fdec47e84f9582983b7fb74d13d77b01346359d23a9d93f4e",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "metadata-poll-20261007T211926172296Z.log",
+      "sha256": "e60c42a6cc499d0ddc8b8d51d5d32aa98100481da05acbb0767e4cc59ac06c7b",
+      "bytes": 698,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/metadata-poll-20261007T211926172296Z.log",
+      "original_sha256": "e60c42a6cc499d0ddc8b8d51d5d32aa98100481da05acbb0767e4cc59ac06c7b",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "metadata-poll-20261007T212132043994Z.log",
+      "sha256": "292465bd4095c7d0e1a2938c63480c674fb9fd534ad1cf14814ea8efbd8e67b7",
+      "bytes": 704,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/metadata-poll-20261007T212132043994Z.log",
+      "original_sha256": "292465bd4095c7d0e1a2938c63480c674fb9fd534ad1cf14814ea8efbd8e67b7",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "metadata-poll-20261007T212338244505Z.log",
+      "sha256": "292465bd4095c7d0e1a2938c63480c674fb9fd534ad1cf14814ea8efbd8e67b7",
+      "bytes": 704,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/metadata-poll-20261007T212338244505Z.log",
+      "original_sha256": "292465bd4095c7d0e1a2938c63480c674fb9fd534ad1cf14814ea8efbd8e67b7",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "metadata-poll-20261007T212543970638Z.log",
+      "sha256": "292465bd4095c7d0e1a2938c63480c674fb9fd534ad1cf14814ea8efbd8e67b7",
+      "bytes": 704,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/metadata-poll-20261007T212543970638Z.log",
+      "original_sha256": "292465bd4095c7d0e1a2938c63480c674fb9fd534ad1cf14814ea8efbd8e67b7",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "metadata-poll-20261007T212749976205Z.log",
+      "sha256": "292465bd4095c7d0e1a2938c63480c674fb9fd534ad1cf14814ea8efbd8e67b7",
+      "bytes": 704,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/metadata-poll-20261007T212749976205Z.log",
+      "original_sha256": "292465bd4095c7d0e1a2938c63480c674fb9fd534ad1cf14814ea8efbd8e67b7",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "metadata-poll-20261007T212956196318Z.log",
+      "sha256": "292465bd4095c7d0e1a2938c63480c674fb9fd534ad1cf14814ea8efbd8e67b7",
+      "bytes": 704,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/metadata-poll-20261007T212956196318Z.log",
+      "original_sha256": "292465bd4095c7d0e1a2938c63480c674fb9fd534ad1cf14814ea8efbd8e67b7",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "metadata-poll-20261007T213201837215Z.log",
+      "sha256": "292465bd4095c7d0e1a2938c63480c674fb9fd534ad1cf14814ea8efbd8e67b7",
+      "bytes": 704,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/metadata-poll-20261007T213201837215Z.log",
+      "original_sha256": "292465bd4095c7d0e1a2938c63480c674fb9fd534ad1cf14814ea8efbd8e67b7",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "metadata-poll-20261007T213407240338Z.log",
+      "sha256": "0eb2c1d6e99ed13bc56bf25eabd1c50a11d70d942349b8679909ddefae2153dd",
+      "bytes": 790,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/metadata-poll-20261007T213407240338Z.log",
+      "original_sha256": "0eb2c1d6e99ed13bc56bf25eabd1c50a11d70d942349b8679909ddefae2153dd",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "observed-runs-page-1.json",
+      "sha256": "b21d48fd1582a1bc85503d6cc3e697d738664bbc0ced40d56830c1fb069dad26",
+      "bytes": 41687,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/observed-runs-page-1.json",
+      "original_sha256": "b21d48fd1582a1bc85503d6cc3e697d738664bbc0ced40d56830c1fb069dad26",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "observed-runs.json",
+      "sha256": "b21d48fd1582a1bc85503d6cc3e697d738664bbc0ced40d56830c1fb069dad26",
+      "bytes": 41687,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/observed-runs.json",
+      "original_sha256": "b21d48fd1582a1bc85503d6cc3e697d738664bbc0ced40d56830c1fb069dad26",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runs-observed-20261007T210604756616Z.json",
+      "sha256": "763f11efb3fd0695809422708bf5765dfad5d8438bfb9a7bad31f23ff74d3285",
+      "bytes": 46,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runs-observed-20261007T210604756616Z.json",
+      "original_sha256": "763f11efb3fd0695809422708bf5765dfad5d8438bfb9a7bad31f23ff74d3285",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runs-observed-20261007T210650668355Z.json",
+      "sha256": "906be4f7033fc7373bc76b028a1b2d8e39da6d8d05ef246f4f21c6d0b8441bcf",
+      "bytes": 49290,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runs-observed-20261007T210650668355Z.json",
+      "original_sha256": "906be4f7033fc7373bc76b028a1b2d8e39da6d8d05ef246f4f21c6d0b8441bcf",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runs-observed-20261007T210856794659Z.json",
+      "sha256": "906be4f7033fc7373bc76b028a1b2d8e39da6d8d05ef246f4f21c6d0b8441bcf",
+      "bytes": 49290,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runs-observed-20261007T210856794659Z.json",
+      "original_sha256": "906be4f7033fc7373bc76b028a1b2d8e39da6d8d05ef246f4f21c6d0b8441bcf",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runs-observed-20261007T211102842391Z.json",
+      "sha256": "c3314403f388e35ee5ccd56b01271b2f59f2e135c0784d80477cd7f6c8a2f61a",
+      "bytes": 49317,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runs-observed-20261007T211102842391Z.json",
+      "original_sha256": "c3314403f388e35ee5ccd56b01271b2f59f2e135c0784d80477cd7f6c8a2f61a",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runs-observed-20261007T211308844041Z.json",
+      "sha256": "c3314403f388e35ee5ccd56b01271b2f59f2e135c0784d80477cd7f6c8a2f61a",
+      "bytes": 49317,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runs-observed-20261007T211308844041Z.json",
+      "original_sha256": "c3314403f388e35ee5ccd56b01271b2f59f2e135c0784d80477cd7f6c8a2f61a",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runs-observed-20261007T211515243831Z.json",
+      "sha256": "c3314403f388e35ee5ccd56b01271b2f59f2e135c0784d80477cd7f6c8a2f61a",
+      "bytes": 49317,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runs-observed-20261007T211515243831Z.json",
+      "original_sha256": "c3314403f388e35ee5ccd56b01271b2f59f2e135c0784d80477cd7f6c8a2f61a",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runs-observed-20261007T211721185136Z.json",
+      "sha256": "c3314403f388e35ee5ccd56b01271b2f59f2e135c0784d80477cd7f6c8a2f61a",
+      "bytes": 49317,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runs-observed-20261007T211721185136Z.json",
+      "original_sha256": "c3314403f388e35ee5ccd56b01271b2f59f2e135c0784d80477cd7f6c8a2f61a",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runs-observed-20261007T211927544955Z.json",
+      "sha256": "6a78e90ce69ab05f37ea3ef5730c8a75d2d18846f41ad73dd04f50bf9b29175f",
+      "bytes": 49320,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runs-observed-20261007T211927544955Z.json",
+      "original_sha256": "6a78e90ce69ab05f37ea3ef5730c8a75d2d18846f41ad73dd04f50bf9b29175f",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runs-observed-20261007T212133273188Z.json",
+      "sha256": "7f352d8eabdbff0e2fbd8c41bd7dea0ce49b6453b9534383154a7579b8c22d05",
+      "bytes": 49323,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runs-observed-20261007T212133273188Z.json",
+      "original_sha256": "7f352d8eabdbff0e2fbd8c41bd7dea0ce49b6453b9534383154a7579b8c22d05",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runs-observed-20261007T212339547229Z.json",
+      "sha256": "7f352d8eabdbff0e2fbd8c41bd7dea0ce49b6453b9534383154a7579b8c22d05",
+      "bytes": 49323,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runs-observed-20261007T212339547229Z.json",
+      "original_sha256": "7f352d8eabdbff0e2fbd8c41bd7dea0ce49b6453b9534383154a7579b8c22d05",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runs-observed-20261007T212545204700Z.json",
+      "sha256": "7f352d8eabdbff0e2fbd8c41bd7dea0ce49b6453b9534383154a7579b8c22d05",
+      "bytes": 49323,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runs-observed-20261007T212545204700Z.json",
+      "original_sha256": "7f352d8eabdbff0e2fbd8c41bd7dea0ce49b6453b9534383154a7579b8c22d05",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runs-observed-20261007T212751415468Z.json",
+      "sha256": "7f352d8eabdbff0e2fbd8c41bd7dea0ce49b6453b9534383154a7579b8c22d05",
+      "bytes": 49323,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runs-observed-20261007T212751415468Z.json",
+      "original_sha256": "7f352d8eabdbff0e2fbd8c41bd7dea0ce49b6453b9534383154a7579b8c22d05",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runs-observed-20261007T212957218600Z.json",
+      "sha256": "316b1dd511b728d32da753368bdc2215a9b2ace2ef3a36c5910912708a923057",
+      "bytes": 49323,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runs-observed-20261007T212957218600Z.json",
+      "original_sha256": "316b1dd511b728d32da753368bdc2215a9b2ace2ef3a36c5910912708a923057",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runs-observed-20261007T213202955788Z.json",
+      "sha256": "316b1dd511b728d32da753368bdc2215a9b2ace2ef3a36c5910912708a923057",
+      "bytes": 49323,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runs-observed-20261007T213202955788Z.json",
+      "original_sha256": "316b1dd511b728d32da753368bdc2215a9b2ace2ef3a36c5910912708a923057",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runs-observed-20261007T213408465349Z.json",
+      "sha256": "dea81b53f4b86eb64667e55db1cdd769c5dc2fe163bb7ec085e53527ed5e397b",
+      "bytes": 49326,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runs-observed-20261007T213408465349Z.json",
+      "original_sha256": "dea81b53f4b86eb64667e55db1cdd769c5dc2fe163bb7ec085e53527ed5e397b",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runs-observed-20261007T213624211604Z.json",
+      "sha256": "dea81b53f4b86eb64667e55db1cdd769c5dc2fe163bb7ec085e53527ed5e397b",
+      "bytes": 49326,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runs-observed-20261007T213624211604Z.json",
+      "original_sha256": "dea81b53f4b86eb64667e55db1cdd769c5dc2fe163bb7ec085e53527ed5e397b",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runtime-job-root-20261007T212928343100Z.json",
+      "sha256": "d70cf403a5a739ea46c736a7ea39560314d21cd674b024c3abfbc80cda811d88",
+      "bytes": 3313,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runtime-job-root-20261007T212928343100Z.json",
+      "original_sha256": "d70cf403a5a739ea46c736a7ea39560314d21cd674b024c3abfbc80cda811d88",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "runtime-status-root-20261007T212928343100Z.json",
+      "sha256": "f47263be6b3a1706be48e0b5c40b8b80b87e9fd367d98fc9d4220c3d66839354",
+      "bytes": 13886,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/runtime-status-root-20261007T212928343100Z.json",
+      "original_sha256": "f47263be6b3a1706be48e0b5c40b8b80b87e9fd367d98fc9d4220c3d66839354",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "source-checkout-tree-binding.json",
+      "sha256": "9140eec825662124c649995b19641c0af401f461dcff7a56bbd9cc2c16cf891b",
+      "bytes": 2453,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/source-checkout-tree-binding.json",
+      "original_sha256": "9140eec825662124c649995b19641c0af401f461dcff7a56bbd9cc2c16cf891b",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "source-commit-raw.json",
+      "sha256": "8831d6e7b7f4e0ef54a9a14616f5fcbd8e8c8ce6bc9ae7cc8c962c3924677d99",
+      "bytes": 1233,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/source-commit-raw.json",
+      "original_sha256": "8831d6e7b7f4e0ef54a9a14616f5fcbd8e8c8ce6bc9ae7cc8c962c3924677d99",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "watcher-launch-receipt.json",
+      "sha256": "9da22b4c3556b103fa3e61541da29e4abde52e565595bd2df7485dc887131bb4",
+      "bytes": 659,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/watcher-launch-receipt.json",
+      "original_sha256": "9da22b4c3556b103fa3e61541da29e4abde52e565595bd2df7485dc887131bb4",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "watcher-observations.jsonl",
+      "sha256": "5dd252cad99737b389b81b79c3b14fb4792af0652a5720a93d824dae3bc370a8",
+      "bytes": 15848,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/watcher-observations.jsonl",
+      "original_sha256": "5dd252cad99737b389b81b79c3b14fb4792af0652a5720a93d824dae3bc370a8",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "watcher-state.json",
+      "sha256": "7c1656c6e29096a13b9dac872ef0f573966929096f5beaae825df2a01deb752f",
+      "bytes": 1345,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/watcher-state.json",
+      "original_sha256": "7c1656c6e29096a13b9dac872ef0f573966929096f5beaae825df2a01deb752f",
+      "copy_byte_identical": true,
+      "scope": "Accepted final source, three actual completed hosted CI runs"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/all-three-ci-receipt.json",
+      "sha256": "2df6d8ee2125ef354505adc78cc0b21911accb22437999acbf1ba531449d00fe",
+      "bytes": 20468,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/all-three-ci-receipt.json",
+      "original_sha256": "2df6d8ee2125ef354505adc78cc0b21911accb22437999acbf1ba531449d00fe",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-debug-artifacts.json",
+      "sha256": "05ac3e78167da14d6ca7edcd547f663cf4e8b0f075939d14ffe076e16692e8fc",
+      "bytes": 793,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-debug-artifacts.json",
+      "original_sha256": "05ac3e78167da14d6ca7edcd547f663cf4e8b0f075939d14ffe076e16692e8fc",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-debug-checkout-commit-raw.json",
+      "sha256": "58726a40bfe46c98e9ca2fd01312aa5290723f7b96345c5f2f6632e505d8d8de",
+      "bytes": 2729,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-debug-checkout-commit-raw.json",
+      "original_sha256": "58726a40bfe46c98e9ca2fd01312aa5290723f7b96345c5f2f6632e505d8d8de",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-debug-jobs-page-1.json",
+      "sha256": "d211523669162dec6f6b9c06b0d0a37d8be821dbdac38813e929455de7a4a9cb",
+      "bytes": 9653,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-debug-jobs-page-1.json",
+      "original_sha256": "d211523669162dec6f6b9c06b0d0a37d8be821dbdac38813e929455de7a4a9cb",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-debug-jobs.json",
+      "sha256": "d211523669162dec6f6b9c06b0d0a37d8be821dbdac38813e929455de7a4a9cb",
+      "bytes": 9653,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-debug-jobs.json",
+      "original_sha256": "d211523669162dec6f6b9c06b0d0a37d8be821dbdac38813e929455de7a4a9cb",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-debug-log-transport.json",
+      "sha256": "47648e655a5143efdd7e3abcefa51acd732db201ee95eb4e59b18275e296ce0e",
+      "bytes": 721,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-debug-log-transport.json",
+      "original_sha256": "47648e655a5143efdd7e3abcefa51acd732db201ee95eb4e59b18275e296ce0e",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-debug-original-job.log",
+      "sha256": "d9aa245b45501f73e4c0b861672640ff6bdec6e2ca4d731245eb09ea1e4bb35e",
+      "bytes": 870545,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-debug-original-job.log",
+      "original_sha256": "d9aa245b45501f73e4c0b861672640ff6bdec6e2ca4d731245eb09ea1e4bb35e",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-debug-receipt.json",
+      "sha256": "f891f2443627a995e8c4c2900889ed1c75b046a126482a2847ea27ff2cefb443",
+      "bytes": 6400,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-debug-receipt.json",
+      "original_sha256": "f891f2443627a995e8c4c2900889ed1c75b046a126482a2847ea27ff2cefb443",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-debug-run.json",
+      "sha256": "da5e4eb720454fc95a744d27b4607b4fc1fde66524eeee939e6dbb649202d4da",
+      "bytes": 13871,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-debug-run.json",
+      "original_sha256": "da5e4eb720454fc95a744d27b4607b4fc1fde66524eeee939e6dbb649202d4da",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-debug-summary.log",
+      "sha256": "34fa947dc91d3bfb308b039e21d1718f3899b15988b32472978b25c56301b828",
+      "bytes": 4923,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-debug-summary.log",
+      "original_sha256": "34fa947dc91d3bfb308b039e21d1718f3899b15988b32472978b25c56301b828",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-runtime-artifacts.json",
+      "sha256": "721fe31abd6a2303ef2e95daec5d2d4061a2611c401507d793a09bf24aec1717",
+      "bytes": 1537,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-runtime-artifacts.json",
+      "original_sha256": "721fe31abd6a2303ef2e95daec5d2d4061a2611c401507d793a09bf24aec1717",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-runtime-checkout-commit-raw.json",
+      "sha256": "58726a40bfe46c98e9ca2fd01312aa5290723f7b96345c5f2f6632e505d8d8de",
+      "bytes": 2729,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-runtime-checkout-commit-raw.json",
+      "original_sha256": "58726a40bfe46c98e9ca2fd01312aa5290723f7b96345c5f2f6632e505d8d8de",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-runtime-jobs-page-1.json",
+      "sha256": "4c427edd5171e2ca9d6675377ae52c8ec480b3b08bce827d268d917b083ba417",
+      "bytes": 3708,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-runtime-jobs-page-1.json",
+      "original_sha256": "4c427edd5171e2ca9d6675377ae52c8ec480b3b08bce827d268d917b083ba417",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-runtime-jobs.json",
+      "sha256": "4c427edd5171e2ca9d6675377ae52c8ec480b3b08bce827d268d917b083ba417",
+      "bytes": 3708,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-runtime-jobs.json",
+      "original_sha256": "4c427edd5171e2ca9d6675377ae52c8ec480b3b08bce827d268d917b083ba417",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-runtime-log-transport.json",
+      "sha256": "469964a632cbdef40163affdaad0df87311827b557236785a417e1d9a8659f15",
+      "bytes": 721,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-runtime-log-transport.json",
+      "original_sha256": "469964a632cbdef40163affdaad0df87311827b557236785a417e1d9a8659f15",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-runtime-original-job.log",
+      "sha256": "49585fad32af655b26d007dbc8e9e83d93d87b90cfcce55d713c8decc879b4b5",
+      "bytes": 337717,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-runtime-original-job.log",
+      "original_sha256": "49585fad32af655b26d007dbc8e9e83d93d87b90cfcce55d713c8decc879b4b5",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-runtime-receipt.json",
+      "sha256": "bc838bdb3d900406ac175a939086a7631b53429c22c2fb55c9906bf270bc3fed",
+      "bytes": 4158,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-runtime-receipt.json",
+      "original_sha256": "bc838bdb3d900406ac175a939086a7631b53429c22c2fb55c9906bf270bc3fed",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-runtime-run.json",
+      "sha256": "c8416324eb6e3769da4f32053c28848fc2dabd77d85186f62913d3ce062a16e4",
+      "bytes": 13881,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-runtime-run.json",
+      "original_sha256": "c8416324eb6e3769da4f32053c28848fc2dabd77d85186f62913d3ce062a16e4",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/android-runtime-summary.log",
+      "sha256": "881572f79ceec922e9a781490e5398e83277033f38530d64ab8481cbb9a2b55f",
+      "bytes": 1669,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/android-runtime-summary.log",
+      "original_sha256": "881572f79ceec922e9a781490e5398e83277033f38530d64ab8481cbb9a2b55f",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/collection-status-20261007T202806002513Z.json",
+      "sha256": "90cba5623cabf4283e5177ea6e216d3ed1e7eb4dd37711b10561af0edfad990d",
+      "bytes": 1024,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/collection-status-20261007T202806002513Z.json",
+      "original_sha256": "90cba5623cabf4283e5177ea6e216d3ed1e7eb4dd37711b10561af0edfad990d",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/collection-status-20261007T203035080706Z.json",
+      "sha256": "6b61bdeffd3354097523fc1b56d97808fbb58a98f6bdaf72955aa8c613a2910b",
+      "bytes": 1024,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/collection-status-20261007T203035080706Z.json",
+      "original_sha256": "6b61bdeffd3354097523fc1b56d97808fbb58a98f6bdaf72955aa8c613a2910b",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/collection-status-20261007T203403491043Z.json",
+      "sha256": "0ded49f4cc0c214d7ebdc2dd925eb6028f578aef5153bf685f3243782b4c2c44",
+      "bytes": 1024,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/collection-status-20261007T203403491043Z.json",
+      "original_sha256": "0ded49f4cc0c214d7ebdc2dd925eb6028f578aef5153bf685f3243782b4c2c44",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/collection-status-20261007T203641129807Z.json",
+      "sha256": "2778e974b65952d9ab80a3f7b4c61035f6dc047b76c0a3ce29dd8c1eb06b65be",
+      "bytes": 1030,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/collection-status-20261007T203641129807Z.json",
+      "original_sha256": "2778e974b65952d9ab80a3f7b4c61035f6dc047b76c0a3ce29dd8c1eb06b65be",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/collection-status-20261007T205006692938Z.json",
+      "sha256": "81e52993ec1679954e28e7a77213b2f0a9e55e7828dedda78c1c83700f2bd1fb",
+      "bytes": 1042,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/collection-status-20261007T205006692938Z.json",
+      "original_sha256": "81e52993ec1679954e28e7a77213b2f0a9e55e7828dedda78c1c83700f2bd1fb",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/collection-status-20261007T205139712922Z.json",
+      "sha256": "2d2595914ac408b19c47cf71dc5dfa3626c0d5999090f4a69f91d71db434b8ee",
+      "bytes": 1042,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/collection-status-20261007T205139712922Z.json",
+      "original_sha256": "2d2595914ac408b19c47cf71dc5dfa3626c0d5999090f4a69f91d71db434b8ee",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/collection-status.json",
+      "sha256": "2d2595914ac408b19c47cf71dc5dfa3626c0d5999090f4a69f91d71db434b8ee",
+      "bytes": 1042,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/collection-status.json",
+      "original_sha256": "2d2595914ac408b19c47cf71dc5dfa3626c0d5999090f4a69f91d71db434b8ee",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/gameplay-artifacts.json",
+      "sha256": "b245a752f97b2815b38ba374dfab6be2d56a46e90fcf9ad592338d7006d35b16",
+      "bytes": 767,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/gameplay-artifacts.json",
+      "original_sha256": "b245a752f97b2815b38ba374dfab6be2d56a46e90fcf9ad592338d7006d35b16",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/gameplay-checkout-commit-raw.json",
+      "sha256": "58726a40bfe46c98e9ca2fd01312aa5290723f7b96345c5f2f6632e505d8d8de",
+      "bytes": 2729,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/gameplay-checkout-commit-raw.json",
+      "original_sha256": "58726a40bfe46c98e9ca2fd01312aa5290723f7b96345c5f2f6632e505d8d8de",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/gameplay-jobs-page-1.json",
+      "sha256": "ae4c7113bea092b812d4fc78fd8135b8fa31747bacda079905e858d4557b1a3a",
+      "bytes": 2491,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/gameplay-jobs-page-1.json",
+      "original_sha256": "ae4c7113bea092b812d4fc78fd8135b8fa31747bacda079905e858d4557b1a3a",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/gameplay-jobs.json",
+      "sha256": "ae4c7113bea092b812d4fc78fd8135b8fa31747bacda079905e858d4557b1a3a",
+      "bytes": 2491,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/gameplay-jobs.json",
+      "original_sha256": "ae4c7113bea092b812d4fc78fd8135b8fa31747bacda079905e858d4557b1a3a",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/gameplay-log-transport.json",
+      "sha256": "d639aa76293a3a5eeb88761ec8dd58b6ce2d47b3b5d1d26eca230ce6d1fcc130",
+      "bytes": 721,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/gameplay-log-transport.json",
+      "original_sha256": "d639aa76293a3a5eeb88761ec8dd58b6ce2d47b3b5d1d26eca230ce6d1fcc130",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/gameplay-original-job.log",
+      "sha256": "854ce5a320f54a4aa5e56b52e1a7b6c2d8e0483e646adf335a3cd6a3d6bda072",
+      "bytes": 201418,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/gameplay-original-job.log",
+      "original_sha256": "854ce5a320f54a4aa5e56b52e1a7b6c2d8e0483e646adf335a3cd6a3d6bda072",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/gameplay-receipt.json",
+      "sha256": "4a8fa7bf736eaf90f1a79d8bf2b8a1c9f779d6f92ec8ff0879579bdd0f14d192",
+      "bytes": 6641,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/gameplay-receipt.json",
+      "original_sha256": "4a8fa7bf736eaf90f1a79d8bf2b8a1c9f779d6f92ec8ff0879579bdd0f14d192",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/gameplay-run.json",
+      "sha256": "1b2b516bd93898b577212fc838743f902582b4c2bfc02424961bc2e1c3447a0b",
+      "bytes": 13873,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/gameplay-run.json",
+      "original_sha256": "1b2b516bd93898b577212fc838743f902582b4c2bfc02424961bc2e1c3447a0b",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/gameplay-summary.log",
+      "sha256": "bd6aedba2aad8e5db066b8371f0f546ce5bbb1480021183e835566172c0adfdd",
+      "bytes": 3985,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/gameplay-summary.log",
+      "original_sha256": "bd6aedba2aad8e5db066b8371f0f546ce5bbb1480021183e835566172c0adfdd",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/independent-verification-receipt.json",
+      "sha256": "96d30fc7bb784ffe34c1a64f9c3cb7e8cdd3949e1bdff9ef51933b96d727b757",
+      "bytes": 5657,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/independent-verification-receipt.json",
+      "original_sha256": "96d30fc7bb784ffe34c1a64f9c3cb7e8cdd3949e1bdff9ef51933b96d727b757",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/observed-runs-page-1.json",
+      "sha256": "7f0af01d2dc91a1aa71043ce4a80f555e58a74d15d852f014f180a65a317b49b",
+      "bytes": 41663,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/observed-runs-page-1.json",
+      "original_sha256": "7f0af01d2dc91a1aa71043ce4a80f555e58a74d15d852f014f180a65a317b49b",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/observed-runs.json",
+      "sha256": "7f0af01d2dc91a1aa71043ce4a80f555e58a74d15d852f014f180a65a317b49b",
+      "bytes": 41663,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/observed-runs.json",
+      "original_sha256": "7f0af01d2dc91a1aa71043ce4a80f555e58a74d15d852f014f180a65a317b49b",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/runs-observed-20261007T202400199486Z.json",
+      "sha256": "e8da4402d7aa54c731743fd7c8aa8cf7d1dfedbb9059d7770cdecacfc940589f",
+      "bytes": 49288,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/runs-observed-20261007T202400199486Z.json",
+      "original_sha256": "e8da4402d7aa54c731743fd7c8aa8cf7d1dfedbb9059d7770cdecacfc940589f",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/runs-observed-20261007T202800752731Z.json",
+      "sha256": "46795c409e25ccd58e271902e2bcd686f0b1b659d357bdd1d1c8ccece641b6a1",
+      "bytes": 49293,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/runs-observed-20261007T202800752731Z.json",
+      "original_sha256": "46795c409e25ccd58e271902e2bcd686f0b1b659d357bdd1d1c8ccece641b6a1",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/runs-observed-20261007T203030561920Z.json",
+      "sha256": "46795c409e25ccd58e271902e2bcd686f0b1b659d357bdd1d1c8ccece641b6a1",
+      "bytes": 49293,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/runs-observed-20261007T203030561920Z.json",
+      "original_sha256": "46795c409e25ccd58e271902e2bcd686f0b1b659d357bdd1d1c8ccece641b6a1",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/runs-observed-20261007T203358156112Z.json",
+      "sha256": "46795c409e25ccd58e271902e2bcd686f0b1b659d357bdd1d1c8ccece641b6a1",
+      "bytes": 49293,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/runs-observed-20261007T203358156112Z.json",
+      "original_sha256": "46795c409e25ccd58e271902e2bcd686f0b1b659d357bdd1d1c8ccece641b6a1",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/runs-observed-20261007T203636188651Z.json",
+      "sha256": "59376133e5ad5871956ea43604fd090fb669776ab7814b1c8d442155cfa79c5b",
+      "bytes": 49296,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/runs-observed-20261007T203636188651Z.json",
+      "original_sha256": "59376133e5ad5871956ea43604fd090fb669776ab7814b1c8d442155cfa79c5b",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/runs-observed-20261007T205002392870Z.json",
+      "sha256": "b87560554b22c58859d751c23c7b460c61562207f92dc258c5c8f03917c58da1",
+      "bytes": 49302,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/runs-observed-20261007T205002392870Z.json",
+      "original_sha256": "b87560554b22c58859d751c23c7b460c61562207f92dc258c5c8f03917c58da1",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/runs-observed-20261007T205135459552Z.json",
+      "sha256": "b87560554b22c58859d751c23c7b460c61562207f92dc258c5c8f03917c58da1",
+      "bytes": 49302,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/runs-observed-20261007T205135459552Z.json",
+      "original_sha256": "b87560554b22c58859d751c23c7b460c61562207f92dc258c5c8f03917c58da1",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/source-checkout-tree-binding.json",
+      "sha256": "4f8a1d32737936da879c0e3a6dceb9b69fc6bad8e3d36f5c9438c89ef00a4037",
+      "bytes": 2453,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/source-checkout-tree-binding.json",
+      "original_sha256": "4f8a1d32737936da879c0e3a6dceb9b69fc6bad8e3d36f5c9438c89ef00a4037",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/source-commit-raw.json",
+      "sha256": "2f004aeaea384c15ad52148d94504222eb4fa69e0e2ce11fe3d04fb6a043f777",
+      "bytes": 1234,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/source-commit-raw.json",
+      "original_sha256": "2f004aeaea384c15ad52148d94504222eb4fa69e0e2ce11fe3d04fb6a043f777",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/pre-evade-f8b99a8/verify_ci_leaf_inputs_original.py",
+      "sha256": "75b95c4f9c626aab8eeeb1b19ecedbddbc011fc2c3dcf0bbe35f4ec539887883",
+      "bytes": 7688,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-timeout-fixed/verify_ci_leaf_inputs_original.py",
+      "original_sha256": "75b95c4f9c626aab8eeeb1b19ecedbddbc011fc2c3dcf0bbe35f4ec539887883",
+      "copy_byte_identical": true,
+      "scope": "Historical source before the real lateral Evade correction; all three runs passed"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/android-debug-artifacts.json",
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "bytes": 32,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/android-debug-artifacts.json",
+      "original_sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/android-debug-connector-decoded-original-job.log",
+      "sha256": "4b786c7fbe08b2bb202ee19fcf4e3e7ddd7f148dc22788d2056fb1dec776b2f4",
+      "bytes": 266362,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/android-debug-connector-decoded-original-job.log",
+      "original_sha256": "4b786c7fbe08b2bb202ee19fcf4e3e7ddd7f148dc22788d2056fb1dec776b2f4",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/android-debug-connector-log-transport.json",
+      "sha256": "c92b65b13913a3fd7cec43726a3e0b963245224130f373dd73eb1988da9d77eb",
+      "bytes": 923,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/android-debug-connector-log-transport.json",
+      "original_sha256": "c92b65b13913a3fd7cec43726a3e0b963245224130f373dd73eb1988da9d77eb",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/android-debug-jobs-page-1.json",
+      "sha256": "ffb5fda99d2dbb0973eeefc3cc1a6e9f855a8cabd9ae55fd4cd900d07f15ca23",
+      "bytes": 9653,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/android-debug-jobs-page-1.json",
+      "original_sha256": "ffb5fda99d2dbb0973eeefc3cc1a6e9f855a8cabd9ae55fd4cd900d07f15ca23",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/android-debug-jobs.json",
+      "sha256": "ffb5fda99d2dbb0973eeefc3cc1a6e9f855a8cabd9ae55fd4cd900d07f15ca23",
+      "bytes": 9653,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/android-debug-jobs.json",
+      "original_sha256": "ffb5fda99d2dbb0973eeefc3cc1a6e9f855a8cabd9ae55fd4cd900d07f15ca23",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/android-debug-run.json",
+      "sha256": "72c0d3c199cf9218de63ba04097e0050b72bfaa0013cff033428a0e9c2905748",
+      "bytes": 13882,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/android-debug-run.json",
+      "original_sha256": "72c0d3c199cf9218de63ba04097e0050b72bfaa0013cff033428a0e9c2905748",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/android-runtime-artifacts.json",
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "bytes": 32,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/android-runtime-artifacts.json",
+      "original_sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/android-runtime-jobs-page-1.json",
+      "sha256": "9ec5ba9be76cec6c3165ef42f1932cd1c78bb66dc7de1908daff2a2b4cb6b5de",
+      "bytes": 3254,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/android-runtime-jobs-page-1.json",
+      "original_sha256": "9ec5ba9be76cec6c3165ef42f1932cd1c78bb66dc7de1908daff2a2b4cb6b5de",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/android-runtime-jobs.json",
+      "sha256": "9ec5ba9be76cec6c3165ef42f1932cd1c78bb66dc7de1908daff2a2b4cb6b5de",
+      "bytes": 3254,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/android-runtime-jobs.json",
+      "original_sha256": "9ec5ba9be76cec6c3165ef42f1932cd1c78bb66dc7de1908daff2a2b4cb6b5de",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/android-runtime-run.json",
+      "sha256": "03cb2b2d97b652d6a180f252e219f98304755af39eec691e08bb72bf1d526841",
+      "bytes": 13889,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/android-runtime-run.json",
+      "original_sha256": "03cb2b2d97b652d6a180f252e219f98304755af39eec691e08bb72bf1d526841",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/collection-status-20261007T201609Z.json",
+      "sha256": "ba48ef72afdeacf6207596b1fe775b49e1a7687318f50e9324af27946690ab2c",
+      "bytes": 839,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/collection-status-20261007T201609Z.json",
+      "original_sha256": "ba48ef72afdeacf6207596b1fe775b49e1a7687318f50e9324af27946690ab2c",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/collection-status-20261007T201900Z.json",
+      "sha256": "ba48ef72afdeacf6207596b1fe775b49e1a7687318f50e9324af27946690ab2c",
+      "bytes": 839,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/collection-status-20261007T201900Z.json",
+      "original_sha256": "ba48ef72afdeacf6207596b1fe775b49e1a7687318f50e9324af27946690ab2c",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/collection-status.json",
+      "sha256": "ba48ef72afdeacf6207596b1fe775b49e1a7687318f50e9324af27946690ab2c",
+      "bytes": 839,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/collection-status.json",
+      "original_sha256": "ba48ef72afdeacf6207596b1fe775b49e1a7687318f50e9324af27946690ab2c",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/gameplay-artifacts.json",
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "bytes": 32,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/gameplay-artifacts.json",
+      "original_sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/gameplay-jobs-page-1.json",
+      "sha256": "8d886f0907df256dfddeecf0404a85eccdbfc488e8615e25cc6cf75c5d153c69",
+      "bytes": 2209,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/gameplay-jobs-page-1.json",
+      "original_sha256": "8d886f0907df256dfddeecf0404a85eccdbfc488e8615e25cc6cf75c5d153c69",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/gameplay-jobs.json",
+      "sha256": "8d886f0907df256dfddeecf0404a85eccdbfc488e8615e25cc6cf75c5d153c69",
+      "bytes": 2209,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/gameplay-jobs.json",
+      "original_sha256": "8d886f0907df256dfddeecf0404a85eccdbfc488e8615e25cc6cf75c5d153c69",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/gameplay-run.json",
+      "sha256": "d2879f9bf12c5a04c9bc363016ea208e67f8f1c6032d552430bff70f853fb8c5",
+      "bytes": 13881,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/gameplay-run.json",
+      "original_sha256": "d2879f9bf12c5a04c9bc363016ea208e67f8f1c6032d552430bff70f853fb8c5",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/observed-runs-page-1.json",
+      "sha256": "6b38a1173b89fcf44d09c666b1ceccfdd4bde6716de67aafb9e51a785b4c9060",
+      "bytes": 41690,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/observed-runs-page-1.json",
+      "original_sha256": "6b38a1173b89fcf44d09c666b1ceccfdd4bde6716de67aafb9e51a785b4c9060",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/observed-runs.json",
+      "sha256": "6b38a1173b89fcf44d09c666b1ceccfdd4bde6716de67aafb9e51a785b4c9060",
+      "bytes": 41690,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/observed-runs.json",
+      "original_sha256": "6b38a1173b89fcf44d09c666b1ceccfdd4bde6716de67aafb9e51a785b4c9060",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/poll-20261007T201609Z-exit.json",
+      "sha256": "353476f168327921842547f5468856c2c32924ea374c248cb0af52bbcdc41096",
+      "bytes": 312,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/poll-20261007T201609Z-exit.json",
+      "original_sha256": "353476f168327921842547f5468856c2c32924ea374c248cb0af52bbcdc41096",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/poll-20261007T201609Z.log",
+      "sha256": "e56123585c8fd9120387e95e0a21db8586621fae2fac8fcc7ccf22dbc9a56213",
+      "bytes": 608,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/poll-20261007T201609Z.log",
+      "original_sha256": "e56123585c8fd9120387e95e0a21db8586621fae2fac8fcc7ccf22dbc9a56213",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/poll-20261007T201900Z-exit.json",
+      "sha256": "93368099a296c24f29fbeda7cba64cd3c8f1a0cdea67517ea95a6be7db2a0676",
+      "bytes": 312,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/poll-20261007T201900Z-exit.json",
+      "original_sha256": "93368099a296c24f29fbeda7cba64cd3c8f1a0cdea67517ea95a6be7db2a0676",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/poll-20261007T201900Z.log",
+      "sha256": "d39a139a62bc8fd3dfbb54da61d3a38aacc1f0e06aafc5f1619379d2cb3ab7a7",
+      "bytes": 610,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/poll-20261007T201900Z.log",
+      "original_sha256": "d39a139a62bc8fd3dfbb54da61d3a38aacc1f0e06aafc5f1619379d2cb3ab7a7",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/runs-observed-20261007T201310806569Z.json",
+      "sha256": "18192b35110698fd59f526d900548b944b4a4177f540987414c6f631a9eaef1c",
+      "bytes": 49326,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/runs-observed-20261007T201310806569Z.json",
+      "original_sha256": "18192b35110698fd59f526d900548b944b4a4177f540987414c6f631a9eaef1c",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/runs-observed-20261007T201611189994Z.json",
+      "sha256": "18192b35110698fd59f526d900548b944b4a4177f540987414c6f631a9eaef1c",
+      "bytes": 49326,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/runs-observed-20261007T201611189994Z.json",
+      "original_sha256": "18192b35110698fd59f526d900548b944b4a4177f540987414c6f631a9eaef1c",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/runs-observed-20261007T201901633530Z.json",
+      "sha256": "71c0df8ad921975a898b5172b7b607377195e18380fa7583034553a46ddc3ae7",
+      "bytes": 49329,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/runs-observed-20261007T201901633530Z.json",
+      "original_sha256": "71c0df8ad921975a898b5172b7b607377195e18380fa7583034553a46ddc3ae7",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/observations/source-commit-raw.json",
+      "sha256": "b52de0e75feb3737d3e9f9e4c0c974ae055d863224ff830ee3d82cda9ab2d407",
+      "bytes": 1245,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/final-current/source-commit-raw.json",
+      "original_sha256": "b52de0e75feb3737d3e9f9e4c0c974ae055d863224ff830ee3d82cda9ab2d407",
+      "copy_byte_identical": true,
+      "scope": "Historical API observations and the original timeout failure log"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/android-debug-artifacts.json",
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "bytes": 32,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/android-debug-artifacts.json",
+      "original_sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/android-debug-jobs-page-1.json",
+      "sha256": "ffb5fda99d2dbb0973eeefc3cc1a6e9f855a8cabd9ae55fd4cd900d07f15ca23",
+      "bytes": 9653,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/android-debug-jobs-page-1.json",
+      "original_sha256": "ffb5fda99d2dbb0973eeefc3cc1a6e9f855a8cabd9ae55fd4cd900d07f15ca23",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/android-debug-jobs.json",
+      "sha256": "ffb5fda99d2dbb0973eeefc3cc1a6e9f855a8cabd9ae55fd4cd900d07f15ca23",
+      "bytes": 9653,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/android-debug-jobs.json",
+      "original_sha256": "ffb5fda99d2dbb0973eeefc3cc1a6e9f855a8cabd9ae55fd4cd900d07f15ca23",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/android-debug-log-transport.json",
+      "sha256": "59d23f02908bc04d40418b1677c91838df796c1a0a7051e3d7a6caac5cb0ba4f",
+      "bytes": 755,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/android-debug-log-transport.json",
+      "original_sha256": "59d23f02908bc04d40418b1677c91838df796c1a0a7051e3d7a6caac5cb0ba4f",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/android-debug-original-job.log",
+      "sha256": "4b786c7fbe08b2bb202ee19fcf4e3e7ddd7f148dc22788d2056fb1dec776b2f4",
+      "bytes": 266362,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/android-debug-original-job.log",
+      "original_sha256": "4b786c7fbe08b2bb202ee19fcf4e3e7ddd7f148dc22788d2056fb1dec776b2f4",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/android-debug-run.json",
+      "sha256": "9b7bdfad3eb37ce26645d22d10e752b5b9a5cc86b4c824f4e2299e3236e35578",
+      "bytes": 13882,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/android-debug-run.json",
+      "original_sha256": "9b7bdfad3eb37ce26645d22d10e752b5b9a5cc86b4c824f4e2299e3236e35578",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/android-runtime-artifacts.json",
+      "sha256": "79999c6849715c158236f7050d4832ee34145a7bff8799e37c68f654025b21e4",
+      "bytes": 1537,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/android-runtime-artifacts.json",
+      "original_sha256": "79999c6849715c158236f7050d4832ee34145a7bff8799e37c68f654025b21e4",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/android-runtime-jobs-page-1.json",
+      "sha256": "f908bd2d93b551d6fbcc0dfc24a82112eaf5e293ad937b2963e888541abb96ea",
+      "bytes": 3708,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/android-runtime-jobs-page-1.json",
+      "original_sha256": "f908bd2d93b551d6fbcc0dfc24a82112eaf5e293ad937b2963e888541abb96ea",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/android-runtime-jobs.json",
+      "sha256": "f908bd2d93b551d6fbcc0dfc24a82112eaf5e293ad937b2963e888541abb96ea",
+      "bytes": 3708,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/android-runtime-jobs.json",
+      "original_sha256": "f908bd2d93b551d6fbcc0dfc24a82112eaf5e293ad937b2963e888541abb96ea",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/android-runtime-log-transport.json",
+      "sha256": "93082b2f3a974e603130e5459f74de62f1fae8dfd64092e36e5f0cf640f5351f",
+      "bytes": 755,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/android-runtime-log-transport.json",
+      "original_sha256": "93082b2f3a974e603130e5459f74de62f1fae8dfd64092e36e5f0cf640f5351f",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/android-runtime-original-job.log",
+      "sha256": "06b9f898f72979a47004d9be7aa99d460f28533a68ff7570a24de589ac6ae010",
+      "bytes": 338228,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/android-runtime-original-job.log",
+      "original_sha256": "06b9f898f72979a47004d9be7aa99d460f28533a68ff7570a24de589ac6ae010",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/android-runtime-run.json",
+      "sha256": "d728a8fa6d0461ae02f3f11fb6cbe92f7be3eb53b4b40d30a23cac04e852442a",
+      "bytes": 13892,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/android-runtime-run.json",
+      "original_sha256": "d728a8fa6d0461ae02f3f11fb6cbe92f7be3eb53b4b40d30a23cac04e852442a",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/gameplay-artifacts.json",
+      "sha256": "802265d9c05aa8bcb3f75f84e4e1614b63665bee18249ec62ad42d363148488a",
+      "bytes": 767,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/gameplay-artifacts.json",
+      "original_sha256": "802265d9c05aa8bcb3f75f84e4e1614b63665bee18249ec62ad42d363148488a",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/gameplay-jobs-page-1.json",
+      "sha256": "37aa987ed7ce1fdc303d080b670fc35c9fdbe885396ae14b18c080310fb10a73",
+      "bytes": 2495,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/gameplay-jobs-page-1.json",
+      "original_sha256": "37aa987ed7ce1fdc303d080b670fc35c9fdbe885396ae14b18c080310fb10a73",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/gameplay-jobs.json",
+      "sha256": "37aa987ed7ce1fdc303d080b670fc35c9fdbe885396ae14b18c080310fb10a73",
+      "bytes": 2495,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/gameplay-jobs.json",
+      "original_sha256": "37aa987ed7ce1fdc303d080b670fc35c9fdbe885396ae14b18c080310fb10a73",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/gameplay-log-transport.json",
+      "sha256": "0db4a14eb91669e299b040184163c79ac9c2467b32c557cd2e8e35ddcecd3805",
+      "bytes": 755,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/gameplay-log-transport.json",
+      "original_sha256": "0db4a14eb91669e299b040184163c79ac9c2467b32c557cd2e8e35ddcecd3805",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/gameplay-original-job.log",
+      "sha256": "ea2682739b9cbd2863217a02eff2e6b494a263c77761454c7bff9c5673de3af6",
+      "bytes": 196401,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/gameplay-original-job.log",
+      "original_sha256": "ea2682739b9cbd2863217a02eff2e6b494a263c77761454c7bff9c5673de3af6",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/gameplay-run.json",
+      "sha256": "f776342c69c1568416463d5f672c79542423d795927a86b0c3398a00441c6268",
+      "bytes": 13886,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/gameplay-run.json",
+      "original_sha256": "f776342c69c1568416463d5f672c79542423d795927a86b0c3398a00441c6268",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/historical-status-audit.json",
+      "sha256": "553b98f24409c0835ffd3d859ad61ce257e8ebdd2d6946aefe8074e5509de576",
+      "bytes": 4392,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/historical-status-audit.json",
+      "original_sha256": "553b98f24409c0835ffd3d859ad61ce257e8ebdd2d6946aefe8074e5509de576",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/observed-completion.json",
+      "sha256": "10bbb7786e0b5d03e327bfc33dfa9beb5b44cbbf719f6a93697ed11a9e8459c8",
+      "bytes": 1310,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/observed-completion.json",
+      "original_sha256": "10bbb7786e0b5d03e327bfc33dfa9beb5b44cbbf719f6a93697ed11a9e8459c8",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/original-02a3fc9/completion/source-commit-raw.json",
+      "sha256": "b52de0e75feb3737d3e9f9e4c0c974ae055d863224ff830ee3d82cda9ab2d407",
+      "bytes": 1245,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/historical-original-source-completion/source-commit-raw.json",
+      "original_sha256": "b52de0e75feb3737d3e9f9e4c0c974ae055d863224ff830ee3d82cda9ab2d407",
+      "copy_byte_identical": true,
+      "scope": "Historical actual completion: Gameplay cancelled, Debug timeout failure, Runtime success"
+    },
+    {
+      "path": "history/workflow-only-equivalence.json",
+      "sha256": "4934ab4e7c3fe5c2fd53a41190acd3a8f614ccdcaddf7778404c56265d62a6ac",
+      "bytes": 1423,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/workflow-only-equivalence.json",
+      "original_sha256": "4934ab4e7c3fe5c2fd53a41190acd3a8f614ccdcaddf7778404c56265d62a6ac",
+      "copy_byte_identical": true,
+      "scope": "Original single-line 120s to 300s CI allowance correction; not a game change"
+    },
+    {
+      "path": "history/workflow-timeout-fix-contracts.log",
+      "sha256": "ff5d1527e4522112bc8e0bdd2de67a179e9556e75be225db38c58c9ce6c405a7",
+      "bytes": 4230,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/workflow-timeout-fix-contracts.log",
+      "original_sha256": "ff5d1527e4522112bc8e0bdd2de67a179e9556e75be225db38c58c9ce6c405a7",
+      "copy_byte_identical": true,
+      "scope": "Original single-line 120s to 300s CI allowance correction; not a game change"
+    },
+    {
+      "path": "collect_ci_receipts.py",
+      "sha256": "b76d4a01058a63738ed6a77c94880ac683867d08a98209e2ed2651e9aad7faf9",
+      "bytes": 18833,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/collect_ci_receipts.py",
+      "original_sha256": "b76d4a01058a63738ed6a77c94880ac683867d08a98209e2ed2651e9aad7faf9",
+      "copy_byte_identical": true,
+      "scope": "Exact original read-only evidence tooling"
+    },
+    {
+      "path": "collect_with_connector_logs.py",
+      "sha256": "47d17236b0aeb3a4a6d021aaf7b977852c8fa143962567c8b1325ee27a580ffa",
+      "bytes": 5337,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/collect_with_connector_logs.py",
+      "original_sha256": "47d17236b0aeb3a4a6d021aaf7b977852c8fa143962567c8b1325ee27a580ffa",
+      "copy_byte_identical": true,
+      "scope": "Exact original read-only evidence tooling"
+    },
+    {
+      "path": "verify_ci_leaf_inputs.py",
+      "sha256": "db606999941b10eaf482da4c79daaf0961e22cdc49f1ea12724ed73ba7e1a155",
+      "bytes": 8372,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/verify_ci_leaf_inputs.py",
+      "original_sha256": "db606999941b10eaf482da4c79daaf0961e22cdc49f1ea12724ed73ba7e1a155",
+      "copy_byte_identical": true,
+      "scope": "Exact original read-only evidence tooling"
+    },
+    {
+      "path": "stage_final_ci_leaf.py",
+      "sha256": "ec250f4d39e67528f139b32695f0b4d200e877e8f48bfbcb8516b2ad2c19419c",
+      "bytes": 16552,
+      "original_path": "/workspace/scratch/emberfall-quality-057/ci/stage_final_ci_leaf.py",
+      "original_sha256": "ec250f4d39e67528f139b32695f0b4d200e877e8f48bfbcb8516b2ad2c19419c",
+      "copy_byte_identical": true,
+      "scope": "Exact original read-only evidence tooling"
+    },
+    {
+      "path": "README.md",
+      "sha256": "7dce021486a8819b921cbc089f5dea7dad8527e01c520aac6c962fe4682155a8",
+      "bytes": 6858,
+      "scope": "Derived narrative; exact results and limitations from saved final and historical evidence"
+    }
+  ]
+}

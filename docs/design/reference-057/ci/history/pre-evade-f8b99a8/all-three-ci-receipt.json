@@ -1,0 +1,683 @@
+{
+  "schema": 2,
+  "source_commit": "f8b99a84b4c96a87c4ecedf42217f448a2988d81",
+  "source_tree": "b10072da2c3feb7641c68665e48928572aea33aa",
+  "all_three_actual_current_runs_success": true,
+  "binary_artifacts_downloaded": false,
+  "older_source_results_used": false,
+  "checks": [
+    {
+      "schema": 2,
+      "observed_at": "2026-10-07T20:51:41.398296+00:00",
+      "source_commit": "f8b99a84b4c96a87c4ecedf42217f448a2988d81",
+      "workflow": "Gameplay Quality",
+      "workflow_run": 37681577325,
+      "run_attempt": 1,
+      "job_id": 112999045726,
+      "run_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37681577325",
+      "job_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37681577325/job/112999045726",
+      "run_conclusion": "success",
+      "job_conclusion": "success",
+      "actual_current_source_success": true,
+      "summary_sha256": "bd6aedba2aad8e5db066b8371f0f546ce5bbb1480021183e835566172c0adfdd",
+      "scope": "Exact-source hosted CI, source/resource packaging, CI-only APK/AAB signature and manifest checks, and Android16 x86_64 emulator correctness. ARM64 probe packaging is separate from execution. No physical-phone frame-time, thermals, battery, touch or beta-readiness measurement.",
+      "actual_checkout_commit": "4089bce1de05701b281d4b8233a7c85073fe3677",
+      "python_test_runs": [
+        59
+      ],
+      "suites": [
+        {
+          "suite": "BETA FLOW SMOKE",
+          "checks": 46,
+          "failures": 0
+        },
+        {
+          "suite": "COMBAT STANCES SMOKE",
+          "checks": 140,
+          "failures": 0
+        },
+        {
+          "suite": "COMBAT MOVEMENT SMOKE",
+          "checks": 8,
+          "failures": 0
+        },
+        {
+          "suite": "JOURNEY SMOKE",
+          "checks": 413,
+          "failures": 0
+        },
+        {
+          "suite": "DUNGEON SMOKE",
+          "checks": 55,
+          "failures": 0
+        },
+        {
+          "suite": "PERSISTENCE SMOKE",
+          "checks": 89,
+          "failures": 0
+        },
+        {
+          "suite": "ARCANE TACTICS SMOKE",
+          "checks": 29,
+          "failures": 0
+        },
+        {
+          "suite": "BOSS PATTERNS SMOKE",
+          "checks": 122,
+          "failures": 0
+        },
+        {
+          "suite": "CLASS LOOT SMOKE",
+          "checks": 29,
+          "failures": 0
+        },
+        {
+          "suite": "CONTRACTS SMOKE",
+          "checks": 68,
+          "failures": 0
+        },
+        {
+          "suite": "COMBINED OATHS / PHASES SMOKE",
+          "checks": 338,
+          "failures": 0
+        },
+        {
+          "suite": "MAIN COMBINED RULES SMOKE",
+          "checks": 156,
+          "failures": 0
+        },
+        {
+          "suite": "GEAR / FORECAST SMOKE",
+          "checks": 38,
+          "failures": 0
+        },
+        {
+          "suite": "GEAR GOALS SMOKE",
+          "checks": 114,
+          "failures": 0
+        },
+        {
+          "suite": "REGIONS SMOKE",
+          "checks": 36,
+          "failures": 0
+        },
+        {
+          "suite": "ONBOARDING SMOKE",
+          "checks": 19,
+          "failures": 0
+        },
+        {
+          "suite": "SUCCESS LOOP SMOKE",
+          "checks": 87,
+          "failures": 0
+        },
+        {
+          "suite": "RECOVERY SMOKE",
+          "checks": 48,
+          "failures": 0
+        },
+        {
+          "suite": "OPTIONS SMOKE",
+          "checks": 82,
+          "failures": 0
+        },
+        {
+          "suite": "SKILL ROTATION SMOKE",
+          "checks": 135,
+          "failures": 0
+        },
+        {
+          "suite": "VISUALS SMOKE",
+          "checks": 73,
+          "failures": 0
+        },
+        {
+          "suite": "WORLD FRAMING SMOKE",
+          "checks": 900,
+          "failures": 0
+        },
+        {
+          "suite": "AUTHORED ART SMOKE",
+          "checks": 105,
+          "failures": 0
+        },
+        {
+          "suite": "CHARACTER EQUIPMENT SMOKE",
+          "checks": 48,
+          "failures": 0
+        },
+        {
+          "suite": "NATIVE EQUIPMENT FINISH SMOKE",
+          "checks": 129,
+          "failures": 0
+        },
+        {
+          "suite": "PRESENTATION SMOKE",
+          "checks": 188,
+          "failures": 0
+        },
+        {
+          "suite": "FRAME METRICS SMOKE",
+          "checks": 10,
+          "failures": 0
+        },
+        {
+          "suite": "ROOM GROUND SMOKE",
+          "checks": 19,
+          "failures": 0
+        },
+        {
+          "suite": "CHARACTER THREE D SMOKE",
+          "checks": 168,
+          "failures": 0
+        },
+        {
+          "suite": "SOURCE AVATAR",
+          "checks": 39,
+          "failures": 0
+        },
+        {
+          "suite": "SOURCE AVATAR GRIP",
+          "checks": 296,
+          "failures": 0
+        },
+        {
+          "suite": "SOURCE AVATAR ATTACK",
+          "checks": 172,
+          "failures": 0
+        },
+        {
+          "suite": "SOURCE AVATAR ATTACK CONTACT SMOKE",
+          "checks": 295,
+          "failures": 0
+        },
+        {
+          "suite": "SOURCE AVATAR EVADE SMOKE",
+          "checks": 1729,
+          "failures": 0
+        },
+        {
+          "suite": "NATIVE MOTION TRANSITION SMOKE",
+          "checks": 706,
+          "failures": 0
+        },
+        {
+          "suite": "RAIDER NATIVE SMOKE",
+          "checks": 324,
+          "failures": 0
+        },
+        {
+          "suite": "NATIVE HOSTILE SMOKE",
+          "checks": 3775,
+          "failures": 0
+        },
+        {
+          "suite": "COMBAT OCCLUSION SMOKE",
+          "checks": 25,
+          "failures": 0
+        },
+        {
+          "suite": "RENDER BUDGET SMOKE",
+          "checks": 287,
+          "failures": 0
+        },
+        {
+          "suite": "SOURCE AVATAR STYLE SMOKE",
+          "checks": 135,
+          "failures": 0
+        },
+        {
+          "suite": "AVATAR ATTIRE QUALITY SMOKE",
+          "checks": 306,
+          "failures": 0
+        },
+        {
+          "suite": "CLASS AVATAR QUALITY SMOKE",
+          "checks": 398,
+          "failures": 0
+        },
+        {
+          "suite": "GUARDIAN PRESENTATION SMOKE",
+          "checks": 278,
+          "failures": 0
+        },
+        {
+          "suite": "HOSTILE QUALITY SMOKE",
+          "checks": 96,
+          "failures": 0
+        },
+        {
+          "suite": "DUNGEON LIGHTING SMOKE",
+          "checks": 60,
+          "failures": 0
+        },
+        {
+          "suite": "COMBAT AUDIO SMOKE",
+          "checks": 61,
+          "failures": 0
+        },
+        {
+          "suite": "NATIVE CAPTURE AUDIO SMOKE",
+          "checks": 79,
+          "failures": 0
+        },
+        {
+          "suite": "ANIMATION CRAFT SMOKE",
+          "checks": 74,
+          "failures": 0
+        },
+        {
+          "suite": "CAMP HUD SMOKE",
+          "checks": 44,
+          "failures": 0
+        },
+        {
+          "suite": "COMBAT READABILITY SMOKE",
+          "checks": 57,
+          "failures": 0
+        },
+        {
+          "suite": "FELLOWSHIP UI SMOKE",
+          "checks": 11,
+          "failures": 0
+        },
+        {
+          "suite": "CLOUD IDENTITY SMOKE",
+          "checks": 14,
+          "failures": 0
+        },
+        {
+          "suite": "MANA WARD SMOKE",
+          "checks": 27,
+          "failures": 0
+        }
+      ],
+      "integration_summaries": [],
+      "exported_pck_results": [
+        {
+          "suite": "EXPORTED AVATAR SMOKE",
+          "checks": 60,
+          "failures": 0
+        }
+      ],
+      "verified_android_markers": [],
+      "apk_signature_verifications": [],
+      "isolated_qa_package_builds": [],
+      "aab_verified": false,
+      "bundle_identity_lines": [
+        "Version: 20261002.596",
+        "Version: 20261004.327.1"
+      ],
+      "server_progression_passed": true,
+      "diagnostic_lines": [],
+      "intentional_persistence_diagnostics": [],
+      "original_log_sha256": "854ce5a320f54a4aa5e56b52e1a7b6c2d8e0483e646adf335a3cd6a3d6bda072",
+      "original_log_bytes": 201418,
+      "godot_suites": 53,
+      "godot_checks": 12980,
+      "godot_failures": 0
+    },
+    {
+      "schema": 2,
+      "observed_at": "2026-10-07T20:51:41.471297+00:00",
+      "source_commit": "f8b99a84b4c96a87c4ecedf42217f448a2988d81",
+      "workflow": "Android Debug APK",
+      "workflow_run": 37681577359,
+      "run_attempt": 1,
+      "job_id": 112998686662,
+      "run_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37681577359",
+      "job_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37681577359/job/112998686662",
+      "run_conclusion": "success",
+      "job_conclusion": "success",
+      "actual_current_source_success": true,
+      "summary_sha256": "34fa947dc91d3bfb308b039e21d1718f3899b15988b32472978b25c56301b828",
+      "scope": "Exact-source hosted CI, source/resource packaging, CI-only APK/AAB signature and manifest checks, and Android16 x86_64 emulator correctness. ARM64 probe packaging is separate from execution. No physical-phone frame-time, thermals, battery, touch or beta-readiness measurement.",
+      "actual_checkout_commit": "4089bce1de05701b281d4b8233a7c85073fe3677",
+      "python_test_runs": [
+        39
+      ],
+      "suites": [
+        {
+          "suite": "DUNGEON SMOKE",
+          "checks": 55,
+          "failures": 0
+        },
+        {
+          "suite": "PERSISTENCE SMOKE",
+          "checks": 89,
+          "failures": 0
+        },
+        {
+          "suite": "FELLOWSHIP UI SMOKE",
+          "checks": 11,
+          "failures": 0
+        },
+        {
+          "suite": "COMBAT MOVEMENT SMOKE",
+          "checks": 8,
+          "failures": 0
+        },
+        {
+          "suite": "BETA FLOW SMOKE",
+          "checks": 46,
+          "failures": 0
+        },
+        {
+          "suite": "COMBAT STANCES SMOKE",
+          "checks": 140,
+          "failures": 0
+        },
+        {
+          "suite": "RECOVERY SMOKE",
+          "checks": 48,
+          "failures": 0
+        },
+        {
+          "suite": "COMBINED OATHS / PHASES SMOKE",
+          "checks": 338,
+          "failures": 0
+        },
+        {
+          "suite": "CHARACTER EQUIPMENT SMOKE",
+          "checks": 48,
+          "failures": 0
+        },
+        {
+          "suite": "CHARACTER THREE D SMOKE",
+          "checks": 168,
+          "failures": 0
+        },
+        {
+          "suite": "NATIVE MOTION TRANSITION SMOKE",
+          "checks": 706,
+          "failures": 0
+        },
+        {
+          "suite": "AVATAR ATTIRE QUALITY SMOKE",
+          "checks": 306,
+          "failures": 0
+        },
+        {
+          "suite": "NATIVE HOSTILE SMOKE",
+          "checks": 3775,
+          "failures": 0
+        },
+        {
+          "suite": "RENDER BUDGET SMOKE",
+          "checks": 287,
+          "failures": 0
+        },
+        {
+          "suite": "PRESENTATION SMOKE",
+          "checks": 188,
+          "failures": 0
+        },
+        {
+          "suite": "MAIN COMBINED RULES SMOKE",
+          "checks": 156,
+          "failures": 0
+        },
+        {
+          "suite": "CAMP HUD SMOKE",
+          "checks": 44,
+          "failures": 0
+        },
+        {
+          "suite": "WORLD FRAMING SMOKE",
+          "checks": 900,
+          "failures": 0
+        },
+        {
+          "suite": "AUTHORED ART SMOKE",
+          "checks": 105,
+          "failures": 0
+        },
+        {
+          "suite": "REGIONS SMOKE",
+          "checks": 36,
+          "failures": 0
+        },
+        {
+          "suite": "GEAR / FORECAST SMOKE",
+          "checks": 38,
+          "failures": 0
+        },
+        {
+          "suite": "ONBOARDING SMOKE",
+          "checks": 19,
+          "failures": 0
+        },
+        {
+          "suite": "OPTIONS SMOKE",
+          "checks": 82,
+          "failures": 0
+        },
+        {
+          "suite": "CLOUD IDENTITY SMOKE",
+          "checks": 14,
+          "failures": 0
+        },
+        {
+          "suite": "MANA WARD SMOKE",
+          "checks": 27,
+          "failures": 0
+        },
+        {
+          "suite": "BOSS PATTERNS SMOKE",
+          "checks": 122,
+          "failures": 0
+        },
+        {
+          "suite": "CLASS LOOT SMOKE",
+          "checks": 29,
+          "failures": 0
+        },
+        {
+          "suite": "ARCANE TACTICS SMOKE",
+          "checks": 29,
+          "failures": 0
+        },
+        {
+          "suite": "JOURNEY SMOKE",
+          "checks": 413,
+          "failures": 0
+        },
+        {
+          "suite": "SKILL ROTATION SMOKE",
+          "checks": 135,
+          "failures": 0
+        },
+        {
+          "suite": "CONTRACTS SMOKE",
+          "checks": 68,
+          "failures": 0
+        },
+        {
+          "suite": "VISUALS SMOKE",
+          "checks": 73,
+          "failures": 0
+        }
+      ],
+      "integration_summaries": [
+        {
+          "suite": "CLOUD TRANSFER E2E",
+          "checks": 36,
+          "failures": 0
+        }
+      ],
+      "exported_pck_results": [],
+      "verified_android_markers": [],
+      "apk_signature_verifications": [
+        {
+          "verification_order": 1,
+          "schemes": {
+            "v1": false,
+            "v2": true,
+            "v3": true,
+            "v3.1": false,
+            "v4": false
+          },
+          "original_lines": [
+            "Verifies",
+            "Verified using v1 scheme (JAR signing): false",
+            "Verified using v2 scheme (APK Signature Scheme v2): true",
+            "Verified using v3 scheme (APK Signature Scheme v3): true",
+            "Verified using v3.1 scheme (APK Signature Scheme v3.1): false",
+            "Verified using v4 scheme (APK Signature Scheme v4): false"
+          ]
+        },
+        {
+          "verification_order": 2,
+          "schemes": {
+            "v1": false,
+            "v2": true,
+            "v3": true,
+            "v3.1": false,
+            "v4": false
+          },
+          "original_lines": [
+            "Verifies",
+            "Verified using v1 scheme (JAR signing): false",
+            "Verified using v2 scheme (APK Signature Scheme v2): true",
+            "Verified using v3 scheme (APK Signature Scheme v3): true",
+            "Verified using v3.1 scheme (APK Signature Scheme v3.1): false",
+            "Verified using v4 scheme (APK Signature Scheme v4): false"
+          ]
+        }
+      ],
+      "isolated_qa_package_builds": [],
+      "aab_verified": true,
+      "bundle_identity_lines": [
+        "Version: 20261002.596",
+        "Version: 20261004.327.1",
+        "Package: com.philmenting.emberfallashenveil",
+        "Version: 0.48.0-beta.1 (54)",
+        "SDK range: 24\u201336",
+        "Internet permission: absent",
+        "ARM64 native libraries: 2, all ELF LOAD segments support 16 KB pages",
+        "Release manifest: landscape, not debuggable, OS backup disabled, VIBRATE only (optional haptics)"
+      ],
+      "server_progression_passed": true,
+      "diagnostic_lines": [],
+      "intentional_persistence_diagnostics": [
+        {
+          "line": "ERROR: ConfigFile parse error at <string>:0: Unexpected EOF while parsing simple tag.",
+          "line_number": 2393
+        },
+        {
+          "line": "ERROR: ConfigFile parse error at <string>:0: Unexpected EOF while parsing simple tag.",
+          "line_number": 2405
+        }
+      ],
+      "original_log_sha256": "d9aa245b45501f73e4c0b861672640ff6bdec6e2ca4d731245eb09ea1e4bb35e",
+      "original_log_bytes": 870545,
+      "godot_suites": 32,
+      "godot_checks": 8503,
+      "godot_failures": 0
+    },
+    {
+      "schema": 2,
+      "observed_at": "2026-10-07T20:51:41.496611+00:00",
+      "source_commit": "f8b99a84b4c96a87c4ecedf42217f448a2988d81",
+      "workflow": "Android Beta Runtime",
+      "workflow_run": 37681577361,
+      "run_attempt": 1,
+      "job_id": 112998686668,
+      "run_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37681577361",
+      "job_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37681577361/job/112998686668",
+      "run_conclusion": "success",
+      "job_conclusion": "success",
+      "actual_current_source_success": true,
+      "summary_sha256": "881572f79ceec922e9a781490e5398e83277033f38530d64ab8481cbb9a2b55f",
+      "scope": "Exact-source hosted CI, source/resource packaging, CI-only APK/AAB signature and manifest checks, and Android16 x86_64 emulator correctness. ARM64 probe packaging is separate from execution. No physical-phone frame-time, thermals, battery, touch or beta-readiness measurement.",
+      "actual_checkout_commit": "4089bce1de05701b281d4b8233a7c85073fe3677",
+      "python_test_runs": [
+        39
+      ],
+      "suites": [],
+      "integration_summaries": [],
+      "exported_pck_results": [],
+      "verified_android_markers": [
+        {
+          "launch": 1,
+          "elapsed_seconds": 358.878,
+          "pids": [
+            2938
+          ],
+          "marker": "ANDROID_BETA_PASS exact AFK ledger",
+          "original_line": "2026-10-07T20:35:26.7552851Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=358.878 pids=[2938] marker=ANDROID_BETA_PASS exact AFK ledger"
+        },
+        {
+          "launch": 2,
+          "elapsed_seconds": 13.324,
+          "pids": [
+            6163
+          ],
+          "marker": "ANDROID_BETA_PASS restart does not repeat",
+          "original_line": "2026-10-07T20:35:40.6618770Z ANDROID_RUNTIME_MARKER verified launch=2 elapsed_seconds=13.324 pids=[6163] marker=ANDROID_BETA_PASS restart does not repeat"
+        },
+        {
+          "launch": 1,
+          "elapsed_seconds": 55.126,
+          "pids": [
+            6379
+          ],
+          "marker": "ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI",
+          "original_line": "2026-10-07T20:36:42.8714855Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=55.126 pids=[6379] marker=ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI"
+        },
+        {
+          "launch": 2,
+          "elapsed_seconds": 12.526,
+          "pids": [
+            6603
+          ],
+          "marker": "ANDROID_SUCCESS_PASS restart preserves combined oaths",
+          "original_line": "2026-10-07T20:36:56.1633165Z ANDROID_RUNTIME_MARKER verified launch=2 elapsed_seconds=12.526 pids=[6603] marker=ANDROID_SUCCESS_PASS restart preserves combined oaths"
+        },
+        {
+          "launch": 1,
+          "elapsed_seconds": 299.72,
+          "pids": [
+            6763
+          ],
+          "marker": "ANDROID_ART_PASS all four regions rendered",
+          "original_line": "2026-10-07T20:42:00.3513058Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=299.72 pids=[6763] marker=ANDROID_ART_PASS all four regions rendered"
+        }
+      ],
+      "apk_signature_verifications": [],
+      "isolated_qa_package_builds": [
+        {
+          "fixture": "res://tests/android_beta_flow.tscn",
+          "abi": "x86_64",
+          "path": "/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-afk-qa.apk"
+        },
+        {
+          "fixture": "res://tests/android_success_flow.tscn",
+          "abi": "x86_64",
+          "path": "/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-success-qa.apk"
+        },
+        {
+          "fixture": "res://tests/android_art_flow.tscn",
+          "abi": "x86_64",
+          "path": "/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-art-qa.apk"
+        },
+        {
+          "fixture": "res://tests/android_device_probe.tscn",
+          "abi": "arm64-v8a",
+          "path": "/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-pixel-probe.apk"
+        }
+      ],
+      "aab_verified": false,
+      "bundle_identity_lines": [
+        "Version: 20261002.596",
+        "Version: 20261004.327.1"
+      ],
+      "server_progression_passed": false,
+      "diagnostic_lines": [],
+      "intentional_persistence_diagnostics": [],
+      "original_log_sha256": "49585fad32af655b26d007dbc8e9e83d93d87b90cfcce55d713c8decc879b4b5",
+      "original_log_bytes": 337717
+    }
+  ],
+  "scope": "Exact-source hosted CI, source/resource packaging, CI-only APK/AAB signature and manifest checks, and Android16 x86_64 emulator correctness. ARM64 probe packaging is separate from execution. No physical-phone frame-time, thermals, battery, touch or beta-readiness measurement."
+}

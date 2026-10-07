@@ -1,0 +1,104 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: new profiles receive an in-range personal dungeon seed
+PASS: personal dungeon seed produces a stable sequence of distinct runs
+PASS: profile seed and run sequence survive a cold launch
+PASS: separate new profiles start on independent dungeon sequences
+PASS: pre-seed profile fixture is stored
+PASS: older saves get one persisted dungeon seed when loaded
+PASS: new expeditions share their route with the 256-pattern AFK cache
+PASS: new expeditions use seed-bound exploration routes with optional side passages
+PASS: active version-2 checkpoints keep their original S-bend route
+PASS: active version-1 checkpoints keep their original passage shape
+PASS: older active checkpoints retain their full-seed passage route
+PASS: Vowkeeper 1.37s: serialized checkpoint is bit-exact
+PASS: Vowkeeper 1.37s: restart preserves outcome and RNG
+PASS: Vowkeeper 3.10s: serialized checkpoint is bit-exact
+PASS: Vowkeeper 3.10s: restart preserves outcome and RNG
+PASS: Vowkeeper 12.25s: serialized checkpoint is bit-exact
+PASS: Vowkeeper 12.25s: restart preserves outcome and RNG
+PASS: Vowkeeper 29.05s: serialized checkpoint is bit-exact
+PASS: Vowkeeper 29.05s: restart preserves outcome and RNG
+PASS: Vowkeeper 48.15s: serialized checkpoint is bit-exact
+PASS: Vowkeeper 48.15s: restart preserves outcome and RNG
+PASS: Vowkeeper 60.03s: serialized checkpoint is bit-exact
+PASS: Vowkeeper 60.03s: restart preserves outcome and RNG
+PASS: Arcanist 1.37s: serialized checkpoint is bit-exact
+PASS: Arcanist 1.37s: restart preserves outcome and RNG
+PASS: Arcanist 3.10s: serialized checkpoint is bit-exact
+PASS: Arcanist 3.10s: restart preserves outcome and RNG
+PASS: Arcanist 12.25s: serialized checkpoint is bit-exact
+PASS: Arcanist 12.25s: restart preserves outcome and RNG
+PASS: Arcanist 29.05s: serialized checkpoint is bit-exact
+PASS: Arcanist 29.05s: restart preserves outcome and RNG
+PASS: Arcanist 48.15s: serialized checkpoint is bit-exact
+PASS: Arcanist 48.15s: restart preserves outcome and RNG
+PASS: Arcanist 60.03s: serialized checkpoint is bit-exact
+PASS: Arcanist 60.03s: restart preserves outcome and RNG
+PASS: Ranger 1.37s: serialized checkpoint is bit-exact
+PASS: Ranger 1.37s: restart preserves outcome and RNG
+PASS: Ranger 3.10s: serialized checkpoint is bit-exact
+PASS: Ranger 3.10s: restart preserves outcome and RNG
+PASS: Ranger 12.25s: serialized checkpoint is bit-exact
+PASS: Ranger 12.25s: restart preserves outcome and RNG
+PASS: Ranger 29.05s: serialized checkpoint is bit-exact
+PASS: Ranger 29.05s: restart preserves outcome and RNG
+PASS: Ranger 48.15s: serialized checkpoint is bit-exact
+PASS: Ranger 48.15s: restart preserves outcome and RNG
+PASS: Ranger 60.03s: serialized checkpoint is bit-exact
+PASS: Ranger 60.03s: restart preserves outcome and RNG
+PASS: snapshot owns a deep copy
+PASS: valid state restores
+PASS: missing enemy health rejected without changing live state
+PASS: invalid room rejected
+PASS: non-finite position rejected
+PASS: future checkpoint version rejected
+PASS: unset target cannot select an enemy through a negative index
+PASS: backup code exports the personal dungeon sequence with the hero and resumable expedition
+PASS: older backup codes remain valid without the personal dungeon seed
+PASS: backup checksum rejects an altered code
+PASS: valid backup restores into the local store
+PASS: restoring preserves the previous local save as a recovery copy
+PASS: imported backup restores hero data and the exact paused expedition
+PASS: invalid backup leaves current progress unchanged
+PASS: undo restores the previous on-device save
+PASS: undo recovers the previous hero state
+PASS: new player has no recovery error
+PASS: first generation saves
+PASS: second generation saves
+PASS: third generation replaces only the older slot
+PASS: newest valid generation loads
+PASS: interrupted temporary write is ignored
+PASS: checksum failure recovers previous generation with visible notice
+PASS: recovery repairs damaged slot while retaining backup
+PASS: two corrupt generations are preserved, never overwritten
+PASS: future-format save prevents accidental downgrade writes
+PASS: downgrade cannot overwrite future save
+PASS: legacy player migrates into validated slots
+PASS: migration preserves original legacy file
+PASS: unwritable destination reports failure
+PASS: cold launch restores paused and repeat controls
+PASS: cold launch restores exact fight state
+PASS: restored camera world starts at the hero's saved position
+PASS: paused hero earns no parallel offline expeditions
+PASS: background catch-up advances the current run without duplicate farming
+PASS: active run survives process death with repeat state
+PASS: one real second between save and launch is accounted exactly
+PASS: long absence settles current run and remaining AFK time
+PASS: restart cannot settle the completed run twice
+PASS: claim transfers pending gold once
+PASS: claimed offline rewards cannot be claimed again after restart
+PASS: clock rollback does not move the accounting watermark backwards
+PERSISTENCE SMOKE: 89 checks, 0 failures
+ERROR: ConfigFile parse error at <string>:0: Unexpected EOF while parsing simple tag.
+   at: _parse (core/io/config_file.cpp:293)
+   GDScript backtrace (most recent call first):
+       [0] _read_slot (res://scripts/save_store.gd:137)
+       [1] load_save (res://scripts/save_store.gd:158)
+       [2] run_checks (res://tests/persistence_smoke.gd:176)
+ERROR: ConfigFile parse error at <string>:0: Unexpected EOF while parsing simple tag.
+   at: _parse (core/io/config_file.cpp:293)
+   GDScript backtrace (most recent call first):
+       [0] _read_slot (res://scripts/save_store.gd:137)
+       [1] load_save (res://scripts/save_store.gd:158)
+       [2] run_checks (res://tests/persistence_smoke.gd:176)

@@ -1,0 +1,46 @@
+{
+  "scope": "Read-only completed057 feature-leaf artifact/hash/source attribution and local-link audit. No Engine, source/document edits, Git mutations or network actions. PendingCI/full-gameplay leaves and all mutable live capture files excluded. No blanket game-quality verdict.",
+  "leaves": [
+    "attire",
+    "hostiles",
+    "render-budget",
+    "integration",
+    "motion"
+  ],
+  "immutable_artifact_hash_checks": 666,
+  "actual_commit_source_blob_checks": 1887,
+  "declared_original_png_resolutions_verified": 106,
+  "markdown_local_links_checked": 189,
+  "concrete_issues": [],
+  "historical_scope_limitations": [
+    {
+      "leaf": "attire",
+      "scope": "Original execution explicitly source_not_frozen; static source-review snapshot is separately attributed and is not an original Engine source binding."
+    },
+    {
+      "leaf": "hostiles",
+      "scope": "Owned hostile source snapshot at accepted focused tests and studio capture; overall production commit and integration acceptance are recorded centrally by root.",
+      "historical_owned_snapshot_differences_from_current_source": [
+        "scripts/native_hostile_rig.gd"
+      ],
+      "interpretation": "These are historical focused-source snapshots, not a claim that all current source files equal that earlier work stage."
+    },
+    {
+      "leaf": "render-budget",
+      "scope": "406 original source hashes remain equal before/after; execution explicitly source_not_frozen and does not claim phone frame-time or056-vs057 FPS improvement."
+    },
+    {
+      "leaf": "integration",
+      "scope": "53-suite coverage is explicitly41 historical plus12 final-at02 suites, not a single final full-run or current1cc full-run. The later evade and workflow changes are separately bound. PCK/native original block has its own earlier source scope."
+    }
+  ],
+  "motion_authored_attribution_fix": {
+    "issue_found": "The previous authored motion README described02a3fc9/3300 as current despite the accepted1cc evade update.",
+    "actual_root_fix_observed": true,
+    "new_current_source": "1cc13152a83c6631590d4df32ca298700a417df7",
+    "historical02_scope_explicit": true,
+    "prior_authored_text_archive": "docs/design/reference-057/motion/historical-source-02a3fc9-README.md",
+    "archive_sha256": "bb46dfe359b490741fdcbf0578d2cccf06170fa904ae44c09c0d95dc680a8b25",
+    "archive_integrity_scope": "Archive exists and is hash-recorded now; no independent pre-edit SHA was supplied to this audit, so this audit does not claim a before/after byte comparison of the prior authored README."
+  }
+}

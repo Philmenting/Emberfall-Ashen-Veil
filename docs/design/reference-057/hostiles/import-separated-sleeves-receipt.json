@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+    "--audio-driver",
+    "Dummy",
+    "--path",
+    "/workspace/Emberfall-Ashen-Veil",
+    "--headless",
+    "--editor",
+    "--import"
+  ],
+  "actual_process_exit": 0,
+  "wall_seconds": 5.681532144546509,
+  "engine_errors": [],
+  "required_marker": null,
+  "required_marker_present": true,
+  "LP_NUM_THREADS": "4"
+}

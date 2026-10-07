@@ -1,0 +1,18 @@
+[
+  {
+    "name": "full_local_class_script_owner",
+    "command": [
+      "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--audio-driver",
+      "Dummy",
+      "--main-pack",
+      "/workspace/scratch/emberfall-quality-057/integration/package-native/native-avatar-smoke.pck",
+      "--script",
+      "/workspace/scratch/emberfall-quality-057/integration/pck-lifetime-isolation/full_local_class_script_owner.gd"
+    ],
+    "actual_exit_code": 0,
+    "seconds": 4.175155710996478,
+    "log_sha256": "c689f08cd42f4da971af702e28561e1b33163f4ce5293d7e1d7fb4c24e28fbb5"
+  }
+]

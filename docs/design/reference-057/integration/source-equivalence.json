@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "observed_at": "2026-10-07T21:40:53.286516+00:00",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "source_tree": "e491d100b89c7b9eae92885d28053086f77c8563",
+  "status": "all_existing_non_documentation_git_blob_bytes_match",
+  "verified_paths": 982,
+  "allowed_documentation_changes": [
+    "README.md",
+    "docs/**"
+  ],
+  "input_index_sha256": "b9b4b53395bf71b8a782dd7e7cca36f44e6dbe6a9f9c0a51200882c6b6b83f83",
+  "scope": "Working tree checked before the intermediate documentation commit; no new Engine or test execution is implied."
+}

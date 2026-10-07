@@ -1,0 +1,11 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+HOSTILE_METRIC raider length=0.0 bone= join=0.0000001365714 actual_triangles=19658
+HOSTILE_METRIC hexer length=0.0 bone= join=0.00000017881393 actual_triangles=28506
+HOSTILE_METRIC bulwark length=0.0 bone= join=0.0000001365714 actual_triangles=22162
+HOSTILE_METRIC elite length=0.0 bone= join=0.00000024575624 actual_triangles=22114
+HOSTILE_METRIC guardian_0 length=0.0 bone= join=0.00000013411045 actual_triangles=24494
+HOSTILE_METRIC guardian_1 length=0.0 bone= join=0.0000001365714 actual_triangles=29392
+HOSTILE_METRIC guardian_2 length=0.0 bone= join=0.00000002980232 actual_triangles=29070
+HOSTILE_METRIC guardian_3 length=0.0 bone= join=0.00000013411045 actual_triangles=22138
+HOSTILE QUALITY SMOKE: 96 checks, 0 failures

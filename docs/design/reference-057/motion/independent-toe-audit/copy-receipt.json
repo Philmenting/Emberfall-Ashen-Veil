@@ -1,0 +1,35 @@
+{
+  "scope": "Byte-identical copy of a newly executed independent GLB reconstruction of the explicitly historical pre-fix Engine trace; no new Engine run or current post-fix renderer claim.",
+  "files": [
+    {
+      "file": "execution.json",
+      "bytes": 2559,
+      "sha256": "f96c78e182ce4c76a8646065a2da4298cdda519d2f760ac5495f239d512e4438",
+      "original_file": "/workspace/scratch/emberfall-quality-057/independent-toe-audit/20261007T190024Z/execution.json"
+    },
+    {
+      "file": "execution.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_file": "/workspace/scratch/emberfall-quality-057/independent-toe-audit/20261007T190024Z/execution.stderr.log"
+    },
+    {
+      "file": "original-pre-toe-lock-engine-trace.log",
+      "bytes": 36483,
+      "sha256": "adac06690f7da1d3dadaa10301d1db7c9bf55368dc7fb921f98c4e741becce5f",
+      "original_file": "/workspace/scratch/emberfall-quality-057/independent-toe-audit/20261007T190024Z/original-pre-toe-lock-engine-trace.log"
+    },
+    {
+      "file": "reproduce_toe_geometry.py",
+      "bytes": 10274,
+      "sha256": "0d9038a6392c774dcabf56730864fd1f4161babb7020b29039883f159994bdf5",
+      "original_file": "/workspace/scratch/emberfall-quality-057/independent-toe-audit/20261007T190024Z/reproduce_toe_geometry.py"
+    },
+    {
+      "file": "toe-geometry-reproduction.json",
+      "bytes": 9463,
+      "sha256": "36c2ef5440fa6cadf92f10a047398c1cfa02f9b11582da9780c8aaca87c6b651",
+      "original_file": "/workspace/scratch/emberfall-quality-057/independent-toe-audit/20261007T190024Z/toe-geometry-reproduction.json"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "observed_at": "2026-10-07T21:06:04.757165+00:00",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "workflows": [
+    {
+      "workflow": "Gameplay Quality",
+      "status": "not yet observed for exact source"
+    },
+    {
+      "workflow": "Android Debug APK",
+      "status": "not yet observed for exact source"
+    },
+    {
+      "workflow": "Android Beta Runtime",
+      "status": "not yet observed for exact source"
+    }
+  ],
+  "binary_artifacts_downloaded": false,
+  "original_log_transport": "GitHub connector decoded UTF-8 with explicit transport receipts"
+}

@@ -1,0 +1,77 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: hunt contract accepts a real slot
+PASS: trial tier fixes its enemy floor
+PASS: malformed contract rejected: {  }
+PASS: malformed contract rejected: { "version": 1, "mode": "unknown" }
+PASS: malformed contract rejected: { "version": 1, "mode": "hunt", "slot": "Gold" }
+PASS: malformed contract rejected: { "version": 1, "mode": "trial", "tier": 0 }
+PASS: malformed contract rejected: { "version": 1.0, "mode": "hunt", "slot": "Boots" }
+PASS: malformed contract rejected: { "version": 1, "mode": "trial", "tier": 1, "bonus": 900 }
+PASS: trial cannot claim another tier's floor
+PASS: 0.12 checkpoint preserved: Vowkeeper/1
+PASS: 0.12 checkpoint preserved: Vowkeeper/11
+PASS: 0.12 checkpoint preserved: Vowkeeper/21
+PASS: 0.12 checkpoint preserved: Vowkeeper/31
+PASS: 0.12 checkpoint preserved: Arcanist/1
+PASS: 0.12 checkpoint preserved: Arcanist/11
+PASS: 0.12 checkpoint preserved: Arcanist/21
+PASS: 0.12 checkpoint preserved: Arcanist/31
+PASS: 0.12 checkpoint preserved: Ranger/1
+PASS: 0.12 checkpoint preserved: Ranger/11
+PASS: 0.12 checkpoint preserved: Ranger/21
+PASS: 0.12 checkpoint preserved: Ranger/31
+PASS: 192 ordinary campaign drops remain exactly unchanged
+PASS: focused Weapon drops preserve class attributes, tier and boss quality
+PASS: focused Helmet drops preserve class attributes, tier and boss quality
+PASS: focused Chest drops preserve class attributes, tier and boss quality
+PASS: focused Gloves drops preserve class attributes, tier and boss quality
+PASS: focused Boots drops preserve class attributes, tier and boss quality
+PASS: focused Amulet drops preserve class attributes, tier and boss quality
+PASS: hunts have actual increased health and incoming damage
+PASS: trial difficulty and timer are actual simulation rules
+PASS: Vowkeeper hunt: all 64 live/skip outcomes match
+CONTRACT_BALANCE Vowkeeper hunt 64/64 starting-gear wins
+PASS: Vowkeeper trial: all 64 live/skip outcomes match
+CONTRACT_BALANCE Vowkeeper trial 64/64 starting-gear wins
+PASS: Vowkeeper hunt: checkpoint continuation exact
+PASS: Vowkeeper trial: checkpoint continuation exact
+PASS: Arcanist hunt: all 64 live/skip outcomes match
+CONTRACT_BALANCE Arcanist hunt 64/64 starting-gear wins
+PASS: Arcanist trial: all 64 live/skip outcomes match
+CONTRACT_BALANCE Arcanist trial 64/64 starting-gear wins
+PASS: Arcanist hunt: checkpoint continuation exact
+PASS: Arcanist trial: checkpoint continuation exact
+PASS: Ranger hunt: all 64 live/skip outcomes match
+CONTRACT_BALANCE Ranger hunt 64/64 starting-gear wins
+PASS: Ranger trial: all 64 live/skip outcomes match
+CONTRACT_BALANCE Ranger trial 64/64 starting-gear wins
+PASS: Ranger hunt: checkpoint continuation exact
+PASS: Ranger trial: checkpoint continuation exact
+PASS: trial fails at deadline even while hero survives
+PASS: corrupt contract checkpoint rejected
+PASS: corrupt contract checkpoint rejected
+PASS: corrupt contract checkpoint rejected
+PASS: world hunt choices and start button exist
+PASS: slot selection changes the real AFK farm goal
+PASS: visible farming carries the selected hunt contract
+PASS: running hunt selection is locked
+PASS: skip awards targeted loot without campaign progression
+PASS: trial entry exists after campaign unlock
+PASS: trial has countdown, locked repeat and visible original portal
+PASS: trials cannot enable automatic repeat
+PASS: trial first clear grants Epic loot and separate progression
+PASS: duplicate first-clear reward cannot be granted twice
+PASS: trial defeat grants no rewards or progression
+PASS: next trial uses its own level beyond campaign floor
+PASS: cold load retains hunt choice, trial progress and paused trial
+PASS: cached AFK hunts equal individually simulated runs and rewards
+PASS: AFK target applies to every relic without campaign advancement
+PASS: background trial finishes once then selected hunt resumes
+PASS: duplicate resume adds no trial reward
+PASS: first campaign clear is required for hunts and trials
+PASS: full bag sells trial relic once and displays actual total Gold
+PASS: offline trial defeat is visible even without monetary rewards
+PASS: zero-reward defeat report can be acknowledged
+PASS: all 30 trials have a terminal completion state
+CONTRACTS SMOKE: 68 checks, 0 failures

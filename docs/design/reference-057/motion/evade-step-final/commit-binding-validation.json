@@ -1,0 +1,9 @@
+{
+  "commit_binding_sha256": "9cfc91d5f34d5f1bce6a5d3ce92116db78b87a7e01a08c0252c4c917a5441459",
+  "original_file_index_sha256": "447474ca9b46c4a436a0e88f4402534c1b9989a5949148f6f098a11569d95e59",
+  "readme_exists": true,
+  "receipt_exists": true,
+  "all_original_relative_files_resolve": true,
+  "original_native_png_count": 18,
+  "actual_immutable_source_blob_count": 982
+}

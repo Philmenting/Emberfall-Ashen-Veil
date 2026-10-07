@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "source_commit": "02a3fc905e55a4e64cbece4eb6b07c65c1bf4afb",
+  "workflow_run": 37680231278,
+  "job_id": 112994050264,
+  "transport": "mcp__codex_apps__github_fetch_workflow_job_logs structuredContent.content: decoded original UTF-8 log, re-encoded without edits; BOM and received newlines retained. Original HTTP byte equivalence has not been independently verified because gh Azure redirect was Forbidden.",
+  "utf8_bom_retained": true,
+  "received_final_newline_retained": true,
+  "log_bytes": 266362,
+  "log_sha256": "4b786c7fbe08b2bb202ee19fcf4e3e7ddd7f148dc22788d2056fb1dec776b2f4",
+  "actual_workflow_conclusion": "failure",
+  "actual_failure_exit_code": 124,
+  "cause": "120s Dungeon process timeout; Vowkeeper victory completed, Arcanist live run incomplete. No assertion/Engine ERROR before timeout.",
+  "scope": "Superseded-source failure evidence only; no current final CI success claimed."
+}

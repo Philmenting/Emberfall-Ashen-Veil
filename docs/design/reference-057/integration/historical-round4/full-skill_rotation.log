@@ -1,0 +1,138 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Vowkeeper: two distinct class techniques by default
+PASS: Vowkeeper: malformed/duplicate choices normalize
+PASS: bastion: suitable situation starts a cast
+PASS: bastion: actual Mana and cooldown charged once
+PASS: bastion: in-flight cast checkpoint is exact
+PASS: bastion: cast continuation preserves final RNG and combat
+PASS: bastion: protection duration is applied
+PASS: bastion: Guard reduces real incoming damage by 45 percent
+PASS: bastion: cooling technique cannot repeat
+PASS: bastion: insufficient Mana prevents casting
+PASS: sunder: suitable situation starts a cast
+PASS: sunder: actual Mana and cooldown charged once
+PASS: sunder: in-flight cast checkpoint is exact
+PASS: sunder: cast continuation preserves final RNG and combat
+PASS: sunder: impact deals real damage
+PASS: sunder: cooling technique cannot repeat
+PASS: sunder: insufficient Mana prevents casting
+PASS: judgment: suitable situation starts a cast
+PASS: judgment: actual Mana and cooldown charged once
+PASS: judgment: in-flight cast checkpoint is exact
+PASS: judgment: cast continuation preserves final RNG and combat
+PASS: judgment: impact deals real damage
+PASS: judgment: cooling technique cannot repeat
+PASS: judgment: insufficient Mana prevents casting
+PASS: Arcanist: two distinct class techniques by default
+PASS: Arcanist: malformed/duplicate choices normalize
+PASS: frost_ward: suitable situation starts a cast
+PASS: frost_ward: actual Mana and cooldown charged once
+PASS: frost_ward: in-flight cast checkpoint is exact
+PASS: frost_ward: cast continuation preserves final RNG and combat
+PASS: frost_ward: protection duration is applied
+PASS: frost_ward: Guard reduces real incoming damage by 45 percent
+PASS: Frost Mantle slows nearby melee enemies
+PASS: frost_ward: cooling technique cannot repeat
+PASS: frost_ward: insufficient Mana prevents casting
+PASS: chain: suitable situation starts a cast
+PASS: chain: actual Mana and cooldown charged once
+PASS: chain: in-flight cast checkpoint is exact
+PASS: chain: cast continuation preserves final RNG and combat
+PASS: chain: impact deals real damage
+PASS: lightning jumps to three nearby targets
+PASS: chain: cooling technique cannot repeat
+PASS: chain: insufficient Mana prevents casting
+PASS: starfall: suitable situation starts a cast
+PASS: starfall: actual Mana and cooldown charged once
+PASS: starfall: in-flight cast checkpoint is exact
+PASS: starfall: cast continuation preserves final RNG and combat
+PASS: starfall: impact deals real damage
+PASS: starfall: cooling technique cannot repeat
+PASS: starfall: insufficient Mana prevents casting
+PASS: Ranger: two distinct class techniques by default
+PASS: Ranger: malformed/duplicate choices normalize
+PASS: smoke: suitable situation starts a cast
+PASS: smoke: actual Mana and cooldown charged once
+PASS: smoke: in-flight cast checkpoint is exact
+PASS: smoke: cast continuation preserves final RNG and combat
+PASS: smoke: protection duration is applied
+PASS: smoke: Guard reduces real incoming damage by 45 percent
+PASS: Cinder Veil schedules an actual retreat
+PASS: smoke: cooling technique cannot repeat
+PASS: smoke: insufficient Mana prevents casting
+PASS: rain: suitable situation starts a cast
+PASS: rain: actual Mana and cooldown charged once
+PASS: rain: in-flight cast checkpoint is exact
+PASS: rain: cast continuation preserves final RNG and combat
+PASS: rain: impact deals real damage
+PASS: Thornfall slows targets
+PASS: rain: cooling technique cannot repeat
+PASS: rain: insufficient Mana prevents casting
+PASS: marked: suitable situation starts a cast
+PASS: marked: actual Mana and cooldown charged once
+PASS: marked: impact deals real damage
+PASS: marked: cooling technique cannot repeat
+PASS: marked: insufficient Mana prevents casting
+PASS: starfall: moving out of marked ground avoids impact without refunding Mana
+PASS: rain: moving out of marked ground avoids impact without refunding Mana
+PASS: protection is held while healthy and safe
+PASS: ground danger can trigger protection before losing Life
+PASS: existing Guard is not overwritten with a redundant protection cast
+PASS: signature precedes equipped offensive techniques
+PASS: ready offensive techniques vary between eligible seeded casts
+PASS: the same expedition seed chooses the same technique
+PASS: automatic evasion cancels the cast without refunding cooldown
+PASS: invalid rotation flag rejected: -1
+PASS: invalid rotation flag rejected: 2
+PASS: invalid rotation flag rejected: 1.0
+PASS: invalid rotation flag rejected: on
+PASS: invalid checkpoint loadout rejected: ["chain", "chain"]
+PASS: invalid checkpoint loadout rejected: ["chain", "marked"]
+PASS: invalid checkpoint loadout rejected: ["chain"]
+PASS: invalid checkpoint loadout rejected: chain
+PASS: invalid technique cooldown rejected: -1.0
+PASS: invalid technique cooldown rejected: inf
+PASS: invalid technique cooldown rejected: ready
+PASS: invalid technique cooldown rejected: 99.0
+PASS: new combat cannot restore without technique state
+PASS: foreign pending technique rejected
+PASS: Vowkeeper: 64 live/skip outcomes agree including rotation state
+PASS: Vowkeeper: starter builds clear all variants and actually use techniques
+PASS: Vowkeeper: pair ["sunder", "judgment"] matches in every region
+PASS: Vowkeeper: pair ["bastion", "judgment"] matches in every region
+PASS: Vowkeeper: pair ["bastion", "sunder"] matches in every region
+PASS: Arcanist: 64 live/skip outcomes agree including rotation state
+PASS: Arcanist: starter builds clear all variants and actually use techniques
+PASS: Arcanist: pair ["chain", "starfall"] matches in every region
+PASS: Arcanist: pair ["frost_ward", "starfall"] matches in every region
+PASS: Arcanist: pair ["frost_ward", "chain"] matches in every region
+PASS: Ranger: 64 live/skip outcomes agree including rotation state
+PASS: Ranger: starter builds clear all variants and actually use techniques
+PASS: Ranger: pair ["rain", "marked"] matches in every region
+PASS: Ranger: pair ["smoke", "marked"] matches in every region
+PASS: Ranger: pair ["smoke", "rain"] matches in every region
+PASS: 0.11 expedition preserved exactly: Vowkeeper/1
+PASS: 0.11 expedition preserved exactly: Vowkeeper/11
+PASS: 0.11 expedition preserved exactly: Vowkeeper/21
+PASS: 0.11 expedition preserved exactly: Vowkeeper/31
+PASS: 0.11 expedition preserved exactly: Arcanist/1
+PASS: 0.11 expedition preserved exactly: Arcanist/11
+PASS: 0.11 expedition preserved exactly: Arcanist/21
+PASS: 0.11 expedition preserved exactly: Arcanist/31
+PASS: 0.11 expedition preserved exactly: Ranger/1
+PASS: 0.11 expedition preserved exactly: Ranger/11
+PASS: 0.11 expedition preserved exactly: Ranger/21
+PASS: 0.11 expedition preserved exactly: Ranger/31
+PASS: skills editor renders class choices and real equip actions
+PASS: cards and equip buttons pass drag events to the page scroller
+PASS: equipping replaces the chosen technique slot
+PASS: equipping an already slotted technique swaps priorities
+PASS: each class retains its own loadout
+PASS: loadouts cannot change during a running expedition
+PASS: combat HUD shows both equipped technique cooldowns
+PASS: class loadouts survive a cold start
+PASS: paused rotation checkpoint resumes exactly after cold start
+PASS: technique effects render without altering simulation
+PASS: technique effects release their temporary nodes
+SKILL ROTATION SMOKE: 135 checks, 0 failures

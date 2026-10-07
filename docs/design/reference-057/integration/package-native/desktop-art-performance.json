@@ -1,0 +1,291 @@
+{
+	"device": "GenericDevice",
+	"measurements": [
+		{
+			"frames": 30,
+			"median_draw_calls": 375.0,
+			"median_frame_ms": 283.748,
+			"p95_frame_ms": 331.654,
+			"quality": "balanced",
+			"region": 0,
+			"render_height": 540,
+			"render_width": 1208,
+			"target_fps": 60
+		},
+		{
+			"frames": 30,
+			"median_draw_calls": 276.0,
+			"median_frame_ms": 68.761,
+			"p95_frame_ms": 82.195,
+			"quality": "battery",
+			"region": 0,
+			"render_height": 270,
+			"render_width": 604,
+			"target_fps": 30
+		},
+		{
+			"frames": 30,
+			"median_draw_calls": 403.0,
+			"median_frame_ms": 217.603,
+			"p95_frame_ms": 307.217,
+			"quality": "balanced",
+			"region": 1,
+			"render_height": 540,
+			"render_width": 1208,
+			"target_fps": 60
+		},
+		{
+			"frames": 30,
+			"median_draw_calls": 306.0,
+			"median_frame_ms": 67.998,
+			"p95_frame_ms": 126.857,
+			"quality": "battery",
+			"region": 1,
+			"render_height": 270,
+			"render_width": 604,
+			"target_fps": 30
+		},
+		{
+			"frames": 30,
+			"median_draw_calls": 376.0,
+			"median_frame_ms": 259.67,
+			"p95_frame_ms": 314.145,
+			"quality": "balanced",
+			"region": 2,
+			"render_height": 540,
+			"render_width": 1208,
+			"target_fps": 60
+		},
+		{
+			"frames": 30,
+			"median_draw_calls": 279.0,
+			"median_frame_ms": 68.231,
+			"p95_frame_ms": 93.92,
+			"quality": "battery",
+			"region": 2,
+			"render_height": 270,
+			"render_width": 604,
+			"target_fps": 30
+		},
+		{
+			"frames": 30,
+			"median_draw_calls": 389.0,
+			"median_frame_ms": 245.395,
+			"p95_frame_ms": 304.16,
+			"quality": "balanced",
+			"region": 3,
+			"render_height": 540,
+			"render_width": 1208,
+			"target_fps": 60
+		},
+		{
+			"frames": 30,
+			"median_draw_calls": 308.0,
+			"median_frame_ms": 67.612,
+			"p95_frame_ms": 88.161,
+			"quality": "battery",
+			"region": 3,
+			"render_height": 270,
+			"render_width": 604,
+			"target_fps": 30
+		}
+	],
+	"motion": [
+		{
+			"bone_changes": 20,
+			"bone_name": "Head",
+			"bound_native_clips": [
+				"Death01",
+				"Hit_Chest",
+				"Idle",
+				"Idle_Loop",
+				"Spell_Simple_Enter",
+				"Spell_Simple_Idle",
+				"Spell_Simple_Idle_Loop",
+				"Spell_Simple_Shoot",
+				"Sword_Block",
+				"Sword_Idle",
+				"Sword_Regular_A",
+				"Sword_Regular_A_Rec",
+				"Sword_Regular_B",
+				"Sword_Regular_C",
+				"Walk",
+				"Walk_Loop"
+			],
+			"captures": [
+				0,
+				5,
+				11,
+				17
+			],
+			"frames": 20,
+			"native_clips": 16,
+			"passed": true,
+			"physical_device_performance": false,
+			"region": 0,
+			"required_native_clips": [
+				"Walk_Loop",
+				"Hit_Chest",
+				"Death01",
+				"Sword_Regular_C"
+			],
+			"simulation_advanced_seconds": 0.999999999999943,
+			"simulation_step_seconds": 0.05,
+			"skeleton_bones": 65,
+			"unique_rendered_frames": 4,
+			"visible_rigid_props": 2,
+			"visible_skinned_meshes": 13,
+			"visible_triangles": 24494,
+			"weighted_figure_depth": 1.39893352985382
+		},
+		{
+			"bone_changes": 20,
+			"bone_name": "Head",
+			"bound_native_clips": [
+				"Death01",
+				"Hit_Chest",
+				"Idle",
+				"Idle_Loop",
+				"Spell_Simple_Enter",
+				"Spell_Simple_Idle",
+				"Spell_Simple_Idle_Loop",
+				"Spell_Simple_Shoot",
+				"Sword_Block",
+				"Sword_Idle",
+				"Sword_Regular_A",
+				"Sword_Regular_A_Rec",
+				"Sword_Regular_B",
+				"Sword_Regular_C",
+				"Walk",
+				"Walk_Loop"
+			],
+			"captures": [
+				0,
+				5,
+				11,
+				17
+			],
+			"frames": 20,
+			"native_clips": 16,
+			"passed": true,
+			"physical_device_performance": false,
+			"region": 1,
+			"required_native_clips": [
+				"Walk_Loop",
+				"Hit_Chest",
+				"Death01",
+				"Spell_Simple_Shoot"
+			],
+			"simulation_advanced_seconds": 0.999999999999943,
+			"simulation_step_seconds": 0.05,
+			"skeleton_bones": 65,
+			"unique_rendered_frames": 4,
+			"visible_rigid_props": 5,
+			"visible_skinned_meshes": 12,
+			"visible_triangles": 29392,
+			"weighted_figure_depth": 1.36405801773071
+		},
+		{
+			"bone_changes": 20,
+			"bone_name": "Head",
+			"bound_native_clips": [
+				"Death01",
+				"Hit_Chest",
+				"Idle",
+				"Idle_Loop",
+				"Spell_Simple_Enter",
+				"Spell_Simple_Idle",
+				"Spell_Simple_Idle_Loop",
+				"Spell_Simple_Shoot",
+				"Sword_Block",
+				"Sword_Idle",
+				"Sword_Regular_A",
+				"Sword_Regular_A_Rec",
+				"Sword_Regular_B",
+				"Sword_Regular_C",
+				"Walk",
+				"Walk_Loop"
+			],
+			"captures": [
+				0,
+				5,
+				11,
+				17
+			],
+			"frames": 20,
+			"native_clips": 16,
+			"passed": true,
+			"physical_device_performance": false,
+			"region": 2,
+			"required_native_clips": [
+				"Walk_Loop",
+				"Hit_Chest",
+				"Death01",
+				"Spell_Simple_Enter"
+			],
+			"simulation_advanced_seconds": 0.999999999999943,
+			"simulation_step_seconds": 0.05,
+			"skeleton_bones": 65,
+			"unique_rendered_frames": 4,
+			"visible_rigid_props": 5,
+			"visible_skinned_meshes": 12,
+			"visible_triangles": 29070,
+			"weighted_figure_depth": 1.20776128768921
+		},
+		{
+			"bone_changes": 20,
+			"bone_name": "Head",
+			"bound_native_clips": [
+				"Death01",
+				"Hit_Chest",
+				"Idle",
+				"Idle_Loop",
+				"Spell_Simple_Enter",
+				"Spell_Simple_Idle",
+				"Spell_Simple_Idle_Loop",
+				"Spell_Simple_Shoot",
+				"Sword_Block",
+				"Sword_Idle",
+				"Sword_Regular_A",
+				"Sword_Regular_A_Rec",
+				"Sword_Regular_B",
+				"Sword_Regular_C",
+				"Walk",
+				"Walk_Loop"
+			],
+			"captures": [
+				0,
+				5,
+				11,
+				17
+			],
+			"frames": 20,
+			"native_clips": 16,
+			"passed": true,
+			"physical_device_performance": false,
+			"region": 3,
+			"required_native_clips": [
+				"Walk_Loop",
+				"Hit_Chest",
+				"Death01",
+				"Sword_Regular_C"
+			],
+			"simulation_advanced_seconds": 0.999999999999943,
+			"simulation_step_seconds": 0.05,
+			"skeleton_bones": 65,
+			"unique_rendered_frames": 4,
+			"visible_rigid_props": 3,
+			"visible_skinned_meshes": 13,
+			"visible_triangles": 22138,
+			"weighted_figure_depth": 1.98399448394775
+		}
+	],
+	"platform": "Linux",
+	"renderer": "gl_compatibility",
+	"resolution": {
+		"height": 540.0,
+		"width": 1208.0
+	},
+	"scenario": "frozen guardian render workload; separately stepped real native65 combat animation",
+	"schema": 2
+}

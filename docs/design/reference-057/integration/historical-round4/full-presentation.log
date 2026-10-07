@@ -1,0 +1,191 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Vowkeeper: native presentation allocates no obsolete hidden compatibility shader or texture maps
+PASS: Vowkeeper: complete class-specific rendered source surfaces and accessories plus contact shadow; compatibility proxy stays hidden
+PASS: Vowkeeper: exact class source mesh inventory, bound material slots and full actual outfit/accessory/weapon triangle budget; visible=31440
+PASS: Vowkeeper: all four skin influences give the complete rendered figure and accessories real depth
+PASS: Vowkeeper: original native65 skin and authored walking/death clips drive the visible surfaces
+PASS: Vowkeeper: actual walking samples the authored clip on the complete visible weighted surfaces
+PASS: Vowkeeper: stopping retains a fading stride
+PASS: Vowkeeper: travel recovery returns to 3D guard pose
+PASS: Vowkeeper: actual attack starts in authored spatial windup
+PASS: Vowkeeper: committed action reaches contact while retaining all actual authored meshes and skins
+PASS: Vowkeeper: real warning countdown holds the windup longer than a basic swing
+PASS: Vowkeeper: actual heavy impact clears warning and displays strike immediately
+PASS: Vowkeeper: authored defeat lowers the actual native pelvis and articulated surfaces
+PASS: Vowkeeper: completed collapse retains every original actual body/accessory mesh and skin
+PASS: Vowkeeper: independently measured complete indexed weighted body and accessories settle above the floor; minimum=0.00299999862909
+PASS: Arcanist: native presentation allocates no obsolete hidden compatibility shader or texture maps
+PASS: Arcanist: complete class-specific rendered source surfaces and accessories plus contact shadow; compatibility proxy stays hidden
+PASS: Arcanist: exact class source mesh inventory, bound material slots and full actual outfit/accessory/weapon triangle budget; visible=28708
+PASS: Arcanist: all four skin influences give the complete rendered figure and accessories real depth
+PASS: Arcanist: original native65 skin and authored walking/death clips drive the visible surfaces
+PASS: Arcanist: actual walking samples the authored clip on the complete visible weighted surfaces
+PASS: Arcanist: stopping retains a fading stride
+PASS: Arcanist: travel recovery returns to 3D guard pose
+PASS: Arcanist: actual attack starts in authored spatial windup
+PASS: Arcanist: committed action reaches contact while retaining all actual authored meshes and skins
+PASS: Arcanist: real warning countdown holds the windup longer than a basic swing
+PASS: Arcanist: actual heavy impact clears warning and displays strike immediately
+PASS: Arcanist: authored defeat lowers the actual native pelvis and articulated surfaces
+PASS: Arcanist: completed collapse retains every original actual body/accessory mesh and skin
+PASS: Arcanist: independently measured complete indexed weighted body and accessories settle above the floor; minimum=0.00200000032783
+PASS: Ranger: native presentation allocates no obsolete hidden compatibility shader or texture maps
+PASS: Ranger: complete class-specific rendered source surfaces and accessories plus contact shadow; compatibility proxy stays hidden
+PASS: Ranger: exact class source mesh inventory, bound material slots and full actual outfit/accessory/weapon triangle budget; visible=32884
+PASS: Ranger: all four skin influences give the complete rendered figure and accessories real depth
+PASS: Ranger: original native65 skin and authored walking/death clips drive the visible surfaces
+PASS: Ranger: actual walking samples the authored clip on the complete visible weighted surfaces
+PASS: Ranger: stopping retains a fading stride
+PASS: Ranger: travel recovery returns to 3D guard pose
+PASS: Ranger: actual attack starts in authored spatial windup
+PASS: Ranger: committed action reaches contact while retaining all actual authored meshes and skins
+PASS: Ranger: real warning countdown holds the windup longer than a basic swing
+PASS: Ranger: actual heavy impact clears warning and displays strike immediately
+PASS: Ranger: authored defeat lowers the actual native pelvis and articulated surfaces
+PASS: Ranger: completed collapse retains every original actual body/accessory mesh and skin
+PASS: Ranger: independently measured complete indexed weighted body and accessories settle above the floor; minimum=0.00299999862909
+PASS: raider: native presentation allocates no obsolete hidden compatibility shader or texture maps
+PASS: raider: complete class-specific rendered source surfaces and accessories plus contact shadow; compatibility proxy stays hidden
+PASS: raider: exact class source mesh inventory, bound material slots and full actual outfit/accessory/weapon triangle budget; visible=19658
+PASS: raider: all four skin influences give the complete rendered figure and accessories real depth
+PASS: raider: original native65 skin and authored walking/death clips drive the visible surfaces
+PASS: raider: actual walking samples the authored clip on the complete visible weighted surfaces
+PASS: raider: stopping retains a fading stride
+PASS: raider: travel recovery returns to 3D guard pose
+PASS: raider: actual attack starts in authored spatial windup
+PASS: raider: committed action reaches contact while retaining all actual authored meshes and skins
+PASS: raider: real warning countdown holds the windup longer than a basic swing
+PASS: raider: actual heavy impact clears warning and displays strike immediately
+PASS: raider: authored defeat lowers the actual native pelvis and articulated surfaces
+PASS: raider: completed collapse retains every original actual body/accessory mesh and skin
+PASS: raider: independently measured complete indexed weighted body and accessories settle above the floor; minimum=0.00300141423941
+PASS: bulwark: native presentation allocates no obsolete hidden compatibility shader or texture maps
+PASS: bulwark: complete class-specific rendered source surfaces and accessories plus contact shadow; compatibility proxy stays hidden
+PASS: bulwark: exact class source mesh inventory, bound material slots and full actual outfit/accessory/weapon triangle budget; visible=22162
+PASS: bulwark: all four skin influences give the complete rendered figure and accessories real depth
+PASS: bulwark: original native65 skin and authored walking/death clips drive the visible surfaces
+PASS: bulwark: actual walking samples the authored clip on the complete visible weighted surfaces
+PASS: bulwark: stopping retains a fading stride
+PASS: bulwark: travel recovery returns to 3D guard pose
+PASS: bulwark: actual attack starts in authored spatial windup
+PASS: bulwark: committed action reaches contact while retaining all actual authored meshes and skins
+PASS: bulwark: real warning countdown holds the windup longer than a basic swing
+PASS: bulwark: actual heavy impact clears warning and displays strike immediately
+PASS: bulwark: authored defeat lowers the actual native pelvis and articulated surfaces
+PASS: bulwark: completed collapse retains every original actual body/accessory mesh and skin
+PASS: bulwark: independently measured complete indexed weighted body and accessories settle above the floor; minimum=0.00300106406212
+PASS: hexer: native presentation allocates no obsolete hidden compatibility shader or texture maps
+PASS: hexer: complete class-specific rendered source surfaces and accessories plus contact shadow; compatibility proxy stays hidden
+PASS: hexer: exact class source mesh inventory, bound material slots and full actual outfit/accessory/weapon triangle budget; visible=28506
+PASS: hexer: all four skin influences give the complete rendered figure and accessories real depth
+PASS: hexer: original native65 skin and authored walking/death clips drive the visible surfaces
+PASS: hexer: actual walking samples the authored clip on the complete visible weighted surfaces
+PASS: hexer: stopping retains a fading stride
+PASS: hexer: travel recovery returns to 3D guard pose
+PASS: hexer: actual attack starts in authored spatial windup
+PASS: hexer: committed action reaches contact while retaining all actual authored meshes and skins
+PASS: hexer: real warning countdown holds the windup longer than a basic swing
+PASS: hexer: actual heavy impact clears warning and displays strike immediately
+PASS: hexer: authored defeat lowers the actual native pelvis and articulated surfaces
+PASS: hexer: completed collapse retains every original actual body/accessory mesh and skin
+PASS: hexer: independently measured complete indexed weighted body and accessories settle above the floor; minimum=0.00300106406212
+PASS: elite: native presentation allocates no obsolete hidden compatibility shader or texture maps
+PASS: elite: complete class-specific rendered source surfaces and accessories plus contact shadow; compatibility proxy stays hidden
+PASS: elite: exact class source mesh inventory, bound material slots and full actual outfit/accessory/weapon triangle budget; visible=22114
+PASS: elite: all four skin influences give the complete rendered figure and accessories real depth
+PASS: elite: original native65 skin and authored walking/death clips drive the visible surfaces
+PASS: elite: actual walking samples the authored clip on the complete visible weighted surfaces
+PASS: elite: stopping retains a fading stride
+PASS: elite: travel recovery returns to 3D guard pose
+PASS: elite: actual attack starts in authored spatial windup
+PASS: elite: committed action reaches contact while retaining all actual authored meshes and skins
+PASS: elite: real warning countdown holds the windup longer than a basic swing
+PASS: elite: actual heavy impact clears warning and displays strike immediately
+PASS: elite: authored defeat lowers the actual native pelvis and articulated surfaces
+PASS: elite: completed collapse retains every original actual body/accessory mesh and skin
+PASS: elite: independently measured complete indexed weighted body and accessories settle above the floor; minimum=0.00300106406212
+PASS: guardian_0: native presentation allocates no obsolete hidden compatibility shader or texture maps
+PASS: guardian_0: complete class-specific rendered source surfaces and accessories plus contact shadow; compatibility proxy stays hidden
+PASS: guardian_0: exact class source mesh inventory, bound material slots and full actual outfit/accessory/weapon triangle budget; visible=24494
+PASS: guardian_0: all four skin influences give the complete rendered figure and accessories real depth
+PASS: guardian_0: original native65 skin and authored walking/death clips drive the visible surfaces
+PASS: guardian_0: actual walking samples the authored clip on the complete visible weighted surfaces
+PASS: guardian_0: stopping retains a fading stride
+PASS: guardian_0: travel recovery returns to 3D guard pose
+PASS: guardian_0: actual attack starts in authored spatial windup
+PASS: guardian_0: committed action reaches contact while retaining all actual authored meshes and skins
+PASS: guardian_0: real warning countdown holds the windup longer than a basic swing
+PASS: guardian_0: actual heavy impact clears warning and displays strike immediately
+PASS: guardian_0: authored defeat lowers the actual native pelvis and articulated surfaces
+PASS: guardian_0: completed collapse retains every original actual body/accessory mesh and skin
+PASS: guardian_0: independently measured complete indexed weighted body and accessories settle above the floor; minimum=0.00299997627735
+PASS: guardian_1: native presentation allocates no obsolete hidden compatibility shader or texture maps
+PASS: guardian_1: complete class-specific rendered source surfaces and accessories plus contact shadow; compatibility proxy stays hidden
+PASS: guardian_1: exact class source mesh inventory, bound material slots and full actual outfit/accessory/weapon triangle budget; visible=29392
+PASS: guardian_1: all four skin influences give the complete rendered figure and accessories real depth
+PASS: guardian_1: original native65 skin and authored walking/death clips drive the visible surfaces
+PASS: guardian_1: actual walking samples the authored clip on the complete visible weighted surfaces
+PASS: guardian_1: stopping retains a fading stride
+PASS: guardian_1: travel recovery returns to 3D guard pose
+PASS: guardian_1: actual attack starts in authored spatial windup
+PASS: guardian_1: committed action reaches contact while retaining all actual authored meshes and skins
+PASS: guardian_1: real warning countdown holds the windup longer than a basic swing
+PASS: guardian_1: actual heavy impact clears warning and displays strike immediately
+PASS: guardian_1: authored defeat lowers the actual native pelvis and articulated surfaces
+PASS: guardian_1: completed collapse retains every original actual body/accessory mesh and skin
+PASS: guardian_1: independently measured complete indexed weighted body and accessories settle above the floor; minimum=0.00300106406212
+PASS: guardian_2: native presentation allocates no obsolete hidden compatibility shader or texture maps
+PASS: guardian_2: complete class-specific rendered source surfaces and accessories plus contact shadow; compatibility proxy stays hidden
+PASS: guardian_2: exact class source mesh inventory, bound material slots and full actual outfit/accessory/weapon triangle budget; visible=29070
+PASS: guardian_2: all four skin influences give the complete rendered figure and accessories real depth
+PASS: guardian_2: original native65 skin and authored walking/death clips drive the visible surfaces
+PASS: guardian_2: actual walking samples the authored clip on the complete visible weighted surfaces
+PASS: guardian_2: stopping retains a fading stride
+PASS: guardian_2: travel recovery returns to 3D guard pose
+PASS: guardian_2: actual attack starts in authored spatial windup
+PASS: guardian_2: committed action reaches contact while retaining all actual authored meshes and skins
+PASS: guardian_2: real warning countdown holds the windup longer than a basic swing
+PASS: guardian_2: actual heavy impact clears warning and displays strike immediately
+PASS: guardian_2: authored defeat lowers the actual native pelvis and articulated surfaces
+PASS: guardian_2: completed collapse retains every original actual body/accessory mesh and skin
+PASS: guardian_2: independently measured complete indexed weighted body and accessories settle above the floor; minimum=0.00300106406212
+PASS: guardian_3: native presentation allocates no obsolete hidden compatibility shader or texture maps
+PASS: guardian_3: complete class-specific rendered source surfaces and accessories plus contact shadow; compatibility proxy stays hidden
+PASS: guardian_3: exact class source mesh inventory, bound material slots and full actual outfit/accessory/weapon triangle budget; visible=22138
+PASS: guardian_3: all four skin influences give the complete rendered figure and accessories real depth
+PASS: guardian_3: original native65 skin and authored walking/death clips drive the visible surfaces
+PASS: guardian_3: actual walking samples the authored clip on the complete visible weighted surfaces
+PASS: guardian_3: stopping retains a fading stride
+PASS: guardian_3: travel recovery returns to 3D guard pose
+PASS: guardian_3: actual attack starts in authored spatial windup
+PASS: guardian_3: committed action reaches contact while retaining all actual authored meshes and skins
+PASS: guardian_3: real warning countdown holds the windup longer than a basic swing
+PASS: guardian_3: actual heavy impact clears warning and displays strike immediately
+PASS: guardian_3: authored defeat lowers the actual native pelvis and articulated surfaces
+PASS: guardian_3: completed collapse retains every original actual body/accessory mesh and skin
+PASS: guardian_3: independently measured complete indexed weighted body and accessories settle above the floor; minimum=0.00300000235438
+PASS: steady 60 FPS keeps full resolution
+PASS: sustained 30 FPS lowers render resolution
+PASS: short recovery does not oscillate quality
+PASS: sustained recovery restores full resolution
+PASS: paused play does not drive adaptive quality
+PASS: isolated long stalls do not drive adaptive quality
+PASS: persistent very slow rendering also lowers quality
+PASS: combat HUD starts with compact panels
+PASS: details expose skills, resources, objective and map
+PASS: opening and closing details preserves combat and the existing camera
+PASS: adaptive resolution changes rendering without advancing combat
+PASS: 854x480: compact HUD actions fit with standard text and 48-unit targets
+PASS: 854x480: expanded HUD actions fit with standard text and 48-unit targets
+PASS: 854x480: compact HUD actions fit with large text and 48-unit targets
+PASS: 854x480: expanded HUD actions fit with large text and 48-unit targets
+PASS: 1200x535: compact HUD actions fit with standard text and 48-unit targets
+PASS: 1200x535: expanded HUD actions fit with standard text and 48-unit targets
+PASS: 1200x535: compact HUD actions fit with large text and 48-unit targets
+PASS: 1200x535: expanded HUD actions fit with large text and 48-unit targets
+PASS: 1040x1080: compact HUD actions fit with standard text and 48-unit targets
+PASS: 1040x1080: expanded HUD actions fit with standard text and 48-unit targets
+PASS: 1040x1080: compact HUD actions fit with large text and 48-unit targets
+PASS: 1040x1080: expanded HUD actions fit with large text and 48-unit targets
+PRESENTATION SMOKE: 188 checks, 0 failures

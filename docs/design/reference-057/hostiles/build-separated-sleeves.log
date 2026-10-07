@@ -1,0 +1,37 @@
+{
+  "outfit": {
+    "bytes": 2383964,
+    "sha256": "7e22257441e5db1eba78390991375956569d433f847b4c9526c2fb1c7025c2b8"
+  },
+  "cloth_triangles": 13460,
+  "weapons": {
+    "hexer": {
+      "bytes": 200360,
+      "triangles": 7874
+    },
+    "bulwark": {
+      "bytes": 32408,
+      "triangles": 988
+    },
+    "elite": {
+      "bytes": 32192,
+      "triangles": 988
+    },
+    "guardian_0": {
+      "bytes": 86728,
+      "triangles": 3368
+    },
+    "guardian_1": {
+      "bytes": 188992,
+      "triangles": 7384
+    },
+    "guardian_2": {
+      "bytes": 181068,
+      "triangles": 7062
+    },
+    "guardian_3": {
+      "bytes": 32460,
+      "triangles": 1012
+    }
+  }
+}

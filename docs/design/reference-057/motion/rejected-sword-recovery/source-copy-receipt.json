@@ -1,0 +1,8 @@
+{
+  "scope": "Original Git index blob matches immutable failed full-round4 source snapshot before minimal recovery ordering fix; read-only Git operation, no Engine run",
+  "sha256": "31da98e76f554dbd671f170d3996e503f7608dd37164a1876e4588ebbd56ef5c",
+  "bytes": 17216,
+  "original_blob_source": "git show :scripts/class_avatar_rig.gd",
+  "round4_receipt": "/workspace/scratch/emberfall-quality-057/integration/final-round4/receipt.json",
+  "round4_passed": false
+}

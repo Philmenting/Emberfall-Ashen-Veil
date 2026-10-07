@@ -1,0 +1,41 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Vowkeeper: class Life and Armor profile matches its design
+PASS: Vowkeeper: comparing gear never mutates equipment
+PASS: Vowkeeper: displayed deltas equal actual equip results
+PASS: Vowkeeper: weapon and primary attribute affect damage
+PASS: Vowkeeper: incomplete assessment cannot present a clear rate
+PASS: Vowkeeper: assessment can yield after a bounded batch
+PASS: Vowkeeper: forecast matches every actual combat pattern
+PASS: Vowkeeper: initial floor is reliable
+PASS: Vowkeeper: forecast does not consume runs or alter a live fight
+PASS: Vowkeeper: completed forecast is idempotent
+PASS: Arcanist: class Life and Armor profile matches its design
+PASS: Arcanist: comparing gear never mutates equipment
+PASS: Arcanist: displayed deltas equal actual equip results
+PASS: Arcanist: weapon and primary attribute affect damage
+PASS: Arcanist: incomplete assessment cannot present a clear rate
+PASS: Arcanist: assessment can yield after a bounded batch
+PASS: Arcanist: forecast matches every actual combat pattern
+PASS: Arcanist: initial floor is reliable
+PASS: Arcanist: forecast does not consume runs or alter a live fight
+PASS: Arcanist: completed forecast is idempotent
+PASS: Ranger: class Life and Armor profile matches its design
+PASS: Ranger: comparing gear never mutates equipment
+PASS: Ranger: displayed deltas equal actual equip results
+PASS: Ranger: weapon and primary attribute affect damage
+PASS: Ranger: incomplete assessment cannot present a clear rate
+PASS: Ranger: assessment can yield after a bounded batch
+PASS: Ranger: forecast matches every actual combat pattern
+PASS: Ranger: initial floor is reliable
+PASS: Ranger: forecast does not consume runs or alter a live fight
+PASS: Ranger: completed forecast is idempotent
+PASS: ability rank increase also reports additional mana cost
+PASS: impossible floor has no estimated victories
+PASS: actual fight length is separate from the minimum AFK cycle
+PASS: non-weapon item rating is not shown as additional attack
+PASS: armor and Vitality comparison shows actual survivability bonuses
+PASS: displayed critical chance respects the actual 100 percent maximum
+PASS: navigating cancels assessments tied to old UI
+PASS: cooperative assessment completes and caches results in the camp
+GEAR / FORECAST SMOKE: 38 checks, 0 failures

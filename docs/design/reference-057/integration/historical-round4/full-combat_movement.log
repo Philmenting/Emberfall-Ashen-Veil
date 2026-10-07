@@ -1,0 +1,11 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Vowkeeper takes seed-varied steps while staying in melee range
+PASS: Arcanist shifts firing positions across run seeds
+PASS: Ranger shifts firing positions across run seeds
+PASS: every step in the reposition path stays inside the chamber
+PASS: repositioning preserves melee and ranged attack distances
+PASS: the same class and run seed reproduce the same step and RNG state
+PASS: saved movement resumes with the same destination and combat state
+PASS: a ready basic attack fires without waiting for a pending reposition
+COMBAT MOVEMENT SMOKE: 8 checks, 0 failures

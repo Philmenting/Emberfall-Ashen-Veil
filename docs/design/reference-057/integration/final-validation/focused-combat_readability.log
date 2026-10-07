@@ -1,0 +1,60 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Vowkeeper: repeated HUD reads preserve watched/skip outcome, elapsed time and RNG
+PASS: Vowkeeper: actual casts and cooldowns are visible
+PASS: Vowkeeper: no READY indication when Mana is insufficient
+PASS: Vowkeeper: committed signature stays CASTING after its Mana was spent
+PASS: Vowkeeper: old checkpoint shows only its actual signature
+PASS: Arcanist: repeated HUD reads preserve watched/skip outcome, elapsed time and RNG
+PASS: Arcanist: actual casts and cooldowns are visible
+PASS: Arcanist: no READY indication when Mana is insufficient
+PASS: Arcanist: committed signature stays CASTING after its Mana was spent
+PASS: Arcanist: old checkpoint shows only its actual signature
+PASS: Ranger: repeated HUD reads preserve watched/skip outcome, elapsed time and RNG
+PASS: Ranger: actual casts and cooldowns are visible
+PASS: Ranger: no READY indication when Mana is insufficient
+PASS: Ranger: committed signature stays CASTING after its Mana was spent
+PASS: Ranger: old checkpoint shows only its actual signature
+PASS: skill tap pauses combat before opening its explanation
+PASS: reading leaves the checkpoint, enemies and camera scene intact
+PASS: selected equipped skill exposes its real trigger and effect
+PASS: save during reading preserves the previously active run intent
+PASS: switching inspected skills never overwrites resume intent
+PASS: nested options returns to the paused reading view
+PASS: layout rebuild preserves the open reading view and resume intent
+PASS: Back restores an active run exactly once
+PASS: manually paused run stays paused in saved checkpoint while reading
+PASS: closing Details never starts a manually paused run
+PASS: Resume explicitly closes the reading view and continues combat
+PASS: Mana Ward clearly shows when its reserved Mana cannot absorb damage
+PASS: protection display uses actual remaining Guard duration
+PASS: room progress includes living reinforcements that have not arrived
+PASS: 2424x1080 normal: skill labels and touch targets fit without overlapping
+PASS: 2424x1080: camera reserves the actual readout height (0.781 < 0.796)
+PASS: 2424x1080: reading sheet leaves skill and resume controls exposed
+PASS: 2424x1080 large: skill labels and touch targets fit without overlapping
+PASS: 2424x1080: camera reserves the actual readout height (0.776 < 0.791)
+PASS: 2424x1080: reading sheet leaves skill and resume controls exposed
+PASS: 1040x1080 normal: skill labels and touch targets fit without overlapping
+PASS: 1040x1080: camera reserves the actual readout height (0.882 < 0.890)
+PASS: 1040x1080: reading sheet leaves skill and resume controls exposed
+PASS: 1040x1080 large: skill labels and touch targets fit without overlapping
+PASS: 1040x1080: camera reserves the actual readout height (0.879 < 0.887)
+PASS: 1040x1080: reading sheet leaves skill and resume controls exposed
+PASS: 854x480 normal: skill labels and touch targets fit without overlapping
+PASS: 854x480: camera reserves the actual readout height (0.781 < 0.796)
+PASS: 854x480: reading sheet leaves skill and resume controls exposed
+PASS: 854x480 large: skill labels and touch targets fit without overlapping
+PASS: 854x480: camera reserves the actual readout height (0.776 < 0.791)
+PASS: 854x480: reading sheet leaves skill and resume controls exposed
+PASS: cold restart during a temporary reading pause restores the same active checkpoint
+PASS: cold restart preserves a manual pause even when Details was open
+PASS: active before reading: warm and cold AFK resume preserve the same full checkpoint
+PASS: active before reading: AFK follows the underlying play intent
+PASS: paused before reading: warm and cold AFK resume preserve the same full checkpoint
+PASS: paused before reading: AFK follows the underlying play intent
+PASS: Life falls immediately while the loss remains briefly visible
+PASS: damage trace settles progressively instead of flashing the screen
+PASS: healing clears the old damage trace immediately
+PASS: Reduced Motion makes health changes immediate without a moving trace
+COMBAT READABILITY SMOKE: 57 checks, 0 failures

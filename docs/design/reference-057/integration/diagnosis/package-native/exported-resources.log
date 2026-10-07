@@ -1,0 +1,6 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCRIPT ERROR: Parse Error: Preload file "res://tests/source_avatar_skin.gd" does not exist.
+          at: GDScript::reload (/workspace/Emberfall-Ashen-Veil/tests/source_avatar_export_smoke.gd:6)
+ERROR: Failed to load script "/workspace/Emberfall-Ashen-Veil/tests/source_avatar_export_smoke.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)

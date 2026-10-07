@@ -1,0 +1,1746 @@
+WorkerThreadPool: 5 threads, 1 max low-priority.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+SDL: Init OK!
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+Loading resource: /workspace/Emberfall-Ashen-Veil/tests/source_avatar_export_smoke.gd remapped: /workspace/Emberfall-Ashen-Veil/tests/source_avatar_export_smoke.gd
+Loading resource: res://assets/models/hostiles057/male-clothing-native65.glb remapped: res://assets/models/hostiles057/male-clothing-native65.glb
+Loading resource: res://.godot/imported/male-clothing-native65.glb-4bc33eab05e40be4347fd3591044ec78.scn remapped: res://.godot/imported/male-clothing-native65.glb-4bc33eab05e40be4347fd3591044ec78.scn
+Loading resource: res://assets/models/hostiles057/male-clothing-native65_T_Ranger_BaseColor.png remapped: res://assets/models/hostiles057/male-clothing-native65_T_Ranger_BaseColor.png
+Loading resource: res://.godot/imported/male-clothing-native65_T_Ranger_BaseColor.png-12a0111b640b393580c0c74dd0541db9.ctex remapped: res://.godot/imported/male-clothing-native65_T_Ranger_BaseColor.png-12a0111b640b393580c0c74dd0541db9.ctex
+Completed load for: 'res://assets/models/hostiles057/male-clothing-native65_T_Ranger_BaseColor.png' remapped 'res://assets/models/hostiles057/male-clothing-native65_T_Ranger_BaseColor.png' at thread -1
+Loading resource: res://assets/models/hostiles057/male-clothing-native65_T_Ranger_ORM.png remapped: res://assets/models/hostiles057/male-clothing-native65_T_Ranger_ORM.png
+Loading resource: res://.godot/imported/male-clothing-native65_T_Ranger_ORM.png-3d18487aa536380997251158d5263026.ctex remapped: res://.godot/imported/male-clothing-native65_T_Ranger_ORM.png-3d18487aa536380997251158d5263026.ctex
+Completed load for: 'res://assets/models/hostiles057/male-clothing-native65_T_Ranger_ORM.png' remapped 'res://assets/models/hostiles057/male-clothing-native65_T_Ranger_ORM.png' at thread -1
+Loading resource: res://assets/models/hostiles057/male-clothing-native65_T_Ranger_Normal.png remapped: res://assets/models/hostiles057/male-clothing-native65_T_Ranger_Normal.png
+Loading resource: res://.godot/imported/male-clothing-native65_T_Ranger_Normal.png-103f88c7a73e2d8b4ea25a441278fb0c.ctex remapped: res://.godot/imported/male-clothing-native65_T_Ranger_Normal.png-103f88c7a73e2d8b4ea25a441278fb0c.ctex
+Completed load for: 'res://assets/models/hostiles057/male-clothing-native65_T_Ranger_Normal.png' remapped 'res://assets/models/hostiles057/male-clothing-native65_T_Ranger_Normal.png' at thread -1
+Completed load for: 'res://assets/models/hostiles057/male-clothing-native65.glb' remapped 'res://assets/models/hostiles057/male-clothing-native65.glb' at thread -1
+Loading resource: res://assets/models/nyra052/arcanist.glb remapped: res://assets/models/nyra052/arcanist.glb
+Loading resource: res://.godot/imported/arcanist.glb-3c1ca8c50ced7b1bb080bf14de9adaed.scn remapped: res://.godot/imported/arcanist.glb-3c1ca8c50ced7b1bb080bf14de9adaed.scn
+Loading resource: res://assets/models/nyra052/arcanist_T_Hair_2_BaseColor.png remapped: res://assets/models/nyra052/arcanist_T_Hair_2_BaseColor.png
+Loading resource: res://.godot/imported/arcanist_T_Hair_2_BaseColor.png-491283e19764193163ba098b4d521c9f.ctex remapped: res://.godot/imported/arcanist_T_Hair_2_BaseColor.png-491283e19764193163ba098b4d521c9f.ctex
+Completed load for: 'res://assets/models/nyra052/arcanist_T_Hair_2_BaseColor.png' remapped 'res://assets/models/nyra052/arcanist_T_Hair_2_BaseColor.png' at thread -1
+Loading resource: res://assets/models/nyra052/arcanist_T_Hair_2_Normal.png remapped: res://assets/models/nyra052/arcanist_T_Hair_2_Normal.png
+Loading resource: res://.godot/imported/arcanist_T_Hair_2_Normal.png-9ae3f019e71cf1589212a91a398a11ab.ctex remapped: res://.godot/imported/arcanist_T_Hair_2_Normal.png-9ae3f019e71cf1589212a91a398a11ab.ctex
+Completed load for: 'res://assets/models/nyra052/arcanist_T_Hair_2_Normal.png' remapped 'res://assets/models/nyra052/arcanist_T_Hair_2_Normal.png' at thread -1
+Loading resource: res://assets/models/nyra052/arcanist_T_Eye_Brown.png remapped: res://assets/models/nyra052/arcanist_T_Eye_Brown.png
+Loading resource: res://.godot/imported/arcanist_T_Eye_Brown.png-3a92388c855c4da3ed5ebb1b643499f8.ctex remapped: res://.godot/imported/arcanist_T_Eye_Brown.png-3a92388c855c4da3ed5ebb1b643499f8.ctex
+Completed load for: 'res://assets/models/nyra052/arcanist_T_Eye_Brown.png' remapped 'res://assets/models/nyra052/arcanist_T_Eye_Brown.png' at thread -1
+Loading resource: res://assets/models/nyra052/arcanist_T_Eye_Normal.png remapped: res://assets/models/nyra052/arcanist_T_Eye_Normal.png
+Loading resource: res://.godot/imported/arcanist_T_Eye_Normal.png-d0e0e49e164be7d7911a341e15c97457.ctex remapped: res://.godot/imported/arcanist_T_Eye_Normal.png-d0e0e49e164be7d7911a341e15c97457.ctex
+Completed load for: 'res://assets/models/nyra052/arcanist_T_Eye_Normal.png' remapped 'res://assets/models/nyra052/arcanist_T_Eye_Normal.png' at thread -1
+Loading resource: res://assets/models/nyra052/arcanist_T_Superhero_Female_Dark_BaseColor.png remapped: res://assets/models/nyra052/arcanist_T_Superhero_Female_Dark_BaseColor.png
+Loading resource: res://.godot/imported/arcanist_T_Superhero_Female_Dark_BaseColor.png-eba1e7513f09f85bed5afd85ad1e21bf.ctex remapped: res://.godot/imported/arcanist_T_Superhero_Female_Dark_BaseColor.png-eba1e7513f09f85bed5afd85ad1e21bf.ctex
+Completed load for: 'res://assets/models/nyra052/arcanist_T_Superhero_Female_Dark_BaseColor.png' remapped 'res://assets/models/nyra052/arcanist_T_Superhero_Female_Dark_BaseColor.png' at thread -1
+Loading resource: res://assets/models/nyra052/arcanist_T_Superhero_Female_Roughness.png remapped: res://assets/models/nyra052/arcanist_T_Superhero_Female_Roughness.png
+Loading resource: res://.godot/imported/arcanist_T_Superhero_Female_Roughness.png-ae8ddc75d3e365a9d4e9f502d16746dc.ctex remapped: res://.godot/imported/arcanist_T_Superhero_Female_Roughness.png-ae8ddc75d3e365a9d4e9f502d16746dc.ctex
+Completed load for: 'res://assets/models/nyra052/arcanist_T_Superhero_Female_Roughness.png' remapped 'res://assets/models/nyra052/arcanist_T_Superhero_Female_Roughness.png' at thread -1
+Loading resource: res://assets/models/nyra052/arcanist_T_Superhero_Female_Normal.png remapped: res://assets/models/nyra052/arcanist_T_Superhero_Female_Normal.png
+Loading resource: res://.godot/imported/arcanist_T_Superhero_Female_Normal.png-f21166227b7849545871db8bf89ff960.ctex remapped: res://.godot/imported/arcanist_T_Superhero_Female_Normal.png-f21166227b7849545871db8bf89ff960.ctex
+Completed load for: 'res://assets/models/nyra052/arcanist_T_Superhero_Female_Normal.png' remapped 'res://assets/models/nyra052/arcanist_T_Superhero_Female_Normal.png' at thread -1
+Loading resource: res://assets/models/nyra052/arcanist_T_Peasant_BaseColor.png remapped: res://assets/models/nyra052/arcanist_T_Peasant_BaseColor.png
+Loading resource: res://.godot/imported/arcanist_T_Peasant_BaseColor.png-6b09cfec62fbd623789b2cbd35745052.ctex remapped: res://.godot/imported/arcanist_T_Peasant_BaseColor.png-6b09cfec62fbd623789b2cbd35745052.ctex
+Completed load for: 'res://assets/models/nyra052/arcanist_T_Peasant_BaseColor.png' remapped 'res://assets/models/nyra052/arcanist_T_Peasant_BaseColor.png' at thread -1
+Loading resource: res://assets/models/nyra052/arcanist_T_Peasant_ORM.png remapped: res://assets/models/nyra052/arcanist_T_Peasant_ORM.png
+Loading resource: res://.godot/imported/arcanist_T_Peasant_ORM.png-823dd445cb815571be80b548d7b1bbed.ctex remapped: res://.godot/imported/arcanist_T_Peasant_ORM.png-823dd445cb815571be80b548d7b1bbed.ctex
+Completed load for: 'res://assets/models/nyra052/arcanist_T_Peasant_ORM.png' remapped 'res://assets/models/nyra052/arcanist_T_Peasant_ORM.png' at thread -1
+Loading resource: res://assets/models/nyra052/arcanist_T_Peasant_Normal.png remapped: res://assets/models/nyra052/arcanist_T_Peasant_Normal.png
+Loading resource: res://.godot/imported/arcanist_T_Peasant_Normal.png-61c608e65908e28cafb164dc6f8aec0f.ctex remapped: res://.godot/imported/arcanist_T_Peasant_Normal.png-61c608e65908e28cafb164dc6f8aec0f.ctex
+Completed load for: 'res://assets/models/nyra052/arcanist_T_Peasant_Normal.png' remapped 'res://assets/models/nyra052/arcanist_T_Peasant_Normal.png' at thread -1
+Loading resource: res://assets/models/nyra052/arcanist_T_Hair_2_BaseColor_11.png remapped: res://assets/models/nyra052/arcanist_T_Hair_2_BaseColor_11.png
+Loading resource: res://.godot/imported/arcanist_T_Hair_2_BaseColor_11.png-526fe5432cb9f52b3893ed62755d71e0.ctex remapped: res://.godot/imported/arcanist_T_Hair_2_BaseColor_11.png-526fe5432cb9f52b3893ed62755d71e0.ctex
+Completed load for: 'res://assets/models/nyra052/arcanist_T_Hair_2_BaseColor_11.png' remapped 'res://assets/models/nyra052/arcanist_T_Hair_2_BaseColor_11.png' at thread -1
+Loading resource: res://assets/models/nyra052/arcanist_T_Hair_2_Normal_10.png remapped: res://assets/models/nyra052/arcanist_T_Hair_2_Normal_10.png
+Loading resource: res://.godot/imported/arcanist_T_Hair_2_Normal_10.png-1d503becafcd8baaa9d264bfdce54d26.ctex remapped: res://.godot/imported/arcanist_T_Hair_2_Normal_10.png-1d503becafcd8baaa9d264bfdce54d26.ctex
+Completed load for: 'res://assets/models/nyra052/arcanist_T_Hair_2_Normal_10.png' remapped 'res://assets/models/nyra052/arcanist_T_Hair_2_Normal_10.png' at thread -1
+Completed load for: 'res://assets/models/nyra052/arcanist.glb' remapped 'res://assets/models/nyra052/arcanist.glb' at thread -1
+Loading resource: res://assets/models/nyra052/staff-grip053.glb remapped: res://assets/models/nyra052/staff-grip053.glb
+Loading resource: res://.godot/imported/staff-grip053.glb-538fafc9510c5e213bbca84ab940ad6c.scn remapped: res://.godot/imported/staff-grip053.glb-538fafc9510c5e213bbca84ab940ad6c.scn
+Completed load for: 'res://assets/models/nyra052/staff-grip053.glb' remapped 'res://assets/models/nyra052/staff-grip053.glb' at thread -1
+Loading resource: res://assets/models/classes055/ranger-native65.glb remapped: res://assets/models/classes055/ranger-native65.glb
+Loading resource: res://.godot/imported/ranger-native65.glb-490a9a1d119fb29561568ed604ef6b9b.scn remapped: res://.godot/imported/ranger-native65.glb-490a9a1d119fb29561568ed604ef6b9b.scn
+Loading resource: res://assets/models/classes055/ranger-native65_T_Ranger_BaseColor.png remapped: res://assets/models/classes055/ranger-native65_T_Ranger_BaseColor.png
+Loading resource: res://.godot/imported/ranger-native65_T_Ranger_BaseColor.png-ff67b1e975b2afb02237cd2a6bd56758.ctex remapped: res://.godot/imported/ranger-native65_T_Ranger_BaseColor.png-ff67b1e975b2afb02237cd2a6bd56758.ctex
+Completed load for: 'res://assets/models/classes055/ranger-native65_T_Ranger_BaseColor.png' remapped 'res://assets/models/classes055/ranger-native65_T_Ranger_BaseColor.png' at thread -1
+Loading resource: res://assets/models/classes055/ranger-native65_T_Ranger_ORM.png remapped: res://assets/models/classes055/ranger-native65_T_Ranger_ORM.png
+Loading resource: res://.godot/imported/ranger-native65_T_Ranger_ORM.png-fcf5a8da72a6bc3ef0996a0e7d537cbb.ctex remapped: res://.godot/imported/ranger-native65_T_Ranger_ORM.png-fcf5a8da72a6bc3ef0996a0e7d537cbb.ctex
+Completed load for: 'res://assets/models/classes055/ranger-native65_T_Ranger_ORM.png' remapped 'res://assets/models/classes055/ranger-native65_T_Ranger_ORM.png' at thread -1
+Loading resource: res://assets/models/classes055/ranger-native65_T_Ranger_Normal.png remapped: res://assets/models/classes055/ranger-native65_T_Ranger_Normal.png
+Loading resource: res://.godot/imported/ranger-native65_T_Ranger_Normal.png-00c1fb347948f3be6090a6f6350dc28c.ctex remapped: res://.godot/imported/ranger-native65_T_Ranger_Normal.png-00c1fb347948f3be6090a6f6350dc28c.ctex
+Completed load for: 'res://assets/models/classes055/ranger-native65_T_Ranger_Normal.png' remapped 'res://assets/models/classes055/ranger-native65_T_Ranger_Normal.png' at thread -1
+Loading resource: res://assets/models/classes055/ranger-native65_T_Regular_Female_Dark_BaseColor.png remapped: res://assets/models/classes055/ranger-native65_T_Regular_Female_Dark_BaseColor.png
+Loading resource: res://.godot/imported/ranger-native65_T_Regular_Female_Dark_BaseColor.png-00a086a6e3cfcee3029995975694db80.ctex remapped: res://.godot/imported/ranger-native65_T_Regular_Female_Dark_BaseColor.png-00a086a6e3cfcee3029995975694db80.ctex
+Completed load for: 'res://assets/models/classes055/ranger-native65_T_Regular_Female_Dark_BaseColor.png' remapped 'res://assets/models/classes055/ranger-native65_T_Regular_Female_Dark_BaseColor.png' at thread -1
+Loading resource: res://assets/models/classes055/ranger-native65_T_Regular_Female_Roughness.png remapped: res://assets/models/classes055/ranger-native65_T_Regular_Female_Roughness.png
+Loading resource: res://.godot/imported/ranger-native65_T_Regular_Female_Roughness.png-d50a7ea1ea0dc2069bf0c9f7224f0008.ctex remapped: res://.godot/imported/ranger-native65_T_Regular_Female_Roughness.png-d50a7ea1ea0dc2069bf0c9f7224f0008.ctex
+Completed load for: 'res://assets/models/classes055/ranger-native65_T_Regular_Female_Roughness.png' remapped 'res://assets/models/classes055/ranger-native65_T_Regular_Female_Roughness.png' at thread -1
+Loading resource: res://assets/models/classes055/ranger-native65_T_Regular_Female_Normal.png remapped: res://assets/models/classes055/ranger-native65_T_Regular_Female_Normal.png
+Loading resource: res://.godot/imported/ranger-native65_T_Regular_Female_Normal.png-1997afbb1dae25209f91890382330d17.ctex remapped: res://.godot/imported/ranger-native65_T_Regular_Female_Normal.png-1997afbb1dae25209f91890382330d17.ctex
+Completed load for: 'res://assets/models/classes055/ranger-native65_T_Regular_Female_Normal.png' remapped 'res://assets/models/classes055/ranger-native65_T_Regular_Female_Normal.png' at thread -1
+Completed load for: 'res://assets/models/classes055/ranger-native65.glb' remapped 'res://assets/models/classes055/ranger-native65.glb' at thread -1
+Loading resource: res://assets/models/vowkeeper.glb remapped: res://assets/models/vowkeeper.glb
+Loading resource: res://.godot/imported/vowkeeper.glb-3d6ebad1e9dfb61f4bd9576d3bff2025.scn remapped: res://.godot/imported/vowkeeper.glb-3d6ebad1e9dfb61f4bd9576d3bff2025.scn
+Completed load for: 'res://assets/models/vowkeeper.glb' remapped 'res://assets/models/vowkeeper.glb' at thread -1
+Loading resource: res://assets/models/ranger.glb remapped: res://assets/models/ranger.glb
+Loading resource: res://.godot/imported/ranger.glb-2cd432b83dd188329004b7e562197ce7.scn remapped: res://.godot/imported/ranger.glb-2cd432b83dd188329004b7e562197ce7.scn
+Completed load for: 'res://assets/models/ranger.glb' remapped 'res://assets/models/ranger.glb' at thread -1
+Loading resource: res://assets/models/nyra054/nyra-attire054.glb remapped: res://assets/models/nyra054/nyra-attire054.glb
+Loading resource: res://.godot/imported/nyra-attire054.glb-759cfa99cd6f687501ba1ecfc94c2b72.scn remapped: res://.godot/imported/nyra-attire054.glb-759cfa99cd6f687501ba1ecfc94c2b72.scn
+Completed load for: 'res://assets/models/nyra054/nyra-attire054.glb' remapped 'res://assets/models/nyra054/nyra-attire054.glb' at thread -1
+Loading resource: res://assets/models/raider056/raider-native65.glb remapped: res://assets/models/raider056/raider-native65.glb
+Loading resource: res://.godot/imported/raider-native65.glb-b0d2c1c799914186d1dedd5700f1982e.scn remapped: res://.godot/imported/raider-native65.glb-b0d2c1c799914186d1dedd5700f1982e.scn
+Loading resource: res://assets/models/raider056/raider-native65_T_Peasant_BaseColor.png remapped: res://assets/models/raider056/raider-native65_T_Peasant_BaseColor.png
+Loading resource: res://.godot/imported/raider-native65_T_Peasant_BaseColor.png-531aedec174b8ff864334b6f0a805196.ctex remapped: res://.godot/imported/raider-native65_T_Peasant_BaseColor.png-531aedec174b8ff864334b6f0a805196.ctex
+Completed load for: 'res://assets/models/raider056/raider-native65_T_Peasant_BaseColor.png' remapped 'res://assets/models/raider056/raider-native65_T_Peasant_BaseColor.png' at thread -1
+Loading resource: res://assets/models/raider056/raider-native65_T_Peasant_ORM.png remapped: res://assets/models/raider056/raider-native65_T_Peasant_ORM.png
+Loading resource: res://.godot/imported/raider-native65_T_Peasant_ORM.png-35a6390bfea006daf25fb4cd3251d5f5.ctex remapped: res://.godot/imported/raider-native65_T_Peasant_ORM.png-35a6390bfea006daf25fb4cd3251d5f5.ctex
+Completed load for: 'res://assets/models/raider056/raider-native65_T_Peasant_ORM.png' remapped 'res://assets/models/raider056/raider-native65_T_Peasant_ORM.png' at thread -1
+Loading resource: res://assets/models/raider056/raider-native65_T_Peasant_Normal.png remapped: res://assets/models/raider056/raider-native65_T_Peasant_Normal.png
+Loading resource: res://.godot/imported/raider-native65_T_Peasant_Normal.png-8df19bc83e27462b2bdb2122fceb5be4.ctex remapped: res://.godot/imported/raider-native65_T_Peasant_Normal.png-8df19bc83e27462b2bdb2122fceb5be4.ctex
+Completed load for: 'res://assets/models/raider056/raider-native65_T_Peasant_Normal.png' remapped 'res://assets/models/raider056/raider-native65_T_Peasant_Normal.png' at thread -1
+Loading resource: res://assets/models/raider056/raider-native65_T_Regular_Male_Dark_BaseColor.png remapped: res://assets/models/raider056/raider-native65_T_Regular_Male_Dark_BaseColor.png
+Loading resource: res://.godot/imported/raider-native65_T_Regular_Male_Dark_BaseColor.png-446fd27a479a3f1ce18f3821a044e29e.ctex remapped: res://.godot/imported/raider-native65_T_Regular_Male_Dark_BaseColor.png-446fd27a479a3f1ce18f3821a044e29e.ctex
+Completed load for: 'res://assets/models/raider056/raider-native65_T_Regular_Male_Dark_BaseColor.png' remapped 'res://assets/models/raider056/raider-native65_T_Regular_Male_Dark_BaseColor.png' at thread -1
+Loading resource: res://assets/models/raider056/raider-native65_T_Regular_Male_Roughness.png remapped: res://assets/models/raider056/raider-native65_T_Regular_Male_Roughness.png
+Loading resource: res://.godot/imported/raider-native65_T_Regular_Male_Roughness.png-13a6897309ac1868fd653a67856e79c1.ctex remapped: res://.godot/imported/raider-native65_T_Regular_Male_Roughness.png-13a6897309ac1868fd653a67856e79c1.ctex
+Completed load for: 'res://assets/models/raider056/raider-native65_T_Regular_Male_Roughness.png' remapped 'res://assets/models/raider056/raider-native65_T_Regular_Male_Roughness.png' at thread -1
+Loading resource: res://assets/models/raider056/raider-native65_T_Regular_Male_Normal.png remapped: res://assets/models/raider056/raider-native65_T_Regular_Male_Normal.png
+Loading resource: res://.godot/imported/raider-native65_T_Regular_Male_Normal.png-af7cc78725a32ee872f66afa48b57e71.ctex remapped: res://.godot/imported/raider-native65_T_Regular_Male_Normal.png-af7cc78725a32ee872f66afa48b57e71.ctex
+Completed load for: 'res://assets/models/raider056/raider-native65_T_Regular_Male_Normal.png' remapped 'res://assets/models/raider056/raider-native65_T_Regular_Male_Normal.png' at thread -1
+Loading resource: res://assets/models/raider056/raider-native65_T_Hair_1_BaseColor.png remapped: res://assets/models/raider056/raider-native65_T_Hair_1_BaseColor.png
+Loading resource: res://.godot/imported/raider-native65_T_Hair_1_BaseColor.png-078b95edb09a0872decbdf5cd83615f8.ctex remapped: res://.godot/imported/raider-native65_T_Hair_1_BaseColor.png-078b95edb09a0872decbdf5cd83615f8.ctex
+Completed load for: 'res://assets/models/raider056/raider-native65_T_Hair_1_BaseColor.png' remapped 'res://assets/models/raider056/raider-native65_T_Hair_1_BaseColor.png' at thread -1
+Loading resource: res://assets/models/raider056/raider-native65_T_Hair_1_Normal.png remapped: res://assets/models/raider056/raider-native65_T_Hair_1_Normal.png
+Loading resource: res://.godot/imported/raider-native65_T_Hair_1_Normal.png-852bc6c2932ca3d001ef283dedeac73f.ctex remapped: res://.godot/imported/raider-native65_T_Hair_1_Normal.png-852bc6c2932ca3d001ef283dedeac73f.ctex
+Completed load for: 'res://assets/models/raider056/raider-native65_T_Hair_1_Normal.png' remapped 'res://assets/models/raider056/raider-native65_T_Hair_1_Normal.png' at thread -1
+Loading resource: res://assets/models/raider056/raider-native65_T_Eye_Brown.png remapped: res://assets/models/raider056/raider-native65_T_Eye_Brown.png
+Loading resource: res://.godot/imported/raider-native65_T_Eye_Brown.png-f270c61d828fb9176817c62cf8e77885.ctex remapped: res://.godot/imported/raider-native65_T_Eye_Brown.png-f270c61d828fb9176817c62cf8e77885.ctex
+Completed load for: 'res://assets/models/raider056/raider-native65_T_Eye_Brown.png' remapped 'res://assets/models/raider056/raider-native65_T_Eye_Brown.png' at thread -1
+Loading resource: res://assets/models/raider056/raider-native65_T_Eye_Normal.png remapped: res://assets/models/raider056/raider-native65_T_Eye_Normal.png
+Loading resource: res://.godot/imported/raider-native65_T_Eye_Normal.png-3d7f2319b50202c5a478669916324a52.ctex remapped: res://.godot/imported/raider-native65_T_Eye_Normal.png-3d7f2319b50202c5a478669916324a52.ctex
+Completed load for: 'res://assets/models/raider056/raider-native65_T_Eye_Normal.png' remapped 'res://assets/models/raider056/raider-native65_T_Eye_Normal.png' at thread -1
+Loading resource: res://assets/models/raider056/raider-native65_T_Superhero_Male_Dark.png remapped: res://assets/models/raider056/raider-native65_T_Superhero_Male_Dark.png
+Loading resource: res://.godot/imported/raider-native65_T_Superhero_Male_Dark.png-f3f0b4188e0227bbd5bf29dc0dd7d052.ctex remapped: res://.godot/imported/raider-native65_T_Superhero_Male_Dark.png-f3f0b4188e0227bbd5bf29dc0dd7d052.ctex
+Completed load for: 'res://assets/models/raider056/raider-native65_T_Superhero_Male_Dark.png' remapped 'res://assets/models/raider056/raider-native65_T_Superhero_Male_Dark.png' at thread -1
+Loading resource: res://assets/models/raider056/raider-native65_T_Superhero_Male_Roughness.png remapped: res://assets/models/raider056/raider-native65_T_Superhero_Male_Roughness.png
+Loading resource: res://.godot/imported/raider-native65_T_Superhero_Male_Roughness.png-972e754c15bd3cf6dbb037e30cd4daef.ctex remapped: res://.godot/imported/raider-native65_T_Superhero_Male_Roughness.png-972e754c15bd3cf6dbb037e30cd4daef.ctex
+Completed load for: 'res://assets/models/raider056/raider-native65_T_Superhero_Male_Roughness.png' remapped 'res://assets/models/raider056/raider-native65_T_Superhero_Male_Roughness.png' at thread -1
+Loading resource: res://assets/models/raider056/raider-native65_T_Superhero_Male_Normal.png remapped: res://assets/models/raider056/raider-native65_T_Superhero_Male_Normal.png
+Loading resource: res://.godot/imported/raider-native65_T_Superhero_Male_Normal.png-485e2c88b22b35138334ed8732147e4a.ctex remapped: res://.godot/imported/raider-native65_T_Superhero_Male_Normal.png-485e2c88b22b35138334ed8732147e4a.ctex
+Completed load for: 'res://assets/models/raider056/raider-native65_T_Superhero_Male_Normal.png' remapped 'res://assets/models/raider056/raider-native65_T_Superhero_Male_Normal.png' at thread -1
+Completed load for: 'res://assets/models/raider056/raider-native65.glb' remapped 'res://assets/models/raider056/raider-native65.glb' at thread -1
+Loading resource: res://assets/models/raider056/axe-fitted.glb remapped: res://assets/models/raider056/axe-fitted.glb
+Loading resource: res://.godot/imported/axe-fitted.glb-b932ec18b219b7de686af92b1de2b5f5.scn remapped: res://.godot/imported/axe-fitted.glb-b932ec18b219b7de686af92b1de2b5f5.scn
+Completed load for: 'res://assets/models/raider056/axe-fitted.glb' remapped 'res://assets/models/raider056/axe-fitted.glb' at thread -1
+Loading resource: res://assets/models/hostiles057/hexer-fitted.glb remapped: res://assets/models/hostiles057/hexer-fitted.glb
+Loading resource: res://.godot/imported/hexer-fitted.glb-0e873e2b1ab7b4bf11e403ca136acd44.scn remapped: res://.godot/imported/hexer-fitted.glb-0e873e2b1ab7b4bf11e403ca136acd44.scn
+Completed load for: 'res://assets/models/hostiles057/hexer-fitted.glb' remapped 'res://assets/models/hostiles057/hexer-fitted.glb' at thread -1
+Loading resource: res://assets/models/hostiles057/bulwark-fitted.glb remapped: res://assets/models/hostiles057/bulwark-fitted.glb
+Loading resource: res://.godot/imported/bulwark-fitted.glb-bc4d07ef55262003b7c8f04bada870e4.scn remapped: res://.godot/imported/bulwark-fitted.glb-bc4d07ef55262003b7c8f04bada870e4.scn
+Completed load for: 'res://assets/models/hostiles057/bulwark-fitted.glb' remapped 'res://assets/models/hostiles057/bulwark-fitted.glb' at thread -1
+Loading resource: res://assets/models/hostiles057/elite-fitted.glb remapped: res://assets/models/hostiles057/elite-fitted.glb
+Loading resource: res://.godot/imported/elite-fitted.glb-264dc0eba991e3013159da63f4675e95.scn remapped: res://.godot/imported/elite-fitted.glb-264dc0eba991e3013159da63f4675e95.scn
+Completed load for: 'res://assets/models/hostiles057/elite-fitted.glb' remapped 'res://assets/models/hostiles057/elite-fitted.glb' at thread -1
+Loading resource: res://assets/models/hostiles057/guardian_0-fitted.glb remapped: res://assets/models/hostiles057/guardian_0-fitted.glb
+Loading resource: res://.godot/imported/guardian_0-fitted.glb-25426893a2255d04d253cc9bd82f2ae6.scn remapped: res://.godot/imported/guardian_0-fitted.glb-25426893a2255d04d253cc9bd82f2ae6.scn
+Completed load for: 'res://assets/models/hostiles057/guardian_0-fitted.glb' remapped 'res://assets/models/hostiles057/guardian_0-fitted.glb' at thread -1
+Loading resource: res://assets/models/hostiles057/guardian_1-fitted.glb remapped: res://assets/models/hostiles057/guardian_1-fitted.glb
+Loading resource: res://.godot/imported/guardian_1-fitted.glb-1921d13939516ef686b15728004e543a.scn remapped: res://.godot/imported/guardian_1-fitted.glb-1921d13939516ef686b15728004e543a.scn
+Completed load for: 'res://assets/models/hostiles057/guardian_1-fitted.glb' remapped 'res://assets/models/hostiles057/guardian_1-fitted.glb' at thread -1
+Loading resource: res://assets/models/hostiles057/guardian_2-fitted.glb remapped: res://assets/models/hostiles057/guardian_2-fitted.glb
+Loading resource: res://.godot/imported/guardian_2-fitted.glb-721b4c835963c05984259aedcde364bf.scn remapped: res://.godot/imported/guardian_2-fitted.glb-721b4c835963c05984259aedcde364bf.scn
+Completed load for: 'res://assets/models/hostiles057/guardian_2-fitted.glb' remapped 'res://assets/models/hostiles057/guardian_2-fitted.glb' at thread -1
+Loading resource: res://assets/models/hostiles057/guardian_3-fitted.glb remapped: res://assets/models/hostiles057/guardian_3-fitted.glb
+Loading resource: res://.godot/imported/guardian_3-fitted.glb-a2936dd7a8a74948466f851db1c74fe5.scn remapped: res://.godot/imported/guardian_3-fitted.glb-a2936dd7a8a74948466f851db1c74fe5.scn
+Completed load for: 'res://assets/models/hostiles057/guardian_3-fitted.glb' remapped 'res://assets/models/hostiles057/guardian_3-fitted.glb' at thread -1
+Completed load for: '/workspace/Emberfall-Ashen-Veil/tests/source_avatar_export_smoke.gd' remapped '/workspace/Emberfall-Ashen-Veil/tests/source_avatar_export_smoke.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loading resource: res://addons/com.heroiclabs.nakama/Nakama.gdc remapped: res://addons/com.heroiclabs.nakama/Nakama.gdc
+Completed load for: 'res://addons/com.heroiclabs.nakama/Nakama.gd' remapped 'res://addons/com.heroiclabs.nakama/Nakama.gdc' at thread -1
+Loading resource: res://scripts/cloud_save.gdc remapped: res://scripts/cloud_save.gdc
+Completed load for: 'res://scripts/cloud_save.gd' remapped 'res://scripts/cloud_save.gdc' at thread -1
+Loading resource: res://scripts/fellowship_service.gdc remapped: res://scripts/fellowship_service.gdc
+Completed load for: 'res://scripts/fellowship_service.gd' remapped 'res://scripts/fellowship_service.gdc' at thread -1
+Loading resource: res://scripts/progression_service.gdc remapped: res://scripts/progression_service.gdc
+Completed load for: 'res://scripts/progression_service.gd' remapped 'res://scripts/progression_service.gdc' at thread -1
+Loaded system CA certificates
+EXPORTED AVATAR SMOKE: 60 checks, 0 failures
+WARNING: 333 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+ERROR: 47 RID allocations of type 'N13RendererDummy15MaterialStorage13DummyMaterialE' were leaked at exit.
+ERROR: 4 RID allocations of type 'N13RendererDummy15MaterialStorage11DummyShaderE' were leaked at exit.
+ERROR: 207 RID allocations of type 'N13RendererDummy9DummyMeshE' were leaked at exit.
+ERROR: 18 RID allocations of type 'PN13RendererDummy14TextureStorage12DummyTextureE' were leaked at exit.
+Leaked instance: GDScriptNativeClass:9223372041502064896 - Reference count: 1
+Leaked instance: GDScriptNativeClass:9223372041871163670 - Reference count: 1
+Leaked instance: GDScriptNativeClass:9223372041971826972 - Reference count: 2
+Leaked instance: GDScriptNativeClass:9223372044622627258 - Reference count: 1
+Leaked instance: GDScriptNativeClass:9223372048699490989 - Reference count: 2
+Leaked instance: GDScriptNativeClass:9223372049488020188 - Reference count: 2
+Leaked instance: GDScriptNativeClass:9223372052608582550 - Reference count: 5
+Leaked instance: GDScriptNativeClass:9223372053984314344 - Reference count: 1
+Leaked instance: GDScriptNativeClass:9223372054621848590 - Reference count: 1
+Leaked instance: GDScript:9223372063010457022 - Reference count: 2
+Leaked instance: CompressedTexture2D:9223372066265236962 - Reference count: 1
+Leaked instance: Skin:9223372072422475235 - Reference count: 1
+Leaked instance: Image:9223372066550449636 - Reference count: 1
+Leaked instance: CompressedTexture2D:9223372066718221797 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372072472806886 - Reference count: 1
+Leaked instance: ArrayMesh:9223372072489584103 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372072506361320 - Reference count: 4
+Leaked instance: ArrayMesh:9223372072523138537 - Reference count: 1
+Leaked instance: ArrayMesh:9223372072539915754 - Reference count: 1
+Leaked instance: ArrayMesh:9223372072556692971 - Reference count: 1
+Leaked instance: ArrayMesh:9223372072573470188 - Reference count: 1
+Leaked instance: CompressedTexture2D:9223372068479829485 - Reference count: 1
+Leaked instance: Image:9223372068312057326 - Reference count: 1
+Leaked instance: CompressedTexture2D:9223372067372533232 - Reference count: 1
+Leaked instance: Image:9223372067204761073 - Reference count: 1
+Leaked instance: CompressedTexture2D:9223372067926181363 - Reference count: 1
+Leaked instance: Image:9223372067758409204 - Reference count: 1
+Leaked instance: CompressedTexture2D:9223372068932814326 - Reference count: 2
+Leaked instance: Image:9223372068765042167 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372072590247417 - Reference count: 1
+Leaked instance: ArrayMesh:9223372072607024634 - Reference count: 1
+Leaked instance: Animation:9223372072623801851 - Reference count: 1
+Leaked instance: CompressedTexture2D:9223372069385799164 - Reference count: 1
+Leaked instance: Image:9223372069218027005 - Reference count: 1
+Leaked instance: CompressedTexture2D:9223372070040110591 - Reference count: 1
+Leaked instance: Image:9223372069872338432 - Reference count: 1
+Leaked instance: CompressedTexture2D:9223372070493095426 - Reference count: 2
+Leaked instance: Image:9223372070325323267 - Reference count: 1
+Leaked instance: CompressedTexture2D:9223372070946080261 - Reference count: 1
+Leaked instance: Image:9223372070778308102 - Reference count: 1
+Leaked instance: CompressedTexture2D:9223372071399065096 - Reference count: 1
+Leaked instance: Image:9223372071231292937 - Reference count: 1
+Leaked instance: CompressedTexture2D:9223372071852049931 - Reference count: 1
+Leaked instance: Image:9223372071684277772 - Reference count: 1
+Leaked instance: ArrayMesh:9223372072405698062 - Reference count: 1
+Leaked instance: Image:9223372072338589199 - Reference count: 1
+Leaked instance: GDScript:9223372073882093072 - Reference count: 1
+Leaked instance: ArrayMesh:9223372072456029713 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372072439252498 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372072388920851 - Reference count: 1
+Leaked instance: Animation:9223372072640579092 - Reference count: 1
+Leaked instance: Animation:9223372072657356309 - Reference count: 1
+Leaked instance: Animation:9223372072674133526 - Reference count: 1
+Leaked instance: Animation:9223372072690910743 - Reference count: 1
+Leaked instance: Animation:9223372072707687960 - Reference count: 1
+Leaked instance: Animation:9223372072724465177 - Reference count: 1
+Leaked instance: Animation:9223372072741242394 - Reference count: 1
+Leaked instance: Animation:9223372072758019611 - Reference count: 1
+Leaked instance: Animation:9223372072774796828 - Reference count: 1
+Leaked instance: Animation:9223372072791574045 - Reference count: 1
+Leaked instance: AnimationLibrary:9223372072808351262 - Reference count: 1
+Leaked instance: PackedScene:9223372072825128479 - Reference count: 1
+Leaked instance: SceneState:9223372072841905696 - Reference count: 1
+Leaked instance: GDScript:9223372077858293289 - Reference count: 2
+Leaked instance: ArrayMesh:9223372078495827499 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372078479050284 - Reference count: 3
+Leaked instance: CompressedTexture2D:9223372074620290605 - Reference count: 1
+Leaked instance: Skin:9223372077338199598 - Reference count: 1
+Leaked instance: Image:9223372074888726063 - Reference count: 1
+Leaked instance: CompressedTexture2D:9223372075056498224 - Reference count: 2
+Leaked instance: ArrayMesh:9223372077388531249 - Reference count: 1
+Leaked instance: ArrayMesh:9223372077405308466 - Reference count: 1
+Leaked instance: ArrayMesh:9223372077422085683 - Reference count: 1
+Leaked instance: ArrayMesh:9223372077438862900 - Reference count: 1
+Leaked instance: ArrayMesh:9223372077455640117 - Reference count: 1
+Leaked instance: ArrayMesh:9223372077472417334 - Reference count: 1
+Leaked instance: ArrayMesh:9223372077489194551 - Reference count: 1
+Leaked instance: Animation:9223372077505971768 - Reference count: 1
+Leaked instance: Animation:9223372077522748985 - Reference count: 1
+Leaked instance: CompressedTexture2D:9223372075492705850 - Reference count: 1
+Leaked instance: Image:9223372075324933691 - Reference count: 1
+Leaked instance: CompressedTexture2D:9223372075928913469 - Reference count: 1
+Leaked instance: Image:9223372075761141310 - Reference count: 1
+Leaked instance: CompressedTexture2D:9223372076365121088 - Reference count: 2
+Leaked instance: Image:9223372076197348929 - Reference count: 1
+Leaked instance: CompressedTexture2D:9223372076801328707 - Reference count: 1
+Leaked instance: Image:9223372076633556548 - Reference count: 1
+Leaked instance: GDScript:9223372082723685957 - Reference count: 1
+Leaked instance: ArrayMesh:9223372077321422406 - Reference count: 1
+Leaked instance: Image:9223372077254313543 - Reference count: 1
+Leaked instance: GDScript:9223372078143505992 - Reference count: 7
+Leaked instance: ArrayMesh:9223372077371754057 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372077354976842 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372077304645195 - Reference count: 9
+Leaked instance: Animation:9223372077539526220 - Reference count: 1
+Leaked instance: Animation:9223372077556303437 - Reference count: 1
+Leaked instance: Animation:9223372077573080654 - Reference count: 1
+Leaked instance: Animation:9223372077589857871 - Reference count: 1
+Leaked instance: AnimationLibrary:9223372077606635088 - Reference count: 1
+Leaked instance: PackedScene:9223372077623412305 - Reference count: 2
+Leaked instance: SceneState:9223372077640189522 - Reference count: 1
+Leaked instance: ArrayMesh:9223372078512604755 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372078529381972 - Reference count: 2
+Leaked instance: ArrayMesh:9223372078546159189 - Reference count: 1
+Leaked instance: ArrayMesh:9223372078562936406 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372078579713623 - Reference count: 1
+Leaked instance: ArrayMesh:9223372078596490840 - Reference count: 1
+Leaked instance: ArrayMesh:9223372078613268057 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372078630045274 - Reference count: 7
+Leaked instance: ArrayMesh:9223372078646822491 - Reference count: 1
+Leaked instance: ArrayMesh:9223372078663599708 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372078680376925 - Reference count: 2
+Leaked instance: ArrayMesh:9223372078697154142 - Reference count: 1
+Leaked instance: ArrayMesh:9223372078713931359 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372078730708576 - Reference count: 2
+Leaked instance: ArrayMesh:9223372078747485793 - Reference count: 1
+Leaked instance: ArrayMesh:9223372078764263010 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372078781040227 - Reference count: 5
+Leaked instance: ArrayMesh:9223372078797817444 - Reference count: 1
+Leaked instance: ArrayMesh:9223372078814594661 - Reference count: 1
+Leaked instance: ArrayMesh:9223372078831371878 - Reference count: 1
+Leaked instance: ArrayMesh:9223372078848149095 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372078864926312 - Reference count: 2
+Leaked instance: ArrayMesh:9223372078881703529 - Reference count: 1
+Leaked instance: ArrayMesh:9223372078898480746 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372078915257963 - Reference count: 6
+Leaked instance: ArrayMesh:9223372078932035180 - Reference count: 1
+Leaked instance: ArrayMesh:9223372078948812397 - Reference count: 1
+Leaked instance: ArrayMesh:9223372078965589614 - Reference count: 1
+Leaked instance: ArrayMesh:9223372078982366831 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372078999144048 - Reference count: 2
+Leaked instance: ArrayMesh:9223372079015921265 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079032698482 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079049475699 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079066252916 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079083030133 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079099807350 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079116584567 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079133361784 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079150139001 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079166916218 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079183693435 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079200470652 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079217247869 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079234025086 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079250802303 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079267579520 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079284356737 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079301133954 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079317911171 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079334688388 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079351465605 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079368242822 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079385020039 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079401797256 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372079418574473 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079435351690 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079452128907 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079468906124 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079485683341 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079502460558 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079519237775 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372079536014992 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079552792209 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079569569426 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372079586346643 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079603123860 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079619901077 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372079636678294 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079653455511 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079670232728 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372079687009945 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079703787162 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079720564379 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372079737341596 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079754118813 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079770896030 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372079787673247 - Reference count: 3
+Leaked instance: ArrayMesh:9223372079804450464 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079821227681 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372079838004898 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079854782115 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079871559332 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372079888336549 - Reference count: 3
+Leaked instance: ArrayMesh:9223372079905113766 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079921890983 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079938668200 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079955445417 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079972222634 - Reference count: 1
+Leaked instance: ArrayMesh:9223372079988999851 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080005777068 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080022554285 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080039331502 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080056108719 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080072885936 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080089663153 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080106440370 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080123217587 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080139994804 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080156772021 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080173549238 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080190326455 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080207103672 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080223880889 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080240658106 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080257435323 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372080274212540 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080290989757 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080307766974 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080324544191 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080341321408 - Reference count: 1
+Leaked instance: PackedScene:9223372080358098625 - Reference count: 2
+Leaked instance: SceneState:9223372080374875842 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372080643311299 - Reference count: 3
+Leaked instance: ArrayMesh:9223372080660088516 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080676865733 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372080693642950 - Reference count: 3
+Leaked instance: ArrayMesh:9223372080710420167 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080727197384 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372080743974601 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080760751818 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080777529035 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372080794306252 - Reference count: 7
+Leaked instance: ArrayMesh:9223372080811083469 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080827860686 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372080844637903 - Reference count: 6
+Leaked instance: ArrayMesh:9223372080861415120 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080878192337 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372080894969554 - Reference count: 2
+Leaked instance: ArrayMesh:9223372080911746771 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080928523988 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080945301205 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080962078422 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080978855639 - Reference count: 1
+Leaked instance: ArrayMesh:9223372080995632856 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372081012410073 - Reference count: 2
+Leaked instance: ArrayMesh:9223372081029187290 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081045964507 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372081062741724 - Reference count: 6
+Leaked instance: ArrayMesh:9223372081079518941 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081096296158 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081113073375 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081129850592 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372081146627809 - Reference count: 2
+Leaked instance: ArrayMesh:9223372081163405026 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081180182243 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081196959460 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081213736677 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081230513894 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081247291111 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081264068328 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081280845545 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081297622762 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081314399979 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081331177196 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081347954413 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081364731630 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081381508847 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081398286064 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081415063281 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081431840498 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081448617715 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081465394932 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081482172149 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081498949366 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081515726583 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081532503800 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081549281017 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372081566058234 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081582835451 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081599612668 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081616389885 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081633167102 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081649944319 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081666721536 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372081683498753 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081700275970 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081717053187 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372081733830404 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081750607621 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081767384838 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372081784162055 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081800939272 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081817716489 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372081834493706 - Reference count: 1
+Leaked instance: ArrayERROR: 302 resources still in use at exit.
+   at: clear (core/io/resource.cpp:817)
+Mesh:9223372081851270923 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081868048140 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372081884825357 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081901602574 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081918379791 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372081935157008 - Reference count: 3
+Leaked instance: ArrayMesh:9223372081951934225 - Reference count: 1
+Leaked instance: ArrayMesh:9223372081968711442 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372081985488659 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082002265876 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082019043093 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372082035820310 - Reference count: 3
+Leaked instance: ArrayMesh:9223372082052597527 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082069374744 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082086151961 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082102929178 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082119706395 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082136483612 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082153260829 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082170038046 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082186815263 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082203592480 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082220369697 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082237146914 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082253924131 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082270701348 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082287478565 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082304255782 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082321032999 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082337810216 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372082354587433 - Reference count: 3
+Leaked instance: ArrayMesh:9223372082371364650 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082388141867 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082404919084 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082421696301 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082438473518 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082455250735 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082472027952 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082488805169 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082505582386 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082522359603 - Reference count: 1
+Leaked instance: StandardMaterial3D:9223372082539136820 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082555914037 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082572691254 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082589468471 - Reference count: 1
+Leaked instance: ArrayMesh:9223372082606245688 - Reference count: 1
+Leaked instance: PackedScene:9223372082623022905 - Reference count: 2
+Leaked instance: SceneState:9223372082639800122 - Reference count: 1
+Hint: Leaked instances typically happen when nodes are removed from the scene tree (with `remove_child()`) but not freed (with `free()` or `queue_free()`).
+Resource still in use: res://assets/models/nyra052/arcanist_T_Hair_2_BaseColor.png (CompressedTexture2D)
+Resource still in use: res://assets/models/nyra052/arcanist_T_Hair_2_Normal.png (CompressedTexture2D)
+Resource still in use: res://assets/models/nyra052/arcanist_T_Eye_Brown.png (CompressedTexture2D)
+Resource still in use: res://assets/models/nyra052/arcanist_T_Eye_Normal.png (CompressedTexture2D)
+Resource still in use: res://assets/models/nyra052/arcanist_T_Superhero_Female_Dark_BaseColor.png (CompressedTexture2D)
+Resource still in use: res://assets/models/nyra052/arcanist_T_Superhero_Female_Roughness.png (CompressedTexture2D)
+Resource still in use: res://assets/models/nyra052/arcanist_T_Superhero_Female_Normal.png (CompressedTexture2D)
+Resource still in use: res://assets/models/nyra052/arcanist_T_Peasant_BaseColor.png (CompressedTexture2D)
+Resource still in use: res://assets/models/nyra052/arcanist_T_Peasant_ORM.png (CompressedTexture2D)
+Resource still in use: res://assets/models/nyra052/arcanist_T_Peasant_Normal.png (CompressedTexture2D)
+Resource still in use: res://assets/models/nyra052/arcanist_T_Hair_2_BaseColor_11.png (CompressedTexture2D)
+Resource still in use: res://assets/models/nyra052/arcanist_T_Hair_2_Normal_10.png (CompressedTexture2D)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::StandardMaterial3D_xmlsv (StandardMaterial3D)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::ArrayMesh_usgvk (ArrayMesh)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::Skin_nr843 (Skin)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::StandardMaterial3D_vvb5b (StandardMaterial3D)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::ArrayMesh_q8qgc (ArrayMesh)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::StandardMaterial3D_clv4u (StandardMaterial3D)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::ArrayMesh_cjwig (ArrayMesh)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::StandardMaterial3D_5a5pd (StandardMaterial3D)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::ArrayMesh_oc62i (ArrayMesh)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::ArrayMesh_dtdsi (ArrayMesh)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::ArrayMesh_4l8bl (ArrayMesh)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::ArrayMesh_f7hxb (ArrayMesh)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::StandardMaterial3D_cybn0 (StandardMaterial3D)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::ArrayMesh_necxn (ArrayMesh)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::Animation_rh1sg (Animation)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::Animation_cnn65 (Animation)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::Animation_tbv22 (Animation)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::Animation_57jkl (Animation)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::Animation_p2sqe (Animation)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::Animation_iria4 (Animation)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::Animation_nhgw7 (Animation)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::Animation_ywc0e (Animation)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::Animation_0lprf (Animation)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::Animation_lvpej (Animation)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::Animation_66h41 (Animation)
+Resource still in use: res://assets/models/nyra052/arcanist.glb::AnimationLibrary_iau31 (AnimationLibrary)
+Resource still in use: res://assets/models/nyra052/arcanist.glb (PackedScene)
+Resource still in use: res://assets/models/classes055/ranger-native65_T_Ranger_BaseColor.png (CompressedTexture2D)
+Resource still in use: res://assets/models/classes055/ranger-native65_T_Ranger_ORM.png (CompressedTexture2D)
+Resource still in use: res://assets/models/classes055/ranger-native65_T_Ranger_Normal.png (CompressedTexture2D)
+Resource still in use: res://assets/models/classes055/ranger-native65_T_Regular_Female_Dark_BaseColor.png (CompressedTexture2D)
+Resource still in use: res://assets/models/classes055/ranger-native65_T_Regular_Female_Roughness.png (CompressedTexture2D)
+Resource still in use: res://assets/models/classes055/ranger-native65_T_Regular_Female_Normal.png (CompressedTexture2D)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::StandardMaterial3D_pl6rt (StandardMaterial3D)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::ArrayMesh_fdtdx (ArrayMesh)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::Skin_5xaie (Skin)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::StandardMaterial3D_0f47r (StandardMaterial3D)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::ArrayMesh_kogrv (ArrayMesh)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::ArrayMesh_xil0p (ArrayMesh)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::ArrayMesh_mrs61 (ArrayMesh)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::ArrayMesh_8mh4f (ArrayMesh)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::ArrayMesh_gww1p (ArrayMesh)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::ArrayMesh_x6n0q (ArrayMesh)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::ArrayMesh_ggr6q (ArrayMesh)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::ArrayMesh_85xnn (ArrayMesh)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::Animation_7e8ur (Animation)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::Animation_f4tjg (Animation)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::Animation_pubd5 (Animation)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::Animation_8w3b1 (Animation)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::Animation_ls5qu (Animation)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::Animation_pxgqs (Animation)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb::AnimationLibrary_0tug2 (AnimationLibrary)
+Resource still in use: res://assets/models/classes055/ranger-native65.glb (PackedScene)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_r0t03 (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_avrwg (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_6hj7n (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_10ew4 (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_2ipm6 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_v3v48 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_qcvlo (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_4ok77 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_wv1si (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_e2tgh (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_fwg5n (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_k5gu1 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_sg408 (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_c2f50 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_mgnw1 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_vgrsw (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_26ybe (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_k8te1 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_jm8l7 (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_kah8r (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_q21qg (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_uhvms (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_et0fg (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_rtfhc (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_rnhpy (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_vh0pp (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_m80pa (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_rrejs (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_rg1mq (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_owkmn (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_f85u4 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_btm4a (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_gqv51 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_wm5f3 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_m6rnu (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_lxwq0 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_1i05u (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_gaq18 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_g2wlj (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_bny5b (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_5lqat (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_v0h11 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_yveal (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_aay30 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_a3sdi (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_q0tjg (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_firkx (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_01jee (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_te24q (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_hj7rh (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_qrpnw (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_leta3 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_krr6t (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_s0rug (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_osdli (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_3ewln (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_s3ioe (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_77l5y (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_gie24 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_j5d0p (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_t3ylv (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_pqt4f (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_0gxhr (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_nmbxv (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_oughk (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_usjgn (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_lpx88 (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_0oiri (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_ufk5c (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_dhon3 (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_lxt7p (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_lai3o (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_r3sag (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_ojcn2 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_0uhai (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_6g3fm (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_agant (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_ywfkt (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_qoswd (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_oxxg1 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_ejcgo (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_rdwxr (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_cwn0q (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_lc1xj (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_t4va0 (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_mclew (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_wdug8 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_3dg2q (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_lt4d0 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_w8grg (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_fh2bk (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_mtasw (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_r8oqr (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_mqfph (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_4do1s (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_7idts (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_gtquk (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_tbc1w (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_sxgl6 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_etiyo (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_udxjj (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_4eao1 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_qnf8a (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_fdm8p (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_rb4js (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_2maln (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_3lieg (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::StandardMaterial3D_y4iuu (StandardMaterial3D)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_vwpp5 (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_lv71f (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_mg4nq (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb::ArrayMesh_w6cah (ArrayMesh)
+Resource still in use: res://assets/models/vowkeeper.glb (PackedScene)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_he23i (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_j7tjc (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_8mvry (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_auudj (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_w525g (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_y1eas (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_t27sb (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_iiaxc (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_l0xba (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_cf70l (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_25jdp (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_04r47 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_44plg (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_ua2tv (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_pqwoq (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_y14ib (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_pvrvg (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_wwptp (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_uba4d (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_br2uk (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_ev2pb (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_gucmf (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_ivugl (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_gkb8q (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_jdq0t (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_v2jmx (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_xofp5 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_8h0cy (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_27kcf (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_t0q56 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_qsl2g (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_wo2qx (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_8ek8a (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_of2c8 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_5q0nn (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_n1225 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_4sd5f (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_0e753 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_tob4g (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_akfy8 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_xb68p (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_5kb4d (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_dcypj (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_8ejbb (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_h8yyq (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_a7fmx (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_6glbu (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_dcidf (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_chloj (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_pe6wb (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_dnta5 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_26kga (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_eg0q5 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_jsbr0 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_7qjy0 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_4fedw (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_vn3kq (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_kkwvt (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_34gk3 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_tfhp3 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_2l1x4 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_wur16 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_e1341 (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_tdboq (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_t881i (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_ki8r6 (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_7m6qe (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_0o1aq (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_sd3qi (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_875xh (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_a4dhx (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_6lg3d (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_jjh7t (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_a5ceb (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_7jq03 (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_6xt5v (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_2caht (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_q23d0 (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_iagga (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_0vtuh (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_mgrkj (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_3a848 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_4r7qv (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_8edsm (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_nkn4n (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_6ua7c (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_qwfw7 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_pw0eb (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_dn7gx (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_uqhh7 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_er4kb (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_hojlc (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_g18nm (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_0y224 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_5rlug (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_bjct4 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_ghh6x (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_g1j66 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_sqpxb (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_mrcpn (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_gm0ls (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_8xfxv (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_nx6bg (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_08p0q (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_2lbky (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_l1nse (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_m3wwl (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_byjgp (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_ap4ls (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_egun7 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_b7yy0 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_0ejxv (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_nodid (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::StandardMaterial3D_ylqs5 (StandardMaterial3D)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_7uibt (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_o0ium (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_yjal4 (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb::ArrayMesh_lvhxk (ArrayMesh)
+Resource still in use: res://assets/models/ranger.glb (PackedScene)
+Resource still in use: res://scripts/source_avatar_combat.gd (GDScript)
+Resource still in use: res://scripts/source_avatar_rig.gd (GDScript)
+Resource still in use: res://scripts/class_avatar_style.gd (GDScript)
+Resource still in use: res://scripts/class_avatar_pose.gd (GDScript)
+Resource still in use: res://scripts/class_avatar_rig.gd (GDScript)
+Orphan StringName: bones/64/name (static: 0, total: 2)
+Orphan StringName: bones/18/position (static: 0, total: 2)
+Orphan StringName: armor_cache (static: 0, total: 1)
+Orphan StringName: bones/47/name (static: 0, total: 2)
+Orphan StringName: bones/24/enabled (static: 0, total: 2)
+Orphan StringName: Cape__wine (static: 0, total: 1)
+Orphan StringName: bones/13/scale (static: 0, total: 2)
+Orphan StringName: bones/8/position (static: 0, total: 2)
+Orphan StringName: bones/49/parent (static: 0, total: 2)
+Orphan StringName: bones/60/position (static: 0, total: 2)
+Orphan StringName: SWORD (static: 0, total: 2)
+Orphan StringName: SOURCE_LOAD (static: 0, total: 1)
+Orphan StringName: _build_weapon (static: 0, total: 4)
+Orphan StringName: bones/25/position (static: 0, total: 2)
+Orphan StringName: bones/35/enabled (static: 0, total: 2)
+Orphan StringName: source_sample (static: 0, total: 1)
+Orphan StringName: Nyra_Female_Peasant_Legs (static: 0, total: 1)
+Orphan StringName: bones/32/position (static: 0, total: 2)
+Orphan StringName: bones/43/parent (static: 0, total: 2)
+Orphan StringName: bones/17/parent (static: 0, total: 2)
+Orphan StringName: bones/46/enabled (static: 0, total: 2)
+Orphan StringName: lerp (static: 0, total: 2)
+Orphan StringName: build_ok (static: 0, total: 4)
+Orphan StringName: bones/28/scale (static: 0, total: 2)
+Orphan StringName: Body__hair (static: 0, total: 2)
+Orphan StringName: ArrayMesh (static: 0, total: 3)
+Orphan StringName: bones/41/scale (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:ball_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:ball_r (static: 0, total: 11)
+Orphan StringName: bones/54/rest (static: 0, total: 2)
+Orphan StringName: bones/57/enabled (static: 0, total: 2)
+Orphan StringName: bones/37/rest (static: 0, total: 2)
+Orphan StringName: bones/11/parent (static: 0, total: 2)
+Orphan StringName: bones/11/position (static: 0, total: 2)
+Orphan StringName: @static_initializer (static: 1, total: 2)
+Orphan StringName: bones/1/position (static: 0, total: 2)
+Orphan StringName: _frame (static: 0, total: 2)
+Orphan StringName: ArmR__sage (static: 0, total: 1)
+Orphan StringName: bones/39/rotation (static: 0, total: 2)
+Orphan StringName: bones/56/scale (static: 0, total: 2)
+Orphan StringName: grip_center (static: 0, total: 4)
+Orphan StringName: blend_from (static: 0, total: 1)
+Orphan StringName: HairR__hair_shadow (static: 0, total: 2)
+Orphan StringName: capture_pose (static: 0, total: 1)
+Orphan StringName: bones/7/name (static: 0, total: 2)
+Orphan StringName: SOURCE_FOLLOW (static: 0, total: 1)
+Orphan StringName: skeleton (static: 0, total: 6)
+Orphan StringName: bones/46/rotation (static: 0, total: 2)
+Orphan StringName: name (static: 0, total: 2)
+Orphan StringName: KneeR__leather (static: 0, total: 2)
+Orphan StringName: Sword_Block (static: 0, total: 2)
+Orphan StringName: bones/41/name (static: 0, total: 2)
+Orphan StringName: bones/24/name (static: 0, total: 2)
+Orphan StringName: Body__sage (static: 0, total: 1)
+Orphan StringName: bones/53/rotation (static: 0, total: 2)
+Orphan StringName: bones/18/rotation (static: 0, total: 2)
+Orphan StringName: has_animation (static: 0, total: 1)
+Orphan StringName: pinky_01_l (static: 0, total: 36)
+Orphan StringName: pinky_01_r (static: 0, total: 36)
+Orphan StringName: bones/8/rotation (static: 0, total: 2)
+Orphan StringName: bones/60/rotation (static: 0, total: 2)
+Orphan StringName: bones/25/rotation (static: 0, total: 2)
+Orphan StringName: index_04_leaf_l (static: 0, total: 2)
+Orphan StringName: index_04_leaf_r (static: 0, total: 36)
+Orphan StringName: attack_time (static: 0, total: 1)
+Orphan StringName: bones/62/parent (static: 0, total: 2)
+Orphan StringName: bones/36/parent (static: 0, total: 2)
+Orphan StringName: bones/32/rotation (static: 0, total: 2)
+Orphan StringName: Female_Ranger_Legs (static: 0, total: 1)
+Orphan StringName: bones/24/scale (static: 0, total: 2)
+Orphan StringName: bones/31/rest (static: 0, total: 2)
+Orphan StringName: bones/14/rest (static: 0, total: 2)
+Orphan StringName: pinky_02_l (static: 0, total: 36)
+Orphan StringName: pinky_02_r (static: 0, total: 36)
+Orphan StringName: bones/56/name (static: 0, total: 2)
+Orphan StringName: bones/30/parent (static: 0, total: 2)
+Orphan StringName: last_time (static: 0, total: 4)
+Orphan StringName: bones/39/name (static: 0, total: 2)
+Orphan StringName: bones/3/enabled (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:calf_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:calf_r (static: 0, total: 17)
+Orphan StringName: bones/11/rotation (static: 0, total: 2)
+Orphan StringName: bones/39/scale (static: 0, total: 2)
+Orphan StringName: attire_motion (static: 0, total: 2)
+Orphan StringName: bones/52/scale (static: 0, total: 2)
+Orphan StringName: bones/1/rotation (static: 0, total: 2)
+Orphan StringName: bones/1/name (static: 0, total: 2)
+Orphan StringName: pinky_03_l (static: 0, total: 36)
+Orphan StringName: pinky_03_r (static: 0, total: 36)
+Orphan StringName: bones/6/parent (static: 0, total: 2)
+Orphan StringName: bones/63/rest (static: 0, total: 2)
+Orphan StringName: bones/46/rest (static: 0, total: 2)
+Orphan StringName: has_appearance (static: 0, total: 4)
+Orphan StringName: bones/29/rest (static: 0, total: 2)
+Orphan StringName: bones/0/parent (static: 0, total: 2)
+Orphan StringName: bones/11/enabled (static: 0, total: 2)
+Orphan StringName: res://scripts/class_avatar_rig.gd (static: 0, total: 15)
+Orphan StringName: bones/22/enabled (static: 0, total: 2)
+Orphan StringName: _main_bracer_panels (static: 0, total: 1)
+Orphan StringName: vowkeeper (static: 0, total: 1)
+Orphan StringName: bones/55/parent (static: 0, total: 2)
+Orphan StringName: bones/29/parent (static: 0, total: 2)
+Orphan StringName: bones/20/scale (static: 0, total: 2)
+Orphan StringName: LegL__sage (static: 0, total: 1)
+Orphan StringName: arcanist (static: 0, total: 1)
+Orphan StringName: bones/48/position (static: 0, total: 2)
+Orphan StringName: bones/33/enabled (static: 0, total: 2)
+Orphan StringName: clampf (static: 0, total: 1)
+Orphan StringName: bones/50/name (static: 0, total: 2)
+Orphan StringName: bones (static: 0, total: 2)
+Orphan StringName: bones/33/name (static: 0, total: 2)
+Orphan StringName: bones/16/name (static: 0, total: 2)
+Orphan StringName: bones/55/position (static: 0, total: 2)
+Orphan StringName: bones/23/parent (static: 0, total: 2)
+Orphan StringName: class_death_floor (static: 0, total: 4)
+Orphan StringName: weapon_basis (static: 0, total: 4)
+Orphan StringName: bones/44/enabled (static: 0, total: 2)
+Orphan StringName: NockedArrow (static: 0, total: 1)
+Orphan StringName: Body__lip_shadow (static: 0, total: 2)
+Orphan StringName: bones/62/position (static: 0, total: 2)
+Orphan StringName: "scripts/class_avatar_rig.gd" (static: 0, total: 1)
+Orphan StringName: bones/35/scale (static: 0, total: 2)
+Orphan StringName: bones/27/position (static: 0, total: 2)
+Orphan StringName: _plant_feet (static: 0, total: 2)
+Orphan StringName: bones/55/enabled (static: 0, total: 2)
+Orphan StringName: bones/34/position (static: 0, total: 2)
+Orphan StringName: bones/6/rest (static: 0, total: 2)
+Orphan StringName: bones/40/rest (static: 0, total: 2)
+Orphan StringName: "scripts/source_avatar_combat.gd" (static: 0, total: 1)
+Orphan StringName: bones/23/rest (static: 0, total: 2)
+Orphan StringName: release_time (static: 0, total: 1)
+Orphan StringName: bones/41/position (static: 0, total: 2)
+Orphan StringName: _capture_source_pose (static: 0, total: 2)
+Orphan StringName: bones/8/scale (static: 0, total: 2)
+Orphan StringName: _rotate (static: 0, total: 1)
+Orphan StringName: ring_04_leaf_l (static: 0, total: 2)
+Orphan StringName: ring_04_leaf_r (static: 0, total: 36)
+Orphan StringName: bones/48/name (static: 0, total: 2)
+Orphan StringName: _apply_weapon_fingers (static: 0, total: 5)
+Orphan StringName: bones/63/scale (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:middle_04_leaf_r (static: 0, total: 17)
+Orphan StringName: bones/13/position (static: 0, total: 2)
+Orphan StringName: surface_get_material (static: 0, total: 1)
+Orphan StringName: configure_rendering (static: 0, total: 1)
+Orphan StringName: bow_arrow (static: 0, total: 3)
+Orphan StringName: bones/3/position (static: 0, total: 2)
+Orphan StringName: bones/20/position (static: 0, total: 2)
+Orphan StringName: bones/48/parent (static: 0, total: 2)
+Orphan StringName: bones/10/name (static: 0, total: 2)
+Orphan StringName: _path (static: 0, total: 1)
+Orphan StringName: bones/48/rotation (static: 0, total: 2)
+Orphan StringName: bones/55/rest (static: 0, total: 2)
+Orphan StringName: bones/42/parent (static: 0, total: 2)
+Orphan StringName: bones/38/rest (static: 0, total: 2)
+Orphan StringName: recoil_duration (static: 0, total: 1)
+Orphan StringName: bones/16/parent (static: 0, total: 2)
+Orphan StringName: get_animation (static: 0, total: 1)
+Orphan StringName: head_anchor (static: 0, total: 1)
+Orphan StringName: bones/55/rotation (static: 0, total: 2)
+Orphan StringName: Arrow__linen (static: 0, total: 1)
+Orphan StringName: bones/18/scale (static: 0, total: 2)
+Orphan StringName: Female_Ranger_Head_Hood (static: 0, total: 1)
+Orphan StringName: bones/31/scale (static: 0, total: 2)
+Orphan StringName: bones/62/rotation (static: 0, total: 2)
+Orphan StringName: motion_owns (static: 0, total: 1)
+Orphan StringName: bones/10/parent (static: 0, total: 2)
+Orphan StringName: bones/27/rotation (static: 0, total: 2)
+Orphan StringName: bones/0/rest (static: 0, total: 2)
+Orphan StringName: bones/18/enabled (static: 0, total: 2)
+Orphan StringName: Nyra_Female_Peasant_Arms (static: 0, total: 1)
+Orphan StringName: bones/1/enabled (static: 0, total: 2)
+Orphan StringName: weights (static: 0, total: 2)
+Orphan StringName: STAFF_GRIP (static: 0, total: 1)
+Orphan StringName: bones/8/name (static: 0, total: 2)
+Orphan StringName: bones/34/rotation (static: 0, total: 2)
+Orphan StringName: trim_suffix (static: 0, total: 1)
+Orphan StringName: bones/42/name (static: 0, total: 2)
+Orphan StringName: pinky_04_leaf_l (static: 0, total: 2)
+Orphan StringName: bones/4/scale (static: 0, total: 2)
+Orphan StringName: pinky_04_leaf_r (static: 0, total: 36)
+Orphan StringName: bones/29/enabled (static: 0, total: 2)
+Orphan StringName: bones/25/name (static: 0, total: 2)
+Orphan StringName: Eyebrows (static: 0, total: 1)
+Orphan StringName: bones/46/scale (static: 0, total: 2)
+Orphan StringName: get_bone_global_rest (static: 0, total: 1)
+Orphan StringName: add_surface_from_arrays (static: 0, total: 1)
+Orphan StringName: bones/41/rotation (static: 0, total: 2)
+Orphan StringName: class_pose_state (static: 0, total: 3)
+Orphan StringName: Body__skin (static: 0, total: 2)
+Orphan StringName: HairR__hair (static: 0, total: 2)
+Orphan StringName: bones/13/rotation (static: 0, total: 2)
+Orphan StringName: bones/3/rotation (static: 0, total: 2)
+Orphan StringName: sword_idle_pose (static: 0, total: 3)
+Orphan StringName: bones/20/rotation (static: 0, total: 2)
+Orphan StringName: last_sample (static: 0, total: 4)
+Orphan StringName: smoothstep (static: 0, total: 2)
+Orphan StringName: rig_ref (static: 0, total: 2)
+Orphan StringName: bounds (static: 0, total: 4)
+Orphan StringName: bones/32/rest (static: 0, total: 2)
+Orphan StringName: bones/15/rest (static: 0, total: 2)
+Orphan StringName: bones/20/enabled (static: 0, total: 2)
+Orphan StringName: bones/61/parent (static: 0, total: 2)
+Orphan StringName: bones/35/parent (static: 0, total: 2)
+Orphan StringName: bones/57/name (static: 0, total: 2)
+Orphan StringName: bones/14/scale (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:index_04_leaf_r (static: 0, total: 17)
+Orphan StringName: bones/31/enabled (static: 0, total: 2)
+Orphan StringName: Idle_Loop (static: 0, total: 1)
+Orphan StringName: bones/42/enabled (static: 0, total: 2)
+Orphan StringName: bones/2/name (static: 0, total: 2)
+Orphan StringName: sword_idle_chest (static: 0, total: 4)
+Orphan StringName: extra_cull_margin (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:middle_01_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:middle_01_r (static: 0, total: 17)
+Orphan StringName: ArmR__leather (static: 0, total: 2)
+Orphan StringName: palm_position (static: 0, total: 1)
+Orphan StringName: bones/0/scale (static: 0, total: 2)
+Orphan StringName: Female_Ranger_Arms (static: 0, total: 1)
+Orphan StringName: bones/29/scale (static: 0, total: 2)
+Orphan StringName: bones/53/enabled (static: 0, total: 2)
+Orphan StringName: bones/42/scale (static: 0, total: 2)
+Orphan StringName: ArmR__silver (static: 0, total: 2)
+Orphan StringName: bones/64/rest (static: 0, total: 2)
+Orphan StringName: bones/47/rest (static: 0, total: 2)
+Orphan StringName: get_aabb (static: 0, total: 1)
+Orphan StringName: bones/57/position (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:index_01_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:index_01_r (static: 0, total: 17)
+Orphan StringName: bones/5/parent (static: 0, total: 2)
+Orphan StringName: bones/64/enabled (static: 0, total: 2)
+Orphan StringName: ArmL__gold (static: 0, total: 2)
+Orphan StringName: Head (static: 0, total: 36)
+Orphan StringName: add_animation (static: 0, total: 1)
+Orphan StringName: Armature/Skeleton3D:middle_02_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:middle_02_r (static: 0, total: 17)
+Orphan StringName: bones/64/position (static: 0, total: 2)
+Orphan StringName: bones/29/position (static: 0, total: 2)
+Orphan StringName: bones/57/scale (static: 0, total: 2)
+Orphan StringName: MotionTransition (static: 0, total: 1)
+Orphan StringName: Armature/Skeleton3D:index_02_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:index_02_r (static: 0, total: 17)
+Orphan StringName: bones/36/position (static: 0, total: 2)
+Orphan StringName: blend_native_transition (static: 0, total: 1)
+Orphan StringName: append (static: 0, total: 4)
+Orphan StringName: KneeR__silver (static: 0, total: 2)
+Orphan StringName: bones/51/name (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:ring_04_leaf_r (static: 0, total: 17)
+Orphan StringName: bones/34/name (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:middle_03_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:middle_03_r (static: 0, total: 17)
+Orphan StringName: bones/54/parent (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:clavicle_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:clavicle_r (static: 0, total: 17)
+Orphan StringName: bones/17/name (static: 0, total: 2)
+Orphan StringName: bones/43/position (static: 0, total: 2)
+Orphan StringName: roughness (static: 0, total: 1)
+Orphan StringName: bones/28/parent (static: 0, total: 2)
+Orphan StringName: bones/8/enabled (static: 0, total: 2)
+Orphan StringName: bones/10/scale (static: 0, total: 2)
+Orphan StringName: Body__soul (static: 0, total: 1)
+Orphan StringName: bones/50/position (static: 0, total: 2)
+Orphan StringName: ArmL__bronze (static: 0, total: 1)
+Orphan StringName: Armature/Skeleton3D:index_03_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:index_03_r (static: 0, total: 17)
+Orphan StringName: bones/15/position (static: 0, total: 2)
+Orphan StringName: retain_cache (static: 0, total: 1)
+Orphan StringName: Body__bronze (static: 0, total: 2)
+Orphan StringName: bones/22/parent (static: 0, total: 2)
+Orphan StringName: bones/5/position (static: 0, total: 2)
+Orphan StringName: source_height (static: 0, total: 4)
+Orphan StringName: bones/22/position (static: 0, total: 2)
+Orphan StringName: bones/7/rest (static: 0, total: 2)
+Orphan StringName: bones/25/scale (static: 0, total: 2)
+Orphan StringName: rest (static: 0, total: 3)
+Orphan StringName: bones/41/rest (static: 0, total: 2)
+Orphan StringName: bones/24/rest (static: 0, total: 2)
+Orphan StringName: bones/16/enabled (static: 0, total: 2)
+Orphan StringName: bones/49/name (static: 0, total: 2)
+Orphan StringName: bones/57/rotation (static: 0, total: 2)
+Orphan StringName: KneeL__bronze (static: 0, total: 1)
+Orphan StringName: triangle_count (static: 0, total: 4)
+Orphan StringName: bones/27/enabled (static: 0, total: 2)
+Orphan StringName: Cape__gold (static: 0, total: 2)
+Orphan StringName: top_radius (static: 0, total: 1)
+Orphan StringName: bones/64/rotation (static: 0, total: 2)
+Orphan StringName: bones/53/scale (static: 0, total: 2)
+Orphan StringName: bones/29/rotation (static: 0, total: 2)
+Orphan StringName: bones/38/enabled (static: 0, total: 2)
+Orphan StringName: weighted_probes (static: 0, total: 3)
+Orphan StringName: Sword_Regular_A_Rec (static: 0, total: 2)
+Orphan StringName: bones/11/name (static: 0, total: 2)
+Orphan StringName: dispose (static: 0, total: 1)
+Orphan StringName: build (static: 0, total: 4)
+Orphan StringName: bones/36/rotation (static: 0, total: 2)
+Orphan StringName: _append_weighted_probes (static: 0, total: 4)
+Orphan StringName: middle_04_leaf_l (static: 0, total: 2)
+Orphan StringName: middle_04_leaf_r (static: 0, total: 36)
+Orphan StringName: bones/47/parent (static: 0, total: 2)
+Orphan StringName: bones/49/enabled (static: 0, total: 2)
+Orphan StringName: bones/56/rest (static: 0, total: 2)
+Orphan StringName: bones/39/rest (static: 0, total: 2)
+Orphan StringName: death_time (static: 0, total: 1)
+Orphan StringName: bones/43/rotation (static: 0, total: 2)
+Orphan StringName: _barycentric (static: 0, total: 1)
+Orphan StringName: material_override (static: 0, total: 1)
+Orphan StringName: ClassStyle (static: 0, total: 2)
+Orphan StringName: bones/41/parent (static: 0, total: 2)
+Orphan StringName: bones/50/rotation (static: 0, total: 2)
+Orphan StringName: bones/15/parent (static: 0, total: 2)
+Orphan StringName: weighted_probe_cache (static: 0, total: 2)
+Orphan StringName: bones/15/rotation (static: 0, total: 2)
+Orphan StringName: bones/1/rest (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:upperarm_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:upperarm_r (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:thigh_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:thigh_r (static: 0, total: 17)
+Orphan StringName: bones/5/rotation (static: 0, total: 2)
+Orphan StringName: bones/21/scale (static: 0, total: 2)
+Orphan StringName: bones/22/rotation (static: 0, total: 2)
+Orphan StringName: bones/9/name (static: 0, total: 2)
+Orphan StringName: bones/60/name (static: 0, total: 2)
+Orphan StringName: bones/43/name (static: 0, total: 2)
+Orphan StringName: bones/26/name (static: 0, total: 2)
+Orphan StringName: ArmR__wine (static: 0, total: 1)
+Orphan StringName: bones/40/enabled (static: 0, total: 2)
+Orphan StringName: prepare_bow_grip (static: 0, total: 2)
+Orphan StringName: rings (static: 0, total: 1)
+Orphan StringName: _solve_walk_chain (static: 0, total: 1)
+Orphan StringName: bones/51/enabled (static: 0, total: 2)
+Orphan StringName: bones/36/scale (static: 0, total: 2)
+Orphan StringName: weapon_tip (static: 0, total: 4)
+Orphan StringName: pose (static: 0, total: 5)
+Orphan StringName: grasp_frame (static: 0, total: 4)
+Orphan StringName: Body__wine (static: 0, total: 1)
+Orphan StringName: _sample (static: 0, total: 4)
+Orphan StringName: _state (static: 0, total: 1)
+Orphan StringName: player (static: 0, total: 3)
+Orphan StringName: Armature/Skeleton3D:pinky_04_leaf_r (static: 0, total: 17)
+Orphan StringName: get_surface_count (static: 0, total: 1)
+Orphan StringName: bones/62/enabled (static: 0, total: 2)
+Orphan StringName: point (static: 0, total: 1)
+Orphan StringName: bones/50/rest (static: 0, total: 2)
+Orphan StringName: bones/33/rest (static: 0, total: 2)
+Orphan StringName: bones/16/rest (static: 0, total: 2)
+Orphan StringName: RECOVERY (static: 0, total: 2)
+Orphan StringName: update_motion (static: 0, total: 3)
+Orphan StringName: bones/9/scale (static: 0, total: 2)
+Orphan StringName: class_grip (static: 0, total: 4)
+Orphan StringName: Armature/Skeleton3D:thumb_01_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:thumb_01_r (static: 0, total: 17)
+Orphan StringName: bones/58/name (static: 0, total: 2)
+Orphan StringName: apply_actor_postprocess (static: 0, total: 4)
+Orphan StringName: bone_bounds (static: 0, total: 3)
+Orphan StringName: bones/64/scale (static: 0, total: 2)
+Orphan StringName: bones/59/position (static: 0, total: 2)
+Orphan StringName: Weapon__gold (static: 0, total: 2)
+Orphan StringName: index_01_l (static: 0, total: 36)
+Orphan StringName: index_01_r (static: 0, total: 36)
+Orphan StringName: thumb_04_leaf_l (static: 0, total: 2)
+Orphan StringName: thumb_04_leaf_r (static: 0, total: 2)
+Orphan StringName: bones/60/parent (static: 0, total: 2)
+Orphan StringName: Skin (static: 0, total: 2)
+Orphan StringName: bones/34/parent (static: 0, total: 2)
+Orphan StringName: _sword_pose (static: 0, total: 4)
+Orphan StringName: bones/6/enabled (static: 0, total: 2)
+Orphan StringName: radial_segments (static: 0, total: 1)
+Orphan StringName: bones/3/name (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:thumb_02_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:thumb_02_r (static: 0, total: 17)
+Orphan StringName: bones/20/name (static: 0, total: 2)
+Orphan StringName: bones/38/position (static: 0, total: 2)
+Orphan StringName: index_02_l (static: 0, total: 36)
+Orphan StringName: index_02_r (static: 0, total: 36)
+Orphan StringName: ArmL__iron (static: 0, total: 1)
+Orphan StringName: hold_cast_soles (static: 0, total: 2)
+Orphan StringName: "scripts/class_avatar_pose.gd" (static: 0, total: 1)
+Orphan StringName: Hit_Chest (static: 0, total: 2)
+Orphan StringName: bones/48/rest (static: 0, total: 2)
+Orphan StringName: bones/45/position (static: 0, total: 2)
+Orphan StringName: impact_time (static: 0, total: 1)
+Orphan StringName: clavicle_l (static: 0, total: 36)
+Orphan StringName: clavicle_r (static: 0, total: 36)
+Orphan StringName: is_finite (static: 0, total: 1)
+Orphan StringName: bones/19/scale (static: 0, total: 2)
+Orphan StringName: surfaces (static: 0, total: 3)
+Orphan StringName: Death01 (static: 0, total: 4)
+Orphan StringName: bones/32/scale (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:thumb_03_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:thumb_03_r (static: 0, total: 17)
+Orphan StringName: bones/52/position (static: 0, total: 2)
+Orphan StringName: Sword_Regular_B_Rec (static: 0, total: 2)
+Orphan StringName: bones/17/position (static: 0, total: 2)
+Orphan StringName: bones/14/enabled (static: 0, total: 2)
+Orphan StringName: index_03_l (static: 0, total: 36)
+Orphan StringName: index_03_r (static: 0, total: 36)
+Orphan StringName: Walk (static: 0, total: 2)
+Orphan StringName: Female_Ranger_Arms_Bracer (static: 0, total: 1)
+Orphan StringName: bones/4/parent (static: 0, total: 2)
+Orphan StringName: bones/7/position (static: 0, total: 2)
+Orphan StringName: bones/24/position (static: 0, total: 2)
+Orphan StringName: bones/10/rest (static: 0, total: 2)
+Orphan StringName: bones/25/enabled (static: 0, total: 2)
+Orphan StringName: WEAPON (static: 0, total: 1)
+Orphan StringName: bones/52/name (static: 0, total: 2)
+Orphan StringName: sword_idle_poles (static: 0, total: 3)
+Orphan StringName: bones/5/scale (static: 0, total: 2)
+Orphan StringName: reduced_motion (static: 0, total: 1)
+Orphan StringName: bones/35/name (static: 0, total: 2)
+Orphan StringName: bones/59/parent (static: 0, total: 2)
+Orphan StringName: bones/47/scale (static: 0, total: 2)
+Orphan StringName: bones/18/name (static: 0, total: 2)
+Orphan StringName: bones/31/position (static: 0, total: 2)
+Orphan StringName: moving (static: 0, total: 1)
+Orphan StringName: bones/60/scale (static: 0, total: 2)
+Orphan StringName: bones/36/enabled (static: 0, total: 2)
+Orphan StringName: LegL__wine (static: 0, total: 1)
+Orphan StringName: set_surface_override_material (static: 0, total: 1)
+Orphan StringName: bones/59/rotation (static: 0, total: 2)
+Orphan StringName: bow_hook_local (static: 0, total: 4)
+Orphan StringName: bones/53/parent (static: 0, total: 2)
+Orphan StringName: bones/27/parent (static: 0, total: 2)
+Orphan StringName: bones/47/enabled (static: 0, total: 2)
+Orphan StringName: planted_basis (static: 0, total: 3)
+Orphan StringName: motion_transition (static: 0, total: 3)
+Orphan StringName: hem_floor_offset (static: 0, total: 1)
+Orphan StringName: bones/10/position (static: 0, total: 2)
+Orphan StringName: bones/8/rest (static: 0, total: 2)
+Orphan StringName: bones/58/enabled (static: 0, total: 2)
+Orphan StringName: recoil_intensity (static: 0, total: 1)
+Orphan StringName: bones/0/position (static: 0, total: 2)
+Orphan StringName: bones/21/parent (static: 0, total: 2)
+Orphan StringName: bones/42/rest (static: 0, total: 2)
+Orphan StringName: bones/25/rest (static: 0, total: 2)
+Orphan StringName: bones/38/rotation (static: 0, total: 2)
+Orphan StringName: root (static: 0, total: 2)
+Orphan StringName: has (static: 0, total: 2)
+Orphan StringName: ranger (static: 0, total: 1)
+Orphan StringName: bones/15/scale (static: 0, total: 2)
+Orphan StringName: position (static: 0, total: 1)
+Orphan StringName: bones/45/rotation (static: 0, total: 2)
+Orphan StringName: rendered_triangles (static: 0, total: 4)
+Orphan StringName: Female_Ranger_Acc_Pauldrons (static: 0, total: 1)
+Orphan StringName: HairL__gold (static: 0, total: 2)
+Orphan StringName: hand_local_axis (static: 0, total: 1)
+Orphan StringName: _point (static: 0, total: 1)
+Orphan StringName: bones/52/rotation (static: 0, total: 2)
+Orphan StringName: bones/17/rotation (static: 0, total: 2)
+Orphan StringName: upperarm_l (static: 0, total: 36)
+Orphan StringName: upperarm_r (static: 0, total: 36)
+Orphan StringName: bones/7/rotation (static: 0, total: 2)
+Orphan StringName: bones/12/name (static: 0, total: 2)
+Orphan StringName: bones/1/scale (static: 0, total: 2)
+Orphan StringName: bones/24/rotation (static: 0, total: 2)
+Orphan StringName: bones/43/scale (static: 0, total: 2)
+Orphan StringName: bones/57/rest (static: 0, total: 2)
+Orphan StringName: neck_01 (static: 0, total: 36)
+Orphan StringName: bones/60/enabled (static: 0, total: 2)
+Orphan StringName: bones/31/rotation (static: 0, total: 2)
+Orphan StringName: maxf (static: 0, total: 1)
+Orphan StringName: _root (static: 0, total: 1)
+Orphan StringName: Nyra_Authored_Head (static: 0, total: 1)
+Orphan StringName: contains (static: 0, total: 1)
+Orphan StringName: motion_node (static: 0, total: 3)
+Orphan StringName: bones/46/parent (static: 0, total: 2)
+Orphan StringName: bones/2/rest (static: 0, total: 2)
+Orphan StringName: bones/58/scale (static: 0, total: 2)
+Orphan StringName: bow_hook_pose (static: 0, total: 3)
+Orphan StringName: callback_mode_process (static: 0, total: 1)
+Orphan StringName: bones/40/parent (static: 0, total: 2)
+Orphan StringName: bones/10/rotation (static: 0, total: 2)
+Orphan StringName: weapon_grip_position (static: 0, total: 4)
+Orphan StringName: Sword_Idle (static: 0, total: 3)
+Orphan StringName: bones/14/parent (static: 0, total: 2)
+Orphan StringName: bones/61/name (static: 0, total: 2)
+Orphan StringName: Female_Ranger_Body_Belt_1 (static: 0, total: 1)
+Orphan StringName: Female_Ranger_Body_Belt_2 (static: 0, total: 1)
+Orphan StringName: bones/44/name (static: 0, total: 2)
+Orphan StringName: bones/4/enabled (static: 0, total: 2)
+Orphan StringName: bones/0/rotation (static: 0, total: 2)
+Orphan StringName: bones/27/name (static: 0, total: 2)
+Orphan StringName: bow_rest_height (static: 0, total: 4)
+Orphan StringName: albedo_color (static: 0, total: 1)
+Orphan StringName: key (static: 0, total: 4)
+Orphan StringName: bones/11/scale (static: 0, total: 2)
+Orphan StringName: last_clip_time (static: 0, total: 4)
+Orphan StringName: bow_grip_center (static: 0, total: 4)
+Orphan StringName: layers (static: 0, total: 2)
+Orphan StringName: thumb_01_l (static: 0, total: 36)
+Orphan StringName: thumb_01_r (static: 0, total: 36)
+Orphan StringName: planted_toes (static: 0, total: 3)
+Orphan StringName: height (static: 0, total: 1)
+Orphan StringName: rotation (static: 0, total: 1)
+Orphan StringName: basis (static: 0, total: 3)
+Orphan StringName: Spell_Simple_Idle (static: 0, total: 2)
+Orphan StringName: surface_set_material (static: 0, total: 1)
+Orphan StringName: bones/26/scale (static: 0, total: 2)
+Orphan StringName: LegR__sage (static: 0, total: 1)
+Orphan StringName: KneeL__iron (static: 0, total: 1)
+Orphan StringName: thumb_02_l (static: 0, total: 36)
+Orphan StringName: thumb_02_r (static: 0, total: 36)
+Orphan StringName: bones/51/rest (static: 0, total: 2)
+Orphan StringName: death_grounding (static: 0, total: 3)
+Orphan StringName: bones/34/rest (static: 0, total: 2)
+Orphan StringName: visible (static: 0, total: 1)
+Orphan StringName: bones/12/enabled (static: 0, total: 2)
+Orphan StringName: bottom_radius (static: 0, total: 1)
+Orphan StringName: bones/17/rest (static: 0, total: 2)
+Orphan StringName: Weapon__silver (static: 0, total: 1)
+Orphan StringName: Armature/Skeleton3D:Head (static: 0, total: 17)
+Orphan StringName: bones/59/name (static: 0, total: 2)
+Orphan StringName: bones/47/position (static: 0, total: 2)
+Orphan StringName: CylinderMesh (static: 0, total: 1)
+Orphan StringName: bones/23/enabled (static: 0, total: 2)
+Orphan StringName: STAFF_SCALE (static: 0, total: 1)
+Orphan StringName: Node3D (static: 0, total: 13)
+Orphan StringName: bones/39/parent (static: 0, total: 2)
+Orphan StringName: bones/54/position (static: 0, total: 2)
+Orphan StringName: thumb_03_l (static: 0, total: 36)
+Orphan StringName: thumb_03_r (static: 0, total: 36)
+Orphan StringName: bones/54/scale (static: 0, total: 2)
+Orphan StringName: bones/19/position (static: 0, total: 2)
+Orphan StringName: bones/34/enabled (static: 0, total: 2)
+Orphan StringName: mesh (static: 0, total: 11)
+Orphan StringName: bones/4/name (static: 0, total: 2)
+Orphan StringName: _gltf_primary_texture_coord (static: 0, total: 7)
+Orphan StringName: refresh_bounds (static: 0, total: 6)
+Orphan StringName: bones/9/position (static: 0, total: 2)
+Orphan StringName: bones/61/position (static: 0, total: 2)
+Orphan StringName: source_rest_pose (static: 0, total: 3)
+Orphan StringName: bones/21/name (static: 0, total: 2)
+Orphan StringName: bones/33/parent (static: 0, total: 2)
+Orphan StringName: bones/26/position (static: 0, total: 2)
+Orphan StringName: apply_bow (static: 0, total: 3)
+Orphan StringName: bones/45/enabled (static: 0, total: 2)
+Orphan StringName: new (static: 4, total: 6)
+Orphan StringName: Arrow__silver (static: 0, total: 1)
+Orphan StringName: death_grip_pose (static: 0, total: 3)
+Orphan StringName: solve_cast_arm (static: 0, total: 1)
+Orphan StringName: bones/49/rest (static: 0, total: 2)
+Orphan StringName: bones/33/position (static: 0, total: 2)
+Orphan StringName: bones/56/enabled (static: 0, total: 2)
+Orphan StringName: bones/40/position (static: 0, total: 2)
+Orphan StringName: Armature (static: 0, total: 942)
+Orphan StringName: bones/9/parent (static: 0, total: 2)
+Orphan StringName: bones/22/scale (static: 0, total: 2)
+Orphan StringName: Sword_Regular_A (static: 0, total: 2)
+Orphan StringName: Sword_Regular_B (static: 0, total: 2)
+Orphan StringName: Sword_Regular_C (static: 0, total: 2)
+Orphan StringName: bones/12/position (static: 0, total: 2)
+Orphan StringName: bones/11/rest (static: 0, total: 2)
+Orphan StringName: bones/3/parent (static: 0, total: 2)
+Orphan StringName: bones/2/position (static: 0, total: 2)
+Orphan StringName: bones/53/name (static: 0, total: 2)
+Orphan StringName: animation_profile (static: 0, total: 3)
+Orphan StringName: _carry_sword_guard (static: 0, total: 5)
+Orphan StringName: bones/36/name (static: 0, total: 2)
+Orphan StringName: sword_idle_hand (static: 0, total: 4)
+Orphan StringName: bones/19/name (static: 0, total: 2)
+Orphan StringName: GRIP_RADIUS (static: 0, total: 1)
+Orphan StringName: ArmL__silver (static: 0, total: 2)
+Orphan StringName: bones/47/rotation (static: 0, total: 2)
+Orphan StringName: libraries/ (static: 0, total: 2)
+Orphan StringName: Body__linen (static: 0, total: 1)
+Orphan StringName: ArmL__sage (static: 0, total: 1)
+Orphan StringName: bones/58/parent (static: 0, total: 2)
+Orphan StringName: Body__silver (static: 0, total: 2)
+Orphan StringName: bones/37/scale (static: 0, total: 2)
+Orphan StringName: apply (static: 0, total: 3)
+Orphan StringName: ignore_occlusion_culling (static: 0, total: 1)
+Orphan StringName: bones/50/scale (static: 0, total: 2)
+Orphan StringName: Style (static: 0, total: 1)
+Orphan StringName: bones/54/rotation (static: 0, total: 2)
+Orphan StringName: bones/19/rotation (static: 0, total: 2)
+Orphan StringName: bones/52/parent (static: 0, total: 2)
+Orphan StringName: bones/9/rest (static: 0, total: 2)
+Orphan StringName: bones/26/parent (static: 0, total: 2)
+Orphan StringName: bones/60/rest (static: 0, total: 2)
+Orphan StringName: bones/9/rotation (static: 0, total: 2)
+Orphan StringName: bones/61/rotation (static: 0, total: 2)
+Orphan StringName: bones/43/rest (static: 0, total: 2)
+Orphan StringName: Skeleton3D (static: 0, total: 945)
+Orphan StringName: bones/26/rotation (static: 0, total: 2)
+Orphan StringName: bones/26/rest (static: 0, total: 2)
+Orphan StringName: minf (static: 0, total: 1)
+Orphan StringName: Armature/Skeleton3D:lowerarm_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:lowerarm_r (static: 0, total: 17)
+Orphan StringName: KneeL__silver (static: 0, total: 2)
+Orphan StringName: surface_get_arrays (static: 0, total: 1)
+Orphan StringName: bones/33/rotation (static: 0, total: 2)
+Orphan StringName: AVATAR (static: 0, total: 1)
+Orphan StringName: bones/20/parent (static: 0, total: 2)
+Orphan StringName: bones/19/enabled (static: 0, total: 2)
+Orphan StringName: weapon_points (static: 0, total: 3)
+Orphan StringName: bones/2/enabled (static: 0, total: 2)
+Orphan StringName: bones/40/rotation (static: 0, total: 2)
+Orphan StringName: KneeL__leather (static: 0, total: 2)
+Orphan StringName: bones/30/name (static: 0, total: 2)
+Orphan StringName: bones/13/name (static: 0, total: 2)
+Orphan StringName: MeshInstance3D (static: 0, total: 11)
+Orphan StringName: bones/12/rotation (static: 0, total: 2)
+Orphan StringName: bones/2/rotation (static: 0, total: 2)
+Orphan StringName: bones/58/rest (static: 0, total: 2)
+Orphan StringName: bones/33/scale (static: 0, total: 2)
+Orphan StringName: bones/10/enabled (static: 0, total: 2)
+Orphan StringName: rotations (static: 0, total: 1)
+Orphan StringName: update_bow (static: 0, total: 2)
+Orphan StringName: Cape__sage (static: 0, total: 1)
+Orphan StringName: lerpf (static: 0, total: 2)
+Orphan StringName: Spell_Simple_Exit (static: 0, total: 2)
+Orphan StringName: bones/3/rest (static: 0, total: 2)
+Orphan StringName: foot_l (static: 0, total: 36)
+Orphan StringName: foot_r (static: 0, total: 36)
+Orphan StringName: bones/21/enabled (static: 0, total: 2)
+Orphan StringName: spine_01 (static: 0, total: 2)
+Orphan StringName: spine_02 (static: 0, total: 36)
+Orphan StringName: spine_03 (static: 0, total: 36)
+Orphan StringName: bones/20/rest (static: 0, total: 2)
+Orphan StringName: bones/45/parent (static: 0, total: 2)
+Orphan StringName: weapon (static: 0, total: 3)
+Orphan StringName: bones/19/parent (static: 0, total: 2)
+Orphan StringName: bones/62/name (static: 0, total: 2)
+Orphan StringName: bones/6/scale (static: 0, total: 2)
+Orphan StringName: style (static: 0, total: 3)
+Orphan StringName: bow_hook_probe (static: 0, total: 3)
+Orphan StringName: bones/45/name (static: 0, total: 2)
+Orphan StringName: bones/48/scale (static: 0, total: 2)
+Orphan StringName: bones/28/name (static: 0, total: 2)
+Orphan StringName: bones/32/enabled (static: 0, total: 2)
+Orphan StringName: sampled_pose (static: 0, total: 3)
+Orphan StringName: bones/61/scale (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:ring_01_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:ring_01_r (static: 0, total: 17)
+Orphan StringName: bones/49/position (static: 0, total: 2)
+Orphan StringName: bones/13/parent (static: 0, total: 2)
+Orphan StringName: bow_strings (static: 0, total: 3)
+Orphan StringName: HairL__hair_shadow (static: 0, total: 2)
+Orphan StringName: bones/43/enabled (static: 0, total: 2)
+Orphan StringName: ArmR__gold (static: 0, total: 2)
+Orphan StringName: Nyra_Female_Peasant_Body (static: 0, total: 1)
+Orphan StringName: pelvis (static: 0, total: 58)
+Orphan StringName: bones/56/position (static: 0, total: 2)
+Orphan StringName: bones/54/enabled (static: 0, total: 2)
+Orphan StringName: duplicate (static: 0, total: 2)
+Orphan StringName: bones/63/position (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:ring_02_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:ring_02_r (static: 0, total: 17)
+Orphan StringName: Body__gold (static: 0, total: 2)
+Orphan StringName: bones/52/rest (static: 0, total: 2)
+Orphan StringName: bones/28/position (static: 0, total: 2)
+Orphan StringName: bones/35/rest (static: 0, total: 2)
+Orphan StringName: x (static: 0, total: 1)
+Orphan StringName: y (static: 0, total: 1)
+Orphan StringName: z (static: 0, total: 1)
+Orphan StringName: bones/18/rest (static: 0, total: 2)
+Orphan StringName: _support_staff_arm (static: 0, total: 1)
+Orphan StringName: begins_with (static: 0, total: 1)
+Orphan StringName: triangles (static: 0, total: 4)
+Orphan StringName: bones/16/scale (static: 0, total: 2)
+Orphan StringName: prepare_actual_draw_hook (static: 0, total: 1)
+Orphan StringName: bones/35/position (static: 0, total: 2)
+Orphan StringName: middle_01_l (static: 0, total: 36)
+Orphan StringName: middle_01_r (static: 0, total: 36)
+Orphan StringName: find_children (static: 0, total: 2)
+Orphan StringName: prepare_arrow_rest (static: 0, total: 2)
+Orphan StringName: Nyra_Female_Peasant_Feet (static: 0, total: 1)
+Orphan StringName: bones/42/position (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:ring_03_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:ring_03_r (static: 0, total: 17)
+Orphan StringName: apply_recoil (static: 0, total: 2)
+Orphan StringName: Combat (static: 0, total: 1)
+Orphan StringName: AnimationLibrary (static: 0, total: 1)
+Orphan StringName: Cape__bronze (static: 0, total: 2)
+Orphan StringName: bones/5/name (static: 0, total: 2)
+Orphan StringName: bones/64/parent (static: 0, total: 2)
+Orphan StringName: bones/38/parent (static: 0, total: 2)
+Orphan StringName: sword_idle_soles (static: 0, total: 3)
+Orphan StringName: bones/9/enabled (static: 0, total: 2)
+Orphan StringName: middle_02_l (static: 0, total: 36)
+Orphan StringName: middle_02_r (static: 0, total: 36)
+Orphan StringName: bones/14/position (static: 0, total: 2)
+Orphan StringName: bones/22/name (static: 0, total: 2)
+Orphan StringName: bones/2/scale (static: 0, total: 2)
+Orphan StringName: bones/44/scale (static: 0, total: 2)
+Orphan StringName: class_weapon_scale (static: 0, total: 4)
+Orphan StringName: bones/4/position (static: 0, total: 2)
+Orphan StringName: bones/21/position (static: 0, total: 2)
+Orphan StringName: AttireMotion (static: 0, total: 1)
+Orphan StringName: Arrow__leather (static: 0, total: 1)
+Orphan StringName: bones/32/parent (static: 0, total: 2)
+Orphan StringName: bones/49/rotation (static: 0, total: 2)
+Orphan StringName: accessories (static: 0, total: 2)
+Orphan StringName: middle_03_l (static: 0, total: 36)
+Orphan StringName: middle_03_r (static: 0, total: 36)
+Orphan StringName: hit_strength (static: 0, total: 1)
+Orphan StringName: _update_weapon (static: 0, total: 6)
+Orphan StringName: Female_Ranger_Body (static: 0, total: 1)
+Orphan StringName: bones/59/scale (static: 0, total: 2)
+Orphan StringName: bones/56/rotation (static: 0, total: 2)
+Orphan StringName: _restore_source_pose (static: 0, total: 1)
+Orphan StringName: bones/17/enabled (static: 0, total: 2)
+Orphan StringName: bones/12/rest (static: 0, total: 2)
+Orphan StringName: bones/0/enabled (static: 0, total: 2)
+Orphan StringName: get_bone_name (static: 0, total: 1)
+Orphan StringName: bones/8/parent (static: 0, total: 2)
+Orphan StringName: bones/63/rotation (static: 0, total: 2)
+Orphan StringName: bones/54/name (static: 0, total: 2)
+Orphan StringName: bones/37/name (static: 0, total: 2)
+Orphan StringName: bones/28/rotation (static: 0, total: 2)
+Orphan StringName: merge (static: 0, total: 1)
+Orphan StringName: bones/12/scale (static: 0, total: 2)
+Orphan StringName: bones/28/enabled (static: 0, total: 2)
+Orphan StringName: lowerarm_l (static: 0, total: 36)
+Orphan StringName: lowerarm_r (static: 0, total: 36)
+Orphan StringName: bones/35/rotation (static: 0, total: 2)
+Orphan StringName: bones/2/parent (static: 0, total: 2)
+Orphan StringName: bones/39/enabled (static: 0, total: 2)
+Orphan StringName: RefCounted (static: 1, total: 6)
+Orphan StringName: Armature/Skeleton3D:foot_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:foot_r (static: 0, total: 17)
+Orphan StringName: _index_surface (static: 0, total: 2)
+Orphan StringName: bones/42/rotation (static: 0, total: 2)
+Orphan StringName: Female_Ranger_Feet (static: 0, total: 1)
+Orphan StringName: Armature/Skeleton3D (static: 0, total: 940)
+Orphan StringName: bones/57/parent (static: 0, total: 2)
+Orphan StringName: bones/27/scale (static: 0, total: 2)
+Orphan StringName: Weapon__ember (static: 0, total: 1)
+Orphan StringName: bones/40/scale (static: 0, total: 2)
+Orphan StringName: Body__hair_shadow (static: 0, total: 2)
+Orphan StringName: bones/61/rest (static: 0, total: 2)
+Orphan StringName: bones/44/rest (static: 0, total: 2)
+Orphan StringName: bones/14/rotation (static: 0, total: 2)
+Orphan StringName: bones/27/rest (static: 0, total: 2)
+Orphan StringName: bones/4/rotation (static: 0, total: 2)
+Orphan StringName: bones/51/parent (static: 0, total: 2)
+Orphan StringName: bones/25/parent (static: 0, total: 2)
+Orphan StringName: bones/21/rotation (static: 0, total: 2)
+Orphan StringName: HairL__hair (static: 0, total: 2)
+Orphan StringName: offset_cast_pelvis (static: 0, total: 1)
+Orphan StringName: Armature/Skeleton3D:pelvis (static: 0, total: 28)
+Orphan StringName: bones/30/enabled (static: 0, total: 2)
+Orphan StringName: bones/55/scale (static: 0, total: 2)
+Orphan StringName: last_clip (static: 0, total: 4)
+Orphan StringName: Idle (static: 0, total: 2)
+Orphan StringName: bones/41/enabled (static: 0, total: 2)
+Orphan StringName: bones/31/name (static: 0, total: 2)
+Orphan StringName: bones/14/name (static: 0, total: 2)
+Orphan StringName: motion_offset (static: 0, total: 1)
+Orphan StringName: metadata/_gltf_primary_texture_coord (static: 0, total: 7)
+Orphan StringName: bones/59/rest (static: 0, total: 2)
+Orphan StringName: bones/52/enabled (static: 0, total: 2)
+Orphan StringName: positions (static: 0, total: 1)
+Orphan StringName: apply_sword_weight (static: 0, total: 2)
+Orphan StringName: bones/63/enabled (static: 0, total: 2)
+Orphan StringName: grip_axis (static: 0, total: 4)
+Orphan StringName: bones/58/position (static: 0, total: 2)
+Orphan StringName: bones/4/rest (static: 0, total: 2)
+Orphan StringName: Body__dark (static: 0, total: 2)
+Orphan StringName: bones/23/scale (static: 0, total: 2)
+Orphan StringName: BOW (static: 0, total: 2)
+Orphan StringName: body_material (static: 0, total: 3)
+Orphan StringName: binds (static: 0, total: 2)
+Orphan StringName: bones/21/rest (static: 0, total: 2)
+Orphan StringName: hand_l (static: 0, total: 36)
+Orphan StringName: hand_r (static: 0, total: 36)
+Orphan StringName: Body__eye (static: 0, total: 2)
+Orphan StringName: bones/63/name (static: 0, total: 2)
+Orphan StringName: ArmR__iron (static: 0, total: 1)
+Orphan StringName: bones/46/name (static: 0, total: 2)
+Orphan StringName: bones/29/name (static: 0, total: 2)
+Orphan StringName: bones/44/parent (static: 0, total: 2)
+Orphan StringName: bones/18/parent (static: 0, total: 2)
+Orphan StringName: bones/37/position (static: 0, total: 2)
+Orphan StringName: bones/7/enabled (static: 0, total: 2)
+Orphan StringName: Body__iris (static: 0, total: 2)
+Orphan StringName: bones/38/scale (static: 0, total: 2)
+Orphan StringName: ArmL__leather (static: 0, total: 2)
+Orphan StringName: bones/51/scale (static: 0, total: 2)
+Orphan StringName: Body__iron (static: 0, total: 1)
+Orphan StringName: bones/44/position (static: 0, total: 2)
+Orphan StringName: bones/12/parent (static: 0, total: 2)
+Orphan StringName: bones/51/position (static: 0, total: 2)
+Orphan StringName: transform (static: 0, total: 6)
+Orphan StringName: _shell (static: 0, total: 1)
+Orphan StringName: StandardMaterial3D (static: 0, total: 3)
+Orphan StringName: bones/16/position (static: 0, total: 2)
+Orphan StringName: bones/53/rest (static: 0, total: 2)
+Orphan StringName: bones/36/rest (static: 0, total: 2)
+Orphan StringName: bones/19/rest (static: 0, total: 2)
+Orphan StringName: bow_grasp_frame (static: 0, total: 4)
+Orphan StringName: bones/6/position (static: 0, total: 2)
+Orphan StringName: bones/23/position (static: 0, total: 2)
+Orphan StringName: bones/15/enabled (static: 0, total: 2)
+Orphan StringName: LegR__wine (static: 0, total: 1)
+Orphan StringName: AuthoredClassAvatar (static: 0, total: 1)
+Orphan StringName: bones/30/position (static: 0, total: 2)
+Orphan StringName: Nyra_Hair_Buns (static: 0, total: 1)
+Orphan StringName: "scripts/source_avatar_rig.gd" (static: 0, total: 1)
+Orphan StringName: bones/26/enabled (static: 0, total: 2)
+Orphan StringName: walk_stride (static: 0, total: 1)
+Orphan StringName: bones/6/name (static: 0, total: 2)
+Orphan StringName: bow_elbow_pole (static: 0, total: 4)
+Orphan StringName: Walk_Loop (static: 0, total: 2)
+Orphan StringName: bones/58/rotation (static: 0, total: 2)
+Orphan StringName: origin (static: 0, total: 1)
+Orphan StringName: hand_local_origin (static: 0, total: 1)
+Orphan StringName: bones/40/name (static: 0, total: 2)
+Orphan StringName: bones/23/name (static: 0, total: 2)
+Orphan StringName: bones/37/enabled (static: 0, total: 2)
+Orphan StringName: BowString__linen (static: 0, total: 1)
+Orphan StringName: bones/63/parent (static: 0, total: 2)
+Orphan StringName: @implicit_new (static: 0, total: 1)
+Orphan StringName: bones/37/parent (static: 0, total: 2)
+Orphan StringName: bones/48/enabled (static: 0, total: 2)
+Orphan StringName: bones/34/scale (static: 0, total: 2)
+Orphan StringName: Weapon__leather (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:neck_01 (static: 0, total: 17)
+Orphan StringName: bones/37/rotation (static: 0, total: 2)
+Orphan StringName: HairR__gold (static: 0, total: 2)
+Orphan StringName: ring_01_l (static: 0, total: 36)
+Orphan StringName: ring_01_r (static: 0, total: 36)
+Orphan StringName: bones/59/enabled (static: 0, total: 2)
+Orphan StringName: bones/31/parent (static: 0, total: 2)
+Orphan StringName: grip_pose (static: 0, total: 3)
+Orphan StringName: get_path_to (static: 0, total: 1)
+Orphan StringName: bones/44/rotation (static: 0, total: 2)
+Orphan StringName: bones/30/rest (static: 0, total: 2)
+Orphan StringName: length (static: 0, total: 3)
+Orphan StringName: bones/13/rest (static: 0, total: 2)
+Orphan StringName: bones/7/scale (static: 0, total: 2)
+Orphan StringName: bones/51/rotation (static: 0, total: 2)
+Orphan StringName: bones/55/name (static: 0, total: 2)
+Orphan StringName: ball_l (static: 0, total: 36)
+Orphan StringName: bones/49/scale (static: 0, total: 2)
+Orphan StringName: ball_r (static: 0, total: 24)
+Orphan StringName: bones/38/name (static: 0, total: 2)
+Orphan StringName: bones/16/rotation (static: 0, total: 2)
+Orphan StringName: ring_02_l (static: 0, total: 36)
+Orphan StringName: ring_02_r (static: 0, total: 36)
+Orphan StringName: bones/62/scale (static: 0, total: 2)
+Orphan StringName: plant_active (static: 0, total: 1)
+Orphan StringName: Armature/Skeleton3D:pinky_01_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:pinky_01_r (static: 0, total: 17)
+Orphan StringName: ball_leaf_l (static: 0, total: 2)
+Orphan StringName: ball_leaf_r (static: 0, total: 2)
+Orphan StringName: ranger-native65 (static: 0, total: 1)
+Orphan StringName: bones/6/rotation (static: 0, total: 2)
+Orphan StringName: size (static: 0, total: 3)
+Orphan StringName: bones/7/parent (static: 0, total: 2)
+Orphan StringName: bones/23/rotation (static: 0, total: 2)
+Orphan StringName: PHRASES (static: 0, total: 1)
+Orphan StringName: bones/0/name (static: 0, total: 2)
+Orphan StringName: bones/50/enabled (static: 0, total: 2)
+Orphan StringName: Body__leather (static: 0, total: 2)
+Orphan StringName: Spell_Simple_Shoot (static: 0, total: 2)
+Orphan StringName: bones/30/rotation (static: 0, total: 2)
+Orphan StringName: current_bounds (static: 0, total: 2)
+Orphan StringName: free (static: 0, total: 2)
+Orphan StringName: Sword_Attack (static: 0, total: 2)
+Orphan StringName: Body__ember (static: 0, total: 1)
+Orphan StringName: populated (static: 0, total: 3)
+Orphan StringName: ring_03_l (static: 0, total: 36)
+Orphan StringName: ring_03_r (static: 0, total: 36)
+Orphan StringName: bow_grip_pose (static: 0, total: 3)
+Orphan StringName: bones/1/parent (static: 0, total: 2)
+Orphan StringName: Armature/Skeleton3D:hand_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:hand_r (static: 0, total: 17)
+Orphan StringName: get_animation_list (static: 0, total: 1)
+Orphan StringName: Armature/Skeleton3D:pinky_02_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:pinky_02_r (static: 0, total: 17)
+Orphan StringName: floor_probes (static: 0, total: 3)
+Orphan StringName: bones/61/enabled (static: 0, total: 2)
+Orphan StringName: ArmL__wine (static: 0, total: 1)
+Orphan StringName: bones/62/rest (static: 0, total: 2)
+Orphan StringName: bones/45/rest (static: 0, total: 2)
+Orphan StringName: ArmR__bronze (static: 0, total: 1)
+Orphan StringName: bones/28/rest (static: 0, total: 2)
+Orphan StringName: Body__lip (static: 0, total: 2)
+Orphan StringName: set_visual_readability (static: 0, total: 1)
+Orphan StringName: bones/56/parent (static: 0, total: 2)
+Orphan StringName: bones/17/scale (static: 0, total: 2)
+Orphan StringName: skin (static: 0, total: 7)
+Orphan StringName: OUTFIT (static: 0, total: 2)
+Orphan StringName: bones/30/scale (static: 0, total: 2)
+Orphan StringName: _tangent (static: 0, total: 1)
+Orphan StringName: thigh_l (static: 0, total: 36)
+Orphan StringName: thigh_r (static: 0, total: 36)
+Orphan StringName: Armature/Skeleton3D:pinky_03_l (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:pinky_03_r (static: 0, total: 17)
+Orphan StringName: Eyes (static: 0, total: 1)
+Orphan StringName: bone_local_quaternions_xyzw (static: 0, total: 1)
+Orphan StringName: bones/50/parent (static: 0, total: 2)
+Orphan StringName: bones/24/parent (static: 0, total: 2)
+Orphan StringName: Spell_Simple_Enter (static: 0, total: 2)
+Orphan StringName: bones/5/enabled (static: 0, total: 2)
+Orphan StringName: slerp (static: 0, total: 2)
+Orphan StringName: Body__bone (static: 0, total: 1)
+Orphan StringName: AnimationPlayer (static: 0, total: 5)
+Orphan StringName: Jog_Fwd (static: 0, total: 2)
+Orphan StringName: bones/32/name (static: 0, total: 2)
+Orphan StringName: bones/3/scale (static: 0, total: 2)
+Orphan StringName: KneeR__bronze (static: 0, total: 1)
+Orphan StringName: bones/15/name (static: 0, total: 2)
+Orphan StringName: KneeR__iron (static: 0, total: 1)
+Orphan StringName: bones/45/scale (static: 0, total: 2)
+Orphan StringName: Armature/SERROR: Pages in use exist at exit in PagedAllocator: N12VariantPools12BucketMediumE
+   at: ~PagedAllocator (./core/templates/paged_allocator.h:170)
+ERROR: Pages in use exist at exit in PagedAllocator: N12VariantPools11BucketSmallE
+   at: ~PagedAllocator (./core/templates/paged_allocator.h:170)
+keleton3D:spine_02 (static: 0, total: 17)
+Orphan StringName: Armature/Skeleton3D:spine_03 (static: 0, total: 17)
+Orphan StringName: ClassPose (static: 0, total: 2)
+Orphan StringName: _global_rotation (static: 0, total: 3)
+Orphan StringName: fit_bow_fingers (static: 0, total: 2)
+Orphan StringName: calf_l (static: 0, total: 36)
+Orphan StringName: calf_r (static: 0, total: 36)
+Orphan StringName: changed (static: 0, total: 51)
+Orphan StringName: bones/39/position (static: 0, total: 2)
+Orphan StringName: bones/46/position (static: 0, total: 2)
+Orphan StringName: _solve_cast_chain (static: 0, total: 3)
+Orphan StringName: bones/5/rest (static: 0, total: 2)
+Orphan StringName: bones/13/enabled (static: 0, total: 2)
+Orphan StringName: _breastplate (static: 0, total: 1)
+Orphan StringName: bones/22/rest (static: 0, total: 2)
+Orphan StringName: bones/53/position (static: 0, total: 2)
+Orphan StringName: "scripts/class_avatar_style.gd" (static: 0, total: 1)
+StringName: 921 unclaimed string names at exit.

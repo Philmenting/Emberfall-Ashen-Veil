@@ -1,0 +1,85 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: missing preferences retain safe defaults
+PASS: invalid settings are bounded and type checked
+PASS: camp: audible PCM with bounded peaks and quiet edges
+PASS: camp: synthesis is cached
+PASS: camp: inclusive loop boundary is the last valid PCM frame
+PASS: dungeon: audible PCM with bounded peaks and quiet edges
+PASS: dungeon: synthesis is cached
+PASS: dungeon: inclusive loop boundary is the last valid PCM frame
+PASS: ui: audible PCM with bounded peaks and quiet edges
+PASS: ui: synthesis is cached
+PASS: swing: audible PCM with bounded peaks and quiet edges
+PASS: swing: synthesis is cached
+PASS: bolt: audible PCM with bounded peaks and quiet edges
+PASS: bolt: synthesis is cached
+PASS: impact: audible PCM with bounded peaks and quiet edges
+PASS: impact: synthesis is cached
+PASS: arcane_contact: audible PCM with bounded peaks and quiet edges
+PASS: arcane_contact: synthesis is cached
+PASS: arrow_contact: audible PCM with bounded peaks and quiet edges
+PASS: arrow_contact: synthesis is cached
+PASS: hurt: audible PCM with bounded peaks and quiet edges
+PASS: hurt: synthesis is cached
+PASS: oath: audible PCM with bounded peaks and quiet edges
+PASS: oath: synthesis is cached
+PASS: nova: audible PCM with bounded peaks and quiet edges
+PASS: nova: synthesis is cached
+PASS: volley: audible PCM with bounded peaks and quiet edges
+PASS: volley: synthesis is cached
+PASS: warning: audible PCM with bounded peaks and quiet edges
+PASS: warning: synthesis is cached
+PASS: step: audible PCM with bounded peaks and quiet edges
+PASS: step: synthesis is cached
+PASS: ward: audible PCM with bounded peaks and quiet edges
+PASS: ward: synthesis is cached
+PASS: lightning: audible PCM with bounded peaks and quiet edges
+PASS: lightning: synthesis is cached
+PASS: starfall: audible PCM with bounded peaks and quiet edges
+PASS: starfall: synthesis is cached
+PASS: victory: audible PCM with bounded peaks and quiet edges
+PASS: victory: synthesis is cached
+PASS: defeat: audible PCM with bounded peaks and quiet edges
+PASS: defeat: synthesis is cached
+PASS: Back from armory returns to camp
+PASS: duplicate Back delivery within a frame is handled once
+PASS: Back at camp opens options instead of quitting
+PASS: CloseSettings fits within landscape viewport
+PASS: SaveAndExit fits within landscape viewport
+PASS: MasterVolume fits within landscape viewport
+PASS: MusicVolume fits within landscape viewport
+PASS: EffectsVolume fits within landscape viewport
+PASS: LargeText fits within landscape viewport
+PASS: ReducedMotion fits within landscape viewport
+PASS: device report cannot invent measurements before combat
+PASS: locally measured frame pacing is readable and copyable from Beta / Privacy
+PASS: options exports a copyable save backup code
+PASS: camp exposes import and a disabled undo until a restore exists
+PASS: invalid backup entered through the UI leaves progress unchanged
+PASS: large-text option updates labels already on screen
+PASS: large-text preference is enabled
+PASS: master mute affects both music and effects
+PASS: muted effects never allocate a voice
+PASS: music and effects volumes are independent
+PASS: battery mode caps presentation at 30 FPS
+PASS: battery mode reduces rendering resolution, MSAA and shadows
+PASS: battery mode also disables architecture normal-map work
+PASS: damage number preference reaches the 3D world
+PASS: reduced-motion preference reaches the 3D world
+PASS: reduced motion suppresses nonessential impact shake
+PASS: opening options pauses an active run
+PASS: options menu leaves exact combat state unchanged
+PASS: balanced mode restores rendering immediately
+PASS: balanced mode restores masonry relief on the same live world
+PASS: balanced mode keeps the combat camera steady on impact
+PASS: graphics changes cannot affect simulation, runs or rewards
+PASS: Back closes menu and resumes previously active run
+PASS: closing options preserves a manually paused run
+PASS: background suspension stops playback and rejects new cues
+PASS: foreground preserves muted music without replaying effects
+PASS: unmuting music resumes its playback
+PASS: performance samples stay in memory and are not restored from the save
+PASS: audio, graphics, readability and motion preferences survive a cold start
+PASS: paused expedition survives options and cold start
+OPTIONS SMOKE: 82 checks, 0 failures

@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+    "--audio-driver",
+    "Dummy",
+    "--path",
+    "/workspace/Emberfall-Ashen-Veil",
+    "--headless",
+    "--script",
+    "tests/native_hostile_smoke.gd"
+  ],
+  "actual_process_exit": 0,
+  "wall_seconds": 12.000412464141846,
+  "engine_errors": [],
+  "required_marker": "NATIVE HOSTILE SMOKE:",
+  "required_marker_present": true,
+  "LP_NUM_THREADS": "4"
+}

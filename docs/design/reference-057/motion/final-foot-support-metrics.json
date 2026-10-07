@@ -1,0 +1,149 @@
+{
+  "scope": "Actual original log extraction only; all eleven native weighted walking boots, and 31 preparation plus30 recovery frames for each real Vowkeeper action. An aligned actor is used for the independent sword stance fixture. B/C preparation height range is not relabelled as initial downward loading.",
+  "walking": [
+    {
+      "appearance": "Vowkeeper",
+      "boot_probes": 714,
+      "stable_samples": 94,
+      "max_world_stance_drift": 9.933530237e-05,
+      "min_world_boot_y": 0.00348651409149,
+      "min_world_loaded_y": 0.00348651409149,
+      "max_world_loaded_y": 0.01989086717367,
+      "min_world_free_y": 0.00649557821453,
+      "max_world_free_lift": 0.13943199813366
+    },
+    {
+      "appearance": "Arcanist",
+      "boot_probes": 356,
+      "stable_samples": 94,
+      "max_world_stance_drift": 9.933530237e-05,
+      "min_world_boot_y": 0.00348626682535,
+      "min_world_loaded_y": 0.00348626682535,
+      "max_world_loaded_y": 0.01670606806874,
+      "min_world_free_y": 0.00553876208141,
+      "max_world_free_lift": 0.13630841672421
+    },
+    {
+      "appearance": "Ranger",
+      "boot_probes": 714,
+      "stable_samples": 94,
+      "max_world_stance_drift": 0.00028985398239,
+      "min_world_boot_y": 0.00348652503453,
+      "min_world_loaded_y": 0.00348652503453,
+      "max_world_loaded_y": 0.019890492782,
+      "min_world_free_y": 0.00637882808223,
+      "max_world_free_lift": 0.13940225541592
+    },
+    {
+      "appearance": "raider",
+      "boot_probes": 346,
+      "stable_samples": 94,
+      "max_world_stance_drift": 0.0003041283635,
+      "min_world_boot_y": 0.00356323737651,
+      "min_world_loaded_y": 0.00356323737651,
+      "max_world_loaded_y": 0.01373574696481,
+      "min_world_free_y": 0.00526489084587,
+      "max_world_free_lift": 0.12961004674435
+    },
+    {
+      "appearance": "bulwark",
+      "boot_probes": 346,
+      "stable_samples": 96,
+      "max_world_stance_drift": 0.00012374170183,
+      "min_world_boot_y": 0.00381187163293,
+      "min_world_loaded_y": 0.00381187163293,
+      "max_world_loaded_y": 0.0172093398869,
+      "min_world_free_y": 0.00585152348503,
+      "max_world_free_lift": 0.14411748945713
+    },
+    {
+      "appearance": "hexer",
+      "boot_probes": 346,
+      "stable_samples": 94,
+      "max_world_stance_drift": 0.00035606886377,
+      "min_world_boot_y": 0.00356319081038,
+      "min_world_loaded_y": 0.00356319081038,
+      "max_world_loaded_y": 0.01373549737036,
+      "min_world_free_y": 0.00526532437652,
+      "max_world_free_lift": 0.12960088253021
+    },
+    {
+      "appearance": "elite",
+      "boot_probes": 346,
+      "stable_samples": 96,
+      "max_world_stance_drift": 0.00012374170183,
+      "min_world_boot_y": 0.00381187163293,
+      "min_world_loaded_y": 0.00381187163293,
+      "max_world_loaded_y": 0.0172093398869,
+      "min_world_free_y": 0.00585152348503,
+      "max_world_free_lift": 0.14411748945713
+    },
+    {
+      "appearance": "guardian_0",
+      "boot_probes": 346,
+      "stable_samples": 101,
+      "max_world_stance_drift": 0.001614766079,
+      "min_world_boot_y": 0.00762339541689,
+      "min_world_loaded_y": 0.00762339541689,
+      "max_world_loaded_y": 0.03495693206787,
+      "min_world_free_y": 0.01170304697007,
+      "max_world_free_lift": 0.28530570864677
+    },
+    {
+      "appearance": "guardian_1",
+      "boot_probes": 346,
+      "stable_samples": 101,
+      "max_world_stance_drift": 0.001614766079,
+      "min_world_boot_y": 0.00762336840853,
+      "min_world_loaded_y": 0.00762336840853,
+      "max_world_loaded_y": 0.03495693206787,
+      "min_world_free_y": 0.01170304697007,
+      "max_world_free_lift": 0.28530570864677
+    },
+    {
+      "appearance": "guardian_2",
+      "boot_probes": 346,
+      "stable_samples": 101,
+      "max_world_stance_drift": 0.001614766079,
+      "min_world_boot_y": 0.00762336840853,
+      "min_world_loaded_y": 0.00762336840853,
+      "max_world_loaded_y": 0.03495693206787,
+      "min_world_free_y": 0.01170304697007,
+      "max_world_free_lift": 0.28530570864677
+    },
+    {
+      "appearance": "guardian_3",
+      "boot_probes": 346,
+      "stable_samples": 101,
+      "max_world_stance_drift": 0.001614766079,
+      "min_world_boot_y": 0.00762339541689,
+      "min_world_loaded_y": 0.00762339541689,
+      "max_world_loaded_y": 0.03495693206787,
+      "min_world_free_y": 0.01170304697007,
+      "max_world_free_lift": 0.28530570864677
+    }
+  ],
+  "sword": [
+    {
+      "actual_action_phrase": "basic",
+      "original_metric_line": "NATIVE SWORD SUPPORT basic: start=(0.015068, 0.003) peak=(0.015652, 0.003) landed=(0.014932, 0.003) max_world_stance_drift=0.00000106626635 initial_to_low_hip_delta=0.07445192337036 actual_preparation_hip_range=0.07445192337036",
+      "max_world_stance_drift": 1.06626635e-06,
+      "initial_to_low_hip_delta": 0.07445192337036,
+      "actual_preparation_hip_range": 0.07445192337036
+    },
+    {
+      "actual_action_phrase": "skill",
+      "original_metric_line": "NATIVE SWORD SUPPORT skill: start=(0.014932, 0.003) peak=(0.015548, 0.003) landed=(0.014932, 0.003) max_world_stance_drift=0.00000142173394 initial_to_low_hip_delta=0.0 actual_preparation_hip_range=0.16514551639557",
+      "max_world_stance_drift": 1.42173394e-06,
+      "initial_to_low_hip_delta": 0.0,
+      "actual_preparation_hip_range": 0.16514551639557
+    },
+    {
+      "actual_action_phrase": "heavy",
+      "original_metric_line": "NATIVE SWORD SUPPORT heavy: start=(0.014932, 0.003) peak=(0.015145, 0.003) landed=(0.014932, 0.003) max_world_stance_drift=0.00000130897183 initial_to_low_hip_delta=0.0 actual_preparation_hip_range=0.16917300224304",
+      "max_world_stance_drift": 1.30897183e-06,
+      "initial_to_low_hip_delta": 0.0,
+      "actual_preparation_hip_range": 0.16917300224304
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: online options render the active fellowship status
+PASS: online options render the separate server-owned test profile and AFK report
+PASS: server profile exposes bounded farm controls and explains its separation from local gameplay
+PASS: server profile exposes validated class, attribute, temper, equip and sell actions
+PASS: fellowship roster renders server member names
+PASS: chat, send, and leave controls are present with the message limit
+PASS: persistent chat has a bounded, scrollable landscape panel
+PASS: recent group messages render in the chat history
+PASS: live chat updates status and message list without rebuilding the panel
+PASS: server progression status updates live without rebuilding options
+PASS: unaffiliated players can create, search, and join open fellowships
+FELLOWSHIP UI SMOKE: 11 checks, 0 failures

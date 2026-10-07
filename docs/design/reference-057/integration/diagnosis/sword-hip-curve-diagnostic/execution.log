@@ -1,0 +1,27 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: FAIL: the production sword preparation loads the actual pelvis by over 5 mm above its planted support instead of remaining rigid
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (/workspace/scratch/emberfall-quality-057/integration/sword-hip-curve-diagnostic/probe.gd:13)
+       [1] check_native_sword_boot_support (/workspace/scratch/emberfall-quality-057/integration/sword-hip-curve-diagnostic/probe.gd:82)
+       [2] run_checks (/workspace/scratch/emberfall-quality-057/integration/sword-hip-curve-diagnostic/probe.gd:113)
+NATIVE SWORD SUPPORT basic: start=(0.014932, 0.003) peak=(0.015652, 0.003) landed=(0.014932, 0.003) max_world_stance_drift=0.00000101748856 actual_world_hip_load=0.0 actual_hip_range=0.18231379985809 actual_hip_curve=[0.87866258621216, 0.91495060920715, 0.99006503820419, 1.05224239826202, 1.06097638607025, 1.05521941184998, 1.04966723918915, 1.04515469074249, 1.0426276922226, 1.04279232025146, 1.04409003257751, 1.0458174943924, 1.04641759395599, 1.04318654537201, 1.04056143760681, 1.03812777996063, 1.03509879112244, 1.03206777572632, 1.0295821428299, 1.02679538726807, 1.02307176589966, 1.01992356777191, 1.01726078987122, 1.01260101795197, 1.00743865966797, 1.0030837059021, 0.99958372116089, 0.99788188934326, 0.99698346853256, 0.99678647518158, 0.99709761142731]
+ORIGINAL NATIVE SWORD SOURCE basic: start=(0.057219, 0.048703) peak=(0.37292, 0.370671) foot_l travel=0.82457548379898 foot_r travel=0.51019483804703
+ERROR: FAIL: the production sword preparation loads the actual pelvis by over 5 mm above its planted support instead of remaining rigid
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (/workspace/scratch/emberfall-quality-057/integration/sword-hip-curve-diagnostic/probe.gd:13)
+       [1] check_native_sword_boot_support (/workspace/scratch/emberfall-quality-057/integration/sword-hip-curve-diagnostic/probe.gd:82)
+       [2] run_checks (/workspace/scratch/emberfall-quality-057/integration/sword-hip-curve-diagnostic/probe.gd:113)
+NATIVE SWORD SUPPORT skill: start=(0.014932, 0.003) peak=(0.015548, 0.003) landed=(0.014932, 0.003) max_world_stance_drift=0.00000142173394 actual_world_hip_load=0.0 actual_hip_range=0.16514551639557 actual_hip_curve=[0.87866258621216, 0.91481679677963, 0.98807293176651, 1.04380810260773, 1.04334795475006, 1.02677381038666, 1.00923001766205, 0.99295508861542, 0.9802782535553, 0.97290468215942, 0.96881639957428, 0.96709388494492, 0.9633526802063, 0.96064805984497, 0.96204978227615, 0.96554857492447, 0.96938186883926, 0.97106236219406, 0.97655880451202, 0.98297047615051, 0.98995876312256, 0.9985762834549, 1.00668001174927, 1.01378083229065, 1.01821529865265, 1.0204803943634, 1.02160727977753, 1.02173411846161, 1.02184557914734, 1.02093958854675, 1.01881647109985]
+ORIGINAL NATIVE SWORD SOURCE skill: start=(0.351143, 0.349708) peak=(0.470311, 0.49654) foot_l travel=0.20773833990097 foot_r travel=0.10796035826206
+ERROR: FAIL: the production sword preparation loads the actual pelvis by over 5 mm above its planted support instead of remaining rigid
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (/workspace/scratch/emberfall-quality-057/integration/sword-hip-curve-diagnostic/probe.gd:13)
+       [1] check_native_sword_boot_support (/workspace/scratch/emberfall-quality-057/integration/sword-hip-curve-diagnostic/probe.gd:82)
+       [2] run_checks (/workspace/scratch/emberfall-quality-057/integration/sword-hip-curve-diagnostic/probe.gd:113)
+NATIVE SWORD SUPPORT heavy: start=(0.014932, 0.003) peak=(0.015145, 0.003) landed=(0.014932, 0.003) max_world_stance_drift=0.00000130897183 actual_world_hip_load=0.0 actual_hip_range=0.16917300224304 actual_hip_curve=[0.87866258621216, 0.91485732793808, 0.98908871412277, 1.0478355884552, 1.04762876033783, 1.02413833141327, 1.02956902980804, 1.01660442352295, 1.00406932830811, 0.99424660205841, 0.98455947637558, 0.97473955154419, 0.97230178117752, 0.97579503059387, 0.985012114048, 0.99774521589279, 0.99243456125259, 0.99002540111542, 0.99083143472672, 0.99374157190323, 0.99795424938202, 1.00328469276428, 1.00945591926575, 1.01616716384888, 1.02309823036194, 1.02936768531799, 1.03448331356049, 1.03838062286377, 1.04112541675568, 1.04276967048645, 1.04328012466431]
+ORIGINAL NATIVE SWORD SOURCE heavy: start=(0.391821, 0.428586) peak=(0.423885, 0.428586) foot_l travel=1.05802023410797 foot_r travel=0.3705208003521
+SWORD HIP DIAGNOSTIC: 25 checks, 3 failures

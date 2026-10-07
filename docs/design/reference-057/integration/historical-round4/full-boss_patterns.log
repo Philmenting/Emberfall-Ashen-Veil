@@ -1,0 +1,125 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: bell ring has a safe center and exterior
+PASS: tidal lane uses its committed direction
+PASS: grave bloom has three distinct blast circles
+PASS: furnace cross leaves safe diagonal sectors
+PASS: region 0 has two distinct, readable boss telegraphs
+PASS: region 0 alternate attack has a reachable safe point
+PASS: region 0 automatic dodge avoids its alternate attack
+PASS: region 0 boss pattern selection replays from its seed
+PASS: region 0 selected warning restores exactly
+PASS: region 0 boss alternates shape after a saved warning
+PASS: region 1 has two distinct, readable boss telegraphs
+PASS: region 1 alternate attack has a reachable safe point
+PASS: region 1 automatic dodge avoids its alternate attack
+PASS: region 1 boss pattern selection replays from its seed
+PASS: region 1 selected warning restores exactly
+PASS: region 1 boss alternates shape after a saved warning
+PASS: region 2 has two distinct, readable boss telegraphs
+PASS: region 2 alternate attack has a reachable safe point
+PASS: region 2 automatic dodge avoids its alternate attack
+PASS: region 2 boss pattern selection replays from its seed
+PASS: region 2 selected warning restores exactly
+PASS: region 2 boss alternates shape after a saved warning
+PASS: region 3 has two distinct, readable boss telegraphs
+PASS: region 3 alternate attack has a reachable safe point
+PASS: region 3 automatic dodge avoids its alternate attack
+PASS: region 3 boss pattern selection replays from its seed
+PASS: region 3 selected warning restores exactly
+PASS: region 3 boss alternates shape after a saved warning
+PASS: region 0: generated warning validates
+PASS: region 0: escape stays inside walkable bounds
+PASS: region 0: hero reacts automatically
+PASS: region 0: automatic escape avoids actual damage
+PASS: region 0: standing in danger takes one resolved hit
+PASS: region 0: half-health phase strengthens future attacks
+PASS: region 0: awakening announces exactly once
+PASS: region 0: mid-cast checkpoint is exact
+PASS: region 0: resumed boss phase finishes identically
+PASS: region 0: invalid telegraph rejected
+PASS: region 0 Vowkeeper: all 64 live/skip outcomes agree
+PASS: region 0 Arcanist: all 64 live/skip outcomes agree
+PASS: region 0 Ranger: all 64 live/skip outcomes agree
+PASS: region 0: restored warning has complete fill, dark backing and orange contour geometry
+PASS: region 0: restored warning retains its distinct fill, backing and contour materials
+PASS: region 0: dark backing extends beyond the orange danger contour
+PASS: region 0: restored warning immediately displays its countdown
+PASS: region 0: HUD names the current boss attack
+PASS: region 0: paused boss and warning remain frozen
+PASS: region 1: generated warning validates
+PASS: region 1: escape stays inside walkable bounds
+PASS: region 1: hero reacts automatically
+PASS: region 1: automatic escape avoids actual damage
+PASS: region 1: standing in danger takes one resolved hit
+PASS: region 1: half-health phase strengthens future attacks
+PASS: region 1: awakening announces exactly once
+PASS: region 1: mid-cast checkpoint is exact
+PASS: region 1: resumed boss phase finishes identically
+PASS: region 1: invalid telegraph rejected
+PASS: region 1 Vowkeeper: all 64 live/skip outcomes agree
+PASS: region 1 Arcanist: all 64 live/skip outcomes agree
+PASS: region 1 Ranger: all 64 live/skip outcomes agree
+PASS: region 1: restored warning has complete fill, dark backing and orange contour geometry
+PASS: region 1: restored warning retains its distinct fill, backing and contour materials
+PASS: region 1: dark backing extends beyond the orange danger contour
+PASS: region 1: restored warning immediately displays its countdown
+PASS: region 1: HUD names the current boss attack
+PASS: region 1: paused boss and warning remain frozen
+PASS: region 2: generated warning validates
+PASS: region 2: escape stays inside walkable bounds
+PASS: region 2: hero reacts automatically
+PASS: region 2: automatic escape avoids actual damage
+PASS: region 2: standing in danger takes one resolved hit
+PASS: region 2: half-health phase strengthens future attacks
+PASS: region 2: awakening announces exactly once
+PASS: region 2: mid-cast checkpoint is exact
+PASS: region 2: resumed boss phase finishes identically
+PASS: region 2: invalid telegraph rejected
+PASS: region 2 Vowkeeper: all 64 live/skip outcomes agree
+PASS: region 2 Arcanist: all 64 live/skip outcomes agree
+PASS: region 2 Ranger: all 64 live/skip outcomes agree
+PASS: region 2: restored warning has complete fill, dark backing and orange contour geometry
+PASS: region 2: restored warning retains its distinct fill, backing and contour materials
+PASS: region 2: dark backing extends beyond the orange danger contour
+PASS: region 2: restored warning immediately displays its countdown
+PASS: region 2: HUD names the current boss attack
+PASS: region 2: paused boss and warning remain frozen
+PASS: region 3: generated warning validates
+PASS: region 3: escape stays inside walkable bounds
+PASS: region 3: hero reacts automatically
+PASS: region 3: automatic escape avoids actual damage
+PASS: region 3: standing in danger takes one resolved hit
+PASS: region 3: half-health phase strengthens future attacks
+PASS: region 3: awakening announces exactly once
+PASS: region 3: mid-cast checkpoint is exact
+PASS: region 3: resumed boss phase finishes identically
+PASS: region 3: invalid telegraph rejected
+PASS: region 3 Vowkeeper: all 64 live/skip outcomes agree
+PASS: region 3 Arcanist: all 64 live/skip outcomes agree
+PASS: region 3 Ranger: all 64 live/skip outcomes agree
+PASS: region 3: restored warning has complete fill, dark backing and orange contour geometry
+PASS: region 3: restored warning retains its distinct fill, backing and contour materials
+PASS: region 3: dark backing extends beyond the orange danger contour
+PASS: region 3: restored warning immediately displays its countdown
+PASS: region 3: HUD names the current boss attack
+PASS: region 3: paused boss and warning remain frozen
+PASS: pre-0.9 checkpoint does not enable new patterns
+PASS: legacy circular boss continues exactly
+PASS: exact 0.8 reference: region 0 Vowkeeper
+PASS: exact 0.8 reference: region 0 Arcanist
+PASS: exact 0.8 reference: region 0 Ranger
+PASS: exact 0.8 reference: region 1 Vowkeeper
+PASS: exact 0.8 reference: region 1 Arcanist
+PASS: exact 0.8 reference: region 1 Ranger
+PASS: exact 0.8 reference: region 2 Vowkeeper
+PASS: exact 0.8 reference: region 2 Arcanist
+PASS: exact 0.8 reference: region 2 Ranger
+PASS: exact 0.8 reference: region 3 Vowkeeper
+PASS: exact 0.8 reference: region 3 Arcanist
+PASS: exact 0.8 reference: region 3 Ranger
+PASS: malformed geometry rejected: circle
+PASS: malformed geometry rejected: beam
+PASS: malformed geometry rejected: annulus
+PASS: unknown boss pattern variant is rejected
+BOSS PATTERNS SMOKE: 122 checks, 0 failures

@@ -1,0 +1,136 @@
+{
+  "scope": "Exported native resource package in empty external cwd; separate native GL source-style force_sync/current renderer buffer readback. Dummy audio is intentional; no audio or physical-phone frame-time claim. Four-region Android-art fixture executes only as a Desktop GL caller correctness check.",
+  "commands": [
+    {
+      "name": "android-art-parse",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--check-only",
+        "--script",
+        "res://tests/android_art_flow.gd"
+      ],
+      "cwd": "/workspace/Emberfall-Ashen-Veil",
+      "actual_exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 2.659,
+      "strict_success": true,
+      "log": "android-art-parse.log",
+      "log_sha256": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+      "summary_matches": []
+    },
+    {
+      "name": "export-pack",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--export-pack",
+        "Android Closed Beta APK",
+        "/workspace/scratch/emberfall-quality-057/integration/package-native-round2/native-avatar-smoke.pck"
+      ],
+      "cwd": "/workspace/Emberfall-Ashen-Veil",
+      "actual_exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 3.877,
+      "strict_success": true,
+      "log": "export-pack.log",
+      "log_sha256": "af415c226cf72c8bfe0a4d523028416151e3b920eb96b809996182e417983732",
+      "summary_matches": []
+    },
+    {
+      "name": "exported-resources",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--main-pack",
+        "/workspace/scratch/emberfall-quality-057/integration/package-native-round2/native-avatar-smoke.pck",
+        "--script",
+        "/workspace/Emberfall-Ashen-Veil/tests/source_avatar_export_smoke.gd"
+      ],
+      "cwd": "/workspace/scratch/emberfall-quality-057/integration/package-native-round2/empty-cwd",
+      "actual_exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 3.882,
+      "strict_success": true,
+      "log": "exported-resources.log",
+      "log_sha256": "c689f08cd42f4da971af702e28561e1b33163f4ce5293d7e1d7fb4c24e28fbb5",
+      "summary_matches": [
+        [
+          "60",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "native-source-style",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--script",
+        "res://tests/source_avatar_style_smoke.gd",
+        "--",
+        "--require-gpu"
+      ],
+      "cwd": "/workspace/Emberfall-Ashen-Veil",
+      "actual_exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 3.99,
+      "strict_success": true,
+      "log": "native-source-style.log",
+      "log_sha256": "30c893eafb418482448d671b702e6cd83d4c889f275c6d44c4cb46a39d4c5cd9",
+      "summary_matches": [
+        [
+          "135",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "desktop-android-art-flow",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--resolution",
+        "1200x536",
+        "res://tests/android_art_flow.tscn",
+        "--",
+        "--quit-after-art"
+      ],
+      "cwd": "/workspace/Emberfall-Ashen-Veil",
+      "actual_exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 133.791,
+      "strict_success": true,
+      "log": "desktop-android-art-flow.log",
+      "log_sha256": "9474f98f98e903e35b4fad2b50a2d1c31de198572c6b3c9525a69f68d4e9b1eb",
+      "summary_matches": []
+    }
+  ],
+  "passed": true,
+  "actual_exit_code": 0,
+  "package": {
+    "name": "native-avatar-smoke.pck",
+    "bytes": 88141164,
+    "sha256": "e5eff6a0e2ec9b987aacd33b62786a347ef7c0f214c9aaba22bd9ea42bca7b7a"
+  }
+}

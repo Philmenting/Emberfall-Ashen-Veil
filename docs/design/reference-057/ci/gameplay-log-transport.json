@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "observed_at": "2026-10-07T21:24:52.284Z",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "job_id": 113017205608,
+  "connector_tool": "mcp__codex_apps__github_fetch_workflow_job_logs",
+  "connector_result_is_error": false,
+  "transport": "GitHub connector decoded UTF-8 string, re-encoded as UTF-8 without text edits",
+  "http_byte_equivalence_established": false,
+  "original_bom_preserved": true,
+  "connector_string_utf16_units": 201566,
+  "original_text_rewritten": false,
+  "binary_artifacts_downloaded": false,
+  "log_sha256": "0ba80302fed7701b7f451c8e3dd736ded9b260242063d8bbbd65e11169b8ca84",
+  "log_bytes": 201568,
+  "utf8_bom": true,
+  "lf_count": 1950,
+  "crlf_count": 0
+}

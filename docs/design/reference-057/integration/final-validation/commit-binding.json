@@ -1,0 +1,14 @@
+{
+  "bound_at_utc": "2026-10-07T20:11:28.544205+00:00",
+  "source_commit": "02a3fc905e55a4e64cbece4eb6b07c65c1bf4afb",
+  "source_tree": "ae378f958570263701f4b80a048766c7723ec882",
+  "final_input_files": 905,
+  "all_final_inputs_present_in_commit": true,
+  "current_final_inputs_match_original_final_execution": true,
+  "mismatching_files": [],
+  "original_final_receipt_sha256": "485335816514e0ec68fc174e9d7103364a84532eb641ac9df7d55186bd065804",
+  "source_binding_sha256": "852a75b04f2724a77598e672dff64e911eeb39929976fff3d08ec8f0250dd5fd",
+  "scope": "Commit created after accepted mixed-source local coverage; original earlier and final execution receipts remain byte-identical. This binding does not turn historical runs into runs on this commit. Upload/CI status is maintained separately by Root.",
+  "commit_content_comparison_actual_exit_code": 0,
+  "all_final_inputs_match_commit": true
+}

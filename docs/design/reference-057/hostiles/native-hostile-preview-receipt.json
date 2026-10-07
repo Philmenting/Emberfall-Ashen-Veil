@@ -1,0 +1,139 @@
+{
+  "command": [
+    "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+    "--display-driver",
+    "x11",
+    "--rendering-method",
+    "gl_compatibility",
+    "--audio-driver",
+    "Dummy",
+    "--path",
+    "/workspace/Emberfall-Ashen-Veil",
+    "--script",
+    "tests/native_hostile_preview.gd",
+    "--",
+    "--capture-dir=/workspace/scratch/emberfall-quality-057/hostiles/native"
+  ],
+  "actual_process_exit": 0,
+  "wall_seconds": 9.826835632324219,
+  "engine_errors": [],
+  "required_marker": "NATIVE_HOSTILE_PREVIEW_PASS 28",
+  "required_marker_present": true,
+  "LP_NUM_THREADS": "4",
+  "actual_images": 28,
+  "files": {
+    "bulwark-death.png": {
+      "bytes": 75767,
+      "sha256": "f47d25bdd1b48f801b210b9e90e9fd03b9f17d2ae958e10694a26bc6d0637b5d"
+    },
+    "bulwark-guard.png": {
+      "bytes": 108414,
+      "sha256": "d32c1596f8342473128eb02994ee2ffe3ccb771f76e884eafaaf93bafca9eba0"
+    },
+    "bulwark-load.png": {
+      "bytes": 86892,
+      "sha256": "a29a6e9212d2a2dd17d26aa5f76ea18e3c771bc74a9751e11f00785a8432e27c"
+    },
+    "bulwark-release.png": {
+      "bytes": 95003,
+      "sha256": "c37717d72e9b9554fe03d3c564254718bbe6aa195a4a9b7f7b844c8f74dbfad3"
+    },
+    "elite-death.png": {
+      "bytes": 76424,
+      "sha256": "4b8051aebd20a9f5428b4d6e2aa190c03d1a5184b1aad06b5e871015612522e4"
+    },
+    "elite-guard.png": {
+      "bytes": 108250,
+      "sha256": "f37ee973cda8fb311bd4fc48636dcba4c23a938474e2325ea803bea889eb1240"
+    },
+    "elite-load.png": {
+      "bytes": 85687,
+      "sha256": "fe1f65107754a49f14f641e390c14eb83ca40865df4ec4b84131429fbbfeb6c6"
+    },
+    "elite-release.png": {
+      "bytes": 102824,
+      "sha256": "bf3074604a57720e84e89c13198cd5e025269cb132e1bc12250c1523f76105f8"
+    },
+    "guardian_0-death.png": {
+      "bytes": 78241,
+      "sha256": "b3858ab959c9234264a908076bb098ca10c5bcdc8987809597b30b366a9b88c2"
+    },
+    "guardian_0-guard.png": {
+      "bytes": 115420,
+      "sha256": "9cf91a13c1865729df1cd2668fb25f5484e77eec1f1739328a9f4dea1a8b0474"
+    },
+    "guardian_0-load.png": {
+      "bytes": 101376,
+      "sha256": "367ee79fd21ac450b84e707dc42e5cb7e45e3556bd48cd2c250e0c4b714f3c64"
+    },
+    "guardian_0-release.png": {
+      "bytes": 99363,
+      "sha256": "fb2d3b0827107d957475b65883d0902187d224cb9be7d74da30b1d130bae2c3d"
+    },
+    "guardian_1-death.png": {
+      "bytes": 75364,
+      "sha256": "5185fee6a401067069b2ef92089199b279117660a2ca3e218bcb8f22a7793038"
+    },
+    "guardian_1-guard.png": {
+      "bytes": 108540,
+      "sha256": "5315f2f24de41c6ecef045f35445535c552642e6f4247b17081563e5e1a21414"
+    },
+    "guardian_1-load.png": {
+      "bytes": 109630,
+      "sha256": "f61d92d4fd285ef0102a08c89c24377c5d92c911d309aa7b9fd73d4a85a1a0ee"
+    },
+    "guardian_1-release.png": {
+      "bytes": 109225,
+      "sha256": "5c1e9a40ffea6fa02f0d63c14f499c9652b939cfe5bb88af728eecb8f3d0c865"
+    },
+    "guardian_2-death.png": {
+      "bytes": 74713,
+      "sha256": "acda85574ae90e0980d3dbf3221a24b94831000990bfea3944390f3e2a2a89e5"
+    },
+    "guardian_2-guard.png": {
+      "bytes": 108250,
+      "sha256": "5f3b69bea3d8be839ee7ded829d14814c6b7c8bca51b7902f3248e458ab9fbe2"
+    },
+    "guardian_2-load.png": {
+      "bytes": 108924,
+      "sha256": "99e64a27fbe5fbd0485d587f48ed71a211ab73b5f68f67d51b3c46847dafd31a"
+    },
+    "guardian_2-release.png": {
+      "bytes": 108418,
+      "sha256": "7ee6f9d0c3f7e9e5c022490bba16eae10282937941f3eab33d5cac44695a9c48"
+    },
+    "guardian_3-death.png": {
+      "bytes": 79600,
+      "sha256": "98d73ac08e32b6929d29d3dd3b31d7f9361da6c52e8ffa333287bf87dcb8d53b"
+    },
+    "guardian_3-guard.png": {
+      "bytes": 117702,
+      "sha256": "63bb91c13640c000a15a224302f504af4bc21ccca3a00e1c82cfb64543e51283"
+    },
+    "guardian_3-load.png": {
+      "bytes": 104589,
+      "sha256": "bd3945d78539c942578c535dcca9a2817a40d289510baa064e68ac1ba900e8b1"
+    },
+    "guardian_3-release.png": {
+      "bytes": 102298,
+      "sha256": "8fd44fdce29cd3566c8a72157333131efe0737206a728192df65a11aa7d6899c"
+    },
+    "hexer-death.png": {
+      "bytes": 77163,
+      "sha256": "b5cf452f56b1379b3117a73ac223c09cce95749daf118e5d6df5161a5319c80e"
+    },
+    "hexer-guard.png": {
+      "bytes": 109334,
+      "sha256": "89a5bf86c7a73ab881f27ff73eb82c870c712a1a5e816de105ce9c7a7c90231e"
+    },
+    "hexer-load.png": {
+      "bytes": 109963,
+      "sha256": "cba5dc7fc22cc48e78b297b72be2f4764597988d307779216edb632f5af2175e"
+    },
+    "hexer-release.png": {
+      "bytes": 109919,
+      "sha256": "0349a7f8649f46bb94be83b52685c0d3746c1ee6a72c4db9179071b884558a3a"
+    }
+  },
+  "scope": "28 original Godot runtime studio images; explicit Dummy audio, no ordinary expedition or phone performance claim"
+}

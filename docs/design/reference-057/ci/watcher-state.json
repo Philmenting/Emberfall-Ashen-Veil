@@ -1,0 +1,45 @@
+{
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "watcher_started_at": "2026-10-07T21:06:49.511342+00:00",
+  "observed_at": "2026-10-07T21:34:14.368001+00:00",
+  "attempt": 14,
+  "actual_wrapper_exit_code": 2,
+  "wrapper_original_log": "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315/metadata-poll-20261007T213407240338Z.log",
+  "all_three_completed_metadata": true,
+  "all_three_successful_metadata": true,
+  "complete_original_logs_still_required": true,
+  "workflows": [
+    {
+      "workflow": "Gameplay Quality",
+      "run": 37686979998,
+      "attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "job_id": 113017205608,
+      "job_status": "completed",
+      "job_conclusion": "success"
+    },
+    {
+      "workflow": "Android Debug APK",
+      "run": 37686979978,
+      "attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "job_id": 113017204783,
+      "job_status": "completed",
+      "job_conclusion": "success"
+    },
+    {
+      "workflow": "Android Beta Runtime",
+      "run": 37686980000,
+      "attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "job_id": 113017205393,
+      "job_status": "completed",
+      "job_conclusion": "success"
+    }
+  ],
+  "engine_used": false,
+  "binary_artifacts_downloaded": false
+}
