@@ -1,0 +1,214 @@
+{
+  "schema": 1,
+  "status": "complete_actual_decode_chain",
+  "created_utc": "2026-10-08T00:14:11.208583+00:00",
+  "actual_process_exit": 0,
+  "ranges_per_side": 20,
+  "actual_successful_range_decode_receipts": 40,
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "tool_sha256": "83bff1cabc3e915bbcf857bc5f628e159f82088cff10090c5ab0cbb223d9987d",
+  "actual_range_processes": [
+    {
+      "side": "before",
+      "label": "first-signature-full-released-phrase",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "first-signature-full-released-phrase",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "first-basic-full-released-phrase",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "first-basic-full-released-phrase",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "first-judgment-full-released-phrase",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "first-judgment-full-released-phrase",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "first-sunder-full-released-phrase",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "first-sunder-full-released-phrase",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "first-lateral-evade",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "first-lateral-evade",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "first-recovery-to-evade",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "first-recovery-to-evade",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "first-attack-to-evade",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "first-attack-to-evade",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "additional-evade-2501",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "additional-evade-2501",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "additional-evade-2684",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "additional-evade-2684",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "ordinary-travel-gait",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "ordinary-travel-gait",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "first-raider-death",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "first-raider-death",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "first-hexer-death",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "first-hexer-death",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "first-bulwark-death",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "first-bulwark-death",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "first-elite-death",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "first-elite-death",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "first-boss-death",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "first-boss-death",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "first-boss-phase0-ordinary-melee",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "first-boss-phase0-ordinary-melee",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "first-hexer-telegraph-release-recovery-reset",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "first-hexer-telegraph-release-recovery-reset",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "first-elite-interrupted-telegraph",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "first-elite-interrupted-telegraph",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "before",
+      "label": "original-ending-loot-ui",
+      "actual_range_process_exit": 0
+    },
+    {
+      "side": "after",
+      "label": "original-ending-loot-ui",
+      "actual_range_process_exit": 0
+    }
+  ],
+  "ai_visual_acceptance": "pending separate bounded inspection; decoder completion is not pixel review"
+}

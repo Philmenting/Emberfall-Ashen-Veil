@@ -1,0 +1,8 @@
+{
+  "status": "mismatches_require_resolution",
+  "assertions": 2470,
+  "mismatches": [
+    "Audit execution exception: KeyError('camera')"
+  ],
+  "classes": []
+}

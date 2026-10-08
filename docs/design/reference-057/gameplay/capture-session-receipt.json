@@ -1,0 +1,477 @@
+{
+  "schema": 1,
+  "status": "six_complete_native_recordings_and_three_verified_full_comparisons",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "class_order": [
+    "Arcanist",
+    "Ranger",
+    "Vowkeeper"
+  ],
+  "side_order_per_class": [
+    "before",
+    "after"
+  ],
+  "LP_NUM_THREADS": "4",
+  "display": ":108",
+  "resolution": [
+    1200,
+    536
+  ],
+  "processes": [
+    {
+      "label": "before-arcanist",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/Emberfall-Ashen-Veil/tools/capture_combat_quality.py",
+        "--root",
+        "/workspace/scratch/emberfall-quality-057/baseline-056",
+        "--output",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist",
+        "--class",
+        "Arcanist",
+        "--full",
+        "--bone-detail",
+        "none",
+        "--compress-pcm",
+        "--godot",
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--display",
+        ":108",
+        "--timeout-seconds",
+        "7200",
+        "--exclusive-render-slot"
+      ],
+      "log": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/before-arcanist.log",
+      "status": "passed",
+      "started_utc": "2026-10-07T21:06:14Z",
+      "pid": 66099,
+      "wall_seconds_so_far": 1680.082,
+      "progress_not_final_evidence": {
+        "journal_frame": 2466,
+        "stage": 6,
+        "phase": "finished",
+        "finished": true
+      },
+      "actual_process_exit": 0,
+      "wall_seconds": 1695.08,
+      "capture_receipt_sha256": "2509f93366faedc6ab083678d8f0c24126beb703624176ca1f9174c90839289a",
+      "verified_frames": 2496
+    },
+    {
+      "label": "after-arcanist",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/Emberfall-Ashen-Veil/tools/capture_combat_quality.py",
+        "--root",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--output",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist",
+        "--class",
+        "Arcanist",
+        "--full",
+        "--bone-detail",
+        "none",
+        "--compress-pcm",
+        "--godot",
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--display",
+        ":108",
+        "--timeout-seconds",
+        "7200",
+        "--exclusive-render-slot"
+      ],
+      "log": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/after-arcanist.log",
+      "status": "passed",
+      "started_utc": "2026-10-07T21:34:30Z",
+      "pid": 69125,
+      "wall_seconds_so_far": 1620.078,
+      "progress_not_final_evidence": {
+        "journal_frame": 2441,
+        "stage": 6,
+        "phase": "finished",
+        "finished": true
+      },
+      "actual_process_exit": 0,
+      "wall_seconds": 1649.655,
+      "capture_receipt_sha256": "a41907dbda10bdce78730d8a58a099264e418c148e7bb3c9bd427de3be4667c9",
+      "verified_frames": 2496
+    },
+    {
+      "label": "arcanist-comparison",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/Emberfall-Ashen-Veil/tools/analyze_combat_quality.py",
+        "--before",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist",
+        "--after",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist",
+        "--output",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/arcanist-comparison.json",
+        "--repo",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--source-commit",
+        "1cc13152a83c6631590d4df32ca298700a417df7",
+        "--before-source-commit",
+        "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+        "--before-fixture-source-commit",
+        "1cc13152a83c6631590d4df32ca298700a417df7"
+      ],
+      "log": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/arcanist-analysis.log",
+      "status": "passed",
+      "started_utc": "2026-10-07T22:02:00Z",
+      "pid": 82459,
+      "actual_process_exit": 0,
+      "wall_seconds": 6.132,
+      "comparison_sha256": "89cb54bb8b6cc0cb3057a277a1475a915f786ef963b82aeed01f07ad4cb1262c"
+    },
+    {
+      "label": "before-ranger",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/Emberfall-Ashen-Veil/tools/capture_combat_quality.py",
+        "--root",
+        "/workspace/scratch/emberfall-quality-057/baseline-056",
+        "--output",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger",
+        "--class",
+        "Ranger",
+        "--full",
+        "--bone-detail",
+        "none",
+        "--compress-pcm",
+        "--godot",
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--display",
+        ":108",
+        "--timeout-seconds",
+        "7200",
+        "--exclusive-render-slot"
+      ],
+      "log": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/before-ranger.log",
+      "status": "passed",
+      "started_utc": "2026-10-07T22:02:07Z",
+      "pid": 83260,
+      "wall_seconds_so_far": 1740.107,
+      "progress_not_final_evidence": {
+        "journal_frame": 2519,
+        "stage": 6,
+        "phase": "finished",
+        "finished": true
+      },
+      "actual_process_exit": 0,
+      "wall_seconds": 1761.341,
+      "capture_receipt_sha256": "d70f6f723fa8999e58f330689002b04e52a80530bff8aa81b953246067c87373",
+      "verified_frames": 2559
+    },
+    {
+      "label": "after-ranger",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/Emberfall-Ashen-Veil/tools/capture_combat_quality.py",
+        "--root",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--output",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger",
+        "--class",
+        "Ranger",
+        "--full",
+        "--bone-detail",
+        "none",
+        "--compress-pcm",
+        "--godot",
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--display",
+        ":108",
+        "--timeout-seconds",
+        "7200",
+        "--exclusive-render-slot"
+      ],
+      "log": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/after-ranger.log",
+      "status": "passed",
+      "started_utc": "2026-10-07T22:31:29Z",
+      "pid": 101658,
+      "wall_seconds_so_far": 1680.085,
+      "progress_not_final_evidence": {
+        "journal_frame": 2558,
+        "stage": 6,
+        "phase": "finished",
+        "finished": true
+      },
+      "actual_process_exit": 0,
+      "wall_seconds": 1683.919,
+      "capture_receipt_sha256": "beb108b23ef0c16081c0d58642d77158aaf2dbc1265686d4e2578b982728c6b4",
+      "verified_frames": 2559
+    },
+    {
+      "label": "ranger-comparison",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/Emberfall-Ashen-Veil/tools/analyze_combat_quality.py",
+        "--before",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger",
+        "--after",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger",
+        "--output",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/ranger-comparison.json",
+        "--repo",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--source-commit",
+        "1cc13152a83c6631590d4df32ca298700a417df7",
+        "--before-source-commit",
+        "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+        "--before-fixture-source-commit",
+        "1cc13152a83c6631590d4df32ca298700a417df7"
+      ],
+      "log": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/ranger-analysis.log",
+      "status": "passed",
+      "started_utc": "2026-10-07T22:59:33Z",
+      "pid": 102440,
+      "actual_process_exit": 0,
+      "wall_seconds": 6.333,
+      "comparison_sha256": "34a416600608a2984faead0847c1f7306d300d3f1082f89a53ef3403fd1ea827"
+    },
+    {
+      "label": "before-vowkeeper",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/Emberfall-Ashen-Veil/tools/capture_combat_quality.py",
+        "--root",
+        "/workspace/scratch/emberfall-quality-057/baseline-056",
+        "--output",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper",
+        "--class",
+        "Vowkeeper",
+        "--full",
+        "--bone-detail",
+        "none",
+        "--compress-pcm",
+        "--godot",
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--display",
+        ":108",
+        "--timeout-seconds",
+        "7200",
+        "--exclusive-render-slot"
+      ],
+      "log": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/before-vowkeeper.log",
+      "status": "passed",
+      "started_utc": "2026-10-07T22:59:41Z",
+      "pid": 103241,
+      "wall_seconds_so_far": 2070.134,
+      "progress_not_final_evidence": {
+        "journal_frame": 3098,
+        "stage": 6,
+        "phase": "finished",
+        "finished": true
+      },
+      "actual_process_exit": 0,
+      "wall_seconds": 2081.533,
+      "capture_receipt_sha256": "840e980a74d05da1227173f9e0c3adaadaf532fbebbb88d4a2e9ac2ced795803",
+      "verified_frames": 3099
+    },
+    {
+      "label": "after-vowkeeper",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/Emberfall-Ashen-Veil/tools/capture_combat_quality.py",
+        "--root",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--output",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper",
+        "--class",
+        "Vowkeeper",
+        "--full",
+        "--bone-detail",
+        "none",
+        "--compress-pcm",
+        "--godot",
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--display",
+        ":108",
+        "--timeout-seconds",
+        "7200",
+        "--exclusive-render-slot"
+      ],
+      "log": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/after-vowkeeper.log",
+      "status": "passed",
+      "started_utc": "2026-10-07T23:34:23Z",
+      "pid": 104783,
+      "wall_seconds_so_far": 2010.104,
+      "progress_not_final_evidence": {
+        "journal_frame": 3067,
+        "stage": 6,
+        "phase": "finished",
+        "finished": true
+      },
+      "actual_process_exit": 0,
+      "wall_seconds": 2027.61,
+      "capture_receipt_sha256": "94f51f08ec795e87281c15b521513cf5717623de124cddd51a341589fbdd0561",
+      "verified_frames": 3099
+    },
+    {
+      "label": "vowkeeper-comparison",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/Emberfall-Ashen-Veil/tools/analyze_combat_quality.py",
+        "--before",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper",
+        "--after",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper",
+        "--output",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/vowkeeper-comparison.json",
+        "--repo",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--source-commit",
+        "1cc13152a83c6631590d4df32ca298700a417df7",
+        "--before-source-commit",
+        "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+        "--before-fixture-source-commit",
+        "1cc13152a83c6631590d4df32ca298700a417df7"
+      ],
+      "log": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/vowkeeper-analysis.log",
+      "status": "passed",
+      "started_utc": "2026-10-08T00:08:11Z",
+      "pid": 105346,
+      "actual_process_exit": 0,
+      "wall_seconds": 7.792,
+      "comparison_sha256": "4b59eefbe7166104f0dc93e96dc9bd5895284fbdc30bf2da7150c292e23d20a8"
+    }
+  ],
+  "godot_binary_path": "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+  "godot_binary_sha256": "8d106cbe6144c2dc7e881d61d2429c1a8a76e6b22ef48bd5e48dcf934953f71e",
+  "scratch_orchestrator_sha256": "f168a58413a5ccdc35db5699cbe1afc1658007bb6e194ea154ed0916ffba044c",
+  "scope": "Six full original native chronological recordings and independent comparisons; wall time is not game FPS and this is not a physical Android run.",
+  "initial_baseline_export_audit": {
+    "verified_exported_files": 851,
+    "changed_capture_fixture_paths": [
+      "tests/arcanist_quality_gameplay_preview.gd",
+      "tests/combat_quality_gameplay_preview.gd"
+    ],
+    "production_overlay": false,
+    "overlay_receipt_sha256": "bd3aab2149a9322b056261205cfb34b8febe2abfa9ce0ee3aac94ba108ff7f29"
+  },
+  "initial_source_audit": {
+    "current": {
+      "status": "all_exact_git_blob_bytes_matched",
+      "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+      "compared_files": 208,
+      "disclosed_overlays": []
+    },
+    "baseline": {
+      "status": "all_exact_git_blob_bytes_matched",
+      "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+      "compared_files": 188,
+      "disclosed_overlays": [
+        {
+          "path": "tests/arcanist_quality_gameplay_preview.gd",
+          "fixture_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "sha256": "0ae6d53c388fdfe5e5afce8578f4cb9bd0fffbf8402bd41a11f631202e82582d",
+          "scope": "Disclosed capture fixture only; no production source or asset overlay"
+        },
+        {
+          "path": "tests/arcanist_quality_gameplay_preview.tscn",
+          "fixture_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "sha256": "50c6bb5b1508d0662c09348a38f7fbf373145dc23def11d8fa0bb57639aa7023",
+          "scope": "Disclosed capture fixture only; no production source or asset overlay"
+        },
+        {
+          "path": "tests/combat_quality_gameplay_preview.gd",
+          "fixture_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "sha256": "17b7e9637f6a9ca345acc98d5bbbf9ad4304539e7899902a7ea4072b521a3747",
+          "scope": "Disclosed capture fixture only; no production source or asset overlay"
+        },
+        {
+          "path": "tests/combat_quality_gameplay_preview.tscn",
+          "fixture_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "sha256": "82749277e28de0ea76322928198cc9a0c93c76ec5e50fe4e295f883e7227af33",
+          "scope": "Disclosed capture fixture only; no production source or asset overlay"
+        },
+        {
+          "path": "tools/capture_arcanist_quality.py",
+          "fixture_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "sha256": "3bdd9eb9cee79a7f66d91f2fb6068b868016f527fd105904a889c6ea1a2eabff",
+          "scope": "Disclosed capture fixture only; no production source or asset overlay"
+        },
+        {
+          "path": "tools/capture_combat_quality.py",
+          "fixture_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "sha256": "faabd23defbde91c8312b004c2b01c94554326103c3832f5b952cad7ce6ada86",
+          "scope": "Disclosed capture fixture only; no production source or asset overlay"
+        }
+      ]
+    },
+    "analysis": {
+      "status": "all_exact_git_blob_bytes_matched",
+      "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+      "compared_files": 1,
+      "disclosed_overlays": []
+    }
+  },
+  "final_source_audit": {
+    "current": {
+      "status": "all_exact_git_blob_bytes_matched",
+      "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+      "compared_files": 208,
+      "disclosed_overlays": []
+    },
+    "baseline": {
+      "status": "all_exact_git_blob_bytes_matched",
+      "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+      "compared_files": 188,
+      "disclosed_overlays": [
+        {
+          "path": "tests/arcanist_quality_gameplay_preview.gd",
+          "fixture_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "sha256": "0ae6d53c388fdfe5e5afce8578f4cb9bd0fffbf8402bd41a11f631202e82582d",
+          "scope": "Disclosed capture fixture only; no production source or asset overlay"
+        },
+        {
+          "path": "tests/arcanist_quality_gameplay_preview.tscn",
+          "fixture_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "sha256": "50c6bb5b1508d0662c09348a38f7fbf373145dc23def11d8fa0bb57639aa7023",
+          "scope": "Disclosed capture fixture only; no production source or asset overlay"
+        },
+        {
+          "path": "tests/combat_quality_gameplay_preview.gd",
+          "fixture_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "sha256": "17b7e9637f6a9ca345acc98d5bbbf9ad4304539e7899902a7ea4072b521a3747",
+          "scope": "Disclosed capture fixture only; no production source or asset overlay"
+        },
+        {
+          "path": "tests/combat_quality_gameplay_preview.tscn",
+          "fixture_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "sha256": "82749277e28de0ea76322928198cc9a0c93c76ec5e50fe4e295f883e7227af33",
+          "scope": "Disclosed capture fixture only; no production source or asset overlay"
+        },
+        {
+          "path": "tools/capture_arcanist_quality.py",
+          "fixture_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "sha256": "3bdd9eb9cee79a7f66d91f2fb6068b868016f527fd105904a889c6ea1a2eabff",
+          "scope": "Disclosed capture fixture only; no production source or asset overlay"
+        },
+        {
+          "path": "tools/capture_combat_quality.py",
+          "fixture_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "sha256": "faabd23defbde91c8312b004c2b01c94554326103c3832f5b952cad7ce6ada86",
+          "scope": "Disclosed capture fixture only; no production source or asset overlay"
+        }
+      ]
+    },
+    "analysis": {
+      "status": "all_exact_git_blob_bytes_matched",
+      "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+      "compared_files": 1,
+      "disclosed_overlays": []
+    }
+  },
+  "final_baseline_export_audit": {
+    "verified_exported_files": 851,
+    "changed_capture_fixture_paths": [
+      "tests/arcanist_quality_gameplay_preview.gd",
+      "tests/combat_quality_gameplay_preview.gd"
+    ],
+    "production_overlay": false,
+    "overlay_receipt_sha256": "bd3aab2149a9322b056261205cfb34b8febe2abfa9ce0ee3aac94ba108ff7f29"
+  }
+}

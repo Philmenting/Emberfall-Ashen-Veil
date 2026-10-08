@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "status": "complete_consecutive_h264_decoded_range",
+  "character_class": "ranger",
+  "side": "after",
+  "label": "first-rain-full-released-phrase",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "first_frame_zero_based": 1312,
+  "last_frame_zero_based_inclusive": 1344,
+  "every_consecutive_frame_decoded": true,
+  "retained_frame_sampling": "Every second frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+  "exact_semantic_frames_retained": [
+    1313,
+    1331,
+    1340,
+    1341
+  ],
+  "actual_ffmpeg_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-threads",
+    "1",
+    "-filter_threads",
+    "1",
+    "-i",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/ordinary-ranger-complete.mp4",
+    "-map",
+    "0:v:0",
+    "-an",
+    "-vf",
+    "select=between(n\\,1312\\,1344)",
+    "-frames:v",
+    "33",
+    "-fps_mode",
+    "passthrough",
+    "-pix_fmt",
+    "rgb24",
+    "-f",
+    "rawvideo",
+    "pipe:1"
+  ],
+  "actual_ffmpeg_exit_code": 0,
+  "movie_sha256": "008b0c71db628429e3c826fb2de2beeb8510d8b04496333e0e7952f42d7e2948",
+  "capture_receipt_sha256": "beb108b23ef0c16081c0d58642d77158aaf2dbc1265686d4e2578b982728c6b4",
+  "crop_xyxy": [
+    317,
+    162,
+    558,
+    383
+  ],
+  "contact_sheet_pixel_scale": "1:1 original decoded pixels; shared fixed crop for this before/after range",
+  "context_crop_scope": "Full viewport for original ending UI; other context ranges use a shared native-pixel crop around hero and visible Guardian with a minimum620x330 scene margin. Hero ranges keep all sampled conservative actor/weapon projection bounds plus45px horizontal/30px vertical margin and minimum240x220. Off-crop actors/environment cannot be visually judged here; original movies and native PNGs remain full viewport.",
+  "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+  "human_visual_review": "pending; decoding alone is not visual acceptance",
+  "sheets": [
+    {
+      "file": "derived-contact-sheet-00.jpg",
+      "sha256": "1d2e2a39469ceb39ab47a755c28205e5fac81c551b2ed57e01683eb865b8e4a0",
+      "bytes": 298960,
+      "first_frame": 1312,
+      "last_frame": 1338,
+      "frames": [
+        1312,
+        1313,
+        1314,
+        1316,
+        1318,
+        1320,
+        1322,
+        1324,
+        1326,
+        1328,
+        1330,
+        1331,
+        1332,
+        1334,
+        1336,
+        1338
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-01.jpg",
+      "sha256": "02ffdf6445f299c64b89b1712b27f9846963146c38073a62d4ac90e9c7bd5370",
+      "bytes": 74362,
+      "first_frame": 1340,
+      "last_frame": 1344,
+      "frames": [
+        1340,
+        1341,
+        1342,
+        1344
+      ]
+    }
+  ],
+  "review_tool_sha256": "f4f2ad49dd62a6dd220410f3ae56029352b71c9c07c2926927487730bd554a96"
+}

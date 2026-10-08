@@ -1,0 +1,46 @@
+{
+  "baseline_source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "production_overlay": false,
+  "allowlisted_fixture_paths": [
+    "tests/arcanist_quality_gameplay_preview.gd",
+    "tests/arcanist_quality_gameplay_preview.tscn",
+    "tests/combat_quality_gameplay_preview.gd",
+    "tests/combat_quality_gameplay_preview.tscn"
+  ],
+  "files": [
+    {
+      "path": "tests/arcanist_quality_gameplay_preview.gd",
+      "original_baseline_git_sha256": "caa01332459af3eb3e75a7e1e3f728476cf033e5f37dc85b7e5cff8cebcb5af9",
+      "previous_disclosed_fixture_sha256": "7aaa257557145ae166881ce80979950dbdbd80afb05817d4fcad2be20bedb7b3",
+      "fixture_sha256": "0ae6d53c388fdfe5e5afce8578f4cb9bd0fffbf8402bd41a11f631202e82582d",
+      "bytes_changed_from_baseline_git": true
+    },
+    {
+      "path": "tests/arcanist_quality_gameplay_preview.tscn",
+      "original_baseline_git_sha256": "50c6bb5b1508d0662c09348a38f7fbf373145dc23def11d8fa0bb57639aa7023",
+      "previous_disclosed_fixture_sha256": "50c6bb5b1508d0662c09348a38f7fbf373145dc23def11d8fa0bb57639aa7023",
+      "fixture_sha256": "50c6bb5b1508d0662c09348a38f7fbf373145dc23def11d8fa0bb57639aa7023",
+      "bytes_changed_from_baseline_git": false
+    },
+    {
+      "path": "tests/combat_quality_gameplay_preview.gd",
+      "original_baseline_git_sha256": "003ea5241bd161dc4253b36352edc156c87483cce68c74016b094c0b4ab07dab",
+      "previous_disclosed_fixture_sha256": "ec50efc4d2c15f8b491ae16fc68e6b32190d648b5feaa689d48c3b9861667253",
+      "fixture_sha256": "17b7e9637f6a9ca345acc98d5bbbf9ad4304539e7899902a7ea4072b521a3747",
+      "bytes_changed_from_baseline_git": true
+    },
+    {
+      "path": "tests/combat_quality_gameplay_preview.tscn",
+      "original_baseline_git_sha256": "82749277e28de0ea76322928198cc9a0c93c76ec5e50fe4e295f883e7227af33",
+      "previous_disclosed_fixture_sha256": "82749277e28de0ea76322928198cc9a0c93c76ec5e50fe4e295f883e7227af33",
+      "fixture_sha256": "82749277e28de0ea76322928198cc9a0c93c76ec5e50fe4e295f883e7227af33",
+      "bytes_changed_from_baseline_git": false
+    }
+  ],
+  "changes_since_previous_overlay": "Full-mode-only actual simulation positions/mana plus per-actor skeleton count; prefix simulation comparison remains unchanged.",
+  "status": "fixture_only_overlay_verified",
+  "all_exported_files_reverified": 851,
+  "unmodified_exported_file_count": 849,
+  "overlay_sha256_match_current_fixture": true,
+  "external_runner_scope": "Current executing Python capture tools are hash-bound as disclosed fixture inputs; no production files copied."
+}

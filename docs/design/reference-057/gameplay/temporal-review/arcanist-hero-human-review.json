@@ -1,0 +1,206 @@
+{
+  "schema": 1,
+  "status": "sampled_game_scale_hero_visual_review_complete",
+  "created_utc": "2026-10-07T22:28:25.877037+00:00",
+  "character_class": "arcanist",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "actual_decoder_chain_exit": 0,
+  "observations": [
+    {
+      "area": "attacks",
+      "ranges": [
+        "signature1-23",
+        "basic43-65",
+        "starfall319-360",
+        "chain1267-1293"
+      ],
+      "finding": "At the retained game-scale pixels, the staff remains attached to the carrying hand and the free casting hand changes pose without an obvious mesh tear or weapon jump. Exact released-phrase late recovery/reset boundaries are retained. Signature remains a compact gesture; this does not demonstrate cinematic combat animation."
+    },
+    {
+      "area": "lateral_evade",
+      "ranges": [
+        "309-324",
+        "789-808"
+      ],
+      "finding": "The revised outside-opening boot is visibly separated from the following leg at the midpoint, then returns to the upright ready pose. It reads as a short lateral bound rather than the previous narrow/crossed-foot silhouette. No obvious inverted knee, torn outfit, detached staff, or excessive split is visible in the reviewed pixels."
+    },
+    {
+      "area": "guardian_evade",
+      "ranges": [
+        "2112-2128"
+      ],
+      "finding": "The forward escape and subsequent cast remain visually coherent through the retained consecutive frames. The Guardian partly occludes the hero; the capture cannot establish all ankle geometry."
+    },
+    {
+      "area": "walk",
+      "ranges": [
+        "95-115"
+      ],
+      "finding": "The visible alternation of legs, tunic silhouette, and carried staff remains coherent in the sampled travel frames; game-scale pixels cannot certify millimeter sole clearance."
+    }
+  ],
+  "blockers_found_in_reviewed_pixels": [],
+  "viewed_files": [
+    {
+      "file": "arcanist/before/first-signature-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 393476,
+      "sha256": "369018466a3ad868b6ea30cdf3a454948dfcfd5e5475d3d13f06f4f4360ce1ef"
+    },
+    {
+      "file": "arcanist/before/first-basic-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 322708,
+      "sha256": "79a62e67d64730badf7a31c4eacfb0dd588479d1dc9d0c4d45a13f710bd96156"
+    },
+    {
+      "file": "arcanist/before/first-starfall-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 478407,
+      "sha256": "439b70ca0a8c8942ff65bf119a5df8b213e6a2d039eebe83f0cda2b20ebb1375"
+    },
+    {
+      "file": "arcanist/before/first-starfall-full-released-phrase/derived-contact-sheet-01.jpg",
+      "bytes": 206902,
+      "sha256": "1ddc5747a576c6278d1ee8d9be1c720dea3e5e6ec1e91a47945b9f43aa773ac5"
+    },
+    {
+      "file": "arcanist/before/first-chain-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 377676,
+      "sha256": "0d1a1e1b17e2f7f28a07a2d4e48909569904b03567c8045a32c6b62fa708b2f9"
+    },
+    {
+      "file": "arcanist/before/first-chain-full-released-phrase/derived-contact-sheet-01.jpg",
+      "bytes": 33133,
+      "sha256": "81185a01db5593ad6a6ce9253c582a3f456be22630d9f9807d26239ade5e3a06"
+    },
+    {
+      "file": "arcanist/before/first-lateral-evade/derived-contact-sheet-00.png",
+      "bytes": 1066244,
+      "sha256": "682c37112f0934c01790c8ea61bab6fd079a0d99c3b003b5012fd8d99a1e1cf6"
+    },
+    {
+      "file": "arcanist/before/first-attack-to-evade/derived-contact-sheet-00.png",
+      "bytes": 1058586,
+      "sha256": "f9d69a4b9f9d5a034305e547266d0a0a38b94b76f4a5a24364478c48fe25cc46"
+    },
+    {
+      "file": "arcanist/before/first-attack-to-evade/derived-contact-sheet-01.png",
+      "bytes": 250548,
+      "sha256": "3a0a8ce61cd6701b2fa417ed07835ed960b05cbe18d9cb76b891cc82c6ef4c09"
+    },
+    {
+      "file": "arcanist/before/additional-evade-2114/derived-contact-sheet-00.png",
+      "bytes": 948047,
+      "sha256": "d39f4538696955be935163f45425601093c27014ae2707ff1858e03127ce4338"
+    },
+    {
+      "file": "arcanist/before/additional-evade-2114/derived-contact-sheet-01.png",
+      "bytes": 124855,
+      "sha256": "5425f4d307e74c3e5c6a34b1ff926c5585cc0d6f728b042e78e132cad82fc187"
+    },
+    {
+      "file": "arcanist/before/ordinary-travel-gait/derived-contact-sheet-00.jpg",
+      "bytes": 200724,
+      "sha256": "678fd7ab1af01473b41cd685bffef6c9856e740f865c4d61023001ed13a8a7b6"
+    },
+    {
+      "file": "arcanist/after/first-signature-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 395734,
+      "sha256": "c2af6ff4c9952df01da7d54641edcb7e9cd55b7bd5efea81416039cbddc09746"
+    },
+    {
+      "file": "arcanist/after/first-basic-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 322456,
+      "sha256": "f37d88d0b6b3f669adf401a12ed11925b0456883e12c10003c0bf4b3ce5af5fc"
+    },
+    {
+      "file": "arcanist/after/first-starfall-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 485923,
+      "sha256": "aa55e3c428e61f3fc898d21f05c059f3c8c0fb3372b87fe1c5d598a6b8606e33"
+    },
+    {
+      "file": "arcanist/after/first-starfall-full-released-phrase/derived-contact-sheet-01.jpg",
+      "bytes": 207529,
+      "sha256": "469558108df725d4a7cb260311a4bcfba3dc4ad24d5da56cf07d741e9b555e76"
+    },
+    {
+      "file": "arcanist/after/first-chain-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 377336,
+      "sha256": "1e2941843a4fd6b93895f7a8e4ebd70de8efc56c12a6a46a98aebf847f92952c"
+    },
+    {
+      "file": "arcanist/after/first-chain-full-released-phrase/derived-contact-sheet-01.jpg",
+      "bytes": 33294,
+      "sha256": "88f5a16b68ac0f35c8c855add70b9564dc4783c92ba8d547d8b87a02792f4c5e"
+    },
+    {
+      "file": "arcanist/after/first-lateral-evade/derived-contact-sheet-00.png",
+      "bytes": 1053852,
+      "sha256": "78353339caa8aa7df02dcb9b2c373165fe22264786909cbfd06f4829dd40ff85"
+    },
+    {
+      "file": "arcanist/after/first-attack-to-evade/derived-contact-sheet-00.png",
+      "bytes": 1055331,
+      "sha256": "c6665517c114441497d5c94a1871a812cf6ec096288d71a572ce0971b58ec5d6"
+    },
+    {
+      "file": "arcanist/after/first-attack-to-evade/derived-contact-sheet-01.png",
+      "bytes": 251983,
+      "sha256": "8352265b6c58bd44c0ac72a0e4f5048a1d2ea176905f61b0cc7c502645845a92"
+    },
+    {
+      "file": "arcanist/after/additional-evade-2114/derived-contact-sheet-00.png",
+      "bytes": 1022617,
+      "sha256": "fe2084b157492e9471a6df4f16fa9e2d715136ca9c84b00a77054c129d1ec3ea"
+    },
+    {
+      "file": "arcanist/after/additional-evade-2114/derived-contact-sheet-01.png",
+      "bytes": 124103,
+      "sha256": "08365b60c39ca9dd9e6c5d77b609bb972d1f776b611cc75275b2e35e8dfd10ce"
+    },
+    {
+      "file": "arcanist/after/ordinary-travel-gait/derived-contact-sheet-00.jpg",
+      "bytes": 207650,
+      "sha256": "4202c54e1a80cc650b69ce8542726297c0542bf8fbe3a52f04f1579d5d008d0c"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/before-arcanist/selected-frames/frame-00014.png",
+      "bytes": 825184,
+      "sha256": "74e4c06dafb61b3cf8a542a19f6b02594638fdb2f7b6c6865ee19b6349b95323"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-arcanist/selected-frames/frame-00014.png",
+      "bytes": 825139,
+      "sha256": "da4d58af90b33aeb244e7d0340ba2b96e41a5e840e4cbeb4c3cc5a99ab5a00b1"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/before-arcanist/selected-frames/frame-00314.png",
+      "bytes": 845671,
+      "sha256": "2670d864e32497e7be5d13471016d85757632c41bc8ee19a92add163b62bfab3"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-arcanist/selected-frames/frame-00314.png",
+      "bytes": 845210,
+      "sha256": "4ef063e140655a9306565d5788ba3e2f99b66a908b294f70f1b994b341c24c51"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-arcanist/selected-frames/frame-00317.png",
+      "bytes": 845500,
+      "sha256": "e87bbd2650c20e00543c76fe71d71b5121294cb5a7e50cb14ce414fc198ac5c3"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-arcanist/selected-frames/frame-00323.png",
+      "bytes": 853572,
+      "sha256": "685e362cdc940224099542bc8bbf05a424eeee94f327d59b2348c6213ffee34a"
+    }
+  ],
+  "scope_limits": [
+    "Every listed contact sheet was actually inspected by this AI reviewer; this is bounded image-sequence review, not human signoff or a claim of watching either entire movie.",
+    "Contact-sheet frames are decoded from lossy H264. Non-evade sheets additionally use JPEG92 4:4:4. PNG evade sheets do not restore original render detail.",
+    "Only the listed six original Godot PNGs were separately viewed in this hero review. Evades794-803 and2114-2123 have no original PNG fine-detail evidence.",
+    "The cancelled Chain starts791, ends attack793, and begins evade794. The audit helper field first_complete_reset794 denotes cancellation-to-evade, not a clean idle reset.",
+    "Bone-detail-none journals cannot establish actual ankle/shin overlap, mesh pixel occlusion, anatomical correctness, or physical device performance.",
+    "Enemy and Guardian context visual review is recorded separately; Guardian0 phases1+2 are present, phase0 attack is absent."
+  ],
+  "reviewer": "Codex AI visual reviewer /root/temporal_review_resume_057",
+  "reviewer_type": "AI visual inspection of tool-rendered image sequences; no human signoff claimed"
+}

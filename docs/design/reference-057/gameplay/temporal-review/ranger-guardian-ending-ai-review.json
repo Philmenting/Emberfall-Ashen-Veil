@@ -1,0 +1,980 @@
+{
+  "schema": 1,
+  "status": "actual_ai_visual_inspection_complete_for_all32_planned_guardian_and_ending_contact_sheets; sampled_context_with_limits",
+  "reviewed_utc": "2026-10-07T23:08:07.568994+00:00",
+  "reviewer": "/root/temporal_review_resume_057/review_scope_audit_057",
+  "reviewer_type": "AI visual inspection through tools.view_image; no separate human signoff claimed",
+  "character_class": "ranger",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "review_tool_sha256": "f4f2ad49dd62a6dd220410f3ae56029352b71c9c07c2926927487730bd554a96",
+  "plan_sha256": "73212f731dcd3b6a524388560c7891eee171a8cb8269e29c3f08c81b7fe6f4df",
+  "comparison_sha256": "34a416600608a2984faead0847c1f7306d300d3f1082f89a53ef3403fd1ea827",
+  "scope": "This AI reviewer personally inspected all32 planned Guardian0 initial-death, complete three-phase warning/impact/recovery/reset and ending UI contact-sheet files,178 retained panels. It also independently viewed the separately bound critical four-frame PNG pair; that supplement is referenced under additional_visual_check, outside the planned viewed_files list. No whole-movie or every-decoded-frame viewing claimed.",
+  "image_origin": "Lossy H264-decoded frames assembled into JPEG92 4:4:4 contact sheets at original1:1 decoded pixels with external labels. Guardian context crops are shared621x331 (exactxyxy per receipt); ending UI is full1200x536 viewport. These are not original Godot PNGs. Every actual view requested original detail.",
+  "viewed_file_count": 32,
+  "viewed_retained_panel_count": 178,
+  "all_viewed_sheet_hashes_and_byte_counts_match_decode_receipts": true,
+  "paired_visual_observations": {
+    "first-boss-death": [
+      "BEFORE f2334-2345 has a tall ribbed bell/cylinder Guardian; during f2346-2364 the dark body tilts left and falls into a horizontal silhouette.",
+      "AFTER f2334-2338 shows a bareheaded armored humanoid with a pale bell-headed weapon. Knees and torso lower around f2342-2345, then the body rolls backward during f2346-2350. By f2354-2364 the head/torso lie rightward, legs and weapon leftward in a readable extended horizontal silhouette.",
+      "The lethal event is f2336 in both actual journals; chamber foe count becomes0 in the visible bottom UI. Ranger advances toward the reliquary in both pairs. No obvious gross corpse teleport, detached body part or disappearance below the floor is apparent in retained crop pixels. Only the initial0.97 seconds of the death response are inspected; complete skeletal death/settling is not certified."
+    ],
+    "first-boss-telegraph-release-recovery-reset": [
+      "Actual journals bind Guardian actor50 for region0. This Ranger sequence includes all three internal phases:0 Crowned Vigil,1 Crown Break,2 Final Toll. Journal phase transitions are2177 and2237; floating CROWN BREAK and FINAL TOLL text appears in retained pixels. The main boss HUD is outside this shared crop and cannot be visually judged here.",
+      "Both pairs show the circular orange phase0 warning at2123, followed by solid pale orange impact fill at2174. AFTER shows broad torso/free-arm/bell sweeps during2123-2150, giving a more articulated action silhouette than the baseline bell cylinder. It then holds a low forward-leaning body and low bell through much of2154-2174; exact impact timing is carried strongly by the ground fill. The body rises by2177-2179 before the next warning.",
+      "Phase1 warning2180 adds an annulus and transverse cleaving lane. Residual filled prior-impact disk briefly remains underneath the new outline through2187; by2190 the annulus/lane warning and safe center are distinct. At2225 annulus/lane fills solid and a visible -32 appears by the Ranger, matching the journal hero_hit32. AFTER has broad body/bell sweeps in2182-2206 and a low held pose near2210-2225, then a readable upright return by2228-2237.",
+      "Phase2 warning2240 uses overlapping ring footprints with a lengthwise lane; paired floor shapes line up. AFTER again has broad bell/free-arm motion through2242-2262, followed by a low held pose near2266-2280. Both warning footprints turn solid at the actual impact2282. The humanoid remains connected and readable in sampled crop pixels.",
+      "The real journal native labels at2280/2281/2282 are recover_heavy/idle/recover_heavy. Actual inspected2280 and2281 pixels retain a forward-inclined torso and the same local leg stance, with only a modest bell/arm shift upward/inward at2281, followed by a coherent lowering/lean into the impact2282. No clear one-frame stand-up teleport or gross weapon pop is demonstrated. The idle label remains disclosed and is not a clean post-impact reset.",
+      "AFTER rises more upright by2286-2294. The orange impact footprint is absent at2297, last real recovery frame; the actual walk reset2298 is retained, and2298-2301 show upright movement toward the Ranger. There is no full clean reset between earlier chained phases. This is every retained panel, not every consecutive decoded frame; fine grip/feet/bone motion and off-crop content are not certified."
+    ],
+    "original-ending-loot-ui": [
+      "Both full-viewport ending sheets f2553,2557,2558 show a stable readable DUNGEON CLEARED result page. Visible text is CAMPAIGN +428 XP +190 GOLD,82.3s,26 foes defeated,12 skills cast,4 evasions and top total790 GOLD. The4 evasions reflect ordinary evade events; the journal separately contains a backstep.",
+      "2 RELICS is visible beside RECOVERED GEAR. CROWFLIGHT LOOP first-card name, ITEM44 and EQUIP CROWFLIGHT LOOP button are visible. The second item card is below the captured viewport/scroll position and its name is not visually verified here. The journal/summary separately supplies the two recovered items.",
+      "Paired static navigation, reward buttons and first-card layout appear aligned. These three final samples per side establish a visible static result page only; no scrolling, equip, descend or navigation interaction was reviewed."
+    ]
+  },
+  "decode_receipts": [
+    {
+      "file": "ranger/before/first-boss-death/decode-receipt.json",
+      "sha256": "bde6d4e9faec5df9fcef40c57149ad8920886eaa04026dfc29d173eedf4b5328",
+      "first": 2334,
+      "last": 2364,
+      "crop_xyxy": [
+        193,
+        121,
+        814,
+        452
+      ],
+      "contact_sheet_pixel_scale": "1:1 original decoded pixels; shared fixed crop for this before/after range",
+      "movie_sha256": "8c01eef238de70c33dad7ff99abb8812c2a75ebee485e0feb71c7d32244d5b72",
+      "capture_receipt_sha256": "d70f6f723fa8999e58f330689002b04e52a80530bff8aa81b953246067c87373",
+      "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+      "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries"
+    },
+    {
+      "file": "ranger/after/first-boss-death/decode-receipt.json",
+      "sha256": "7d9e3b37f6196c861924c297dc3ddc3806b65cc0cf165df873dc3a8c9a9d3a6b",
+      "first": 2334,
+      "last": 2364,
+      "crop_xyxy": [
+        193,
+        121,
+        814,
+        452
+      ],
+      "contact_sheet_pixel_scale": "1:1 original decoded pixels; shared fixed crop for this before/after range",
+      "movie_sha256": "008b0c71db628429e3c826fb2de2beeb8510d8b04496333e0e7952f42d7e2948",
+      "capture_receipt_sha256": "beb108b23ef0c16081c0d58642d77158aaf2dbc1265686d4e2578b982728c6b4",
+      "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+      "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries"
+    },
+    {
+      "file": "ranger/before/first-boss-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "9b613dd86d221aeceeac0d41073d90e3192624a663da738e3d0cb45f006fd601",
+      "first": 2118,
+      "last": 2301,
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "contact_sheet_pixel_scale": "1:1 original decoded pixels; shared fixed crop for this before/after range",
+      "movie_sha256": "8c01eef238de70c33dad7ff99abb8812c2a75ebee485e0feb71c7d32244d5b72",
+      "capture_receipt_sha256": "d70f6f723fa8999e58f330689002b04e52a80530bff8aa81b953246067c87373",
+      "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+      "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries"
+    },
+    {
+      "file": "ranger/after/first-boss-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "df2ffb2193ada7ffdc4cbabac654adc4c028d8e86d27d6717b582010237e79f1",
+      "first": 2118,
+      "last": 2301,
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "contact_sheet_pixel_scale": "1:1 original decoded pixels; shared fixed crop for this before/after range",
+      "movie_sha256": "008b0c71db628429e3c826fb2de2beeb8510d8b04496333e0e7952f42d7e2948",
+      "capture_receipt_sha256": "beb108b23ef0c16081c0d58642d77158aaf2dbc1265686d4e2578b982728c6b4",
+      "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+      "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries"
+    },
+    {
+      "file": "ranger/before/original-ending-loot-ui/decode-receipt.json",
+      "sha256": "cc6be95400c0802c38162eedcb65b64e16c6cab82f3f7379e2bdf9e496d0b1db",
+      "first": 2553,
+      "last": 2558,
+      "crop_xyxy": [
+        0,
+        0,
+        1200,
+        536
+      ],
+      "contact_sheet_pixel_scale": "1:1 original decoded pixels; shared fixed crop for this before/after range",
+      "movie_sha256": "8c01eef238de70c33dad7ff99abb8812c2a75ebee485e0feb71c7d32244d5b72",
+      "capture_receipt_sha256": "d70f6f723fa8999e58f330689002b04e52a80530bff8aa81b953246067c87373",
+      "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+      "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries"
+    },
+    {
+      "file": "ranger/after/original-ending-loot-ui/decode-receipt.json",
+      "sha256": "f0ed064e4970b951ec91e795cdb14d5d71547a30ca8e657a94611ac9e7a4637b",
+      "first": 2553,
+      "last": 2558,
+      "crop_xyxy": [
+        0,
+        0,
+        1200,
+        536
+      ],
+      "contact_sheet_pixel_scale": "1:1 original decoded pixels; shared fixed crop for this before/after range",
+      "movie_sha256": "008b0c71db628429e3c826fb2de2beeb8510d8b04496333e0e7952f42d7e2948",
+      "capture_receipt_sha256": "beb108b23ef0c16081c0d58642d77158aaf2dbc1265686d4e2578b982728c6b4",
+      "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+      "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries"
+    }
+  ],
+  "viewed_files": [
+    {
+      "file": "ranger/before/first-boss-death/derived-contact-sheet-00.jpg",
+      "sha256": "4bfb12240154e5ddd08beb57fdead705e1ac8f69b85aca6e50679886ba70669f",
+      "bytes": 373191,
+      "side": "before",
+      "label": "first-boss-death",
+      "frames": [
+        2334,
+        2336,
+        2338,
+        2342,
+        2344,
+        2345
+      ],
+      "crop_xyxy": [
+        193,
+        121,
+        814,
+        452
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "BEFORE f2334-2345 has a tall ribbed bell/cylinder Guardian; during f2346-2364 the dark body tilts left and falls into a horizontal silhouette."
+      ]
+    },
+    {
+      "file": "ranger/before/first-boss-death/derived-contact-sheet-01.jpg",
+      "sha256": "874257f4934d2eb1ce85758dcccce580c7c3cd1d2e851d2ebf46f749ea60eed2",
+      "bytes": 377920,
+      "side": "before",
+      "label": "first-boss-death",
+      "frames": [
+        2346,
+        2350,
+        2354,
+        2358,
+        2362,
+        2364
+      ],
+      "crop_xyxy": [
+        193,
+        121,
+        814,
+        452
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "AFTER f2334-2338 shows a bareheaded armored humanoid with a pale bell-headed weapon. Knees and torso lower around f2342-2345, then the body rolls backward during f2346-2350. By f2354-2364 the head/torso lie rightward, legs and weapon leftward in a readable extended horizontal silhouette."
+      ]
+    },
+    {
+      "file": "ranger/after/first-boss-death/derived-contact-sheet-00.jpg",
+      "sha256": "b1714d03d5a6876722f233bbb9274935a800efb7113fabf3d6104affc50093bf",
+      "bytes": 375725,
+      "side": "after",
+      "label": "first-boss-death",
+      "frames": [
+        2334,
+        2336,
+        2338,
+        2342,
+        2344,
+        2345
+      ],
+      "crop_xyxy": [
+        193,
+        121,
+        814,
+        452
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "BEFORE f2334-2345 has a tall ribbed bell/cylinder Guardian; during f2346-2364 the dark body tilts left and falls into a horizontal silhouette."
+      ]
+    },
+    {
+      "file": "ranger/after/first-boss-death/derived-contact-sheet-01.jpg",
+      "sha256": "43c7ee665204d6ee9b5829b5e35be116cfff849ccf59df5a9ae3763e20a5beed",
+      "bytes": 381944,
+      "side": "after",
+      "label": "first-boss-death",
+      "frames": [
+        2346,
+        2350,
+        2354,
+        2358,
+        2362,
+        2364
+      ],
+      "crop_xyxy": [
+        193,
+        121,
+        814,
+        452
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "AFTER f2334-2338 shows a bareheaded armored humanoid with a pale bell-headed weapon. Knees and torso lower around f2342-2345, then the body rolls backward during f2346-2350. By f2354-2364 the head/torso lie rightward, legs and weapon leftward in a readable extended horizontal silhouette."
+      ]
+    },
+    {
+      "file": "ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+      "sha256": "2647171288cad85f7d855ffeacaca5765bc9c4cf446273bc20e12250b3f0ea9c",
+      "bytes": 371859,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2118,
+        2122,
+        2123,
+        2124,
+        2126,
+        2130
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2118-2130: warning circle appears at2123; AFTER changes from upright humanoid to broad leaning/bell movement. BEFORE remains tall ribbed bell/cylinder."
+      ]
+    },
+    {
+      "file": "ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+      "sha256": "c347a8e61df2b1147428a6956270259657b0f12a2681ad4e278947bd4d97550c",
+      "bytes": 404562,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2134,
+        2135,
+        2138,
+        2142,
+        2146,
+        2150
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2134-2150: circular warning persists; AFTER free arm and pale bell sweep across low/front and raised positions, while Ranger begins leftward escape."
+      ]
+    },
+    {
+      "file": "ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+      "sha256": "95b8f813d6b8b8943f45ae881bad4e004a3748d278a41d0e2b3efcd8de1ca049",
+      "bytes": 406385,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2154,
+        2158,
+        2162,
+        2166,
+        2170,
+        2172
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2154-2172: Ranger leaves the disk; AFTER holds a low inclined body/bell pose across late warning samples; BEFORE bell weapon lowers near2170."
+      ]
+    },
+    {
+      "file": "ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+      "sha256": "b1d0ec37323857bb3777c0fa05527210975d7668764632796528a5ac7483f56d",
+      "bytes": 394697,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2173,
+        2174,
+        2177,
+        2178,
+        2179,
+        2180
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2173-2180: exact transient idle2173 and impact2174 retained; ground becomes solid at2174, Crown Break floating text appears2177, AFTER rises before annulus/lane warning2180."
+      ]
+    },
+    {
+      "file": "ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-04.jpg",
+      "sha256": "2dd56457d90f5ee0eea36afd3dad16d313c97c924c57cc43d0ee24e349ea2a1f",
+      "bytes": 423318,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2182,
+        2186,
+        2187,
+        2190,
+        2194,
+        2195
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2182-2195: annulus/transverse lane outline initially overlays previous filled disk; fill has faded by2190. AFTER torso/bell makes broad follow-through/raised/extended poses."
+      ]
+    },
+    {
+      "file": "ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-05.jpg",
+      "sha256": "edcf6bae3e77551a91172fa8e67b13b0098e915a45fe68f48aa5068149e37554",
+      "bytes": 425723,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2198,
+        2202,
+        2206,
+        2210,
+        2212,
+        2213
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2198-2213: annulus/lane warning persists; AFTER bell sweeps from chest/raised position to low/front by2206-2213."
+      ]
+    },
+    {
+      "file": "ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-06.jpg",
+      "sha256": "af856376a8942d9e5d48434198522e5a4a0b3056e92f946c4aa22bdedda4cb67",
+      "bytes": 423786,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2214,
+        2218,
+        2222,
+        2223,
+        2224,
+        2225
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2214-2225: AFTER low body/bell is held through late warning; footprint fills at2225 and visible -32 appears by Ranger. BEFORE weapon changes orientation approaching impact."
+      ]
+    },
+    {
+      "file": "ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-07.jpg",
+      "sha256": "da93a23d2b646597c888655f828be941e136101a07b97d6135886cf77e60e91d",
+      "bytes": 400345,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2226,
+        2228,
+        2230,
+        2234,
+        2235,
+        2237
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2226-2237: impact annulus/lane persists. AFTER rises to an upright stance by2228-2230; floating FINAL TOLL appears2237."
+      ]
+    },
+    {
+      "file": "ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-08.jpg",
+      "sha256": "b63a93b796cafc71db05847edd88d669733ab136b3edbd452b524ed924340f0e",
+      "bytes": 405069,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2238,
+        2239,
+        2240,
+        2242,
+        2245,
+        2246
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2238-2246: prior footprint clears2239; overlapping-ring/lengthwise-lane warning appears2240. AFTER begins another torso/arm/bell sweep."
+      ]
+    },
+    {
+      "file": "ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-09.jpg",
+      "sha256": "a2dbff905afaa6ba7646135d8733f52f4845509d06da75e586f1bd7c159b9229",
+      "bytes": 427855,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2250,
+        2254,
+        2258,
+        2261,
+        2262,
+        2266
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2250-2266: split-ring/lane warning remains; AFTER shows broad bell and arm rotation then lowers to a forward inclined pose. Ranger completes small escape to left."
+      ]
+    },
+    {
+      "file": "ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-10.jpg",
+      "sha256": "82a1b265971a68679838c620c8c61ff4631b652805f12c9fd2272ba3c058f0e0",
+      "bytes": 430811,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2268,
+        2270,
+        2274,
+        2278,
+        2279,
+        2280
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2268-2280: AFTER low preparation pose varies little until2280. BEFORE bell weapon swings down near2278-2280; split-ring/lane warning remains unfilled."
+      ]
+    },
+    {
+      "file": "ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-11.jpg",
+      "sha256": "483a4c84d5290615e033d1ea187f1cd809dac2405629b70c4496ba8af85d820c",
+      "bytes": 407084,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2281,
+        2282,
+        2286,
+        2290,
+        2294,
+        2297
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2281-2297: real idle2281 retains inclined torso and modest bell/arm movement; impact2282 lowers the weapon and fills floor shape. AFTER rises2286-2294; floor footprint absent2297."
+      ]
+    },
+    {
+      "file": "ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-12.jpg",
+      "sha256": "8bedbea217c0e436af6925f896e5902f90f10da7b03df88b102c7a9c9d3a176a",
+      "bytes": 123949,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2298,
+        2301
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2298/2301: true walk reset retained; floor has no orange attack footprint. AFTER Guardian moves upright toward Ranger."
+      ]
+    },
+    {
+      "file": "ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+      "sha256": "2b11e7dee3622093b423b1103ad7ef096eb9dd16fc4ed011b57f7374c406ccd1",
+      "bytes": 379607,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2118,
+        2122,
+        2123,
+        2124,
+        2126,
+        2130
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2118-2130: warning circle appears at2123; AFTER changes from upright humanoid to broad leaning/bell movement. BEFORE remains tall ribbed bell/cylinder."
+      ]
+    },
+    {
+      "file": "ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+      "sha256": "7216973764d780009c0cd97368e62dc9f1eec57e5a79253b09e9f7b3cc60a30e",
+      "bytes": 403833,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2134,
+        2135,
+        2138,
+        2142,
+        2146,
+        2150
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2134-2150: circular warning persists; AFTER free arm and pale bell sweep across low/front and raised positions, while Ranger begins leftward escape."
+      ]
+    },
+    {
+      "file": "ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+      "sha256": "3a51a5352d99ea19ff602f90ca3a696f4c9989953562dced7e79a367d3c03831",
+      "bytes": 407453,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2154,
+        2158,
+        2162,
+        2166,
+        2170,
+        2172
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2154-2172: Ranger leaves the disk; AFTER holds a low inclined body/bell pose across late warning samples; BEFORE bell weapon lowers near2170."
+      ]
+    },
+    {
+      "file": "ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+      "sha256": "056dfcdd626726af59fa8a2ebfa7954c5a97b0011b1b21ceabc91abc93eeadb4",
+      "bytes": 397975,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2173,
+        2174,
+        2177,
+        2178,
+        2179,
+        2180
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2173-2180: exact transient idle2173 and impact2174 retained; ground becomes solid at2174, Crown Break floating text appears2177, AFTER rises before annulus/lane warning2180."
+      ]
+    },
+    {
+      "file": "ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-04.jpg",
+      "sha256": "2705316b48b0b9a2cb54dec56611cd1f4825ba3d500174458c7ae554c6697244",
+      "bytes": 426647,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2182,
+        2186,
+        2187,
+        2190,
+        2194,
+        2195
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2182-2195: annulus/transverse lane outline initially overlays previous filled disk; fill has faded by2190. AFTER torso/bell makes broad follow-through/raised/extended poses."
+      ]
+    },
+    {
+      "file": "ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-05.jpg",
+      "sha256": "7885ccc782f120af50b04aeb0eb34ad38d9c50b4622314bfbdc3f699671cf845",
+      "bytes": 429919,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2198,
+        2202,
+        2206,
+        2210,
+        2212,
+        2213
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2198-2213: annulus/lane warning persists; AFTER bell sweeps from chest/raised position to low/front by2206-2213."
+      ]
+    },
+    {
+      "file": "ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-06.jpg",
+      "sha256": "d8315d1e769ee43b55948ecf6acf93847869b18d5af0060a9cb2b84f5cfbf1f8",
+      "bytes": 428579,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2214,
+        2218,
+        2222,
+        2223,
+        2224,
+        2225
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2214-2225: AFTER low body/bell is held through late warning; footprint fills at2225 and visible -32 appears by Ranger. BEFORE weapon changes orientation approaching impact."
+      ]
+    },
+    {
+      "file": "ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-07.jpg",
+      "sha256": "00c4d5a7c45d7414df4f1337bebb23c379f5edbfbad5329148c2cbed8df4f4b5",
+      "bytes": 404170,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2226,
+        2228,
+        2230,
+        2234,
+        2235,
+        2237
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2226-2237: impact annulus/lane persists. AFTER rises to an upright stance by2228-2230; floating FINAL TOLL appears2237."
+      ]
+    },
+    {
+      "file": "ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-08.jpg",
+      "sha256": "d403955cd4cc4a66cae3101c722211902b4a54b0dad8c1c8c54253d307b5de8f",
+      "bytes": 412960,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2238,
+        2239,
+        2240,
+        2242,
+        2245,
+        2246
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2238-2246: prior footprint clears2239; overlapping-ring/lengthwise-lane warning appears2240. AFTER begins another torso/arm/bell sweep."
+      ]
+    },
+    {
+      "file": "ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-09.jpg",
+      "sha256": "7e706cee9f6c07e9a00df27df2f678c2c93c8e0f6c657854a608221427334a0c",
+      "bytes": 431957,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2250,
+        2254,
+        2258,
+        2261,
+        2262,
+        2266
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2250-2266: split-ring/lane warning remains; AFTER shows broad bell and arm rotation then lowers to a forward inclined pose. Ranger completes small escape to left."
+      ]
+    },
+    {
+      "file": "ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-10.jpg",
+      "sha256": "bfa0b77eb5ddaf6a0ac3f1c17b0bd08d2443d1829207f7865b50fac2948f85c4",
+      "bytes": 432416,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2268,
+        2270,
+        2274,
+        2278,
+        2279,
+        2280
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2268-2280: AFTER low preparation pose varies little until2280. BEFORE bell weapon swings down near2278-2280; split-ring/lane warning remains unfilled."
+      ]
+    },
+    {
+      "file": "ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-11.jpg",
+      "sha256": "2230d452dd7eaa9064d11aad0b813425646584f0ca89ddc96eb5c6811a179267",
+      "bytes": 409477,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2281,
+        2282,
+        2286,
+        2290,
+        2294,
+        2297
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2281-2297: real idle2281 retains inclined torso and modest bell/arm movement; impact2282 lowers the weapon and fills floor shape. AFTER rises2286-2294; floor footprint absent2297."
+      ]
+    },
+    {
+      "file": "ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-12.jpg",
+      "sha256": "bb0a11767983f483f84fe7fc2884c7a6a6429b05fd65593dc97547a1a5074db2",
+      "bytes": 124795,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2298,
+        2301
+      ],
+      "crop_xyxy": [
+        229,
+        123,
+        850,
+        454
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "2298/2301: true walk reset retained; floor has no orange attack footprint. AFTER Guardian moves upright toward Ranger."
+      ]
+    },
+    {
+      "file": "ranger/before/original-ending-loot-ui/derived-contact-sheet-00.jpg",
+      "sha256": "bf3d523c9e6426b941e791e9057ef4047be33a147c52a0365598a96284d355a4",
+      "bytes": 310892,
+      "side": "before",
+      "label": "original-ending-loot-ui",
+      "frames": [
+        2553,
+        2557,
+        2558
+      ],
+      "crop_xyxy": [
+        0,
+        0,
+        1200,
+        536
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both full-viewport ending sheets f2553,2557,2558 show a stable readable DUNGEON CLEARED result page. Visible text is CAMPAIGN +428 XP +190 GOLD,82.3s,26 foes defeated,12 skills cast,4 evasions and top total790 GOLD. The4 evasions reflect ordinary evade events; the journal separately contains a backstep."
+      ]
+    },
+    {
+      "file": "ranger/after/original-ending-loot-ui/derived-contact-sheet-00.jpg",
+      "sha256": "a85527d40fb7d6e1eca276bc4fb2202cf0d7cd1d7223537fa5c1e4be8d495e19",
+      "bytes": 310348,
+      "side": "after",
+      "label": "original-ending-loot-ui",
+      "frames": [
+        2553,
+        2557,
+        2558
+      ],
+      "crop_xyxy": [
+        0,
+        0,
+        1200,
+        536
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both full-viewport ending sheets f2553,2557,2558 show a stable readable DUNGEON CLEARED result page. Visible text is CAMPAIGN +428 XP +190 GOLD,82.3s,26 foes defeated,12 skills cast,4 evasions and top total790 GOLD. The4 evasions reflect ordinary evade events; the journal separately contains a backstep."
+      ]
+    }
+  ],
+  "additional_visual_check": {
+    "file": "ranger-critical-guardian-idle-visual-check.json",
+    "sha256": "a5daabfd45da1f827e34611afec754b6251832c8987f6495066465d9a03c5836",
+    "decode_receipt_file": "ranger-critical-guardian-idle-decode-receipt.json",
+    "decode_receipt_sha256": "62b1557ac08968a0ad69683d887356dfd96cf6e63adf5ecf4813c5f8396a281d",
+    "independently_ai_viewed_by_this_reviewer": true,
+    "supplement_file_count": 2,
+    "supplement_panel_count": 8,
+    "scope": "Actual H264-decoded four consecutive frames2280-2283 per side in shared320x300 native-pixel crop, stored losslessly in PNG; not original Godot PNGs. Supplement files are excluded from planned-range viewed_files."
+  },
+  "limits": [
+    "Only retained planned contact-sheet panels and the separately bounded critical supplement were actually inspected, not all2559 movie frames or every decoded frame.",
+    "Shared crops exclude surrounding actors/environment and most Guardian HUD; off-crop content cannot be judged here.",
+    "Guardian death range2334-2364 covers initial0.97s after lethal event2336; complete death animation, settling and long-term corpse behavior are not approved.",
+    "Guardian actor50 is region0, and all three internal warning phases0/1/2 occur in this Ranger journal. Floating phase labels and floor geometry are visible; full boss HUD is outside the crop.",
+    "Low held preparation around later parts of each Guardian warning keeps exact release timing more dependent on the floor impact fill than a new large body silhouette. The real transient idle2281 is preserved, with no demonstrated gross visual pop in inspected bounded pixels.",
+    "Lossy H264/JPEG92, sampled temporal gaps, dark lighting and small silhouettes limit fine-detail motion judgments; no ankle/shin metrics, unseen bone transforms, physical phone performance, universal correctness or separate human signoff inferred."
+  ]
+}

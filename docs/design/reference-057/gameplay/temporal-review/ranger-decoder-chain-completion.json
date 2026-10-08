@@ -1,0 +1,9 @@
+{
+  "status": "complete_actual_decode_chain",
+  "actual_process_exit": 0,
+  "ranges_per_side": 19,
+  "actual_successful_range_decode_receipts": 38,
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "ai_visual_acceptance": "separate_bounded_review_receipts; no human signoff",
+  "tool_sha256": "f4f2ad49dd62a6dd220410f3ae56029352b71c9c07c2926927487730bd554a96"
+}

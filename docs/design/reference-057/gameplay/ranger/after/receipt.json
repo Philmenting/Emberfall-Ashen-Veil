@@ -1,0 +1,1130 @@
+{
+  "schema": 1,
+  "status": "complete",
+  "input_sha256_before": {
+    "Main.tscn": "e2c97bd36e4f81713f36208f513abc7cef049282dd8861b721a5b5217d2df56b",
+    "assets/models/arcanist.glb": "2d20d4f79f650383e0370c00c0debf628dad0926509cb79bccff622a8797b749",
+    "assets/models/bone_arch.glb": "2cca35fb9cf63a75078e2ce8e7aad1fa68d7d5c905d2a8a82ba73ebf6dd2c6b6",
+    "assets/models/broken_pillar.glb": "280ef66c2414030851d42daff0f9846461d8991b39bdbba6ccf6909424ec231a",
+    "assets/models/bulwark.glb": "ff786ffdbf7778baf360e0f8e0f5f5ee33bb9381fdb8426b8ec6cdc15808fcd7",
+    "assets/models/carved_tomb.glb": "691e24da8cdf054401740929636c04afbc5b05a30aacf4f7b0d6946963e0e047",
+    "assets/models/ceremonial_brazier.glb": "de35c9f917ec4b33cedfc8efe49de993cb674a6f8da854a8b842e519534b1979",
+    "assets/models/classes055/ANIMATION2-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/classes055/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/classes055/README.md": "6afbbba7113f93e000ae22aa16d201b5c0af49e1fe34ace923337509bffafbb3",
+    "assets/models/classes055/ranger-native65.glb": "606ec05719144a9bdcfed9283b14117248b00bba65ba1c940d63b555e055363c",
+    "assets/models/classes055/ranger-native65.json": "69b3ee90313564e24c48c8b65f04ab0f08b4da13a064faa99af79a16a6baa80b",
+    "assets/models/drowned_library.glb": "f0cb0c3005c6aff9370760294870b4a0d8aba11d2a2eb8b26876b08eb0d9b0ba",
+    "assets/models/elite.glb": "7b141bbda58a091cb93e25a33a8d747e63a6aaedc82897fe42699cb64914e31d",
+    "assets/models/environment/LICENSE-SOURCE.txt": "734f51678748685f4c3a7e0215a8c31078b29d168d00ee09b99da74b70f8e460",
+    "assets/models/environment/README.md": "5887746bb4783034b6f4a31f703f12e1248ff9f59281fc2abd3b1f7e09909841",
+    "assets/models/environment/archive_bay.glb": "e82bb2c42c24f35d4764b1b87d0aafcd99b74fdf84bf8b741326062e19ab9e5f",
+    "assets/models/environment/archive_bay_broken.glb": "82935fd751a35b3bd1c20e136eab564a8450aa204b7d08bbae1c1698eb961479",
+    "assets/models/environment/archive_end.glb": "beae16988dae51f5b08bbfeda89d77721bdf86829632c4d92b1f51bf229d1421",
+    "assets/models/environment/archive_return.glb": "82a9011de1af7db800bb19635daacd82258b67855c9a26d343885ad024bc3864",
+    "assets/models/environment/archive_solid.glb": "938ae77771a5a0546dd5a180c1772db580d01ba0cd0562ad3b069cf9956c387f",
+    "assets/models/environment/citadel_bay.glb": "7222cab9685ce9db3509acc0fcc52d44ade9f059c8e3557c073285f601c8baa4",
+    "assets/models/environment/citadel_bay_broken.glb": "e6da4e15770bcb4b0e0e8730363f6fd6adf6bb720be1c01214b75b629b109a86",
+    "assets/models/environment/citadel_end.glb": "346079c39da6623e40d558d042e14b6239ada04858356c45329b3245c8ae57ab",
+    "assets/models/environment/citadel_return.glb": "5caf6c72e90262bf704f39e77727a1fabac2f1e8d7a6e45cb04c81b2c57e373e",
+    "assets/models/environment/citadel_solid.glb": "c6e6f002d3fc263b7a531d20cf54db5a20354b775e7baf02bc46af116335b334",
+    "assets/models/environment/manifest.json": "cb6614ec30663d90fe496d3b4fb7021363db0f1b255d1a60634367f81feb4dd5",
+    "assets/models/environment/ossuary_bay.glb": "b091b4b91cf01508de2486ef3b211fdadc4745fd52f53948ec86c5738b59b19a",
+    "assets/models/environment/ossuary_bay_broken.glb": "372a8b993fa239a8b63add20ca89817ba47286b2eafb164cbd86096047dafe4b",
+    "assets/models/environment/ossuary_end.glb": "2ced27ec37cab75c45901ed586446710747f0165660d1587f2738fcedfd49224",
+    "assets/models/environment/ossuary_return.glb": "dd0c7e7483d8bf6525fcfacefa90fd53b1c4424ea5cd9ce6d33a8e68970658f1",
+    "assets/models/environment/ossuary_solid.glb": "6571a7b8a66f3d468ba2e19abe4aa95268627c97f07ad8224c4d65786bc416af",
+    "assets/models/environment/spire_bay.glb": "90c5bd64f62ef94ffefd182a2e09d6a7b77d7cf050ecfdb5a9eaf2a4dce7837f",
+    "assets/models/environment/spire_bay_broken.glb": "43a378cc206a540c31a152ed66f074139463b14c70f8753216933393345f06ff",
+    "assets/models/environment/spire_end.glb": "5e726668d4dc0b241d2e860aa7813a1249da4108bc732314ba90d285cfcaa60e",
+    "assets/models/environment/spire_return.glb": "a16efb4941fb2cb4651ea04ded7466e2a745075aac21de031552e8de31fe3621",
+    "assets/models/environment/spire_solid.glb": "d45c918d7e607babfbb258d79024469caed0a045700faeb6a19691e58b73d186",
+    "assets/models/expedition_table.glb": "7709ec4ff594917c45cb31fb0ab76b6f4ca92cbde20a3c4c2b11460c95bb1320",
+    "assets/models/field_forge.glb": "59c30f79d5c3af7cc62f322295404678df499acde4050a41365d5ea98a6f15ff",
+    "assets/models/furnace.glb": "38468753c8d06f8018be4a92f7c5bc76d037acb89ff310d13b25355e441a846a",
+    "assets/models/furnace_throne.glb": "fec7da39352509db0727de72947f65b6ca6921af4ea9446f54b4a993bdd75d75",
+    "assets/models/gothic_arch.glb": "5d260b7a40aa91d1227878790f6fa30b8259d77fb2f900c7e91b141e540d4b3d",
+    "assets/models/guardian_0.glb": "7de00eef14fe8d0fae29b6e970246bca11c12a3bf06e994d2ef76982d58896ee",
+    "assets/models/guardian_1.glb": "1daa250cc71f41b8247546ad26ae71b42d09a4810efe776a2680961269b183af",
+    "assets/models/guardian_2.glb": "d4bb78e8232e072b29aa86150d79dcbae0072d9d2fa58f9513b5cdac9576d150",
+    "assets/models/guardian_3.glb": "a2c8758fd2746d009acd1daeb433988781c1959391c39bccc7e5e4cd5bce590e",
+    "assets/models/hanging_bell.glb": "5422935a955881704ad8da6d5a4445792e2ecc2c3106a73b19197d7959cdcb0f",
+    "assets/models/hexer.glb": "c48900e153631c55625dcfabf9f372e8c9cc228c84b5b35a256694a2d1769d9c",
+    "assets/models/hostiles057/ANIMATION1-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/hostiles057/ANIMATION2-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/hostiles057/BASE-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/hostiles057/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/hostiles057/README.md": "e3a1b4192737d4ed879a74f757a6c4262209a409e94b8d3761e1ed6e723dd05b",
+    "assets/models/hostiles057/bulwark-fitted.glb": "22d5d48c6689d20362263dd803c05f11d7ac995d699f05ca2d502e673987839d",
+    "assets/models/hostiles057/death-grounding.json": "436cabdd797a4f8d7dab1ba4b3476666f3b0b2c44de66ff7fa6fadb8160dff24",
+    "assets/models/hostiles057/elite-fitted.glb": "130909f79f951cac28f16dca94bc0d22c818d7198b512b9d73000086229ab0c5",
+    "assets/models/hostiles057/guardian_0-fitted.glb": "03a9db65e0eda7549111968d2e4c6e1148bf0d36d0181416afb53c0953458b7c",
+    "assets/models/hostiles057/guardian_1-fitted.glb": "db5c8ce6a1fc899cfd2b65d8c01fe1f44b597a52d9da76a946d3b0ebf1a8b280",
+    "assets/models/hostiles057/guardian_2-fitted.glb": "65d072cc6b598a59715f2499ada328ea3a174872fcb4c0bae000fd469818ab81",
+    "assets/models/hostiles057/guardian_3-fitted.glb": "6d4b5d9716517a863c79f0e28e8cd543e410b012ae9e86c13205dd270a109ce8",
+    "assets/models/hostiles057/hexer-fitted.glb": "c94101c59d0e187aa43da82a27f41aabd41f483c7e1abe383b2f80195e23a07f",
+    "assets/models/hostiles057/male-clothing-native65.glb": "7e22257441e5db1eba78390991375956569d433f847b4c9526c2fb1c7025c2b8",
+    "assets/models/hostiles057/manifest.json": "7ef6393140647f27e062ef660a3b8654a1fdc321e03cd795c80b8a34b99bb002",
+    "assets/models/leaded_lancet.glb": "bf4dcbb0959853d53adbdf32c9f979fa17759ad542695951c745c914b5bb3e4c",
+    "assets/models/nyra052/ANIMATION-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/nyra052/BASE-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/nyra052/MANUFACTURER-OUTFIT-README.txt": "2f87579c277cde1e1ddbd4b8d823bed618728781cb6597b4dee3978c589ff5c4",
+    "assets/models/nyra052/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/nyra052/README.md": "80cd7f90cbd14e9b2331e00d4bdefd4ed64eeff3f4afebdd73c1b84c3268163e",
+    "assets/models/nyra052/arcanist.glb": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "assets/models/nyra052/assembly-report.json": "0010a84fdf4170fc15167f4da38d5771d3bf7b90b99caed8186eed21d8dbe4c7",
+    "assets/models/nyra052/death-grounding.json": "f69e8b6b62387fc4743cbbfb3ab4d4e06581ec4442bf203e49f238ef0a2b6435",
+    "assets/models/nyra052/staff-grip053.glb": "98bd5832256f9a2fdbb68198d1dbf0d2db0b87c9c4d9d28b136cdfe54db0f11c",
+    "assets/models/nyra052/staff-grip053.json": "fa80f22d398ee8d8947a2be4e6b8c8bb64a7d71a1b41b3489171257ea35735dc",
+    "assets/models/nyra054/QUATERNIUS-CC0-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/nyra054/README.md": "e07de588afae90929fb65e5e933fccfc5f916457187fb2afa9910e818a568c45",
+    "assets/models/nyra054/nyra-attire054.glb": "8a96a9bac63a934213ddea77020d1b50dfd57e5270842ada69355925a5e906f1",
+    "assets/models/nyra054/nyra-attire054.json": "9a9c0e980173aa1da03081b97b61c34a9ae2a4ca3469ba79a9df0cf1a4ec63a5",
+    "assets/models/pilgrim_well.glb": "3982edea5472d0280f5cc20be14e8963041aebeeed7940fe09c19e963d93f471",
+    "assets/models/pillar.glb": "e764c2643e8cc91cb06e763413933f5ec61e2141438d8f5afc10054d9247805c",
+    "assets/models/props049/LICENSE-SOURCE.txt": "7660e115fb599237c993ffe69d0abe88152db3ab6a5273118c7538e9b21678c3",
+    "assets/models/props049/README.md": "0d1d8c584163adecb0d5081d938b8ac90b372f748c012cdbad926f8d257ff422",
+    "assets/models/props049/archive_reliquary.glb": "c34e9953d6cd4473cd3151bbe831cbf410e22b77024b1a0c4de62b9a6b7f93f1",
+    "assets/models/props049/citadel_reliquary.glb": "0ccde9aa297ee2294b48b134b6cab5846e048d4ccfdedac022bc3f6a259cfb8d",
+    "assets/models/props049/manifest.json": "fc97b4834472c929fc92ca42716b53d60ad2ef7dee78ad7e0280c6dad33af355",
+    "assets/models/props049/ossuary_reliquary.glb": "a59dfdbfc8570c6792bc07b4d6536c09945d3911844da3ce08ac7ec7cf5a99d4",
+    "assets/models/props049/spire_reliquary.glb": "7c1ba0bf29ae2d4fdd1c9eee014687ea5beff5a26f7e52222417a5ea469e00e2",
+    "assets/models/raider.glb": "3279fd8ed48228e55dbf406f362e82aa59b0b9e6ada2214446de4f22e6159d4e",
+    "assets/models/raider056/ANIMATION1-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/raider056/ANIMATION2-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/raider056/BASE-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/raider056/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/raider056/README.md": "ea609397a1b57e35d521edf998cabccb759ea986eee3099f3be1fa3e8d8b7f72",
+    "assets/models/raider056/WEAPON-LICENSE.txt": "ce0ec7cc50a28d16340aa11ea684bcbdb6836223ebbd6406d83d6e506c7d4236",
+    "assets/models/raider056/axe-fitted.glb": "215ebc8589defc28efb60727feeab1696de345637dcc7f0816b4c234599f13d0",
+    "assets/models/raider056/axe-fitted.json": "f1ba04b6fddfb027f3ca9653d4ab51fec2bc23c434f9b94ac413c70c5b1a4aae",
+    "assets/models/raider056/axe-grip.json": "966c0d7a5484e64e5e371cb4386c93fd7026bf9fa3fc4b9b7f9c5e71d8c4dc9d",
+    "assets/models/raider056/axe-original.glb": "b4eedc707dabb98883f0e18a096953dbea164b9d2d40a657bd44805886f33b8d",
+    "assets/models/raider056/death-grounding.json": "10e4e4536d3c2c76a9889176c729569e193e8f10c2f6191d1db43bbe4fb81b4e",
+    "assets/models/raider056/raider-native65.glb": "8a89cbeb87691222f80a522145e7203139483adba17cd85edd0adff369da59b4",
+    "assets/models/raider056/raider-native65.json": "6537a19d8dd5e40861f7f1a187192de53102bade53adab547abeb607f5af1d03",
+    "assets/models/ranger.glb": "4124fc68843557c82a081ea16bddb379a87ebaa55893e9b899eb19cb22ab0f33",
+    "assets/models/reliquary_altar.glb": "b717c36ca847242c5faa4e15e3bcc1e9a560a3927ce7e62bd19d793bb0598cfe",
+    "assets/models/ruined_vault.glb": "3b2f8400c5887dc50f7c1100f9218c7d56796222cd7f9a12f8e303356a9b5e27",
+    "assets/models/sanctuary_intarsia.glb": "ebc30c10957645239ea734d518f7e46d4e74492bcfe697e4a24f69cc1a376ec2",
+    "assets/models/seal_shrine.glb": "0d8d584c32dba088b6cee34b3ec5a72939dc219739a7be63ba9c180f362598ff",
+    "assets/models/vowkeeper.glb": "aa65795d2770b6738db553a170db1bf8445a3e2820f62db35133b023a65e8d0b",
+    "assets/shaders/aged_stone.gdshader": "81a6675a552598a4735072a0e713ae17494e6603db0e93b5f216d863b1e48041",
+    "assets/shaders/camp_matte.gdshader": "543c89236729d0596031f60144efac898ed596196b383949596b353b7240f338",
+    "assets/shaders/camp_paving.gdshader": "fb4d21ce1f2aade7f3fdd1962130aed60490712105eb2b78119371e0f3c8e7c7",
+    "assets/shaders/character_surface.gdshader": "a9beb60944e363c2ebdab4d27d672c7b241f537dc675bc6f558785b58d871ad0",
+    "assets/shaders/combat_telegraph.gdshader": "d9a535479922ec3bf1699f0fee93e738e0a62acafd9716dee4685f7e27493866",
+    "assets/shaders/crafted_surface.gdshader": "fabbfddacac14fd5b243c189da50601374ebb462ca2d493aa93660b359b7a99b",
+    "assets/shaders/crypt_mist.gdshader": "4d7523594f8499015b843e9b5c122bcbf90357a1b6796f620b418501d458a728",
+    "assets/shaders/dungeon_atmosphere.gdshader": "b99a857627f57e4a68d7b56e18c42f39cee5b4b058fef3eaa82679f6d6211ca3",
+    "assets/shaders/dungeon_court.gdshader": "9b621f1d77ed363979dc4d2b6d9b75160c5488d422b93493a54040aedf450bcc",
+    "assets/shaders/dungeon_water.gdshader": "3beefed1c6f9e8fd557eba31d3a826d033475d5af25b34e9295b6753adcf2e9b",
+    "assets/shaders/ember_flame.gdshader": "90ceceebe9b628e347b8b191e60f587be490784c8f230aeabf58aa8f660c8d0e",
+    "assets/shaders/environment_basin.gdshader": "d3b3d42bbc5eed526317cafee7ce22be0b93879c7542374c68e56dffddf46fbf",
+    "assets/shaders/forged_surface.gdshader": "08a29ecba1e8185c4060a3f94978e686cff85ace623b23afa3fabca422f842c6",
+    "assets/shaders/ground_grime.gdshader": "cfdf0f549359c652c1affff94ea5bb2029aec3f12f5e9a81bde3ba3f90a058c8",
+    "assets/shaders/hero_occlusion.gdshader": "97fb78b66a69a1df0696266e77362bfc4c750b8fed045fe32031c79b8e5ad627",
+    "assets/shaders/magic_volume.gdshader": "8203ade68c3e85a3f02da2ab22ac1771179a8aa1eeab6166a6acc37cc9d6c82c",
+    "assets/shaders/masonry_surface.gdshader": "d73e6e2cd3fcc94ecaaf8899afafcfb3f42301162df985e5054b212173165b13",
+    "assets/shaders/painted_actor.gdshader": "6a26a281e7c2018bc51180275230380ca842aeb264a08d3eec5f372b4f9f4f65",
+    "assets/shaders/painted_stone.gdshader": "6bfa423bf4b4dceee12bffce2964d955a42e6eca0464fca104c070fd22945eef",
+    "assets/shaders/region_matte.gdshader": "d3977211bc2e5a96d894a23d9d803789a3779152b1a8c7f6237b12b5ca2fff4a",
+    "assets/shaders/ruin_deposit.gdshader": "aeacef77c5a3165038c0ab4c647a97afd31cfc649495e69e517497f9ada1d513",
+    "assets/shaders/ruin_floor.gdshader": "15053ba4b3a41f03f79110ccdf0f610f5da8e04b9ffb6280eec5c7e1e9a72f3b",
+    "assets/shaders/sanctuary_beam.gdshader": "dace078f60919fc5e396d44e7cbd7c842c0f6734bf2417d38e2052d0532014ff",
+    "assets/shaders/sanctuary_glass.gdshader": "7e5eddfb48c07d23008852e0f08b1083271673193aebc1ed03d25c319c79060a",
+    "assets/shaders/veil_gate.gdshader": "41ed87f890fa53e214914abe57b2959157d212d1d1882abc5b8ac7e49319068b",
+    "assets/shaders/ward_surface.gdshader": "5a42adf6e77e88142c5fab64bf07a412226368f96adff302f2ba7a15d2524480",
+    "assets/shaders/weathered_stone.gdshader": "a05dd8129d9b51b95d944c3af2766494bab25c75336f3d13573a6febb805fed9",
+    "project.godot": "06443ae1339db92383984483104457c9b085bd80a8772d0b3ce9b923a9c906f1",
+    "scripts/audio_director.gd": "3c1519b5a1b8c2c222cb94804f70da20ef6f9d9a17a1aea7856ba883b1f73c5a",
+    "scripts/authored_architecture.gd": "e68d8d835cafe1f3b0e24e46060a5ce4add3d9cf9ddeef5e5bce4a934529d899",
+    "scripts/authored_characters.gd": "530d0f0a3c5b84eb4dcd40f60f3fadaa9be89d1bee4c8201f1420d3d2d9247d8",
+    "scripts/avatar_attire_motion.gd": "238a4728aa811e2fda7ab425694b1adef7ad615e3b1a3fe0cdb42a6e16accf24",
+    "scripts/battle_art.gd": "7d54a95db37801ee603e4aa5be5cde221cba908e23884edd134b0cf46aa74830",
+    "scripts/boss_patterns.gd": "8a808f6fc59ae0619b19488d2fe4753f0f19ea6b6d0dc31bf98dbd58be87d4bb",
+    "scripts/camp_scene.gd": "30ede3a1073e9605bcf1308096adf01005ac83e16da554c0437d9768686f52ff",
+    "scripts/character_animation.gd": "0a462dc83fa4cb8d7643e8e46bfacd88be6c093e2982acf24a532dcf23c76237",
+    "scripts/character_rig.gd": "dae43c6e1a23a2abfa0c19a9990b8783083f7055ccd15638ce6b3007c05bc483",
+    "scripts/class_avatar_pose.gd": "720bc8e9d712d1272cca63a6731f9b2830b1e1595fb4bf29351bf4b38871bc50",
+    "scripts/class_avatar_rig.gd": "52c25de7319630a0524ea263e80d143812caba8dd701f3f9bfa8e0d5349bf052",
+    "scripts/class_avatar_style.gd": "5630d91c2033644b436dc5a65eaaa1f66e4154a46844ed6a44a66c78a27c5e9a",
+    "scripts/class_loot.gd": "a8d593dc6af163e92298ad8fc627e5004b43646ea99c674c601c119c106e4b76",
+    "scripts/class_relics.gd": "18c540965b7e4f80a0e45ad7d01dfe28d376702d1f3d53b9775b85f9972821e9",
+    "scripts/class_skills.gd": "25e37394f53126478b955108f9d604505e83a8c7fff7e50ef446b34407f06898",
+    "scripts/cloud_save.gd": "50b796e146d93404031828592ce4de5a836b54e48e40ab0241466be2715fea23",
+    "scripts/combat_health_bar.gd": "86cf42d3009ce34ca94059a61d654b09c2b2435b8820c23ce73d50be83726f75",
+    "scripts/combat_readability.gd": "7dfa1431ab6bfe2b97e17c6a326239786e4196bf2ec3ec0c68a55de5c8f7bc0a",
+    "scripts/combat_readout.gd": "8c3563909c6100ccb034cef1c61589a218e71bf4d9b36424de2de5e68e466a55",
+    "scripts/combat_stances.gd": "d3f7d2a7d16574681ef40bd2bf763595bef7fb3532dbb2cd3c753ddee2855371",
+    "scripts/dungeon_actor.gd": "0dba757c30de4794b9e03d67eca12f74cfb75a0216976726d04a553b34b4bf65",
+    "scripts/dungeon_layout.gd": "fd66656086e248dd8c42d345351e2a1e22f58ddc6cef4dbfea177d5b70332df7",
+    "scripts/dungeon_lighting.gd": "e95f87d848542a7dd30d690fc9ed9809e26fe78beda64ec3d780a48f8f02654c",
+    "scripts/dungeon_theme.gd": "c57a00e2d2a03afce82ad2dd46f34a104394493662a22f18d44888623586a00a",
+    "scripts/dungeon_world.gd": "ef9d0ae4f674ee241ef66ab0e4841c9df0c1598fb51741f03abb669ddde36c3a",
+    "scripts/expedition_contract.gd": "05db36bebc7e0231b977ca0b0f33b2cd4967683913479fcfc3a6c2fc86adf837",
+    "scripts/expedition_map.gd": "f2f5febcddc6bb6d06f746c4b803a797b8d8386af8b4ee3ec66cc3caf034a9bf",
+    "scripts/expedition_simulation.gd": "ed4cabb75e65486aa277632ad2d25700bfca4d60e79b7e7fc0a28bbffe6c649b",
+    "scripts/farm_forecast.gd": "a1506505e3da2195d58026ef59fba30a8fe0aaa130cd5de5647fbf5802a8b083",
+    "scripts/fellowship_service.gd": "c8f33d6bf1cb39cd82ac8d2551132e7851e1906b92f699dd7e7dffd2a411601b",
+    "scripts/frame_metrics.gd": "20e0aa3a71a218957dbee8161e4706cebeffdee49d35bb86bc6dedddafb7555d",
+    "scripts/game_preferences.gd": "a7179eea97cb59cb689bdda398a7b8cc712a1cff3296a52533b2000341027cbf",
+    "scripts/gear_advisor.gd": "6dea2eae02252c95fd57b73711e2ae86bf4bf26f5a304f4149d29110cdde2e24",
+    "scripts/hero_art.gd": "c264ee1882ca86da552eafafdf1a1ad64a98a5395341d34de478eb57b0d628d4",
+    "scripts/hostile_style.gd": "5c63582259c0031559a3ae65fcd9724d8c4962e90c7290dd5da46efa6f0f8020",
+    "scripts/main.gd": "805ad431d458de242e97edc835d3e2a8df6b4b4aa6087fda77e2651cd5aca216",
+    "scripts/mobile_safe_area.gd": "6fc90d1a94100fdde4b8ab06928b92a729069394ce7d80b172bfe733e7e75df3",
+    "scripts/native_equipment_finish.gd": "8d760c59b8257b5c14b43ea4cf883a8baf5320b36e03cb62998a2b66bfd95704",
+    "scripts/native_hostile_rig.gd": "f67ec28c739aa16cbcc4445718d2fc5f6bcb43ea953ccc0fc3ed1b7725b01841",
+    "scripts/native_hostile_style.gd": "eb20a6e0e9ba4fcd74eb17a035f7d40a3630fce7dd680c061f8d6a191b577015",
+    "scripts/native_mesh_lods.gd": "574eb071327fd2cb479ea5770cd0c6b5105595578ad5abd7f880f995a0a6680e",
+    "scripts/native_motion_transition.gd": "4e254bb59b8df2cef2f4a04e4c23fbf3d534de1840cd17d286d19cdf269f7f21",
+    "scripts/oath_combat_rules.gd": "c0b5f85c487237963cdff96b5f2002f03eac65c17dbda483c3393a402c4fd1b2",
+    "scripts/offline_farm.gd": "ee3930fffd691813a7094e1f820cf9e1b0a3d2bd08d0e7a896b2817640844548",
+    "scripts/painted_action_craft.gd": "495f16b7bf9c4a27e31913ac5580856f7f49e0a85d811f0a4aadb17bcdd82c28",
+    "scripts/painted_motion_layers.gd": "4d1cd31ef3b926044fd5a89e72efa5435b385e7601cfbec6918fc6a3d4688282",
+    "scripts/painted_motion_rig.gd": "d8e177331ddfdd0630b8ada2f9558f9895d23342455f65eb3aa4cb9ca22a4138",
+    "scripts/playtest_notes.gd": "9c3a611afdbf524ff2271892985d7c6bc1afdd70ae5fd0ad73db4ea0c734ac44",
+    "scripts/progression_service.gd": "0c3e7387579a3d90077cd1042595ed939487b7cd3524e5b92869e4f4e7f841f4",
+    "scripts/raider_avatar_rig.gd": "da1588acadbc7b911eaad4bc7afbe301129c05e90c0c80f745921f5bff21ec49",
+    "scripts/regional_sets.gd": "32236ab325cab5d7ab11dd5b45dfca25cc4b56cd7d5b6dbb3986f3f96bfcbb22",
+    "scripts/regional_stage.gd": "c68d128bed523b771bdde459cf12db91bdde665a5af27d0cc0581ad0f4a61669",
+    "scripts/release_info.gd": "b8723513c5434fae9b587cec073d0dd20d7ba77f99cfe5ebe8d162cd1d2bd3ce",
+    "scripts/render_budget.gd": "99a1f816371991937dabf4cc5830d9cc90990f20214736da218f4921899ac09b",
+    "scripts/room_ground.gd": "2a4b3b1ef37064d0932aed30feb7eddf362a3030b6ba52bfb8ca39702c8a0c93",
+    "scripts/ruin_architecture.gd": "3a77f958110aacaa9c19fb6a8184fe117fa2c793222a1fd17a91dff4639d60a7",
+    "scripts/save_store.gd": "97f5c641866ba935a3467495531008da7459665798867f7c22c11db4121aabfa",
+    "scripts/sculpted_mesh.gd": "57df0f7444b2bd930031069efc7d83edb20750f058f628f7535e7d1a0dc283a1",
+    "scripts/settings_panel.gd": "6d3d5cf798a442893eaeca9494305faebd0fe4a3c5dcf8a8b986bc6a019fe9b5",
+    "scripts/skill_glyph.gd": "0df2f5cdd5ae234ef593ad42f57266c292dddd95da7be3f1b3f1b73064f8d7be",
+    "scripts/source_avatar_combat.gd": "1873aca0e735a0530f8f3e2b6a931d4b080d2889538863a73454c8c74a78df43",
+    "scripts/source_avatar_evade.gd": "866d5c6157cc34f1e81514f4895a706d9dc59f26ae81b3e33a21800d83bcb8f7",
+    "scripts/source_avatar_rig.gd": "f2eb02f590868d58d1abd2dedb70e9d1655ac4977bd7e52c4a9485d19fb8f6f7",
+    "scripts/source_avatar_style.gd": "ed4d3898a700e93eb51677ffa6348cb8c85b3fa90c5a4d84289b620deff88d67",
+    "scripts/ui_glyph.gd": "e24e98966ab6050a5dcac576a05096c41f8fe6ad671e74253263a9cbc439d406",
+    "tests/arcanist_quality_gameplay_preview.gd": "0ae6d53c388fdfe5e5afce8578f4cb9bd0fffbf8402bd41a11f631202e82582d",
+    "tests/arcanist_quality_gameplay_preview.tscn": "50c6bb5b1508d0662c09348a38f7fbf373145dc23def11d8fa0bb57639aa7023",
+    "tests/attack_gameplay_preview.gd": "12333afd1d7694b13939e48ac67c095f6f832d4eb959d5ef74bf230988748fdc",
+    "tests/combat_quality_gameplay_preview.gd": "17b7e9637f6a9ca345acc98d5bbbf9ad4304539e7899902a7ea4072b521a3747",
+    "tests/combat_quality_gameplay_preview.tscn": "82749277e28de0ea76322928198cc9a0c93c76ec5e50fe4e295f883e7227af33",
+    "tests/native_capture_audio.gd": "f0649e8143a1445e90cbe2c8f13d8626becaf72d408e1a146b1fc93b44faa7d5",
+    "tools/capture_arcanist_quality.py": "3bdd9eb9cee79a7f66d91f2fb6068b868016f527fd105904a889c6ea1a2eabff",
+    "tools/capture_combat_quality.py": "faabd23defbde91c8312b004c2b01c94554326103c3832f5b952cad7ce6ada86"
+  },
+  "scope": "Original continuous native viewport export at fixed 30 Hz simulation/playback; capture wall time is not a game FPS benchmark.",
+  "physical_device_performance": false,
+  "captured_audio": true,
+  "portrait_clock_scope": "Original HeroArt updates follow the recorded playback clock rather than viewport-export wall time.",
+  "audio_scope": "Actual accepted game cues/music, decoded with native AudioStreamPlayback and fixed-step mixed into stereo PCM; not live hardware loopback. MP4 audio is AAC encoded from this PCM.",
+  "pixel_changes": "None in selected native PNGs; all chronological PNGs are H.264 encoded into the MP4.",
+  "maximum_simulation_seconds": 240.0,
+  "recording_kind": "ordinary_expedition",
+  "mp4_file": "ordinary-ranger-complete.mp4",
+  "character_class": "Ranger",
+  "full_victory_required": true,
+  "bone_detail": "none",
+  "godot_command": [
+    "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+    "--path",
+    "/workspace/Emberfall-Ashen-Veil",
+    "--audio-driver",
+    "Dummy",
+    "--resolution",
+    "1200x536",
+    "res://tests/combat_quality_gameplay_preview.tscn",
+    "--",
+    "--capture-dir=/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger",
+    "--stream-port=47589",
+    "--max-simulation-seconds=240.0",
+    "--capture-class=Ranger",
+    "--bone-detail=none"
+  ],
+  "display": ":108",
+  "capture_runner_path": "/workspace/Emberfall-Ashen-Veil/tools/capture_arcanist_quality.py",
+  "llvmpipe_thread_environment": "4",
+  "ffmpeg_command": [
+    "/usr/bin/ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-f",
+    "image2pipe",
+    "-framerate",
+    "30",
+    "-vcodec",
+    "png",
+    "-i",
+    "pipe:0",
+    "-an",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "veryfast",
+    "-crf",
+    "20",
+    "-threads",
+    "2",
+    "-pix_fmt",
+    "yuv420p",
+    "-movflags",
+    "+faststart",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/viewport-video-only.mp4"
+  ],
+  "godot_process_exit": 0,
+  "ffmpeg_process_exit": 0,
+  "ffmpeg_audio_mux_command": [
+    "/usr/bin/ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-i",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/viewport-video-only.mp4",
+    "-f",
+    "f32le",
+    "-ar",
+    "44100",
+    "-ac",
+    "2",
+    "-i",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/native-game-audio.f32le",
+    "-map",
+    "0:v:0",
+    "-map",
+    "1:a:0",
+    "-c:v",
+    "copy",
+    "-c:a",
+    "aac",
+    "-b:a",
+    "128k",
+    "-movflags",
+    "+faststart",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/ordinary-ranger-complete.mp4"
+  ],
+  "input_sha256_after": {
+    "Main.tscn": "e2c97bd36e4f81713f36208f513abc7cef049282dd8861b721a5b5217d2df56b",
+    "assets/models/arcanist.glb": "2d20d4f79f650383e0370c00c0debf628dad0926509cb79bccff622a8797b749",
+    "assets/models/bone_arch.glb": "2cca35fb9cf63a75078e2ce8e7aad1fa68d7d5c905d2a8a82ba73ebf6dd2c6b6",
+    "assets/models/broken_pillar.glb": "280ef66c2414030851d42daff0f9846461d8991b39bdbba6ccf6909424ec231a",
+    "assets/models/bulwark.glb": "ff786ffdbf7778baf360e0f8e0f5f5ee33bb9381fdb8426b8ec6cdc15808fcd7",
+    "assets/models/carved_tomb.glb": "691e24da8cdf054401740929636c04afbc5b05a30aacf4f7b0d6946963e0e047",
+    "assets/models/ceremonial_brazier.glb": "de35c9f917ec4b33cedfc8efe49de993cb674a6f8da854a8b842e519534b1979",
+    "assets/models/classes055/ANIMATION2-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/classes055/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/classes055/README.md": "6afbbba7113f93e000ae22aa16d201b5c0af49e1fe34ace923337509bffafbb3",
+    "assets/models/classes055/ranger-native65.glb": "606ec05719144a9bdcfed9283b14117248b00bba65ba1c940d63b555e055363c",
+    "assets/models/classes055/ranger-native65.json": "69b3ee90313564e24c48c8b65f04ab0f08b4da13a064faa99af79a16a6baa80b",
+    "assets/models/drowned_library.glb": "f0cb0c3005c6aff9370760294870b4a0d8aba11d2a2eb8b26876b08eb0d9b0ba",
+    "assets/models/elite.glb": "7b141bbda58a091cb93e25a33a8d747e63a6aaedc82897fe42699cb64914e31d",
+    "assets/models/environment/LICENSE-SOURCE.txt": "734f51678748685f4c3a7e0215a8c31078b29d168d00ee09b99da74b70f8e460",
+    "assets/models/environment/README.md": "5887746bb4783034b6f4a31f703f12e1248ff9f59281fc2abd3b1f7e09909841",
+    "assets/models/environment/archive_bay.glb": "e82bb2c42c24f35d4764b1b87d0aafcd99b74fdf84bf8b741326062e19ab9e5f",
+    "assets/models/environment/archive_bay_broken.glb": "82935fd751a35b3bd1c20e136eab564a8450aa204b7d08bbae1c1698eb961479",
+    "assets/models/environment/archive_end.glb": "beae16988dae51f5b08bbfeda89d77721bdf86829632c4d92b1f51bf229d1421",
+    "assets/models/environment/archive_return.glb": "82a9011de1af7db800bb19635daacd82258b67855c9a26d343885ad024bc3864",
+    "assets/models/environment/archive_solid.glb": "938ae77771a5a0546dd5a180c1772db580d01ba0cd0562ad3b069cf9956c387f",
+    "assets/models/environment/citadel_bay.glb": "7222cab9685ce9db3509acc0fcc52d44ade9f059c8e3557c073285f601c8baa4",
+    "assets/models/environment/citadel_bay_broken.glb": "e6da4e15770bcb4b0e0e8730363f6fd6adf6bb720be1c01214b75b629b109a86",
+    "assets/models/environment/citadel_end.glb": "346079c39da6623e40d558d042e14b6239ada04858356c45329b3245c8ae57ab",
+    "assets/models/environment/citadel_return.glb": "5caf6c72e90262bf704f39e77727a1fabac2f1e8d7a6e45cb04c81b2c57e373e",
+    "assets/models/environment/citadel_solid.glb": "c6e6f002d3fc263b7a531d20cf54db5a20354b775e7baf02bc46af116335b334",
+    "assets/models/environment/manifest.json": "cb6614ec30663d90fe496d3b4fb7021363db0f1b255d1a60634367f81feb4dd5",
+    "assets/models/environment/ossuary_bay.glb": "b091b4b91cf01508de2486ef3b211fdadc4745fd52f53948ec86c5738b59b19a",
+    "assets/models/environment/ossuary_bay_broken.glb": "372a8b993fa239a8b63add20ca89817ba47286b2eafb164cbd86096047dafe4b",
+    "assets/models/environment/ossuary_end.glb": "2ced27ec37cab75c45901ed586446710747f0165660d1587f2738fcedfd49224",
+    "assets/models/environment/ossuary_return.glb": "dd0c7e7483d8bf6525fcfacefa90fd53b1c4424ea5cd9ce6d33a8e68970658f1",
+    "assets/models/environment/ossuary_solid.glb": "6571a7b8a66f3d468ba2e19abe4aa95268627c97f07ad8224c4d65786bc416af",
+    "assets/models/environment/spire_bay.glb": "90c5bd64f62ef94ffefd182a2e09d6a7b77d7cf050ecfdb5a9eaf2a4dce7837f",
+    "assets/models/environment/spire_bay_broken.glb": "43a378cc206a540c31a152ed66f074139463b14c70f8753216933393345f06ff",
+    "assets/models/environment/spire_end.glb": "5e726668d4dc0b241d2e860aa7813a1249da4108bc732314ba90d285cfcaa60e",
+    "assets/models/environment/spire_return.glb": "a16efb4941fb2cb4651ea04ded7466e2a745075aac21de031552e8de31fe3621",
+    "assets/models/environment/spire_solid.glb": "d45c918d7e607babfbb258d79024469caed0a045700faeb6a19691e58b73d186",
+    "assets/models/expedition_table.glb": "7709ec4ff594917c45cb31fb0ab76b6f4ca92cbde20a3c4c2b11460c95bb1320",
+    "assets/models/field_forge.glb": "59c30f79d5c3af7cc62f322295404678df499acde4050a41365d5ea98a6f15ff",
+    "assets/models/furnace.glb": "38468753c8d06f8018be4a92f7c5bc76d037acb89ff310d13b25355e441a846a",
+    "assets/models/furnace_throne.glb": "fec7da39352509db0727de72947f65b6ca6921af4ea9446f54b4a993bdd75d75",
+    "assets/models/gothic_arch.glb": "5d260b7a40aa91d1227878790f6fa30b8259d77fb2f900c7e91b141e540d4b3d",
+    "assets/models/guardian_0.glb": "7de00eef14fe8d0fae29b6e970246bca11c12a3bf06e994d2ef76982d58896ee",
+    "assets/models/guardian_1.glb": "1daa250cc71f41b8247546ad26ae71b42d09a4810efe776a2680961269b183af",
+    "assets/models/guardian_2.glb": "d4bb78e8232e072b29aa86150d79dcbae0072d9d2fa58f9513b5cdac9576d150",
+    "assets/models/guardian_3.glb": "a2c8758fd2746d009acd1daeb433988781c1959391c39bccc7e5e4cd5bce590e",
+    "assets/models/hanging_bell.glb": "5422935a955881704ad8da6d5a4445792e2ecc2c3106a73b19197d7959cdcb0f",
+    "assets/models/hexer.glb": "c48900e153631c55625dcfabf9f372e8c9cc228c84b5b35a256694a2d1769d9c",
+    "assets/models/hostiles057/ANIMATION1-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/hostiles057/ANIMATION2-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/hostiles057/BASE-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/hostiles057/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/hostiles057/README.md": "e3a1b4192737d4ed879a74f757a6c4262209a409e94b8d3761e1ed6e723dd05b",
+    "assets/models/hostiles057/bulwark-fitted.glb": "22d5d48c6689d20362263dd803c05f11d7ac995d699f05ca2d502e673987839d",
+    "assets/models/hostiles057/death-grounding.json": "436cabdd797a4f8d7dab1ba4b3476666f3b0b2c44de66ff7fa6fadb8160dff24",
+    "assets/models/hostiles057/elite-fitted.glb": "130909f79f951cac28f16dca94bc0d22c818d7198b512b9d73000086229ab0c5",
+    "assets/models/hostiles057/guardian_0-fitted.glb": "03a9db65e0eda7549111968d2e4c6e1148bf0d36d0181416afb53c0953458b7c",
+    "assets/models/hostiles057/guardian_1-fitted.glb": "db5c8ce6a1fc899cfd2b65d8c01fe1f44b597a52d9da76a946d3b0ebf1a8b280",
+    "assets/models/hostiles057/guardian_2-fitted.glb": "65d072cc6b598a59715f2499ada328ea3a174872fcb4c0bae000fd469818ab81",
+    "assets/models/hostiles057/guardian_3-fitted.glb": "6d4b5d9716517a863c79f0e28e8cd543e410b012ae9e86c13205dd270a109ce8",
+    "assets/models/hostiles057/hexer-fitted.glb": "c94101c59d0e187aa43da82a27f41aabd41f483c7e1abe383b2f80195e23a07f",
+    "assets/models/hostiles057/male-clothing-native65.glb": "7e22257441e5db1eba78390991375956569d433f847b4c9526c2fb1c7025c2b8",
+    "assets/models/hostiles057/manifest.json": "7ef6393140647f27e062ef660a3b8654a1fdc321e03cd795c80b8a34b99bb002",
+    "assets/models/leaded_lancet.glb": "bf4dcbb0959853d53adbdf32c9f979fa17759ad542695951c745c914b5bb3e4c",
+    "assets/models/nyra052/ANIMATION-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/nyra052/BASE-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/nyra052/MANUFACTURER-OUTFIT-README.txt": "2f87579c277cde1e1ddbd4b8d823bed618728781cb6597b4dee3978c589ff5c4",
+    "assets/models/nyra052/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/nyra052/README.md": "80cd7f90cbd14e9b2331e00d4bdefd4ed64eeff3f4afebdd73c1b84c3268163e",
+    "assets/models/nyra052/arcanist.glb": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "assets/models/nyra052/assembly-report.json": "0010a84fdf4170fc15167f4da38d5771d3bf7b90b99caed8186eed21d8dbe4c7",
+    "assets/models/nyra052/death-grounding.json": "f69e8b6b62387fc4743cbbfb3ab4d4e06581ec4442bf203e49f238ef0a2b6435",
+    "assets/models/nyra052/staff-grip053.glb": "98bd5832256f9a2fdbb68198d1dbf0d2db0b87c9c4d9d28b136cdfe54db0f11c",
+    "assets/models/nyra052/staff-grip053.json": "fa80f22d398ee8d8947a2be4e6b8c8bb64a7d71a1b41b3489171257ea35735dc",
+    "assets/models/nyra054/QUATERNIUS-CC0-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/nyra054/README.md": "e07de588afae90929fb65e5e933fccfc5f916457187fb2afa9910e818a568c45",
+    "assets/models/nyra054/nyra-attire054.glb": "8a96a9bac63a934213ddea77020d1b50dfd57e5270842ada69355925a5e906f1",
+    "assets/models/nyra054/nyra-attire054.json": "9a9c0e980173aa1da03081b97b61c34a9ae2a4ca3469ba79a9df0cf1a4ec63a5",
+    "assets/models/pilgrim_well.glb": "3982edea5472d0280f5cc20be14e8963041aebeeed7940fe09c19e963d93f471",
+    "assets/models/pillar.glb": "e764c2643e8cc91cb06e763413933f5ec61e2141438d8f5afc10054d9247805c",
+    "assets/models/props049/LICENSE-SOURCE.txt": "7660e115fb599237c993ffe69d0abe88152db3ab6a5273118c7538e9b21678c3",
+    "assets/models/props049/README.md": "0d1d8c584163adecb0d5081d938b8ac90b372f748c012cdbad926f8d257ff422",
+    "assets/models/props049/archive_reliquary.glb": "c34e9953d6cd4473cd3151bbe831cbf410e22b77024b1a0c4de62b9a6b7f93f1",
+    "assets/models/props049/citadel_reliquary.glb": "0ccde9aa297ee2294b48b134b6cab5846e048d4ccfdedac022bc3f6a259cfb8d",
+    "assets/models/props049/manifest.json": "fc97b4834472c929fc92ca42716b53d60ad2ef7dee78ad7e0280c6dad33af355",
+    "assets/models/props049/ossuary_reliquary.glb": "a59dfdbfc8570c6792bc07b4d6536c09945d3911844da3ce08ac7ec7cf5a99d4",
+    "assets/models/props049/spire_reliquary.glb": "7c1ba0bf29ae2d4fdd1c9eee014687ea5beff5a26f7e52222417a5ea469e00e2",
+    "assets/models/raider.glb": "3279fd8ed48228e55dbf406f362e82aa59b0b9e6ada2214446de4f22e6159d4e",
+    "assets/models/raider056/ANIMATION1-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/raider056/ANIMATION2-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/raider056/BASE-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/raider056/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/raider056/README.md": "ea609397a1b57e35d521edf998cabccb759ea986eee3099f3be1fa3e8d8b7f72",
+    "assets/models/raider056/WEAPON-LICENSE.txt": "ce0ec7cc50a28d16340aa11ea684bcbdb6836223ebbd6406d83d6e506c7d4236",
+    "assets/models/raider056/axe-fitted.glb": "215ebc8589defc28efb60727feeab1696de345637dcc7f0816b4c234599f13d0",
+    "assets/models/raider056/axe-fitted.json": "f1ba04b6fddfb027f3ca9653d4ab51fec2bc23c434f9b94ac413c70c5b1a4aae",
+    "assets/models/raider056/axe-grip.json": "966c0d7a5484e64e5e371cb4386c93fd7026bf9fa3fc4b9b7f9c5e71d8c4dc9d",
+    "assets/models/raider056/axe-original.glb": "b4eedc707dabb98883f0e18a096953dbea164b9d2d40a657bd44805886f33b8d",
+    "assets/models/raider056/death-grounding.json": "10e4e4536d3c2c76a9889176c729569e193e8f10c2f6191d1db43bbe4fb81b4e",
+    "assets/models/raider056/raider-native65.glb": "8a89cbeb87691222f80a522145e7203139483adba17cd85edd0adff369da59b4",
+    "assets/models/raider056/raider-native65.json": "6537a19d8dd5e40861f7f1a187192de53102bade53adab547abeb607f5af1d03",
+    "assets/models/ranger.glb": "4124fc68843557c82a081ea16bddb379a87ebaa55893e9b899eb19cb22ab0f33",
+    "assets/models/reliquary_altar.glb": "b717c36ca847242c5faa4e15e3bcc1e9a560a3927ce7e62bd19d793bb0598cfe",
+    "assets/models/ruined_vault.glb": "3b2f8400c5887dc50f7c1100f9218c7d56796222cd7f9a12f8e303356a9b5e27",
+    "assets/models/sanctuary_intarsia.glb": "ebc30c10957645239ea734d518f7e46d4e74492bcfe697e4a24f69cc1a376ec2",
+    "assets/models/seal_shrine.glb": "0d8d584c32dba088b6cee34b3ec5a72939dc219739a7be63ba9c180f362598ff",
+    "assets/models/vowkeeper.glb": "aa65795d2770b6738db553a170db1bf8445a3e2820f62db35133b023a65e8d0b",
+    "assets/shaders/aged_stone.gdshader": "81a6675a552598a4735072a0e713ae17494e6603db0e93b5f216d863b1e48041",
+    "assets/shaders/camp_matte.gdshader": "543c89236729d0596031f60144efac898ed596196b383949596b353b7240f338",
+    "assets/shaders/camp_paving.gdshader": "fb4d21ce1f2aade7f3fdd1962130aed60490712105eb2b78119371e0f3c8e7c7",
+    "assets/shaders/character_surface.gdshader": "a9beb60944e363c2ebdab4d27d672c7b241f537dc675bc6f558785b58d871ad0",
+    "assets/shaders/combat_telegraph.gdshader": "d9a535479922ec3bf1699f0fee93e738e0a62acafd9716dee4685f7e27493866",
+    "assets/shaders/crafted_surface.gdshader": "fabbfddacac14fd5b243c189da50601374ebb462ca2d493aa93660b359b7a99b",
+    "assets/shaders/crypt_mist.gdshader": "4d7523594f8499015b843e9b5c122bcbf90357a1b6796f620b418501d458a728",
+    "assets/shaders/dungeon_atmosphere.gdshader": "b99a857627f57e4a68d7b56e18c42f39cee5b4b058fef3eaa82679f6d6211ca3",
+    "assets/shaders/dungeon_court.gdshader": "9b621f1d77ed363979dc4d2b6d9b75160c5488d422b93493a54040aedf450bcc",
+    "assets/shaders/dungeon_water.gdshader": "3beefed1c6f9e8fd557eba31d3a826d033475d5af25b34e9295b6753adcf2e9b",
+    "assets/shaders/ember_flame.gdshader": "90ceceebe9b628e347b8b191e60f587be490784c8f230aeabf58aa8f660c8d0e",
+    "assets/shaders/environment_basin.gdshader": "d3b3d42bbc5eed526317cafee7ce22be0b93879c7542374c68e56dffddf46fbf",
+    "assets/shaders/forged_surface.gdshader": "08a29ecba1e8185c4060a3f94978e686cff85ace623b23afa3fabca422f842c6",
+    "assets/shaders/ground_grime.gdshader": "cfdf0f549359c652c1affff94ea5bb2029aec3f12f5e9a81bde3ba3f90a058c8",
+    "assets/shaders/hero_occlusion.gdshader": "97fb78b66a69a1df0696266e77362bfc4c750b8fed045fe32031c79b8e5ad627",
+    "assets/shaders/magic_volume.gdshader": "8203ade68c3e85a3f02da2ab22ac1771179a8aa1eeab6166a6acc37cc9d6c82c",
+    "assets/shaders/masonry_surface.gdshader": "d73e6e2cd3fcc94ecaaf8899afafcfb3f42301162df985e5054b212173165b13",
+    "assets/shaders/painted_actor.gdshader": "6a26a281e7c2018bc51180275230380ca842aeb264a08d3eec5f372b4f9f4f65",
+    "assets/shaders/painted_stone.gdshader": "6bfa423bf4b4dceee12bffce2964d955a42e6eca0464fca104c070fd22945eef",
+    "assets/shaders/region_matte.gdshader": "d3977211bc2e5a96d894a23d9d803789a3779152b1a8c7f6237b12b5ca2fff4a",
+    "assets/shaders/ruin_deposit.gdshader": "aeacef77c5a3165038c0ab4c647a97afd31cfc649495e69e517497f9ada1d513",
+    "assets/shaders/ruin_floor.gdshader": "15053ba4b3a41f03f79110ccdf0f610f5da8e04b9ffb6280eec5c7e1e9a72f3b",
+    "assets/shaders/sanctuary_beam.gdshader": "dace078f60919fc5e396d44e7cbd7c842c0f6734bf2417d38e2052d0532014ff",
+    "assets/shaders/sanctuary_glass.gdshader": "7e5eddfb48c07d23008852e0f08b1083271673193aebc1ed03d25c319c79060a",
+    "assets/shaders/veil_gate.gdshader": "41ed87f890fa53e214914abe57b2959157d212d1d1882abc5b8ac7e49319068b",
+    "assets/shaders/ward_surface.gdshader": "5a42adf6e77e88142c5fab64bf07a412226368f96adff302f2ba7a15d2524480",
+    "assets/shaders/weathered_stone.gdshader": "a05dd8129d9b51b95d944c3af2766494bab25c75336f3d13573a6febb805fed9",
+    "project.godot": "06443ae1339db92383984483104457c9b085bd80a8772d0b3ce9b923a9c906f1",
+    "scripts/audio_director.gd": "3c1519b5a1b8c2c222cb94804f70da20ef6f9d9a17a1aea7856ba883b1f73c5a",
+    "scripts/authored_architecture.gd": "e68d8d835cafe1f3b0e24e46060a5ce4add3d9cf9ddeef5e5bce4a934529d899",
+    "scripts/authored_characters.gd": "530d0f0a3c5b84eb4dcd40f60f3fadaa9be89d1bee4c8201f1420d3d2d9247d8",
+    "scripts/avatar_attire_motion.gd": "238a4728aa811e2fda7ab425694b1adef7ad615e3b1a3fe0cdb42a6e16accf24",
+    "scripts/battle_art.gd": "7d54a95db37801ee603e4aa5be5cde221cba908e23884edd134b0cf46aa74830",
+    "scripts/boss_patterns.gd": "8a808f6fc59ae0619b19488d2fe4753f0f19ea6b6d0dc31bf98dbd58be87d4bb",
+    "scripts/camp_scene.gd": "30ede3a1073e9605bcf1308096adf01005ac83e16da554c0437d9768686f52ff",
+    "scripts/character_animation.gd": "0a462dc83fa4cb8d7643e8e46bfacd88be6c093e2982acf24a532dcf23c76237",
+    "scripts/character_rig.gd": "dae43c6e1a23a2abfa0c19a9990b8783083f7055ccd15638ce6b3007c05bc483",
+    "scripts/class_avatar_pose.gd": "720bc8e9d712d1272cca63a6731f9b2830b1e1595fb4bf29351bf4b38871bc50",
+    "scripts/class_avatar_rig.gd": "52c25de7319630a0524ea263e80d143812caba8dd701f3f9bfa8e0d5349bf052",
+    "scripts/class_avatar_style.gd": "5630d91c2033644b436dc5a65eaaa1f66e4154a46844ed6a44a66c78a27c5e9a",
+    "scripts/class_loot.gd": "a8d593dc6af163e92298ad8fc627e5004b43646ea99c674c601c119c106e4b76",
+    "scripts/class_relics.gd": "18c540965b7e4f80a0e45ad7d01dfe28d376702d1f3d53b9775b85f9972821e9",
+    "scripts/class_skills.gd": "25e37394f53126478b955108f9d604505e83a8c7fff7e50ef446b34407f06898",
+    "scripts/cloud_save.gd": "50b796e146d93404031828592ce4de5a836b54e48e40ab0241466be2715fea23",
+    "scripts/combat_health_bar.gd": "86cf42d3009ce34ca94059a61d654b09c2b2435b8820c23ce73d50be83726f75",
+    "scripts/combat_readability.gd": "7dfa1431ab6bfe2b97e17c6a326239786e4196bf2ec3ec0c68a55de5c8f7bc0a",
+    "scripts/combat_readout.gd": "8c3563909c6100ccb034cef1c61589a218e71bf4d9b36424de2de5e68e466a55",
+    "scripts/combat_stances.gd": "d3f7d2a7d16574681ef40bd2bf763595bef7fb3532dbb2cd3c753ddee2855371",
+    "scripts/dungeon_actor.gd": "0dba757c30de4794b9e03d67eca12f74cfb75a0216976726d04a553b34b4bf65",
+    "scripts/dungeon_layout.gd": "fd66656086e248dd8c42d345351e2a1e22f58ddc6cef4dbfea177d5b70332df7",
+    "scripts/dungeon_lighting.gd": "e95f87d848542a7dd30d690fc9ed9809e26fe78beda64ec3d780a48f8f02654c",
+    "scripts/dungeon_theme.gd": "c57a00e2d2a03afce82ad2dd46f34a104394493662a22f18d44888623586a00a",
+    "scripts/dungeon_world.gd": "ef9d0ae4f674ee241ef66ab0e4841c9df0c1598fb51741f03abb669ddde36c3a",
+    "scripts/expedition_contract.gd": "05db36bebc7e0231b977ca0b0f33b2cd4967683913479fcfc3a6c2fc86adf837",
+    "scripts/expedition_map.gd": "f2f5febcddc6bb6d06f746c4b803a797b8d8386af8b4ee3ec66cc3caf034a9bf",
+    "scripts/expedition_simulation.gd": "ed4cabb75e65486aa277632ad2d25700bfca4d60e79b7e7fc0a28bbffe6c649b",
+    "scripts/farm_forecast.gd": "a1506505e3da2195d58026ef59fba30a8fe0aaa130cd5de5647fbf5802a8b083",
+    "scripts/fellowship_service.gd": "c8f33d6bf1cb39cd82ac8d2551132e7851e1906b92f699dd7e7dffd2a411601b",
+    "scripts/frame_metrics.gd": "20e0aa3a71a218957dbee8161e4706cebeffdee49d35bb86bc6dedddafb7555d",
+    "scripts/game_preferences.gd": "a7179eea97cb59cb689bdda398a7b8cc712a1cff3296a52533b2000341027cbf",
+    "scripts/gear_advisor.gd": "6dea2eae02252c95fd57b73711e2ae86bf4bf26f5a304f4149d29110cdde2e24",
+    "scripts/hero_art.gd": "c264ee1882ca86da552eafafdf1a1ad64a98a5395341d34de478eb57b0d628d4",
+    "scripts/hostile_style.gd": "5c63582259c0031559a3ae65fcd9724d8c4962e90c7290dd5da46efa6f0f8020",
+    "scripts/main.gd": "805ad431d458de242e97edc835d3e2a8df6b4b4aa6087fda77e2651cd5aca216",
+    "scripts/mobile_safe_area.gd": "6fc90d1a94100fdde4b8ab06928b92a729069394ce7d80b172bfe733e7e75df3",
+    "scripts/native_equipment_finish.gd": "8d760c59b8257b5c14b43ea4cf883a8baf5320b36e03cb62998a2b66bfd95704",
+    "scripts/native_hostile_rig.gd": "f67ec28c739aa16cbcc4445718d2fc5f6bcb43ea953ccc0fc3ed1b7725b01841",
+    "scripts/native_hostile_style.gd": "eb20a6e0e9ba4fcd74eb17a035f7d40a3630fce7dd680c061f8d6a191b577015",
+    "scripts/native_mesh_lods.gd": "574eb071327fd2cb479ea5770cd0c6b5105595578ad5abd7f880f995a0a6680e",
+    "scripts/native_motion_transition.gd": "4e254bb59b8df2cef2f4a04e4c23fbf3d534de1840cd17d286d19cdf269f7f21",
+    "scripts/oath_combat_rules.gd": "c0b5f85c487237963cdff96b5f2002f03eac65c17dbda483c3393a402c4fd1b2",
+    "scripts/offline_farm.gd": "ee3930fffd691813a7094e1f820cf9e1b0a3d2bd08d0e7a896b2817640844548",
+    "scripts/painted_action_craft.gd": "495f16b7bf9c4a27e31913ac5580856f7f49e0a85d811f0a4aadb17bcdd82c28",
+    "scripts/painted_motion_layers.gd": "4d1cd31ef3b926044fd5a89e72efa5435b385e7601cfbec6918fc6a3d4688282",
+    "scripts/painted_motion_rig.gd": "d8e177331ddfdd0630b8ada2f9558f9895d23342455f65eb3aa4cb9ca22a4138",
+    "scripts/playtest_notes.gd": "9c3a611afdbf524ff2271892985d7c6bc1afdd70ae5fd0ad73db4ea0c734ac44",
+    "scripts/progression_service.gd": "0c3e7387579a3d90077cd1042595ed939487b7cd3524e5b92869e4f4e7f841f4",
+    "scripts/raider_avatar_rig.gd": "da1588acadbc7b911eaad4bc7afbe301129c05e90c0c80f745921f5bff21ec49",
+    "scripts/regional_sets.gd": "32236ab325cab5d7ab11dd5b45dfca25cc4b56cd7d5b6dbb3986f3f96bfcbb22",
+    "scripts/regional_stage.gd": "c68d128bed523b771bdde459cf12db91bdde665a5af27d0cc0581ad0f4a61669",
+    "scripts/release_info.gd": "b8723513c5434fae9b587cec073d0dd20d7ba77f99cfe5ebe8d162cd1d2bd3ce",
+    "scripts/render_budget.gd": "99a1f816371991937dabf4cc5830d9cc90990f20214736da218f4921899ac09b",
+    "scripts/room_ground.gd": "2a4b3b1ef37064d0932aed30feb7eddf362a3030b6ba52bfb8ca39702c8a0c93",
+    "scripts/ruin_architecture.gd": "3a77f958110aacaa9c19fb6a8184fe117fa2c793222a1fd17a91dff4639d60a7",
+    "scripts/save_store.gd": "97f5c641866ba935a3467495531008da7459665798867f7c22c11db4121aabfa",
+    "scripts/sculpted_mesh.gd": "57df0f7444b2bd930031069efc7d83edb20750f058f628f7535e7d1a0dc283a1",
+    "scripts/settings_panel.gd": "6d3d5cf798a442893eaeca9494305faebd0fe4a3c5dcf8a8b986bc6a019fe9b5",
+    "scripts/skill_glyph.gd": "0df2f5cdd5ae234ef593ad42f57266c292dddd95da7be3f1b3f1b73064f8d7be",
+    "scripts/source_avatar_combat.gd": "1873aca0e735a0530f8f3e2b6a931d4b080d2889538863a73454c8c74a78df43",
+    "scripts/source_avatar_evade.gd": "866d5c6157cc34f1e81514f4895a706d9dc59f26ae81b3e33a21800d83bcb8f7",
+    "scripts/source_avatar_rig.gd": "f2eb02f590868d58d1abd2dedb70e9d1655ac4977bd7e52c4a9485d19fb8f6f7",
+    "scripts/source_avatar_style.gd": "ed4d3898a700e93eb51677ffa6348cb8c85b3fa90c5a4d84289b620deff88d67",
+    "scripts/ui_glyph.gd": "e24e98966ab6050a5dcac576a05096c41f8fe6ad671e74253263a9cbc439d406",
+    "tests/arcanist_quality_gameplay_preview.gd": "0ae6d53c388fdfe5e5afce8578f4cb9bd0fffbf8402bd41a11f631202e82582d",
+    "tests/arcanist_quality_gameplay_preview.tscn": "50c6bb5b1508d0662c09348a38f7fbf373145dc23def11d8fa0bb57639aa7023",
+    "tests/attack_gameplay_preview.gd": "12333afd1d7694b13939e48ac67c095f6f832d4eb959d5ef74bf230988748fdc",
+    "tests/combat_quality_gameplay_preview.gd": "17b7e9637f6a9ca345acc98d5bbbf9ad4304539e7899902a7ea4072b521a3747",
+    "tests/combat_quality_gameplay_preview.tscn": "82749277e28de0ea76322928198cc9a0c93c76ec5e50fe4e295f883e7227af33",
+    "tests/native_capture_audio.gd": "f0649e8143a1445e90cbe2c8f13d8626becaf72d408e1a146b1fc93b44faa7d5",
+    "tools/capture_arcanist_quality.py": "3bdd9eb9cee79a7f66d91f2fb6068b868016f527fd105904a889c6ea1a2eabff",
+    "tools/capture_combat_quality.py": "faabd23defbde91c8312b004c2b01c94554326103c3832f5b952cad7ce6ada86"
+  },
+  "inputs_unchanged": true,
+  "frames": 2559,
+  "wall_seconds": 1683.01,
+  "simulation_summary": {
+    "audio": {
+      "accepted_cues": 93,
+      "channels": 2,
+      "completed_effects": 91,
+      "cue_clock_scope": "Observe the ordinary director's accepted cues; its existing 80 ms duplicate check uses wall time. Each accepted cue begins at its recorded fixed-step sample boundary.",
+      "eof_padding_scope": "Zero-filled suffix frames in each ended one-shot's first EOF block; concurrent score/other voices retain their real samples.",
+      "eof_silence_frames": 53832,
+      "finite": true,
+      "peak": 0.0966939553618431,
+      "rms": 0.00895163899987356,
+      "sample_format": "f32le",
+      "sample_frames": 3761730,
+      "sample_rate": 44100,
+      "scope": "Native AudioStreamPlayback fixed-step stereo float PCM from actual accepted AudioDirector slots, streams and gain/suspend state; no physical audio loopback.",
+      "seconds": 85.3,
+      "stolen_voices": 2,
+      "stream_pcm_sha256": {
+        "arrow_contact": "2760068dc608a75abf577e449eefe74253e4dc32dcf7056d3bb41e74bc1873c9",
+        "bolt": "6b5f8f0c3d9f093b6af77532da3e7392e828416414e880feb086cc910dcab9a2",
+        "bow_draw": "4aff94cab595f81fb827e7174bbc8a3d376de307b41103c106cf53324024706d",
+        "camp": "24ea25f0f478d7ad2a7b6274b9c6b64ebd43a51cd1655c15e961d58640ad7afb",
+        "dungeon": "3b8e7dc46305bb5fc9c0b3ad7a4184bce94c7e6327a8c68303450df7db33c47a",
+        "hurt": "436ce8eeeada388ac7e0f469603ea04383dbb47da2a553e733a2307c183f32c7",
+        "impact_critical": "5223d4ec28e9400d6c159d2932e6acc913858b958212596f477bf10371c89cd6",
+        "phase_awakened": "a95b82a080f9a52d5ead7912a2e10634b7202e2874dfb924115deff4aa119749",
+        "phase_desperate": "3b775f3e0b7c124f44f863680eef4dabeb2b91a38ce3de72b73b185d9dc4317c",
+        "step": "1ab3ee74db2bf697750d106e02abf57e91ca6a6f04baa2602b0c4a44a792c653",
+        "victory": "c2f39f50be6b06e7bbfb0185da947eb158ab7101d000f8b2ea9b95a5127360b1",
+        "volley": "67fb1cb454a5a1ba0363cbc4cf58d391735fced8e6ddc587af14935d22a2f691",
+        "warning": "3c4e35e40bcab1c31c87c61fcf4080caefdd09ad7745b2731c0b0ed5279e3686"
+      }
+    },
+    "character_class": "Ranger",
+    "complete": true,
+    "final_page": "loot",
+    "frames": 2559,
+    "guardian_seen": true,
+    "guardian_warning_seen": true,
+    "native_pcm_sha256": "0ba0d3a003f66e9c0006fd7f6fa0cc04a648bc146a194e3643084f42ea30fc94",
+    "playback_seconds": 85.3,
+    "recording_kind": "ordinary_expedition",
+    "recovered_loot": [
+      {
+        "affinity": "Ranger",
+        "armor": 0,
+        "name": "Crowflight Loop",
+        "power": 44,
+        "quality": "RARE",
+        "region": 0,
+        "relic": "returning_thorn",
+        "sell": 93,
+        "slot": "Amulet",
+        "stats": {
+          "Dexterity": 2,
+          "Vitality": 5
+        },
+        "status": "",
+        "temper": 0,
+        "tier": 1
+      },
+      {
+        "affinity": "Ranger",
+        "armor": 31,
+        "name": "Cinderstring Grips",
+        "power": 39,
+        "quality": "RARE",
+        "region": 0,
+        "sell": 96,
+        "slot": "Gloves",
+        "stats": {
+          "Dexterity": 1,
+          "Strength": 4
+        },
+        "status": "",
+        "temper": 0,
+        "tier": 1
+      }
+    ],
+    "run_boss_defeated": true,
+    "run_reward": {
+      "casts": 12,
+      "dodges": 4,
+      "gold": 190,
+      "kills": 26,
+      "note": "Your first class relic \u2022 equip it to change your signature skill",
+      "seconds": 82.2999999999996,
+      "title": "CAMPAIGN",
+      "xp": 428
+    },
+    "run_succeeded": true,
+    "schema": 1,
+    "scope": "Recording completeness and actual combat outcome; no visual or release approval.",
+    "settle_frames_recorded": 90,
+    "simulation_elapsed": 82.2999999999996,
+    "simulation_finished": true,
+    "won": true
+  },
+  "selected_frames": [
+    {
+      "file": "selected-frames/frame-00000.png",
+      "frame": 0,
+      "simulation_elapsed": 0.0,
+      "reasons": [
+        "ordinary-start",
+        "chronological-000s"
+      ],
+      "sha256": "d887b118b213f256c9c40154d0f4852e85f310e42f7c6113754fdcc5494ac0f1"
+    },
+    {
+      "file": "selected-frames/frame-00005.png",
+      "frame": 5,
+      "simulation_elapsed": 0.2,
+      "reasons": [
+        "first-windup-signature"
+      ],
+      "sha256": "d3e2fe630517f1bc328e9b497a8be3ffe89cca0b40bebec1449f427e33f0147f"
+    },
+    {
+      "file": "selected-frames/frame-00007.png",
+      "frame": 7,
+      "simulation_elapsed": 0.2,
+      "reasons": [
+        "first-signature-windup-load"
+      ],
+      "sha256": "b58a80c020a5acfadae52f109cb90e633ad995a6ad1c68b9c925f55b91ffc6db"
+    },
+    {
+      "file": "selected-frames/frame-00009.png",
+      "frame": 9,
+      "simulation_elapsed": 0.3,
+      "reasons": [
+        "first-signature-windup-drive"
+      ],
+      "sha256": "8756deb8d47efd6e7027ed78487093d74cd0f1c0c9c15e8b481c578051585b1a"
+    },
+    {
+      "file": "selected-frames/frame-00011.png",
+      "frame": 11,
+      "simulation_elapsed": 0.4,
+      "reasons": [
+        "first-signature-windup-pre-contact"
+      ],
+      "sha256": "b615786debb8e4f5b0a2a36567eaac40dd961376d7569da6298d9bc7ec6f2ae0"
+    },
+    {
+      "file": "selected-frames/frame-00012.png",
+      "frame": 12,
+      "simulation_elapsed": 0.4,
+      "reasons": [
+        "first-release-signature"
+      ],
+      "sha256": "ec478416464f45b8c6fe8749710e64c17374d10b7ce779cf2eecfdd556712ec2"
+    },
+    {
+      "file": "selected-frames/frame-00014.png",
+      "frame": 14,
+      "simulation_elapsed": 0.5,
+      "reasons": [
+        "first-signature-recovery-follow-through",
+        "first_hit_age-offset-00"
+      ],
+      "sha256": "7aed42954acededf3e4b8c683074612139a4101bafa26e07e7e3742c8f12cff8"
+    },
+    {
+      "file": "selected-frames/frame-00017.png",
+      "frame": 17,
+      "simulation_elapsed": 0.6,
+      "reasons": [
+        "first-signature-recovery-catch"
+      ],
+      "sha256": "9ed5c949b79f383380512dbc1a26d165aed03a89d1bf43582d211334d9002128"
+    },
+    {
+      "file": "selected-frames/frame-00018.png",
+      "frame": 18,
+      "simulation_elapsed": 0.6,
+      "reasons": [
+        "first_hit_age-offset-04"
+      ],
+      "sha256": "5367e2f95b9fb5b5daca3eb00309f4b44143ed72553d272b636442735e93211d"
+    },
+    {
+      "file": "selected-frames/frame-00022.png",
+      "frame": 22,
+      "simulation_elapsed": 0.7,
+      "reasons": [
+        "first_hit_age-offset-08"
+      ],
+      "sha256": "453fb23c4ff3b9e015fb42ad7704da6307c6d92cbd65a3cfa553e6f37367383b"
+    },
+    {
+      "file": "selected-frames/frame-00038.png",
+      "frame": 38,
+      "simulation_elapsed": 1.3,
+      "reasons": [
+        "first-windup-basic"
+      ],
+      "sha256": "95052eab3e29cea7ae663117f14744f5c59ddb2b2cf899654dcb1dbbad2722ea"
+    },
+    {
+      "file": "selected-frames/frame-00040.png",
+      "frame": 40,
+      "simulation_elapsed": 1.3,
+      "reasons": [
+        "first-basic-windup-load"
+      ],
+      "sha256": "1ae85d735b076999e2b8b99dd15347f1e6de9f8e919345f53e8902854f9352af"
+    },
+    {
+      "file": "selected-frames/frame-00042.png",
+      "frame": 42,
+      "simulation_elapsed": 1.4,
+      "reasons": [
+        "first-basic-windup-drive"
+      ],
+      "sha256": "ddb363e1b099ba8a60aad8b7eea6a9838732699fb98519d23dc3743cf79836b9"
+    },
+    {
+      "file": "selected-frames/frame-00044.png",
+      "frame": 44,
+      "simulation_elapsed": 1.5,
+      "reasons": [
+        "first-basic-windup-pre-contact"
+      ],
+      "sha256": "ee456ecffd569edcd5279b1f434c29f44ff3eef885ca41839a9edc5021000fa0"
+    },
+    {
+      "file": "selected-frames/frame-00045.png",
+      "frame": 45,
+      "simulation_elapsed": 1.5,
+      "reasons": [
+        "first-release-basic"
+      ],
+      "sha256": "c1fce751e7c8c87a05251760adc06d5335a9cf1a6e1d445c907951a149469b5f"
+    },
+    {
+      "file": "selected-frames/frame-00047.png",
+      "frame": 47,
+      "simulation_elapsed": 1.6,
+      "reasons": [
+        "first-basic-recovery-follow-through"
+      ],
+      "sha256": "31bfc7c2c09e9dcad7d6e30d94cd3d1145f4f1589bbccc28c35f59aba190486b"
+    },
+    {
+      "file": "selected-frames/frame-00050.png",
+      "frame": 50,
+      "simulation_elapsed": 1.7,
+      "reasons": [
+        "first-basic-recovery-catch"
+      ],
+      "sha256": "8ea67013709a6e8399acefaf0a348de701926871842809d071044224d08d103d"
+    },
+    {
+      "file": "selected-frames/frame-00071.png",
+      "frame": 71,
+      "simulation_elapsed": 2.4,
+      "reasons": [
+        "first-windup-marked"
+      ],
+      "sha256": "600283e7b267fb8436c2329200c366dd01ca4bac54209b37fcc506eaa9647ed8"
+    },
+    {
+      "file": "selected-frames/frame-00075.png",
+      "frame": 75,
+      "simulation_elapsed": 2.5,
+      "reasons": [
+        "first-marked-windup-load"
+      ],
+      "sha256": "2db1f2879eb538836feef403b6a1797f535518bd476f2c05d1966b4232079362"
+    },
+    {
+      "file": "selected-frames/frame-00079.png",
+      "frame": 79,
+      "simulation_elapsed": 2.6,
+      "reasons": [
+        "first-marked-windup-drive"
+      ],
+      "sha256": "29801ef3a0e9d3ce1b0631c5a34861828b8dcb4a22a35598c778f90707acbbb5"
+    },
+    {
+      "file": "selected-frames/frame-00082.png",
+      "frame": 82,
+      "simulation_elapsed": 2.7,
+      "reasons": [
+        "first-marked-windup-pre-contact"
+      ],
+      "sha256": "f68daa1a137832dbfda960ba771a714adf1ad54bed1566234eebcb1265a45be3"
+    },
+    {
+      "file": "selected-frames/frame-00086.png",
+      "frame": 86,
+      "simulation_elapsed": 2.9,
+      "reasons": [
+        "first-release-marked"
+      ],
+      "sha256": "908995ef2274f20fcb4bc8522fce52c14feff6542b06dc1e3748e879defb2993"
+    },
+    {
+      "file": "selected-frames/frame-00087.png",
+      "frame": 87,
+      "simulation_elapsed": 2.9,
+      "reasons": [
+        "first-marked-recovery-follow-through"
+      ],
+      "sha256": "796cd4dc76aa9730b893fe51acaa4c1180682534b3257d2aed72c79781cc7a0c"
+    },
+    {
+      "file": "selected-frames/frame-00090.png",
+      "frame": 90,
+      "simulation_elapsed": 3.0,
+      "reasons": [
+        "first-marked-recovery-catch"
+      ],
+      "sha256": "3213793c6dc94f2d27b86d8b2a1d0869ee9918f6321b0a37421d1cc60a003a06"
+    },
+    {
+      "file": "selected-frames/frame-00300.png",
+      "frame": 300,
+      "simulation_elapsed": 9.99999999999998,
+      "reasons": [
+        "chronological-010s"
+      ],
+      "sha256": "442c603cbb93c857691ce579bc56b23daa7d14a61720ca536c68aa6fa5770e07"
+    },
+    {
+      "file": "selected-frames/frame-00344.png",
+      "frame": 344,
+      "simulation_elapsed": 11.5,
+      "reasons": [
+        "first_evade_age-offset-00"
+      ],
+      "sha256": "69c6e47aa37bb382c61bdebba3e4e070d0a2db60964688c7667d021627c63f01"
+    },
+    {
+      "file": "selected-frames/frame-00347.png",
+      "frame": 347,
+      "simulation_elapsed": 11.6,
+      "reasons": [
+        "first_evade_age-offset-03"
+      ],
+      "sha256": "c09ee3fc787b36f8c168272ea0c96fe309d1511a557d152b781847014581e180"
+    },
+    {
+      "file": "selected-frames/frame-00350.png",
+      "frame": 350,
+      "simulation_elapsed": 11.7,
+      "reasons": [
+        "first_evade_age-offset-06"
+      ],
+      "sha256": "f3ee8873406f066f3c7e885eb6c3f7b3328b13e7825a3131a6149e7ce81df60c"
+    },
+    {
+      "file": "selected-frames/frame-00353.png",
+      "frame": 353,
+      "simulation_elapsed": 11.8,
+      "reasons": [
+        "first_evade_age-offset-09"
+      ],
+      "sha256": "bf7c20d32b0d9d52791b20969d8a205292fc4a4f32def52b480ae18df2a49840"
+    },
+    {
+      "file": "selected-frames/frame-00356.png",
+      "frame": 356,
+      "simulation_elapsed": 11.9,
+      "reasons": [
+        "first_evade_age-offset-12"
+      ],
+      "sha256": "a650e90d81ac56c1fc053ef53854337a9123d0935195dc22aa5cf503dcd2a699"
+    },
+    {
+      "file": "selected-frames/frame-00359.png",
+      "frame": 359,
+      "simulation_elapsed": 12.0,
+      "reasons": [
+        "first_evade_age-offset-15"
+      ],
+      "sha256": "6b8feb367d59c86c2232db62bc75ea3a2cb3a68fb35b05c233c43ab55850be73"
+    },
+    {
+      "file": "selected-frames/frame-00600.png",
+      "frame": 600,
+      "simulation_elapsed": 20.0,
+      "reasons": [
+        "chronological-020s"
+      ],
+      "sha256": "244413c0adf6f98360f97b5da604ad729c444abe31ba709b5d256238e124923c"
+    },
+    {
+      "file": "selected-frames/frame-00900.png",
+      "frame": 900,
+      "simulation_elapsed": 30.0000000000002,
+      "reasons": [
+        "chronological-030s"
+      ],
+      "sha256": "1326e53a1284f96c5f9d16dadd9ebdbd92864d622992d3583444d228100154f9"
+    },
+    {
+      "file": "selected-frames/frame-01200.png",
+      "frame": 1200,
+      "simulation_elapsed": 40.0000000000003,
+      "reasons": [
+        "chronological-040s"
+      ],
+      "sha256": "bb38cc4d0bfdd80767f899eb5f62c8b74e8ef22ae45d9109086dd939347b0e53"
+    },
+    {
+      "file": "selected-frames/frame-01313.png",
+      "frame": 1313,
+      "simulation_elapsed": 43.8000000000004,
+      "reasons": [
+        "first-windup-rain"
+      ],
+      "sha256": "559c96b8b46a6169b76484d2709d949c79a7f95e0c910595420abd50f201e5ae"
+    },
+    {
+      "file": "selected-frames/frame-01318.png",
+      "frame": 1318,
+      "simulation_elapsed": 43.9000000000004,
+      "reasons": [
+        "first-rain-windup-load"
+      ],
+      "sha256": "ee3f0533d148101e3a34976165b4da6f60b460671c5d29a26f59c3c999d464d8"
+    },
+    {
+      "file": "selected-frames/frame-01324.png",
+      "frame": 1324,
+      "simulation_elapsed": 44.1000000000004,
+      "reasons": [
+        "first-rain-windup-drive"
+      ],
+      "sha256": "ea5f1df8984fa68252d2047312743ce1dbf4341bf09a51e0cf96913a26378325"
+    },
+    {
+      "file": "selected-frames/frame-01329.png",
+      "frame": 1329,
+      "simulation_elapsed": 44.3000000000004,
+      "reasons": [
+        "first-rain-windup-pre-contact"
+      ],
+      "sha256": "4c7fa0e6d2fd6e7ee32db8ef7e31baa2daddf3686981c93b04c10e59a518c65c"
+    },
+    {
+      "file": "selected-frames/frame-01331.png",
+      "frame": 1331,
+      "simulation_elapsed": 44.4000000000004,
+      "reasons": [
+        "first-release-rain"
+      ],
+      "sha256": "bb4e062ebe96491ac682784c4304090c3a4877fdb7edb7faf9b5e069772d543a"
+    },
+    {
+      "file": "selected-frames/frame-01332.png",
+      "frame": 1332,
+      "simulation_elapsed": 44.4000000000004,
+      "reasons": [
+        "first-rain-recovery-follow-through"
+      ],
+      "sha256": "6ae4782791124965dbcc00226d2cfd2bf73390ab102f846cedcfefee2013bc61"
+    },
+    {
+      "file": "selected-frames/frame-01335.png",
+      "frame": 1335,
+      "simulation_elapsed": 44.5000000000004,
+      "reasons": [
+        "first-rain-recovery-catch"
+      ],
+      "sha256": "590e87c5830cb3b0d752b3797a24dee59fe98e34e9da70525cd1bcf367caaf20"
+    },
+    {
+      "file": "selected-frames/frame-01500.png",
+      "frame": 1500,
+      "simulation_elapsed": 50.0000000000004,
+      "reasons": [
+        "chronological-050s"
+      ],
+      "sha256": "854e3c4f9b102bbb7a096ac719304b15dd19fc2032a773d84e9a1d7e1255ea3d"
+    },
+    {
+      "file": "selected-frames/frame-01800.png",
+      "frame": 1800,
+      "simulation_elapsed": 60.0000000000006,
+      "reasons": [
+        "chronological-060s"
+      ],
+      "sha256": "ed16a5d48de69052bab0e722de4496b9221d9b58ee8e2d1421525e5138c91453"
+    },
+    {
+      "file": "selected-frames/frame-02048.png",
+      "frame": 2048,
+      "simulation_elapsed": 68.3000000000004,
+      "reasons": [
+        "first-guardian-combat",
+        "first-guardian-phase-0"
+      ],
+      "sha256": "429a573270a7c9bf346302025fecb69773d919a372aeddd5cc62963c7da0bbf4"
+    },
+    {
+      "file": "selected-frames/frame-02100.png",
+      "frame": 2100,
+      "simulation_elapsed": 70.0000000000003,
+      "reasons": [
+        "chronological-070s"
+      ],
+      "sha256": "a0a5a9ce7b2ed4c565757426e8573b0d6b7e9b865fba2865d6252948ee4e4457"
+    },
+    {
+      "file": "selected-frames/frame-02123.png",
+      "frame": 2123,
+      "simulation_elapsed": 70.8000000000003,
+      "reasons": [
+        "first-guardian-warning"
+      ],
+      "sha256": "0a95643e8167bb8143c4531659f030b736195f5ab10aff1f3321a3ad7c600a9a"
+    },
+    {
+      "file": "selected-frames/frame-02177.png",
+      "frame": 2177,
+      "simulation_elapsed": 72.6000000000002,
+      "reasons": [
+        "first-guardian-phase-1"
+      ],
+      "sha256": "df8500a0ce019bbf203e0bc8991ca914e31bf45b45997072c81ecdf26d296f6c"
+    },
+    {
+      "file": "selected-frames/frame-02237.png",
+      "frame": 2237,
+      "simulation_elapsed": 74.6,
+      "reasons": [
+        "first-guardian-phase-2"
+      ],
+      "sha256": "648742017deb58dfa43556e987eac4381743aaff755935b4b1e730020680c374"
+    },
+    {
+      "file": "selected-frames/frame-02400.png",
+      "frame": 2400,
+      "simulation_elapsed": 79.9999999999997,
+      "reasons": [
+        "chronological-080s"
+      ],
+      "sha256": "ec626185ace5fe72e7a1bc55e11984fed28611b03a80b61e9a9e8253927d83bf"
+    },
+    {
+      "file": "selected-frames/frame-02468.png",
+      "frame": 2468,
+      "simulation_elapsed": 82.2999999999996,
+      "reasons": [
+        "expedition-finished"
+      ],
+      "sha256": "3e18b570a7a23f666035172e4ca793add2e171dc56bea66ae25c47d57eec41b4"
+    }
+  ],
+  "decoded_video": {
+    "width": 1200,
+    "height": 536,
+    "r_frame_rate": "30/1",
+    "duration": "85.300000",
+    "nb_read_frames": "2559"
+  },
+  "full_decode_passed": true,
+  "mp4_sha256": "008b0c71db628429e3c826fb2de2beeb8510d8b04496333e0e7952f42d7e2948",
+  "frame_log_sha256": "fe460d2d028dbd84b71b58b1a7524eaf9367efb8fa971a7d4ba40283985064ce",
+  "continuous_simulation_verified": true,
+  "native_audio": {
+    "accepted_cues": 93,
+    "channels": 2,
+    "completed_effects": 91,
+    "cue_clock_scope": "Observe the ordinary director's accepted cues; its existing 80 ms duplicate check uses wall time. Each accepted cue begins at its recorded fixed-step sample boundary.",
+    "eof_padding_scope": "Zero-filled suffix frames in each ended one-shot's first EOF block; concurrent score/other voices retain their real samples.",
+    "eof_silence_frames": 53832,
+    "finite": true,
+    "peak": 0.0966939553618431,
+    "rms": 0.00895163899987356,
+    "sample_format": "f32le",
+    "sample_frames": 3761730,
+    "sample_rate": 44100,
+    "scope": "Native AudioStreamPlayback fixed-step stereo float PCM from actual accepted AudioDirector slots, streams and gain/suspend state; no physical audio loopback.",
+    "seconds": 85.3,
+    "stolen_voices": 2,
+    "stream_pcm_sha256": {
+      "arrow_contact": "2760068dc608a75abf577e449eefe74253e4dc32dcf7056d3bb41e74bc1873c9",
+      "bolt": "6b5f8f0c3d9f093b6af77532da3e7392e828416414e880feb086cc910dcab9a2",
+      "bow_draw": "4aff94cab595f81fb827e7174bbc8a3d376de307b41103c106cf53324024706d",
+      "camp": "24ea25f0f478d7ad2a7b6274b9c6b64ebd43a51cd1655c15e961d58640ad7afb",
+      "dungeon": "3b8e7dc46305bb5fc9c0b3ad7a4184bce94c7e6327a8c68303450df7db33c47a",
+      "hurt": "436ce8eeeada388ac7e0f469603ea04383dbb47da2a553e733a2307c183f32c7",
+      "impact_critical": "5223d4ec28e9400d6c159d2932e6acc913858b958212596f477bf10371c89cd6",
+      "phase_awakened": "a95b82a080f9a52d5ead7912a2e10634b7202e2874dfb924115deff4aa119749",
+      "phase_desperate": "3b775f3e0b7c124f44f863680eef4dabeb2b91a38ce3de72b73b185d9dc4317c",
+      "step": "1ab3ee74db2bf697750d106e02abf57e91ca6a6f04baa2602b0c4a44a792c653",
+      "victory": "c2f39f50be6b06e7bbfb0185da947eb158ab7101d000f8b2ea9b95a5127360b1",
+      "volley": "67fb1cb454a5a1ba0363cbc4cf58d391735fced8e6ddc587af14935d22a2f691",
+      "warning": "3c4e35e40bcab1c31c87c61fcf4080caefdd09ad7745b2731c0b0ed5279e3686"
+    }
+  },
+  "native_pcm_sha256": "0ba0d3a003f66e9c0006fd7f6fa0cc04a648bc146a194e3643084f42ea30fc94",
+  "encoded_audio": {
+    "codec_name": "aac",
+    "sample_rate": "44100",
+    "channels": 2,
+    "duration": "85.300000"
+  },
+  "continuous_audio_samples_verified": true,
+  "ffmpeg_full_decode_exit": 0,
+  "native_pcm_lossless_archive": {
+    "file": "native-game-audio.f32le.gz",
+    "compressed_sha256": "ed85c281706f09b8d06182a4cfb9cac7d2b0cfae3fdc69b9cf451d75efd7b04f",
+    "compressed_bytes": 13114008,
+    "uncompressed_bytes": 30093840,
+    "uncompressed_sha256": "0ba0d3a003f66e9c0006fd7f6fa0cc04a648bc146a194e3643084f42ea30fc94",
+    "round_trip_verified": true
+  }
+}

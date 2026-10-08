@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "status": "complete_consecutive_h264_decoded_range",
+  "character_class": "arcanist",
+  "side": "before",
+  "label": "first-boss-death",
+  "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "first_frame_zero_based": 2259,
+  "last_frame_zero_based_inclusive": 2289,
+  "every_consecutive_frame_decoded": true,
+  "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+  "exact_semantic_frames_retained": [
+    2259,
+    2261,
+    2269,
+    2270
+  ],
+  "actual_ffmpeg_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-threads",
+    "1",
+    "-filter_threads",
+    "1",
+    "-i",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/ordinary-arcanist-complete.mp4",
+    "-map",
+    "0:v:0",
+    "-an",
+    "-vf",
+    "select=between(n\\,2259\\,2289)",
+    "-frames:v",
+    "31",
+    "-fps_mode",
+    "passthrough",
+    "-pix_fmt",
+    "rgb24",
+    "-f",
+    "rawvideo",
+    "pipe:1"
+  ],
+  "actual_ffmpeg_exit_code": 0,
+  "movie_sha256": "eaa5c56c8cb4994d515271cc6e97f7e1ef2d26658cdad05aadeeba575355021c",
+  "capture_receipt_sha256": "2509f93366faedc6ab083678d8f0c24126beb703624176ca1f9174c90839289a",
+  "crop_xyxy": [
+    0,
+    0,
+    1200,
+    536
+  ],
+  "contact_sheet_pixel_scale": "1:1 original decoded pixels; shared fixed crop for this before/after range",
+  "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+  "human_visual_review": "pending; decoding alone is not visual acceptance",
+  "sheets": [
+    {
+      "file": "derived-contact-sheet-00.jpg",
+      "sha256": "381c63637aa744c4768ae654134a5772ddc8fdf5c07b71383b8faf91cc7a66e4",
+      "bytes": 1035224,
+      "first_frame": 2259,
+      "last_frame": 2270,
+      "frames": [
+        2259,
+        2261,
+        2263,
+        2267,
+        2269,
+        2270
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-01.jpg",
+      "sha256": "37a8fdf8757d66a0f44af00fb9abd0aebf74ef2915549361347cd1977384235d",
+      "bytes": 1034491,
+      "first_frame": 2271,
+      "last_frame": 2289,
+      "frames": [
+        2271,
+        2275,
+        2279,
+        2283,
+        2287,
+        2289
+      ]
+    }
+  ],
+  "review_tool_sha256": "afd4ff67403623b767fa30b3a18431a2cefb7cfb374c9b572b1b7e938416a8bf"
+}

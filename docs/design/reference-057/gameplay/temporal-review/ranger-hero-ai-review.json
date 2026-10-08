@@ -1,0 +1,328 @@
+{
+  "schema": 1,
+  "status": "sampled_game_scale_hero_visual_review_complete",
+  "created_utc": "2026-10-07T23:13:04.405400+00:00",
+  "reviewer": "Codex AI visual reviewer /root/temporal_review_resume_057",
+  "reviewer_type": "AI visual inspection of actual tool-rendered image sequences; no human signoff claimed",
+  "character_class": "ranger",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "actual_decoder_chain_exit": 0,
+  "review_tool_sha256": "f4f2ad49dd62a6dd220410f3ae56029352b71c9c07c2926927487730bd554a96",
+  "plan_sha256": "73212f731dcd3b6a524388560c7891eee171a8cb8269e29c3f08c81b7fe6f4df",
+  "scope": {
+    "range_labels": [
+      "additional-evade-1235",
+      "additional-evade-2144",
+      "additional-evade-2252",
+      "additional-evade-809",
+      "first-attack-to-evade",
+      "first-basic-full-released-phrase",
+      "first-lateral-evade",
+      "first-marked-full-released-phrase",
+      "first-rain-full-released-phrase",
+      "first-signature-full-released-phrase",
+      "ordinary-travel-gait"
+    ],
+    "actual_retained_sheet_files_inspected": 36,
+    "actual_retained_panels_inspected": 404,
+    "separately_inspected_original_native_pngs": 12
+  },
+  "observations": [
+    {
+      "area": "released_attacks",
+      "ranges": [
+        "signature4-26",
+        "basic37-59",
+        "marked70-99",
+        "rain1312-1344"
+      ],
+      "finding": "The bow carrying arm, drawing hand and bow silhouette remain coherent through the retained releases and exact late recovery/reset boundaries. The new material silhouette is clearer and richer green. No gross detached bow or torn hero mesh is visible in these sampled pixels; precise nock contact is too small to certify."
+    },
+    {
+      "area": "lateral_and_cancel_escapes",
+      "ranges": [
+        "342-358",
+        "337-358",
+        "793-823"
+      ],
+      "finding": "Every consecutive escape/cancellation frame is retained. The opening outside boot stays separated from the following leg, with a short lateral bound and coherent upright return. Cancelled attacks338-343 and794-808 transition to evades344 and809 respectively; these are cancelled phrases, not released attacks with normal idle resets."
+    },
+    {
+      "area": "wide_backstep",
+      "ranges": [
+        "1233-1251"
+      ],
+      "finding": "The escape1235-1246 has a notably wide lunge at1238-1240, wider than the old narrow/crossed silhouette. Boots and legs remain visibly separate and the carrying bow stays coherent; return upright and subsequent draw are continuous within these reviewed frames. Anatomical coherence does not establish fully naturalistic movement, and the broad stride remains an explicit presentation limit."
+    },
+    {
+      "area": "guardian_escapes",
+      "ranges": [
+        "2142-2166",
+        "2250-2260"
+      ],
+      "finding": "Both actual Guardian escape intervals2144-2161 and2252-2255 retain every consecutive frame. The hero moves away and returns to a coherent ready/draw silhouette without an obvious body or prop jump. Hero legs are small at this wider camera distance and partly occluded by scenery/effects; these pixels do not certify all ankle/knee geometry."
+    },
+    {
+      "area": "travel",
+      "ranges": [
+        "128-148"
+      ],
+      "finding": "The visible gait, tunic and carried bow remain coherent in the retained travel samples. Foot contact cannot be measured to millimeter precision at game scale."
+    }
+  ],
+  "blockers_found_in_reviewed_pixels": [],
+  "viewed_files": [
+    {
+      "file": "ranger/before/additional-evade-1235/derived-contact-sheet-00.png",
+      "bytes": 993456,
+      "sha256": "e5ffb5a9c5fb0f1cac636b1b32b56e9c0a4d6d62e4dbc820e332025e4455b6f9"
+    },
+    {
+      "file": "ranger/before/additional-evade-1235/derived-contact-sheet-01.png",
+      "bytes": 213115,
+      "sha256": "a5b1f451fd1238619961e9e5be3d8bac989348f351d1b77d19df5f78517af43e"
+    },
+    {
+      "file": "ranger/before/additional-evade-2144/derived-contact-sheet-00.png",
+      "bytes": 531881,
+      "sha256": "699b927a52df53726bc00d62a1f629c3627e4fca7f8605cf4476dad3b8f7140a"
+    },
+    {
+      "file": "ranger/before/additional-evade-2144/derived-contact-sheet-01.png",
+      "bytes": 386387,
+      "sha256": "079617ee8e2d19fcfb9a9939eb7225fda106c54ff4d646d56939344b15919977"
+    },
+    {
+      "file": "ranger/before/additional-evade-2252/derived-contact-sheet-00.png",
+      "bytes": 347775,
+      "sha256": "9ec0dd3759a12827d2cada90c6afbd57b9b7e37444efc359eb8aceceaf35ba7e"
+    },
+    {
+      "file": "ranger/before/additional-evade-809/derived-contact-sheet-00.png",
+      "bytes": 659831,
+      "sha256": "c2d67e56424797bc9ded8f70badc9e9059fc5b4a03b2e0d5c73f07ef49736c2e"
+    },
+    {
+      "file": "ranger/before/additional-evade-809/derived-contact-sheet-01.png",
+      "bytes": 614629,
+      "sha256": "fa7913ec62f5e883ae4d93a35cb25dc21301f2a90101a2a6e7fd3a2bb8afe699"
+    },
+    {
+      "file": "ranger/before/first-attack-to-evade/derived-contact-sheet-00.png",
+      "bytes": 608568,
+      "sha256": "d8e041fe7f1a2109f89c57e7c4ef83b50de675f8cb871805b15fa9a1d0f4aba1"
+    },
+    {
+      "file": "ranger/before/first-attack-to-evade/derived-contact-sheet-01.png",
+      "bytes": 227298,
+      "sha256": "1126ace533f516ed463f54c80daa32e860c3064f096b4f5b281c6f0f7c0e5849"
+    },
+    {
+      "file": "ranger/before/first-basic-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 235046,
+      "sha256": "55164781f256847bdc4956035ef11c83393b9e77e09653e1bd6b88bc8208482d"
+    },
+    {
+      "file": "ranger/before/first-lateral-evade/derived-contact-sheet-00.png",
+      "bytes": 580049,
+      "sha256": "f873f444deee6e9ebaf6f04bac2a7808867607018e8ebba318a0888688df081c"
+    },
+    {
+      "file": "ranger/before/first-lateral-evade/derived-contact-sheet-01.png",
+      "bytes": 69148,
+      "sha256": "7a8876021b1d9817f13d482eebcdcd366e4bcac7dd15ba664d7af3c54335ac0e"
+    },
+    {
+      "file": "ranger/before/first-marked-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 260351,
+      "sha256": "e8d67f4b950bb88e40e1b1baca8d484ba300455656fe27de5fa4f30a742b1d29"
+    },
+    {
+      "file": "ranger/before/first-marked-full-released-phrase/derived-contact-sheet-01.jpg",
+      "bytes": 33237,
+      "sha256": "811630992bbdb3492aceb3dd2f60c6240c1346e8da2f293bed84d557d47fc00a"
+    },
+    {
+      "file": "ranger/before/first-rain-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 289472,
+      "sha256": "fd93fc9f29764c5db7e239dd825cd7daa512f338170e24152562a38cec196bbc"
+    },
+    {
+      "file": "ranger/before/first-rain-full-released-phrase/derived-contact-sheet-01.jpg",
+      "bytes": 72180,
+      "sha256": "c258e2877a355e4c40cd4a52f07c7790c1cffdd14c08a3e5ae9876be1af0c03e"
+    },
+    {
+      "file": "ranger/before/first-signature-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 262315,
+      "sha256": "2bbfe31a672f65a45446b455329e885af8403f8c02178b4d4640286ee3e79d2a"
+    },
+    {
+      "file": "ranger/before/ordinary-travel-gait/derived-contact-sheet-00.jpg",
+      "bytes": 127657,
+      "sha256": "59f5c24a658975c918dc529f29e90c1cc1c1f636631ee2d31dc6163edd6d637a"
+    },
+    {
+      "file": "ranger/after/additional-evade-1235/derived-contact-sheet-00.png",
+      "bytes": 998211,
+      "sha256": "95e712e3ccc70bddbce0ed6911fde197dd47b26270589ded885dc2eee40e3516"
+    },
+    {
+      "file": "ranger/after/additional-evade-1235/derived-contact-sheet-01.png",
+      "bytes": 212945,
+      "sha256": "864ea8df33bae61e037a7b5dca1bf958c552deb8aa2bbd65767a769d041e57c1"
+    },
+    {
+      "file": "ranger/after/additional-evade-2144/derived-contact-sheet-00.png",
+      "bytes": 612436,
+      "sha256": "f382e7f1917fdf317f1ab807a091e6a2879397adc1c18109e19c1328228cfb87"
+    },
+    {
+      "file": "ranger/after/additional-evade-2144/derived-contact-sheet-01.png",
+      "bytes": 387527,
+      "sha256": "a6a485233a195deb3893e28c15e29fcb9de6e11b35e7124aa7c6250b890f1275"
+    },
+    {
+      "file": "ranger/after/additional-evade-2252/derived-contact-sheet-00.png",
+      "bytes": 394173,
+      "sha256": "fd49e129c57bef89403145f0d516ef3b5b3728b29db1ca45d4941239f7a7bed2"
+    },
+    {
+      "file": "ranger/after/additional-evade-809/derived-contact-sheet-00.png",
+      "bytes": 687473,
+      "sha256": "5e7ccfc28bc446d692e4ef6a4d9d4838ed11517d43715ab9229eb067bba94e11"
+    },
+    {
+      "file": "ranger/after/additional-evade-809/derived-contact-sheet-01.png",
+      "bytes": 627296,
+      "sha256": "9dbfb720cade1111fcc9e5db59c7b273ba06715a67c2cebba5aca514c5cb3482"
+    },
+    {
+      "file": "ranger/after/first-attack-to-evade/derived-contact-sheet-00.png",
+      "bytes": 612023,
+      "sha256": "b0d5cedb8a83e0c7046fc3a8894123576cdbb96df0f4a4568374f4f5c4a4dd05"
+    },
+    {
+      "file": "ranger/after/first-attack-to-evade/derived-contact-sheet-01.png",
+      "bytes": 227100,
+      "sha256": "6aafc614b1da9da138fad026187e1ec3b717528d2d06ebbdab17388e0975389d"
+    },
+    {
+      "file": "ranger/after/first-basic-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 239571,
+      "sha256": "3629a6cb0daa681df2a97c9c9332b1e665e3813ae7d8afe6183d982c1da71d39"
+    },
+    {
+      "file": "ranger/after/first-lateral-evade/derived-contact-sheet-00.png",
+      "bytes": 587015,
+      "sha256": "b2dcc6ebaf3152e37646e8a92b1166ff31c4f232109896fd4ca80cbaae7d367e"
+    },
+    {
+      "file": "ranger/after/first-lateral-evade/derived-contact-sheet-01.png",
+      "bytes": 69184,
+      "sha256": "4abb087bdfe007922bd924d310689f4ecb4ee6c77968fd0f382dc48220ed72a4"
+    },
+    {
+      "file": "ranger/after/first-marked-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 259197,
+      "sha256": "617a9c93cbc2fcdcc4f27b1cd9a9ba6545dea142b16bbd388bbe74d47d4adf92"
+    },
+    {
+      "file": "ranger/after/first-marked-full-released-phrase/derived-contact-sheet-01.jpg",
+      "bytes": 33292,
+      "sha256": "45e6bef1d996f8e808347dfdf735fd6965239c6a4a9028476d846eb8bd2004b6"
+    },
+    {
+      "file": "ranger/after/first-rain-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 298960,
+      "sha256": "1d2e2a39469ceb39ab47a755c28205e5fac81c551b2ed57e01683eb865b8e4a0"
+    },
+    {
+      "file": "ranger/after/first-rain-full-released-phrase/derived-contact-sheet-01.jpg",
+      "bytes": 74362,
+      "sha256": "02ffdf6445f299c64b89b1712b27f9846963146c38073a62d4ac90e9c7bd5370"
+    },
+    {
+      "file": "ranger/after/first-signature-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 265826,
+      "sha256": "c135af1a410ca4223ebfd8f080558935fc8cda21055576c4627ce16337a6530b"
+    },
+    {
+      "file": "ranger/after/ordinary-travel-gait/derived-contact-sheet-00.jpg",
+      "bytes": 120991,
+      "sha256": "40ae0a6d3747f55a1cf1a6cd2d2223d49ed88347fbf111f631a82e0cf2590363"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/before-ranger/selected-frames/frame-00007.png",
+      "bytes": 815584,
+      "sha256": "c1cced9c88515210f1bb2481eda2ad1124179aa5e2a452d49a26d225139d66e7"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/before-ranger/selected-frames/frame-00012.png",
+      "bytes": 814833,
+      "sha256": "853392a3ff58215c06cf737fe327b0cb65296d4914847a4c27fe896927451927"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/before-ranger/selected-frames/frame-00344.png",
+      "bytes": 840745,
+      "sha256": "144d23cbbe2e05025b35b369243584808e4b465392c8287a608e4d987a8f8a18"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/before-ranger/selected-frames/frame-00347.png",
+      "bytes": 838707,
+      "sha256": "49a19c3c9f39899724a42b46f75e2608b818ce5293fd9a02a8df6ab109bda0ae"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/before-ranger/selected-frames/frame-00350.png",
+      "bytes": 839637,
+      "sha256": "f620a2e7c31df1b1f69ba0f58c76824145035ad00061bfa3f039a5ff3848a2da"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/before-ranger/selected-frames/frame-00353.png",
+      "bytes": 839384,
+      "sha256": "89788ba49834a984ea3c89f3836950e98b63327d45d0b42f6fbe09cfe394d641"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-ranger/selected-frames/frame-00007.png",
+      "bytes": 815022,
+      "sha256": "b58a80c020a5acfadae52f109cb90e633ad995a6ad1c68b9c925f55b91ffc6db"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-ranger/selected-frames/frame-00012.png",
+      "bytes": 814694,
+      "sha256": "ec478416464f45b8c6fe8749710e64c17374d10b7ce779cf2eecfdd556712ec2"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-ranger/selected-frames/frame-00344.png",
+      "bytes": 841629,
+      "sha256": "69c6e47aa37bb382c61bdebba3e4e070d0a2db60964688c7667d021627c63f01"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-ranger/selected-frames/frame-00347.png",
+      "bytes": 838235,
+      "sha256": "c09ee3fc787b36f8c168272ea0c96fe309d1511a557d152b781847014581e180"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-ranger/selected-frames/frame-00350.png",
+      "bytes": 838517,
+      "sha256": "f3ee8873406f066f3c7e885eb6c3f7b3328b13e7825a3131a6149e7ce81df60c"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-ranger/selected-frames/frame-00353.png",
+      "bytes": 837890,
+      "sha256": "bf7c20d32b0d9d52791b20969d8a205292fc4a4f32def52b480ae18df2a49840"
+    }
+  ],
+  "additional_visual_checks": [
+    "ranger-critical-guardian-idle-visual-check.json"
+  ],
+  "scope_limits": [
+    "Every listed image was actually inspected by this AI reviewer; no whole-movie watching or human signoff is claimed.",
+    "Contact sheets use lossy H264-decoded pixels; JPEG92 4:4:4 adds documented compression to non-escape sheets. PNG sheets do not restore original render detail.",
+    "Twelve native Godot PNGs were separately inspected: paired7/12 and344/347/350/353. Later escapes have H264-derived fine-detail evidence only.",
+    "Bone-detail-none journal labels do not prove bone geometry, occlusion, sole clearance or physical phone performance.",
+    "Common role deaths, Hexer, all three internal Guardian0 phases and ending UI are reviewed by separate AI context receipts. Quiet Hexer release and held-low Guardian preparation remain concrete visual limits.",
+    "Transient Guardian idle2281 is real; the separate four-frame pixel check demonstrates no gross one-frame stand-up teleport or detached prop in that bounded range. No release readiness is claimed."
+  ]
+}

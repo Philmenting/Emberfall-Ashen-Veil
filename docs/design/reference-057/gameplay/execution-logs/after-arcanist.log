@@ -1,0 +1,10 @@
+CAPTURE START 69126 /workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist
+CAPTURE 300 frames; 10.0 playback seconds; 232.3 wall seconds
+CAPTURE 600 frames; 20.0 playback seconds; 437.3 wall seconds
+CAPTURE 900 frames; 30.0 playback seconds; 644.5 wall seconds
+CAPTURE 1200 frames; 40.0 playback seconds; 843.5 wall seconds
+CAPTURE 1500 frames; 50.0 playback seconds; 1021.6 wall seconds
+CAPTURE 1800 frames; 60.0 playback seconds; 1221.3 wall seconds
+CAPTURE 2100 frames; 70.0 playback seconds; 1408.9 wall seconds
+CAPTURE 2400 frames; 80.0 playback seconds; 1594.3 wall seconds
+CAPTURE VERIFIED complete 2496 chronological frames; /workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist

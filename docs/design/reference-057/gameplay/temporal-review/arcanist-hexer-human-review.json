@@ -1,0 +1,358 @@
+{
+  "schema": 1,
+  "status": "all_derived_contact_sheets_actually_visually_reviewed_with_limitations",
+  "reviewer": "Codex independent AI visual reviewer /root/temporal_review_resume_057/review_scope_audit_057/hexer_visual",
+  "reviewer_type": "AI visual inspection; no human signoff claimed",
+  "reviewed_at_utc": "2026-10-07T22:27:49.456364+00:00",
+  "character_class": "arcanist",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "image_origin": "H264-decoded lossy movie frames re-encoded as JPEG92 4:4:4 contact sheets with external labels. Shared fixed crop 0,0,1200,536 at 1:1 decoded composition pixels; not original engine PNGs.",
+  "scope": {
+    "ranges": [
+      "first-hexer-telegraph-release-interrupted-recovery",
+      "additional-hexer-telegraph-release-recovery-reset"
+    ],
+    "sides": [
+      "before",
+      "after"
+    ],
+    "actual_viewed_sheet_count": 16,
+    "actual_viewed_panel_count": 92,
+    "sampling": "Every fourth frame plus range end and exact semantic frames; every sheet was viewed, not every decoded movie frame."
+  },
+  "paired_findings": [
+    {
+      "type": "timing_readability",
+      "evidence": "Both pairs clearly show orange warning introduction at 299/785 and yellow impact outline at 335/818, with same warning centers and countdown behavior. Hero displacement takes it outside warning. Ground rings provide clear attack timing."
+    },
+    {
+      "type": "visual_concern",
+      "evidence": "After Hexer low/forward staff and nearly upright body change little between sampled telegraph, release, and recovery panels. Before visibly lowers/sweeps its raised green staff during 332-341 and 815-823 then raises it during recovery. Distinct after body/staff release and recovery cues are weak at these 1:1 composition pixels; no blanket animation-quality acceptance is given."
+    },
+    {
+      "type": "interrupted_recovery",
+      "evidence": "First phrase ends lethal at 347: 187 damage labels, STARFALL, and 0 foes. After begins bent-body death response by 349/350; this phrase cannot prove clean recovery reset or completed death."
+    },
+    {
+      "type": "surviving_recovery_reset",
+      "evidence": "Additional phrase retains 2 foes through 834; residual yellow ring visible 827 but absent 830/831. After staff lowers and body starts forward at 833/834 following supplied reset boundary 831. No large abrupt pop visible at 830/831; this observation is limited to retained panels."
+    }
+  ],
+  "limits": [
+    "Semantic identities and exact warning/impact/death/reset frame meanings were supplied by task and decode labels; pixel evidence is described separately.",
+    "Only retained sheets were viewed. Consecutive decoding completion is a decode-receipt fact, not an assertion that every movie frame was visually inspected.",
+    "JPEG/H264 compression and small enemy silhouettes limit fine motion judgment. No native PNG claim.",
+    "No ankle/shin overlap, anatomical correctness, unviewed rendered occlusion, full skeletal death completion, physical device FPS, or universal animation correctness claim.",
+    "Clean recovery/reset at 831 is semantically bounded and visually survives; it does not prove detailed bone recovery on every movie frame."
+  ],
+  "decode_receipts": [
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/before/first-hexer-telegraph-release-interrupted-recovery/decode-receipt.json",
+      "sha256": "6588df479af7caa30a59abcb677050d619eecb4c122c6f0cf8f4c48616c983a8",
+      "complete": true
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/after/first-hexer-telegraph-release-interrupted-recovery/decode-receipt.json",
+      "sha256": "580ee93356afb78fa4cf12606293feaa269d0ff8fc5c1a39773a0e0ff65e7c83",
+      "complete": true
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/before/additional-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "d9ba33e3b9d4cc713d0e3f4e5d3a7d0df11076820c7aebdd5c46676e7444ef0a",
+      "complete": true
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/after/additional-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "732363b3e764a0f11cadaefb15d80ae1c7e890a9e7b0969fece9a16d5be2d494",
+      "complete": true
+    }
+  ],
+  "viewed_files": [
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/before/first-hexer-telegraph-release-interrupted-recovery/derived-contact-sheet-00.jpg",
+      "sha256": "6027cadef62f5d1ef0b5fbab49bd38da0523beb0af64d6f8f49a30ac43982e61",
+      "side": "before",
+      "range": "first-hexer-telegraph-release-interrupted-recovery",
+      "frames": [
+        297,
+        298,
+        299,
+        301,
+        305,
+        309
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "Frames 297/298 show two dark hooded Hexers with green circular staff heads raised above shoulder/head level; orange striped ground warning appears around hero at 299 and counts down in 301/305/309. Targeted front Hexer remains separated from hero by open floor."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/before/first-hexer-telegraph-release-interrupted-recovery/derived-contact-sheet-01.jpg",
+      "sha256": "5a089bb443ff8969cb2f41422609669d3ebfca4a3414ffb5257ae2c7ca68ad23",
+      "side": "before",
+      "range": "first-hexer-telegraph-release-interrupted-recovery",
+      "frames": [
+        313,
+        317,
+        320,
+        321,
+        325,
+        329
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "313/317 show hero moving right out of orange warning; 320/321 add large white Starfall targeting circle and descending violet streaks. Through 325/329 the front Hexer retains raised staff, with green circular head visibly above its body; orange warning reaches 0.1s at 329."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/before/first-hexer-telegraph-release-interrupted-recovery/derived-contact-sheet-02.jpg",
+      "sha256": "d6ddde289e02ca8c4bb4932a40d800fc4d4357b470d85d8801c7ae3e21c80e79",
+      "side": "before",
+      "range": "first-hexer-telegraph-release-interrupted-recovery",
+      "frames": [
+        332,
+        333,
+        334,
+        335,
+        337,
+        341
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "332/333/334 keep orange warning at 0.0s. At 335 warning becomes a thin yellow empty ring. Front Hexer visibly changes from raised staff to a lower forward/horizontal staff while its dark body inclines forward; the lowered posture persists in 337/341. This supplies a clearer body/staff release cue than the after pair."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/before/first-hexer-telegraph-release-interrupted-recovery/derived-contact-sheet-03.jpg",
+      "sha256": "fde411b81deb5b00a43f96addbb91eb2f2285f19aae48fc10de822c687f921f0",
+      "side": "before",
+      "range": "first-hexer-telegraph-release-interrupted-recovery",
+      "frames": [
+        345,
+        346,
+        347,
+        349,
+        350
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "345/346 show front Hexer lifting staff again during the yellow-ring aftermath; yellow ring disappears at 346. At 347 both Hexers show 187 damage labels, STARFALL appears, and counter changes from 2 foes to 0. Both are still upright in 347/349/350 while white Starfall ring contracts. Death completion is outside this phrase."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/after/first-hexer-telegraph-release-interrupted-recovery/derived-contact-sheet-00.jpg",
+      "sha256": "19b04e89255b03e06c94458e90f8e36cd11d4c719bca2471d36cf17b116f879c",
+      "side": "after",
+      "range": "first-hexer-telegraph-release-interrupted-recovery",
+      "frames": [
+        297,
+        298,
+        299,
+        301,
+        305,
+        309
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "Frames 297/298 show two green-clad Hexers with pale circular staff heads held low and forward, rather than above head. Orange striped ground warning appears around hero at 299 and counts down in 301/305/309 at the same place/time as before."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/after/first-hexer-telegraph-release-interrupted-recovery/derived-contact-sheet-01.jpg",
+      "sha256": "dc5a39d8b669332ed1fa4b87c9651127966f70142ba703ad187c92b39191925c",
+      "side": "after",
+      "range": "first-hexer-telegraph-release-interrupted-recovery",
+      "frames": [
+        313,
+        317,
+        320,
+        321,
+        325,
+        329
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "313/317 show same hero displacement right from orange warning; 320/321 add white Starfall targeting circle and violet streaks matching before. In 325/329 Hexers remain upright with low/forward staff; orange warning reaches 0.1s. Staff/body silhouette changes across sampled telegraph frames are small."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/after/first-hexer-telegraph-release-interrupted-recovery/derived-contact-sheet-02.jpg",
+      "sha256": "69f94503ba95ec4b2db29b22dc1a95ff0a26274e62011d90af40871e7c07fd4c",
+      "side": "after",
+      "range": "first-hexer-telegraph-release-interrupted-recovery",
+      "frames": [
+        332,
+        333,
+        334,
+        335,
+        337,
+        341
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "332/333/334 retain orange 0.0s warning; 335 changes it to empty yellow ring, and 337/341 expand that ring. Front Hexer stays nearly upright with low/forward pale staff throughout these panels. A pronounced distinct skeletal release cue is weak at this composition scale relative to before, although ground impact timing is clear."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/after/first-hexer-telegraph-release-interrupted-recovery/derived-contact-sheet-03.jpg",
+      "sha256": "21180b0861f50d4055963ca9abbae247ebf4c9ab7742dcfdcc9756bdcddd79fc",
+      "side": "after",
+      "range": "first-hexer-telegraph-release-interrupted-recovery",
+      "frames": [
+        345,
+        346,
+        347,
+        349,
+        350
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "345/346 show upright low-staff Hexers; yellow aftermath ring disappears at 346. At 347 both show 187 damage labels and counter reads 0 foes. By 349/350 their upper bodies bend and hands draw inward while white Starfall ring contracts. This is lethal interruption/death onset; neither completed collapse nor completed idle reset is established here."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/before/additional-hexer-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+      "sha256": "dcf53903608d0d0bcf8a16c914df5c991054953c085f797f8633733b249473c9",
+      "side": "before",
+      "range": "additional-hexer-telegraph-release-recovery-reset",
+      "frames": [
+        783,
+        784,
+        785,
+        787,
+        791,
+        793
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "783/784 show rear dark hooded Hexer with green staff head above its body behind the bare-chested nearer enemy. Orange striped warning first appears around hero at 785, remains 787, and counts down to 0.8s in 791/793. Rear Hexer maintains raised staff while hero starts Lightning cast."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/before/additional-hexer-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+      "sha256": "61e7fd64347b881f656b0066037157abe4071cecabbeee30702a10b8731f49c1",
+      "side": "before",
+      "range": "additional-hexer-telegraph-release-recovery-reset",
+      "frames": [
+        794,
+        795,
+        799,
+        803,
+        807,
+        811
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "794/795 show EVADE and hero shifting right; 799/803 continue displacement outside orange warning while nearer bare-chested enemy advances. Rear Hexer remains upright with green staff head high. 807/811 show warning reducing to 0.3/0.2s and auto creating spell distance."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/before/additional-hexer-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+      "sha256": "d9bff1ff069925c54d80727c9de25a7f1bcd02b32a424c6e4470aaeff9eab169",
+      "side": "before",
+      "range": "additional-hexer-telegraph-release-recovery-reset",
+      "frames": [
+        815,
+        816,
+        817,
+        818,
+        819,
+        823
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "815/816/817 show rear Hexer changing to forward horizontal staff with green head well left of its torso; orange warning reads 0.0s. 818 replaces orange fill with yellow outline, which expands in 819/823. Hexer inclines slightly forward with arm/staff extended during release and early recovery; two foes remain."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/before/additional-hexer-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+      "sha256": "97016a32f6d61a0af1c5b6b43bfaa99d12b06f84f394e9ff38b0c0a83c5944ac",
+      "side": "before",
+      "range": "additional-hexer-telegraph-release-recovery-reset",
+      "frames": [
+        827,
+        830,
+        831,
+        833,
+        834
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "827 shows residual yellow ring and rear Hexer raising its green staff head toward shoulder/head height. Ring is absent in 830 and 831; Hexer remains upright with raised staff at 830/831/833/834 and two foes remain. No lethal interruption occurs. Reset boundary is labeled semantically at 831; image shows returned raised-staff pose without a large abrupt displacement."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/after/additional-hexer-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+      "sha256": "cc9499d3de43c5dde6561a324a02ad0a62de2326b7800bd63b91e52e747c6f21",
+      "side": "after",
+      "range": "additional-hexer-telegraph-release-recovery-reset",
+      "frames": [
+        783,
+        784,
+        785,
+        787,
+        791,
+        793
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "783/784 show rear green-clad Hexer with pale circular staff head at waist/chest level directed forward left, behind nearer bare-chested enemy. Orange warning appears at 785, matching before, and counts down through 787/791/793. Additional dark fallen-body silhouettes cluster behind hero in 783/784/785/787, unlike before; they disappear by 791 in retained panels."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/after/additional-hexer-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+      "sha256": "8e92269142d278a6b247c70907500bc535f7a07c5835b1f6c4c0630b8272c46e",
+      "side": "after",
+      "range": "additional-hexer-telegraph-release-recovery-reset",
+      "frames": [
+        794,
+        795,
+        799,
+        803,
+        807,
+        811
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "794/795 EVADE and 799/803 hero displacement match before warning schedule; 807/811 show timer reaching 0.3/0.2s. Rear Hexer stays upright with pale circular staff head at low/forward level. Its windup silhouette varies only slightly through these sampled frames."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/after/additional-hexer-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+      "sha256": "7cb19a55ed19513ef01f36690d2398870e5e254aa498f17d22c4149f5a97a398",
+      "side": "after",
+      "range": "additional-hexer-telegraph-release-recovery-reset",
+      "frames": [
+        815,
+        816,
+        817,
+        818,
+        819,
+        823
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "815/816/817 show orange 0.0s warning; 818 changes it to empty yellow outline; 819/823 expand outline. Rear Hexer remains nearly upright, pale staff low/forward, with modest hand/staff movement. Two foes remain. Ground ring clearly communicates release; pronounced separate body/staff release motion is weaker than before at these pixels."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist/after/additional-hexer-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+      "sha256": "cfbfcf134287a5a80b90566f557582a7126e5f689ffbd8143b9a5ca125fbe4e0",
+      "side": "after",
+      "range": "additional-hexer-telegraph-release-recovery-reset",
+      "frames": [
+        827,
+        830,
+        831,
+        833,
+        834
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "827 shows residual yellow ring; 830/831 have no ground warning/impact ring, rear Hexer still alive upright, and counter stays 2 foes. From reset boundary 831 toward 833/834 its pale staff drops farther downward and its body begins moving toward foreground. No sudden large silhouette jump is visible at 830/831, but precise smoothness across all intervening movie frames is not established by sampled panels."
+    }
+  ],
+  "work_performed": "Read finalized decode receipts, viewed all 16 actual images at original detail, verified their SHA256 against receipts, and wrote this scratch-only review receipt. No extra decode, engine/Godot/Blender/Git/source/repository/tool edits."
+}

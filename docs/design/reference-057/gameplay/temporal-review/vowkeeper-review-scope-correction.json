@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "status": "review_classification_and_coverage_corrections_from_completed_before_only; not_a_game_regression_or_paired_visual_acceptance",
+  "created_utc": "2026-10-07T23:44:38.266716+00:00",
+  "character_class": "vowkeeper",
+  "basis_side": "before",
+  "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "intended_after_source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "actual_corrected_before_planner_process_exit": 0,
+  "corrected_frozen_tool_sha256": "83bff1cabc3e915bbcf857bc5f628e159f82088cff10090c5ab0cbb223d9987d",
+  "preserved_metadata_files": [
+    {
+      "file": "vowkeeper-review-preparation-history/earlier-before-audit-with-melee-release-classification-gap.json",
+      "original_execution_path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper-before-preparation/vowkeeper-before-journal-audit.json",
+      "sha256": "0c6aea9bdfe67fb32fd2972d216eff5bcb6c4b4c01f2662fcd00920d95c9cbda",
+      "bytes": 23195,
+      "same_original_inode": true
+    },
+    {
+      "file": "vowkeeper-review-preparation-history/earlier-before-prospective-plan-with-coverage-gap.json",
+      "original_execution_path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper-before-preparation/vowkeeper-prospective-review-plan.json",
+      "sha256": "764c341e5abac5ba95a69e86aa0d1251583bafe73f4216d77c2a803bfb12d1d8",
+      "bytes": 3695,
+      "same_original_inode": true
+    },
+    {
+      "file": "vowkeeper-review-preparation-history/corrected-completed-before-audit.json",
+      "original_execution_path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper-before-preparation/melee-and-phase0-corrected/vowkeeper-before-journal-audit.json",
+      "sha256": "99398e736ea11da7db8187f4e595b2f594802593d05ef7db1ac0b34faa1139a6",
+      "bytes": 31837,
+      "same_original_inode": true
+    },
+    {
+      "file": "vowkeeper-review-preparation-history/corrected-before-only-prospective-plan.json",
+      "original_execution_path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper-before-preparation/melee-and-phase0-corrected/vowkeeper-prospective-before-plan.json",
+      "sha256": "c83d0011e735104f80c9aedc1e8fc7b5059b1a250333d9f9104ae2aa7e52453d",
+      "bytes": 3259,
+      "same_original_inode": true
+    }
+  ],
+  "corrections": [
+    "Signature/Basic melee releases have matching attack identity hit/recovery onset, despite no ranged hero_release event. Earlier cancelled labels were a review-tool classification gap.",
+    "Basic413 releases422, recovers through424, then evade425 interrupts recovery. Judgment920\u2013922 never releases before evade923; it is true windup cancellation.",
+    "Guardian archetype0/entity50 performs ordinary phase0 melee2441\u20132462 with hit2447/reset2463; add2439\u20132466 before later phase1/2 floor-warning range2481\u20132718. No phase0 floor warning occurs.",
+    "Preserve transient idle2530 and2697\u20132698 and corresponding impact/reset boundaries; no pose regression claim before actual completed paired pixels."
+  ],
+  "scope": "These exact earlier prospective metadata bytes are preserved under explicit historical labels. They are not final range decode receipts or visual signoff. Final paired plan and AI image inspection remain dependent on the actually completed AFTER receipt and verified comparison."
+}

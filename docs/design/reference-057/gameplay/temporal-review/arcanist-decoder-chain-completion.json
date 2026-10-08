@@ -1,0 +1,8 @@
+{
+  "status": "complete_actual_decode_chain",
+  "actual_process_exit": 0,
+  "ranges_per_side": 17,
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "human_visual_acceptance": "separate_bounded_review_receipts",
+  "tool_sha256": "afd4ff67403623b767fa30b3a18431a2cefb7cfb374c9b572b1b7e938416a8bf"
+}

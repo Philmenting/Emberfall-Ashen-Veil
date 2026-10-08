@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "status": "eight_original_audit_files_hardlinked_without_changes",
+  "primary_actual_audit_exit": 0,
+  "primary_integrity_assertions": 6188,
+  "primary_mismatches": 0,
+  "historical_actual_audit_exit": 1,
+  "historical_failure_scope": "Own optional-camera assumption; no game failure claim",
+  "original_files": [
+    {
+      "path": "audit.py",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-proof-independent-audit-20261008-02/audit.py",
+      "bytes": 18786,
+      "sha256": "e1ab141fa3d737d5475d654ec5b549b838283a35bc472b52fb028aaa6d3bf96e",
+      "same_inode": true
+    },
+    {
+      "path": "audit-report.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-proof-independent-audit-20261008-02/audit-report.json",
+      "bytes": 269913,
+      "sha256": "f65f3914450e6537c7a0b1c3fb1ca20219974909704b28b366b0fe369242b7f0",
+      "same_inode": true
+    },
+    {
+      "path": "audit-execution.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-proof-independent-audit-20261008-02/audit-execution.log",
+      "bytes": 1252,
+      "sha256": "3f281871fbff27a6d17d21164ab0676d669ed481f488d62a9da332b16b7cd8fd",
+      "same_inode": true
+    },
+    {
+      "path": "audit-execution.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-proof-independent-audit-20261008-02/audit-execution.json",
+      "bytes": 479,
+      "sha256": "39fb5e9585043d99f37945d121c436961481516c610c15c2287ffef64148ddac",
+      "same_inode": true
+    },
+    {
+      "path": "historical/audit.py",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-proof-independent-audit-20261008/audit.py",
+      "bytes": 18778,
+      "sha256": "0f656c952374bac422dfa86de0715bab757822d933f8b5bdfbb5ce8774a08c63",
+      "same_inode": true
+    },
+    {
+      "path": "historical/audit-report.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-proof-independent-audit-20261008/audit-report.json",
+      "bytes": 99058,
+      "sha256": "54660924a0775f19418ce97a6dde6bba5aace11d5089d336a9d1ea348b8adeae",
+      "same_inode": true
+    },
+    {
+      "path": "historical/audit-execution.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-proof-independent-audit-20261008/audit-execution.log",
+      "bytes": 162,
+      "sha256": "4c32f5bd1ee24adaa3de40e3de1a9487c1cbab9e91f40b1230669973c1f92d9e",
+      "same_inode": true
+    },
+    {
+      "path": "historical/audit-execution.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-proof-independent-audit-20261008/audit-execution.json",
+      "bytes": 476,
+      "sha256": "715c76a9a4ef22d672f308f477b9718c4e2dd843decc8a38ba1d2045e4da940d",
+      "same_inode": true
+    }
+  ],
+  "authored_readmes": [
+    {
+      "path": "README.md",
+      "bytes": 2927,
+      "sha256": "482aff2c5c4f7909661b945df982142bde9d87f299f861e9388c1ede11ffde4d"
+    },
+    {
+      "path": "historical/README.md",
+      "bytes": 1222,
+      "sha256": "c8a9784f33aa6387636f3043d6c94edf221688e9a358ab523b3a64b150840fb1"
+    }
+  ],
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "scope": "Staging of immutable original technical audit evidence; existing gameplay/source/central docs unchanged."
+}

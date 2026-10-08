@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "repo": "/workspace/Emberfall-Ashen-Veil",
+  "evidence": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade",
+  "session_dir": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final",
+  "display": ":108",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/run_six_full_captures.py",
+    "--source-commit",
+    "1cc13152a83c6631590d4df32ca298700a417df7",
+    "--repo",
+    "/workspace/Emberfall-Ashen-Veil",
+    "--evidence",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade",
+    "--session-dir",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final",
+    "--godot",
+    "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+    "--display",
+    ":108",
+    "--exclusive-render-slot"
+  ],
+  "orchestrator_log": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/detached-orchestrator-console.log",
+  "supervisor_receipt": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/detached-supervisor-receipt.json",
+  "launcher_sha256": "3413d4c1dbbd9ab930a81eb4d2c6ea9fa858d4ef393a2661f15e021bed425f71",
+  "scratch_orchestrator_sha256": "f168a58413a5ccdc35db5699cbe1afc1658007bb6e194ea154ed0916ffba044c",
+  "scope": "Six new full recordings; no interrupted partial clip is reused as completion."
+}

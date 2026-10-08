@@ -1,0 +1,98 @@
+{
+	"audio": {
+		"accepted_cues": 93,
+		"channels": 2,
+		"completed_effects": 91,
+		"cue_clock_scope": "Observe the ordinary director's accepted cues; its existing 80 ms duplicate check uses wall time. Each accepted cue begins at its recorded fixed-step sample boundary.",
+		"eof_padding_scope": "Zero-filled suffix frames in each ended one-shot's first EOF block; concurrent score/other voices retain their real samples.",
+		"eof_silence_frames": 53832,
+		"finite": true,
+		"peak": 0.0966939553618431,
+		"rms": 0.00895163899987356,
+		"sample_format": "f32le",
+		"sample_frames": 3761730,
+		"sample_rate": 44100,
+		"scope": "Native AudioStreamPlayback fixed-step stereo float PCM from actual accepted AudioDirector slots, streams and gain/suspend state; no physical audio loopback.",
+		"seconds": 85.3,
+		"stolen_voices": 2,
+		"stream_pcm_sha256": {
+			"arrow_contact": "2760068dc608a75abf577e449eefe74253e4dc32dcf7056d3bb41e74bc1873c9",
+			"bolt": "6b5f8f0c3d9f093b6af77532da3e7392e828416414e880feb086cc910dcab9a2",
+			"bow_draw": "4aff94cab595f81fb827e7174bbc8a3d376de307b41103c106cf53324024706d",
+			"camp": "24ea25f0f478d7ad2a7b6274b9c6b64ebd43a51cd1655c15e961d58640ad7afb",
+			"dungeon": "3b8e7dc46305bb5fc9c0b3ad7a4184bce94c7e6327a8c68303450df7db33c47a",
+			"hurt": "436ce8eeeada388ac7e0f469603ea04383dbb47da2a553e733a2307c183f32c7",
+			"impact_critical": "5223d4ec28e9400d6c159d2932e6acc913858b958212596f477bf10371c89cd6",
+			"phase_awakened": "a95b82a080f9a52d5ead7912a2e10634b7202e2874dfb924115deff4aa119749",
+			"phase_desperate": "3b775f3e0b7c124f44f863680eef4dabeb2b91a38ce3de72b73b185d9dc4317c",
+			"step": "1ab3ee74db2bf697750d106e02abf57e91ca6a6f04baa2602b0c4a44a792c653",
+			"victory": "c2f39f50be6b06e7bbfb0185da947eb158ab7101d000f8b2ea9b95a5127360b1",
+			"volley": "67fb1cb454a5a1ba0363cbc4cf58d391735fced8e6ddc587af14935d22a2f691",
+			"warning": "3c4e35e40bcab1c31c87c61fcf4080caefdd09ad7745b2731c0b0ed5279e3686"
+		}
+	},
+	"character_class": "Ranger",
+	"complete": true,
+	"final_page": "loot",
+	"frames": 2559,
+	"guardian_seen": true,
+	"guardian_warning_seen": true,
+	"native_pcm_sha256": "0ba0d3a003f66e9c0006fd7f6fa0cc04a648bc146a194e3643084f42ea30fc94",
+	"playback_seconds": 85.3,
+	"recording_kind": "ordinary_expedition",
+	"recovered_loot": [
+		{
+			"affinity": "Ranger",
+			"armor": 0,
+			"name": "Crowflight Loop",
+			"power": 44,
+			"quality": "RARE",
+			"region": 0,
+			"relic": "returning_thorn",
+			"sell": 93,
+			"slot": "Amulet",
+			"stats": {
+				"Dexterity": 2,
+				"Vitality": 5
+			},
+			"status": "",
+			"temper": 0,
+			"tier": 1
+		},
+		{
+			"affinity": "Ranger",
+			"armor": 31,
+			"name": "Cinderstring Grips",
+			"power": 39,
+			"quality": "RARE",
+			"region": 0,
+			"sell": 96,
+			"slot": "Gloves",
+			"stats": {
+				"Dexterity": 1,
+				"Strength": 4
+			},
+			"status": "",
+			"temper": 0,
+			"tier": 1
+		}
+	],
+	"run_boss_defeated": true,
+	"run_reward": {
+		"casts": 12,
+		"dodges": 4,
+		"gold": 190,
+		"kills": 26,
+		"note": "Your first class relic • equip it to change your signature skill",
+		"seconds": 82.2999999999996,
+		"title": "CAMPAIGN",
+		"xp": 428
+	},
+	"run_succeeded": true,
+	"schema": 1,
+	"scope": "Recording completeness and actual combat outcome; no visual or release approval.",
+	"settle_frames_recorded": 90,
+	"simulation_elapsed": 82.2999999999996,
+	"simulation_finished": true,
+	"won": true
+}

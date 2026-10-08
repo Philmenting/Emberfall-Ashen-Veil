@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "status": "planned_sampled_visual_review_not_acceptance",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "character_class": "arcanist",
+  "comparison_sha256": "89cb54bb8b6cc0cb3057a277a1475a915f786ef963b82aeed01f07ad4cb1262c",
+  "ranges": [
+    {
+      "label": "first-signature-full-released-phrase",
+      "first": 1,
+      "last": 23,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "first-basic-full-released-phrase",
+      "first": 43,
+      "last": 65,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "first-starfall-full-released-phrase",
+      "first": 319,
+      "last": 360,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "first-chain-full-released-phrase",
+      "first": 1267,
+      "last": 1293,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "first-lateral-evade",
+      "first": 309,
+      "last": 324,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "first-attack-to-evade",
+      "first": 789,
+      "last": 808,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "additional-evade-2114",
+      "first": 2112,
+      "last": 2128,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "ordinary-travel-gait",
+      "first": 95,
+      "last": 115,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "first-raider-death",
+      "first": 9,
+      "last": 39,
+      "crop_scope": "full_viewport"
+    },
+    {
+      "label": "first-hexer-death",
+      "first": 9,
+      "last": 39,
+      "crop_scope": "full_viewport"
+    },
+    {
+      "label": "first-bulwark-death",
+      "first": 756,
+      "last": 786,
+      "crop_scope": "full_viewport"
+    },
+    {
+      "label": "first-elite-death",
+      "first": 1317,
+      "last": 1347,
+      "crop_scope": "full_viewport"
+    },
+    {
+      "label": "first-boss-death",
+      "first": 2259,
+      "last": 2289,
+      "crop_scope": "full_viewport"
+    },
+    {
+      "label": "first-hexer-telegraph-release-interrupted-recovery",
+      "first": 297,
+      "last": 350,
+      "crop_scope": "full_viewport"
+    },
+    {
+      "label": "additional-hexer-telegraph-release-recovery-reset",
+      "first": 783,
+      "last": 834,
+      "crop_scope": "full_viewport"
+    },
+    {
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "first": 2094,
+      "last": 2217,
+      "crop_scope": "full_viewport"
+    },
+    {
+      "label": "original-ending-loot-ui",
+      "first": 2490,
+      "last": 2495,
+      "crop_scope": "full_viewport"
+    }
+  ],
+  "scope": "Every frame of these bounded ranges will be decoded. Explicitly sampled visual review, not a claim that a human watched either entire movie."
+}

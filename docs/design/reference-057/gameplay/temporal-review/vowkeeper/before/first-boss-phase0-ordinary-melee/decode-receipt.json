@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "status": "complete_consecutive_h264_decoded_range",
+  "character_class": "vowkeeper",
+  "side": "before",
+  "label": "first-boss-phase0-ordinary-melee",
+  "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "first_frame_zero_based": 2439,
+  "last_frame_zero_based_inclusive": 2466,
+  "every_consecutive_frame_decoded": true,
+  "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+  "exact_semantic_frames_retained": [
+    2440,
+    2441,
+    2442,
+    2446,
+    2447,
+    2462,
+    2463,
+    2464,
+    2465
+  ],
+  "actual_ffmpeg_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-threads",
+    "1",
+    "-filter_threads",
+    "1",
+    "-i",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/ordinary-vowkeeper-complete.mp4",
+    "-map",
+    "0:v:0",
+    "-an",
+    "-vf",
+    "select=between(n\\,2439\\,2466)",
+    "-frames:v",
+    "28",
+    "-fps_mode",
+    "passthrough",
+    "-pix_fmt",
+    "rgb24",
+    "-f",
+    "rawvideo",
+    "pipe:1"
+  ],
+  "actual_ffmpeg_exit_code": 0,
+  "movie_sha256": "e0f3194f1ad288bfa650143fa18d253e5220f09cad22fde5bb90fb494e6095b1",
+  "capture_receipt_sha256": "840e980a74d05da1227173f9e0c3adaadaf532fbebbb88d4a2e9ac2ced795803",
+  "crop_xyxy": [
+    282,
+    106,
+    903,
+    437
+  ],
+  "contact_sheet_pixel_scale": "1:1 original decoded pixels; shared fixed crop for this before/after range",
+  "context_crop_scope": "Full viewport for original ending UI; other context ranges use a shared native-pixel crop around hero and visible Guardian with a minimum620x330 scene margin. Hero ranges keep all sampled conservative actor/weapon projection bounds plus45px horizontal/30px vertical margin and minimum240x220. Off-crop actors/environment cannot be visually judged here; original movies and native PNGs remain full viewport.",
+  "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+  "human_visual_review": "pending; decoding alone is not visual acceptance",
+  "sheets": [
+    {
+      "file": "derived-contact-sheet-00.jpg",
+      "sha256": "bd1572496682ead3de1b12bf91581190472b536cba5417a7ca3764463d073152",
+      "bytes": 331825,
+      "first_frame": 2439,
+      "last_frame": 2446,
+      "frames": [
+        2439,
+        2440,
+        2441,
+        2442,
+        2443,
+        2446
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-01.jpg",
+      "sha256": "657d2c6f0f4605344c3403a2b806bb8edd939c1953ca57fb624131eca76031eb",
+      "bytes": 345582,
+      "first_frame": 2447,
+      "last_frame": 2463,
+      "frames": [
+        2447,
+        2451,
+        2455,
+        2459,
+        2462,
+        2463
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-02.jpg",
+      "sha256": "e854964f47bc808831b1d1d1a0aa963d58b32b103f71bc613b0bf8f2e1557bba",
+      "bytes": 183123,
+      "first_frame": 2464,
+      "last_frame": 2466,
+      "frames": [
+        2464,
+        2465,
+        2466
+      ]
+    }
+  ],
+  "review_tool_sha256": "83bff1cabc3e915bbcf857bc5f628e159f82088cff10090c5ab0cbb223d9987d"
+}

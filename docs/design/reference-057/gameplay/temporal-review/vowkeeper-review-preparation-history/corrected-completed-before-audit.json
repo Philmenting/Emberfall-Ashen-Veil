@@ -1,0 +1,1494 @@
+{
+  "schema": 1,
+  "status": "complete_consecutive_journal_audit",
+  "created_utc": "2026-10-07T23:43:20.880588+00:00",
+  "character_class": "vowkeeper",
+  "side": "before",
+  "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "frames": 3099,
+  "movie_sha256": "e0f3194f1ad288bfa650143fa18d253e5220f09cad22fde5bb90fb494e6095b1",
+  "journal_sha256": "6015c7d0c261abe1b70275ae2837ba7fb839b0110448ccc4042d7a47d63910a5",
+  "receipt_sha256": "840e980a74d05da1227173f9e0c3adaadaf532fbebbb88d4a2e9ac2ced795803",
+  "events": {
+    "hero_attack": 27,
+    "guard": 7,
+    "hit": 36,
+    "reinforcement_spawn": 2,
+    "engage": 5,
+    "warning": 12,
+    "evade": 4,
+    "hero_hit": 17,
+    "impact": 11,
+    "well": 1,
+    "objective": 3,
+    "technique_cast": 6,
+    "technique": 5,
+    "hero_release": 5,
+    "miss": 6,
+    "interrupt": 2,
+    "boss_phase": 2,
+    "finished": 1
+  },
+  "hero_clip_counts": {
+    "idle": 496,
+    "windup_skill": 63,
+    "recover_skill": 70,
+    "walk": 1991,
+    "windup_basic": 126,
+    "recover_basic": 133,
+    "evade": 61,
+    "windup_heavy": 84,
+    "recover_heavy": 50,
+    "scene_removed_for_result_ui": 25
+  },
+  "actual_result_ui_rows_without_hero_scene": [
+    3074,
+    3075,
+    3076,
+    3077,
+    3078,
+    3079,
+    3080,
+    3081,
+    3082,
+    3083,
+    3084,
+    3085,
+    3086,
+    3087,
+    3088,
+    3089,
+    3090,
+    3091,
+    3092,
+    3093,
+    3094,
+    3095,
+    3096,
+    3097,
+    3098
+  ],
+  "attacks": [
+    {
+      "start": 2,
+      "last_attack_pose": 20,
+      "first_complete_reset": 21,
+      "style": "signature",
+      "event": {
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 1,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        11
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 11,
+      "matching_attack_identity_hit_frames": [
+        11
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 21,
+        "clip": "walk"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 65,
+      "last_attack_pose": 83,
+      "first_complete_reset": 84,
+      "style": "basic",
+      "event": {
+        "name": "Oathblade",
+        "skill": false,
+        "target": 4,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        74
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 74,
+      "matching_attack_identity_hit_frames": [
+        74
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 84,
+        "clip": "walk"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 107,
+      "last_attack_pose": 125,
+      "first_complete_reset": 126,
+      "style": "basic",
+      "event": {
+        "name": "Oathblade",
+        "skill": false,
+        "target": 2,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        116
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 116,
+      "matching_attack_identity_hit_frames": [
+        116
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 126,
+        "clip": "idle"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 353,
+      "last_attack_pose": 371,
+      "first_complete_reset": 372,
+      "style": "signature",
+      "event": {
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 13,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        362
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 362,
+      "matching_attack_identity_hit_frames": [
+        362
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 372,
+        "clip": "walk"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 413,
+      "last_attack_pose": 424,
+      "first_complete_reset": 425,
+      "style": "basic",
+      "event": {
+        "name": "Oathblade",
+        "skill": false,
+        "target": 10,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        422
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 422,
+      "matching_attack_identity_hit_frames": [
+        422
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 425,
+        "clip": "evade"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          11
+        ]
+      ]
+    },
+    {
+      "start": 500,
+      "last_attack_pose": 518,
+      "first_complete_reset": 519,
+      "style": "basic",
+      "event": {
+        "name": "Oathblade",
+        "skill": false,
+        "target": 11,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        509
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 509,
+      "matching_attack_identity_hit_frames": [
+        509
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 519,
+        "clip": "walk"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 878,
+      "last_attack_pose": 896,
+      "first_complete_reset": 897,
+      "style": "signature",
+      "event": {
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 20,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        887
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 887,
+      "matching_attack_identity_hit_frames": [
+        887
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 897,
+        "clip": "idle"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 920,
+      "last_attack_pose": 922,
+      "first_complete_reset": 923,
+      "style": "judgment",
+      "event": {
+        "ability_id": "judgment",
+        "name": "Ashen Judgment",
+        "skill": true,
+        "target": 20,
+        "type": "hero_attack"
+      },
+      "release_frames": [],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": null,
+      "matching_attack_identity_hit_frames": [],
+      "release_evidence": "no_corresponding_release_evidence",
+      "transition_after_phrase": {
+        "frame": 923,
+        "clip": "evade"
+      },
+      "recovery_relative_intervals": []
+    },
+    {
+      "start": 962,
+      "last_attack_pose": 986,
+      "first_complete_reset": 987,
+      "style": "sunder",
+      "event": {
+        "ability_id": "sunder",
+        "name": "Sundering Arc",
+        "skill": true,
+        "target": 24,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        977
+      ],
+      "release_event_frames": [
+        977
+      ],
+      "first_recovery_timer_onset": 977,
+      "matching_attack_identity_hit_frames": [
+        977
+      ],
+      "release_evidence": "hero_release_event",
+      "transition_after_phrase": {
+        "frame": 987,
+        "clip": "walk"
+      },
+      "recovery_relative_intervals": [
+        [
+          15,
+          24
+        ]
+      ]
+    },
+    {
+      "start": 1043,
+      "last_attack_pose": 1061,
+      "first_complete_reset": 1062,
+      "style": "basic",
+      "event": {
+        "name": "Oathblade",
+        "skill": false,
+        "target": 23,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1052
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 1052,
+      "matching_attack_identity_hit_frames": [
+        1052
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 1062,
+        "clip": "walk"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 1121,
+      "last_attack_pose": 1139,
+      "first_complete_reset": 1140,
+      "style": "basic",
+      "event": {
+        "name": "Oathblade",
+        "skill": false,
+        "target": 21,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1130
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 1130,
+      "matching_attack_identity_hit_frames": [
+        1130
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 1140,
+        "clip": "idle"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 1538,
+      "last_attack_pose": 1562,
+      "first_complete_reset": 1563,
+      "style": "sunder",
+      "event": {
+        "ability_id": "sunder",
+        "name": "Sundering Arc",
+        "skill": true,
+        "target": 32,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1553
+      ],
+      "release_event_frames": [
+        1553
+      ],
+      "first_recovery_timer_onset": 1553,
+      "matching_attack_identity_hit_frames": [
+        1553
+      ],
+      "release_evidence": "hero_release_event",
+      "transition_after_phrase": {
+        "frame": 1563,
+        "clip": "walk"
+      },
+      "recovery_relative_intervals": [
+        [
+          15,
+          24
+        ]
+      ]
+    },
+    {
+      "start": 1580,
+      "last_attack_pose": 1598,
+      "first_complete_reset": 1599,
+      "style": "signature",
+      "event": {
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 31,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1589
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 1589,
+      "matching_attack_identity_hit_frames": [
+        1589
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 1599,
+        "clip": "idle"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 1622,
+      "last_attack_pose": 1649,
+      "first_complete_reset": 1650,
+      "style": "judgment",
+      "event": {
+        "ability_id": "judgment",
+        "name": "Ashen Judgment",
+        "skill": true,
+        "target": 31,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1640
+      ],
+      "release_event_frames": [
+        1640
+      ],
+      "first_recovery_timer_onset": 1640,
+      "matching_attack_identity_hit_frames": [
+        1640
+      ],
+      "release_evidence": "hero_release_event",
+      "transition_after_phrase": {
+        "frame": 1650,
+        "clip": "walk"
+      },
+      "recovery_relative_intervals": [
+        [
+          18,
+          27
+        ]
+      ]
+    },
+    {
+      "start": 1667,
+      "last_attack_pose": 1685,
+      "first_complete_reset": 1686,
+      "style": "basic",
+      "event": {
+        "name": "Oathblade",
+        "skill": false,
+        "target": 30,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1676
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 1676,
+      "matching_attack_identity_hit_frames": [
+        1676
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 1686,
+        "clip": "walk"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 2006,
+      "last_attack_pose": 2024,
+      "first_complete_reset": 2025,
+      "style": "signature",
+      "event": {
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 41,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2015
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 2015,
+      "matching_attack_identity_hit_frames": [
+        2015
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 2025,
+        "clip": "walk"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 2048,
+      "last_attack_pose": 2072,
+      "first_complete_reset": 2073,
+      "style": "sunder",
+      "event": {
+        "ability_id": "sunder",
+        "name": "Sundering Arc",
+        "skill": true,
+        "target": 40,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2063
+      ],
+      "release_event_frames": [
+        2063
+      ],
+      "first_recovery_timer_onset": 2063,
+      "matching_attack_identity_hit_frames": [
+        2063
+      ],
+      "release_evidence": "hero_release_event",
+      "transition_after_phrase": {
+        "frame": 2073,
+        "clip": "walk"
+      },
+      "recovery_relative_intervals": [
+        [
+          15,
+          24
+        ]
+      ]
+    },
+    {
+      "start": 2108,
+      "last_attack_pose": 2126,
+      "first_complete_reset": 2127,
+      "style": "basic",
+      "event": {
+        "name": "Oathblade",
+        "skill": false,
+        "target": 43,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2117
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 2117,
+      "matching_attack_identity_hit_frames": [
+        2117
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 2127,
+        "clip": "idle"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 2423,
+      "last_attack_pose": 2441,
+      "first_complete_reset": 2442,
+      "style": "signature",
+      "event": {
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 52,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2432
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 2432,
+      "matching_attack_identity_hit_frames": [
+        2432
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 2442,
+        "clip": "idle"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 2465,
+      "last_attack_pose": 2492,
+      "first_complete_reset": 2493,
+      "style": "judgment",
+      "event": {
+        "ability_id": "judgment",
+        "name": "Ashen Judgment",
+        "skill": true,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2483
+      ],
+      "release_event_frames": [
+        2483
+      ],
+      "first_recovery_timer_onset": 2483,
+      "matching_attack_identity_hit_frames": [
+        2483
+      ],
+      "release_evidence": "hero_release_event",
+      "transition_after_phrase": {
+        "frame": 2493,
+        "clip": "idle"
+      },
+      "recovery_relative_intervals": [
+        [
+          18,
+          27
+        ]
+      ]
+    },
+    {
+      "start": 2561,
+      "last_attack_pose": 2579,
+      "first_complete_reset": 2580,
+      "style": "basic",
+      "event": {
+        "name": "Oathblade",
+        "skill": false,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2570
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 2570,
+      "matching_attack_identity_hit_frames": [
+        2570
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 2580,
+        "clip": "idle"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 2603,
+      "last_attack_pose": 2621,
+      "first_complete_reset": 2622,
+      "style": "basic",
+      "event": {
+        "name": "Oathblade",
+        "skill": false,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2612
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 2612,
+      "matching_attack_identity_hit_frames": [
+        2612
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 2622,
+        "clip": "walk"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 2645,
+      "last_attack_pose": 2663,
+      "first_complete_reset": 2664,
+      "style": "signature",
+      "event": {
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2654
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 2654,
+      "matching_attack_identity_hit_frames": [
+        2654
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 2664,
+        "clip": "idle"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 2729,
+      "last_attack_pose": 2747,
+      "first_complete_reset": 2748,
+      "style": "basic",
+      "event": {
+        "name": "Oathblade",
+        "skill": false,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2738
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 2738,
+      "matching_attack_identity_hit_frames": [
+        2738
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 2748,
+        "clip": "idle"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 2771,
+      "last_attack_pose": 2789,
+      "first_complete_reset": 2790,
+      "style": "basic",
+      "event": {
+        "name": "Oathblade",
+        "skill": false,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2780
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 2780,
+      "matching_attack_identity_hit_frames": [
+        2780
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 2790,
+        "clip": "walk"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 2813,
+      "last_attack_pose": 2831,
+      "first_complete_reset": 2832,
+      "style": "basic",
+      "event": {
+        "name": "Oathblade",
+        "skill": false,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2822
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 2822,
+      "matching_attack_identity_hit_frames": [
+        2822
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 2832,
+        "clip": "walk"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "start": 2876,
+      "last_attack_pose": 2894,
+      "first_complete_reset": 2895,
+      "style": "basic",
+      "event": {
+        "name": "Oathblade",
+        "skill": false,
+        "target": 51,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2885
+      ],
+      "release_event_frames": [],
+      "first_recovery_timer_onset": 2885,
+      "matching_attack_identity_hit_frames": [
+        2885
+      ],
+      "release_evidence": "matching_melee_hit_and_recovery_timer_onset",
+      "transition_after_phrase": {
+        "frame": 2895,
+        "clip": "walk"
+      },
+      "recovery_relative_intervals": [
+        [
+          9,
+          18
+        ]
+      ]
+    }
+  ],
+  "evades": [
+    {
+      "start": 425,
+      "last_native_evade": 434,
+      "event": {
+        "goal": [
+          2.34163665771484,
+          -16.8788051605225
+        ],
+        "position": [
+          0.661473512649536,
+          -16.8788051605225
+        ],
+        "type": "evade"
+      },
+      "previous_clip": "recover_basic",
+      "previous_attack_time": 0.266666666666667,
+      "previous_release_time": 0.1,
+      "native_basis_direction": [
+        -0.928027018478432,
+        0.0,
+        0.3725128896750177
+      ],
+      "predominantly_lateral": true,
+      "root_distance_between_observed_samples_m": 1.3886940382356063,
+      "scope": "Root and original model basis only; bone-detail-none journal cannot establish ankle overlap."
+    },
+    {
+      "start": 923,
+      "last_native_evade": 932,
+      "event": {
+        "goal": [
+          -6.57105827331543,
+          -25.5433025360107
+        ],
+        "position": [
+          -8.2515287399292,
+          -25.5433025360107
+        ],
+        "type": "evade"
+      },
+      "previous_clip": "windup_heavy",
+      "previous_attack_time": 0.0666666666666667,
+      "previous_release_time": -1.0,
+      "native_basis_direction": [
+        0.37180732512098263,
+        0.0,
+        -0.928309922917115
+      ],
+      "predominantly_lateral": false,
+      "root_distance_between_observed_samples_m": 1.3881348961354474,
+      "scope": "Root and original model basis only; bone-detail-none journal cannot establish ankle overlap."
+    },
+    {
+      "start": 2501,
+      "last_native_evade": 2522,
+      "event": {
+        "goal": [
+          3.5355339050293,
+          -64.3000030517578
+        ],
+        "position": [
+          0.0,
+          -66.9000015258789
+        ],
+        "type": "evade"
+      },
+      "previous_clip": "idle",
+      "previous_attack_time": -1.0,
+      "previous_release_time": -1.0,
+      "native_basis_direction": [
+        -0.7766961785368827,
+        0.0,
+        -0.6298754212113714
+      ],
+      "predominantly_lateral": true,
+      "root_distance_between_observed_samples_m": 4.0976362969086955,
+      "scope": "Root and original model basis only; bone-detail-none journal cannot establish ankle overlap."
+    },
+    {
+      "start": 2684,
+      "last_native_evade": 2702,
+      "event": {
+        "goal": [
+          4.61490154266357,
+          -64.7422409057617
+        ],
+        "position": [
+          0.919383764266968,
+          -66.2729721069336
+        ],
+        "type": "evade"
+      },
+      "previous_clip": "idle",
+      "previous_attack_time": -1.0,
+      "previous_release_time": -1.0,
+      "native_basis_direction": [
+        -0.8335447118570094,
+        0.0,
+        -0.5524520009333074
+      ],
+      "predominantly_lateral": true,
+      "root_distance_between_observed_samples_m": 3.6795934478958254,
+      "scope": "Root and original model basis only; bone-detail-none journal cannot establish ankle overlap."
+    }
+  ],
+  "death_events": [
+    {
+      "frame": 11,
+      "target": 0,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 0,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 11,
+      "target": 1,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 1,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 11,
+      "target": 3,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 3,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 74,
+      "target": 4,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Oathblade",
+        "skill": false,
+        "target": 4,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 116,
+      "target": 2,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Oathblade",
+        "skill": false,
+        "target": 2,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 362,
+      "target": 12,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 12,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 362,
+      "target": 13,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 13,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 422,
+      "target": 10,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Oathblade",
+        "skill": false,
+        "target": 10,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 509,
+      "target": 11,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Oathblade",
+        "skill": false,
+        "target": 11,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 887,
+      "target": 22,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 22,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 977,
+      "target": 20,
+      "kind": "bulwark",
+      "event": {
+        "critical": false,
+        "damage": 74,
+        "dead": true,
+        "name": "Sundering Arc",
+        "skill": true,
+        "target": 20,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 977,
+      "target": 24,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Sundering Arc",
+        "skill": true,
+        "target": 24,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1052,
+      "target": 23,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Oathblade",
+        "skill": false,
+        "target": 23,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1130,
+      "target": 21,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Oathblade",
+        "skill": false,
+        "target": 21,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1553,
+      "target": 32,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Sundering Arc",
+        "skill": true,
+        "target": 32,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1553,
+      "target": 33,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Sundering Arc",
+        "skill": true,
+        "target": 33,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1640,
+      "target": 31,
+      "kind": "elite",
+      "event": {
+        "critical": false,
+        "damage": 109,
+        "dead": true,
+        "name": "Ashen Judgment",
+        "skill": true,
+        "target": 31,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1676,
+      "target": 30,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Oathblade",
+        "skill": false,
+        "target": 30,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 2015,
+      "target": 41,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 41,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 2015,
+      "target": 42,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 42,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 2015,
+      "target": 44,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 44,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 2063,
+      "target": 40,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Sundering Arc",
+        "skill": true,
+        "target": 40,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 2117,
+      "target": 43,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Oathblade",
+        "skill": false,
+        "target": 43,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 2432,
+      "target": 52,
+      "kind": "hexer",
+      "event": {
+        "critical": true,
+        "damage": 187,
+        "dead": true,
+        "name": "Ember Oath",
+        "skill": true,
+        "target": 52,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 2822,
+      "target": 50,
+      "kind": "boss",
+      "event": {
+        "critical": false,
+        "damage": 6,
+        "dead": true,
+        "name": "Oathblade",
+        "skill": false,
+        "target": 50,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 2885,
+      "target": 51,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Oathblade",
+        "skill": false,
+        "target": 51,
+        "type": "hit"
+      }
+    }
+  ],
+  "walk_intervals": [
+    [
+      21,
+      64
+    ],
+    [
+      84,
+      91
+    ],
+    [
+      155,
+      352
+    ],
+    [
+      372,
+      412
+    ],
+    [
+      435,
+      499
+    ],
+    [
+      519,
+      560
+    ],
+    [
+      617,
+      877
+    ],
+    [
+      933,
+      950
+    ],
+    [
+      987,
+      1042
+    ],
+    [
+      1062,
+      1120
+    ],
+    [
+      1169,
+      1537
+    ],
+    [
+      1563,
+      1570
+    ],
+    [
+      1601,
+      1618
+    ],
+    [
+      1650,
+      1666
+    ],
+    [
+      1686,
+      1727
+    ],
+    [
+      1784,
+      2005
+    ],
+    [
+      2025,
+      2045
+    ],
+    [
+      2073,
+      2107
+    ],
+    [
+      2156,
+      2422
+    ],
+    [
+      2523,
+      2560
+    ],
+    [
+      2622,
+      2639
+    ],
+    [
+      2703,
+      2728
+    ],
+    [
+      2790,
+      2803
+    ],
+    [
+      2832,
+      2875
+    ],
+    [
+      2895,
+      2954
+    ]
+  ],
+  "human_visual_review": "pending; journal parsing is not visual acceptance",
+  "review_tool_sha256": "83bff1cabc3e915bbcf857bc5f628e159f82088cff10090c5ab0cbb223d9987d",
+  "scope": "Actual consecutive journal. No native bone positions, GPU pixel occlusion, physical phone FPS or whole-movie human review inferred."
+}

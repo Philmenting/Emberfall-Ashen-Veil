@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "status": "original_interrupted_attempt_recovery_receipt_hardlinked_exactly",
+  "source": "/workspace/scratch/emberfall-quality-057/gameplay/interrupted-native-session-final-recovery.json",
+  "destination": "/workspace/Emberfall-Ashen-Veil/docs/design/reference-057/gameplay/interrupted-prior-attempt-recovery.json",
+  "sha256": "859d9238f78e74c8f6727e2fc8c07151aff5eac4f1d8093bd01f4b06a4dcda60",
+  "same_inode": true,
+  "prior_source_commit": "02a3fc905e55a4e64cbece4eb6b07c65c1bf4afb",
+  "complete_jsonl_rows": 2033,
+  "scope": "Provenance of the interrupted prior attempt only; the partial movie and all original scratch files remain preserved. The six successful recordings are separately proven by the final session and capture receipts."
+}

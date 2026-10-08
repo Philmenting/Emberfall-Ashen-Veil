@@ -1,0 +1,207 @@
+{
+  "schema": 1,
+  "status": "all_retained_derived_sheets_have_recorded_ai_visual_inspection; quality_concerns_remain",
+  "created_utc": "2026-10-08T00:30:44.008640+00:00",
+  "character_class": "vowkeeper",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "comparison_sha256": "4b59eefbe7166104f0dc93e96dc9bd5895284fbdc30bf2da7150c292e23d20a8",
+  "actual_native_capture_and_full_decode_exits": "Both finalized captures have actual Godot, FFmpeg encoder and complete media decode exit0; this verifier runs no engine.",
+  "planned_ranges_per_side": 20,
+  "actual_successful_range_decode_receipts": 40,
+  "all_retained_derived_sheet_files_recorded_as_actually_inspected": 120,
+  "separately_inspected_original_native_pngs": 16,
+  "decode_receipts": [
+    {
+      "file": "vowkeeper/before/first-signature-full-released-phrase/decode-receipt.json",
+      "sha256": "a503c13e92bfc56329e8b7579518637761b4d0b178f14f3200b4994481c82095"
+    },
+    {
+      "file": "vowkeeper/before/first-basic-full-released-phrase/decode-receipt.json",
+      "sha256": "acdf756236f867d1abef2157904667b90b8c30e14d41eed9b79b1baaa7674f4c"
+    },
+    {
+      "file": "vowkeeper/before/first-judgment-full-released-phrase/decode-receipt.json",
+      "sha256": "d2e80bd38902903a17226f69deabfaf1b8f7b22e965ae57cfbb55640c0a567ae"
+    },
+    {
+      "file": "vowkeeper/before/first-sunder-full-released-phrase/decode-receipt.json",
+      "sha256": "cf87ef7ccfc5a81d1925c800264873598856d9f552fce58ffd2636eaa1f09c44"
+    },
+    {
+      "file": "vowkeeper/before/first-lateral-evade/decode-receipt.json",
+      "sha256": "946116a02263d3228ab7f9363bd016ff34b23aadb6115e98a46f1351dfbcbde4"
+    },
+    {
+      "file": "vowkeeper/before/first-recovery-to-evade/decode-receipt.json",
+      "sha256": "4778fd6842b6cb6423348f7e1d4deac89701b08535142789c18a9b49f8555092"
+    },
+    {
+      "file": "vowkeeper/before/first-attack-to-evade/decode-receipt.json",
+      "sha256": "1312920ff0689e6c144f522eb04951a74393f2046fcf67e70fac4f39de379007"
+    },
+    {
+      "file": "vowkeeper/before/additional-evade-2501/decode-receipt.json",
+      "sha256": "705bd5fcfd53950bc40b22dae43da742facfa59728ea5936f349683b1533d26e"
+    },
+    {
+      "file": "vowkeeper/before/additional-evade-2684/decode-receipt.json",
+      "sha256": "f83f702a8ec3cded80ba34822db6dc3fe5c8ee544b7fee0409993fc4caffd33b"
+    },
+    {
+      "file": "vowkeeper/before/ordinary-travel-gait/decode-receipt.json",
+      "sha256": "06017c5467d792f0a2c3adaf54cbba9940c4092c7f6fd676b461a9d796b4a4df"
+    },
+    {
+      "file": "vowkeeper/before/first-raider-death/decode-receipt.json",
+      "sha256": "8da800977a19fe9cafc3148807c22f5e1399ad0c6dc31a12f23d969eaaf5f2c2"
+    },
+    {
+      "file": "vowkeeper/before/first-hexer-death/decode-receipt.json",
+      "sha256": "7b1914eb2c95402b0ac9369f3d53f3406f7a6b8e1bfc7febba9e0e09db3a374e"
+    },
+    {
+      "file": "vowkeeper/before/first-bulwark-death/decode-receipt.json",
+      "sha256": "816d3bd94af9322f9a79e4a70fbdb3c9e6fd3660bdff13d48615b014c5ed0c25"
+    },
+    {
+      "file": "vowkeeper/before/first-elite-death/decode-receipt.json",
+      "sha256": "df5d4638a4cfa2cdb926b66eae6ff50903beba305e85fe121da1dda87eebca74"
+    },
+    {
+      "file": "vowkeeper/before/first-boss-death/decode-receipt.json",
+      "sha256": "dd1768b90a96b03fc82b36c2bfa3f5795e8e53a15aae25c17f1885d75957b781"
+    },
+    {
+      "file": "vowkeeper/before/first-boss-phase0-ordinary-melee/decode-receipt.json",
+      "sha256": "632a5d91ac323f644dfb994c5bb03c48913419a85745e82bd3650680d9f5135f"
+    },
+    {
+      "file": "vowkeeper/before/first-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "3b40e20a49131c568277448a39511c7016bf089f3a789072c737fff5a87bb9de"
+    },
+    {
+      "file": "vowkeeper/before/first-elite-interrupted-telegraph/decode-receipt.json",
+      "sha256": "303eb8d06397563886050d2b475e35568c7fe2a39cdab55dd3948a85da5cc55c"
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "c53d39329c78116e07ffcf7fcc6653c9e8e6c3241baf129ce429bc575ce37279"
+    },
+    {
+      "file": "vowkeeper/before/original-ending-loot-ui/decode-receipt.json",
+      "sha256": "6c2255ff09c7433ea6136a2ae912905301a616848eb0069137502c75b307e8d1"
+    },
+    {
+      "file": "vowkeeper/after/first-signature-full-released-phrase/decode-receipt.json",
+      "sha256": "aec7a75f730b71c539d5dd9d70557c0bd044557272326c9d732286b0caea7fe5"
+    },
+    {
+      "file": "vowkeeper/after/first-basic-full-released-phrase/decode-receipt.json",
+      "sha256": "a72e91481560b2b497f87a04f3140cff0608362fb65ae816175bb1a2c789c685"
+    },
+    {
+      "file": "vowkeeper/after/first-judgment-full-released-phrase/decode-receipt.json",
+      "sha256": "eedef95cfe945d91666f0d8e328c3fd7c801bb5fdd5c56199a05cf91cd9e25a6"
+    },
+    {
+      "file": "vowkeeper/after/first-sunder-full-released-phrase/decode-receipt.json",
+      "sha256": "b7460efe2a175e7aa38415c15a165be277c52daad007914aaa467cd325e8d474"
+    },
+    {
+      "file": "vowkeeper/after/first-lateral-evade/decode-receipt.json",
+      "sha256": "e362f0e5b6e4c75daf6b39439f8e5dedeb5c09d4e72384157867c139778bdd28"
+    },
+    {
+      "file": "vowkeeper/after/first-recovery-to-evade/decode-receipt.json",
+      "sha256": "eb49d2ee4a5dd415e1878427a033c02b3c127cd42cb9779573133690f0905f9c"
+    },
+    {
+      "file": "vowkeeper/after/first-attack-to-evade/decode-receipt.json",
+      "sha256": "b6c6cae0e6e15961e9669fea211f95ebd4bcaa178af224cce01d7d6a5729ec57"
+    },
+    {
+      "file": "vowkeeper/after/additional-evade-2501/decode-receipt.json",
+      "sha256": "74aa9d3f3f0c78d95c119a899341c4dd7236000860ed528c701946da19301675"
+    },
+    {
+      "file": "vowkeeper/after/additional-evade-2684/decode-receipt.json",
+      "sha256": "1a0a485f0b92f2a8bf5091f3776e418f59564c51fee1c3cd2b2b5fcf076a92e2"
+    },
+    {
+      "file": "vowkeeper/after/ordinary-travel-gait/decode-receipt.json",
+      "sha256": "1a23a66dc84a4cb3ea6c0ed67629c6efd9ad05fa2a9a8741849fbe583f010fec"
+    },
+    {
+      "file": "vowkeeper/after/first-raider-death/decode-receipt.json",
+      "sha256": "e4b9aa19cd568e7053ee05a286663d0b1b7e9d4f9ca6540cb4a33469965cf679"
+    },
+    {
+      "file": "vowkeeper/after/first-hexer-death/decode-receipt.json",
+      "sha256": "0668b08023c7bf4999c42fd67a452f7ca28091781aee0d64533000adcd6c933f"
+    },
+    {
+      "file": "vowkeeper/after/first-bulwark-death/decode-receipt.json",
+      "sha256": "78967a1a2cb02a734c95760a815fe5adecc4e16f2fb4086741c38c892acec9d6"
+    },
+    {
+      "file": "vowkeeper/after/first-elite-death/decode-receipt.json",
+      "sha256": "149e8ae1bdd9f8bfbae6a7486cb6de4ae2c0eb6b082d6e1f1d43bf07632a7545"
+    },
+    {
+      "file": "vowkeeper/after/first-boss-death/decode-receipt.json",
+      "sha256": "296267952a4ca687b07109c477faa945ad674570970fef699b8e8b41e61f40ef"
+    },
+    {
+      "file": "vowkeeper/after/first-boss-phase0-ordinary-melee/decode-receipt.json",
+      "sha256": "4eb30b1b83a2612abae4baa455a3b159a2d4a7ba9f4eacb6a04459bfe30a5344"
+    },
+    {
+      "file": "vowkeeper/after/first-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "a11bb82855157444844734dddf308ca6229ac5f4812879d14076d2673ce22130"
+    },
+    {
+      "file": "vowkeeper/after/first-elite-interrupted-telegraph/decode-receipt.json",
+      "sha256": "7e0773de745d17a95f9951f9ca5e2a2baaa5928fa6e6c06f00d6b98effb8d742"
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "d44e9f4b603ce9b8d3190bdd17232046188426fb205e7973ca12df36208fd7a8"
+    },
+    {
+      "file": "vowkeeper/after/original-ending-loot-ui/decode-receipt.json",
+      "sha256": "ca9ac17597a849c333617e8be32849c2e87b8840ed4ca34a1719edef389cfce7"
+    }
+  ],
+  "ai_visual_review_receipts": [
+    {
+      "file": "vowkeeper-common-death-and-elite-ai-review.json",
+      "sha256": "6c964ee37d5f10188fb2dcce757018168cc3bf60482492a6ef8ee4379a120a93"
+    },
+    {
+      "file": "vowkeeper-context-ai-review.json",
+      "sha256": "c5e60da1ecc910de32c1b6643e5c540c51399a5a6f799329adf97cd27a838e79"
+    },
+    {
+      "file": "vowkeeper-guardian-ending-ai-review.json",
+      "sha256": "aed30073f2b18362845d15ceb2587511cf938d1cf7447b0a38e9ec9955724e06"
+    },
+    {
+      "file": "vowkeeper-hero-ai-review.json",
+      "sha256": "d355ec85d8cb2990e416aeb491b383e5c35be7b62dd50457e927a39483729a8e"
+    },
+    {
+      "file": "vowkeeper-hexer-ai-review.json",
+      "sha256": "848f14749af498b4f89629e917ecacb5119ec85e0a4c2fe0342eaefdd1291101"
+    }
+  ],
+  "human_signoff_claimed": false,
+  "release_readiness_claimed": false,
+  "limits": [
+    "AI inspection of bounded, retained frame samples; neither complete movie was watched frame by frame.",
+    "Derived H264 pixels remain lossy, including PNG contact sheets; JPEG92 context sheets add another documented compression step.",
+    "Successful capture/result/hash verification does not resolve the recorded Hexer/Guardian release-readability concerns.",
+    "No bone-detail-none ankle/anatomy proof, full death-completion approval, physical phone FPS or general beta quality acceptance inferred."
+  ],
+  "verifier_sha256": "dcf20ff49cc0ad342668dfc6201536f0dce4bd869c30f584ab2596803bcfbdf7"
+}

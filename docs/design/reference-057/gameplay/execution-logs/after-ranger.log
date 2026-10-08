@@ -1,0 +1,10 @@
+CAPTURE START 101659 /workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger
+CAPTURE 300 frames; 10.0 playback seconds; 237.4 wall seconds
+CAPTURE 600 frames; 20.0 playback seconds; 445.0 wall seconds
+CAPTURE 900 frames; 30.0 playback seconds; 645.3 wall seconds
+CAPTURE 1200 frames; 40.0 playback seconds; 839.9 wall seconds
+CAPTURE 1500 frames; 50.0 playback seconds; 1020.0 wall seconds
+CAPTURE 1800 frames; 60.0 playback seconds; 1217.6 wall seconds
+CAPTURE 2100 frames; 70.0 playback seconds; 1405.5 wall seconds
+CAPTURE 2400 frames; 80.0 playback seconds; 1588.9 wall seconds
+CAPTURE VERIFIED complete 2559 chronological frames; /workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger

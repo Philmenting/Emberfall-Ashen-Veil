@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "status": "two_completed_reviews_verified_in_isolated_temporary_staged_class_side_layout",
+  "created_utc": "2026-10-07T23:22:32.920944+00:00",
+  "actual_layout_check_process_exit": 0,
+  "verifier_sha256": "6b86db14a53a81c1951f579ddc4708d56efb697fab12b3ec8e635cf14b248297",
+  "classes": {
+    "arcanist": {
+      "sheet_files": 80,
+      "original_pngs": 6
+    },
+    "ranger": {
+      "sheet_files": 96,
+      "original_pngs": 12
+    }
+  },
+  "scope": "Read-only hash verification on temporary hardlinks of exact existing proof bytes; temporary verification-summary links were explicitly unlinked before new summaries were written. Original comparisons, capture receipts, PNGs and derived review files were read only. Temporary layout removed after actual successful verification. No native engine or final gameplay staging performed."
+}

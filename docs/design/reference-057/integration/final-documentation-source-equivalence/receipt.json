@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "observed_at": "2026-10-08T00:12:44.948294+00:00",
+  "status": "all_982_non_documentation_git_blobs_and_modes_match_tested_source",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "source_tree": "e491d100b89c7b9eae92885d28053086f77c8563",
+  "documentation_parent_commit": "f20edd1881e45f8afa42a460fc8ce0fb4ff7706b",
+  "verified_paths": 982,
+  "allowed_changes": [
+    "README.md",
+    "docs/**"
+  ],
+  "inputs_sha256": "76b5ce9e953e5af7bd2b787ddea2bbe37d76fbdbc6859d50f76acf846c3776a8",
+  "verifier_sha256": "2f3a0fd789e5ace571af20e7acf38016e21bf571fb151dbd16935633a49eaf51",
+  "scope": "Existing non-documentation working-tree bytes and Git executable/symlink modes, plus all tracked changes and non-ignored new paths. No Engine or test execution is implied. Final documentation commit must additionally be checked for a documentation-only diff."
+}

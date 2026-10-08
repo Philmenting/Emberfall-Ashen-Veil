@@ -1,0 +1,666 @@
+{
+  "schema": 1,
+  "status": "all_retained_hexer_sheets_actually_ai_visually_reviewed_with_limits",
+  "reviewer": "Codex independent AI visual reviewer /root/temporal_review_resume_057/review_scope_audit_057/hexer_visual",
+  "reviewer_type": "AI inspection via tools.view_image original detail; no human signoff claimed",
+  "reviewed_at_utc": "2026-10-07T23:06:51.184614+00:00",
+  "character_class": "ranger",
+  "range": "first-hexer-telegraph-release-recovery-reset",
+  "source_actor": 11,
+  "source_actor_kind": "hexer",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets. Shared fixed crop [265, 124, 886, 455], 621x331 composition pixels, 1:1 original decoded pixels with external labels. Not native engine PNGs. Off-crop actors/environment unjudged.",
+  "scope": {
+    "first_frame": 333,
+    "last_frame_inclusive": 381,
+    "actual_viewed_sheet_count": 8,
+    "actual_viewed_panel_count": 48,
+    "sampling": "Every fourth frame plus range end and exact semantic frames; all retained sheets viewed, not all decoded movie frames."
+  },
+  "paired_findings": [
+    {
+      "type": "semantic_cycle_completion",
+      "evidence": "Direct actor11 journal rows on both sides bind warning 335, impact 365, recover_heavy 365\u2013377, idle 378/379, death 380. Frame 364 is an additional one-frame idle entry before impact 365; it is not the postattack recovery reset. This cycle completes semantically before the lethal hit."
+    },
+    {
+      "type": "pixel_timing_readability",
+      "evidence": "Both pixel pairs show orange striped warning at 335 and empty yellow impact outline at 365; Ranger has moved right outside warning by 349; aftermath ring disappears before 377. Ground attack timing remains readable."
+    },
+    {
+      "type": "body_staff_visual_concern",
+      "evidence": "After low/forward pale staff and nearly upright torso change little through sampled windup, release, and recovery. Before has raised green staff that lowers/sweeps forward around 361\u2013369 and rises again by 377. After does not show a strong distinct body/staff reset at 377\u2192378. This is an observed composition-scale cue weakness, not a conclusion that skeletal animation is absent."
+    },
+    {
+      "type": "reset_before_death",
+      "evidence": "At 378/379 live Hexer persists and 1 foe remains, followed by 187 damage text and 0 foes at 380. After body begins spreading arms at 380/381. Pixel evidence supports survival across reset boundaries; detailed bone recovery and completed death remain unproven."
+    }
+  ],
+  "limits": [
+    "Actor identity and clip names come from journal; visual observations are separately recorded.",
+    "All 8 actual derived sheets / 48 retained panels were inspected. Complete consecutive decoding of 98 frames is a receipt fact and does not mean 98 frames were visually viewed.",
+    "Lossy H264 and JPEG92 plus small silhouette size limit subtle-motion judgments.",
+    "Off-crop actors, environment, and UI cannot be visually judged from these crops.",
+    "No ankle/shin overlap, anatomical correctness, unviewed occlusion, full skeletal death completion, physical-device FPS, or universal animation acceptance claim.",
+    "Explicit AI inspection; no human signoff claimed."
+  ],
+  "decode_receipts": [
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/ranger/before/first-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "6ae0d842fc44c40ff880feebb8cf3152fa3980994618aad8ab896cb069984680",
+      "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+      "movie_sha256": "8c01eef238de70c33dad7ff99abb8812c2a75ebee485e0feb71c7d32244d5b72",
+      "capture_receipt_sha256": "d70f6f723fa8999e58f330689002b04e52a80530bff8aa81b953246067c87373",
+      "review_tool_sha256": "f4f2ad49dd62a6dd220410f3ae56029352b71c9c07c2926927487730bd554a96",
+      "complete": true
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/ranger/after/first-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "f0f67333029eaa06288ff836b31e91dc934d2be571afca25ef021b2d7b88f797",
+      "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+      "movie_sha256": "008b0c71db628429e3c826fb2de2beeb8510d8b04496333e0e7952f42d7e2948",
+      "capture_receipt_sha256": "beb108b23ef0c16081c0d58642d77158aaf2dbc1265686d4e2578b982728c6b4",
+      "review_tool_sha256": "f4f2ad49dd62a6dd220410f3ae56029352b71c9c07c2926927487730bd554a96",
+      "complete": true
+    }
+  ],
+  "journal_bindings": [
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/frames.jsonl",
+      "sha256": "20ef6994781678d3708f4bb27b839ac0df765b730d39595fb0f035f910b2f410",
+      "audit_path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/ranger-before-journal-audit.json",
+      "audit_sha256": "4000bdff0ea65c2a96ee28b694a7e7a888d151b93952fea3ef6760d2c64b0ced",
+      "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5"
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/frames.jsonl",
+      "sha256": "fe460d2d028dbd84b71b58b1a7524eaf9367efb8fa971a7d4ba40283985064ce",
+      "audit_path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/ranger-after-journal-audit.json",
+      "audit_sha256": "772047a8a3bf44e91d0676fad4a867931e7e24014fcffff45e32bb8c8567e0be",
+      "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7"
+    }
+  ],
+  "semantic_journal_rows": [
+    {
+      "side": "before",
+      "frame": 333,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "walk",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": -1.0,
+        "source_avatar": false,
+        "skeleton_bones": 29
+      },
+      "events": []
+    },
+    {
+      "side": "before",
+      "frame": 334,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "walk",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": -1.0,
+        "source_avatar": false,
+        "skeleton_bones": 29
+      },
+      "events": []
+    },
+    {
+      "side": "before",
+      "frame": 335,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "windup_heavy",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": -1.0,
+        "source_avatar": false,
+        "skeleton_bones": 29
+      },
+      "events": [
+        {
+          "duration": 0.965970873832703,
+          "position": [
+            -0.901863157749176,
+            -12.5283145904541
+          ],
+          "radius": 0.980163216590881,
+          "source": 11,
+          "type": "warning"
+        }
+      ]
+    },
+    {
+      "side": "before",
+      "frame": 363,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "windup_heavy",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": -1.0,
+        "source_avatar": false,
+        "skeleton_bones": 29
+      },
+      "events": []
+    },
+    {
+      "side": "before",
+      "frame": 364,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "idle",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": -1.0,
+        "source_avatar": false,
+        "skeleton_bones": 29
+      },
+      "events": []
+    },
+    {
+      "side": "before",
+      "frame": 365,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "recover_heavy",
+        "attack_time": 0.0,
+        "release_time": 0.0333333333333333,
+        "death_time": -1.0,
+        "source_avatar": false,
+        "skeleton_bones": 29
+      },
+      "events": [
+        {
+          "source": 11,
+          "type": "miss"
+        },
+        {
+          "position": [
+            -0.901863157749176,
+            -12.5283145904541
+          ],
+          "radius": 0.980163216590881,
+          "source": 11,
+          "type": "impact"
+        }
+      ]
+    },
+    {
+      "side": "before",
+      "frame": 373,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "recover_heavy",
+        "attack_time": 0.0,
+        "release_time": 0.3,
+        "death_time": -1.0,
+        "source_avatar": false,
+        "skeleton_bones": 29
+      },
+      "events": []
+    },
+    {
+      "side": "before",
+      "frame": 377,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "recover_heavy",
+        "attack_time": 0.0,
+        "release_time": 0.433333333333333,
+        "death_time": -1.0,
+        "source_avatar": false,
+        "skeleton_bones": 29
+      },
+      "events": []
+    },
+    {
+      "side": "before",
+      "frame": 378,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "idle",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": -1.0,
+        "source_avatar": false,
+        "skeleton_bones": 29
+      },
+      "events": [
+        {
+          "skill": false,
+          "target": 11,
+          "type": "hero_release"
+        }
+      ]
+    },
+    {
+      "side": "before",
+      "frame": 379,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "idle",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": -1.0,
+        "source_avatar": false,
+        "skeleton_bones": 29
+      },
+      "events": []
+    },
+    {
+      "side": "before",
+      "frame": 380,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "death",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": 0.0333333333333333,
+        "source_avatar": false,
+        "skeleton_bones": 29
+      },
+      "events": [
+        {
+          "critical": false,
+          "damage": 187,
+          "dead": true,
+          "name": "Piercing Shot",
+          "skill": false,
+          "target": 11,
+          "type": "hit"
+        }
+      ]
+    },
+    {
+      "side": "before",
+      "frame": 381,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "death",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": 0.0666666666666667,
+        "source_avatar": false,
+        "skeleton_bones": 29
+      },
+      "events": []
+    },
+    {
+      "side": "after",
+      "frame": 333,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "walk",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": -1.0,
+        "source_avatar": true,
+        "skeleton_bones": 65
+      },
+      "events": []
+    },
+    {
+      "side": "after",
+      "frame": 334,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "walk",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": -1.0,
+        "source_avatar": true,
+        "skeleton_bones": 65
+      },
+      "events": []
+    },
+    {
+      "side": "after",
+      "frame": 335,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "windup_heavy",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": -1.0,
+        "source_avatar": true,
+        "skeleton_bones": 65
+      },
+      "events": [
+        {
+          "duration": 0.965970873832703,
+          "position": [
+            -0.901863157749176,
+            -12.5283145904541
+          ],
+          "radius": 0.980163216590881,
+          "source": 11,
+          "type": "warning"
+        }
+      ]
+    },
+    {
+      "side": "after",
+      "frame": 363,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "windup_heavy",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": -1.0,
+        "source_avatar": true,
+        "skeleton_bones": 65
+      },
+      "events": []
+    },
+    {
+      "side": "after",
+      "frame": 364,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "idle",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": -1.0,
+        "source_avatar": true,
+        "skeleton_bones": 65
+      },
+      "events": []
+    },
+    {
+      "side": "after",
+      "frame": 365,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "recover_heavy",
+        "attack_time": 0.0,
+        "release_time": 0.0333333333333333,
+        "death_time": -1.0,
+        "source_avatar": true,
+        "skeleton_bones": 65
+      },
+      "events": [
+        {
+          "source": 11,
+          "type": "miss"
+        },
+        {
+          "position": [
+            -0.901863157749176,
+            -12.5283145904541
+          ],
+          "radius": 0.980163216590881,
+          "source": 11,
+          "type": "impact"
+        }
+      ]
+    },
+    {
+      "side": "after",
+      "frame": 373,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "recover_heavy",
+        "attack_time": 0.0,
+        "release_time": 0.3,
+        "death_time": -1.0,
+        "source_avatar": true,
+        "skeleton_bones": 65
+      },
+      "events": []
+    },
+    {
+      "side": "after",
+      "frame": 377,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "recover_heavy",
+        "attack_time": 0.0,
+        "release_time": 0.433333333333333,
+        "death_time": -1.0,
+        "source_avatar": true,
+        "skeleton_bones": 65
+      },
+      "events": []
+    },
+    {
+      "side": "after",
+      "frame": 378,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "idle",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": -1.0,
+        "source_avatar": true,
+        "skeleton_bones": 65
+      },
+      "events": [
+        {
+          "skill": false,
+          "target": 11,
+          "type": "hero_release"
+        }
+      ]
+    },
+    {
+      "side": "after",
+      "frame": 379,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "idle",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": -1.0,
+        "source_avatar": true,
+        "skeleton_bones": 65
+      },
+      "events": []
+    },
+    {
+      "side": "after",
+      "frame": 380,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "death",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": 0.0333333333333333,
+        "source_avatar": true,
+        "skeleton_bones": 65
+      },
+      "events": [
+        {
+          "critical": false,
+          "damage": 187,
+          "dead": true,
+          "name": "Piercing Shot",
+          "skill": false,
+          "target": 11,
+          "type": "hit"
+        }
+      ]
+    },
+    {
+      "side": "after",
+      "frame": 381,
+      "actor11": {
+        "id": 11,
+        "kind": "hexer",
+        "clip": "death",
+        "attack_time": -1.0,
+        "release_time": -1.0,
+        "death_time": 0.0666666666666667,
+        "source_avatar": true,
+        "skeleton_bones": 65
+      },
+      "events": []
+    }
+  ],
+  "viewed_files": [
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/ranger/before/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+      "sha256": "500811b6e1cd753a1c246b33ea21dc0f4ab9e2fd124cb181a7e58daedb0d6d2d",
+      "side": "before",
+      "frames": [
+        333,
+        334,
+        335,
+        337,
+        338,
+        341
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "333/334 show live dark hooded Hexer in gold ring with green circular staff head raised above shoulder/head level. 335 introduces orange striped warning around Ranger; countdown is 1.0s in335/337, 0.9s338, 0.8s341. Hexer keeps raised staff and upright dark torso through341. A fallen dark Hexer silhouette remains between live Hexer and nearer raider bodies."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/ranger/before/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+      "sha256": "07f914bbc9ad4d5d7358ee9bdcd17b5a667c29da82229c30b863aec4c585b2ff",
+      "side": "before",
+      "frames": [
+        343,
+        344,
+        345,
+        349,
+        353,
+        357
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "343 shows Ranger still casting Marked Shot;344/345 add EVADE and lateral displacement;349 places Ranger to right of orange warning. By353/357 corpses in earlier panels are gone and live Hexer is fully separated from hero against open floor. Live Hexer stays with green staff high throughout343-357; warning counts0.8\u21920.3s."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/ranger/before/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+      "sha256": "0f15d4aea8b8cb8a7f45f3afb691ff8112b8ccf65f3bbb535c00bc83375dc0c4",
+      "side": "before",
+      "frames": [
+        361,
+        363,
+        364,
+        365,
+        369,
+        371
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "361/363 show Hexer staff lowering from above-head position toward a forward diagonal;364 presents forward staff;365 changes orange striped warning to empty yellow outline and Hexer staff extends nearly horizontally left. At369 torso inclines forward and staff remains low/extended;371 green staff head rises toward shoulder level. Ground ring expands;1 foe remains. Relative to after, before has a visibly larger staff-height/torso change around release."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/ranger/before/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+      "sha256": "5dfeb7116998f1379dd904d89365277689eb9b81139839166b1457fb7de03cae",
+      "side": "before",
+      "frames": [
+        373,
+        377,
+        378,
+        379,
+        380,
+        381
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "373 green staff head remains around shoulder level during residual yellow ring;377 staff head is raised above shoulder/head again and ring is absent.378/379 keep raised-staff standing pose with1 foe;380/381 add187 damage text and 0 foes while body remains mostly upright. Reset378 is supplied by journal; pixels show a surviving returned stance before lethal380. Full death completion is outside this short phrase."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/ranger/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+      "sha256": "bf852471446eed9fb45283b25153ac709195036443de2daebd08f03f42bf549b",
+      "side": "after",
+      "frames": [
+        333,
+        334,
+        335,
+        337,
+        338,
+        341
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "333/334 show live green-clad Hexer in gold ring with pale circular staff head held low, down-left of torso.335 introduces same orange striped warning around Ranger at same location and countdown as before.337/338/341 staff is held somewhat farther left/forward while torso stays upright. Green-clad fallen Hexer on right is visibly larger and farther extended than before fallen dark silhouette."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/ranger/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+      "sha256": "217b6d3f6a72d8391b600b49e0997754cf9d03f71a08951e702cb056814aeff4",
+      "side": "after",
+      "frames": [
+        343,
+        344,
+        345,
+        349,
+        353,
+        357
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "343/344/345 show Ranger cast-to-EVADE transition;349 moves Ranger right of warning, matching before. Live Hexer maintains upright torso and pale circular staff head low/forward throughout343-357.353/357 clear earlier corpses, leaving live Hexer and Ranger separated against open floor; warning counts0.8\u21920.3s."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/ranger/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+      "sha256": "345e75069361d664481e782886055ad33ca116809659e82e4490ec325d7d4d6a",
+      "side": "after",
+      "frames": [
+        361,
+        363,
+        364,
+        365,
+        369,
+        371
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "361/363/364 show Hexer nearly upright with pale staff low/forward;365 replaces orange warning with yellow outline at same point as before.369/371 preserve similar upright body/staff silhouette with modest hand movement. Large distinct release sweep/body compression is weak at this 1:1 composition scale relative to before; impact timing is communicated clearly by the ground ring.1 foe remains."
+    },
+    {
+      "path": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/ranger/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+      "sha256": "aabc5e57ff060580489e21cc2a325c036b207b86cfd21e4b2b2af15583956d4c",
+      "side": "after",
+      "frames": [
+        373,
+        377,
+        378,
+        379,
+        380,
+        381
+      ],
+      "actual_visual_inspection": true,
+      "inspection_tool": "tools.view_image",
+      "detail": "original",
+      "observations": "373 shows residual yellow impact ring.377/378/379 have no ring and live Hexer remains upright with staff low/forward; no pronounced body/staff reset change is visible between377 and378.380 adds187 damage text and 0 foes, and Hexer arms begin spreading;381 extends that response with staff/free-hand movement and upper-body lift. This distinguishes death onset from the survived reset378/379, but complete skeletal death is not shown."
+    }
+  ],
+  "work_performed": "Read finalized decode receipts/audits/direct actor11 journal rows, actually viewed each of 8 retained images at original detail, verified sheet SHA256, then wrote this fresh scratch-only receipt. No extra decode, Engine/Godot/Blender/Git/source/repository/frozen-tool edits."
+}

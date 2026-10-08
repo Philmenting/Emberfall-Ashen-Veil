@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-08T00:26:39.689006+00:00",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "status": "three_actual_successful_byte_verifier_exits",
+  "executions": [
+    {
+      "character_class": "arcanist",
+      "actual_process_exit": 0,
+      "execution_log": "arcanist-final-byte-verification-schema-compatible-execution.log"
+    },
+    {
+      "character_class": "ranger",
+      "actual_process_exit": 0,
+      "execution_log": "ranger-final-byte-verification-schema-compatible-execution.log"
+    },
+    {
+      "character_class": "vowkeeper",
+      "actual_process_exit": 0,
+      "execution_log": "vowkeeper-final-byte-verification-schema-compatible-execution.log"
+    }
+  ],
+  "prior_verifier_schema_failure_preserved": "vowkeeper-final-byte-verification-schema-failure.json",
+  "human_signoff_claimed": false,
+  "release_readiness_claimed": false
+}

@@ -1,0 +1,102 @@
+{
+	"audio": {
+		"accepted_cues": 68,
+		"channels": 2,
+		"completed_effects": 67,
+		"cue_clock_scope": "Observe the ordinary director's accepted cues; its existing 80 ms duplicate check uses wall time. Each accepted cue begins at its recorded fixed-step sample boundary.",
+		"eof_padding_scope": "Zero-filled suffix frames in each ended one-shot's first EOF block; concurrent score/other voices retain their real samples.",
+		"eof_silence_frames": 55384,
+		"finite": true,
+		"peak": 0.0984680131077766,
+		"rms": 0.00785427066069722,
+		"sample_format": "f32le",
+		"sample_frames": 3669120,
+		"sample_rate": 44100,
+		"scope": "Native AudioStreamPlayback fixed-step stereo float PCM from actual accepted AudioDirector slots, streams and gain/suspend state; no physical audio loopback.",
+		"seconds": 83.2,
+		"stolen_voices": 1,
+		"stream_pcm_sha256": {
+			"arcane_contact": "47c9d683a3bf0ae29d6558ebcbf3c7d28986d7fd1c38058646b95b6c5e33cd71",
+			"arcane_gather": "c966d31febd460271a7a8a2fc5c4ad895360e102a7cef902f49ad593437f7dc0",
+			"arcane_gather_heavy": "be30f7ecb5689b86d3f8606560f47e7531b6a1f2f9944738dc052dc5be7a1962",
+			"arcane_gather_power": "5c6515ed7c0abdc2ab60691bba12eb636d01dc6a43af2232b1f96d8a2a683007",
+			"arcane_release": "69f6b42419af83f1c638c20f7ee175cc7569d69a6fb3d1ec54653b742db8f6a5",
+			"camp": "24ea25f0f478d7ad2a7b6274b9c6b64ebd43a51cd1655c15e961d58640ad7afb",
+			"dungeon": "3b8e7dc46305bb5fc9c0b3ad7a4184bce94c7e6327a8c68303450df7db33c47a",
+			"hurt": "436ce8eeeada388ac7e0f469603ea04383dbb47da2a553e733a2307c183f32c7",
+			"lightning": "3fe48a782f98b916c06f484dfef5483f3ce124bc4ef12b9010476a11579e89ba",
+			"nova": "54d318a157d20dc85b74fc9fe5c87799b749bb1d937baff55aca75530d7daf6b",
+			"phase_awakened": "a95b82a080f9a52d5ead7912a2e10634b7202e2874dfb924115deff4aa119749",
+			"phase_desperate": "3b775f3e0b7c124f44f863680eef4dabeb2b91a38ce3de72b73b185d9dc4317c",
+			"starfall": "7e72f95fac419cab09c6bc84e4e919997836a3edd78014fa99a60eb823c99c03",
+			"step": "1ab3ee74db2bf697750d106e02abf57e91ca6a6f04baa2602b0c4a44a792c653",
+			"victory": "c2f39f50be6b06e7bbfb0185da947eb158ab7101d000f8b2ea9b95a5127360b1",
+			"ward": "b84471d68160735c5ffbbe76040b07aec60f1ea95610bbb488a2ffc58ed23818",
+			"warning": "3c4e35e40bcab1c31c87c61fcf4080caefdd09ad7745b2731c0b0ed5279e3686"
+		}
+	},
+	"character_class": "Arcanist",
+	"complete": true,
+	"final_page": "loot",
+	"frames": 2496,
+	"guardian_seen": true,
+	"guardian_warning_seen": true,
+	"native_pcm_sha256": "ae1553e7bb746cff82181785597ef5c7246900008be5f93d2f11cccf67c21316",
+	"playback_seconds": 83.2,
+	"recording_kind": "ordinary_expedition",
+	"recovered_loot": [
+		{
+			"affinity": "Arcanist",
+			"armor": 0,
+			"name": "Veilglass Conductor",
+			"power": 44,
+			"quality": "RARE",
+			"region": 0,
+			"relic": "echo_lightning",
+			"sell": 93,
+			"slot": "Amulet",
+			"stats": {
+				"Intellect": 2,
+				"Vitality": 5
+			},
+			"status": "",
+			"temper": 0,
+			"tier": 1
+		},
+		{
+			"affinity": "Arcanist",
+			"armor": 31,
+			"name": "Runebound Wraps",
+			"power": 39,
+			"quality": "RARE",
+			"region": 0,
+			"sell": 96,
+			"slot": "Gloves",
+			"stats": {
+				"Intellect": 1,
+				"Strength": 4
+			},
+			"status": "",
+			"temper": 0,
+			"tier": 1
+		}
+	],
+	"run_boss_defeated": true,
+	"run_reward": {
+		"casts": 12,
+		"dodges": 3,
+		"gold": 190,
+		"kills": 26,
+		"note": "Your first class relic • equip it to change your signature skill",
+		"seconds": 80.1999999999997,
+		"title": "CAMPAIGN",
+		"xp": 428
+	},
+	"run_succeeded": true,
+	"schema": 1,
+	"scope": "Recording completeness and actual combat outcome; no visual or release approval.",
+	"settle_frames_recorded": 90,
+	"simulation_elapsed": 80.1999999999997,
+	"simulation_finished": true,
+	"won": true
+}
