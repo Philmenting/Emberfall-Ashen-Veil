@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-08T00:26:39.209267+00:00",
+  "actual_process_exit": 1,
+  "failed_execution_log": "vowkeeper-final-byte-verification-execution.log",
+  "failed_execution_log_sha256": "2decb894b203cbe1592192fda8ce2755b814ed4560cfdb1decefcf64f888923d",
+  "issue": "Generic verifier required top-level viewed_files; two actually inspected delegated leaf receipts use explicit nested pair.files schemas. Original receipts and frozen decode tools remain unchanged.",
+  "correction": "Generic verifier now validates those explicit nested actually_viewed file records and their declared counts/hash/byte sizes; this is proof-schema compatibility, not a production or missing-review regression."
+}

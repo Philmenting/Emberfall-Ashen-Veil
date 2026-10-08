@@ -1,0 +1,25 @@
+{
+  "scope": "Separate immutable commit binding added after original actual execution; original source/test/native execution receipts and original file index remain unchanged. Full game-scale temporal review remains pending elsewhere.",
+  "actual_git_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "actual_git_tree": "e491d100b89c7b9eae92885d28053086f77c8563",
+  "actual_verified_non_docs_source_blob_count": 982,
+  "all_source_snapshot_sha256_match_actual_git_blobs": true,
+  "owned_detached_source_snapshot_git_blobs": {
+    "scripts/source_avatar_evade.gd": {
+      "git_blob_sha1": "5b66b2111d2ac793c6022d078941611cd681758c",
+      "bytes": 7073,
+      "sha256": "866d5c6157cc34f1e81514f4895a706d9dc59f26ae81b3e33a21800d83bcb8f7",
+      "detached_snapshot_matches_git_blob": true
+    },
+    "tests/source_avatar_evade_smoke.gd": {
+      "git_blob_sha1": "6fa52ab223d353b864eaba107b39d39b7264833c",
+      "bytes": 27344,
+      "sha256": "aaab2efbe9e0b8a0da82f22d628c4faedf1311aa41e3e821185a915345662a00",
+      "detached_snapshot_matches_git_blob": true
+    }
+  },
+  "original_file_index_sha256": "447474ca9b46c4a436a0e88f4402534c1b9989a5949148f6f098a11569d95e59",
+  "original_indexed_file_count": 54,
+  "all_original_file_index_entries_verified": true,
+  "production_source_modified_during_binding": false
+}

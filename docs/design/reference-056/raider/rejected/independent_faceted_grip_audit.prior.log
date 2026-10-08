@@ -1,0 +1,17 @@
+{
+  "receipt": "/workspace/scratch/emberfall-quality-056/raider/independent_faceted_grip_audit.json",
+  "actual_hull_vertices": 8,
+  "pass": false,
+  "five_digit_actual_nearest_axis_patch_gap_mm": {
+    "thumb": 2.7336880102688195,
+    "index": 1.1220371280895465,
+    "middle": 0.2733408073271041,
+    "ring": 0.6242493223652941,
+    "pinky": 0.9275776851209926
+  }
+}
+Traceback (most recent call last):
+  File "/workspace/scratch/emberfall-quality-056/raider/independent_faceted_grip_audit.py", line 177, in <module>
+    assert receipt['complete_hand_band_contact_pass'], 'Central wood facets cannot validate the complete hand band; inspect original receipt'
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Central wood facets cannot validate the complete hand band; inspect original receipt

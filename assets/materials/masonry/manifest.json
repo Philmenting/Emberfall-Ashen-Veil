@@ -1,0 +1,104 @@
+{
+  "asset": "ambientCG Bricks096",
+  "purpose": "Native architecture-only vertical masonry for Emberfall 0.47. Horizontal caps retain Rock030; floor and character materials are separate.",
+  "origin": "ambientCG external CC0 material; not original Emberfall texture and not generated imagery.",
+  "source_page": "https://ambientcg.com/a/Bricks096",
+  "api_url": "https://ambientcg.com/api/v2/full_json?id=Bricks096&include=downloadData,technicalData,previewData,labelData",
+  "download_url": "https://ambientcg.com/get?file=Bricks096_1K-PNG.zip",
+  "resolved_download_url": "https://acg-download.struffelproductions.com/file/ambientCG-Web/download/Bricks096_eOBWGg4q/Bricks096_1K-PNG.zip",
+  "download_request_notes": "The official get link redirected to the listed public CDN. First generic request returned HTTP 403; a normal request with the official source page as Referer succeeded with HTTP 200. No credentials or access bypass used.",
+  "acquired_utc": "2026-10-04T12:50:14.955306+00:00",
+  "source_creation_method": {
+    "api_value": "PBRPhotogrammetry",
+    "api_label": "Height field photogrammetry",
+    "api_description": "Displacement generated using photogrammetry."
+  },
+  "license": {
+    "spdx": "CC0-1.0",
+    "name": "Creative Commons CC0 1.0 Universal",
+    "official_declaration_url": "https://docs.ambientcg.com/license/",
+    "dedication_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "exact_official_declaration": "All ambientCG assets are provided under the Creative Commons CC0 1.0 Universal License. This applies to the downloadable asset files and the material preview renders shown for each asset on the site.",
+    "license_proof_files": [
+      "LICENSE-SOURCE.txt"
+    ]
+  },
+  "archive": {
+    "file": "Bricks096_1K-PNG.zip",
+    "bytes": 9234877,
+    "sha256": "c5ef69eeae9ddcd91169734464017051e074226d703f2f7edbda922326a6ef1c"
+  },
+  "files": [
+    {
+      "file": "Bricks096_1K-PNG_Color.png",
+      "role": "sRGB base color",
+      "resolution": [
+        1024,
+        512
+      ],
+      "mode": "RGB",
+      "processing": "Original source pixels and IDAT bytes preserved; origin iTXt metadata only.",
+      "source_sha256": "4404360e4aa1af1e3aaec6250305571a7eff5d17ec093fb706e86d4fb091280e",
+      "source_bytes": 873475,
+      "sha256": "ff324d0e4043852c9bf5cef08941d408829252d603216859cee86d8a6159e59d",
+      "bytes": 873859,
+      "origin_embedded": true
+    },
+    {
+      "file": "Bricks096_1K-PNG_NormalGL.png",
+      "role": "linear OpenGL (+Y) tangent-space normal",
+      "resolution": [
+        1024,
+        512
+      ],
+      "mode": "RGB",
+      "processing": "Original source pixels and IDAT bytes preserved; origin iTXt metadata only.",
+      "source_sha256": "2dfd39415c01d837e4360865915a4933a9807124914c1f0421c15a773a4c7715",
+      "source_bytes": 2713364,
+      "sha256": "3ca81a59672fd67c682386743e93dadaeee077c84a6703d1604e68629416a5b4",
+      "bytes": 2713748,
+      "origin_embedded": true
+    },
+    {
+      "file": "Bricks096_1K-PNG_Roughness.png",
+      "role": "linear roughness",
+      "resolution": [
+        1024,
+        512
+      ],
+      "mode": "L",
+      "processing": "Original source pixels and IDAT bytes preserved; origin iTXt metadata only.",
+      "source_sha256": "3ad86ece76794fc13542b12628fcb2fd88847f2f6f2745ae58fbe5d4fd61b831",
+      "source_bytes": 317713,
+      "sha256": "510ecdbe96d9ef05420bdf3a2473a1548c68b1dc97816f6bf180f9d625c97dba",
+      "bytes": 318097,
+      "origin_embedded": true
+    }
+  ],
+  "source_evidence": [
+    {
+      "file": "Bricks096-api.json",
+      "sha256": "b3c5a5f047a9c9b82d777b0e7aff8da9b4dbd95f1d3c07d461ef3da42e4d32af"
+    }
+  ],
+  "physical_size": {
+    "source_dimensions_available": false,
+    "source_api_dimensionX": 0,
+    "source_api_dimensionY": 0,
+    "proposed_repeat_metres": [
+      2.8,
+      1.4
+    ],
+    "status": "Art-direction estimate, not a measured physical size."
+  },
+  "inspection": {
+    "raw_maps_opened": [
+      "Color",
+      "NormalGL",
+      "Roughness"
+    ],
+    "observations": "Weathered dark gray/olive natural rubble/rough ashlar masonry, irregular approximately horizontal courses, broad mortar joints and mineral wear; no red brick. Source is warm/olive, so the mapping proposal reduces chroma in shader while preserving luminance contrast.",
+    "limitations": "Native runtime confirmation and independent review are recorded in docs/previews/visible-combat and docs/design/graphics-review-047.md. Source 1K maps are 1024x512; no measured physical scale or sculpted displacement is claimed."
+  },
+  "runtime_integration": "scripts/ruin_architecture.gd; assets/shaders/masonry_surface.gdshader. One cached material per live world, world-aligned 2.8 by 1.4 m repeat, regional tint, relief disabled in Battery mode."
+}

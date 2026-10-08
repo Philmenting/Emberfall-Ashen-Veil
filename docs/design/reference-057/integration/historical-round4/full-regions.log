@@ -1,0 +1,39 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: correct world theme for region 0
+PASS: distinct stone palette for region 0
+PASS: regional enemy names 0
+PASS: regional boss name 0
+PASS: enemy appearance receives region 0
+PASS: water belongs only to the archive 0
+PASS: lava belongs only to the citadel 0
+PASS: boss regalia creates without runtime errors 0
+PASS: scenery does not alter combat state 0
+PASS: correct world theme for region 1
+PASS: distinct stone palette for region 1
+PASS: regional enemy names 1
+PASS: regional boss name 1
+PASS: enemy appearance receives region 1
+PASS: water belongs only to the archive 1
+PASS: lava belongs only to the citadel 1
+PASS: boss regalia creates without runtime errors 1
+PASS: scenery does not alter combat state 1
+PASS: correct world theme for region 2
+PASS: distinct stone palette for region 2
+PASS: regional enemy names 2
+PASS: regional boss name 2
+PASS: enemy appearance receives region 2
+PASS: water belongs only to the archive 2
+PASS: lava belongs only to the citadel 2
+PASS: boss regalia creates without runtime errors 2
+PASS: scenery does not alter combat state 2
+PASS: correct world theme for region 3
+PASS: distinct stone palette for region 3
+PASS: regional enemy names 3
+PASS: regional boss name 3
+PASS: enemy appearance receives region 3
+PASS: water belongs only to the archive 3
+PASS: lava belongs only to the citadel 3
+PASS: boss regalia creates without runtime errors 3
+PASS: scenery does not alter combat state 3
+REGIONS SMOKE: 36 checks, 0 failures

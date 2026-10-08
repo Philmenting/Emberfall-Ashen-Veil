@@ -1,0 +1,64 @@
+quality: PASS BETA FLOW SMOKE: 46 checks
+quality: PASS COMBAT STANCES SMOKE: 140 checks
+quality: PASS COMBAT MOVEMENT SMOKE: 8 checks
+quality: PASS JOURNEY SMOKE: 413 checks
+quality: PASS DUNGEON SMOKE: 55 checks
+quality: PASS PERSISTENCE SMOKE: 89 checks
+quality: PASS ARCANE TACTICS SMOKE: 29 checks
+quality: PASS BOSS PATTERNS SMOKE: 122 checks
+quality: PASS CLASS LOOT SMOKE: 29 checks
+quality: PASS CONTRACTS SMOKE: 68 checks
+quality: PASS COMBINED OATHS / PHASES SMOKE: 338 checks
+quality: PASS MAIN COMBINED RULES SMOKE: 156 checks
+quality: PASS GEAR / FORECAST SMOKE: 38 checks
+quality: PASS GEAR GOALS SMOKE: 114 checks
+quality: PASS REGIONS SMOKE: 36 checks
+quality: PASS ONBOARDING SMOKE: 19 checks
+quality: PASS SUCCESS LOOP SMOKE: 87 checks
+quality: PASS RECOVERY SMOKE: 48 checks
+quality: PASS OPTIONS SMOKE: 82 checks
+quality: PASS SKILL ROTATION SMOKE: 135 checks
+quality: PASS VISUALS SMOKE: 73 checks
+quality: PASS WORLD FRAMING SMOKE: 900 checks
+quality: PASS AUTHORED ART SMOKE: 105 checks
+quality: PASS CHARACTER EQUIPMENT SMOKE: 37 checks
+quality: PASS PRESENTATION SMOKE: 71 checks
+quality: PASS FRAME METRICS SMOKE: 10 checks
+quality: PASS ROOM GROUND SMOKE: 17 checks
+quality: PASS CHARACTER THREE D SMOKE: 167 checks
+quality: PASS ANIMATION CRAFT SMOKE: 50 checks
+quality: PASS CAMP HUD SMOKE: 44 checks
+quality: PASS COMBAT READABILITY SMOKE: 57 checks
+quality: PASS FELLOWSHIP UI SMOKE: 11 checks
+quality: PASS CLOUD IDENTITY SMOKE: 14 checks
+quality: PASS MANA WARD SMOKE: 27 checks
+quality: PASS emberfall.js
+quality: PASS progression_runtime_test.js
+quality: PROGRESSION RUNTIME: server-owned profile, bounded AFK settlement, allowlists, inventory and replay protection passed.
+quality: BETA CHECKS: 34 Godot suites, 3635 checks, 0 failures
+build: PROGRESSION RUNTIME: server-owned profile, bounded AFK settlement, allowlists, inventory and replay protection passed.
+build: PLAY SOURCE / LISTING VERIFIED; publication gates are checked separately with --strict
+build: Ran 5 tests in 0.007s
+build: OK
+build: Verifies
+build: Verified using v1 scheme (JAR signing): false
+build: Verified using v2 scheme (APK Signature Scheme v2): true
+build: Verified using v3 scheme (APK Signature Scheme v3): true
+build: Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+build: Verified using v4 scheme (APK Signature Scheme v4): false
+build: Verified for SourceStamp: false
+build: Verifies
+build: Verified using v1 scheme (JAR signing): false
+build: Verified using v2 scheme (APK Signature Scheme v2): true
+build: Verified using v3 scheme (APK Signature Scheme v3): true
+build: Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+build: Verified using v4 scheme (APK Signature Scheme v4): false
+build: Verified for SourceStamp: false
+build: package: name='com.philmenting.emberfallashenveil.test029' versionCode='53' versionName='0.47.0-online-test' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'
+build: uses-permission: name='android.permission.INTERNET'
+build: package: name='com.philmenting.emberfallashenveil.closedbeta' versionCode='53' versionName='0.47.0-beta.1' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'
+build: uses-permission: name='android.permission.VIBRATE'
+build: sdkVersion:'24'
+build: targetSdkVersion:'36'
+build: ANDROID AAB VERIFIED
+build: ARM64 native libraries: 2, all ELF LOAD segments support 16 KB pages

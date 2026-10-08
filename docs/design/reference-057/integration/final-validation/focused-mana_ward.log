@@ -1,0 +1,30 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: 35 damage absorbed at a cost of 70 Mana
+PASS: visual events report absorbed and actual health damage separately
+PASS: partial ward uses only Mana above one ability cast
+PASS: reserve prevents absorption without preventing incoming damage
+PASS: odd Mana cannot buy fractional absorption or cross the reserve
+PASS: empty Mana never becomes negative
+PASS: ward applies after armor mitigation
+PASS: minimum hit does not create free absorption
+PASS: Vowkeeper: ward is exclusive to Arcanist
+PASS: Ranger: ward is exclusive to Arcanist
+PASS: old expedition checkpoint retains its original rules
+PASS: old checkpoint produces exactly the same outcome after update
+PASS: ward combat checkpoint restores bit-exactly
+PASS: ward checkpoint preserves final outcome and RNG
+PASS: invalid ward stat rejected: -0.1
+PASS: invalid ward stat rejected: 0.51
+PASS: invalid ward stat rejected: inf
+PASS: invalid ward stat rejected: nan
+PASS: invalid ward stat rejected: ward
+PASS: new Arcanist expeditions receive the ward stat
+PASS: Spirit adds a usable defensive Mana pool
+PASS: live and skipped ward combat remain identical
+PASS: automatic combat uses both ward and Nova
+PASS: Arcanist world and HUD expose ward feedback
+PASS: absorbing damage displays the shield shell
+PASS: shield feedback expires without changing the simulation rules
+PASS: game save preserves a paused ward-enabled expedition
+MANA WARD SMOKE: 27 checks, 0 failures

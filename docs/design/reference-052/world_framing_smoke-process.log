@@ -1,0 +1,903 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: region 0: framing fixture reaches a real guardian
+PASS: 2424x1080 region 0 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 0 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 0 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 0 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 0 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 0 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: region 1: framing fixture reaches a real guardian
+PASS: 2424x1080 region 1 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 1 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 1 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 1 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 1 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 1 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: region 2: framing fixture reaches a real guardian
+PASS: 2424x1080 region 2 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 2 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 2 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 2 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 2 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 2 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: region 3: framing fixture reaches a real guardian
+PASS: 2424x1080 region 3 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 3 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 3 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 3 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 3 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 3 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: region 0: framing fixture reaches a real guardian
+PASS: 2424x1080 region 0 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 0 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 0 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 0 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 0 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 0 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: region 1: framing fixture reaches a real guardian
+PASS: 2424x1080 region 1 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 1 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 1 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 1 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 1 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 1 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: region 2: framing fixture reaches a real guardian
+PASS: 2424x1080 region 2 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 2 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 2 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 2 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 2 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 2 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: region 3: framing fixture reaches a real guardian
+PASS: 2424x1080 region 3 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 3 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 3 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 3 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 3 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 3 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: region 0: framing fixture reaches a real guardian
+PASS: 2424x1080 region 0 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 0 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 0 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 0 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 0 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 0 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: region 1: framing fixture reaches a real guardian
+PASS: 2424x1080 region 1 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 1 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 1 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 1 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 1 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 1 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: region 2: framing fixture reaches a real guardian
+PASS: 2424x1080 region 2 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 2 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 2 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 2 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 2 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 2 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: region 3: framing fixture reaches a real guardian
+PASS: 2424x1080 region 3 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 3 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 3 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 3 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 3 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 2424x1080 region 3 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: region 0: framing fixture reaches a real guardian
+PASS: 1040x1080 region 0 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 0 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 0 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 0 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 0 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 0 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: region 1: framing fixture reaches a real guardian
+PASS: 1040x1080 region 1 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 1 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 1 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 1 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 1 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 1 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: region 2: framing fixture reaches a real guardian
+PASS: 1040x1080 region 2 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 2 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 2 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 2 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 2 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 2 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: region 3: framing fixture reaches a real guardian
+PASS: 1040x1080 region 3 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 3 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 3 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 3 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 3 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 3 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: region 0: framing fixture reaches a real guardian
+PASS: 1040x1080 region 0 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 0 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 0 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 0 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 0 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 0 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: region 1: framing fixture reaches a real guardian
+PASS: 1040x1080 region 1 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 1 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 1 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 1 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 1 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 1 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: region 2: framing fixture reaches a real guardian
+PASS: 1040x1080 region 2 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 2 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 2 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 2 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 2 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 2 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: region 3: framing fixture reaches a real guardian
+PASS: 1040x1080 region 3 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 3 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 3 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 3 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 3 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 3 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: region 0: framing fixture reaches a real guardian
+PASS: 1040x1080 region 0 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 0 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 0 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 0 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 0 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 0 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: region 1: framing fixture reaches a real guardian
+PASS: 1040x1080 region 1 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 1 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 1 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 1 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 1 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 1 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: region 2: framing fixture reaches a real guardian
+PASS: 1040x1080 region 2 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 2 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 2 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 2 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 2 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 2 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: region 3: framing fixture reaches a real guardian
+PASS: 1040x1080 region 3 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 3 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 3 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 3 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 3 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 1040x1080 region 3 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: region 0: framing fixture reaches a real guardian
+PASS: 854x480 region 0 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 0 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 0 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 0 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 0 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 0 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: region 1: framing fixture reaches a real guardian
+PASS: 854x480 region 1 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 1 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 1 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 1 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 1 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 1 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: region 2: framing fixture reaches a real guardian
+PASS: 854x480 region 2 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 2 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 2 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 2 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 2 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 2 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: region 3: framing fixture reaches a real guardian
+PASS: 854x480 region 3 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 3 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 3 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 3 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 3 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 3 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Vowkeeper: fully extended contact poses remain inside the quiet play area
+PASS: region 0: framing fixture reaches a real guardian
+PASS: 854x480 region 0 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 0 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 0 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 0 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 0 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 0 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: region 1: framing fixture reaches a real guardian
+PASS: 854x480 region 1 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 1 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 1 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 1 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 1 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 1 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: region 2: framing fixture reaches a real guardian
+PASS: 854x480 region 2 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 2 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 2 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 2 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 2 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 2 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: region 3: framing fixture reaches a real guardian
+PASS: 854x480 region 3 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 3 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 3 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 3 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 3 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 3 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Arcanist: fully extended contact poses remain inside the quiet play area
+PASS: region 0: framing fixture reaches a real guardian
+PASS: 854x480 region 0 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 0 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 0 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 0 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 0 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 0 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: region 1: framing fixture reaches a real guardian
+PASS: 854x480 region 1 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 1 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 1 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 1 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 1 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 1 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: region 2: framing fixture reaches a real guardian
+PASS: 854x480 region 2 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 2 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 2 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 2 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 2 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 2 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: region 3: framing fixture reaches a real guardian
+PASS: 854x480 region 3 phase 0 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 3 phase 0 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 3 phase 1 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 3 phase 1 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 3 phase 2 variant 0: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+PASS: 854x480 region 3 phase 2 variant 1: complete collision outline stays inside the quiet play area
+PASS: actual complete figure and raised weapon bounds clear the HUD as well as the warning
+PASS: camera framing never changes simulation, warning geometry or RNG
+PASS: Ranger: fully extended contact poses remain inside the quiet play area
+WORLD FRAMING SMOKE: 900 checks, 0 failures

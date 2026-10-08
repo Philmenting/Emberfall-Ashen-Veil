@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "status": "complete_consecutive_h264_decoded_range",
+  "character_class": "vowkeeper",
+  "side": "before",
+  "label": "first-lateral-evade",
+  "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "first_frame_zero_based": 423,
+  "last_frame_zero_based_inclusive": 439,
+  "every_consecutive_frame_decoded": true,
+  "retained_frame_sampling": "Every consecutive decoded frame",
+  "exact_semantic_frames_retained": [
+    424,
+    425,
+    434,
+    435
+  ],
+  "actual_ffmpeg_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-threads",
+    "1",
+    "-filter_threads",
+    "1",
+    "-i",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/ordinary-vowkeeper-complete.mp4",
+    "-map",
+    "0:v:0",
+    "-an",
+    "-vf",
+    "select=between(n\\,423\\,439)",
+    "-frames:v",
+    "17",
+    "-fps_mode",
+    "passthrough",
+    "-pix_fmt",
+    "rgb24",
+    "-f",
+    "rawvideo",
+    "pipe:1"
+  ],
+  "actual_ffmpeg_exit_code": 0,
+  "movie_sha256": "e0f3194f1ad288bfa650143fa18d253e5220f09cad22fde5bb90fb494e6095b1",
+  "capture_receipt_sha256": "840e980a74d05da1227173f9e0c3adaadaf532fbebbb88d4a2e9ac2ced795803",
+  "crop_xyxy": [
+    603,
+    120,
+    858,
+    341
+  ],
+  "contact_sheet_pixel_scale": "1:1 original decoded pixels; shared fixed crop for this before/after range",
+  "context_crop_scope": "Full viewport for original ending UI; other context ranges use a shared native-pixel crop around hero and visible Guardian with a minimum620x330 scene margin. Hero ranges keep all sampled conservative actor/weapon projection bounds plus45px horizontal/30px vertical margin and minimum240x220. Off-crop actors/environment cannot be visually judged here; original movies and native PNGs remain full viewport.",
+  "image_origin": "H264-decoded lossy movie frames, lossless PNG contact sheets, cropped only with external labels. Not original Godot PNGs.",
+  "human_visual_review": "pending; decoding alone is not visual acceptance",
+  "sheets": [
+    {
+      "file": "derived-contact-sheet-00.png",
+      "sha256": "3781b0564888003b24b43c46687bb3c1d28f00e4afa9890d3226528cd42ee958",
+      "bytes": 605008,
+      "first_frame": 423,
+      "last_frame": 438,
+      "frames": [
+        423,
+        424,
+        425,
+        426,
+        427,
+        428,
+        429,
+        430,
+        431,
+        432,
+        433,
+        434,
+        435,
+        436,
+        437,
+        438
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-01.png",
+      "sha256": "39a667d44529f8e6b55c1ac3883905176b2913d046a0fe598dde41d35258d22d",
+      "bytes": 76926,
+      "first_frame": 439,
+      "last_frame": 439,
+      "frames": [
+        439
+      ]
+    }
+  ],
+  "review_tool_sha256": "83bff1cabc3e915bbcf857bc5f628e159f82088cff10090c5ab0cbb223d9987d"
+}

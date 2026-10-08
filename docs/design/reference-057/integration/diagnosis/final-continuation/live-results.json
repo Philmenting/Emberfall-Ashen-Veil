@@ -1,0 +1,29 @@
+[
+  {
+    "name": "focused-animation_craft",
+    "command": [
+      "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--audio-driver",
+      "Dummy",
+      "--path",
+      "/workspace/Emberfall-Ashen-Veil",
+      "--fixed-fps",
+      "60",
+      "--script",
+      "res://tests/animation_craft_smoke.gd"
+    ],
+    "cwd": "/workspace/Emberfall-Ashen-Veil",
+    "scope": "headless",
+    "actual_exit_code": 1,
+    "timed_out": false,
+    "wall_seconds": 0.578,
+    "strict_success": false,
+    "engine_error": true,
+    "bad_warning": false,
+    "allowed_intentional_diagnostics": [],
+    "summary_matches": [],
+    "log": "focused-animation_craft.log",
+    "log_sha256": "275cd8aec3e7750d864ca7930131378a0c9c20e86afe030c5ee5b04ed0b58038"
+  }
+]

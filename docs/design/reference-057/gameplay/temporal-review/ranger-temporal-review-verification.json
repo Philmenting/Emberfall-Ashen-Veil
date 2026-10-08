@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "status": "all_retained_derived_sheets_have_recorded_ai_visual_inspection; quality_concerns_remain",
+  "created_utc": "2026-10-08T00:30:43.883424+00:00",
+  "character_class": "ranger",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "comparison_sha256": "34a416600608a2984faead0847c1f7306d300d3f1082f89a53ef3403fd1ea827",
+  "actual_native_capture_and_full_decode_exits": "Both finalized captures have actual Godot, FFmpeg encoder and complete media decode exit0; this verifier runs no engine.",
+  "planned_ranges_per_side": 19,
+  "actual_successful_range_decode_receipts": 38,
+  "all_retained_derived_sheet_files_recorded_as_actually_inspected": 96,
+  "separately_inspected_original_native_pngs": 12,
+  "decode_receipts": [
+    {
+      "file": "ranger/before/first-signature-full-released-phrase/decode-receipt.json",
+      "sha256": "aaf2a6a9f140b83df3166a699c2a0b94dca474c881c55d4ae14ac02875750171"
+    },
+    {
+      "file": "ranger/before/first-basic-full-released-phrase/decode-receipt.json",
+      "sha256": "a8ba0be78cb839f1bccfdfb13ac8bf25b04e80bc596e9fee7aad494e2500f04c"
+    },
+    {
+      "file": "ranger/before/first-marked-full-released-phrase/decode-receipt.json",
+      "sha256": "d387a3aa42058169a229c7554566d3c513b1989f1b0fbec2b86e6c73a01611fc"
+    },
+    {
+      "file": "ranger/before/first-rain-full-released-phrase/decode-receipt.json",
+      "sha256": "39ecfc7ac42a40ca05483e4800c7668f7365991019a020ad875c167d0d8cc54a"
+    },
+    {
+      "file": "ranger/before/first-lateral-evade/decode-receipt.json",
+      "sha256": "9dba7f2cd5b2469ac9b18dccf004cd0a471c5961784526185d75c1f626ddf071"
+    },
+    {
+      "file": "ranger/before/first-attack-to-evade/decode-receipt.json",
+      "sha256": "98833e99276369fdb9aec3002f5bb8b52630b3257908733e684a7568a0359ccc"
+    },
+    {
+      "file": "ranger/before/additional-evade-809/decode-receipt.json",
+      "sha256": "f683a644ede4e0eca7f69a1a5d5775056a9d3201c0ba746bd16ebad66f8959dc"
+    },
+    {
+      "file": "ranger/before/additional-evade-1235/decode-receipt.json",
+      "sha256": "ce62df94d155cc7f1f8d75bd9277dda062908be124532f001b5a785f8221789e"
+    },
+    {
+      "file": "ranger/before/additional-evade-2144/decode-receipt.json",
+      "sha256": "c5a6693f04732b8257e4cc3e2624ae1219e5ca1a331417da7aff06de21c65520"
+    },
+    {
+      "file": "ranger/before/additional-evade-2252/decode-receipt.json",
+      "sha256": "922ef500d5d42407732da0516dea4351132ae9b1ce4537c64ddcd95ad1c74be5"
+    },
+    {
+      "file": "ranger/before/ordinary-travel-gait/decode-receipt.json",
+      "sha256": "0e7246de74f1860c0ac6355af208c472cb3ee7292df0ded13b31c4b5dd0d2644"
+    },
+    {
+      "file": "ranger/before/first-raider-death/decode-receipt.json",
+      "sha256": "dd748ff4b5afada9bc831309071ea12b1b5c5320b6688392a5f1cfe49a22cb21"
+    },
+    {
+      "file": "ranger/before/first-hexer-death/decode-receipt.json",
+      "sha256": "65de594ce99077c493a49678394cf5e61cc958c159a5fd2c5c0b1024cf7d4366"
+    },
+    {
+      "file": "ranger/before/first-bulwark-death/decode-receipt.json",
+      "sha256": "ffc2de5ee2cf31034e3f8fcf6ce101d5725b1989390e579999da80ed67deeba0"
+    },
+    {
+      "file": "ranger/before/first-elite-death/decode-receipt.json",
+      "sha256": "8acbd0b4f0cf6b2c4e3cd12a4b6f651e88f08a90a9f922f96f4f7ac052e1bc27"
+    },
+    {
+      "file": "ranger/before/first-boss-death/decode-receipt.json",
+      "sha256": "bde6d4e9faec5df9fcef40c57149ad8920886eaa04026dfc29d173eedf4b5328"
+    },
+    {
+      "file": "ranger/before/first-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "6ae0d842fc44c40ff880feebb8cf3152fa3980994618aad8ab896cb069984680"
+    },
+    {
+      "file": "ranger/before/first-boss-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "9b613dd86d221aeceeac0d41073d90e3192624a663da738e3d0cb45f006fd601"
+    },
+    {
+      "file": "ranger/before/original-ending-loot-ui/decode-receipt.json",
+      "sha256": "cc6be95400c0802c38162eedcb65b64e16c6cab82f3f7379e2bdf9e496d0b1db"
+    },
+    {
+      "file": "ranger/after/first-signature-full-released-phrase/decode-receipt.json",
+      "sha256": "2a78e34399c78eaa6400ed09efbc47f412fa71785805f02b3e6177e38489f705"
+    },
+    {
+      "file": "ranger/after/first-basic-full-released-phrase/decode-receipt.json",
+      "sha256": "0db0d6f3629985f05b041539ffd72f50539655fa6a4315374b822c1e481d4fa4"
+    },
+    {
+      "file": "ranger/after/first-marked-full-released-phrase/decode-receipt.json",
+      "sha256": "947f0530dceb0a1adc8d0456065721973bf001dd50ff1a26d0c8045eabbba420"
+    },
+    {
+      "file": "ranger/after/first-rain-full-released-phrase/decode-receipt.json",
+      "sha256": "744942ed25df91cada8d1c9f7f23369dbb0541d28e80d7f5ec901c115ea33109"
+    },
+    {
+      "file": "ranger/after/first-lateral-evade/decode-receipt.json",
+      "sha256": "a796b00d511fa41e8290f95e59aeac302b70a3bab4565d402ca004f2a2cb5a13"
+    },
+    {
+      "file": "ranger/after/first-attack-to-evade/decode-receipt.json",
+      "sha256": "6babc2ff32567665f139d997ea63326fb4895916dcfafe0987bbc586a5601e2e"
+    },
+    {
+      "file": "ranger/after/additional-evade-809/decode-receipt.json",
+      "sha256": "671195723edd26e386bec825504b2c303130a3136c33f91ee416032a045e05ed"
+    },
+    {
+      "file": "ranger/after/additional-evade-1235/decode-receipt.json",
+      "sha256": "5c1527ed9c7d7f57d19d12495cd664685e930308eb827586c6d60b91f46341f5"
+    },
+    {
+      "file": "ranger/after/additional-evade-2144/decode-receipt.json",
+      "sha256": "9328dbad842406fab100880eb0b54833a8f09327285fc48cd647c65f10533703"
+    },
+    {
+      "file": "ranger/after/additional-evade-2252/decode-receipt.json",
+      "sha256": "98de39bdcc5e79f176b207677ca907dc0cbd0bff95230a13705b7dd20faec01c"
+    },
+    {
+      "file": "ranger/after/ordinary-travel-gait/decode-receipt.json",
+      "sha256": "55373a57653af9f619f83173e62d8fcfaca314e90d0af855b93a1740b4208b79"
+    },
+    {
+      "file": "ranger/after/first-raider-death/decode-receipt.json",
+      "sha256": "3cb02a5e10e9b2057e53b85097fb3c2c784eb5256ea85580296f0eb719cfa6c9"
+    },
+    {
+      "file": "ranger/after/first-hexer-death/decode-receipt.json",
+      "sha256": "02db0af275da4436998e34ba59501c005a713d2bd2c37da45120287b76b003d6"
+    },
+    {
+      "file": "ranger/after/first-bulwark-death/decode-receipt.json",
+      "sha256": "0ecaac4e9a9e1fe3050ce7591af45de258323184fe43333e1fd293a0be96d6a6"
+    },
+    {
+      "file": "ranger/after/first-elite-death/decode-receipt.json",
+      "sha256": "04bdff56cbc41d27e2b95bc2316b9f97c30dae3e9aa4903dfd5d9508faeafe60"
+    },
+    {
+      "file": "ranger/after/first-boss-death/decode-receipt.json",
+      "sha256": "7d9e3b37f6196c861924c297dc3ddc3806b65cc0cf165df873dc3a8c9a9d3a6b"
+    },
+    {
+      "file": "ranger/after/first-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "f0f67333029eaa06288ff836b31e91dc934d2be571afca25ef021b2d7b88f797"
+    },
+    {
+      "file": "ranger/after/first-boss-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "df2ffb2193ada7ffdc4cbabac654adc4c028d8e86d27d6717b582010237e79f1"
+    },
+    {
+      "file": "ranger/after/original-ending-loot-ui/decode-receipt.json",
+      "sha256": "f0ed064e4970b951ec91e795cdb14d5d71547a30ca8e657a94611ac9e7a4637b"
+    }
+  ],
+  "ai_visual_review_receipts": [
+    {
+      "file": "ranger-common-death-ai-review.json",
+      "sha256": "b7156cfcd7b776b819485f954a2a014aedfd59fc48b99eae2dd8877ffbec3360"
+    },
+    {
+      "file": "ranger-context-ai-review.json",
+      "sha256": "b8f791d6f8097a83965683013e7e10a69db2d7510d7b5dd648b76d02de64e2c2"
+    },
+    {
+      "file": "ranger-guardian-ending-ai-review.json",
+      "sha256": "fff8aa5ee257e8350e09707d37dee840ec15142c3f655733d273931dbbd1c379"
+    },
+    {
+      "file": "ranger-hero-ai-review.json",
+      "sha256": "602d21fc34a2fc6a15ae2a16da9cbd3528c5bbfe3c367f5f6d175729d5708c48"
+    },
+    {
+      "file": "ranger-hexer-ai-review.json",
+      "sha256": "ccfe6ba3cac412ddf635d6d24c5c632aa6853620e9fd217eea46706a72cf7701"
+    }
+  ],
+  "human_signoff_claimed": false,
+  "release_readiness_claimed": false,
+  "limits": [
+    "AI inspection of bounded, retained frame samples; neither complete movie was watched frame by frame.",
+    "Derived H264 pixels remain lossy, including PNG contact sheets; JPEG92 context sheets add another documented compression step.",
+    "Successful capture/result/hash verification does not resolve the recorded Hexer/Guardian release-readability concerns.",
+    "No bone-detail-none ankle/anatomy proof, full death-completion approval, physical phone FPS or general beta quality acceptance inferred."
+  ],
+  "verifier_sha256": "dcf20ff49cc0ad342668dfc6201536f0dce4bd869c30f584ab2596803bcfbdf7"
+}

@@ -1,0 +1,72 @@
+{"status": "measured_touch_pending", "report": "/tmp/tmpu2_7rpbt/output/device-profile.json", "reason": null, "physical_device_measured": true}
+{"status": "failed", "report": "/tmp/tmpiyw2mfj3/output/device-profile.json", "reason": "Activity start reported an error: Error type 3\nError: Activity does not exist", "physical_device_measured": false}
+{"status": "failed", "report": "/tmp/tmp5ci76bb7/output/device-profile.json", "reason": "The QA process disappeared or failed to start", "physical_device_measured": false}
+{"status": "failed", "report": "/tmp/tmp6cpig_rb/output/device-profile.json", "reason": "The QA process restarted before finishing the profile", "physical_device_measured": false}
+{"status": "failed", "report": "/tmp/tmph950gy2v/output/device-profile.json", "reason": "The fixture failed: missing combat", "physical_device_measured": false}
+{"status": "failed", "report": "/tmp/tmpice7g7az/output/device-profile.json", "reason": "The QA process reported a script/runtime/shader error; see qa-logcat.txt", "physical_device_measured": false}
+{"status": "failed", "report": "/tmp/tmpwkko14xj/output/device-profile.json", "reason": "Timed out without all six real-time class/quality measurements", "physical_device_measured": false}
+{"status": "unavailable", "report": "/tmp/tmpbmwtr2er/device-profile.json", "reason": "adb is unavailable; no physical Android device could be inspected", "physical_device_measured": false}
+test_complete_profile_is_measurement_with_touch_pending_and_no_release_pass (test_android_device_probe.ObserverLifecycle.test_complete_profile_is_measurement_with_touch_pending_and_no_release_pass) ... ok
+test_live_failure_never_becomes_a_profile_pass (test_android_device_probe.ObserverLifecycle.test_live_failure_never_becomes_a_profile_pass) ... ok
+test_all_known_emulator_signals_are_refused (test_android_device_probe.ProbeContracts.test_all_known_emulator_signals_are_refused) ... ok
+test_android_service_parsers_preserve_units_and_missing_data (test_android_device_probe.ProbeContracts.test_android_service_parsers_preserve_units_and_missing_data) ... ok
+test_fixture_requires_all_distinct_cases_matching_apk_and_real_time (test_android_device_probe.ProbeContracts.test_fixture_requires_all_distinct_cases_matching_apk_and_real_time) ... ok
+test_identity_is_bounded_and_does_not_store_raw_serial (test_android_device_probe.ProbeContracts.test_identity_is_bounded_and_does_not_store_raw_serial) ... ok
+test_manifest_gate_refuses_shipping_or_online_or_nondebuggable_apks (test_android_device_probe.ProbeContracts.test_manifest_gate_refuses_shipping_or_online_or_nondebuggable_apks) ... ok
+test_missing_adb_is_explicit_unavailable_not_a_measurement (test_android_device_probe.ProbeContracts.test_missing_adb_is_explicit_unavailable_not_a_measurement) ... ok
+test_process_cpu_stat_accepts_names_with_spaces_and_parentheses (test_android_device_probe.ProbeContracts.test_process_cpu_stat_accepts_names_with_spaces_and_parentheses) ... ok
+test_subprocess_target_is_selected_without_a_host_shell (test_android_device_probe.ProbeContracts.test_subprocess_target_is_selected_without_a_host_shell) ... ok
+test_target_selection_never_implicitly_chooses_among_multiple_devices (test_android_device_probe.ProbeContracts.test_target_selection_never_implicitly_chooses_among_multiple_devices) ... ok
+test_unavailable_optional_services_do_not_hide_other_samples (test_android_device_probe.ProbeContracts.test_unavailable_optional_services_do_not_hide_other_samples) ... ok
+test_usb_charging_or_missing_power_state_never_claims_battery_drain (test_android_device_probe.ProbeContracts.test_usb_charging_or_missing_power_state_never_claims_battery_drain) ... ok
+test_complete_bound_native_scene_receipt_passes (test_android_release.AndroidNativeArtReportChecks.test_complete_bound_native_scene_receipt_passes) ... ok
+test_duplicate_or_missing_scenarios_are_rejected (test_android_release.AndroidNativeArtReportChecks.test_duplicate_or_missing_scenarios_are_rejected) ... ok
+test_missing_native_clip_binding_anatomy_or_visible_geometry_fails (test_android_release.AndroidNativeArtReportChecks.test_missing_native_clip_binding_anatomy_or_visible_geometry_fails) ... ok
+test_old_hidden_proxy_receipt_cannot_pass (test_android_release.AndroidNativeArtReportChecks.test_old_hidden_proxy_receipt_cannot_pass) ... ok
+test_original_motion_sampling_and_progress_thresholds_are_required (test_android_release.AndroidNativeArtReportChecks.test_original_motion_sampling_and_progress_thresholds_are_required) ... ok
+test_activity_error_with_zero_adb_exit_fails_before_waiting (test_android_release.AndroidRuntimeChecks.test_activity_error_with_zero_adb_exit_fails_before_waiting) ... ok
+test_evidence_write_errors_do_not_replace_original_process_failure (test_android_release.AndroidRuntimeChecks.test_evidence_write_errors_do_not_replace_original_process_failure) ... ok
+test_live_process_start_grace_and_both_markers_pass (test_android_release.AndroidRuntimeChecks.test_live_process_start_grace_and_both_markers_pass) ... ok
+test_live_process_without_marker_still_times_out_at_original_deadline (test_android_release.AndroidRuntimeChecks.test_live_process_without_marker_still_times_out_at_original_deadline) ... ok
+test_missing_device_preserves_original_failure_and_other_diagnostics (test_android_release.AndroidRuntimeChecks.test_missing_device_preserves_original_failure_and_other_diagnostics) ... ok
+test_observed_process_loss_fails_even_if_a_marker_was_buffered (test_android_release.AndroidRuntimeChecks.test_observed_process_loss_fails_even_if_a_marker_was_buffered) ... ok
+test_pidof_absence_during_grace_is_not_a_transport_error (test_android_release.AndroidRuntimeChecks.test_pidof_absence_during_grace_is_not_a_transport_error) ... ok
+test_runtime_error_precedes_marker_success (test_android_release.AndroidRuntimeChecks.test_runtime_error_precedes_marker_success) ... ok
+test_unrequested_process_restart_does_not_pass_from_old_marker (test_android_release.AndroidRuntimeChecks.test_unrequested_process_restart_does_not_pass_from_old_marker) ... ok
+test_all_four_packages_share_one_import_and_use_their_actual_scene_architecture (test_android_release.QaExportChecks.test_all_four_packages_share_one_import_and_use_their_actual_scene_architecture) ... ok
+test_crash_and_zero_exit_import_errors_stop_before_export_without_retry (test_android_release.QaExportChecks.test_crash_and_zero_exit_import_errors_stop_before_export_without_retry) ... ok
+test_existing_editor_section_keeps_other_settings (test_android_release.QaExportChecks.test_existing_editor_section_keeps_other_settings) ... ok
+test_export_error_stops_remaining_packages (test_android_release.QaExportChecks.test_export_error_stops_remaining_packages) ... ok
+test_export_success_without_artifact_fails (test_android_release.QaExportChecks.test_export_success_without_artifact_fails) ... ok
+test_qa_preserves_runtime_json_licences_and_offline_filter (test_android_release.QaExportChecks.test_qa_preserves_runtime_json_licences_and_offline_filter) ... ok
+test_serial_import_isolated_from_shipping_settings_and_assets (test_android_release.QaExportChecks.test_serial_import_isolated_from_shipping_settings_and_assets) ... ok
+test_16kb_segment_passes (test_android_release.ReleaseChecks.test_16kb_segment_passes) ... ok
+test_4kb_and_misaligned_segments_fail (test_android_release.ReleaseChecks.test_4kb_and_misaligned_segments_fail) ... ok
+test_current_release_identity_and_store_limits (test_android_release.ReleaseChecks.test_current_release_identity_and_store_limits) ... ok
+test_missing_arm64_library_fails (test_android_release.ReleaseChecks.test_missing_arm64_library_fails) ... ok
+test_missing_publication_details_never_report_ready (test_android_release.ReleaseChecks.test_missing_publication_details_never_report_ready) ... ok
+test_actual_simulation_and_continuous_video_clock_are_both_checked (test_gameplay_capture.AudioChronologyContracts.test_actual_simulation_and_continuous_video_clock_are_both_checked) ... ok
+test_cue_cannot_be_shifted_to_an_unrecorded_audio_boundary (test_gameplay_capture.AudioChronologyContracts.test_cue_cannot_be_shifted_to_an_unrecorded_audio_boundary) ... ok
+test_dropped_or_overlapping_native_samples_are_rejected (test_gameplay_capture.AudioChronologyContracts.test_dropped_or_overlapping_native_samples_are_rejected) ... ok
+test_normal_and_fractional_rates_have_no_accumulated_drift (test_gameplay_capture.AudioChronologyContracts.test_normal_and_fractional_rates_have_no_accumulated_drift) ... ok
+test_rate_and_channel_changes_are_rejected (test_gameplay_capture.AudioChronologyContracts.test_rate_and_channel_changes_are_rejected) ... ok
+test_explicit_full_recording_keeps_the_wrapper_from_inserting_a_prefix (test_gameplay_capture.FullExpeditionContracts.test_explicit_full_recording_keeps_the_wrapper_from_inserting_a_prefix) ... ok
+test_full_simulation_positions_and_mana_cannot_hide_behind_presentation_poses (test_gameplay_capture.FullExpeditionContracts.test_full_simulation_positions_and_mana_cannot_hide_behind_presentation_poses) ... ok
+test_lossless_pcm_archive_round_trip_is_checked_before_original_removal (test_gameplay_capture.FullExpeditionContracts.test_lossless_pcm_archive_round_trip_is_checked_before_original_removal) ... ok
+test_nonfinite_native_transform_or_secondary_motion_state_is_rejected (test_gameplay_capture.FullExpeditionContracts.test_nonfinite_native_transform_or_secondary_motion_state_is_rejected) ... ok
+test_only_independent_wall_time_can_be_excluded_from_actual_audio_comparison (test_gameplay_capture.FullExpeditionContracts.test_only_independent_wall_time_can_be_excluded_from_actual_audio_comparison) ... ok
+test_real_guardian_victory_and_original_loot_outcome_are_all_required (test_gameplay_capture.FullExpeditionContracts.test_real_guardian_victory_and_original_loot_outcome_are_all_required) ... ok
+test_camera_changes_and_missing_baseline_are_reported_independently (test_gameplay_capture.OrdinaryComparisonContracts.test_camera_changes_and_missing_baseline_are_reported_independently) ... ok
+test_native_nan_and_short_sample_sources_cannot_pass_as_clean_audio (test_gameplay_capture.OrdinaryComparisonContracts.test_native_nan_and_short_sample_sources_cannot_pass_as_clean_audio) ... ok
+test_pose_and_presentation_release_do_not_hide_gameplay_differences (test_gameplay_capture.OrdinaryComparisonContracts.test_pose_and_presentation_release_do_not_hide_gameplay_differences) ... ok
+test_raw_and_compressed_native_prefix_samples_are_scanned_independently (test_gameplay_capture.OrdinaryComparisonContracts.test_raw_and_compressed_native_prefix_samples_are_scanned_independently) ... ok
+test_a_prefix_cannot_claim_dungeon_completion_or_victory (test_gameplay_capture.OrdinaryPrefixContracts.test_a_prefix_cannot_claim_dungeon_completion_or_victory) ... ok
+test_exact_ordinary_prefix_is_accepted_without_victory (test_gameplay_capture.OrdinaryPrefixContracts.test_exact_ordinary_prefix_is_accepted_without_victory) ... ok
+test_missing_or_extra_prefix_frames_are_rejected (test_gameplay_capture.OrdinaryPrefixContracts.test_missing_or_extra_prefix_frames_are_rejected) ... ok
+test_motion_evidence_is_selected_only_for_explicit_prefix (test_gameplay_capture.OrdinaryPrefixContracts.test_motion_evidence_is_selected_only_for_explicit_prefix) ... ok
+test_wrapper_defaults_to_thirty_seconds_and_keeps_explicit_duration (test_gameplay_capture.OrdinaryPrefixContracts.test_wrapper_defaults_to_thirty_seconds_and_keeps_explicit_duration) ... ok
+
+----------------------------------------------------------------------
+Ran 59 tests in 0.095s
+
+OK

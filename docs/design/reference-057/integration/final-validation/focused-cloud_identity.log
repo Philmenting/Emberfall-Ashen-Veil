@@ -1,0 +1,17 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: new install has no local account or transfer key
+PASS: malformed and non-hex device IDs are rejected
+PASS: hexadecimal IDs accept clipboard case variations
+PASS: initial guest ID and transfer key are written atomically
+PASS: saved guest ID reloads from the identity file
+PASS: saved transfer key reloads for display or revocation
+PASS: crash-recovery fixture leaves the previous identity between rename steps
+PASS: interrupted identity replacement restores the previous valid account
+PASS: invalid replacement cannot overwrite a valid identity
+PASS: rotated guest ID replaces the old identity
+PASS: rotation clears the consumed transfer key
+PASS: successful identity rotation leaves no staging or recovery file behind
+PASS: missing guest IDs are generated from 128 random bits and persisted
+PASS: generated guest ID survives a cold read
+CLOUD IDENTITY SMOKE: 14 checks, 0 failures

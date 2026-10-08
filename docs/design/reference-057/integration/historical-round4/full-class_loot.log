@@ -1,0 +1,32 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Vowkeeper: all 5000 finds include the class primary attribute
+PASS: Vowkeeper: quality controls affix count without duplicates
+PASS: Vowkeeper: item values and all ten tiers stay valid
+PASS: Vowkeeper: every item has a name from its class and slot
+PASS: Vowkeeper: all qualities and slots remain obtainable
+PASS: Vowkeeper: boss loot is always rare or better
+PASS: Vowkeeper: same seed reproduces the entire item
+PASS: Arcanist: all 5000 finds include the class primary attribute
+PASS: Arcanist: quality controls affix count without duplicates
+PASS: Arcanist: item values and all ten tiers stay valid
+PASS: Arcanist: every item has a name from its class and slot
+PASS: Arcanist: all qualities and slots remain obtainable
+PASS: Arcanist: boss loot is always rare or better
+PASS: Arcanist: same seed reproduces the entire item
+PASS: Ranger: all 5000 finds include the class primary attribute
+PASS: Ranger: quality controls affix count without duplicates
+PASS: Ranger: item values and all ten tiers stay valid
+PASS: Ranger: every item has a name from its class and slot
+PASS: Ranger: all qualities and slots remain obtainable
+PASS: Ranger: boss loot is always rare or better
+PASS: Ranger: same seed reproduces the entire item
+PASS: tier input stays within T1–T10
+PASS: class changes affixes and names without changing quality or sell value
+PASS: watched and offline rewards produce identical gear
+PASS: watched and offline Gold and XP remain identical
+PASS: completed expedition class determines the drops
+PASS: attunement never prevents another class from equipping an item
+PASS: class metadata and existing equipment survive save/load without rerolling
+PASS: item card explains attunement and cross-class use
+CLASS LOOT SMOKE: 29 checks, 0 failures

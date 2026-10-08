@@ -1,0 +1,60 @@
+{
+  "scope": "Unchanged original accepted/rejected process logs, reports, execution/source receipts and exact runner; README is separate authored commentary.",
+  "files": [
+    {
+      "path": "headless-operations-report.json",
+      "bytes": 241934,
+      "sha256": "05966a89638bd1c0c113027b63f7fdb1b12c2bb50a057f2b17ebf80229ac142b"
+    },
+    {
+      "path": "headless-operations.log",
+      "bytes": 158158,
+      "sha256": "2cc95471bf8bdf96cda6b2262cf79bc5e430c08802f48258ee324978df63e218"
+    },
+    {
+      "path": "native-gl-primitives-report.json",
+      "bytes": 244772,
+      "sha256": "e9c63a0a92b232e7cf487ecac6889788cd607b0b431bd3a6c76d91bc5879fd37"
+    },
+    {
+      "path": "native-gl-primitives.log",
+      "bytes": 160755,
+      "sha256": "a9dc730e9ad3cb20155e734a4cf86dbfc1cd5ab5d4da6ee03f3677f0dc54df56"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 94483,
+      "sha256": "f6463549ed23a141c856541f7f72fc0e5075fe618fcc429ac6d7ef99a91acc99"
+    },
+    {
+      "path": "rejected-phase-fixture/execution-receipt.json",
+      "bytes": 93320,
+      "sha256": "cb7094fbd81135de4f39937f3b3b14448da87556e10b1cef9b3a3533049cd44d"
+    },
+    {
+      "path": "rejected-phase-fixture/headless-operations-report.json",
+      "bytes": 241934,
+      "sha256": "2c7888c931bde78b0a8843d570eea2735ad66cfa746de44963c84e282375d04c"
+    },
+    {
+      "path": "rejected-phase-fixture/headless-operations.log",
+      "bytes": 159372,
+      "sha256": "ec2af200777bd3d1a09f8f1cc48c25506060dd034980df52b3c7a6135d6c115e"
+    },
+    {
+      "path": "rejected-type-inference/execution-receipt.json",
+      "bytes": 93187,
+      "sha256": "11028befa511f08ef8b7076736461633b5cd114537c38a2518938668f487a25f"
+    },
+    {
+      "path": "rejected-type-inference/headless-operations.log",
+      "bytes": 411,
+      "sha256": "3bd433d835a0de659e5e107c0d0845c7d2be762fe5c5351183a2deebfad074c8"
+    },
+    {
+      "path": "run_budget_checks.py",
+      "bytes": 5292,
+      "sha256": "4eb2c646c1054f9ae149f5a4a10f79cc0f483da1b2966b43e8f523fb1c3de152"
+    }
+  ]
+}

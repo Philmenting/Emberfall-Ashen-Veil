@@ -1,0 +1,309 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-08T00:30:17.487367+00:00",
+  "status": "independent_final_report_read_only_audit_passed_before_capture_owner_staging; final_staging_receipt_deferred",
+  "reviewer": "/root/temporal_review_resume_057/review_scope_audit_057",
+  "reviewer_type": "AI read-only report/provenance audit; no new human signoff or whole-movie viewing",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "report": {
+    "file": "MOTION_REVIEW.md",
+    "sha256": "791546d1efc045e5b38a538e74667d713907c03884b5018b07259b86c1bfc267",
+    "bytes": 13274
+  },
+  "readme": {
+    "file": "README.md",
+    "sha256": "f0acd906ac221a23c473725706d2f4bf8ee0d1aad7e9e950b400f180db1ca5ce",
+    "bytes": 3133
+  },
+  "counts": {
+    "arcanist": {
+      "frames_per_movie": 2496,
+      "duration_seconds_per_movie": 83.2,
+      "semantic_ranges_per_side": 17,
+      "actual_successful_bounded_decode_receipts": 34,
+      "actually_inspected_primary_sheet_files": 80,
+      "retained_panels_including_overlap": 580,
+      "separately_inspected_native_pngs": 6,
+      "unique_retained_frame_indices_per_movie": 240
+    },
+    "ranger": {
+      "frames_per_movie": 2559,
+      "duration_seconds_per_movie": 85.3,
+      "semantic_ranges_per_side": 19,
+      "actual_successful_bounded_decode_receipts": 38,
+      "actually_inspected_primary_sheet_files": 96,
+      "retained_panels_including_overlap": 730,
+      "separately_inspected_native_pngs": 12,
+      "unique_retained_frame_indices_per_movie": 305
+    },
+    "vowkeeper": {
+      "frames_per_movie": 3099,
+      "duration_seconds_per_movie": 103.3,
+      "semantic_ranges_per_side": 20,
+      "actual_successful_bounded_decode_receipts": 40,
+      "actually_inspected_primary_sheet_files": 120,
+      "retained_panels_including_overlap": 870,
+      "separately_inspected_native_pngs": 16,
+      "unique_retained_frame_indices_per_movie": 340
+    }
+  },
+  "totals": {
+    "primary_sheet_files": 296,
+    "primary_retained_panels_including_overlap": 2180,
+    "separately_inspected_native_pngs": 34,
+    "successful_bounded_range_decode_receipts": 112,
+    "ranger_supplement_files_excluded_from_primary": 2,
+    "ranger_supplement_panels_excluded_from_primary": 8
+  },
+  "semantic_claims_checked": [
+    "Arcanist3escapes, firstinterruptedHexer recovery and additionalreset831, Guardian phases1+2 only/final2213-2214.",
+    "Ranger5escapes, true cast starts338/794 and cancellations, Guardian all3 floor phases/transientidle2281/final2297-2298.",
+    "Vowkeeper matching melee releaseonsets11/74; Basic recovery interruption425 distinct from Judgment windup cancellation923; all4escapes and separately inspected native2700.",
+    "Vowkeeper Guardian0 archetype/entity50, phase0ordinarymelee2441-2462/reset2463 withoutfloorwarning, phase1warning2486/impact2531/final2546-2547 and phase2warning2657/impact2699/final2714-2715.",
+    "Vowkeeper realidle2530 and2697-2698, direct paired sheet17 links to exact2697-2699 pixels, quietstaff/heldlowbell concerns, Elite interruptedwarning1640, Guardiandeath2822 leaves1foe.",
+    "Before-only historical classifier gap/corrected plans preserved with explicit prospective status; schemafailure exit1 preserved separately from3freshactualverifierexits0."
+  ],
+  "vowkeeper_critical_linked_files": [
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-16.jpg",
+      "sha256": "15f619294f847a4ab40220aa2f8c212b623d22cc87e64fb9558d79a40fe5ae01"
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-17.jpg",
+      "sha256": "7fa5fff934c70f70b523318b69b31bf80efbe12acc5652de5961edf1fb0ff53d"
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-16.jpg",
+      "sha256": "9c4bbce0353508c0e41a8c410e5692c43f56b6c59c7bbbbe9a271e487657e1ed"
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-17.jpg",
+      "sha256": "3e03a48bb4c1a76246ee2ce3a7ae3346a24089c91202e78a720d35e2f5683d99"
+    }
+  ],
+  "relative_links": [
+    {
+      "relative_href": "temporal-review/README.md",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/README.md",
+      "exists": true,
+      "type": "file",
+      "sha256": "f0acd906ac221a23c473725706d2f4bf8ee0d1aad7e9e950b400f180db1ca5ce"
+    },
+    {
+      "relative_href": "temporal-review/ranger/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/ranger/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+      "exists": true,
+      "type": "file",
+      "sha256": "345e75069361d664481e782886055ad33ca116809659e82e4490ec325d7d4d6a"
+    },
+    {
+      "relative_href": "temporal-review/ranger/after/additional-evade-1235/derived-contact-sheet-00.png",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/ranger/after/additional-evade-1235/derived-contact-sheet-00.png",
+      "exists": true,
+      "type": "file",
+      "sha256": "95e712e3ccc70bddbce0ed6911fde197dd47b26270589ded885dc2eee40e3516"
+    },
+    {
+      "relative_href": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-16.jpg",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-16.jpg",
+      "exists": true,
+      "type": "file",
+      "sha256": "15f619294f847a4ab40220aa2f8c212b623d22cc87e64fb9558d79a40fe5ae01"
+    },
+    {
+      "relative_href": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-16.jpg",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-16.jpg",
+      "exists": true,
+      "type": "file",
+      "sha256": "9c4bbce0353508c0e41a8c410e5692c43f56b6c59c7bbbbe9a271e487657e1ed"
+    },
+    {
+      "relative_href": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-17.jpg",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-17.jpg",
+      "exists": true,
+      "type": "file",
+      "sha256": "7fa5fff934c70f70b523318b69b31bf80efbe12acc5652de5961edf1fb0ff53d"
+    },
+    {
+      "relative_href": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-17.jpg",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-17.jpg",
+      "exists": true,
+      "type": "file",
+      "sha256": "3e03a48bb4c1a76246ee2ce3a7ae3346a24089c91202e78a720d35e2f5683d99"
+    },
+    {
+      "relative_href": "temporal-review/ranger-critical-guardian-idle-visual-check.json",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/ranger-critical-guardian-idle-visual-check.json",
+      "exists": true,
+      "type": "file",
+      "sha256": "a5daabfd45da1f827e34611afec754b6251832c8987f6495066465d9a03c5836"
+    },
+    {
+      "relative_href": "temporal-review/vowkeeper-review-scope-correction.json",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper-review-scope-correction.json",
+      "exists": true,
+      "type": "file",
+      "sha256": "3eac3e360c03412f2dbcc19e46fe39590dcae446e85a61b26fe4825bceb056a1"
+    },
+    {
+      "relative_href": "temporal-review/vowkeeper-review-preparation-history/",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper-review-preparation-history",
+      "exists": true,
+      "type": "directory"
+    },
+    {
+      "relative_href": "arcanist/before/ordinary-arcanist-complete.mp4",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/ordinary-arcanist-complete.mp4",
+      "exists": true,
+      "type": "file",
+      "sha256": "eaa5c56c8cb4994d515271cc6e97f7e1ef2d26658cdad05aadeeba575355021c"
+    },
+    {
+      "relative_href": "arcanist/after/ordinary-arcanist-complete.mp4",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/ordinary-arcanist-complete.mp4",
+      "exists": true,
+      "type": "file",
+      "sha256": "27f282aa3ab14069b88eb079795c44a7331cd24ca43c9ad7cd1d2e47ab655d35"
+    },
+    {
+      "relative_href": "ranger/before/ordinary-ranger-complete.mp4",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/ordinary-ranger-complete.mp4",
+      "exists": true,
+      "type": "file",
+      "sha256": "8c01eef238de70c33dad7ff99abb8812c2a75ebee485e0feb71c7d32244d5b72"
+    },
+    {
+      "relative_href": "ranger/after/ordinary-ranger-complete.mp4",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/ordinary-ranger-complete.mp4",
+      "exists": true,
+      "type": "file",
+      "sha256": "008b0c71db628429e3c826fb2de2beeb8510d8b04496333e0e7952f42d7e2948"
+    },
+    {
+      "relative_href": "vowkeeper/before/ordinary-vowkeeper-complete.mp4",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/ordinary-vowkeeper-complete.mp4",
+      "exists": true,
+      "type": "file",
+      "sha256": "e0f3194f1ad288bfa650143fa18d253e5220f09cad22fde5bb90fb494e6095b1"
+    },
+    {
+      "relative_href": "vowkeeper/after/ordinary-vowkeeper-complete.mp4",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/ordinary-vowkeeper-complete.mp4",
+      "exists": true,
+      "type": "file",
+      "sha256": "56f5a3cceeb8f10c8df035e1cc570ee3680fa7d7ecd5a0bd8e888f044a67b7d8"
+    },
+    {
+      "relative_href": "temporal-review/arcanist-temporal-review-verification.json",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/arcanist-temporal-review-verification.json",
+      "exists": true,
+      "type": "file",
+      "sha256": "e98d37c0c59d397c7e69017f344a5e301154eed05f88cabac544953936ee67ba"
+    },
+    {
+      "relative_href": "temporal-review/ranger-temporal-review-verification.json",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/ranger-temporal-review-verification.json",
+      "exists": true,
+      "type": "file",
+      "sha256": "62470d27d765065bbef6d790fa97c630601797647935e762bd42a26020190ca7"
+    },
+    {
+      "relative_href": "temporal-review/vowkeeper-temporal-review-verification.json",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper-temporal-review-verification.json",
+      "exists": true,
+      "type": "file",
+      "sha256": "502c723817a9fe5a7496fa9186bdcfbe06e02f0d3594055b19a3293b78defac0"
+    },
+    {
+      "relative_href": "temporal-review/vowkeeper-final-byte-verification-schema-failure.json",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper-final-byte-verification-schema-failure.json",
+      "exists": true,
+      "type": "file",
+      "sha256": "265dc7d277766101517fdbb92169cc20e8d23407f6268136e44577639173927d"
+    },
+    {
+      "relative_href": "temporal-review/all-three-final-byte-verification-execution.json",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/all-three-final-byte-verification-execution.json",
+      "exists": true,
+      "type": "file",
+      "sha256": "a7ead4841fbf4d831b7c4e7f1f81ee444bee34c2cdbabd94c4c94f55f2cee822"
+    },
+    {
+      "relative_href": "temporal-review-staging-receipt.json",
+      "status": "capture_owner_staging_receipt_pending_actual_staging",
+      "staged_file_validation_deferred": true
+    },
+    {
+      "readme_relative_href": "../MOTION_REVIEW.md",
+      "execution_source": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/MOTION_REVIEW.md",
+      "exists": true,
+      "sha256": "791546d1efc045e5b38a538e74667d713907c03884b5018b07259b86c1bfc267",
+      "mapping": "README stages under temporal-review; final report stages one directory above it"
+    }
+  ],
+  "bound_proof_records": [
+    {
+      "file": "arcanist-coverage-inventory.json",
+      "sha256": "422604d0cf34955753f814094de991f2706814b229dfdd89b10ac5ddd6e77ab5"
+    },
+    {
+      "file": "arcanist-temporal-review-verification.json",
+      "sha256": "e98d37c0c59d397c7e69017f344a5e301154eed05f88cabac544953936ee67ba"
+    },
+    {
+      "file": "ranger-coverage-inventory.json",
+      "sha256": "552e83285e429c7c39c6a13371d08f01a44c1e8a275cca5f5431b1dcb19965d3"
+    },
+    {
+      "file": "ranger-temporal-review-verification.json",
+      "sha256": "62470d27d765065bbef6d790fa97c630601797647935e762bd42a26020190ca7"
+    },
+    {
+      "file": "vowkeeper-coverage-inventory.json",
+      "sha256": "c450629badeb40d68a096f4223b622e6a64fce2a77b7f06554f377d45640438e"
+    },
+    {
+      "file": "vowkeeper-temporal-review-verification.json",
+      "sha256": "502c723817a9fe5a7496fa9186bdcfbe06e02f0d3594055b19a3293b78defac0"
+    },
+    {
+      "file": "arcanist-final-byte-verification-schema-compatible-execution.log",
+      "sha256": "6655d058df9db59d131c05dd3d6a25f1241407687ebe789fd7488a4800a67bc5",
+      "actual_process_exit": 0,
+      "provenance": "Bound execution receipt; audit did not rerun verifier"
+    },
+    {
+      "file": "ranger-final-byte-verification-schema-compatible-execution.log",
+      "sha256": "c3b21416622615aef778e6dca04aa6a2dc68e9766c33664592f67a5122158256",
+      "actual_process_exit": 0,
+      "provenance": "Bound execution receipt; audit did not rerun verifier"
+    },
+    {
+      "file": "vowkeeper-final-byte-verification-schema-compatible-execution.log",
+      "sha256": "44302f9c63e2d67bf589f6189cac08f4fd7ba0ef8246f6086889b18f88c53adb",
+      "actual_process_exit": 0,
+      "provenance": "Bound execution receipt; audit did not rerun verifier"
+    },
+    {
+      "file": "all-three-final-byte-verification-execution.json",
+      "sha256": "a7ead4841fbf4d831b7c4e7f1f81ee444bee34c2cdbabd94c4c94f55f2cee822"
+    },
+    {
+      "file": "vowkeeper-final-byte-verification-schema-failure.json",
+      "sha256": "265dc7d277766101517fdbb92169cc20e8d23407f6268136e44577639173927d",
+      "actual_historical_failure_exit": 1
+    }
+  ],
+  "readme_staged_verifier_commands_are_read_only_by_layout": true,
+  "remaining_report_factual_issue": null,
+  "limits": [
+    "Audit checks report text, recorded counts, exact files/hashes and provenance; it does not rerun captures, FFmpeg decodes or verifiers, and is not new whole-movie visual inspection.",
+    "Actual AI inspection receipts preserve reviewer identities, every viewed planned filename and derived-versus-native evidence; no separate human signoff is asserted.",
+    "Four concrete visual limits remain explicit: quiet Hexer release, held-low Guardian preparation, broad Ranger backstep and Vowkeeper Guardian2697-2698 pose excursion. No fine skeletal/anatomy or physical-device readiness is inferred.",
+    "Context crops leave off-crop content and most Guardian HUD unjudged. Lossy H264/JPEG92, small/dark/overlapping silhouettes and temporal gaps limit fine motion/attachment judgments.",
+    "Common/Guardian deaths cover initial roughly0.97s only; full death completion and settling remain unjudged. Vowkeeper Guardian death leaves1foe; Elite warning/death1640 is interrupted rather than a completed warning attack.",
+    "Vowkeeper final viewport shows100.3s/26foes/13skills/4evasions and Bellwarden Memory equip button; Oathguard and lower inventory are metadata, not pixel observations.",
+    "All relative report/README links resolve to their exact canonical execution-source files in the intended staged layout except the final staging receipt, which capture owner will generate from actual staging. This pre-staging audit makes no staged hash/link verification claim."
+  ]
+}

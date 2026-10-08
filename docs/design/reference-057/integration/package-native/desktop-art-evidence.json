@@ -1,0 +1,106 @@
+{
+  "scope": "Desktop GL correctness of Android QA scene caller; not Android runtime or physical-device frame-time evidence",
+  "report_sha256": "165a26cfc96b5554400cc96000d81023270e323c4317a9dcb7af2f63ab1a8d03",
+  "captures": [
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/art-region-0.png",
+      "bytes": 747653,
+      "sha256": "b5d4e2306f047168203bf78728ace336e82c80bf7ad3ddda73d3220090e7af4c"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/art-region-1.png",
+      "bytes": 719031,
+      "sha256": "4556595d01581b54428ed54e2aef0319507d8a33208c161930cb7e43e1633d3f"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/art-region-2.png",
+      "bytes": 724982,
+      "sha256": "6f661e5b94fff8fbf140359455680d6256a99be632c853d41e42c2b920b515c0"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/art-region-3.png",
+      "bytes": 681525,
+      "sha256": "7fd5179355a67039d96fa2733ad82d9e3a4aa435efba11b978553b0fe313a5ce"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/motion-region-0-00.png",
+      "bytes": 825580,
+      "sha256": "4f6b232c5044bf6e27202b033bf8790d23bccd92261b6f55c50a7cbf809bdecf"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/motion-region-0-05.png",
+      "bytes": 823308,
+      "sha256": "cdb17a5ee84f6d183bcd345ef01e9b4dca8fc1b5c8a8fbf0e4e53fcc0fa74be9"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/motion-region-0-11.png",
+      "bytes": 820456,
+      "sha256": "90d9e8273bd60b18af267113a1afb2ab7a4c182c221d4a5e413787fbf1ed0bea"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/motion-region-0-17.png",
+      "bytes": 828676,
+      "sha256": "a0db2b9fc64e8736975de5c1862fc0a541798373005ff1b409c5dcc5580b0421"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/motion-region-1-00.png",
+      "bytes": 803383,
+      "sha256": "1835efbb3d57ec169b0913a5df5b8b6f80e87441209dca3fa17e8772a816ec5c"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/motion-region-1-05.png",
+      "bytes": 803338,
+      "sha256": "5d4790f11c3b68a8252f9cdc01c1bdb7df577e2432b88b587ac3fb7a96cf9d98"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/motion-region-1-11.png",
+      "bytes": 800068,
+      "sha256": "bb1856d50509572aeb015d5e655638d573f9ff2dac58f35ce2f66275f2985015"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/motion-region-1-17.png",
+      "bytes": 801530,
+      "sha256": "d037c60d39d2056a85de19f1ce5954883cebf01dd39989d6bed87a7cfc3d6c2d"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/motion-region-2-00.png",
+      "bytes": 797616,
+      "sha256": "ab50e63e2a8deafc1cb6aa958b24b3996a5bce592c188aac093e2fb2c7602925"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/motion-region-2-05.png",
+      "bytes": 798232,
+      "sha256": "929e29a674b43a1bbd613b6728c850884fe37ff383e2549ff5cc33e7bb0326a2"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/motion-region-2-11.png",
+      "bytes": 797784,
+      "sha256": "cc4a12301a0668daeedf5781935bba93242a542bdd308eadb05af646811d5d31"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/motion-region-2-17.png",
+      "bytes": 797964,
+      "sha256": "749807a16a9c75a82eef16456175b1a02e72352031a99362ffc5dd231ad02b35"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/motion-region-3-00.png",
+      "bytes": 762388,
+      "sha256": "56d4ae2e574326d39ceac3f14ea2626ccce1d1a056430a59b5ded9b345651491"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/motion-region-3-05.png",
+      "bytes": 761664,
+      "sha256": "e47cedfc0c1bb744700f1c44455bde4fb9b4802dff46044f2b682ca7bc038494"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/motion-region-3-11.png",
+      "bytes": 759478,
+      "sha256": "79e7790b63210bc7951d4e34f9af79b394a377a6b7223fd4a81a6a7e3c0408fc"
+    },
+    {
+      "relative_path": "isolated/data/godot/app_userdata/Emberfall- Ashen Veil/motion-region-3-17.png",
+      "bytes": 761670,
+      "sha256": "270c4f73de3fba5dc0116f6c448b090cb5d3656dc8c6a1ca75c99749f0ef3e0b"
+    }
+  ]
+}

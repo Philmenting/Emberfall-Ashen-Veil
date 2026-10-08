@@ -1,0 +1,247 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "package": "com.philmenting.emberfallashenveil.betaqa",
+  "fixture": "success",
+  "started_at": "2026-10-06T15:23:46.016501+00:00",
+  "apk": {
+    "path": "/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-success-qa.apk",
+    "sha256": "b0f7c80ef3741cbd61350aac63fc5f21d23aaba81a1f7321d9e897d7859969a0"
+  },
+  "provenance": {
+    "source_commit": "6872262cb17f987d29f0c7fd710a2b7f599e8623",
+    "github_sha": "f7e1e5f1166e1c86080f527a31769cd3760f6d18",
+    "github_head_ref": "improve/animation-craft",
+    "github_run_id": "37484063576",
+    "github_run_attempt": "1",
+    "observer_sha256": "5c810ca9f7f50270f402089db3da399977b3544ad683d899a4f3e742db4edc8d"
+  },
+  "launches": [
+    {
+      "number": 1,
+      "status": "marker_observed",
+      "process_observed": true,
+      "started_at": "2026-10-06T15:23:55.038875+00:00",
+      "pid_samples": [
+        {
+          "elapsed_seconds": 1.099,
+          "pids": []
+        },
+        {
+          "elapsed_seconds": 5.562,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 9.091,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 12.387,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 15.491,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 18.59,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 21.679,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 24.772,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 27.883,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 30.977,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 34.198,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 37.379,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 40.506,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 43.602,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 46.717,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 49.838,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 52.935,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 56.058,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 60.171,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 63.334,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 66.504,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 69.735,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 72.846,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 76.132,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 79.233,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 82.377,
+          "pids": [
+            6934
+          ]
+        },
+        {
+          "elapsed_seconds": 85.517,
+          "pids": [
+            6934
+          ]
+        }
+      ],
+      "marker": "ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI",
+      "log_file": "success-launch.log",
+      "all_log_file": "success-launch-all.log",
+      "marker_deadline_seconds": 300,
+      "start_grace_seconds": 30,
+      "elapsed_seconds": 85.517
+    },
+    {
+      "number": 2,
+      "status": "marker_observed",
+      "process_observed": true,
+      "started_at": "2026-10-06T15:25:22.408145+00:00",
+      "pid_samples": [
+        {
+          "elapsed_seconds": 1.178,
+          "pids": [
+            7231
+          ]
+        },
+        {
+          "elapsed_seconds": 5.211,
+          "pids": [
+            7231
+          ]
+        },
+        {
+          "elapsed_seconds": 8.753,
+          "pids": [
+            7231
+          ]
+        },
+        {
+          "elapsed_seconds": 11.854,
+          "pids": [
+            7231
+          ]
+        },
+        {
+          "elapsed_seconds": 14.938,
+          "pids": [
+            7231
+          ]
+        },
+        {
+          "elapsed_seconds": 18.048,
+          "pids": [
+            7231
+          ]
+        }
+      ],
+      "marker": "ANDROID_SUCCESS_PASS restart preserves combined oaths",
+      "log_file": "success-restart.log",
+      "all_log_file": "success-restart-all.log",
+      "marker_deadline_seconds": 300,
+      "start_grace_seconds": 30,
+      "elapsed_seconds": 18.048
+    }
+  ],
+  "diagnostic_errors": [],
+  "finished_at": "2026-10-06T15:25:40.522313+00:00"
+}

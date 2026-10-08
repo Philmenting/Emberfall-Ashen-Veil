@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python3",
+    "/workspace/scratch/emberfall-quality-057/gameplay-proof-independent-audit-20261008/audit.py"
+  ],
+  "actual_process_exit": 1,
+  "script_sha256": "0f656c952374bac422dfa86de0715bab757822d933f8b5bdfbb5ce8774a08c63",
+  "log_sha256": "4c32f5bd1ee24adaa3de40e3de1a9487c1cbab9e91f40b1230669973c1f92d9e",
+  "report_sha256": "54660924a0775f19418ce97a6dde6bba5aace11d5089d336a9d1ea348b8adeae",
+  "observed_utc": "2026-10-08T00:13:46.731170+00:00"
+}

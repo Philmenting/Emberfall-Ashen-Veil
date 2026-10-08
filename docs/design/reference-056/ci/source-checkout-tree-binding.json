@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "observed_at": "2026-10-07T06:00:32.543803+00:00",
+  "source_commit": "5e72fc6fad38f7dc829d313d8df0de8289f52573",
+  "actual_pr_merge_checkout_commit": "750cb2e6660623a60fc436ec732ce046b211253e",
+  "source_tree": "05754daf53dfaf28e12b0fdcf26572373a0c5585",
+  "actual_checkout_tree": "05754daf53dfaf28e12b0fdcf26572373a0c5585",
+  "exact_whole_tree_match": true,
+  "checkout_parents": [
+    "610c343073e7186589cba92c3fefb55a4db68e12",
+    "5e72fc6fad38f7dc829d313d8df0de8289f52573"
+  ],
+  "source_is_checkout_parent": true,
+  "each_original_log_confirms_checkout": {
+    "Gameplay Quality": "750cb2e6660623a60fc436ec732ce046b211253e",
+    "Android Debug APK": "750cb2e6660623a60fc436ec732ce046b211253e",
+    "Android Beta Runtime": "750cb2e6660623a60fc436ec732ce046b211253e"
+  },
+  "raw_source_commit_metadata_sha256": "301df35c4d77c19650a0935d4fb226f25b173888d8b3cc3499df8276161343e0",
+  "raw_checkout_commit_metadata_sha256": "71e927c1f87b3d1aabeaeb2249fecc1218f7a7544a4361f09ae281e21148813a",
+  "scope": "Whole Git tree identity verified from actual GitHub Git-commit metadata. Source-head and generated PR-merge checkout are distinct commits; all three original current-run job logs name the same actual checkout."
+}

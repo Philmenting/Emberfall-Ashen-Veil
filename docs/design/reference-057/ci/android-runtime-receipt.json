@@ -1,0 +1,103 @@
+{
+  "schema": 2,
+  "observed_at": "2026-10-07T21:36:30.522286+00:00",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "workflow": "Android Beta Runtime",
+  "workflow_run": 37686980000,
+  "run_attempt": 1,
+  "job_id": 113017205393,
+  "run_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37686980000",
+  "job_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37686980000/job/113017205393",
+  "run_conclusion": "success",
+  "job_conclusion": "success",
+  "actual_current_source_success": true,
+  "summary_sha256": "43414b9594ca5f39c1c5845962ebb773156891de4f34b5ec0bcad72158657a2f",
+  "scope": "Exact-source hosted CI, source/resource packaging, CI-only APK/AAB signature and manifest checks, and Android16 x86_64 emulator correctness. ARM64 probe packaging is separate from execution. No physical-phone frame-time, thermals, battery, touch or beta-readiness measurement.",
+  "actual_checkout_commit": "46ba36f6cd0871ae469cdb4ce9c04f32b479f0f5",
+  "python_test_runs": [
+    39
+  ],
+  "suites": [],
+  "integration_summaries": [],
+  "exported_pck_results": [],
+  "verified_android_markers": [
+    {
+      "launch": 1,
+      "elapsed_seconds": 643.322,
+      "pids": [
+        2886
+      ],
+      "marker": "ANDROID_BETA_PASS exact AFK ledger",
+      "original_line": "2026-10-07T21:23:20.8107253Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=643.322 pids=[2886] marker=ANDROID_BETA_PASS exact AFK ledger"
+    },
+    {
+      "launch": 2,
+      "elapsed_seconds": 13.066,
+      "pids": [
+        6938
+      ],
+      "marker": "ANDROID_BETA_PASS restart does not repeat",
+      "original_line": "2026-10-07T21:23:34.4263399Z ANDROID_RUNTIME_MARKER verified launch=2 elapsed_seconds=13.066 pids=[6938] marker=ANDROID_BETA_PASS restart does not repeat"
+    },
+    {
+      "launch": 1,
+      "elapsed_seconds": 71.705,
+      "pids": [
+        7129
+      ],
+      "marker": "ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI",
+      "original_line": "2026-10-07T21:24:56.2986568Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=71.705 pids=[7129] marker=ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI"
+    },
+    {
+      "launch": 2,
+      "elapsed_seconds": 12.753,
+      "pids": [
+        7435
+      ],
+      "marker": "ANDROID_SUCCESS_PASS restart preserves combined oaths",
+      "original_line": "2026-10-07T21:25:10.0260353Z ANDROID_RUNTIME_MARKER verified launch=2 elapsed_seconds=12.753 pids=[7435] marker=ANDROID_SUCCESS_PASS restart preserves combined oaths"
+    },
+    {
+      "launch": 1,
+      "elapsed_seconds": 430.483,
+      "pids": [
+        7587
+      ],
+      "marker": "ANDROID_ART_PASS all four regions rendered",
+      "original_line": "2026-10-07T21:32:25.5398244Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=430.483 pids=[7587] marker=ANDROID_ART_PASS all four regions rendered"
+    }
+  ],
+  "apk_signature_verifications": [],
+  "isolated_qa_package_builds": [
+    {
+      "fixture": "res://tests/android_beta_flow.tscn",
+      "abi": "x86_64",
+      "path": "/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-afk-qa.apk"
+    },
+    {
+      "fixture": "res://tests/android_success_flow.tscn",
+      "abi": "x86_64",
+      "path": "/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-success-qa.apk"
+    },
+    {
+      "fixture": "res://tests/android_art_flow.tscn",
+      "abi": "x86_64",
+      "path": "/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-art-qa.apk"
+    },
+    {
+      "fixture": "res://tests/android_device_probe.tscn",
+      "abi": "arm64-v8a",
+      "path": "/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-pixel-probe.apk"
+    }
+  ],
+  "aab_verified": false,
+  "bundle_identity_lines": [
+    "Version: 20260901.588",
+    "Version: 20260927.320.1"
+  ],
+  "server_progression_passed": false,
+  "diagnostic_lines": [],
+  "intentional_persistence_diagnostics": [],
+  "original_log_sha256": "a26d0dfee265b09183e40b5095ab12d9aa5c972650776da1e6c48edb18735200",
+  "original_log_bytes": 338449
+}

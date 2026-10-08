@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "scope": "Audio boundary fix refreshed in the same previously cold-imported serial cache; native-avatar resources loaded from the new PCK outside checkout. No Android device execution.",
+  "checks": 12,
+  "failures": 0,
+  "audio_director_sha256": "727ffc5dc1f97fd4bf499edf68da1d8ce34b0312bc550d781fbbfde714242f65",
+  "staged_audio_director_sha256": "727ffc5dc1f97fd4bf499edf68da1d8ce34b0312bc550d781fbbfde714242f65",
+  "pck_sha256": "51d6d58bc311ff94393aacbafbc41a16c49e899c1dade1abb211fe82e8fee074",
+  "logs": {
+    "audio-options-verified.log": {
+      "exit_code": 0,
+      "sha256": "1bd801c0fd402c2bf328b04d7cb9c04d701d727ec1055708a5e59d0c55a20cf5"
+    },
+    "refresh-audio-final.log": {
+      "exit_code": 0,
+      "sha256": "422675ff2d6713a219223b6f33330cae28a362b7f2c54309abbf3d9e17d50b0e"
+    },
+    "export-audio-final.log": {
+      "exit_code": 0,
+      "sha256": "87bcec531540c036cd7043097901cd9e802f07b32d13ac05482bff6aefa315b3"
+    },
+    "package-smoke-audio-final.log": {
+      "exit_code": 0,
+      "sha256": "bd62ca1b1a0d0d837f6dc883a44bece1a21bb4a2e63a23f71f5f8f439284877a"
+    }
+  }
+}

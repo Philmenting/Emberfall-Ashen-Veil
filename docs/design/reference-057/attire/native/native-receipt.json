@@ -1,0 +1,149 @@
+{
+	"frames": [
+		{
+			"class": "Arcanist",
+			"clip": "idle",
+			"dynamic_surfaces": 5,
+			"file": "arcanist-idle-front.png",
+			"max_displacement_metres": 0.000742413161788136,
+			"moving_vertices": 1661,
+			"native_bones": 65,
+			"time": 0.4,
+			"upload_calls": 5,
+			"uploaded_bytes": 50004
+		},
+		{
+			"class": "Arcanist",
+			"clip": "walk",
+			"dynamic_surfaces": 5,
+			"file": "arcanist-walk-rear.png",
+			"max_displacement_metres": 0.00796587951481342,
+			"moving_vertices": 1661,
+			"native_bones": 65,
+			"time": 0.125,
+			"upload_calls": 10,
+			"uploaded_bytes": 100008
+		},
+		{
+			"class": "Arcanist",
+			"clip": "windup_heavy",
+			"dynamic_surfaces": 5,
+			"file": "arcanist-cast-front.png",
+			"max_displacement_metres": 0.0116311199963093,
+			"moving_vertices": 1661,
+			"native_bones": 65,
+			"time": 0.8,
+			"upload_calls": 15,
+			"uploaded_bytes": 150012
+		},
+		{
+			"class": "Arcanist",
+			"clip": "windup_heavy",
+			"dynamic_surfaces": 5,
+			"file": "arcanist-cast-rear.png",
+			"max_displacement_metres": 0.0116311199963093,
+			"moving_vertices": 1661,
+			"native_bones": 65,
+			"time": 0.8,
+			"upload_calls": 15,
+			"uploaded_bytes": 150012
+		},
+		{
+			"class": "Ranger",
+			"clip": "idle",
+			"dynamic_surfaces": 2,
+			"file": "ranger-idle-front.png",
+			"max_displacement_metres": 0.000339843914844096,
+			"moving_vertices": 662,
+			"native_bones": 65,
+			"time": 0.4,
+			"upload_calls": 2,
+			"uploaded_bytes": 48300
+		},
+		{
+			"class": "Ranger",
+			"clip": "walk",
+			"dynamic_surfaces": 2,
+			"file": "ranger-walk-rear.png",
+			"max_displacement_metres": 0.00364987761713564,
+			"moving_vertices": 662,
+			"native_bones": 65,
+			"time": 0.125,
+			"upload_calls": 4,
+			"uploaded_bytes": 96600
+		},
+		{
+			"class": "Ranger",
+			"clip": "windup_heavy",
+			"dynamic_surfaces": 2,
+			"file": "ranger-cast-front.png",
+			"max_displacement_metres": 0.00535047752782702,
+			"moving_vertices": 662,
+			"native_bones": 65,
+			"time": 0.8,
+			"upload_calls": 6,
+			"uploaded_bytes": 144900
+		},
+		{
+			"class": "Ranger",
+			"clip": "windup_heavy",
+			"dynamic_surfaces": 2,
+			"file": "ranger-cast-rear.png",
+			"max_displacement_metres": 0.00535047752782702,
+			"moving_vertices": 662,
+			"native_bones": 65,
+			"time": 0.8,
+			"upload_calls": 6,
+			"uploaded_bytes": 144900
+		},
+		{
+			"class": "Vowkeeper",
+			"clip": "idle",
+			"dynamic_surfaces": 2,
+			"file": "vowkeeper-idle-front.png",
+			"max_displacement_metres": 0.000339843914844096,
+			"moving_vertices": 1284,
+			"native_bones": 65,
+			"time": 0.4,
+			"upload_calls": 2,
+			"uploaded_bytes": 75432
+		},
+		{
+			"class": "Vowkeeper",
+			"clip": "walk",
+			"dynamic_surfaces": 2,
+			"file": "vowkeeper-walk-rear.png",
+			"max_displacement_metres": 0.00364987761713564,
+			"moving_vertices": 1284,
+			"native_bones": 65,
+			"time": 0.125,
+			"upload_calls": 4,
+			"uploaded_bytes": 150864
+		},
+		{
+			"class": "Vowkeeper",
+			"clip": "windup_heavy",
+			"dynamic_surfaces": 2,
+			"file": "vowkeeper-cast-front.png",
+			"max_displacement_metres": 0.00535047752782702,
+			"moving_vertices": 1284,
+			"native_bones": 65,
+			"time": 0.8,
+			"upload_calls": 6,
+			"uploaded_bytes": 226296
+		},
+		{
+			"class": "Vowkeeper",
+			"clip": "windup_heavy",
+			"dynamic_surfaces": 2,
+			"file": "vowkeeper-cast-rear.png",
+			"max_displacement_metres": 0.00535047752782702,
+			"moving_vertices": 1284,
+			"native_bones": 65,
+			"time": 0.8,
+			"upload_calls": 6,
+			"uploaded_bytes": 226296
+		}
+	],
+	"scope": "Twelve unedited actual production-actor diagnostic stills. Native skinned vertices and real PBR materials. No overlays or standalone proxy body. Not ordinary combat, full-playback acceptance, or physical-phone performance."
+}

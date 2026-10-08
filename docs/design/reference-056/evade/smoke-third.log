@@ -1,0 +1,17 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Ranger evade direction 1: actual hand/handle penetration below1.5mm; 0.00191056542099
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_class_grip (res://tests/class_avatar_quality_smoke.gd:127)
+       [2] audit_class (res://tests/source_avatar_evade_smoke.gd:103)
+       [3] run (res://tests/source_avatar_evade_smoke.gd:263)
+ERROR: Ranger evade direction 2: actual hand/handle penetration below1.5mm; 0.00182946957648
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_class_grip (res://tests/class_avatar_quality_smoke.gd:127)
+       [2] audit_class (res://tests/source_avatar_evade_smoke.gd:103)
+       [3] run (res://tests/source_avatar_evade_smoke.gd:263)
+{"checks":1343,"failures":2,"maximum_class_grip_gap_m":0.00263369828462601,"maximum_class_grip_penetration_m":0.00191056542098522,"maximum_staff_grip_gap_m":0.00246496607363224,"maximum_staff_grip_penetration_m":0.000473405078053473,"metrics":{"Arcanist":{"directions":8,"maximum_crouch_world_m":0.230243921279907,"maximum_world_support_drift_m":0.000433117180364206,"minimum_all_weighted_source_and_accessory_y_m":0.00299999956041574,"minimum_crouch_world_m":0.230243921279907,"minimum_directional_chest_lean_world_m":0.0552351288497448,"minimum_weighted_boot_source_y_m":0.00299999956041574,"native_bones":65},"Ranger":{"directions":8,"maximum_crouch_world_m":0.226518869400024,"maximum_world_support_drift_m":0.000225439667701721,"minimum_all_weighted_source_and_accessory_y_m":0.00299999956041574,"minimum_crouch_world_m":0.226342022418976,"minimum_directional_chest_lean_world_m":0.0551361702382565,"minimum_weighted_boot_source_y_m":0.00299999956041574,"native_bones":65},"Vowkeeper":{"directions":8,"maximum_crouch_world_m":0.225237369537354,"maximum_world_support_drift_m":0.000000495337530992401,"minimum_all_weighted_source_and_accessory_y_m":0.00299999956041574,"minimum_crouch_world_m":0.225236713886261,"minimum_directional_chest_lean_world_m":0.0514158681035042,"minimum_weighted_boot_source_y_m":0.00299999956041574,"native_bones":65}},"poses":24,"production_metrics":{"Arcanist":{"death_priority":true,"new_cast_keeps_original_timing":true,"real_actor_begin_sync_settle":true},"Ranger":{"death_priority":true,"new_cast_keeps_original_timing":true,"real_actor_begin_sync_settle":true},"Vowkeeper":{"death_priority":true,"new_cast_keeps_original_timing":true,"real_actor_begin_sync_settle":true},"world":{"actor_evade_from_event":true,"actual_inflight_restore":true,"actual_simulation_event":true,"authoritative_snapshot_identical":true,"settled_camera_unchanged":true,"warning_duration_s":1.11768162250519,"warning_fixture":"original generated Hexer warning; normal production HP/damage/gear","warning_radius_m":1.0282826423645}},"source":"procedural native65 low step on actual simulation displacement; no authored dodge clip","suite":"source_avatar_evade_smoke"}

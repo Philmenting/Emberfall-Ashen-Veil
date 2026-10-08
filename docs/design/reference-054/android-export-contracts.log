@@ -1,0 +1,17 @@
+test_all_four_packages_share_one_import_and_use_their_actual_scene_architecture (test_android_release.QaExportChecks.test_all_four_packages_share_one_import_and_use_their_actual_scene_architecture) ... ok
+test_crash_and_zero_exit_import_errors_stop_before_export_without_retry (test_android_release.QaExportChecks.test_crash_and_zero_exit_import_errors_stop_before_export_without_retry) ... ok
+test_existing_editor_section_keeps_other_settings (test_android_release.QaExportChecks.test_existing_editor_section_keeps_other_settings) ... ok
+test_export_error_stops_remaining_packages (test_android_release.QaExportChecks.test_export_error_stops_remaining_packages) ... ok
+test_export_success_without_artifact_fails (test_android_release.QaExportChecks.test_export_success_without_artifact_fails) ... ok
+test_qa_preserves_runtime_json_licences_and_offline_filter (test_android_release.QaExportChecks.test_qa_preserves_runtime_json_licences_and_offline_filter) ... ok
+test_serial_import_isolated_from_shipping_settings_and_assets (test_android_release.QaExportChecks.test_serial_import_isolated_from_shipping_settings_and_assets) ... ok
+test_16kb_segment_passes (test_android_release.ReleaseChecks.test_16kb_segment_passes) ... ok
+test_4kb_and_misaligned_segments_fail (test_android_release.ReleaseChecks.test_4kb_and_misaligned_segments_fail) ... ok
+test_current_release_identity_and_store_limits (test_android_release.ReleaseChecks.test_current_release_identity_and_store_limits) ... ok
+test_missing_arm64_library_fails (test_android_release.ReleaseChecks.test_missing_arm64_library_fails) ... ok
+test_missing_publication_details_never_report_ready (test_android_release.ReleaseChecks.test_missing_publication_details_never_report_ready) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.029s
+
+OK

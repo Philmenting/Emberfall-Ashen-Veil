@@ -1,0 +1,187 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+NATIVE_WALK_METRIC Vowkeeper boot_probes=714 stable_samples=94 max_world_stance_drift=0.08095481991768 min_world_boot_y=-0.06391526758671 max_world_free_lift=0.12603588402271
+NATIVE_RIGID_PROP_METRIC Vowkeeper surfaces=4 max_world_length_error=0.00000089406967
+NATIVE_WALK_METRIC Arcanist boot_probes=356 stable_samples=94 max_world_stance_drift=0.08054616302252 min_world_boot_y=-0.06693425029516 max_world_free_lift=0.1230284422636
+NATIVE_RIGID_PROP_METRIC Arcanist surfaces=5 max_world_length_error=0.00000083446503
+NATIVE_WALK_METRIC Ranger boot_probes=714 stable_samples=94 max_world_stance_drift=0.07653401792049 min_world_boot_y=-0.05949203297496 max_world_free_lift=0.12815719842911
+NATIVE_RIGID_PROP_METRIC Ranger surfaces=2 max_world_length_error=0.00000023841858
+NATIVE_WALK_METRIC raider boot_probes=346 stable_samples=94 max_world_stance_drift=0.06361164152622 min_world_boot_y=-0.03972988203168 max_world_free_lift=0.12446615844965
+NATIVE_RIGID_PROP_METRIC raider surfaces=4 max_world_length_error=0.0000005364418
+NATIVE_WALK_METRIC bulwark boot_probes=346 stable_samples=96 max_world_stance_drift=0.06542015820742 min_world_boot_y=-0.0308906827122 max_world_free_lift=0.13112664222717
+NATIVE_RIGID_PROP_METRIC bulwark surfaces=4 max_world_length_error=0.00000051409006
+NATIVE_WALK_METRIC hexer boot_probes=346 stable_samples=94 max_world_stance_drift=0.06361273676157 min_world_boot_y=-0.03973359614611 max_world_free_lift=0.1244665235281
+NATIVE_RIGID_PROP_METRIC hexer surfaces=5 max_world_length_error=0.00000068545341
+NATIVE_WALK_METRIC elite boot_probes=346 stable_samples=96 max_world_stance_drift=0.06542015820742 min_world_boot_y=-0.0308906827122 max_world_free_lift=0.13112664222717
+NATIVE_RIGID_PROP_METRIC elite surfaces=4 max_world_length_error=0.00000029802322
+NATIVE_WALK_METRIC guardian_0 boot_probes=346 stable_samples=101 max_world_stance_drift=0.09438605606556 min_world_boot_y=-0.06178136542439 max_world_free_lift=0.28217053413391
+NATIVE_RIGID_PROP_METRIC guardian_0 surfaces=2 max_world_length_error=0.00000143051147
+NATIVE_WALK_METRIC guardian_1 boot_probes=346 stable_samples=101 max_world_stance_drift=0.09438605606556 min_world_boot_y=-0.06178136542439 max_world_free_lift=0.26779758930206
+NATIVE_RIGID_PROP_METRIC guardian_1 surfaces=5 max_world_length_error=0.00000166893005
+NATIVE_WALK_METRIC guardian_2 boot_probes=346 stable_samples=101 max_world_stance_drift=0.09438605606556 min_world_boot_y=-0.06178136542439 max_world_free_lift=0.26779758930206
+NATIVE_RIGID_PROP_METRIC guardian_2 surfaces=5 max_world_length_error=0.00000092387199
+NATIVE_WALK_METRIC guardian_3 boot_probes=346 stable_samples=101 max_world_stance_drift=0.09438605606556 min_world_boot_y=-0.06178136542439 max_world_free_lift=0.28217053413391
+NATIVE_RIGID_PROP_METRIC guardian_3 surfaces=3 max_world_length_error=0.00000059604645
+CHARACTER THREE D SMOKE: 168 checks, 24 failures
+ERROR: FAIL: Vowkeeper: native walking keeps the actually weighted loaded sole on the floor while the other original boot visibly clears it
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:333)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: Vowkeeper: real native stance ankle stays planted in world space during authoritative actor travel
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:334)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: Vowkeeper: actual native articulated defeat lowers the head through the collapse rather than replacing the rendered body
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_avatar (res://tests/character_3d_smoke.gd:257)
+       [2] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: Arcanist: native walking keeps the actually weighted loaded sole on the floor while the other original boot visibly clears it
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:333)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: Arcanist: real native stance ankle stays planted in world space during authoritative actor travel
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:334)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: Ranger: native walking keeps the actually weighted loaded sole on the floor while the other original boot visibly clears it
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:333)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: Ranger: real native stance ankle stays planted in world space during authoritative actor travel
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:334)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: raider: real native stance ankle stays planted in world space during authoritative actor travel
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:334)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: raider: actual native articulated defeat lowers the head through the collapse rather than replacing the rendered body
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_avatar (res://tests/character_3d_smoke.gd:257)
+       [2] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: bulwark: real native stance ankle stays planted in world space during authoritative actor travel
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:334)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: bulwark: actual native articulated defeat lowers the head through the collapse rather than replacing the rendered body
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_avatar (res://tests/character_3d_smoke.gd:257)
+       [2] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: hexer: real native stance ankle stays planted in world space during authoritative actor travel
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:334)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: elite: real native stance ankle stays planted in world space during authoritative actor travel
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:334)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: elite: actual native articulated defeat lowers the head through the collapse rather than replacing the rendered body
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_avatar (res://tests/character_3d_smoke.gd:257)
+       [2] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: guardian_0: native walking keeps the actually weighted loaded sole on the floor while the other original boot visibly clears it
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:333)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: guardian_0: real native stance ankle stays planted in world space during authoritative actor travel
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:334)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: guardian_1: native walking keeps the actually weighted loaded sole on the floor while the other original boot visibly clears it
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:333)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: guardian_1: real native stance ankle stays planted in world space during authoritative actor travel
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:334)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: guardian_2: native walking keeps the actually weighted loaded sole on the floor while the other original boot visibly clears it
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:333)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: guardian_2: real native stance ankle stays planted in world space during authoritative actor travel
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:334)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: guardian_3: native walking keeps the actually weighted loaded sole on the floor while the other original boot visibly clears it
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:333)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: guardian_3: real native stance ankle stays planted in world space during authoritative actor travel
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_source_walk (res://tests/character_3d_smoke.gd:334)
+       [2] check_source_avatar (res://tests/character_3d_smoke.gd:241)
+       [3] run_checks (res://tests/character_3d_smoke.gd:48)
+ERROR: FAIL: real release immediately hides the held arrow while both physical string segments remain continuous before recoil
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_native_bow_release (res://tests/character_3d_smoke.gd:446)
+       [2] run_checks (res://tests/character_3d_smoke.gd:170)
+ERROR: FAIL: real string returns to its endpoint line while the named bow hand holds aim and native draw hand follows through outward; side=0.11030077189207
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/character_3d_smoke.gd:14)
+       [1] check_native_bow_release (res://tests/character_3d_smoke.gd:455)
+       [2] run_checks (res://tests/character_3d_smoke.gd:170)

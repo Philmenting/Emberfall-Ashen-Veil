@@ -1,11 +1,14 @@
 extends RefCounted
 ## Single deterministic authority for watched, skipped and offline expeditions.
 ## All combat and movement use fixed 100 ms steps; rendering never rolls damage.
+const Relics = preload("res://scripts/class_relics.gd")
 const Contract = preload("res://scripts/expedition_contract.gd")
 const Skills = preload("res://scripts/class_skills.gd")
 const Layout = preload("res://scripts/dungeon_layout.gd")
 const ThemeData = preload("res://scripts/dungeon_theme.gd")
 const BossPatterns = preload("res://scripts/boss_patterns.gd")
+const Stances = preload("res://scripts/combat_stances.gd")
+const OathRules = preload("res://scripts/oath_combat_rules.gd")
 const STEP := 0.1
 const WALK_SPEED := 2.55
 const MAX_DURATION := 240.0
@@ -103,10 +106,14 @@ func setup(selected_class: String, combat_stats: Dictionary, target_floor: int, 
 			pack.append(enemy)
 			pack.back().damage*=Contract.damage_scale(contract())
 			if role=="boss" and int(stats.get("boss_patterns",0))==1: pack.back()["awakened"]=false
+			if role=="boss" and uses_phased_bosses(): pack.back()["boss_phase"]=0
 			if role=="boss" and uses_procedural_generation(): pack.back()["last_pattern_variant"]=-1
 		waves.append(pack)
 	if uses_procedural_generation() and int(stats.get("dungeon_generation",1))>=4:
 		_prepare_reinforcements()
+	if int(stats.get("first_descent",0))==1 and floor_id==1:
+		hero_pos=checkpoint(0)+Vector2(0,2.1 if class_key=="Vowkeeper" else 4.4)
+		phase="combat"
 	if uses_tactical_movement():
 		journey["combat_movement"]={"target":-1,"wait":rng.randf_range(0.8,1.6),"remaining":0.0,"goal":hero_pos}
 
@@ -443,20 +450,23 @@ func _auto_hero() -> void:
 		action = "Holding the front line" if class_key=="Vowkeeper" else "Keeping firing distance"
 		return
 	if uses_rotation() and _try_technique(target,true): return
-	var use_skill := skill_cd<=0 and hero_mana>=int(stats.mana_cost)
+	var use_skill := skill_cd<=0 and hero_mana>=signature_cost()
 	var nearby := 0
 	for enemy in living():
 		if Vector2(enemy.pos).distance_to(hero_pos if class_key=="Vowkeeper" else target.pos)<=3.2: nearby += 1
 	if class_key=="Vowkeeper": use_skill = use_skill and (nearby>=2 or hero_hp<int(stats.max_hp)*0.75 or target.role in ["boss","elite"])
 	elif class_key=="Arcanist": use_skill = use_skill and (nearby>=2 or target.role in ["boss","elite"])
 	elif class_key=="Ranger": use_skill = use_skill and (target.role in ["hexer","elite","boss"] or living().size()>=2)
+	if int(stats.get("first_descent",0))==1 and stage==0 and casts==0 and skill_cd<=0 and hero_mana>=signature_cost(): use_skill=true
 	if not use_skill and uses_rotation() and _try_technique(target,false): return
 	var name_value: String = ABILITIES[class_key] if use_skill else {"Vowkeeper":"Oathblade","Arcanist":"Arcane Bolt","Ranger":"Piercing Shot"}[class_key]
 	pending_attack = {"target":target.id,"skill":use_skill,"left":0.3,"name":name_value}
 	attack_cd = 1.05 if class_key=="Ranger" else 1.3
 	if use_skill:
-		hero_mana -= int(stats.mana_cost)
+		hero_mana -= signature_cost()
 		skill_cd = {"Vowkeeper":5.5,"Arcanist":6.0,"Ranger":4.5}[class_key]
+		if stats.get("regional_set",-1)==3: skill_cd*=0.85
+		skill_cd*=OathRules.cooldown_scale(stats)
 		casts += 1
 		action = "Casting " + name_value
 	else:
@@ -511,15 +521,25 @@ func _resolve_hero_attack() -> void:
 		if class_key=="Vowkeeper":
 			guard_time = maxf(guard_time,2.8) if uses_rotation() else 2.8
 			var healed := mini(int(stats.max_hp)-hero_hp,int(float(stats.max_hp)*0.08))
+			if Contract.no_healing(contract()): healed=0
 			hero_hp += healed
 			events.append({"type":"guard","heal":healed})
 		elif class_key=="Arcanist":
 			hero_mana = mini(int(stats.max_mana),hero_mana+int(stats.mana_cost)/4)
 			events.append({"type":"nova","position":target.pos,"radius":4.5 if int(stats.get("arcane_tactics",0))==1 else 3.2})
+	if attack.skill and stats.get("regional_set",-1)==0:
+		guard_time=maxf(guard_time,3.8 if class_key=="Vowkeeper" else 1.0)
+	var stored := float(stats.get("relic_charge",0.0)) if attack.skill and stats.get("class_relic","")=="stored_ember" else 0.0
+	if stored>0.0: stats.relic_charge=0.0
 	for enemy in selected:
 		var amount := float(stats.ability_damage if attack.skill else stats.attack)
+		if OathRules.enabled(stats):
+			amount*=OathRules.outgoing_scale(stats,guard_time,attack.skill)
+			if enemy.id==target.id: amount+=stored*OathRules.relic_scale(stats)*OathRules.outgoing_scale(stats,guard_time,false)
+		elif enemy.id==target.id: amount+=stored
+		amount *= float(Stances.definition(stats).outgoing)
 		if attack.skill: amount *= 0.82 if class_key=="Ranger" else 0.90
-		var crit := rng.randf()*100.0 < float(stats.crit)+(12.0 if class_key=="Ranger" and attack.skill else 0.0)
+		var crit := rng.randf()*100.0 < float(stats.crit)+(12.0 if class_key=="Ranger" and attack.skill else 0.0)+(8.0 if attack.skill and stats.get("regional_set",-1)==2 else 0.0)+(OathRules.signature_crit(stats) if attack.skill else 0.0)
 		if crit: amount *= 2.15 if class_key=="Ranger" else 1.7
 		if enemy.role in ["bulwark","elite"] and class_key!="Arcanist": amount *= 0.72
 		var damage := mini(enemy.hp,maxi(1,int(amount)))
@@ -533,6 +553,8 @@ func _resolve_hero_attack() -> void:
 		if enemy.hp<=0:
 			kills += 1
 			enemy.warning = {}
+		elif enemy.role=="boss" and uses_phased_bosses(): _update_boss_phase(enemy)
+	if attack.skill: _release_relic(target,selected,stored)
 	hero_mana = mini(int(stats.max_mana),hero_mana+maxi(1,int(stats.attributes.Spirit)/4))
 
 func _safe_boss_escape() -> Vector2:
@@ -554,7 +576,8 @@ func _safe_boss_escape() -> Vector2:
 	return best
 
 func _tick_enemy(enemy: Dictionary) -> void:
-	if enemy.has("awakened") and not enemy.awakened and enemy.hp<=enemy.max_hp*0.5:
+	if enemy.role=="boss" and uses_phased_bosses(): _update_boss_phase(enemy)
+	elif enemy.has("awakened") and not enemy.awakened and enemy.hp<=enemy.max_hp*0.5:
 		enemy.awakened=true
 		events.append({"type":"boss_phase","source":enemy.id,"name":enemy.name})
 	if not enemy.warning.is_empty():
@@ -581,11 +604,11 @@ func _tick_enemy(enemy: Dictionary) -> void:
 				var previous_variant:=int(enemy.get("last_pattern_variant",-1))
 				pattern_variant=1-previous_variant if previous_variant in [0,1] else rng.randi_range(0,1)
 				enemy["last_pattern_variant"]=pattern_variant
-			enemy.warning=BossPatterns.create((floor_id-1)/10,enemy.pos,hero_pos,enemy.get("awakened",false),pattern_variant)
+			enemy.warning=BossPatterns.create_phased((floor_id-1)/10,enemy.pos,hero_pos,int(enemy.boss_phase),pattern_variant) if uses_phased_bosses() else BossPatterns.create((floor_id-1)/10,enemy.pos,hero_pos,enemy.get("awakened",false),pattern_variant)
 			var event: Dictionary=enemy.warning.duplicate(true)
 			event.merge({"type":"warning","source":enemy.id,"position":enemy.warning.center,"duration":enemy.warning.total})
 			events.append(event)
-			enemy.special_cd=5.0 if enemy.get("awakened",false) else 6.8
+			enemy.special_cd=[6.8,5.8,4.8][int(enemy.boss_phase)] if uses_phased_bosses() else 5.0 if enemy.get("awakened",false) else 6.8
 		else:
 			_warn(enemy,2.6,1.4)
 			enemy.special_cd = 6.5
@@ -631,23 +654,50 @@ func _warn(enemy: Dictionary, radius: float, seconds: float) -> void:
 	events.append({"type":"warning","source":enemy.id,"position":hero_pos,"radius":radius,"duration":seconds})
 
 func _hurt_hero(enemy: Dictionary, raw: float) -> void:
+	raw *= float(Stances.definition(stats).incoming)
 	var mitigation := float(stats.armor)/(float(stats.armor)+180.0)
 	var damage := maxi(1,int(raw*(1.0-mitigation)*(0.55 if guard_time>0 else 1.0))-int(stats.class_mitigation))
 	# The optional stat keeps pre-0.8 expedition checkpoints on their old rules.
 	# Reserve one ability cast; Spirit now fuels both spellcasting and defense.
 	var ward_fraction := float(stats.get("mana_guard",0.0)) if class_key=="Arcanist" else 0.0
 	if ward_fraction>0.0:
-		var reserve := int(stats.mana_cost)
+		var reserve := signature_cost()
 		var absorbed := mini(floori(damage*ward_fraction),maxi(0,hero_mana-reserve)/2)
 		if absorbed>0:
 			hero_mana -= absorbed*2
 			damage -= absorbed
 			events.append({"type":"ward","source":enemy.id,"absorbed":absorbed,"mana_spent":absorbed*2})
+	if guard_time>0.0 and stats.get("class_relic","")=="stored_ember":
+		var prevented:=maxf(0.0,raw*(1.0-mitigation)*0.45)
+		stats.relic_charge=minf(float(stats.ability_damage)*0.6,float(stats.get("relic_charge",0.0))+prevented*OathRules.charge_scale(stats))
 	hero_hp = maxi(0,hero_hp-damage)
 	events.append({"type":"hero_hit","source":enemy.id,"damage":damage})
 
 func uses_journey() -> bool:
 	return int(stats.get("dungeon_journey",0))==1
+
+func uses_phased_bosses() -> bool:
+	return stats.get("boss_phases",0)==1 and stats.get("boss_patterns",0)==1
+
+func signature_cost() -> int:
+	return OathRules.cast_cost(stats,int(stats.mana_cost))
+
+func technique_cost(key: String) -> int:
+	return OathRules.cast_cost(stats,int(Skills.DEFINITIONS[key].cost),true) if Skills.DEFINITIONS.has(key) else 0
+
+func _update_boss_phase(enemy: Dictionary) -> void:
+	if enemy.hp<=0: return
+	var desired:=BossPatterns.phase_for_health(int(enemy.hp),int(enemy.max_hp))
+	while int(enemy.boss_phase)<desired:
+		var previous:=int(enemy.boss_phase)
+		enemy.boss_phase=previous+1
+		enemy.awakened=true
+		# A structural transition ends the old cast; the next tick commits the
+		# replacement geometry before it can hurt the hero.
+		enemy.warning={}
+		enemy.special_cd=0.0
+		var region_id:=Layout.region(floor_id)
+		events.append({"type":"boss_phase","source":enemy.id,"name":enemy.name,"region":region_id,"from_phase":previous,"phase":int(enemy.boss_phase),"phase_name":BossPatterns.phase_name(region_id,int(enemy.boss_phase)),"description":BossPatterns.phase_description(region_id,int(enemy.boss_phase)),"position":enemy.pos})
 
 func uses_tactical_movement() -> bool:
 	return uses_journey() and int(stats.get("dungeon_generation",1))>=5
@@ -711,6 +761,7 @@ func _tick_journey() -> void:
 		if stage==1 and not journey.well_used:
 			journey.well_used=true
 			var restored := mini(int(stats.max_hp)-hero_hp,maxi(1,int(stats.max_hp*0.18)))
+			if Contract.no_healing(contract()): restored=0
 			hero_hp+=restored
 			events.append({"type":"well","position":hero_pos,"restored":restored})
 		elif stage==3: journey.seal_broken=true
@@ -764,6 +815,8 @@ func restore(state: Dictionary) -> bool:
 	if not data.phase in ["travel","combat","interact","loot","finished"]: return false
 	if data.stats.has("dungeon_journey") and (not data.stats.dungeon_journey is int or not data.stats.dungeon_journey in [0,1]): return false
 	if data.stats.has("expedition_contract") and not Contract.valid(data.stats.expedition_contract,data.floor_id): return false
+	if data.stats.has("oath_rules") and (not data.stats.oath_rules is int or data.stats.oath_rules not in [0,1]): return false
+	if data.stats.get("expedition_contract",{}).get("version",1)==2 and data.stats.get("oath_rules",0)!=1: return false
 	if data.stats.has("expedition_contract") and Contract.mode(data.stats.expedition_contract)=="trial" and data.elapsed>Contract.TRIAL_LIMIT+STEP*2: return false
 	var new_journey: bool = data.stats.get("dungeon_journey",0)==1
 	if data.elapsed>(MAX_DURATION if new_journey else LEGACY_MAX_DURATION)+STEP*2: return false
@@ -799,13 +852,24 @@ func restore(state: Dictionary) -> bool:
 	for stat in ["max_hp","max_mana","attack","ability_damage","mana_cost","crit","armor","class_mitigation"]:
 		if not _valid_number(data.stats.get(stat)): return false
 	if data.stats.max_hp<1 or data.stats.max_mana<0 or data.stats.mana_cost<0: return false
+	if data.stats.has("first_descent") and (not data.stats.first_descent is int or data.stats.first_descent!=1 or data.floor_id!=1): return false
+	if data.stats.has("regional_set") and (not data.stats.regional_set is int or data.stats.regional_set<0 or data.stats.regional_set>=4): return false
+	if data.stats.has("class_relic"):
+		var relic: Variant=data.stats.class_relic
+		if not relic is String or not Relics.DEFINITIONS.has(relic) or Relics.DEFINITIONS[relic].class!=data.class_key: return false
+	if data.stats.has("relic_charge"):
+		if data.stats.get("class_relic","")!="stored_ember" or not _valid_number(data.stats.relic_charge) or data.stats.relic_charge<0.0 or data.stats.relic_charge>float(data.stats.ability_damage)*0.6+0.0001: return false
 	if data.stats.has("mana_guard"):
 		if not _valid_number(data.stats.mana_guard) or data.stats.mana_guard<0.0 or data.stats.mana_guard>0.5: return false
 	if data.stats.has("boss_patterns") and (not data.stats.boss_patterns is int or not data.stats.boss_patterns in [0,1]): return false
+	if data.stats.has("boss_phases") and (not data.stats.boss_phases is int or data.stats.boss_phases not in [0,1]): return false
+	var has_boss_phases: bool=data.stats.get("boss_phases",0)==1
+	if has_boss_phases and data.stats.get("boss_patterns",0)!=1: return false
 	if data.stats.has("arcane_tactics") and (not data.stats.arcane_tactics is int or not data.stats.arcane_tactics in [0,1]): return false
 	if data.stats.has("dungeon_generation") and (not data.stats.dungeon_generation is int or not data.stats.dungeon_generation in [1,2,3,4,5,6]): return false
 	if data.stats.has("route_pattern_version") and (not data.stats.route_pattern_version is int or data.stats.route_pattern_version not in [1,2,3,4]): return false
 	if data.stats.has("auto_target_variance") and (not data.stats.auto_target_variance is int or data.stats.auto_target_variance not in [0,1]): return false
+	if data.stats.has("combat_stance") and not Stances.valid(data.stats.combat_stance): return false
 	if not data.stats.get("attributes") is Dictionary or not _valid_number(data.stats.attributes.get("Spirit")): return false
 	if data.hero_hp<0 or data.hero_hp>data.stats.max_hp or data.hero_mana<0 or data.hero_mana>data.stats.max_mana: return false
 	var saved_legacy_layout := _snapshot_uses_legacy_layout(data) if new_journey else true
@@ -843,6 +907,12 @@ func restore(state: Dictionary) -> bool:
 				if not _valid_number(enemy.get(stat)): return false
 			if enemy.max_hp<1 or enemy.hp<0 or enemy.hp>enemy.max_hp: return false
 			if enemy.has("awakened") and (enemy.role!="boss" or not enemy.awakened is bool): return false
+			if enemy.has("boss_phase"):
+				if not has_boss_phases or enemy.role!="boss" or not enemy.boss_phase is int or enemy.boss_phase not in [0,1,2]: return false
+			if has_boss_phases and enemy.role=="boss":
+				if not enemy.has("boss_phase") or not enemy.get("awakened") is bool or enemy.awakened!=(enemy.boss_phase>0): return false
+				if not enemy.hp is int or not enemy.max_hp is int: return false
+				if enemy.hp>0 and enemy.boss_phase!=BossPatterns.phase_for_health(enemy.hp,enemy.max_hp): return false
 			if enemy.has("last_pattern_variant") and (not enemy.last_pattern_variant is int or enemy.last_pattern_variant not in [-1,0,1]): return false
 			for ai_field in ["flank_phase","flank_direction","flank_radius","preferred_range","warning_radius","warning_duration"]:
 				if enemy.has(ai_field) and not _valid_number(enemy[ai_field]): return false
@@ -870,6 +940,11 @@ func restore(state: Dictionary) -> bool:
 					if not _valid_number(warning.get(stat)) or warning[stat]<0: return false
 				if warning.has("multiplier") and (not _valid_number(warning.multiplier) or warning.multiplier<0.5 or warning.multiplier>3.0): return false
 				if warning.has("zones") and (enemy.role!="boss" or not BossPatterns.valid(warning)): return false
+				var has_phase_metadata: bool=warning.has("geometry_version") or warning.has("phase") or warning.has("phase_name") or warning.has("origin") or warning.has("aim_target")
+				if has_phase_metadata and (not has_boss_phases or enemy.role!="boss" or warning.get("geometry_version")!=2 or not warning.has("zones")): return false
+				if warning.has("geometry_version") and (not has_boss_phases or enemy.role!="boss" or warning.get("phase")!=enemy.get("boss_phase") or warning.get("pattern")!=Layout.region(data.floor_id)): return false
+				if warning.has("geometry_version") and int(data.stats.get("dungeon_generation",1))>=2 and warning.get("variant")!=enemy.get("last_pattern_variant"): return false
+				if has_boss_phases and enemy.role=="boss" and (not warning.has("zones") or warning.get("geometry_version")!=2): return false
 	if int(data.stats.get("dungeon_generation",1))>=4:
 		if reinforcement_count!=2: return false
 		for room_count in reinforcement_rooms.values():
@@ -928,7 +1003,7 @@ func _try_technique(target: Dictionary, protection: bool) -> bool:
 	var candidates: Array[String]=[]
 	for key in stats.skill_loadout:
 		var definition: Dictionary=Skills.DEFINITIONS[key]
-		if (definition.kind=="guard")!=protection or rotation.cooldowns[key]>0.0 or hero_mana<int(definition.cost): continue
+		if (definition.kind=="guard")!=protection or rotation.cooldowns[key]>0.0 or hero_mana<technique_cost(key): continue
 		if protection:
 			if guard_time>0.5: continue
 			var threatened:=hero_hp<float(stats.max_hp)*0.7
@@ -953,8 +1028,8 @@ func _try_technique(target: Dictionary, protection: bool) -> bool:
 	var key: String=candidates[0] if protection or candidates.size()==1 else candidates[rng.randi_range(0,candidates.size()-1)]
 	var definition: Dictionary=Skills.DEFINITIONS[key]
 	pending_attack={"target":target.id,"skill":true,"left":float(definition.cast),"name":definition.name,"ability_id":key,"center":hero_pos if key=="sunder" else Vector2(target.pos)}
-	hero_mana-=int(definition.cost)
-	rotation.cooldowns[key]=float(definition.cooldown)
+	hero_mana-=technique_cost(key)
+	rotation.cooldowns[key]=float(definition.cooldown)*OathRules.cooldown_scale(stats,true)
 	rotation.uses[key]+=1
 	casts+=1
 	attack_cd=maxf(1.05 if class_key=="Ranger" else 1.3,float(definition.cast)+0.15)
@@ -1007,6 +1082,8 @@ func _resolve_technique(attack: Dictionary) -> void:
 	for enemy in selected:
 		points.append(Vector2(enemy.pos))
 		var amount := float(Skills.damage(key,stats))
+		amount *= OathRules.outgoing_scale(stats,guard_time,true)
+		amount *= float(Stances.definition(stats).outgoing)
 		var critical:=rng.randf()*100.0<float(stats.crit)
 		if critical: amount*=2.15 if class_key=="Ranger" else 1.7
 		if key!="marked" and enemy.role in ["bulwark","elite"] and class_key!="Arcanist": amount*=0.72
@@ -1017,6 +1094,7 @@ func _resolve_technique(attack: Dictionary) -> void:
 		if enemy.hp<=0:
 			kills+=1
 			enemy.warning={}
+		elif enemy.role=="boss" and uses_phased_bosses(): _update_boss_phase(enemy)
 	# Same on-hit Spirit recovery as a normal attack, once per technique.
 	if not selected.is_empty(): hero_mana=mini(int(stats.max_mana),hero_mana+maxi(1,int(stats.attributes.Spirit)/4))
 	events.append({"type":"technique","ability_id":key,"position":origin,"radius":definition.radius,"points":points})
@@ -1027,3 +1105,42 @@ func contract() -> Dictionary:
 func duration_limit() -> float:
 	if Contract.mode(contract())=="trial": return Contract.TRIAL_LIMIT
 	return MAX_DURATION if uses_journey() else LEGACY_MAX_DURATION
+
+func _release_relic(target: Dictionary, signature_targets: Array, stored: float) -> void:
+	var key: String=stats.get("class_relic","")
+	var selected: Array=[]
+	var points: Array=[Vector2(target.pos)]
+	if key=="echo_lightning":
+		var origin: Vector2=signature_targets.back().pos if not signature_targets.is_empty() else target.pos
+		points=[origin]
+		for jump in range(2):
+			var next: Dictionary={}
+			var distance:=4.00001
+			for enemy in living():
+				if signature_targets.has(enemy) or selected.has(enemy): continue
+				var gap:=origin.distance_to(enemy.pos)
+				if gap<distance: next=enemy; distance=gap
+			if next.is_empty(): break
+			selected.append(next)
+			origin=next.pos
+	elif key=="returning_thorn" and target.hp>0:
+		selected.append(target)
+		points=[hero_pos]
+	elif key=="stored_ember" and stored>0.0:
+		events.append({"type":"technique","ability_id":"judgment","position":target.pos,"radius":0.0,"points":[hero_pos,Vector2(target.pos)]})
+		return
+	for enemy in selected:
+		var factor:=0.45 if key=="echo_lightning" else 0.35
+		var amount:=float(stats.ability_damage)*factor*float(Stances.definition(stats).outgoing)
+		amount*=OathRules.relic_scale(stats)*OathRules.outgoing_scale(stats,guard_time,false)
+		if enemy.role in ["bulwark","elite"] and class_key!="Arcanist": amount*=0.72
+		var damage:=mini(enemy.hp,maxi(1,int(amount)))
+		enemy.hp-=damage
+		points.append(Vector2(enemy.pos))
+		events.append({"type":"hit","target":enemy.id,"damage":damage,"critical":false,"skill":true,"name":Relics.DEFINITIONS[key].name,"dead":enemy.hp<=0})
+		if enemy.hp<=0:
+			kills+=1
+			enemy.warning={}
+		elif enemy.role=="boss" and uses_phased_bosses(): _update_boss_phase(enemy)
+	if not selected.is_empty():
+		events.append({"type":"technique","ability_id":"chain" if key=="echo_lightning" else "marked","position":target.pos,"radius":4.0,"points":points})

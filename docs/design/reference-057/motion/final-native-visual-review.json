@@ -1,0 +1,33 @@
+{
+  "reviewer": "/root/motion_final_057",
+  "reviewed_utc": "2026-10-07T20:15:23.531339+00:00",
+  "scope": "All18 original1000x1000 PNGs inspected individually at original resolution. Fixed-camera studio diagnostic stills; no temporal gameplay, audio or physical-phone performance acceptance.",
+  "original_images_seen": [
+    "native-final/arcanist-cancel-departure.png",
+    "native-final/arcanist-cancel-entry.png",
+    "native-final/arcanist-evade-low-step.png",
+    "native-final/arcanist-signature-follow.png",
+    "native-final/arcanist-signature-load.png",
+    "native-final/arcanist-signature-release.png",
+    "native-final/ranger-cancel-departure.png",
+    "native-final/ranger-cancel-entry.png",
+    "native-final/ranger-evade-low-step.png",
+    "native-final/ranger-signature-follow.png",
+    "native-final/ranger-signature-load.png",
+    "native-final/ranger-signature-release.png",
+    "native-final/vowkeeper-cancel-departure.png",
+    "native-final/vowkeeper-cancel-entry.png",
+    "native-final/vowkeeper-evade-low-step.png",
+    "native-final/vowkeeper-signature-follow.png",
+    "native-final/vowkeeper-signature-load.png",
+    "native-final/vowkeeper-signature-release.png"
+  ],
+  "observations": [
+    "Full bodies, all boots, staff crown and relevant held blade/bow remain within the actual viewport.",
+    "At the sampled poses the visible limbs and held weapons are coherent; cancellation departure/entry pairs preserve the displayed pose.",
+    "Ranger draw hook is visibly at cheek/shoulder level, with bow/string/nock readable at load/release.",
+    "The diagonal LowStep midpoint visibly crosses both boots in all three classes; continuous movement will be assessed separately in full normal expeditions.",
+    "The signature-follow PNG is the real +0.065s early recovery frame; it does not visually sample the later sword recovery defect after phase0.45. That correction is separately covered by the actual30 recovery samples for each of three sword phrases."
+  ],
+  "source_commit": "02a3fc905e55a4e64cbece4eb6b07c65c1bf4afb"
+}

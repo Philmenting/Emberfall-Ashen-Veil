@@ -1,0 +1,691 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: hexer actual idle 0.2: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316550473869
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: hexer actual idle 0.2: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: hexer actual walk 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315677358955
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: hexer actual walk 0.25: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: hexer actual windup_skill 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316453616321
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: hexer actual windup_skill 0.25: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: hexer actual windup_skill 0.75: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316387399286
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: hexer actual windup_skill 0.75: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: hexer actual windup_skill 1.0: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316433872283
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: hexer actual windup_skill 1.0: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: hexer actual recover_skill 0.1: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316480159014
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: hexer actual recover_skill 0.1: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: hexer actual hit overlay: whole arm avoids shaft penetration beyond 1 mm; measured 0.0031630423218
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:133)
+ERROR: hexer actual hit overlay: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:133)
+ERROR: bulwark actual idle 0.2: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316712803394
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: bulwark actual idle 0.2: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: bulwark actual walk 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315677358955
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: bulwark actual walk 0.25: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: bulwark actual windup_skill 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315528533608
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: bulwark actual windup_skill 0.25: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: bulwark actual windup_skill 0.75: whole arm avoids shaft penetration beyond 1 mm; measured 0.00313081949204
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: bulwark actual windup_skill 0.75: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: bulwark actual windup_skill 1.0: whole arm avoids shaft penetration beyond 1 mm; measured 0.00310026652366
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: bulwark actual windup_skill 1.0: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: bulwark actual recover_skill 0.1: whole arm avoids shaft penetration beyond 1 mm; measured 0.00312081243098
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: bulwark actual recover_skill 0.1: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: bulwark actual hit overlay: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316734223813
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:133)
+ERROR: bulwark actual hit overlay: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:133)
+ERROR: elite actual idle 0.2: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316712803394
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: elite actual idle 0.2: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: elite actual walk 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315677358955
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: elite actual walk 0.25: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: elite actual windup_skill 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315538964421
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: elite actual windup_skill 0.25: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: elite actual windup_skill 0.75: whole arm avoids shaft penetration beyond 1 mm; measured 0.00314657653868
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: elite actual windup_skill 0.75: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: elite actual windup_skill 1.0: whole arm avoids shaft penetration beyond 1 mm; measured 0.0031625431329
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: elite actual windup_skill 1.0: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: elite actual recover_skill 0.1: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316304977238
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: elite actual recover_skill 0.1: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: elite actual hit overlay: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316734223813
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:133)
+ERROR: elite actual hit overlay: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:133)
+ERROR: guardian_0 actual idle 0.2: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316712803394
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_0 actual idle 0.2: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_0 actual walk 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315677358955
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_0 actual walk 0.25: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_0 actual windup_skill 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00309803880006
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_0 actual windup_skill 0.25: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_0 actual windup_skill 0.75: whole arm avoids shaft penetration beyond 1 mm; measured 0.00312921482325
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_0 actual windup_skill 0.75: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_0 actual windup_skill 1.0: whole arm avoids shaft penetration beyond 1 mm; measured 0.00313767402619
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_0 actual windup_skill 1.0: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_0 actual recover_skill 0.1: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315708651394
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_0 actual recover_skill 0.1: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_0 actual hit overlay: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316734223813
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:133)
+ERROR: guardian_0 actual hit overlay: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:133)
+ERROR: guardian_1 actual idle 0.2: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316550473869
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_1 actual idle 0.2: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_1 actual walk 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315677358955
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_1 actual walk 0.25: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_1 actual windup_skill 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316415059566
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_1 actual windup_skill 0.25: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_1 actual windup_skill 0.75: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316426514834
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_1 actual windup_skill 0.75: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_1 actual windup_skill 1.0: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316482487321
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_1 actual windup_skill 1.0: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_1 actual recover_skill 0.1: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316506422311
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_1 actual recover_skill 0.1: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_1 actual hit overlay: whole arm avoids shaft penetration beyond 1 mm; measured 0.0031630423218
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:133)
+ERROR: guardian_1 actual hit overlay: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:133)
+ERROR: guardian_2 actual idle 0.2: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316550473869
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_2 actual idle 0.2: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_2 actual walk 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315677358955
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_2 actual walk 0.25: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_2 actual windup_skill 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316328353435
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_2 actual windup_skill 0.25: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_2 actual windup_skill 0.75: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316587913036
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_2 actual windup_skill 0.75: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_2 actual windup_skill 1.0: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316505490988
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_2 actual windup_skill 1.0: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_2 actual recover_skill 0.1: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316512382776
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_2 actual recover_skill 0.1: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_2 actual hit overlay: whole arm avoids shaft penetration beyond 1 mm; measured 0.0031630423218
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:133)
+ERROR: guardian_2 actual hit overlay: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:133)
+ERROR: guardian_3 actual idle 0.2: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316712803394
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_3 actual idle 0.2: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_3 actual walk 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315677358955
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_3 actual walk 0.25: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_3 actual windup_skill 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00309803880006
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_3 actual windup_skill 0.25: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_3 actual windup_skill 0.75: whole arm avoids shaft penetration beyond 1 mm; measured 0.00312921482325
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_3 actual windup_skill 0.75: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_3 actual windup_skill 1.0: whole arm avoids shaft penetration beyond 1 mm; measured 0.00313767402619
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_3 actual windup_skill 1.0: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_3 actual recover_skill 0.1: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315638057142
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_3 actual recover_skill 0.1: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:114)
+ERROR: guardian_3 actual hit overlay: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316734223813
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:154)
+       [2] run (res://tests/native_hostile_smoke.gd:133)
+ERROR: guardian_3 actual hit overlay: palm stays clear and within 14 mm of the supported shaft
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_pose (res://tests/raider_native_smoke.gd:175)
+       [2] run (res://tests/native_hostile_smoke.gd:133)
+NATIVE_HOSTILE_METRICS {"bulwark":{"armor_surfaces":4,"triangles":23828,"visible_skin_surfaces":14,"weapon_surfaces":4},"elite":{"armor_surfaces":3,"triangles":23780,"visible_skin_surfaces":13,"weapon_surfaces":4},"guardian_0":{"armor_surfaces":3,"triangles":26160,"visible_skin_surfaces":13,"weapon_surfaces":2},"guardian_1":{"armor_surfaces":1,"triangles":31058,"visible_skin_surfaces":12,"weapon_surfaces":5},"guardian_2":{"armor_surfaces":1,"triangles":30736,"visible_skin_surfaces":12,"weapon_surfaces":5},"guardian_3":{"armor_surfaces":3,"triangles":23804,"visible_skin_surfaces":13,"weapon_surfaces":3},"hexer":{"armor_surfaces":0,"triangles":30172,"visible_skin_surfaces":11,"weapon_surfaces":5}}
+NATIVE_HOSTILE_CONTACT poses=49 max_finger_gap_m=0.00170043227263 max_penetration_m=0.00316734223813 max_actual_thumb_gap_m=0.00239018956199
+NATIVE HOSTILE SMOKE: 1612 checks, 98 failures
+FAIL hexer actual idle 0.2: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316550473869
+FAIL hexer actual idle 0.2: palm stays clear and within 14 mm of the supported shaft
+FAIL hexer actual walk 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315677358955
+FAIL hexer actual walk 0.25: palm stays clear and within 14 mm of the supported shaft
+FAIL hexer actual windup_skill 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316453616321
+FAIL hexer actual windup_skill 0.25: palm stays clear and within 14 mm of the supported shaft
+FAIL hexer actual windup_skill 0.75: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316387399286
+FAIL hexer actual windup_skill 0.75: palm stays clear and within 14 mm of the supported shaft
+FAIL hexer actual windup_skill 1.0: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316433872283
+FAIL hexer actual windup_skill 1.0: palm stays clear and within 14 mm of the supported shaft
+FAIL hexer actual recover_skill 0.1: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316480159014
+FAIL hexer actual recover_skill 0.1: palm stays clear and within 14 mm of the supported shaft
+FAIL hexer actual hit overlay: whole arm avoids shaft penetration beyond 1 mm; measured 0.0031630423218
+FAIL hexer actual hit overlay: palm stays clear and within 14 mm of the supported shaft
+FAIL bulwark actual idle 0.2: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316712803394
+FAIL bulwark actual idle 0.2: palm stays clear and within 14 mm of the supported shaft
+FAIL bulwark actual walk 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315677358955
+FAIL bulwark actual walk 0.25: palm stays clear and within 14 mm of the supported shaft
+FAIL bulwark actual windup_skill 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315528533608
+FAIL bulwark actual windup_skill 0.25: palm stays clear and within 14 mm of the supported shaft
+FAIL bulwark actual windup_skill 0.75: whole arm avoids shaft penetration beyond 1 mm; measured 0.00313081949204
+FAIL bulwark actual windup_skill 0.75: palm stays clear and within 14 mm of the supported shaft
+FAIL bulwark actual windup_skill 1.0: whole arm avoids shaft penetration beyond 1 mm; measured 0.00310026652366
+FAIL bulwark actual windup_skill 1.0: palm stays clear and within 14 mm of the supported shaft
+FAIL bulwark actual recover_skill 0.1: whole arm avoids shaft penetration beyond 1 mm; measured 0.00312081243098
+FAIL bulwark actual recover_skill 0.1: palm stays clear and within 14 mm of the supported shaft
+FAIL bulwark actual hit overlay: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316734223813
+FAIL bulwark actual hit overlay: palm stays clear and within 14 mm of the supported shaft
+FAIL elite actual idle 0.2: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316712803394
+FAIL elite actual idle 0.2: palm stays clear and within 14 mm of the supported shaft
+FAIL elite actual walk 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315677358955
+FAIL elite actual walk 0.25: palm stays clear and within 14 mm of the supported shaft
+FAIL elite actual windup_skill 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315538964421
+FAIL elite actual windup_skill 0.25: palm stays clear and within 14 mm of the supported shaft
+FAIL elite actual windup_skill 0.75: whole arm avoids shaft penetration beyond 1 mm; measured 0.00314657653868
+FAIL elite actual windup_skill 0.75: palm stays clear and within 14 mm of the supported shaft
+FAIL elite actual windup_skill 1.0: whole arm avoids shaft penetration beyond 1 mm; measured 0.0031625431329
+FAIL elite actual windup_skill 1.0: palm stays clear and within 14 mm of the supported shaft
+FAIL elite actual recover_skill 0.1: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316304977238
+FAIL elite actual recover_skill 0.1: palm stays clear and within 14 mm of the supported shaft
+FAIL elite actual hit overlay: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316734223813
+FAIL elite actual hit overlay: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_0 actual idle 0.2: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316712803394
+FAIL guardian_0 actual idle 0.2: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_0 actual walk 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315677358955
+FAIL guardian_0 actual walk 0.25: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_0 actual windup_skill 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00309803880006
+FAIL guardian_0 actual windup_skill 0.25: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_0 actual windup_skill 0.75: whole arm avoids shaft penetration beyond 1 mm; measured 0.00312921482325
+FAIL guardian_0 actual windup_skill 0.75: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_0 actual windup_skill 1.0: whole arm avoids shaft penetration beyond 1 mm; measured 0.00313767402619
+FAIL guardian_0 actual windup_skill 1.0: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_0 actual recover_skill 0.1: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315708651394
+FAIL guardian_0 actual recover_skill 0.1: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_0 actual hit overlay: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316734223813
+FAIL guardian_0 actual hit overlay: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_1 actual idle 0.2: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316550473869
+FAIL guardian_1 actual idle 0.2: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_1 actual walk 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315677358955
+FAIL guardian_1 actual walk 0.25: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_1 actual windup_skill 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316415059566
+FAIL guardian_1 actual windup_skill 0.25: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_1 actual windup_skill 0.75: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316426514834
+FAIL guardian_1 actual windup_skill 0.75: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_1 actual windup_skill 1.0: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316482487321
+FAIL guardian_1 actual windup_skill 1.0: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_1 actual recover_skill 0.1: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316506422311
+FAIL guardian_1 actual recover_skill 0.1: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_1 actual hit overlay: whole arm avoids shaft penetration beyond 1 mm; measured 0.0031630423218
+FAIL guardian_1 actual hit overlay: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_2 actual idle 0.2: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316550473869
+FAIL guardian_2 actual idle 0.2: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_2 actual walk 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315677358955
+FAIL guardian_2 actual walk 0.25: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_2 actual windup_skill 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316328353435
+FAIL guardian_2 actual windup_skill 0.25: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_2 actual windup_skill 0.75: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316587913036
+FAIL guardian_2 actual windup_skill 0.75: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_2 actual windup_skill 1.0: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316505490988
+FAIL guardian_2 actual windup_skill 1.0: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_2 actual recover_skill 0.1: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316512382776
+FAIL guardian_2 actual recover_skill 0.1: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_2 actual hit overlay: whole arm avoids shaft penetration beyond 1 mm; measured 0.0031630423218
+FAIL guardian_2 actual hit overlay: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_3 actual idle 0.2: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316712803394
+FAIL guardian_3 actual idle 0.2: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_3 actual walk 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315677358955
+FAIL guardian_3 actual walk 0.25: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_3 actual windup_skill 0.25: whole arm avoids shaft penetration beyond 1 mm; measured 0.00309803880006
+FAIL guardian_3 actual windup_skill 0.25: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_3 actual windup_skill 0.75: whole arm avoids shaft penetration beyond 1 mm; measured 0.00312921482325
+FAIL guardian_3 actual windup_skill 0.75: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_3 actual windup_skill 1.0: whole arm avoids shaft penetration beyond 1 mm; measured 0.00313767402619
+FAIL guardian_3 actual windup_skill 1.0: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_3 actual recover_skill 0.1: whole arm avoids shaft penetration beyond 1 mm; measured 0.00315638057142
+FAIL guardian_3 actual recover_skill 0.1: palm stays clear and within 14 mm of the supported shaft
+FAIL guardian_3 actual hit overlay: whole arm avoids shaft penetration beyond 1 mm; measured 0.00316734223813
+FAIL guardian_3 actual hit overlay: palm stays clear and within 14 mm of the supported shaft

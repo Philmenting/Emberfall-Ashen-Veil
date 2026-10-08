@@ -1,0 +1,28 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Arcanist: visibility binds every real visible skin, garment and held prop, excluding the hidden compatibility proxy
+PASS: Arcanist: every reveal surface shares its original mesh, skin, native skeleton, parent and transform
+PASS: Arcanist: original PBR and shadows remain untouched; the actual held weapon participates
+PASS: Arcanist basic: skin and prop follow the real cast without moving the actor or camera
+PASS: Arcanist signature: skin and prop follow the real cast without moving the actor or camera
+PASS: Arcanist: an unobstructed/travel frame disables every additional hero draw
+PASS: Arcanist: defeated heroes receive no occlusion emphasis
+PASS: Arcanist: disposing visibility leaves no extra geometry or retained skeleton
+PASS: Vowkeeper: visibility binds every real visible skin, garment and held prop, excluding the hidden compatibility proxy
+PASS: Vowkeeper: every reveal surface shares its original mesh, skin, native skeleton, parent and transform
+PASS: Vowkeeper: original PBR and shadows remain untouched; the actual held weapon participates
+PASS: Vowkeeper basic: skin and prop follow the real cast without moving the actor or camera
+PASS: Vowkeeper signature: skin and prop follow the real cast without moving the actor or camera
+PASS: Vowkeeper: an unobstructed/travel frame disables every additional hero draw
+PASS: Vowkeeper: defeated heroes receive no occlusion emphasis
+PASS: Vowkeeper: disposing visibility leaves no extra geometry or retained skeleton
+PASS: Ranger: visibility binds every real visible skin, garment and held prop, excluding the hidden compatibility proxy
+PASS: Ranger: every reveal surface shares its original mesh, skin, native skeleton, parent and transform
+PASS: Ranger: original PBR and shadows remain untouched; the actual held weapon participates
+PASS: Ranger basic: skin and prop follow the real cast without moving the actor or camera
+PASS: Ranger signature: skin and prop follow the real cast without moving the actor or camera
+PASS: Ranger: an unobstructed/travel frame disables every additional hero draw
+PASS: Ranger: defeated heroes receive no occlusion emphasis
+PASS: Ranger: disposing visibility leaves no extra geometry or retained skeleton
+PASS: class switch: the pass rebinds exclusively to the current native skin, clothing and bow
+COMBAT OCCLUSION SMOKE: 25 checks, 0 failures

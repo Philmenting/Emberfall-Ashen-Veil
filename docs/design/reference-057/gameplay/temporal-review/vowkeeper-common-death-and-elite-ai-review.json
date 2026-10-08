@@ -1,0 +1,967 @@
+{
+  "schema": 1,
+  "status": "complete_ai_visual_inspection_of_all_listed_retained_sheets; bounded_observations_not_whole_movie_acceptance",
+  "created_utc": "2026-10-08T00:16:19.280565+00:00",
+  "character_class": "vowkeeper",
+  "reviewer": "Codex agent receipt_binding",
+  "reviewer_type": "AI visual inspection through tools.view_image; no separate human signoff claimed",
+  "human_signoff": false,
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "review_tool_sha256": "83bff1cabc3e915bbcf857bc5f628e159f82088cff10090c5ab0cbb223d9987d",
+  "plan_file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper-review-plan.json",
+  "plan_sha256": "a8e1ba5f9721e00c8c8349131398cf6e0bfce04fe16ec2895bfea5a21a635301",
+  "comparison_file": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/vowkeeper-comparison.json",
+  "comparison_sha256": "4b59eefbe7166104f0dc93e96dc9bd5895284fbdc30bf2da7150c292e23d20a8",
+  "provenance_binding": {
+    "before": {
+      "capture_receipt_file": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/receipt.json",
+      "capture_receipt_sha256": "840e980a74d05da1227173f9e0c3adaadaf532fbebbb88d4a2e9ac2ced795803",
+      "movie_sha256_from_finalized_capture_receipt": "e0f3194f1ad288bfa650143fa18d253e5220f09cad22fde5bb90fb494e6095b1",
+      "journal_sha256_from_finalized_capture_receipt": "6015c7d0c261abe1b70275ae2837ba7fb839b0110448ccc4042d7a47d63910a5"
+    },
+    "after": {
+      "capture_receipt_file": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/receipt.json",
+      "capture_receipt_sha256": "94f51f08ec795e87281c15b521513cf5717623de124cddd51a341589fbdd0561",
+      "movie_sha256_from_finalized_capture_receipt": "56f5a3cceeb8f10c8df035e1cc570ee3680fa7d7ecd5a0bd8e888f044a67b7d8",
+      "journal_sha256_from_finalized_capture_receipt": "48783f98c3e6df6c61815aea7d8c6791755757f7fa837e560928dae8c9f4c042"
+    }
+  },
+  "viewed_file_count": 26,
+  "viewed_panel_count_including_overlap": 126,
+  "distinct_sheet_sha256_count": 22,
+  "identical_sheet_groups": [
+    [
+      "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-elite-death/derived-contact-sheet-00.jpg",
+      "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-elite-interrupted-telegraph/derived-contact-sheet-00.jpg"
+    ],
+    [
+      "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-elite-death/derived-contact-sheet-01.jpg",
+      "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-elite-interrupted-telegraph/derived-contact-sheet-01.jpg"
+    ],
+    [
+      "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-elite-death/derived-contact-sheet-00.jpg",
+      "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-elite-interrupted-telegraph/derived-contact-sheet-00.jpg"
+    ],
+    [
+      "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-elite-death/derived-contact-sheet-01.jpg",
+      "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-elite-interrupted-telegraph/derived-contact-sheet-01.jpg"
+    ]
+  ],
+  "coverage": [
+    {
+      "label": "first-raider-death",
+      "comparison_observation": "Raider initial death response remains comparable; surrounding hero and distant caster appearances differ. No obvious new gross deformation or detached body part is visible in these retained panels.",
+      "pair": [
+        {
+          "side": "before",
+          "decode_receipt_file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-raider-death/decode-receipt.json",
+          "decode_receipt_sha256": "8da800977a19fe9cafc3148807c22f5e1399ad0c6dc31a12f23d969eaaf5f2c2",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "decoded_range": [
+            9,
+            39
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "crop_xyxy": [
+            264,
+            104,
+            885,
+            435
+          ],
+          "crop_size_pixels": [
+            621,
+            331
+          ],
+          "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+          "files": [
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-raider-death/derived-contact-sheet-00.jpg",
+              "sha256": "10a4576d8b7b7465b932c10c2812176c01f9ca8e9e28e4b2cdabd0c3e39aa01a",
+              "bytes": 307274,
+              "frames": [
+                9,
+                10,
+                11,
+                13,
+                17,
+                20
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                264,
+                104,
+                885,
+                435
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Pre-death, lethal frame11 and initial lowering through20. Three surrounding raiders lower through bent-knee/seated poses around frames17-21, then lie back with extended legs/arms at25-39. Their bodies remain readable around the hero."
+            },
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-raider-death/derived-contact-sheet-01.jpg",
+              "sha256": "38c3354cef7d5eb34b118a4c4a49afc1fa36d394ee073064886cd3d575449e58",
+              "bytes": 312546,
+              "frames": [
+                21,
+                25,
+                29,
+                33,
+                37,
+                39
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                264,
+                104,
+                885,
+                435
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Backward collapse and visible bodies at21-39. Three surrounding raiders lower through bent-knee/seated poses around frames17-21, then lie back with extended legs/arms at25-39. Their bodies remain readable around the hero."
+            }
+          ],
+          "observations": [
+            "Three surrounding raiders lower through bent-knee/seated poses around frames17-21, then lie back with extended legs/arms at25-39. Their bodies remain readable around the hero."
+          ]
+        },
+        {
+          "side": "after",
+          "decode_receipt_file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-raider-death/decode-receipt.json",
+          "decode_receipt_sha256": "e4b9aa19cd568e7053ee05a286663d0b1b7e9d4f9ca6540cb4a33469965cf679",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "decoded_range": [
+            9,
+            39
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "crop_xyxy": [
+            264,
+            104,
+            885,
+            435
+          ],
+          "crop_size_pixels": [
+            621,
+            331
+          ],
+          "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+          "files": [
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-raider-death/derived-contact-sheet-00.jpg",
+              "sha256": "cb4268d3e55cb279957934509e515662d7d697aa4c7a3e99847bc152d87707cc",
+              "bytes": 306552,
+              "frames": [
+                9,
+                10,
+                11,
+                13,
+                17,
+                20
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                264,
+                104,
+                885,
+                435
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Pre-death, lethal frame11 and initial lowering through20. The same three raiders show comparable visible lowering and backward falls at the matched retained frames. No substantial raider silhouette change is apparent."
+            },
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-raider-death/derived-contact-sheet-01.jpg",
+              "sha256": "20af50f2555fa137f267d270bb1719ef21424cedcb162dd7496fb7d3353eefa3",
+              "bytes": 311710,
+              "frames": [
+                21,
+                25,
+                29,
+                33,
+                37,
+                39
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                264,
+                104,
+                885,
+                435
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Backward collapse and visible bodies at21-39. The same three raiders show comparable visible lowering and backward falls at the matched retained frames. No substantial raider silhouette change is apparent."
+            }
+          ],
+          "observations": [
+            "The same three raiders show comparable visible lowering and backward falls at the matched retained frames. No substantial raider silhouette change is apparent."
+          ]
+        }
+      ]
+    },
+    {
+      "label": "first-hexer-death",
+      "comparison_observation": "Pre-hit human silhouette is clearer after; this camera overlap prevents a strong judgment of the full initial fall, knees, ground contact or separate limbs.",
+      "pair": [
+        {
+          "side": "before",
+          "decode_receipt_file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-hexer-death/decode-receipt.json",
+          "decode_receipt_sha256": "7b1914eb2c95402b0ac9369f3d53f3406f7a6b8e1bfc7febba9e0e09db3a374e",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "decoded_range": [
+            72,
+            102
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "crop_xyxy": [
+            188,
+            27,
+            809,
+            358
+          ],
+          "crop_size_pixels": [
+            621,
+            331
+          ],
+          "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+          "files": [
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-hexer-death/derived-contact-sheet-00.jpg",
+              "sha256": "d59a40e4767c7da5285730be402bebf8597ca65e5a55454573650e85181a9c26",
+              "bytes": 292225,
+              "frames": [
+                72,
+                73,
+                74,
+                76,
+                80,
+                83
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                188,
+                27,
+                809,
+                358
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Pre-hit silhouette, lethal frame74 and heavily overlapped initial descent through83. The short dark caster and green staff head are visible by the pillar before lethal frame74. The death response moves down into the hero/shield overlap; the later dark body is difficult to separate from the hero and arriving raider."
+            },
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-hexer-death/derived-contact-sheet-01.jpg",
+              "sha256": "98feec3cfed65fa2f1c56952ed619e64309a81e8300c028b90f1935383146e80",
+              "bytes": 298228,
+              "frames": [
+                84,
+                88,
+                91,
+                92,
+                96,
+                100
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                188,
+                27,
+                809,
+                358
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Staff/body motion remains heavily overlapped at84-100. The short dark caster and green staff head are visible by the pillar before lethal frame74. The death response moves down into the hero/shield overlap; the later dark body is difficult to separate from the hero and arriving raider."
+            },
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-hexer-death/derived-contact-sheet-02.jpg",
+              "sha256": "c770f0b22efe6ef29309c7062ac34847b2cc4fb822aba0e96d0f74270392add1",
+              "bytes": 55213,
+              "frames": [
+                102
+              ],
+              "panel_count": 1,
+              "crop_xyxy": [
+                188,
+                27,
+                809,
+                358
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Final sampled102 still has hero/raider overlap; no complete-death judgment. The short dark caster and green staff head are visible by the pillar before lethal frame74. The death response moves down into the hero/shield overlap; the later dark body is difficult to separate from the hero and arriving raider."
+            }
+          ],
+          "observations": [
+            "The short dark caster and green staff head are visible by the pillar before lethal frame74. The death response moves down into the hero/shield overlap; the later dark body is difficult to separate from the hero and arriving raider."
+          ]
+        },
+        {
+          "side": "after",
+          "decode_receipt_file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-hexer-death/decode-receipt.json",
+          "decode_receipt_sha256": "0668b08023c7bf4999c42fd67a452f7ca28091781aee0d64533000adcd6c933f",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "decoded_range": [
+            72,
+            102
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "crop_xyxy": [
+            188,
+            27,
+            809,
+            358
+          ],
+          "crop_size_pixels": [
+            621,
+            331
+          ],
+          "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+          "files": [
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-hexer-death/derived-contact-sheet-00.jpg",
+              "sha256": "e131cba4f6945e968e2592197e7bb8323384191c1c75a17ae6e2237df90de786",
+              "bytes": 290926,
+              "frames": [
+                72,
+                73,
+                74,
+                76,
+                80,
+                83
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                188,
+                27,
+                809,
+                358
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Pre-hit silhouette, lethal frame74 and heavily overlapped initial descent through83. The taller green-hooded human caster is clearer at72-74. The head/torso lowers behind the hero during76-84, with staff movement visible, but most of the later body is obscured by the hero, shield and reinforcement."
+            },
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-hexer-death/derived-contact-sheet-01.jpg",
+              "sha256": "12452690f74afb63565f9b489be917ea480820bb369fb58c7e9c23bf036355dd",
+              "bytes": 298494,
+              "frames": [
+                84,
+                88,
+                91,
+                92,
+                96,
+                100
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                188,
+                27,
+                809,
+                358
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Staff/body motion remains heavily overlapped at84-100. The taller green-hooded human caster is clearer at72-74. The head/torso lowers behind the hero during76-84, with staff movement visible, but most of the later body is obscured by the hero, shield and reinforcement."
+            },
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-hexer-death/derived-contact-sheet-02.jpg",
+              "sha256": "2247f62dde3ac540b73601a787d758ee204656d9ba6b07a268a29aa3ca875db2",
+              "bytes": 55291,
+              "frames": [
+                102
+              ],
+              "panel_count": 1,
+              "crop_xyxy": [
+                188,
+                27,
+                809,
+                358
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Final sampled102 still has hero/raider overlap; no complete-death judgment. The taller green-hooded human caster is clearer at72-74. The head/torso lowers behind the hero during76-84, with staff movement visible, but most of the later body is obscured by the hero, shield and reinforcement."
+            }
+          ],
+          "observations": [
+            "The taller green-hooded human caster is clearer at72-74. The head/torso lowers behind the hero during76-84, with staff movement visible, but most of the later body is obscured by the hero, shield and reinforcement."
+          ]
+        }
+      ]
+    },
+    {
+      "label": "first-bulwark-death",
+      "comparison_observation": "After silhouette and initial backward collapse are clearer and separate farther from the hero. Precise weapon attachment, hand contact and floor penetration cannot be judged at this scale.",
+      "pair": [
+        {
+          "side": "before",
+          "decode_receipt_file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-bulwark-death/decode-receipt.json",
+          "decode_receipt_sha256": "816d3bd94af9322f9a79e4a70fbdb3c9e6fd3660bdff13d48615b014c5ed0c25",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "decoded_range": [
+            975,
+            1005
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "crop_xyxy": [
+            272,
+            108,
+            893,
+            439
+          ],
+          "crop_size_pixels": [
+            621,
+            331
+          ],
+          "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+          "files": [
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-bulwark-death/derived-contact-sheet-00.jpg",
+              "sha256": "80c90d77e5d57a0f35d1672d5b63e41103763a5c8b496ae246158fd1acc09793",
+              "bytes": 341516,
+              "frames": [
+                975,
+                976,
+                977,
+                979,
+                983,
+                986
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                272,
+                108,
+                893,
+                439
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Pre-hit silhouette, lethal977 and initial lowering/recline through986. Short dark horned armored figure and shield sit left of the hero; the response later falls toward the hero, becoming a dark low mass near the hero feet."
+            },
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-bulwark-death/derived-contact-sheet-01.jpg",
+              "sha256": "96895c451c61477f8699c8ad6ccf72b49745f789d34b9fb05f00c05ca2037b37",
+              "bytes": 323417,
+              "frames": [
+                987,
+                991,
+                995,
+                999,
+                1003,
+                1005
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                272,
+                108,
+                893,
+                439
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Backward collapse/body readability at987-1005; simultaneous raider fall remains visible right of the hero. Short dark horned armored figure and shield sit left of the hero; the response later falls toward the hero, becoming a dark low mass near the hero feet."
+            }
+          ],
+          "observations": [
+            "Short dark horned armored figure and shield sit left of the hero; the response later falls toward the hero, becoming a dark low mass near the hero feet."
+          ]
+        },
+        {
+          "side": "after",
+          "decode_receipt_file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-bulwark-death/decode-receipt.json",
+          "decode_receipt_sha256": "78967a1a2cb02a734c95760a815fe5adecc4e16f2fb4086741c38c892acec9d6",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "decoded_range": [
+            975,
+            1005
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "crop_xyxy": [
+            272,
+            108,
+            893,
+            439
+          ],
+          "crop_size_pixels": [
+            621,
+            331
+          ],
+          "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+          "files": [
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-bulwark-death/derived-contact-sheet-00.jpg",
+              "sha256": "3103209564dd649e231e1c61a6b72267a2eaa8d92dbd2bf09af7dc5096c6611d",
+              "bytes": 342820,
+              "frames": [
+                975,
+                976,
+                977,
+                979,
+                983,
+                986
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                272,
+                108,
+                893,
+                439
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Pre-hit silhouette, lethal977 and initial lowering/recline through986. The human sword-and-round-shield figure is much more legible. At983-987 the knees/body lower and recline backward left; by991-1005 the body has extended legs/arms on the floor left of the hero, with the round shield visible nearby."
+            },
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-bulwark-death/derived-contact-sheet-01.jpg",
+              "sha256": "be50437c4ccd64d048a540cdbae855f1309ad8f69c8182da68a1a063d1a4cff2",
+              "bytes": 328920,
+              "frames": [
+                987,
+                991,
+                995,
+                999,
+                1003,
+                1005
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                272,
+                108,
+                893,
+                439
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Backward collapse/body readability at987-1005; simultaneous raider fall remains visible right of the hero. The human sword-and-round-shield figure is much more legible. At983-987 the knees/body lower and recline backward left; by991-1005 the body has extended legs/arms on the floor left of the hero, with the round shield visible nearby."
+            }
+          ],
+          "observations": [
+            "The human sword-and-round-shield figure is much more legible. At983-987 the knees/body lower and recline backward left; by991-1005 the body has extended legs/arms on the floor left of the hero, with the round shield visible nearby."
+          ]
+        }
+      ]
+    },
+    {
+      "label": "first-elite-death",
+      "comparison_observation": "After initial death response is clearer, with a visible backward descent and separated body. No obvious new gross mesh breakup is visible in the retained panels; complete skeletal death and eventual settling remain outside this judgment.",
+      "pair": [
+        {
+          "side": "before",
+          "decode_receipt_file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-elite-death/decode-receipt.json",
+          "decode_receipt_sha256": "df5d4638a4cfa2cdb926b66eae6ff50903beba305e85fe121da1dda87eebca74",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "decoded_range": [
+            1638,
+            1668
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "crop_xyxy": [
+            261,
+            84,
+            882,
+            415
+          ],
+          "crop_size_pixels": [
+            621,
+            331
+          ],
+          "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+          "files": [
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-elite-death/derived-contact-sheet-00.jpg",
+              "sha256": "8f4c24d2dc2b671261eb4b9bf0692970a5b47f83133bdb4a47201d0153bf6b6f",
+              "bytes": 316002,
+              "frames": [
+                1638,
+                1639,
+                1640,
+                1642,
+                1646,
+                1649
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                261,
+                84,
+                882,
+                415
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Pre-hit/lunge silhouette, lethal1640 and early lowering through1649. Short dark horned armored elite is upright through the early lethal-frame response, then inclines forward toward the hero around1654 and becomes a low dark figure near the hero at1662-1668."
+            },
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-elite-death/derived-contact-sheet-01.jpg",
+              "sha256": "25de6749bf9085c51787803839b340eb4ee41918be2ec5a8f2f946a521ad1001",
+              "bytes": 314757,
+              "frames": [
+                1650,
+                1654,
+                1658,
+                1662,
+                1666,
+                1667
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                261,
+                84,
+                882,
+                415
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Backward descent and extended body at1650-1667. Short dark horned armored elite is upright through the early lethal-frame response, then inclines forward toward the hero around1654 and becomes a low dark figure near the hero at1662-1668."
+            },
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-elite-death/derived-contact-sheet-02.jpg",
+              "sha256": "aa3ff4d3e187ae71280609624ef0f318e781de939d8f769de1eedb06c46f1d4f",
+              "bytes": 58362,
+              "frames": [
+                1668
+              ],
+              "panel_count": 1,
+              "crop_xyxy": [
+                261,
+                84,
+                882,
+                415
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Last death-range panel1668; complete skeletal death not judged. Short dark horned armored elite is upright through the early lethal-frame response, then inclines forward toward the hero around1654 and becomes a low dark figure near the hero at1662-1668."
+            }
+          ],
+          "observations": [
+            "Short dark horned armored elite is upright through the early lethal-frame response, then inclines forward toward the hero around1654 and becomes a low dark figure near the hero at1662-1668."
+          ]
+        },
+        {
+          "side": "after",
+          "decode_receipt_file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-elite-death/decode-receipt.json",
+          "decode_receipt_sha256": "149e8ae1bdd9f8bfbae6a7486cb6de4ae2c0eb6b082d6e1f1d43bf07632a7545",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "decoded_range": [
+            1638,
+            1668
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "crop_xyxy": [
+            261,
+            84,
+            882,
+            415
+          ],
+          "crop_size_pixels": [
+            621,
+            331
+          ],
+          "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+          "files": [
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-elite-death/derived-contact-sheet-00.jpg",
+              "sha256": "5d9b2514889291988e10b235ff188c997751d461c8f0fb94133e73f6df4a24f9",
+              "bytes": 317101,
+              "frames": [
+                1638,
+                1639,
+                1640,
+                1642,
+                1646,
+                1649
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                261,
+                84,
+                882,
+                415
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Pre-hit/lunge silhouette, lethal1640 and early lowering through1649. Human proportions, bright shoulder/arm armor and extended sword arm are readable at1638-1640. Knees/body lower at1642-1646, then recline backward right at1649-1654; the extended body is separate and readable on the floor at1658-1668."
+            },
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-elite-death/derived-contact-sheet-01.jpg",
+              "sha256": "99762a4ed9425d4641686ba2bfe80867eadc050589b9b84a321b61bebd868d5d",
+              "bytes": 318504,
+              "frames": [
+                1650,
+                1654,
+                1658,
+                1662,
+                1666,
+                1667
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                261,
+                84,
+                882,
+                415
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Backward descent and extended body at1650-1667. Human proportions, bright shoulder/arm armor and extended sword arm are readable at1638-1640. Knees/body lower at1642-1646, then recline backward right at1649-1654; the extended body is separate and readable on the floor at1658-1668."
+            },
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-elite-death/derived-contact-sheet-02.jpg",
+              "sha256": "19c4d025b79a77acc0dcd9a4ddd022a3ccb761eb49679dd1d458856250fd5c29",
+              "bytes": 58666,
+              "frames": [
+                1668
+              ],
+              "panel_count": 1,
+              "crop_xyxy": [
+                261,
+                84,
+                882,
+                415
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Last death-range panel1668; complete skeletal death not judged. Human proportions, bright shoulder/arm armor and extended sword arm are readable at1638-1640. Knees/body lower at1642-1646, then recline backward right at1649-1654; the extended body is separate and readable on the floor at1658-1668."
+            }
+          ],
+          "observations": [
+            "Human proportions, bright shoulder/arm armor and extended sword arm are readable at1638-1640. Knees/body lower at1642-1646, then recline backward right at1649-1654; the extended body is separate and readable on the floor at1658-1668."
+          ]
+        }
+      ]
+    },
+    {
+      "label": "first-elite-interrupted-telegraph",
+      "comparison_observation": "Both actual journals contain elite source31 warning and lethal target31 hit in frame1640, and no later source31 impact. This is an interrupted warning at onset; it provides no full elite windup-release-recovery cycle. The first two sheets per side are byte-identical to first-elite-death, so they add no independent temporal coverage.",
+      "pair": [
+        {
+          "side": "before",
+          "decode_receipt_file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-elite-interrupted-telegraph/decode-receipt.json",
+          "decode_receipt_sha256": "303eb8d06397563886050d2b475e35568c7fe2a39cdab55dd3948a85da5cc55c",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "decoded_range": [
+            1638,
+            1670
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "crop_xyxy": [
+            261,
+            84,
+            882,
+            415
+          ],
+          "crop_size_pixels": [
+            621,
+            331
+          ],
+          "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+          "files": [
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-elite-interrupted-telegraph/derived-contact-sheet-00.jpg",
+              "sha256": "8f4c24d2dc2b671261eb4b9bf0692970a5b47f83133bdb4a47201d0153bf6b6f",
+              "bytes": 316002,
+              "frames": [
+                1638,
+                1639,
+                1640,
+                1642,
+                1646,
+                1649
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                261,
+                84,
+                882,
+                415
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Same lethal-frame/initial-response panels as elite-death sheet00; concurrent warning/death is a journal fact. The retained images repeat the elite lethal hit and ensuing collapse; no continuing elite warning attack or elite release/impact is visible in this range."
+            },
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-elite-interrupted-telegraph/derived-contact-sheet-01.jpg",
+              "sha256": "25de6749bf9085c51787803839b340eb4ee41918be2ec5a8f2f946a521ad1001",
+              "bytes": 314757,
+              "frames": [
+                1650,
+                1654,
+                1658,
+                1662,
+                1666,
+                1667
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                261,
+                84,
+                882,
+                415
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Same collapse panels as elite-death sheet01; no full warning attack inference. The retained images repeat the elite lethal hit and ensuing collapse; no continuing elite warning attack or elite release/impact is visible in this range."
+            },
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-elite-interrupted-telegraph/derived-contact-sheet-02.jpg",
+              "sha256": "7dddb6c8aca24045f1436a50f4f1d84f4d4c6becc55bc31b3f0e56ceed6b622e",
+              "bytes": 58008,
+              "frames": [
+                1670
+              ],
+              "panel_count": 1,
+              "crop_xyxy": [
+                261,
+                84,
+                882,
+                415
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Additional final1670 panel shows the collapsed body; no complete warning cycle. The retained images repeat the elite lethal hit and ensuing collapse; no continuing elite warning attack or elite release/impact is visible in this range."
+            }
+          ],
+          "observations": [
+            "The retained images repeat the elite lethal hit and ensuing collapse; no continuing elite warning attack or elite release/impact is visible in this range."
+          ]
+        },
+        {
+          "side": "after",
+          "decode_receipt_file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-elite-interrupted-telegraph/decode-receipt.json",
+          "decode_receipt_sha256": "7e0773de745d17a95f9951f9ca5e2a2baaa5928fa6e6c06f00d6b98effb8d742",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "decoded_range": [
+            1638,
+            1670
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "crop_xyxy": [
+            261,
+            84,
+            882,
+            415
+          ],
+          "crop_size_pixels": [
+            621,
+            331
+          ],
+          "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+          "files": [
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-elite-interrupted-telegraph/derived-contact-sheet-00.jpg",
+              "sha256": "5d9b2514889291988e10b235ff188c997751d461c8f0fb94133e73f6df4a24f9",
+              "bytes": 317101,
+              "frames": [
+                1638,
+                1639,
+                1640,
+                1642,
+                1646,
+                1649
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                261,
+                84,
+                882,
+                415
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Same lethal-frame/initial-response panels as elite-death sheet00; concurrent warning/death is a journal fact. The same interruption is followed by the clearer human backward collapse, with the body still visible at1670."
+            },
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-elite-interrupted-telegraph/derived-contact-sheet-01.jpg",
+              "sha256": "99762a4ed9425d4641686ba2bfe80867eadc050589b9b84a321b61bebd868d5d",
+              "bytes": 318504,
+              "frames": [
+                1650,
+                1654,
+                1658,
+                1662,
+                1666,
+                1667
+              ],
+              "panel_count": 6,
+              "crop_xyxy": [
+                261,
+                84,
+                882,
+                415
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Same collapse panels as elite-death sheet01; no full warning attack inference. The same interruption is followed by the clearer human backward collapse, with the body still visible at1670."
+            },
+            {
+              "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-elite-interrupted-telegraph/derived-contact-sheet-02.jpg",
+              "sha256": "8a03c8d36d906827d2eab8689c860791ec5bf4f34efec41d32d343bd9e7dad02",
+              "bytes": 58224,
+              "frames": [
+                1670
+              ],
+              "panel_count": 1,
+              "crop_xyxy": [
+                261,
+                84,
+                882,
+                415
+              ],
+              "actually_viewed": true,
+              "view_tool": "tools.view_image",
+              "view_detail": "original",
+              "observation": "Additional final1670 panel shows the collapsed body; no complete warning cycle. The same interruption is followed by the clearer human backward collapse, with the body still visible at1670."
+            }
+          ],
+          "observations": [
+            "The same interruption is followed by the clearer human backward collapse, with the body still visible at1670."
+          ]
+        }
+      ]
+    }
+  ],
+  "overall_observation": "After human bulwark and elite silhouettes and initial backward collapses are clearer; raider falls remain comparable. Hexer death is too occluded for a strong full-fall judgment. No obvious new gross mesh breakup is visible in the reviewed retained panels. Elite warning and death coincide, so no full elite warning attack is reviewed.",
+  "limits": [
+    "Actually inspected each listed retained image via tools.view_image original detail, not every decoded frame or whole movies. Context sampling is every fourth frame plus semantic boundaries/range end.",
+    "Contact panels use shared 621x331 crops at 1:1 decoded pixel scale; off-crop actors and environment are unjudged. Viewing display may resize the contact sheet.",
+    "These are H264-decoded lossy video frames re-encoded as JPEG92 4:4:4 contact sheets, not original Godot PNG captures.",
+    "Common-death scope covers only the early roughly0.97s death response; it does not establish complete skeletal death or eventual settling. Interrupted-elite range adds only an overlapping final panel.",
+    "Dark lighting, small game-scale characters, effects and actor overlap limit anatomical, finger, attachment, weapon-contact and floor-penetration judgments.",
+    "No native bone-position validation, physical-device FPS, whole-movie human review, separate human signoff or release approval is claimed.",
+    "Commit binding uses saved completed comparison and decoder/capture provenance; Git/source content was not re-audited during this visual review."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "source_commit": "ad4d50bb9dbdc07cea42e2306a79fc65bb642489",
+  "checkout_commit": "d7d10a856b913ba07eb056c783564a8eebe915e4",
+  "verified_tree": "e6b3ca7a18af16f82ef9a883df82f6a71a597b1a",
+  "run_id": 37523666852,
+  "job_id": 112475120085,
+  "artifact_id": 11442207420,
+  "artifact_bytes": 53496975,
+  "artifact_sha256": "c08f8e185832947517bba38091c4e27d372bab3013ed96b29b440bdf8d67110a",
+  "review_scope": "Original unchanged Android-16 software-emulator images; four regional frozen guardian scenes use Vowkeeper, Arcanist, Ranger, Arcanist. The art fixture sets 100000 Life for inspection and is not an ordinary expedition, balance approval or physical-device FPS test. Four Bell Warden motion stills are sparse real animation samples, not continuous motion acceptance. Native models and weapons appear correctly attached; primitive hostile geometry, cutaway dithering and crowd overlap remain visible limitations.",
+  "physical_device_performance": false,
+  "pixel_changes": "None",
+  "files": {
+    "android-region-0.png": "ef6b76ee92860e9487bf5c26314d292a89e43d03b56ab3850f3939924b1fe2c0",
+    "android-region-1.png": "0b85ef64f8e2704ff0fa89150ab339afaa503584e83e013b9b66b55a9367fa8c",
+    "android-region-2.png": "6279eb664cb28b9ad742b6f77aad0ca260f1b34ad859a97124b8d81f4678c4c4",
+    "android-region-3.png": "aa895d2e3d56ba348352f352b2d3ee3e99f4408734386ca7dca0af6c6d5d32db",
+    "android-motion-region-0-00.png": "f620f58fa5eb9315b986d5ba262902bdbec8582b4cef8606d9c22c76baf26b7b",
+    "android-motion-region-0-05.png": "940d8b95ba96e974245edbd94ac34976f200716aa9adfc6a629b37351da766a4",
+    "android-motion-region-0-11.png": "66faa6b1f47591d21c294a40ad80abf56bbf74e3f09bc26c3c602564fe1879c5",
+    "android-motion-region-0-17.png": "495bd7586d52ff34707e453692d9adccde67fc723e7c9f99d3445274b3ce7e68",
+    "android-render-performance.json": "dbd5b9891ef398ca3d8d3dd629a94896b6c14b22c5945f8092bc8379454079fc",
+    "runtime-status.json": "a4ddab1112a71b5de4d8e61b99ccf278170ed4b34317eed66129e6607c4e2492"
+  }
+}

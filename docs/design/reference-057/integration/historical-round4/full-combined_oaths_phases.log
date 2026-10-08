@@ -1,0 +1,341 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: original oath constructors retain exact version-one shape
+PASS: combined oaths have one canonical order
+PASS: combined rules expose both risks to gameplay
+PASS: combined title and descriptions explain both oaths
+PASS: invalid selection rejected without silently dropping keys: []
+PASS: invalid selection rejected without silently dropping keys: ["fake"]
+PASS: invalid selection rejected without silently dropping keys: ["unmended", "unmended"]
+PASS: invalid selection rejected without silently dropping keys: ["unmended", "cinder", "hollow"]
+PASS: invalid selection rejected without silently dropping keys: [1]
+PASS: invalid selection rejected without silently dropping keys: ["unmended", <null>]
+PASS: forged or mixed contract rejected: { "version": 2, "mode": "oath", "oaths": [] }
+PASS: forged or mixed contract rejected: { "version": 2, "mode": "oath", "oaths": ["unmended", "unmended"] }
+PASS: forged or mixed contract rejected: { "version": 2, "mode": "oath", "oaths": ["unmended", "cinder", "hollow"] }
+PASS: forged or mixed contract rejected: { "version": 2, "mode": "oath", "oaths": ["cinder", "unmended"] }
+PASS: forged or mixed contract rejected: { "version": 2, "mode": "oath", "oaths": ["unknown"] }
+PASS: forged or mixed contract rejected: { "version": 2, "mode": "oath", "oaths": [1] }
+PASS: forged or mixed contract rejected: { "version": 2, "mode": "oath", "oaths": ["cinder"], "bonus": 999 }
+PASS: forged or mixed contract rejected: { "version": 1, "mode": "oath", "oath": "hollow" }
+PASS: forged or mixed contract rejected: { "version": 2, "mode": "hunt", "oaths": ["cinder"] }
+PASS: forged or mixed contract rejected: { "version": 2, "mode": "trial", "oaths": ["cinder"] }
+PASS: forged or mixed contract rejected: { "version": 2.0, "mode": "oath", "oaths": ["cinder"] }
+PASS: combined currency bonuses add and each loot benefit occurs once
+PASS: separate trial floor and hunt slot rules retain their validation
+PASS: Unmended Guard increases actual basic attack damage
+PASS: Unmended damage bonus requires active Guard
+PASS: Unmended charges Bellwarden's Memory faster with the original cap
+PASS: Unmended blocks signature healing and discharges its real relic once
+PASS: combined Unmended consumes the well without healing
+PASS: Cinder's enemy damage risk remains an actual raw-damage rule
+PASS: Cinder buffs signature damage and Vowkeeper stored release separately
+PASS: Cinder buffs both real Arcanist relic jumps beyond Nova
+PASS: Cinder buffs Ranger's single real return strike
+PASS: Cinder increases equipped technique damage
+PASS: Cinder's Mourning Thread synergy applies the disclosed extra critical chance
+PASS: Hollow spends increased signature Mana and starts a genuinely shorter cooldown
+PASS: Hollow modifies actual equipped technique cost and cooldown
+PASS: Drowned Script mitigates Hollow technique Mana costs
+PASS: Cinder Crown shortens Hollow technique cooldowns further
+PASS: a new profile's optional flag cannot alter a version-one oath
+PASS: region 0 phase 0 variant 0: real geometry validates and fits mobile zone budget
+PASS: region 0 phase 0 variant 0: a zone contains its real damage probe
+PASS: region 0 phase 0 variant 0: auto avoidance finds reachable walkable safe ground
+PASS: region 0 phase 0 variant 0: automatic escape prevents actual damage at impact
+PASS: region 0 phase 0 variant 0: committed geometry resolves one real hit
+PASS: region 0 phase 0 variant 1: real geometry validates and fits mobile zone budget
+PASS: region 0 phase 0 variant 1: a zone contains its real damage probe
+PASS: region 0 phase 0 variant 1: auto avoidance finds reachable walkable safe ground
+PASS: region 0 phase 0 variant 1: automatic escape prevents actual damage at impact
+PASS: region 0 phase 0 variant 1: committed geometry resolves one real hit
+PASS: region 0 phase 0: variants change threatened arena cells
+PASS: region 0 phase 1 variant 0: real geometry validates and fits mobile zone budget
+PASS: region 0 phase 1 variant 0: a zone contains its real damage probe
+PASS: region 0 phase 1 variant 0: auto avoidance finds reachable walkable safe ground
+PASS: region 0 phase 1 variant 0: automatic escape prevents actual damage at impact
+PASS: region 0 phase 1 variant 0: committed geometry resolves one real hit
+PASS: region 0 phase 1 variant 1: real geometry validates and fits mobile zone budget
+PASS: region 0 phase 1 variant 1: a zone contains its real damage probe
+PASS: region 0 phase 1 variant 1: auto avoidance finds reachable walkable safe ground
+PASS: region 0 phase 1 variant 1: automatic escape prevents actual damage at impact
+PASS: region 0 phase 1 variant 1: committed geometry resolves one real hit
+PASS: region 0 phase 1: variants change threatened arena cells
+PASS: region 0 phase 2 variant 0: real geometry validates and fits mobile zone budget
+PASS: region 0 phase 2 variant 0: a zone contains its real damage probe
+PASS: region 0 phase 2 variant 0: auto avoidance finds reachable walkable safe ground
+PASS: region 0 phase 2 variant 0: automatic escape prevents actual damage at impact
+PASS: region 0 phase 2 variant 0: committed geometry resolves one real hit
+PASS: region 0 phase 2 variant 1: real geometry validates and fits mobile zone budget
+PASS: region 0 phase 2 variant 1: a zone contains its real damage probe
+PASS: region 0 phase 2 variant 1: auto avoidance finds reachable walkable safe ground
+PASS: region 0 phase 2 variant 1: automatic escape prevents actual damage at impact
+PASS: region 0 phase 2 variant 1: committed geometry resolves one real hit
+PASS: region 0 phase 2: variants change threatened arena cells
+PASS: region 0: all three health phases change actual threatened ground
+PASS: region 0: first threshold emits one structural transition and ends old cast
+PASS: region 0: next real attack uses phase-one geometry
+PASS: region 0: final threshold emits a distinct transition and altered attack
+PASS: region 0: a reached phase never announces twice
+PASS: region 0: phase-two committed warning restores exactly
+PASS: region 0: one large surviving hit records both crossed thresholds once
+PASS: region 1 phase 0 variant 0: real geometry validates and fits mobile zone budget
+PASS: region 1 phase 0 variant 0: a zone contains its real damage probe
+PASS: region 1 phase 0 variant 0: auto avoidance finds reachable walkable safe ground
+PASS: region 1 phase 0 variant 0: automatic escape prevents actual damage at impact
+PASS: region 1 phase 0 variant 0: committed geometry resolves one real hit
+PASS: region 1 phase 0 variant 1: real geometry validates and fits mobile zone budget
+PASS: region 1 phase 0 variant 1: a zone contains its real damage probe
+PASS: region 1 phase 0 variant 1: auto avoidance finds reachable walkable safe ground
+PASS: region 1 phase 0 variant 1: automatic escape prevents actual damage at impact
+PASS: region 1 phase 0 variant 1: committed geometry resolves one real hit
+PASS: region 1 phase 0: variants change threatened arena cells
+PASS: region 1 phase 1 variant 0: real geometry validates and fits mobile zone budget
+PASS: region 1 phase 1 variant 0: a zone contains its real damage probe
+PASS: region 1 phase 1 variant 0: auto avoidance finds reachable walkable safe ground
+PASS: region 1 phase 1 variant 0: automatic escape prevents actual damage at impact
+PASS: region 1 phase 1 variant 0: committed geometry resolves one real hit
+PASS: region 1 phase 1 variant 1: real geometry validates and fits mobile zone budget
+PASS: region 1 phase 1 variant 1: a zone contains its real damage probe
+PASS: region 1 phase 1 variant 1: auto avoidance finds reachable walkable safe ground
+PASS: region 1 phase 1 variant 1: automatic escape prevents actual damage at impact
+PASS: region 1 phase 1 variant 1: committed geometry resolves one real hit
+PASS: region 1 phase 1: variants change threatened arena cells
+PASS: region 1 phase 2 variant 0: real geometry validates and fits mobile zone budget
+PASS: region 1 phase 2 variant 0: a zone contains its real damage probe
+PASS: region 1 phase 2 variant 0: auto avoidance finds reachable walkable safe ground
+PASS: region 1 phase 2 variant 0: automatic escape prevents actual damage at impact
+PASS: region 1 phase 2 variant 0: committed geometry resolves one real hit
+PASS: region 1 phase 2 variant 1: real geometry validates and fits mobile zone budget
+PASS: region 1 phase 2 variant 1: a zone contains its real damage probe
+PASS: region 1 phase 2 variant 1: auto avoidance finds reachable walkable safe ground
+PASS: region 1 phase 2 variant 1: automatic escape prevents actual damage at impact
+PASS: region 1 phase 2 variant 1: committed geometry resolves one real hit
+PASS: region 1 phase 2: variants change threatened arena cells
+PASS: region 1: all three health phases change actual threatened ground
+PASS: region 1: first threshold emits one structural transition and ends old cast
+PASS: region 1: next real attack uses phase-one geometry
+PASS: region 1: final threshold emits a distinct transition and altered attack
+PASS: region 1: a reached phase never announces twice
+PASS: region 1: phase-two committed warning restores exactly
+PASS: region 1: one large surviving hit records both crossed thresholds once
+PASS: region 2 phase 0 variant 0: real geometry validates and fits mobile zone budget
+PASS: region 2 phase 0 variant 0: a zone contains its real damage probe
+PASS: region 2 phase 0 variant 0: auto avoidance finds reachable walkable safe ground
+PASS: region 2 phase 0 variant 0: automatic escape prevents actual damage at impact
+PASS: region 2 phase 0 variant 0: committed geometry resolves one real hit
+PASS: region 2 phase 0 variant 1: real geometry validates and fits mobile zone budget
+PASS: region 2 phase 0 variant 1: a zone contains its real damage probe
+PASS: region 2 phase 0 variant 1: auto avoidance finds reachable walkable safe ground
+PASS: region 2 phase 0 variant 1: automatic escape prevents actual damage at impact
+PASS: region 2 phase 0 variant 1: committed geometry resolves one real hit
+PASS: region 2 phase 0: variants change threatened arena cells
+PASS: region 2 phase 1 variant 0: real geometry validates and fits mobile zone budget
+PASS: region 2 phase 1 variant 0: a zone contains its real damage probe
+PASS: region 2 phase 1 variant 0: auto avoidance finds reachable walkable safe ground
+PASS: region 2 phase 1 variant 0: automatic escape prevents actual damage at impact
+PASS: region 2 phase 1 variant 0: committed geometry resolves one real hit
+PASS: region 2 phase 1 variant 1: real geometry validates and fits mobile zone budget
+PASS: region 2 phase 1 variant 1: a zone contains its real damage probe
+PASS: region 2 phase 1 variant 1: auto avoidance finds reachable walkable safe ground
+PASS: region 2 phase 1 variant 1: automatic escape prevents actual damage at impact
+PASS: region 2 phase 1 variant 1: committed geometry resolves one real hit
+PASS: region 2 phase 1: variants change threatened arena cells
+PASS: region 2 phase 2 variant 0: real geometry validates and fits mobile zone budget
+PASS: region 2 phase 2 variant 0: a zone contains its real damage probe
+PASS: region 2 phase 2 variant 0: auto avoidance finds reachable walkable safe ground
+PASS: region 2 phase 2 variant 0: automatic escape prevents actual damage at impact
+PASS: region 2 phase 2 variant 0: committed geometry resolves one real hit
+PASS: region 2 phase 2 variant 1: real geometry validates and fits mobile zone budget
+PASS: region 2 phase 2 variant 1: a zone contains its real damage probe
+PASS: region 2 phase 2 variant 1: auto avoidance finds reachable walkable safe ground
+PASS: region 2 phase 2 variant 1: automatic escape prevents actual damage at impact
+PASS: region 2 phase 2 variant 1: committed geometry resolves one real hit
+PASS: region 2 phase 2: variants change threatened arena cells
+PASS: region 2: all three health phases change actual threatened ground
+PASS: region 2: first threshold emits one structural transition and ends old cast
+PASS: region 2: next real attack uses phase-one geometry
+PASS: region 2: final threshold emits a distinct transition and altered attack
+PASS: region 2: a reached phase never announces twice
+PASS: region 2: phase-two committed warning restores exactly
+PASS: region 2: one large surviving hit records both crossed thresholds once
+PASS: region 3 phase 0 variant 0: real geometry validates and fits mobile zone budget
+PASS: region 3 phase 0 variant 0: a zone contains its real damage probe
+PASS: region 3 phase 0 variant 0: auto avoidance finds reachable walkable safe ground
+PASS: region 3 phase 0 variant 0: automatic escape prevents actual damage at impact
+PASS: region 3 phase 0 variant 0: committed geometry resolves one real hit
+PASS: region 3 phase 0 variant 1: real geometry validates and fits mobile zone budget
+PASS: region 3 phase 0 variant 1: a zone contains its real damage probe
+PASS: region 3 phase 0 variant 1: auto avoidance finds reachable walkable safe ground
+PASS: region 3 phase 0 variant 1: automatic escape prevents actual damage at impact
+PASS: region 3 phase 0 variant 1: committed geometry resolves one real hit
+PASS: region 3 phase 0: variants change threatened arena cells
+PASS: region 3 phase 1 variant 0: real geometry validates and fits mobile zone budget
+PASS: region 3 phase 1 variant 0: a zone contains its real damage probe
+PASS: region 3 phase 1 variant 0: auto avoidance finds reachable walkable safe ground
+PASS: region 3 phase 1 variant 0: automatic escape prevents actual damage at impact
+PASS: region 3 phase 1 variant 0: committed geometry resolves one real hit
+PASS: region 3 phase 1 variant 1: real geometry validates and fits mobile zone budget
+PASS: region 3 phase 1 variant 1: a zone contains its real damage probe
+PASS: region 3 phase 1 variant 1: auto avoidance finds reachable walkable safe ground
+PASS: region 3 phase 1 variant 1: automatic escape prevents actual damage at impact
+PASS: region 3 phase 1 variant 1: committed geometry resolves one real hit
+PASS: region 3 phase 1: variants change threatened arena cells
+PASS: region 3 phase 2 variant 0: real geometry validates and fits mobile zone budget
+PASS: region 3 phase 2 variant 0: a zone contains its real damage probe
+PASS: region 3 phase 2 variant 0: auto avoidance finds reachable walkable safe ground
+PASS: region 3 phase 2 variant 0: automatic escape prevents actual damage at impact
+PASS: region 3 phase 2 variant 0: committed geometry resolves one real hit
+PASS: region 3 phase 2 variant 1: real geometry validates and fits mobile zone budget
+PASS: region 3 phase 2 variant 1: a zone contains its real damage probe
+PASS: region 3 phase 2 variant 1: auto avoidance finds reachable walkable safe ground
+PASS: region 3 phase 2 variant 1: automatic escape prevents actual damage at impact
+PASS: region 3 phase 2 variant 1: committed geometry resolves one real hit
+PASS: region 3 phase 2: variants change threatened arena cells
+PASS: region 3: all three health phases change actual threatened ground
+PASS: region 3: first threshold emits one structural transition and ends old cast
+PASS: region 3: next real attack uses phase-one geometry
+PASS: region 3: final threshold emits a distinct transition and altered attack
+PASS: region 3: a reached phase never announces twice
+PASS: region 3: phase-two committed warning restores exactly
+PASS: region 3: one large surviving hit records both crossed thresholds once
+PASS: an actual basic hit commits its crossed phase before a checkpoint can be written
+PASS: an actual equipped-technique hit commits its structural transition immediately
+PASS: an actual class-relic return hit commits the final phase immediately
+PASS: malformed phase checkpoint rejected atomically: missing_flag
+PASS: malformed phase checkpoint rejected atomically: flag_zero
+PASS: malformed phase checkpoint rejected atomically: flag_bool
+PASS: malformed phase checkpoint rejected atomically: missing_pattern_flag
+PASS: malformed phase checkpoint rejected atomically: missing_phase
+PASS: malformed phase checkpoint rejected atomically: phase_float
+PASS: malformed phase checkpoint rejected atomically: phase_range
+PASS: malformed phase checkpoint rejected atomically: health_mismatch
+PASS: malformed phase checkpoint rejected atomically: awakened_mismatch
+PASS: malformed phase checkpoint rejected atomically: wrong_role
+PASS: malformed phase checkpoint rejected atomically: warning_phase
+PASS: malformed phase checkpoint rejected atomically: warning_region
+PASS: malformed phase checkpoint rejected atomically: warning_geometry
+PASS: malformed phase checkpoint rejected atomically: warning_origin
+PASS: malformed phase checkpoint rejected atomically: warning_bonus
+PASS: phased warning cannot disagree with its frozen alternate-pattern history
+PASS: combined contract requires exact frozen integer opt-in: <null>
+PASS: combined contract requires exact frozen integer opt-in: 0
+PASS: combined contract requires exact frozen integer opt-in: true
+PASS: combined contract requires exact frozen integer opt-in: 2
+PASS: forged combined contract cannot restore
+PASS: forged combined contract cannot restore
+PASS: an original circular warning still restores with no phase opt-in
+PASS: orphaned phase metadata cannot enable new rules in a legacy warning: phase
+PASS: orphaned phase metadata cannot enable new rules in a legacy warning: phase_name
+PASS: orphaned phase metadata cannot enable new rules in a legacy warning: origin
+PASS: orphaned phase metadata cannot enable new rules in a legacy warning: aim_target
+PASS: region 0 Vowkeeper ["unmended"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Vowkeeper ["cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Vowkeeper ["hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Vowkeeper ["unmended", "cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Vowkeeper ["unmended", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Vowkeeper ["cinder", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Vowkeeper ["unmended"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Vowkeeper ["cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Vowkeeper ["hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Vowkeeper ["unmended", "cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Vowkeeper ["unmended", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Vowkeeper ["cinder", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Vowkeeper ["unmended"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Vowkeeper ["cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Vowkeeper ["hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Vowkeeper ["unmended", "cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Vowkeeper ["unmended", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Vowkeeper ["cinder", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Vowkeeper ["unmended"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Vowkeeper ["cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Vowkeeper ["hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Vowkeeper ["unmended", "cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Vowkeeper ["unmended", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Vowkeeper ["cinder", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Vowkeeper: AFK ledger exactly matches explicit phased combined-oath simulations
+PASS: region 1 Vowkeeper: AFK ledger exactly matches explicit phased combined-oath simulations
+PASS: region 2 Vowkeeper: AFK ledger exactly matches explicit phased combined-oath simulations
+PASS: region 3 Vowkeeper: AFK ledger exactly matches explicit phased combined-oath simulations
+PASS: region 0 Arcanist ["unmended"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Arcanist ["cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Arcanist ["hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Arcanist ["unmended", "cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Arcanist ["unmended", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Arcanist ["cinder", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Arcanist ["unmended"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Arcanist ["cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Arcanist ["hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Arcanist ["unmended", "cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Arcanist ["unmended", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Arcanist ["cinder", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Arcanist ["unmended"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Arcanist ["cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Arcanist ["hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Arcanist ["unmended", "cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Arcanist ["unmended", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Arcanist ["cinder", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Arcanist ["unmended"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Arcanist ["cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Arcanist ["hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Arcanist ["unmended", "cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Arcanist ["unmended", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Arcanist ["cinder", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Arcanist: AFK ledger exactly matches explicit phased combined-oath simulations
+PASS: region 1 Arcanist: AFK ledger exactly matches explicit phased combined-oath simulations
+PASS: region 2 Arcanist: AFK ledger exactly matches explicit phased combined-oath simulations
+PASS: region 3 Arcanist: AFK ledger exactly matches explicit phased combined-oath simulations
+PASS: region 0 Ranger ["unmended"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Ranger ["cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Ranger ["hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Ranger ["unmended", "cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Ranger ["unmended", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Ranger ["cinder", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Ranger ["unmended"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Ranger ["cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Ranger ["hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Ranger ["unmended", "cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Ranger ["unmended", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 1 Ranger ["cinder", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Ranger ["unmended"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Ranger ["cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Ranger ["hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Ranger ["unmended", "cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Ranger ["unmended", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 2 Ranger ["cinder", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Ranger ["unmended"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Ranger ["cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Ranger ["hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Ranger ["unmended", "cinder"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Ranger ["unmended", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 3 Ranger ["cinder", "hollow"]: three seeds match for watched, Skip and binary restart
+PASS: region 0 Ranger: AFK ledger exactly matches explicit phased combined-oath simulations
+PASS: region 1 Ranger: AFK ledger exactly matches explicit phased combined-oath simulations
+PASS: region 2 Ranger: AFK ledger exactly matches explicit phased combined-oath simulations
+PASS: region 3 Ranger: AFK ledger exactly matches explicit phased combined-oath simulations
+PASS: new boss flag retains trial deadline and hunt difficulty rules
+PASS: immutable version-one checkpoint and outcome: Vowkeeper region 0 unmended
+PASS: immutable version-one checkpoint and outcome: Vowkeeper region 0 cinder
+PASS: immutable version-one checkpoint and outcome: Vowkeeper region 1 unmended
+PASS: immutable version-one checkpoint and outcome: Vowkeeper region 1 cinder
+PASS: immutable version-one checkpoint and outcome: Vowkeeper region 2 unmended
+PASS: immutable version-one checkpoint and outcome: Vowkeeper region 2 cinder
+PASS: immutable version-one checkpoint and outcome: Vowkeeper region 3 unmended
+PASS: immutable version-one checkpoint and outcome: Vowkeeper region 3 cinder
+PASS: immutable version-one checkpoint and outcome: Arcanist region 0 unmended
+PASS: immutable version-one checkpoint and outcome: Arcanist region 0 cinder
+PASS: immutable version-one checkpoint and outcome: Arcanist region 1 unmended
+PASS: immutable version-one checkpoint and outcome: Arcanist region 1 cinder
+PASS: immutable version-one checkpoint and outcome: Arcanist region 2 unmended
+PASS: immutable version-one checkpoint and outcome: Arcanist region 2 cinder
+PASS: immutable version-one checkpoint and outcome: Arcanist region 3 unmended
+PASS: immutable version-one checkpoint and outcome: Arcanist region 3 cinder
+PASS: immutable version-one checkpoint and outcome: Ranger region 0 unmended
+PASS: immutable version-one checkpoint and outcome: Ranger region 0 cinder
+PASS: immutable version-one checkpoint and outcome: Ranger region 1 unmended
+PASS: immutable version-one checkpoint and outcome: Ranger region 1 cinder
+PASS: immutable version-one checkpoint and outcome: Ranger region 2 unmended
+PASS: immutable version-one checkpoint and outcome: Ranger region 2 cinder
+PASS: immutable version-one checkpoint and outcome: Ranger region 3 unmended
+PASS: immutable version-one checkpoint and outcome: Ranger region 3 cinder
+COMBINED OATHS / PHASES SMOKE: 338 checks, 0 failures

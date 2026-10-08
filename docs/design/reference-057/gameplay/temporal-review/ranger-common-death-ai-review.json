@@ -1,0 +1,1340 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-10-07T23:06:26.324294+00:00",
+  "reviewer": "/root/temporal_review_resume_057/review_scope_audit_057/receipt_binding",
+  "reviewer_type": "AI visual inspection through tools.view_image; no separate human signoff claimed",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "status": "all_20_retained_common_death_sheet_files_actually_ai_viewed; initial_response_observations_only",
+  "scope": "Fresh scratch receipt of actual AI visual inspection of every retained paired Ranger common-role first death sheet. No additional decode, Engine, Git, source edits or modifications of existing Arcanist/frozen evidence.",
+  "image_origin": "H264-decoded lossy movie frames assembled into JPEG92 4:4:4 sheets, shared fixed 621x331 crop per pair at 1:1 original decoded pixels with external labels. tools.view_image requested original detail for every file. These are not original saved native PNGs.",
+  "actually_viewed_file_count": 20,
+  "actually_viewed_panel_count_including_duplicate_label_windows": 100,
+  "all_viewed_sheet_hashes_and_byte_counts_match_decode_receipts": true,
+  "paired_frame_ranges_and_crops_match": true,
+  "ranges": [
+    {
+      "label": "first-raider-death",
+      "sides": [
+        {
+          "side": "before",
+          "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+          "decode_receipt": "ranger/before/first-raider-death/decode-receipt.json",
+          "decode_receipt_sha256": "dd748ff4b5afada9bc831309071ea12b1b5c5320b6688392a5f1cfe49a22cb21",
+          "movie_sha256": "8c01eef238de70c33dad7ff99abb8812c2a75ebee485e0feb71c7d32244d5b72",
+          "capture_receipt_sha256": "d70f6f723fa8999e58f330689002b04e52a80530bff8aa81b953246067c87373",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "first_frame_zero_based": 12,
+          "last_frame_zero_based_inclusive": 42,
+          "crop_xyxy": [
+            188,
+            128,
+            809,
+            459
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "observations": [
+            "The three foreground bareheaded axe users start upright, bend their knees and recline backward, then form three readable supine silhouettes to the right of the Ranger. Their axes remain visible during the initial fall."
+          ]
+        },
+        {
+          "side": "after",
+          "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "decode_receipt": "ranger/after/first-raider-death/decode-receipt.json",
+          "decode_receipt_sha256": "3cb02a5e10e9b2057e53b85097fb3c2c784eb5256ea85580296f0eb719cfa6c9",
+          "movie_sha256": "008b0c71db628429e3c826fb2de2beeb8510d8b04496333e0e7952f42d7e2948",
+          "capture_receipt_sha256": "beb108b23ef0c16081c0d58642d77158aaf2dbc1265686d4e2578b982728c6b4",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "first_frame_zero_based": 12,
+          "last_frame_zero_based_inclusive": 42,
+          "crop_xyxy": [
+            188,
+            128,
+            809,
+            459
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "observations": [
+            "The same three axe users follow closely comparable bends, backward reclines and supine arrangements at the same labeled frames. No gross new detached limb or torn body silhouette is apparent in the retained samples."
+          ]
+        }
+      ],
+      "paired_observations": [
+        "The crop, damage numbers, reinforcement entry and foreground foe layout visually align. Raider initial fall shapes closely match. The Ranger outfit is visibly brighter green and the rear Hexer presentation changes."
+      ],
+      "scope": "Retained sampled panels from initial death response only; off-crop content unjudged."
+    },
+    {
+      "label": "first-hexer-death",
+      "sides": [
+        {
+          "side": "before",
+          "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+          "decode_receipt": "ranger/before/first-hexer-death/decode-receipt.json",
+          "decode_receipt_sha256": "65de594ce99077c493a49678394cf5e61cc958c159a5fd2c5c0b1024cf7d4366",
+          "movie_sha256": "8c01eef238de70c33dad7ff99abb8812c2a75ebee485e0feb71c7d32244d5b72",
+          "capture_receipt_sha256": "d70f6f723fa8999e58f330689002b04e52a80530bff8aa81b953246067c87373",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "first_frame_zero_based": 12,
+          "last_frame_zero_based_inclusive": 42,
+          "crop_xyxy": [
+            188,
+            128,
+            809,
+            459
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "observations": [
+            "The rear caster is a short dark hooded form with a circular staff head. Its torso lowers and tips across the rear floor, but dark clothes, shadow and small limb shapes limit anatomical detail."
+          ]
+        },
+        {
+          "side": "after",
+          "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "decode_receipt": "ranger/after/first-hexer-death/decode-receipt.json",
+          "decode_receipt_sha256": "02db0af275da4436998e34ba59501c005a713d2bd2c37da45120287b76b003d6",
+          "movie_sha256": "008b0c71db628429e3c826fb2de2beeb8510d8b04496333e0e7952f42d7e2948",
+          "capture_receipt_sha256": "beb108b23ef0c16081c0d58642d77158aaf2dbc1265686d4e2578b982728c6b4",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "first_frame_zero_based": 12,
+          "last_frame_zero_based_inclusive": 42,
+          "crop_xyxy": [
+            188,
+            128,
+            809,
+            459
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "observations": [
+            "The rear caster is a taller readable hooded human in green/dark clothes with a staff. Its legs bend, torso reclines, and late samples show extended arms and a lowered body with the bright staff head beside it. The initial collapse is more legible as human motion. Exact floor contact and final settling are not established."
+          ]
+        }
+      ],
+      "paired_observations": [
+        "Raider and Hexer label directories use the identical frames 12-42, crop and corresponding sheet bytes within each side. This is one simultaneous event window, not two independent death sequences. The rear Hexer silhouette and collapse presentation differ while the foreground Raider event lines up."
+      ],
+      "scope": "Retained sampled panels from initial death response only; off-crop content unjudged."
+    },
+    {
+      "label": "first-bulwark-death",
+      "sides": [
+        {
+          "side": "before",
+          "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+          "decode_receipt": "ranger/before/first-bulwark-death/decode-receipt.json",
+          "decode_receipt_sha256": "ffc2de5ee2cf31034e3f8fcf6ce101d5725b1989390e579999da80ed67deeba0",
+          "movie_sha256": "8c01eef238de70c33dad7ff99abb8812c2a75ebee485e0feb71c7d32244d5b72",
+          "capture_receipt_sha256": "d70f6f723fa8999e58f330689002b04e52a80530bff8aa81b953246067c87373",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "first_frame_zero_based": 867,
+          "last_frame_zero_based_inclusive": 897,
+          "crop_xyxy": [
+            299,
+            122,
+            920,
+            453
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "observations": [
+            "The enemy to the left of the Ranger is a short horned dark armored form with a narrow shield silhouette. It lowers and tips toward the hero, then becomes a small dark horizontal body partly hidden by the Ranger."
+          ]
+        },
+        {
+          "side": "after",
+          "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "decode_receipt": "ranger/after/first-bulwark-death/decode-receipt.json",
+          "decode_receipt_sha256": "0ecaac4e9a9e1fe3050ce7591af45de258323184fe43333e1fd293a0be96d6a6",
+          "movie_sha256": "008b0c71db628429e3c826fb2de2beeb8510d8b04496333e0e7952f42d7e2948",
+          "capture_receipt_sha256": "beb108b23ef0c16081c0d58642d77158aaf2dbc1265686d4e2578b982728c6b4",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "first_frame_zero_based": 867,
+          "last_frame_zero_based_inclusive": 897,
+          "crop_xyxy": [
+            299,
+            122,
+            920,
+            453
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "observations": [
+            "The enemy to the left is a full human in dark armor with a bright round shield and sword. It bends its knees and reclines backward to the left, extending the legs, then presents a readable supine outline. The round shield swings down and remains visible near the lowered arm/body in later panels."
+          ]
+        }
+      ],
+      "paired_observations": [
+        "The 121 damage marker, close-range Ranger position and chamber transition text align inside the common crop. AFTER gives a distinct human backward fall and much clearer shield/body separation than the baseline dark compact response. No gross torn/disconnected geometry is apparent; exact shield/hand floor contact and full death completion remain unjudged."
+      ],
+      "scope": "Retained sampled panels from initial death response only; off-crop content unjudged."
+    },
+    {
+      "label": "first-elite-death",
+      "sides": [
+        {
+          "side": "before",
+          "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+          "decode_receipt": "ranger/before/first-elite-death/decode-receipt.json",
+          "decode_receipt_sha256": "8acbd0b4f0cf6b2c4e3cd12a4b6f651e88f08a90a9f922f96f4f7ac052e1bc27",
+          "movie_sha256": "8c01eef238de70c33dad7ff99abb8812c2a75ebee485e0feb71c7d32244d5b72",
+          "capture_receipt_sha256": "d70f6f723fa8999e58f330689002b04e52a80530bff8aa81b953246067c87373",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "first_frame_zero_based": 1329,
+          "last_frame_zero_based_inclusive": 1359,
+          "crop_xyxy": [
+            127,
+            101,
+            748,
+            432
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "observations": [
+            "The target is a short horned dark armored form with sword and cape. It lowers and tips toward the Ranger; later dark body and cape pixels overlap the hero and floor, obscuring individual limbs."
+          ]
+        },
+        {
+          "side": "after",
+          "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "decode_receipt": "ranger/after/first-elite-death/decode-receipt.json",
+          "decode_receipt_sha256": "04bdff56cbc41d27e2b95bc2316b9f97c30dae3e9aa4903dfd5d9508faeafe60",
+          "movie_sha256": "008b0c71db628429e3c826fb2de2beeb8510d8b04496333e0e7952f42d7e2948",
+          "capture_receipt_sha256": "beb108b23ef0c16081c0d58642d77158aaf2dbc1265686d4e2578b982728c6b4",
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "first_frame_zero_based": 1329,
+          "last_frame_zero_based_inclusive": 1359,
+          "crop_xyxy": [
+            127,
+            101,
+            748,
+            432
+          ],
+          "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+          "observations": [
+            "The target is a full human with bright shoulder armor, dark clothes and sword. Initial panels show an extended sword-arm/lunge silhouette, followed by bent knees and a backward recline; later panels show a clear extended supine body to the right of the Ranger."
+          ]
+        }
+      ],
+      "paired_observations": [
+        "The 83 damage marker, THORNFALL label, reinforcement entry and white effect ring visually align in the retained common crop. AFTER provides a larger readable human collapse rather than the baseline short dark forward-leaning form. No gross mesh explosion or disconnected body part is apparent at game scale. This is initial-response evidence only."
+      ],
+      "scope": "Retained sampled panels from initial death response only; off-crop content unjudged."
+    }
+  ],
+  "viewed_files": [
+    {
+      "file": "ranger/before/first-raider-death/derived-contact-sheet-00.jpg",
+      "sha256": "071a9124afb3c4d43db0ab1e17079437be864795599b76f137ce71169bcc2072",
+      "bytes": 313408,
+      "image_dimensions": [
+        1242,
+        1071
+      ],
+      "side": "before",
+      "label": "first-raider-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        188,
+        128,
+        809,
+        459
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 12,
+          "labeled_playback_seconds": 0.4,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 1,
+          "frame_zero_based": 14,
+          "labeled_playback_seconds": 0.466667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 2,
+          "frame_zero_based": 16,
+          "labeled_playback_seconds": 0.533333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 3,
+          "frame_zero_based": 20,
+          "labeled_playback_seconds": 0.666667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 4,
+          "frame_zero_based": 22,
+          "labeled_playback_seconds": 0.733333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 5,
+          "frame_zero_based": 23,
+          "labeled_playback_seconds": 0.766667,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frames 12-23: upright targets progress through knee bend and backward recline."
+      ]
+    },
+    {
+      "file": "ranger/before/first-raider-death/derived-contact-sheet-01.jpg",
+      "sha256": "76e5098c1bdc6492fc6bf6271eb4ac96b41a693f9b776aaf107212fcfb6b4ce3",
+      "bytes": 311836,
+      "image_dimensions": [
+        1242,
+        1071
+      ],
+      "side": "before",
+      "label": "first-raider-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        188,
+        128,
+        809,
+        459
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 24,
+          "labeled_playback_seconds": 0.8,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 1,
+          "frame_zero_based": 28,
+          "labeled_playback_seconds": 0.933333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 2,
+          "frame_zero_based": 32,
+          "labeled_playback_seconds": 1.066667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 3,
+          "frame_zero_based": 36,
+          "labeled_playback_seconds": 1.2,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 4,
+          "frame_zero_based": 38,
+          "labeled_playback_seconds": 1.266667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 5,
+          "frame_zero_based": 40,
+          "labeled_playback_seconds": 1.333333,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frames 24-40: foreground targets recline and become visibly supine."
+      ]
+    },
+    {
+      "file": "ranger/before/first-raider-death/derived-contact-sheet-02.jpg",
+      "sha256": "d7c4a8b50b60c50609745b596e12a0da4372108e9e93582fc3e972e266b9ae77",
+      "bytes": 56947,
+      "image_dimensions": [
+        1242,
+        357
+      ],
+      "side": "before",
+      "label": "first-raider-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        188,
+        128,
+        809,
+        459
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 42,
+          "labeled_playback_seconds": 1.4,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frame 42: three foreground supine silhouettes remain visible."
+      ]
+    },
+    {
+      "file": "ranger/after/first-raider-death/derived-contact-sheet-00.jpg",
+      "sha256": "b32e69029295417a9e17fb2db3bd407524447383e11d8a9727eed984883119cf",
+      "bytes": 313450,
+      "image_dimensions": [
+        1242,
+        1071
+      ],
+      "side": "after",
+      "label": "first-raider-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        188,
+        128,
+        809,
+        459
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 12,
+          "labeled_playback_seconds": 0.4,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 1,
+          "frame_zero_based": 14,
+          "labeled_playback_seconds": 0.466667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 2,
+          "frame_zero_based": 16,
+          "labeled_playback_seconds": 0.533333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 3,
+          "frame_zero_based": 20,
+          "labeled_playback_seconds": 0.666667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 4,
+          "frame_zero_based": 22,
+          "labeled_playback_seconds": 0.733333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 5,
+          "frame_zero_based": 23,
+          "labeled_playback_seconds": 0.766667,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frames 12-23: Raider knee bend and recline closely resemble BEFORE."
+      ]
+    },
+    {
+      "file": "ranger/after/first-raider-death/derived-contact-sheet-01.jpg",
+      "sha256": "7c52fdea15081f0ba09f9faed95fa2f62438e8df557a7e8786ba606d30013a5c",
+      "bytes": 314297,
+      "image_dimensions": [
+        1242,
+        1071
+      ],
+      "side": "after",
+      "label": "first-raider-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        188,
+        128,
+        809,
+        459
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 24,
+          "labeled_playback_seconds": 0.8,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 1,
+          "frame_zero_based": 28,
+          "labeled_playback_seconds": 0.933333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 2,
+          "frame_zero_based": 32,
+          "labeled_playback_seconds": 1.066667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 3,
+          "frame_zero_based": 36,
+          "labeled_playback_seconds": 1.2,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 4,
+          "frame_zero_based": 38,
+          "labeled_playback_seconds": 1.266667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 5,
+          "frame_zero_based": 40,
+          "labeled_playback_seconds": 1.333333,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frames 24-40: the same three targets become supine while changed rear Hexer also lowers."
+      ]
+    },
+    {
+      "file": "ranger/after/first-raider-death/derived-contact-sheet-02.jpg",
+      "sha256": "ff8e538bfbaf74f7650fc864bed776d2842d383c53fe8a1191c7c7d1885b46aa",
+      "bytes": 57131,
+      "image_dimensions": [
+        1242,
+        357
+      ],
+      "side": "after",
+      "label": "first-raider-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        188,
+        128,
+        809,
+        459
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 42,
+          "labeled_playback_seconds": 1.4,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frame 42: the three supine Raiders remain in comparable arrangement."
+      ]
+    },
+    {
+      "file": "ranger/before/first-hexer-death/derived-contact-sheet-00.jpg",
+      "sha256": "071a9124afb3c4d43db0ab1e17079437be864795599b76f137ce71169bcc2072",
+      "bytes": 313408,
+      "image_dimensions": [
+        1242,
+        1071
+      ],
+      "side": "before",
+      "label": "first-hexer-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        188,
+        128,
+        809,
+        459
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 12,
+          "labeled_playback_seconds": 0.4,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 1,
+          "frame_zero_based": 14,
+          "labeled_playback_seconds": 0.466667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 2,
+          "frame_zero_based": 16,
+          "labeled_playback_seconds": 0.533333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 3,
+          "frame_zero_based": 20,
+          "labeled_playback_seconds": 0.666667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 4,
+          "frame_zero_based": 22,
+          "labeled_playback_seconds": 0.733333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 5,
+          "frame_zero_based": 23,
+          "labeled_playback_seconds": 0.766667,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frames 12-23: the dark rear caster starts upright and begins lowering."
+      ]
+    },
+    {
+      "file": "ranger/before/first-hexer-death/derived-contact-sheet-01.jpg",
+      "sha256": "76e5098c1bdc6492fc6bf6271eb4ac96b41a693f9b776aaf107212fcfb6b4ce3",
+      "bytes": 311836,
+      "image_dimensions": [
+        1242,
+        1071
+      ],
+      "side": "before",
+      "label": "first-hexer-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        188,
+        128,
+        809,
+        459
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 24,
+          "labeled_playback_seconds": 0.8,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 1,
+          "frame_zero_based": 28,
+          "labeled_playback_seconds": 0.933333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 2,
+          "frame_zero_based": 32,
+          "labeled_playback_seconds": 1.066667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 3,
+          "frame_zero_based": 36,
+          "labeled_playback_seconds": 1.2,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 4,
+          "frame_zero_based": 38,
+          "labeled_playback_seconds": 1.266667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 5,
+          "frame_zero_based": 40,
+          "labeled_playback_seconds": 1.333333,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frames 24-40: the short dark caster lowers/tips toward the floor behind Ranger."
+      ]
+    },
+    {
+      "file": "ranger/before/first-hexer-death/derived-contact-sheet-02.jpg",
+      "sha256": "d7c4a8b50b60c50609745b596e12a0da4372108e9e93582fc3e972e266b9ae77",
+      "bytes": 56947,
+      "image_dimensions": [
+        1242,
+        357
+      ],
+      "side": "before",
+      "label": "first-hexer-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        188,
+        128,
+        809,
+        459
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 42,
+          "labeled_playback_seconds": 1.4,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frame 42: the lowered caster silhouette is dark and partly masked behind the hero."
+      ]
+    },
+    {
+      "file": "ranger/after/first-hexer-death/derived-contact-sheet-00.jpg",
+      "sha256": "b32e69029295417a9e17fb2db3bd407524447383e11d8a9727eed984883119cf",
+      "bytes": 313450,
+      "image_dimensions": [
+        1242,
+        1071
+      ],
+      "side": "after",
+      "label": "first-hexer-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        188,
+        128,
+        809,
+        459
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 12,
+          "labeled_playback_seconds": 0.4,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 1,
+          "frame_zero_based": 14,
+          "labeled_playback_seconds": 0.466667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 2,
+          "frame_zero_based": 16,
+          "labeled_playback_seconds": 0.533333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 3,
+          "frame_zero_based": 20,
+          "labeled_playback_seconds": 0.666667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 4,
+          "frame_zero_based": 22,
+          "labeled_playback_seconds": 0.733333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 5,
+          "frame_zero_based": 23,
+          "labeled_playback_seconds": 0.766667,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frames 12-23: the taller hooded rear human bends its knees and begins recline with visible staff."
+      ]
+    },
+    {
+      "file": "ranger/after/first-hexer-death/derived-contact-sheet-01.jpg",
+      "sha256": "7c52fdea15081f0ba09f9faed95fa2f62438e8df557a7e8786ba606d30013a5c",
+      "bytes": 314297,
+      "image_dimensions": [
+        1242,
+        1071
+      ],
+      "side": "after",
+      "label": "first-hexer-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        188,
+        128,
+        809,
+        459
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 24,
+          "labeled_playback_seconds": 0.8,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 1,
+          "frame_zero_based": 28,
+          "labeled_playback_seconds": 0.933333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 2,
+          "frame_zero_based": 32,
+          "labeled_playback_seconds": 1.066667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 3,
+          "frame_zero_based": 36,
+          "labeled_playback_seconds": 1.2,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 4,
+          "frame_zero_based": 38,
+          "labeled_playback_seconds": 1.266667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 5,
+          "frame_zero_based": 40,
+          "labeled_playback_seconds": 1.333333,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frames 24-40: body lowers, arms extend and staff head moves beside the reclined outline."
+      ]
+    },
+    {
+      "file": "ranger/after/first-hexer-death/derived-contact-sheet-02.jpg",
+      "sha256": "ff8e538bfbaf74f7650fc864bed776d2842d383c53fe8a1191c7c7d1885b46aa",
+      "bytes": 57131,
+      "image_dimensions": [
+        1242,
+        357
+      ],
+      "side": "after",
+      "label": "first-hexer-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        188,
+        128,
+        809,
+        459
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 42,
+          "labeled_playback_seconds": 1.4,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frame 42: rear body remains lowered with staff head visible; exact settled ground contact is not inferable."
+      ]
+    },
+    {
+      "file": "ranger/before/first-bulwark-death/derived-contact-sheet-00.jpg",
+      "sha256": "7abd45d0c8dd9ee5653ced2f2ee6ecfa382c5822c95dab9ae63220e9adb21a6e",
+      "bytes": 313687,
+      "image_dimensions": [
+        1242,
+        1071
+      ],
+      "side": "before",
+      "label": "first-bulwark-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        299,
+        122,
+        920,
+        453
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 867,
+          "labeled_playback_seconds": 28.9,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 1,
+          "frame_zero_based": 869,
+          "labeled_playback_seconds": 28.966667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 2,
+          "frame_zero_based": 871,
+          "labeled_playback_seconds": 29.033333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 3,
+          "frame_zero_based": 875,
+          "labeled_playback_seconds": 29.166667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 4,
+          "frame_zero_based": 877,
+          "labeled_playback_seconds": 29.233333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 5,
+          "frame_zero_based": 878,
+          "labeled_playback_seconds": 29.266667,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frames 867-878: dark compact armored target lowers beside Ranger; small shield and body details blend with shadow."
+      ]
+    },
+    {
+      "file": "ranger/before/first-bulwark-death/derived-contact-sheet-01.jpg",
+      "sha256": "312123f487074ecb05ce13aecf51c006a9d413747e6100eb994c5f2b41fee6b0",
+      "bytes": 315705,
+      "image_dimensions": [
+        1242,
+        1071
+      ],
+      "side": "before",
+      "label": "first-bulwark-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        299,
+        122,
+        920,
+        453
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 879,
+          "labeled_playback_seconds": 29.3,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 1,
+          "frame_zero_based": 883,
+          "labeled_playback_seconds": 29.433333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 2,
+          "frame_zero_based": 887,
+          "labeled_playback_seconds": 29.566667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 3,
+          "frame_zero_based": 891,
+          "labeled_playback_seconds": 29.7,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 4,
+          "frame_zero_based": 895,
+          "labeled_playback_seconds": 29.833333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 5,
+          "frame_zero_based": 897,
+          "labeled_playback_seconds": 29.9,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frames 879-897: target tips toward/under the hero and becomes a small dark horizontal shape."
+      ]
+    },
+    {
+      "file": "ranger/after/first-bulwark-death/derived-contact-sheet-00.jpg",
+      "sha256": "4ddaac5e49dbee0065e7c0ac40fa5daa1fa3efa0fe0e00741a090162ecdd9815",
+      "bytes": 316466,
+      "image_dimensions": [
+        1242,
+        1071
+      ],
+      "side": "after",
+      "label": "first-bulwark-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        299,
+        122,
+        920,
+        453
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 867,
+          "labeled_playback_seconds": 28.9,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 1,
+          "frame_zero_based": 869,
+          "labeled_playback_seconds": 28.966667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 2,
+          "frame_zero_based": 871,
+          "labeled_playback_seconds": 29.033333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 3,
+          "frame_zero_based": 875,
+          "labeled_playback_seconds": 29.166667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 4,
+          "frame_zero_based": 877,
+          "labeled_playback_seconds": 29.233333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 5,
+          "frame_zero_based": 878,
+          "labeled_playback_seconds": 29.266667,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frames 867-878: round shield and sword remain distinct as the human target bends and begins backward recline."
+      ]
+    },
+    {
+      "file": "ranger/after/first-bulwark-death/derived-contact-sheet-01.jpg",
+      "sha256": "e349160c005031ffbcad285023066ca235a1db77ef6a5c4ab4ec4912e6b065e7",
+      "bytes": 320465,
+      "image_dimensions": [
+        1242,
+        1071
+      ],
+      "side": "after",
+      "label": "first-bulwark-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        299,
+        122,
+        920,
+        453
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 879,
+          "labeled_playback_seconds": 29.3,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 1,
+          "frame_zero_based": 883,
+          "labeled_playback_seconds": 29.433333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 2,
+          "frame_zero_based": 887,
+          "labeled_playback_seconds": 29.566667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 3,
+          "frame_zero_based": 891,
+          "labeled_playback_seconds": 29.7,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 4,
+          "frame_zero_based": 895,
+          "labeled_playback_seconds": 29.833333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 5,
+          "frame_zero_based": 897,
+          "labeled_playback_seconds": 29.9,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frames 879-897: legs extend and torso lowers to a readable supine silhouette left of Ranger; shield descends near body."
+      ]
+    },
+    {
+      "file": "ranger/before/first-elite-death/derived-contact-sheet-00.jpg",
+      "sha256": "dc2fa0e123515e498c55c7d4fb442b3e60822291de812671d602dd3b96a3a105",
+      "bytes": 309285,
+      "image_dimensions": [
+        1242,
+        1071
+      ],
+      "side": "before",
+      "label": "first-elite-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        127,
+        101,
+        748,
+        432
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 1329,
+          "labeled_playback_seconds": 44.3,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 1,
+          "frame_zero_based": 1331,
+          "labeled_playback_seconds": 44.366667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 2,
+          "frame_zero_based": 1333,
+          "labeled_playback_seconds": 44.433333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 3,
+          "frame_zero_based": 1337,
+          "labeled_playback_seconds": 44.566667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 4,
+          "frame_zero_based": 1340,
+          "labeled_playback_seconds": 44.666667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 5,
+          "frame_zero_based": 1341,
+          "labeled_playback_seconds": 44.7,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frames 1329-1341: short horned target remains compact while its body starts lowering."
+      ]
+    },
+    {
+      "file": "ranger/before/first-elite-death/derived-contact-sheet-01.jpg",
+      "sha256": "ea71832c11168c5f63228419bee3c8f85cc604dbf7cbeda3dc4fa2bd4614ca9f",
+      "bytes": 288989,
+      "image_dimensions": [
+        1242,
+        1071
+      ],
+      "side": "before",
+      "label": "first-elite-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        127,
+        101,
+        748,
+        432
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 1345,
+          "labeled_playback_seconds": 44.833333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 1,
+          "frame_zero_based": 1346,
+          "labeled_playback_seconds": 44.866667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 2,
+          "frame_zero_based": 1349,
+          "labeled_playback_seconds": 44.966667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 3,
+          "frame_zero_based": 1353,
+          "labeled_playback_seconds": 45.1,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 4,
+          "frame_zero_based": 1357,
+          "labeled_playback_seconds": 45.233333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 5,
+          "frame_zero_based": 1359,
+          "labeled_playback_seconds": 45.3,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frames 1345-1359: target tips toward the hero and dark cape/body overlaps hero/floor."
+      ]
+    },
+    {
+      "file": "ranger/after/first-elite-death/derived-contact-sheet-00.jpg",
+      "sha256": "98576aee35e7e2fa36caa00f51145f0e8d7d9a5c9419b9318c278a205b9a88a8",
+      "bytes": 314122,
+      "image_dimensions": [
+        1242,
+        1071
+      ],
+      "side": "after",
+      "label": "first-elite-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        127,
+        101,
+        748,
+        432
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 1329,
+          "labeled_playback_seconds": 44.3,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 1,
+          "frame_zero_based": 1331,
+          "labeled_playback_seconds": 44.366667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 2,
+          "frame_zero_based": 1333,
+          "labeled_playback_seconds": 44.433333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 3,
+          "frame_zero_based": 1337,
+          "labeled_playback_seconds": 44.566667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 4,
+          "frame_zero_based": 1340,
+          "labeled_playback_seconds": 44.666667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 5,
+          "frame_zero_based": 1341,
+          "labeled_playback_seconds": 44.7,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frames 1329-1341: human sword-arm/lunge pose progresses to bent-knee backward fall."
+      ]
+    },
+    {
+      "file": "ranger/after/first-elite-death/derived-contact-sheet-01.jpg",
+      "sha256": "980a427b0867df9cf93fcc335e11b52a25bb425ead548a5c168dce3ab9b58a73",
+      "bytes": 296159,
+      "image_dimensions": [
+        1242,
+        1071
+      ],
+      "side": "after",
+      "label": "first-elite-death",
+      "actually_ai_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "crop_xyxy": [
+        127,
+        101,
+        748,
+        432
+      ],
+      "panels": [
+        {
+          "panel_index_zero_based": 0,
+          "frame_zero_based": 1345,
+          "labeled_playback_seconds": 44.833333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 1,
+          "frame_zero_based": 1346,
+          "labeled_playback_seconds": 44.866667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 2,
+          "frame_zero_based": 1349,
+          "labeled_playback_seconds": 44.966667,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 3,
+          "frame_zero_based": 1353,
+          "labeled_playback_seconds": 45.1,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 4,
+          "frame_zero_based": 1357,
+          "labeled_playback_seconds": 45.233333,
+          "actually_ai_viewed": true
+        },
+        {
+          "panel_index_zero_based": 5,
+          "frame_zero_based": 1359,
+          "labeled_playback_seconds": 45.3,
+          "actually_ai_viewed": true
+        }
+      ],
+      "observations": [
+        "Frames 1345-1359: target presents extended supine body to hero right; sword remains visible."
+      ]
+    }
+  ],
+  "limits": [
+    "Only retained sampled panels were visually inspected: every fourth frame plus semantic boundaries and range end. Consecutive decoding is not consecutive AI visual viewing.",
+    "Initial death windows cover approximately the first 0.97s of death response. No complete skeletal death, final settling, precise ground contact or later fading is certified.",
+    "All pixels outside each shared crop are unjudged; HUD and scene claims apply only to visible cropped portions.",
+    "H264 and JPEG compression, dark materials, game-scale actor size and hero/body overlap limit fine anatomical, grip and contact judgments. No native bone transforms or exact foot placement are inferred.",
+    "Raider and Hexer directories share identical sheets within each side. Viewed-file and panel totals include the required repeated label paths, not additional independent temporal samples.",
+    "Source commits and capture/movie bindings are reported from decode receipts; this visual review does not independently revalidate Git/source bytes. No whole-movie viewing, device performance or release approval is claimed."
+  ],
+  "conclusion": "Within the viewed crops, Raider initial backward falls remain closely comparable. AFTER Hexer, Bulwark and Elite have clearer full human collapse silhouettes; the Bulwark shield and Elite extended supine outline are readable. No gross new torn/disconnected body geometry is apparent in the retained samples, subject to the stated crop and initial-response limits."
+}

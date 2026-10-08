@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "after_source_commit": "5e72fc6fad38f7dc829d313d8df0de8289f52573",
+  "before_source_commit": "ad4d50bb9dbdc07cea42e2306a79fc65bb642489",
+  "after_launcher_actual_exit_code": 0,
+  "before_derivation_actual_exit_code": 0,
+  "prefix_analysis_actual_exit_code": 0,
+  "audio_state_comparison_actual_exit_code": 0,
+  "after_renderer_exclusive_display": ":108",
+  "after_frames": 900,
+  "after_native_original_pngs": 32,
+  "after_playback_seconds": 30,
+  "before_derivative_frames": 900,
+  "before_derivative_playback_seconds": 30,
+  "after_mp4_sha256": "e70cc296afe940f75c19004da8220b9fefb4faa3fd3e8ed10518066590f007f3",
+  "before_mp4_sha256": "d596d3cf3a9c651204a985c78e6239b5d0fa875f5b6278267189a99f7b3a1e38",
+  "copied_evidence_bytes": 72271097,
+  "physical_device_performance": false,
+  "scope": "Actual completed native30s prefix and fully decoded900frame video derivative of original055first30s; both expeditions remain unfinished in this exactprefix. No new physical-device, full-dungeon, Beta or visual-quality acceptance claim."
+}

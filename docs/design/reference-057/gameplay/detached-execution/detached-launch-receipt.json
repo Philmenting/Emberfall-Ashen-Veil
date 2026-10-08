@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "status": "detached_daemon_launched_not_capture_complete",
+  "launched_utc": "2026-10-07T21:06:11Z",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "pid": 65295,
+  "session_id": 65295,
+  "start_new_session": true,
+  "stdio_bound_to_files_or_devnull": true,
+  "request_sha256": "6274259ba1f2088312616015864297d808f66064948b263e52ae8b52b1515e3c",
+  "launcher_sha256": "3413d4c1dbbd9ab930a81eb4d2c6ea9fa858d4ef393a2661f15e021bed425f71",
+  "scope": "Protects against exec-session process-group cleanup; not a guarantee against complete machine shutdown."
+}

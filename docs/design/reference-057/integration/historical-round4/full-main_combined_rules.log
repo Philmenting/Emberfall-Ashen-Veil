@@ -1,0 +1,162 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Vowkeeper: campaign opts into phased guardians only
+PASS: Vowkeeper: legacy oath construction retains its original combat rules
+PASS: Vowkeeper: combined rules freeze into the actual new expedition
+PASS: Vowkeeper: forged combined contracts cannot start or consume a serial
+PASS: Vowkeeper: ordinary starting gear clears all 24 personal-sequence first floors
+PASS: Vowkeeper: every normal first-floor guardian reaches both real health transitions
+PASS: Vowkeeper: first contact and signature remain within five seconds across 24 seeds
+NEW_FIRST_FLOOR {"both_phases":24,"class":"Vowkeeper","clear_seconds":[100.699999999999,107.799999999998,109.899999999998,102.499999999998,118.699999999998,109.199999999998,103.899999999998,99.5999999999986,92.799999999999,92.399999999999,104.199999999998,97.9999999999987,100.999999999999,98.0999999999987,96.3999999999988,98.4999999999987,113.099999999998,117.299999999998,109.199999999998,106.199999999998,109.599999999998,106.599999999998,90.9999999999991,107.499999999998],"seeds":24,"wins":24}
+PASS: Arcanist: campaign opts into phased guardians only
+PASS: Arcanist: legacy oath construction retains its original combat rules
+PASS: Arcanist: combined rules freeze into the actual new expedition
+PASS: Arcanist: forged combined contracts cannot start or consume a serial
+PASS: Arcanist: ordinary starting gear clears all 24 personal-sequence first floors
+PASS: Arcanist: every normal first-floor guardian reaches both real health transitions
+PASS: Arcanist: first contact and signature remain within five seconds across 24 seeds
+NEW_FIRST_FLOOR {"both_phases":24,"class":"Arcanist","clear_seconds":[80.5999999999997,79.1999999999998,79.6999999999997,81.4999999999996,77.2999999999999,76.3999999999999,77.0999999999999,78.3999999999998,79.2999999999998,73.7000000000001,79.8999999999997,78.4999999999998,86.5999999999994,71.3000000000002,82.6999999999996,77.6999999999999,84.5999999999995,87.1999999999993,76.6999999999999,79.6999999999997,82.7999999999996,77.5999999999999,80.8999999999997,74.6],"seeds":24,"wins":24}
+PASS: Ranger: campaign opts into phased guardians only
+PASS: Ranger: legacy oath construction retains its original combat rules
+PASS: Ranger: combined rules freeze into the actual new expedition
+PASS: Ranger: forged combined contracts cannot start or consume a serial
+PASS: Ranger: ordinary starting gear clears all 24 personal-sequence first floors
+PASS: Ranger: every normal first-floor guardian reaches both real health transitions
+PASS: Ranger: first contact and signature remain within five seconds across 24 seeds
+NEW_FIRST_FLOOR {"both_phases":24,"class":"Ranger","clear_seconds":[87.1999999999993,91.6999999999991,86.7999999999993,84.3999999999995,93.599999999999,83.8999999999995,82.4999999999996,82.5999999999996,82.0999999999996,79.8999999999997,82.8999999999996,87.9999999999993,85.5999999999994,83.6999999999995,81.2999999999997,86.8999999999993,91.3999999999991,88.9999999999992,79.1999999999998,82.9999999999996,88.0999999999993,83.8999999999995,81.4999999999996,85.3999999999994],"seeds":24,"wins":24}
+PASS: Vowkeeper ["unmended", "cinder"]: exact additive victory currencies
+PASS: Vowkeeper ["unmended", "cinder"]: extra drop awarded once
+PASS: Vowkeeper ["unmended", "cinder"]: guaranteed class effect is an actual Epic-or-better Amulet
+PASS: Vowkeeper ["unmended", "cinder"]: defeat grants no oath loot, bonus or first-clear entitlement
+PASS: Vowkeeper ["unmended", "hollow"]: exact additive victory currencies
+PASS: Vowkeeper ["unmended", "hollow"]: extra drop awarded once
+PASS: Vowkeeper ["unmended", "hollow"]: defeat grants no oath loot, bonus or first-clear entitlement
+PASS: Vowkeeper ["cinder", "hollow"]: exact additive victory currencies
+PASS: Vowkeeper ["cinder", "hollow"]: extra drop awarded once
+PASS: Vowkeeper ["cinder", "hollow"]: guaranteed class effect is an actual Epic-or-better Amulet
+PASS: Vowkeeper ["cinder", "hollow"]: defeat grants no oath loot, bonus or first-clear entitlement
+PASS: Arcanist ["unmended", "cinder"]: exact additive victory currencies
+PASS: Arcanist ["unmended", "cinder"]: extra drop awarded once
+PASS: Arcanist ["unmended", "cinder"]: guaranteed class effect is an actual Epic-or-better Amulet
+PASS: Arcanist ["unmended", "cinder"]: defeat grants no oath loot, bonus or first-clear entitlement
+PASS: Arcanist ["unmended", "hollow"]: exact additive victory currencies
+PASS: Arcanist ["unmended", "hollow"]: extra drop awarded once
+PASS: Arcanist ["unmended", "hollow"]: defeat grants no oath loot, bonus or first-clear entitlement
+PASS: Arcanist ["cinder", "hollow"]: exact additive victory currencies
+PASS: Arcanist ["cinder", "hollow"]: extra drop awarded once
+PASS: Arcanist ["cinder", "hollow"]: guaranteed class effect is an actual Epic-or-better Amulet
+PASS: Arcanist ["cinder", "hollow"]: defeat grants no oath loot, bonus or first-clear entitlement
+PASS: Ranger ["unmended", "cinder"]: exact additive victory currencies
+PASS: Ranger ["unmended", "cinder"]: extra drop awarded once
+PASS: Ranger ["unmended", "cinder"]: guaranteed class effect is an actual Epic-or-better Amulet
+PASS: Ranger ["unmended", "cinder"]: defeat grants no oath loot, bonus or first-clear entitlement
+PASS: Ranger ["unmended", "hollow"]: exact additive victory currencies
+PASS: Ranger ["unmended", "hollow"]: extra drop awarded once
+PASS: Ranger ["unmended", "hollow"]: defeat grants no oath loot, bonus or first-clear entitlement
+PASS: Ranger ["cinder", "hollow"]: exact additive victory currencies
+PASS: Ranger ["cinder", "hollow"]: extra drop awarded once
+PASS: Ranger ["cinder", "hollow"]: guaranteed class effect is an actual Epic-or-better Amulet
+PASS: Ranger ["cinder", "hollow"]: defeat grants no oath loot, bonus or first-clear entitlement
+PASS: combined support preserves once-only separate trial rewards
+PASS: combined support preserves targeted Hunts without campaign or first-gift progression
+PASS: Vowkeeper: controlled prepared build reaches a real phase-one committed warning
+PASS: Vowkeeper: paused combined phase checkpoint persists through SaveStore
+PASS: Vowkeeper: cold restart keeps frozen phase, contract, paused state and protected relic
+PASS: Vowkeeper: loaded combined phase finishes with identical combat and RNG
+PASS: Arcanist: controlled prepared build reaches a real phase-one committed warning
+PASS: Arcanist: paused combined phase checkpoint persists through SaveStore
+PASS: Arcanist: cold restart keeps frozen phase, contract, paused state and protected relic
+PASS: Arcanist: loaded combined phase finishes with identical combat and RNG
+PASS: Ranger: controlled prepared build reaches a real phase-one committed warning
+PASS: Ranger: paused combined phase checkpoint persists through SaveStore
+PASS: Ranger: cold restart keeps frozen phase, contract, paused state and protected relic
+PASS: Ranger: loaded combined phase finishes with identical combat and RNG
+PASS: original v1 oath checkpoint saves through the new main profile schema
+PASS: cold loading an old run never enables the current new-run flags
+PASS: Vowkeeper: watched and main Skip preserve identical combined outcome, loot and currencies
+PASS: Vowkeeper: background active combined run and subsequent farming match explicit frozen simulation and rewards
+PASS: Vowkeeper: repeated background reconciliation cannot duplicate the combined reward
+PASS: Arcanist: watched and main Skip preserve identical combined outcome, loot and currencies
+PASS: Arcanist: background active combined run and subsequent farming match explicit frozen simulation and rewards
+PASS: Arcanist: repeated background reconciliation cannot duplicate the combined reward
+PASS: Ranger: watched and main Skip preserve identical combined outcome, loot and currencies
+PASS: Ranger: background active combined run and subsequent farming match explicit frozen simulation and rewards
+PASS: Ranger: repeated background reconciliation cannot duplicate the combined reward
+PASS: combined first victory preserves every protected item and reserves its Epic class gift
+PASS: protected-bag class entitlement persists
+PASS: cold restart retains protected bag and exactly one reserved class gift
+PASS: repeated combined victory cannot replace the once-only reserved gift or sell protected gear
+PASS: reserved combined gift can be claimed once after making room
+PASS: Vowkeeper: active successful combined repeat creates a validated frozen cooperative context
+PASS: Vowkeeper: oath repeat preserves the original frozen build and independent selected Hunt
+PASS: Vowkeeper: pending oath repeat batch and its template persist atomically
+PASS: Vowkeeper: a cold pending-batch restart keeps its exact frozen contract and stats
+PASS: Vowkeeper: controlled combined repeat build wins its initial real expedition
+PASS: Vowkeeper: cooperative combined repeat currencies, loot, seeds and time match individual frozen runs
+PASS: Vowkeeper: cold-resumed cooperative repeat cannot duplicate or omit a reward
+PASS: Vowkeeper: chosen combined repeat remains authoritative after its first AFK batch
+PASS: Vowkeeper: a second absence repeats the same two oaths and frozen build
+PASS: Vowkeeper: repeat reconciliation at the same timestamp remains once-only
+PASS: Vowkeeper: forged frozen repeat template rejected: hero_hp
+PASS: Vowkeeper: a backup cannot install the forged repeat template: hero_hp
+PASS: Vowkeeper: forged frozen repeat template rejected: rng_state
+PASS: Vowkeeper: a backup cannot install the forged repeat template: rng_state
+PASS: Vowkeeper: forged frozen repeat template rejected: elapsed
+PASS: Vowkeeper: a backup cannot install the forged repeat template: elapsed
+PASS: Vowkeeper: forged frozen repeat template rejected: class
+PASS: Vowkeeper: a backup cannot install the forged repeat template: class
+PASS: Vowkeeper: forged frozen repeat template rejected: version
+PASS: Vowkeeper: a backup cannot install the forged repeat template: version
+PASS: Vowkeeper: forged frozen repeat template rejected: charge
+PASS: Vowkeeper: a backup cannot install the forged repeat template: charge
+PASS: Vowkeeper: manual gear preparation ends the frozen oath repeat and restores the selected Hunt
+PASS: Arcanist: active successful combined repeat creates a validated frozen cooperative context
+PASS: Arcanist: oath repeat preserves the original frozen build and independent selected Hunt
+PASS: Arcanist: pending oath repeat batch and its template persist atomically
+PASS: Arcanist: a cold pending-batch restart keeps its exact frozen contract and stats
+PASS: Arcanist: controlled combined repeat build wins its initial real expedition
+PASS: Arcanist: cooperative combined repeat currencies, loot, seeds and time match individual frozen runs
+PASS: Arcanist: cold-resumed cooperative repeat cannot duplicate or omit a reward
+PASS: Arcanist: chosen combined repeat remains authoritative after its first AFK batch
+PASS: Arcanist: a second absence repeats the same two oaths and frozen build
+PASS: Arcanist: repeat reconciliation at the same timestamp remains once-only
+PASS: Arcanist: forged frozen repeat template rejected: hero_hp
+PASS: Arcanist: a backup cannot install the forged repeat template: hero_hp
+PASS: Arcanist: forged frozen repeat template rejected: rng_state
+PASS: Arcanist: a backup cannot install the forged repeat template: rng_state
+PASS: Arcanist: forged frozen repeat template rejected: elapsed
+PASS: Arcanist: a backup cannot install the forged repeat template: elapsed
+PASS: Arcanist: forged frozen repeat template rejected: class
+PASS: Arcanist: a backup cannot install the forged repeat template: class
+PASS: Arcanist: forged frozen repeat template rejected: version
+PASS: Arcanist: a backup cannot install the forged repeat template: version
+PASS: Arcanist: forged frozen repeat template rejected: charge
+PASS: Arcanist: a backup cannot install the forged repeat template: charge
+PASS: Arcanist: manual gear preparation ends the frozen oath repeat and restores the selected Hunt
+PASS: Ranger: active successful combined repeat creates a validated frozen cooperative context
+PASS: Ranger: oath repeat preserves the original frozen build and independent selected Hunt
+PASS: Ranger: pending oath repeat batch and its template persist atomically
+PASS: Ranger: a cold pending-batch restart keeps its exact frozen contract and stats
+PASS: Ranger: controlled combined repeat build wins its initial real expedition
+PASS: Ranger: cooperative combined repeat currencies, loot, seeds and time match individual frozen runs
+PASS: Ranger: cold-resumed cooperative repeat cannot duplicate or omit a reward
+PASS: Ranger: chosen combined repeat remains authoritative after its first AFK batch
+PASS: Ranger: a second absence repeats the same two oaths and frozen build
+PASS: Ranger: repeat reconciliation at the same timestamp remains once-only
+PASS: Ranger: forged frozen repeat template rejected: hero_hp
+PASS: Ranger: a backup cannot install the forged repeat template: hero_hp
+PASS: Ranger: forged frozen repeat template rejected: rng_state
+PASS: Ranger: a backup cannot install the forged repeat template: rng_state
+PASS: Ranger: forged frozen repeat template rejected: elapsed
+PASS: Ranger: a backup cannot install the forged repeat template: elapsed
+PASS: Ranger: forged frozen repeat template rejected: class
+PASS: Ranger: a backup cannot install the forged repeat template: class
+PASS: Ranger: forged frozen repeat template rejected: version
+PASS: Ranger: a backup cannot install the forged repeat template: version
+PASS: Ranger: forged frozen repeat template rejected: charge
+PASS: Ranger: a backup cannot install the forged repeat template: charge
+PASS: Ranger: manual gear preparation ends the frozen oath repeat and restores the selected Hunt
+PASS: Hollow technique HUD uses increased actual Mana cost at the readiness boundary
+PASS: Hollow signature HUD displays the authoritative cast cost
+PASS: Hollow Mana Ward HUD reserves the actual signature cost
+MAIN COMBINED RULES SMOKE: 156 checks, 0 failures

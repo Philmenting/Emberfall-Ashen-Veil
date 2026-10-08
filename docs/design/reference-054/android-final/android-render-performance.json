@@ -1,0 +1,175 @@
+{
+  "device": "sdk_gphone64_x86_64",
+  "measurements": [
+    {
+      "frames": 30,
+      "median_draw_calls": 229.0,
+      "median_frame_ms": 1798.083,
+      "p95_frame_ms": 4183.128,
+      "quality": "balanced",
+      "region": 0,
+      "render_height": 540,
+      "render_width": 1212,
+      "target_fps": 60
+    },
+    {
+      "frames": 30,
+      "median_draw_calls": 191.0,
+      "median_frame_ms": 746.513,
+      "p95_frame_ms": 1311.674,
+      "quality": "battery",
+      "region": 0,
+      "render_height": 270,
+      "render_width": 606,
+      "target_fps": 30
+    },
+    {
+      "frames": 30,
+      "median_draw_calls": 303.0,
+      "median_frame_ms": 1354.936,
+      "p95_frame_ms": 2667.024,
+      "quality": "balanced",
+      "region": 1,
+      "render_height": 540,
+      "render_width": 1212,
+      "target_fps": 60
+    },
+    {
+      "frames": 30,
+      "median_draw_calls": 250.0,
+      "median_frame_ms": 605.132,
+      "p95_frame_ms": 762.346,
+      "quality": "battery",
+      "region": 1,
+      "render_height": 270,
+      "render_width": 606,
+      "target_fps": 30
+    },
+    {
+      "frames": 30,
+      "median_draw_calls": 229.0,
+      "median_frame_ms": 1680.538,
+      "p95_frame_ms": 3310.217,
+      "quality": "balanced",
+      "region": 2,
+      "render_height": 540,
+      "render_width": 1212,
+      "target_fps": 60
+    },
+    {
+      "frames": 30,
+      "median_draw_calls": 194.0,
+      "median_frame_ms": 719.162,
+      "p95_frame_ms": 1363.473,
+      "quality": "battery",
+      "region": 2,
+      "render_height": 270,
+      "render_width": 606,
+      "target_fps": 30
+    },
+    {
+      "frames": 30,
+      "median_draw_calls": 292.0,
+      "median_frame_ms": 1357.224,
+      "p95_frame_ms": 2692.045,
+      "quality": "balanced",
+      "region": 3,
+      "render_height": 540,
+      "render_width": 1212,
+      "target_fps": 60
+    },
+    {
+      "frames": 30,
+      "median_draw_calls": 253.0,
+      "median_frame_ms": 609.711,
+      "p95_frame_ms": 1149.045,
+      "quality": "battery",
+      "region": 3,
+      "render_height": 270,
+      "render_width": 606,
+      "target_fps": 30
+    }
+  ],
+  "motion": [
+    {
+      "bone_changes": 17,
+      "captures": [
+        0,
+        5,
+        11,
+        17
+      ],
+      "frames": 20,
+      "native_clips": 9,
+      "passed": true,
+      "physical_device_performance": false,
+      "region": 0,
+      "simulation_step_seconds": 0.05,
+      "skeleton_bones": 29,
+      "source_depth": 0.756339430809021,
+      "unique_rendered_frames": 4
+    },
+    {
+      "bone_changes": 17,
+      "captures": [
+        0,
+        5,
+        11,
+        17
+      ],
+      "frames": 20,
+      "native_clips": 9,
+      "passed": true,
+      "physical_device_performance": false,
+      "region": 1,
+      "simulation_step_seconds": 0.05,
+      "skeleton_bones": 29,
+      "source_depth": 0.660642623901367,
+      "unique_rendered_frames": 4
+    },
+    {
+      "bone_changes": 12,
+      "captures": [
+        0,
+        5,
+        11,
+        17
+      ],
+      "frames": 20,
+      "native_clips": 9,
+      "passed": true,
+      "physical_device_performance": false,
+      "region": 2,
+      "simulation_step_seconds": 0.05,
+      "skeleton_bones": 29,
+      "source_depth": 0.739483594894409,
+      "unique_rendered_frames": 4
+    },
+    {
+      "bone_changes": 17,
+      "captures": [
+        0,
+        5,
+        11,
+        17
+      ],
+      "frames": 20,
+      "native_clips": 9,
+      "passed": true,
+      "physical_device_performance": false,
+      "region": 3,
+      "simulation_step_seconds": 0.05,
+      "skeleton_bones": 29,
+      "source_depth": 0.714139461517334,
+      "unique_rendered_frames": 4
+    }
+  ],
+  "platform": "Android",
+  "renderer": "gl_compatibility",
+  "resolution": {
+    "height": 540.0,
+    "width": 1212.0
+  },
+  "scenario": "frozen guardian render workload; separately stepped real combat animation",
+  "schema": 1
+}

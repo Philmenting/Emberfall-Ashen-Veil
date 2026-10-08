@@ -1,0 +1,126 @@
+{
+  "created_utc": "2026-10-07T05:27:23.941417+00:00",
+  "scope": "Ordinary Raider native65 character; real Godot production actor studio and actual indexed native hand/wood contact. Linux/Mesa studio verification; on-device performance remains separate.",
+  "source_sha256": {
+    "scripts/raider_avatar_rig.gd": "aa79e79833dd287e08c4d3afeab19b044430fe8d9af5be8dd83e32670a5d6f7e",
+    "tools/art/build_raider056.py": "706f29e69773047d1c3c81ed9030eca9a6a9c3c5e967574ef664be8e22a7ff6a",
+    "tools/art/fit_raider_axe056.py": "728a9ece4db0bc0fdad3831d8d0eb126ec362193331c00d1a8afc7bcd46875a1",
+    "tests/raider_native_smoke.gd": "53b4f1401da53af3dd9472d449ad6108287217848e9be25e1c962d2202831a1a",
+    "tests/raider_native_preview.gd": "a1a0f7348edcd292914b2d81ebf9824379651aa202fe73e73ad3d9514db4e003",
+    "assets/models/raider056/ANIMATION1-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/raider056/ANIMATION2-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/raider056/BASE-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/raider056/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/raider056/README.md": "ea609397a1b57e35d521edf998cabccb759ea986eee3099f3be1fa3e8d8b7f72",
+    "assets/models/raider056/WEAPON-LICENSE.txt": "ce0ec7cc50a28d16340aa11ea684bcbdb6836223ebbd6406d83d6e506c7d4236",
+    "assets/models/raider056/axe-fitted.glb": "215ebc8589defc28efb60727feeab1696de345637dcc7f0816b4c234599f13d0",
+    "assets/models/raider056/axe-fitted.json": "f1ba04b6fddfb027f3ca9653d4ab51fec2bc23c434f9b94ac413c70c5b1a4aae",
+    "assets/models/raider056/axe-grip.json": "966c0d7a5484e64e5e371cb4386c93fd7026bf9fa3fc4b9b7f9c5e71d8c4dc9d",
+    "assets/models/raider056/axe-original.glb": "b4eedc707dabb98883f0e18a096953dbea164b9d2d40a657bd44805886f33b8d",
+    "assets/models/raider056/death-grounding.json": "10e4e4536d3c2c76a9889176c729569e193e8f10c2f6191d1db43bbe4fb81b4e",
+    "assets/models/raider056/raider-native65.glb": "8a89cbeb87691222f80a522145e7203139483adba17cd85edd0adff369da59b4",
+    "assets/models/raider056/raider-native65.json": "6537a19d8dd5e40861f7f1a187192de53102bade53adab547abeb607f5af1d03"
+  },
+  "runtime": "Godot v4.7.2.stable.official.ed1daf0bf",
+  "native_smoke": {
+    "actual_process_exit": 0,
+    "checks": 324,
+    "failures": 0,
+    "poses": 15,
+    "actual_imported_3d_triangle_to_triangle_contacts": true,
+    "one_real_thumb_patch_opposes_at_least_three_real_finger_patches": true,
+    "maximum_actual_native_finger_gap_m": 0.00120912364218,
+    "maximum_actual_native_thumb_gap_m": 0.00282471138053,
+    "maximum_conservative_native_arm_penetration_m": 0.00076865854859,
+    "maximum_distal_joint_radius_m": 0.03496371633422647,
+    "unchanged_limits": {
+      "contact_gap_m": 0.003,
+      "arm_penetration_m": 0.001,
+      "distal_radius_m": 0.035,
+      "local_scale": 1
+    }
+  },
+  "native_capture": {
+    "actual_process_exit": 0,
+    "original_unedited_files": {
+      "raider-followthrough.png": {
+        "bytes": 171187,
+        "sha256": "834c82fb2cd0a61a62e84e73696191c64b32639cd60723bcfc4038b7409dbfeb"
+      },
+      "raider-grip-closeup.png": {
+        "bytes": 152256,
+        "sha256": "906d1ddfa5f4d9a7a320d988f370ad27daee9327881859886f8e41de925cb744"
+      },
+      "raider-guard.png": {
+        "bytes": 199164,
+        "sha256": "b6d5ffaf6637579d4761b70738d536cd7d80cff491b078890216dfc3bc998ddd"
+      },
+      "raider-head-closeup.png": {
+        "bytes": 293138,
+        "sha256": "a4d59ec0fb1710d90f90685dc25e5298754e73de42d3ca60c02957fef17a7c5e"
+      },
+      "raider-load.png": {
+        "bytes": 165404,
+        "sha256": "fbf9770c5108a447ee137cc66946722b047c220ae922044e7916e0d9845b8f55"
+      },
+      "raider-release.png": {
+        "bytes": 170077,
+        "sha256": "0c5dd1ae095521351dd20f0224fc320e28b20653caef61749920df805a6bd798"
+      }
+    },
+    "resolution": [
+      1000,
+      1000
+    ],
+    "audio_driver": "Dummy",
+    "shader_script_and_alsa_errors": 0,
+    "environment_warning": "V-Sync unsupported by virtual llvmpipe driver",
+    "frames": [
+      "guard",
+      "load",
+      "release",
+      "followthrough",
+      "grip-closeup",
+      "head-closeup"
+    ]
+  },
+  "geometry": {
+    "body_triangles": 18560,
+    "weapon_triangles": 1098,
+    "total_visible_triangles": 19658,
+    "body_native_bones": 65,
+    "body_parts": 8,
+    "weapon_parts": 4,
+    "native_source_height_m": 1.8100767135620117,
+    "unchanged_body_sha256": "8a89cbeb87691222f80a522145e7203139483adba17cd85edd0adff369da59b4",
+    "actual_maximum_hinge_degrees": 102.14854028992944,
+    "axis_direction_preserved": true,
+    "runtime_full_fit_halfspan_m": 0.065,
+    "runtime_taper_halfspan_m": 0.1,
+    "rigid_hilt_adjustment_m": [
+      0.0004,
+      0,
+      0
+    ]
+  },
+  "independent_faceted_3d_receipt": {
+    "path": "independent_faceted_grip_audit.frozen.json",
+    "sha256": "cdbdb8f9a7a42cc7b600ea714663d85a864821f9a280b523ee74ee1cf2d1788c",
+    "actual_process_exit": 0
+  },
+  "original_license_bytes": {
+    "ANIMATION1-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "ANIMATION2-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "BASE-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb"
+  },
+  "weapon_notice": "WEAPON-LICENSE.txt is an explicit attribution based on public CC0 author pages; not claimed as a byte copy of quota-blocked Drive notice",
+  "rejected_iterations": "Original failed contact, axial-unit and auditor-assumption proofs retained separately under rejected/.",
+  "frozen_builder_reproduction": {
+    "actual_process_exit": 0,
+    "body_bitidentical": true,
+    "profile_values_identical": true,
+    "actual_total_visible_triangles": 19658,
+    "receipt_sha256": "bbeeb77292cf65b8e4a0975182af0a2c6c9f4a0d74dfb25291f07d953db2a5fc"
+  }
+}

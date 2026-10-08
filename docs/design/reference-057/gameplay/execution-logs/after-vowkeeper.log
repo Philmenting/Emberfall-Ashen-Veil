@@ -1,0 +1,12 @@
+CAPTURE START 104784 /workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper
+CAPTURE 300 frames; 10.0 playback seconds; 227.1 wall seconds
+CAPTURE 600 frames; 20.0 playback seconds; 437.5 wall seconds
+CAPTURE 900 frames; 30.0 playback seconds; 635.7 wall seconds
+CAPTURE 1200 frames; 40.0 playback seconds; 836.2 wall seconds
+CAPTURE 1500 frames; 50.0 playback seconds; 1027.2 wall seconds
+CAPTURE 1800 frames; 60.0 playback seconds; 1207.3 wall seconds
+CAPTURE 2100 frames; 70.0 playback seconds; 1408.4 wall seconds
+CAPTURE 2400 frames; 80.0 playback seconds; 1599.3 wall seconds
+CAPTURE 2700 frames; 90.0 playback seconds; 1785.6 wall seconds
+CAPTURE 3000 frames; 100.0 playback seconds; 1968.3 wall seconds
+CAPTURE VERIFIED complete 3099 chronological frames; /workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper

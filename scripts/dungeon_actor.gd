@@ -1,483 +1,513 @@
 extends Node3D
-## Original articulated models. Geometry and animation are authored in Godot.
-const ThemeData = preload("res://scripts/dungeon_theme.gd")
-static var merged_cache: Dictionary={}
-static var shared_surface: ShaderMaterial
-var region_index := 0
-var kind := "Vowkeeper"
-var hostile := false
-var boss := false
+## Fully volumetric, opaque 3D characters. Native skeletons play authored clips;
+## simulation events decide contact, warnings and death, never renderer clocks.
+const Rig=preload("res://scripts/character_rig.gd")
+const SourceAvatar=preload("res://scripts/source_avatar_rig.gd")
+const ClassAvatar=preload("res://scripts/class_avatar_rig.gd")
+const RaiderAvatar=preload("res://scripts/raider_avatar_rig.gd")
+const NativeHostile=preload("res://scripts/native_hostile_rig.gd")
+const EquipmentFinish=preload("res://scripts/native_equipment_finish.gd")
+const Evade=preload("res://scripts/source_avatar_evade.gd")
+const HEROES: Array[String]=["Vowkeeper","Arcanist","Ranger"]
+const HOSTILES: Array[String]=["raider","bulwark","hexer","elite"]
+const GEAR_RANKS: Dictionary={"COMMON":0,"UNCOMMON":1,"RARE":2,"EPIC":3,"LEGENDARY":4}
+const GEAR_TINTS: Array[Color]=[Color("98794c"),Color("a5b393"),Color("93c4c6"),Color("b79ec6"),Color("e7bf79")]
+const COLLAPSE_DURATION:=.90
+const PROJECTILE_RELEASE_LEAD:=.085
+const SKILL_STYLES: Array[String]=["signature","sunder","judgment","chain","starfall","rain","marked"]
+static var appearance_cache: Dictionary={}
+var region_index:=0
+var kind:="Vowkeeper"
+var hostile:=false
+var boss:=false
+var reduced_motion:=false
+var figure_height:=2.15
 var body: Node3D
-var left_arm: Node3D
-var right_arm: Node3D
-var left_leg: Node3D
-var right_leg: Node3D
-var left_knee: Node3D
-var right_knee: Node3D
-var cape: Node3D
-var weapon: Node3D
-var clock := 0.0
-var gait_phase := 0.0
-var attack_time := -1.0
-var attack_queued := false
-var attack_style := "basic"
-var queued_attack_style := "basic"
-var impact_time := -1.0
-var death_time := -1.0
-var death_lean := 1.0
-var body_hunch := 0.0
-var moving := false
-var health_bar: MeshInstance3D
-var materials: Dictionary = {}
+var model: MeshInstance3D
+var surface_material: ShaderMaterial
+var motion_rig: RefCounted
+var source_avatar:=false
+var equipped_items: Dictionary={}
+var equipment_grades: Dictionary={}
+var native_equipment_finish: RefCounted=EquipmentFinish.new()
+var materials: Dictionary={}
+var appearance_key:=""
+var clock:=0.0
+var gait_phase:=0.0
+var gait_blend:=0.0
+var moving:=false
+var attack_time:=-1.0
+var attack_duration:=.30
+var attack_queued:=false
+var attack_style:="basic"
+var queued_attack_style:="basic"
+var external_release:=false
+var release_time:=-1.0
+var action_intensity:=1.0
+var impact_time:=-1.0
+var hit_strength:=0.0
+var recoil_direction:=1.0
+var recoil_intensity:=1.0
+var recoil_duration:=.24
+var death_time:=-1.0
+var death_lean:=1.0
+var pose_frame:=0
+var boss_phase:=0
+var telegraph_left:=0.0
+var telegraph_duration:=0.0
+var retreat_time:=-1.0
+var evade_time:=-1.0
+var evade_duration:=0.0
+var evade_phase:=0.0
+var evade_state: Dictionary={}
+var evade_path_active:=false
+var evade_settle_time:=0.0
+var evade_settle_phase:=0.0
+var anticipation:=0.0
+var emphasis:=1.0
+var silhouette_focus:=0.0
+var motion_offset:=Vector3.ZERO
+var desired_yaw:=0.0
+var travel_direction:=Vector3.FORWARD
+var last_clip:=""
+var blend_age:=1.0
+var blend_pose: Array[Transform3D]=[]
+var plant_points: Array[Vector3]=[Vector3.ZERO,Vector3.ZERO]
+var plant_active: Array[bool]=[false,false]
+var stop_time:=-1.0
+var stop_support:=-1
+
+static func retain_character_cache(appearances: Array[String]) -> void:
+	var retained:=Rig.retain_cache(appearances)
+	for appearance in appearance_cache.keys():
+		if not retained.has(String(appearance)): appearance_cache.erase(appearance)
 
 func _ready() -> void:
-	death_lean = -1.0 if (kind.hash()+region_index)%2==0 else 1.0
-	var theme := ThemeData.definition(region_index)
-	var accent := Color("b18b57")
-	if kind == "Arcanist": accent = Color("9170bd")
-	if kind == "Ranger": accent = Color("579b7f")
-	if hostile: accent = Color(theme.enemy)
-	if kind=="hexer": accent = Color(theme.enemy).lightened(0.15)
-	if kind=="bulwark": accent = Color("8d7954")
-	if kind=="elite": accent = Color("d15b2e")
-	materials.metal = _mat(Color("303c49") if not hostile else Color("30282b"), 0.72)
-	materials.edge = _mat(Color("adb7b7") if not hostile else Color("79685b"), 0.8)
-	materials.cloth = _mat(accent.darkened(0.55), 0.0)
-	materials.trim = _mat(accent, 0.65)
-	materials.leather = _mat(Color("211e22"), 0.0)
-	materials.bone = _mat(Color("a19b84"),0.0)
-	materials.skin = _mat(Color("c1aa95") if not hostile else Color(theme.skin), 0.0)
-	materials.glow = _mat(Color("81d9e6") if not hostile else Color(theme.glow), 0.0, true)
-	for key in materials: materials[key].resource_name=key
-	body = Node3D.new()
-	body.name="Body"
-	add_child(body)
-	# Human proportions, fitted cuirasses and layered cloth, authored as ring meshes.
-	var caster: bool=kind in ["Arcanist","hexer"]
-	var ranger: bool=kind=="Ranger"
-	var ghoul: bool=hostile and kind=="raider"
-	_profile(body,[Vector4(0.9,0.20,0.15,0),Vector4(1.04,0.21,0.16,0),Vector4(1.32,0.31,0.20,0),Vector4(1.51,0.28,0.16,0),Vector4(1.6,0.16,0.12,0)],materials.skin if ghoul else materials.cloth if caster or ranger else materials.metal)
-	if not ghoul:
-		_profile(body,[Vector4(0.88,0.22,0.17,0),Vector4(0.97,0.23,0.18,0)],materials.leather)
-		_sphere(body,Vector3(0,0.93,-0.18),Vector3(0.065,0.065,0.025),materials.trim)
-		if caster:
-			_profile(body,[Vector4(0.13,0.38,0.25,0.04),Vector4(0.40,0.32,0.23,0),Vector4(0.85,0.21,0.16,0)],materials.cloth)
-			for side in [-1.0,1.0]:
-				var stole:=_profile(body,[Vector4(0.30,0.055,0.015,0),Vector4(1.35,0.06,0.02,0)],materials.trim)
-				stole.position=Vector3(side*0.13,0,-0.21)
-		else:
-			for side in [-1.0,1.0]:
-				var tasset:=_profile(body,[Vector4(0.62,0.13,0.055,0),Vector4(0.87,0.15,0.065,0)],materials.leather if ranger else materials.metal)
-				tasset.position=Vector3(side*0.18,0,-0.14)
-				tasset.rotation.z=side*0.12
-	# Sculpted neck, narrow jaw and brow; less oversized helmet/head mass.
-	_cylinder(body,Vector3(0,1.65,0),0.075,0.09,0.20,materials.skin,12)
-	_profile(body,[Vector4(1.65,0.075,0.08,-0.05),Vector4(1.72,0.125,0.13,-0.025),Vector4(1.87,0.145,0.14,0),Vector4(1.98,0.08,0.09,0.015)],materials.skin)
-	if caster or ranger:
-		_profile(body,[Vector4(1.67,0.17,0.16,0.065),Vector4(1.89,0.19,0.16,0.06),Vector4(2.05,0.07,0.07,0.08)],materials.cloth)
-		_sphere(body,Vector3(0,1.80,-0.115),Vector3(0.105,0.135,0.04),materials.skin if not hostile else materials.leather)
-	elif not ghoul:
-		_profile(body,[Vector4(1.68,0.16,0.15,0.015),Vector4(1.9,0.17,0.16,0),Vector4(2.03,0.065,0.075,0)],materials.metal)
-		_box(body,Vector3(0,1.79,-0.158),Vector3(0.26,0.025,0.018),materials.leather)
-		_box(body,Vector3(0,1.72,-0.16),Vector3(0.025,0.16,0.025),materials.edge)
-	for side in [-1.0,1.0]:
-		_sphere(body,Vector3(side*0.059,1.81,-0.156),Vector3(0.027,0.013,0.01),materials.glow if hostile else materials.leather)
-	if hostile and not ghoul and not caster:
-		for side in [-1.0,1.0]:
-			var horn:=_profile(body,[Vector4(0,0.065,0.06,0),Vector4(0.22,0.035,0.04,0.03),Vector4(0.40,0.003,0.005,0.11)],materials.bone)
-			horn.position=Vector3(side*0.17,1.9,0.02)
-			horn.rotation.z=-side*0.6
-	left_arm = _arm(-1.0)
-	right_arm = _arm(1.0)
-	left_leg = _leg(-1.0)
-	right_leg = _leg(1.0)
-	left_knee = left_leg.get_child(1)
-	right_knee = right_leg.get_child(1)
-	cape = Node3D.new()
-	cape.name="Cape"
-	cape.position = Vector3(0,1.5,0.21)
-	body.add_child(cape)
-	if not ghoul:
-		_profile(cape,[Vector4(-1.13,0.34,0.035,0.22),Vector4(-0.65,0.30,0.03,0.10),Vector4(0,0.22,0.03,0)],materials.cloth)
-		for side in [-1.0,1.0]:
-			var hem:=_profile(cape,[Vector4(-1.12,0.018,0.02,0.22),Vector4(-0.65,0.018,0.02,0.10),Vector4(0,0.016,0.02,0)],materials.trim)
-			hem.position.x=side*0.26
-	weapon = Node3D.new()
-	weapon.name="Weapon"
-	weapon.position = Vector3(0,-0.54,0)
-	right_arm.add_child(weapon)
-	if (kind == "Arcanist" and not hostile) or kind=="hexer":
-		_cylinder(weapon,Vector3(0,0.37,0),0.036,0.025,1.8,materials.trim,8)
-		_sphere(weapon,Vector3(0,1.34,0),Vector3.ONE*0.13,materials.glow)
-		for side in [-1.0,1.0]:
-			var claw := _box(weapon,Vector3(side*0.14,1.26,0),Vector3(0.04,0.36,0.06),materials.edge)
-			claw.rotation.z = -side*0.4
-	elif kind == "Ranger" and not hostile:
-		for i in range(8):
-			var angle := -1.2+float(i)*2.4/7.0
-			var bow := _box(weapon,Vector3(0, sin(angle)*0.65, -cos(angle)*0.32),Vector3(0.065,0.23,0.07),materials.trim)
-			bow.rotation.x = -angle*0.4
-		_box(weapon,Vector3(0,0,-0.11),Vector3(0.014,1.23,0.014),materials.edge)
-	elif ghoul:
-		for finger in range(3):
-			var claw:=_profile(weapon,[Vector4(-0.30,0.002,0.003,-0.05),Vector4(0,0.025,0.025,0)],materials.bone)
-			claw.position.x=(finger-1)*0.06
-	else:
-		_box(weapon,Vector3(0,-0.09,0),Vector3(0.09,0.3,0.09),materials.leather)
-		_box(weapon,Vector3(0,0.10,0),Vector3(0.40,0.085,0.10),materials.trim)
-		var blade := _profile(weapon,[Vector4(0.16,0.095,0.025,0),Vector4(0.96,0.065,0.017,0),Vector4(1.27,0.002,0.002,0)],materials.edge,4)
-		blade.rotation.z = 0.015
-		_box(weapon,Vector3(0,0.67,-0.035),Vector3(0.027,0.85,0.012),materials.glow)
-		_cylinder(weapon,Vector3(0,1.31,0),0.085,0,0.18,materials.edge,4)
-		if not hostile or kind in ["bulwark","elite","boss"]:
-			var shield := _profile(left_arm,[Vector4(-0.86,0.035,0.025,0),Vector4(-0.63,0.25,0.065,0),Vector4(-0.20,0.30,0.075,0),Vector4(-0.07,0.19,0.06,0)],materials.metal,8)
-			shield.position=Vector3(-0.08,0,-0.18)
-			_box(left_arm,Vector3(-0.08,-0.43,-0.26),Vector3(0.025,0.61,0.025),materials.trim)
-	if boss:
-		scale = Vector3.ONE * 1.65
-		_build_boss_regalia()
-	elif kind=="hexer":
-		scale = Vector3(0.82,1.10,0.82)
-		_cylinder(body,Vector3(0,0.57,0),0.40,0.25,0.85,materials.cloth,10)
-	elif kind=="bulwark" or kind=="elite": scale = Vector3(1.22,1.15,1.22)
-	elif hostile: scale = Vector3(0.87,0.96,0.87)
-	if ghoul:
-		body_hunch=0.18
-		body.rotation.x=body_hunch
-		for side in [-1.0,1.0]:
-			for rib in range(4):
-				var bone:=_box(body,Vector3(side*0.15,1.19+rib*0.075,-0.17),Vector3(0.23,0.025,0.025),materials.bone)
-				bone.rotation.z=-side*0.25
-	_merge_rigid_parts(self)
+	desired_yaw=rotation.y
+	body=Node3D.new(); body.name="CharacterBody"; add_child(body)
+	_load_appearance()
 	_contact_shadow()
+	if not hostile and not boss: configure_equipment(equipped_items,kind)
+	set_boss_phase(boss_phase)
+	set_readability(1.0,.55 if not hostile and not boss else 0.0)
+	_apply_motion(0.0)
 
-func _mat(color: Color, metal: float, glow: bool = false) -> Material:
-	if glow:
-		var emissive:=StandardMaterial3D.new()
-		emissive.albedo_color=color
-		emissive.emission_enabled=true
-		emissive.emission=color
-		emissive.emission_energy_multiplier=1.3
-		emissive.set_meta("art_tint",color)
-		emissive.set_meta("art_metal",metal)
-		emissive.set_meta("art_glow",1.0)
-		return emissive
-	var mat:=ShaderMaterial.new()
-	mat.shader=preload("res://assets/shaders/forged_surface.gdshader")
-	mat.set_shader_parameter("tint",color)
-	mat.set_shader_parameter("metal",metal)
-	mat.set_shader_parameter("cloth",1.0 if metal==0.0 else 0.0)
-	mat.set_meta("art_tint",color)
-	mat.set_meta("art_metal",metal)
-	mat.set_meta("art_glow",0.0)
-	return mat
+func _load_appearance() -> void:
+	appearance_key="guardian_%d" % clampi(region_index,0,3) if boss else kind
+	if not appearance_key in HEROES+HOSTILES and not boss: appearance_key="raider"
+	figure_height=4.6 if boss else (2.30 if kind in ["bulwark","elite"] else 2.15)
+	if motion_rig!=null:
+		if source_avatar: motion_rig.dispose()
+		else: motion_rig.player.free(); motion_rig.skeleton.free()
+	source_avatar=SourceAvatar.has_appearance(appearance_key) or ClassAvatar.has_appearance(appearance_key) or RaiderAvatar.has_appearance(appearance_key) or NativeHostile.has_appearance(appearance_key)
+	if NativeHostile.has_appearance(appearance_key): motion_rig=NativeHostile.new()
+	elif RaiderAvatar.has_appearance(appearance_key): motion_rig=RaiderAvatar.new()
+	elif ClassAvatar.has_appearance(appearance_key): motion_rig=ClassAvatar.new()
+	else: motion_rig=SourceAvatar.new() if source_avatar else Rig.new()
+	motion_rig.build(body,appearance_key)
+	appearance_cache[appearance_key]=motion_rig.mesh
+	body.scale=Vector3.ONE*figure_height/motion_rig.source_height
+	if model==null:
+		model=MeshInstance3D.new(); model.name="SkinnedCharacter"; model.layers=2; body.add_child(model)
+		model.extra_cull_margin=figure_height
+		model.ignore_occlusion_culling=true
+	if source_avatar:
+		# Native parts own their actual PBR materials. A hidden legacy shader
+		# would allocate an unused material and receive writes every frame.
+		surface_material=null
+	elif surface_material==null:
+		surface_material=ShaderMaterial.new()
+		surface_material.shader=preload("res://assets/shaders/character_surface.gdshader")
+		surface_material.set_shader_parameter("face_albedo",preload("res://assets/materials/nyra-face/nyra-face-albedo.png"))
+		surface_material.set_shader_parameter("field_surfaces",preload("res://assets/materials/field-surfaces/material-atlas.png"))
+		surface_material.set_shader_parameter("metal_grain",preload("res://assets/materials/metal/Metal063_1K-JPG_Color.jpg"))
+		surface_material.set_shader_parameter("metal_roughness",preload("res://assets/materials/metal/Metal063_1K-JPG_Roughness.jpg"))
+	model.visible=not source_avatar
+	model.material_override=null if source_avatar else surface_material
+	model.mesh=motion_rig.mesh; model.skin=motion_rig.skin
+	if source_avatar: motion_rig.configure_rendering(model)
+	if surface_material!=null and motion_rig.body_material!=null:
+		var authored_material: StandardMaterial3D=motion_rig.body_material
+		surface_material.set_shader_parameter("body_albedo",authored_material.albedo_texture)
+		surface_material.set_shader_parameter("body_normal",authored_material.normal_texture)
+		surface_material.set_shader_parameter("body_orm",authored_material.roughness_texture)
+	elif surface_material!=null:
+		# A reused portrait/actor switching to legacy geometry must not retain
+		# the previous complete character's atlases through its ShaderMaterial.
+		for parameter in ["body_albedo","body_normal","body_orm"]:
+			surface_material.set_shader_parameter(parameter,null)
+	model.skeleton=model.get_path_to(motion_rig.skeleton)
+	last_clip=""; blend_pose.clear(); blend_age=1.0
+	plant_active=[false,false]
+	_stop_evade()
 
-func _profile(parent: Node3D,rings: Array,mat: Material,sides: int=16) -> MeshInstance3D:
-	return _mesh(parent,Vector3.ZERO,preload("res://scripts/sculpted_mesh.gd").profile(rings,sides),mat)
+func configure_equipment(equipment: Dictionary,class_key: String="") -> void:
+	equipped_items=equipment.duplicate(true)
+	if body==null:
+		if class_key in HEROES: kind=class_key
+		return
+	if boss or hostile: return
+	if class_key in HEROES and class_key!=kind:
+		kind=class_key; _load_appearance(); _apply_motion(0.0)
+	if surface_material!=null: surface_material.set_shader_parameter("equipment_enabled",true)
+	equipment_grades.clear()
+	var uniforms: Dictionary={"Weapon":"weapon","Helmet":"helm","Chest":"chest","Gloves":"gloves","Boots":"boots","Amulet":"accent"}
+	for slot in uniforms:
+		var item: Dictionary=equipment.get(slot,equipment.get("Helm",{}) if slot=="Helmet" else {})
+		var quality:=String(item.get("quality",item.get("rarity","COMMON"))).to_upper()
+		var rank: int=GEAR_RANKS.get(quality,0)
+		equipment_grades[slot]=rank
+		if surface_material!=null:
+			surface_material.set_shader_parameter(uniforms[slot]+"_rank",float(rank))
+			surface_material.set_shader_parameter(uniforms[slot]+"_tint",GEAR_TINTS[rank])
+	if source_avatar: native_equipment_finish.apply(motion_rig,equipment_grades)
 
-func _contact_shadow() -> void:
-	var mat:=ShaderMaterial.new()
-	mat.shader=preload("res://assets/shaders/ground_grime.gdshader")
-	mat.set_shader_parameter("tint",Color(0.01,0.009,0.013,0.60))
-	var mesh:=PlaneMesh.new()
-	mesh.size=Vector2(1.3,1.0)
-	var shadow:=_mesh(self,Vector3(0,0.028,0),mesh,mat)
-	shadow.name="ContactShadow"
-	shadow.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+func set_boss_phase(value: int) -> void:
+	boss_phase=clampi(value,0,2)
+	if surface_material!=null:
+		surface_material.set_shader_parameter("boss_surface",boss)
+		surface_material.set_shader_parameter("boss_phase",float(boss_phase))
+	if source_avatar and motion_rig!=null and motion_rig.has_method("set_boss_phase"):
+		motion_rig.set_boss_phase(boss_phase)
 
-func _box(parent: Node3D, pos: Vector3, dimensions: Vector3, mat: Material) -> MeshInstance3D:
-	var mesh := BoxMesh.new()
-	mesh.size = dimensions
-	return _mesh(parent,pos,mesh,mat)
+func visual_height() -> float:
+	return figure_height*scale.y if death_time<0.0 else maxf(0.0,pose_bounds().end.y)*scale.y
 
-func _cylinder(parent: Node3D,pos: Vector3,bottom: float,top: float,height: float,mat: Material,sides: int = 12) -> MeshInstance3D:
-	var mesh := CylinderMesh.new()
-	mesh.bottom_radius = bottom
-	mesh.top_radius = top
-	mesh.height = height
-	mesh.radial_segments = sides
-	return _mesh(parent,pos,mesh,mat)
+func pose_bounds() -> AABB:
+	return body.transform*motion_rig.bounds if motion_rig!=null else AABB()
 
-func _sphere(parent: Node3D,pos: Vector3,dimensions: Vector3,mat: Material) -> MeshInstance3D:
-	var mesh := SphereMesh.new()
-	mesh.radial_segments = 12
-	mesh.rings = 6
-	var instance := _mesh(parent,pos,mesh,mat)
-	instance.scale = dimensions * 2.0
-	return instance
+func portrait_anchor() -> Vector3:
+	if source_avatar: return body.transform*motion_rig.head_anchor()
+	return body.transform*(motion_rig.skeleton.get_bone_global_pose(3)*Vector3(0,.10,-.035)) if motion_rig!=null else Vector3(0,1.85,0)
 
-func _mesh(parent: Node3D,pos: Vector3,mesh: Mesh,mat: Material) -> MeshInstance3D:
-	var instance := MeshInstance3D.new()
-	instance.mesh = mesh
-	instance.material_override = mat
-	instance.position = pos
-	parent.add_child(instance)
-	return instance
+func weapon_world_position(_camera_position: Vector3=Vector3.ZERO) -> Vector3:
+	return body.to_global(motion_rig.weapon_tip())
 
-func _arm(side: float) -> Node3D:
-	var pivot := Node3D.new()
-	pivot.name="ArmL" if side<0 else "ArmR"
-	pivot.position = Vector3(side*0.33,1.47,0)
-	body.add_child(pivot)
-	_sphere(pivot,Vector3(side*0.03,0,0),Vector3(0.18,0.13,0.19),materials.edge)
-	_sphere(pivot,Vector3(side*0.03,0.025,0),Vector3(0.16,0.12,0.17),materials.metal)
-	_cylinder(pivot,Vector3(0,-0.21,0),0.085,0.10,0.32,materials.leather)
-	var bracer:=_profile(pivot,[Vector4(-0.56,0.08,0.075,-0.02),Vector4(-0.29,0.115,0.105,-0.02)],materials.metal)
-	for i in range(2):
-		_cylinder(pivot,Vector3(0,-0.35-i*0.15,-0.02),0.116-i*0.012,0.116-i*0.012,0.035,materials.trim,12)
-	_sphere(pivot,Vector3(0,-0.59,-0.02),Vector3.ONE*0.10,materials.leather)
-	return pivot
+func projectile_origin() -> Vector3:
+	# Spells leave the leading casting palm; arrows keep the bow's release
+	# point. Both positions come from the pose on the real launch frame.
+	if kind=="Arcanist":
+		return body.to_global(motion_rig.palm_position(0))
+	return weapon_world_position()
 
-func _leg(side: float) -> Node3D:
-	var pivot := Node3D.new()
-	pivot.name="LegL" if side<0 else "LegR"
-	pivot.position = Vector3(side*0.18,0.89,0)
-	body.add_child(pivot)
-	_cylinder(pivot,Vector3(0,-0.20,0),0.11,0.14,0.40,materials.leather)
-	var knee := Node3D.new()
-	knee.name="Knee"
-	knee.position.y = -0.39
-	pivot.add_child(knee)
-	_sphere(knee,Vector3(0,0,-0.055),Vector3(0.13,0.12,0.13),materials.edge)
-	_cylinder(knee,Vector3(0,-0.20,0),0.10,0.13,0.34,materials.metal)
-	_box(knee,Vector3(0,-0.40,-0.07),Vector3(0.19,0.13,0.32),materials.leather)
-	_box(knee,Vector3(0,-0.365,-0.18),Vector3(0.195,0.07,0.17),materials.edge)
-	return pivot
+func weapon_grip_position() -> Vector3:
+	return body.to_global(motion_rig.weapon_grip_position()) if source_avatar else body.to_global(motion_rig.skeleton.get_bone_global_pose(20).origin)
 
-func strike(style: String = "basic") -> void:
+func face_toward(direction: Vector3,_camera_position: Vector3=Vector3.ZERO,force: bool=false) -> void:
+	if death_time>=0.0 or direction.length_squared()<.0025: return
+	if not force and (attack_time>=0.0 or telegraph_left>0.0): return
+	desired_yaw=atan2(-direction.x,-direction.z)
+
+func follow_travel(displacement: Vector3,_camera_position: Vector3=Vector3.ZERO) -> void:
+	if displacement.length_squared()<.000001: return
+	travel_direction=(global_basis.inverse()*displacement.normalized()).normalized()
+	travel_direction.y=0.0
+
+func strike(style: String="basic",windup_seconds: float=.30,wait_for_hit: bool=false,warning_release: bool=false) -> void:
 	if death_time>=0.0: return
-	var requested_style := style if not style.is_empty() else "basic"
+	# A newly committed attack immediately owns the pose. The completed dodge
+	# may supply the blend source, but never delays a simulation cast.
+	_stop_evade()
+	if style=="heavy":
+		var ordinary_hostile := hostile and telegraph_left<=0.0 and not warning_release
+		telegraph_left=0.0; attack_queued=false; attack_time=0.0
+		attack_style=Rig.Clips.hostile_action(appearance_key) if ordinary_hostile else style
+		release_time=0.0; external_release=false; pose_frame=4
+		_apply_motion(0.0,true); return
+	if wait_for_hit and release_time>=0.0:
+		attack_time=-1.0; attack_queued=false
 	if attack_time>=0.0:
-		attack_queued=true
-		queued_attack_style=requested_style
+		attack_queued=true; queued_attack_style=style
 	else:
-		attack_time=0.0
-		attack_style=requested_style
+		attack_time=0.0; attack_style=style; release_time=-1.0
+		attack_duration=maxf(.06,windup_seconds); external_release=wait_for_hit
+		pose_frame=3
 
-func react() -> void:
-	if death_time>=0.0 or impact_time>=0.0: return
-	impact_time=0.0
+func sync_attack(remaining: float) -> void:
+	if external_release and attack_time>=0.0 and release_time<0.0:
+		attack_time=maxf(0.0,attack_duration-remaining)
+
+func release_attack() -> bool:
+	if death_time>=0.0 or attack_time<0.0 or release_time>=0.0: return false
+	release_time=0.0; pose_frame=4
+	_apply_motion(0.0,true)
+	return true
+
+func cancel_attack() -> void:
+	if release_time<0.0:
+		attack_time=-1.0; attack_queued=false; external_release=false
+
+func retreat() -> void:
+	cancel_attack(); retreat_time=0.0
+
+func begin_evade(simulation_origin: Vector3,goal: Vector3) -> void:
+	if death_time>=0.0: return
+	retreat()
+	if not source_avatar or hostile or boss: return
+	var state:=Evade.begin(self,simulation_origin,goal)
+	if state.is_empty(): return
+	attack_time=-1.0; release_time=-1.0
+	attack_queued=false; external_release=false
+	evade_state=state; evade_time=0.0; evade_phase=0.0
+	evade_duration=float(state.distance_world)/6.8+.14
+	evade_path_active=true; evade_settle_time=0.0; evade_settle_phase=0.0
+
+func sync_evade(path_active: bool) -> void:
+	if evade_time<0.0: return
+	if evade_path_active and not path_active:
+		evade_settle_time=0.0
+		evade_settle_phase=maxf(evade_phase,Evade.path_progress(self,evade_state)*.78)
+	evade_path_active=path_active
+
+func _stop_evade() -> void:
+	evade_time=-1.0; evade_phase=0.0
+	evade_state.clear(); evade_path_active=false
+
+func _advance_evade(delta: float) -> void:
+	if evade_time<0.0: return
+	evade_time+=delta
+	var path_phase:=Evade.path_progress(self,evade_state)*.78
+	if evade_path_active:
+		evade_phase=maxf(evade_phase,path_phase)
+	else:
+		evade_settle_time+=delta
+		evade_phase=maxf(path_phase,lerpf(evade_settle_phase,1.0,smoothstep(0.0,.14,evade_settle_time)))
+		if evade_settle_time>=.14: _stop_evade()
+
+func react(direction: float=0.0,intensity: float=1.0) -> void:
+	if death_time>=0.0: return
+	if impact_time<0.0 or intensity>recoil_intensity+.15:
+		impact_time=0.0; recoil_direction=signf(direction) if absf(direction)>.05 else 1.0
+		recoil_intensity=clampf(intensity,.35,1.5); recoil_duration=lerpf(.18,.30,clampf((intensity-.35)/1.15,0,1))
+
+func react_from(source: Vector3,_camera_position: Vector3=Vector3.ZERO,intensity: float=1.0) -> void:
+	var local: Vector3=global_basis.inverse()*(global_position-source)
+	react(local.x if absf(local.x)>.10 else local.z,intensity)
+
+func set_readability(value: float,focus: float=0.0) -> void:
+	emphasis=clampf(value,.55,1.0); silhouette_focus=clampf(focus,0.0,1.0)
+	if surface_material!=null:
+		surface_material.set_shader_parameter("readability",emphasis)
+		surface_material.set_shader_parameter("silhouette_focus",silhouette_focus)
+		surface_material.set_shader_parameter("focus_tint",Color("f1dbac") if not hostile else Color("dcba80"))
+	if source_avatar: motion_rig.set_visual_readability(emphasis,silhouette_focus)
+
+func set_defeated_readability(value: float) -> void:
+	if death_time<0.0: return
+	# Living combatants keep their contrast floor. Settled bodies relinquish
+	# visual emphasis without changing death, reward or animation clocks.
+	if surface_material!=null:
+		surface_material.set_shader_parameter("readability",clampf(value,.10,1.0))
+		surface_material.set_shader_parameter("silhouette_focus",0.0)
+	if source_avatar: motion_rig.set_visual_readability(clampf(value,.10,1.0),0.0)
+
+func set_telegraph(remaining_seconds: float,total_seconds: float=-1.0) -> void:
+	if total_seconds>0.0: telegraph_duration=total_seconds
+	elif remaining_seconds>telegraph_left+.05: telegraph_duration=remaining_seconds
+	telegraph_left=maxf(remaining_seconds,0.0)
+	if telegraph_left>0.0 and death_time<0.0: pose_frame=3
 
 func die() -> void:
-	death_time = 0.0
+	if death_time>=0.0: return
+	death_time=0.0; attack_time=-1.0; release_time=-1.0
+	attack_queued=false; telegraph_left=0.0; plant_active=[false,false]
+	_stop_evade()
 
-func animate(delta: float, walking: bool, horizontal_speed: float = -1.0) -> void:
-	clock += delta
-	moving = walking
-	if death_time >= 0.0:
-		death_time += delta
-		var fall:=1.0-exp(-death_time*4.2)
-		body.rotation.z = death_lean*minf(death_time*2.8, PI*0.49)
-		body.rotation.x = sin(death_time*8.0)*0.12*exp(-death_time*2.8)
-		body.position.y = -minf(death_time*0.68,0.48)
-		left_arm.rotation.x = -0.8*fall+sin(death_time*6.0)*0.22*exp(-death_time*3.0)
-		right_arm.rotation.x = 0.45*fall-sin(death_time*6.0+0.8)*0.18*exp(-death_time*3.0)
-		left_leg.rotation.x = death_lean*0.42*fall
-		right_leg.rotation.x = -death_lean*0.32*fall
-		cape.rotation.x = -0.15+0.38*fall
+func animate(delta: float,walking: bool,horizontal_speed: float=-1.0) -> void:
+	if body==null: return
+	delta=maxf(0.0,delta)
+	if not reduced_motion: clock+=delta
+	_advance_evade(delta)
+	if death_time>=0.0:
+		death_time+=delta; pose_frame=5 if death_time>=COLLAPSE_DURATION else 0
+		_apply_motion(delta)
+		if death_time>=COLLAPSE_DURATION: set_readability(lerpf(1.0,.60,smoothstep(.90,1.60,death_time)),0.0)
 		return
-	var speed:=maxf(horizontal_speed,2.5) if horizontal_speed>=0.0 else 3.2
-	var gait:=1.0 if walking else 0.0
-	if walking: gait_phase+=delta*speed*3.25
-	var stride := sin(gait_phase)*0.49*gait
-	var breath:=sin(clock*1.65)
-	var bob:=(0.032+0.038*(0.5+0.5*cos(gait_phase*2.0)))*gait
-	body.position = Vector3(sin(clock*0.83)*0.012, bob+breath*0.014*(1.0-gait), 0.0)
-	left_leg.rotation.x = stride
-	right_leg.rotation.x = -stride
-	left_knee.rotation.x = maxf(0.0,-stride)*0.92
-	right_knee.rotation.x = maxf(0.0,stride)*0.92
-	left_arm.rotation.x = -0.18-stride*0.48
-	right_arm.rotation.x = -0.25+stride*0.48
-	left_arm.rotation.z = -0.035+sin(gait_phase)*0.035*gait
-	right_arm.rotation.z = 0.035-sin(gait_phase)*0.035*gait
-	body.rotation.x = body_hunch+sin(gait_phase)*0.035*gait+breath*0.008
-	body.rotation.y = sin(gait_phase)*0.045*gait+sin(clock*0.72)*0.018*(1.0-gait)
-	body.rotation.z = -sin(gait_phase)*0.035*gait
-	cape.rotation.x = -0.15-absf(stride)*0.22
-	cape.rotation.y = -sin(gait_phase)*0.035*gait
-	cape.rotation.z = sin(gait_phase-0.8)*0.09*gait+sin(clock*2.1)*0.035
-	if attack_time >= 0.0:
-		attack_time += delta
-		var phase := clampf(attack_time/0.62,0.0,1.0)
-		var anticipation:=1.0-smoothstep(0.0,0.27,phase)
-		var follow_through:=smoothstep(0.25,0.48,phase)*(1.0-smoothstep(0.69,1.0,phase))
-		var recovery:=smoothstep(0.67,1.0,phase)
-		var guarding := attack_style in ["bastion","frost_ward","smoke"]
-		var empowered := attack_style in ["signature","sunder","judgment","chain","starfall","rain","marked"]
-		var power := 1.2 if empowered else 1.0
-		if attack_style=="telegraph": power=1.12
-		match kind:
-			"Vowkeeper":
-				if attack_style=="telegraph":
-					_telegraph_pose(anticipation)
-				elif guarding:
-					# Bring the shield across the chest; the weapon stays ready behind it.
-					left_arm.rotation.x += -0.88*anticipation-0.20*follow_through+0.15*recovery
-					left_arm.rotation.z += -0.16*anticipation+0.28*follow_through
-					right_arm.rotation.x += -0.18*anticipation-0.46*follow_through+0.10*recovery
-					body.rotation.x += 0.10*anticipation-0.12*follow_through
-					body.position.z += 0.06*anticipation
-				else:
-					right_arm.rotation.x += -0.50*anticipation-1.18*power*follow_through+0.26*recovery
-					right_arm.rotation.z += 0.20*anticipation-0.48*power*follow_through
-					left_arm.rotation.x += -0.18*anticipation-0.28*follow_through
-					left_arm.rotation.z += -0.08*anticipation-0.24*follow_through
-					body.rotation.x += 0.16*anticipation-0.31*power*follow_through+0.09*recovery
-					body.rotation.y += -0.26*anticipation+0.66*power*follow_through-0.20*recovery
-					body.position.z += -0.22*power*follow_through+0.08*recovery
-			"Arcanist","hexer":
-				if attack_style=="telegraph":
-					_telegraph_pose(anticipation)
-				elif guarding:
-					left_arm.rotation.x += -0.82*anticipation-0.18*follow_through+0.14*recovery
-					right_arm.rotation.x += -0.70*anticipation-0.22*follow_through+0.12*recovery
-					body.rotation.x += 0.10*anticipation-0.08*follow_through
-					body.rotation.y += -0.14*anticipation
-				else:
-					var overhead := 0.42 if attack_style=="starfall" else 0.0
-					right_arm.rotation.x += (-0.68-overhead)*anticipation-0.45*power*follow_through+0.18*recovery
-					left_arm.rotation.x += (-0.48-overhead*0.65)*anticipation-0.52*power*follow_through+0.12*recovery
-					right_arm.rotation.z += 0.10*anticipation-0.18*follow_through
-					left_arm.rotation.z += -0.12*anticipation+0.16*follow_through
-					body.rotation.x += 0.06*anticipation-0.12*follow_through
-					body.rotation.y += -0.12*anticipation+0.28*follow_through-0.12*recovery
-					body.position.z += 0.04*anticipation+0.05*follow_through
-			"Ranger":
-				if attack_style=="telegraph":
-					_telegraph_pose(anticipation)
-				elif guarding:
-					right_arm.rotation.x += -0.72*anticipation-0.16*follow_through+0.12*recovery
-					left_arm.rotation.x += -0.34*anticipation-0.12*follow_through
-					body.rotation.y += 0.24*anticipation-0.18*follow_through
-					body.position.z += 0.14*anticipation
-				else:
-					var overhead := 0.36 if attack_style=="rain" else 0.0
-					right_arm.rotation.x += (-0.46-overhead)*anticipation-0.68*power*follow_through+0.18*recovery
-					left_arm.rotation.x += -0.30*anticipation-0.62*power*follow_through+0.10*recovery
-					right_arm.rotation.z += 0.34*anticipation-0.26*follow_through
-					left_arm.rotation.z += -0.18*anticipation+0.12*follow_through
-					body.rotation.x += -0.06*anticipation+0.16*follow_through
-					body.rotation.y += 0.16*anticipation-0.34*follow_through+0.10*recovery
-					body.position.z += -0.19*power*follow_through+0.10*recovery
-			_:
-				if attack_style=="telegraph":
-					_telegraph_pose(anticipation)
-				else:
-					var heavy := attack_style=="heavy"
-					var force := 1.0 if heavy else 0.74
-					right_arm.rotation.x += -0.48*anticipation-0.92*force*follow_through+0.24*recovery
-					right_arm.rotation.z += 0.14*anticipation-0.34*force*follow_through
-					left_arm.rotation.x += -0.18*anticipation-0.20*follow_through
-					body.rotation.x += 0.12*anticipation-0.25*force*follow_through+0.08*recovery
-					body.rotation.y += -0.16*anticipation+0.36*force*follow_through-0.13*recovery
-					body.position.z += -0.16*force*follow_through+0.06*recovery
-		if phase>=1.0:
+	rotation.y=lerp_angle(rotation.y,desired_yaw,1.0-exp(-delta*10.0))
+	if walking and not moving and gait_blend<.10:
+		gait_phase=PI*.5
+		plant_active=[false,false]
+	if moving and not walking:
+		stop_time=0.0; stop_support=0 if fposmod(gait_phase,TAU)<PI else 1
+	moving=walking
+	if walking: stop_time=-1.0
+	elif stop_time>=0.0: stop_time+=delta
+	gait_blend=lerpf(gait_blend,1.0 if walking else 0.0,1.0-exp(-delta*12.0))
+	if walking:
+		var speed:=clampf(horizontal_speed,0.0,6.0) if horizontal_speed>=0.0 else 3.2
+		var stride: float=motion_rig.walk_stride() if source_avatar else Rig.Clips.walk_stride(appearance_key,motion_rig.animation_profile)
+		gait_phase+=delta*speed/body.scale.x*TAU/stride
+	pose_frame=1+int(floor(gait_phase/PI))%2 if gait_blend>.22 else 0
+	action_intensity=1.20 if attack_style in SKILL_STYLES else 1.0
+	if telegraph_left>0.0: pose_frame=3
+	elif attack_time>=0.0:
+		if release_time>=0.0: release_time+=delta
+		elif not external_release:
+			attack_time+=delta
+			if attack_time>=attack_duration: release_time=maxf(0.0,attack_time-attack_duration)
+		pose_frame=3 if release_time<0.0 else (4 if release_time<.14 else 0)
+		if release_time>=Rig.Clips.recovery_duration(appearance_key,_action_phrase()):
+			attack_time=-1.0; release_time=-1.0; external_release=false
 			if attack_queued:
-				attack_time=0.0
-				attack_queued=false
-				attack_style=queued_attack_style
-			else:
-				attack_time=-1.0
+				attack_queued=false; strike(queued_attack_style)
+	if retreat_time>=0.0:
+		retreat_time+=delta
+		if retreat_time>.32: retreat_time=-1.0
 	if impact_time>=0.0:
 		impact_time+=delta
-		var flinch:=sin(clampf(impact_time/0.24,0.0,1.0)*PI)*exp(-impact_time*2.6)
-		body.position.x+=death_lean*0.075*flinch
-		body.rotation.z+=death_lean*0.14*flinch
-		left_arm.rotation.x-=0.24*flinch
-		right_arm.rotation.x+=0.18*flinch
-		if impact_time>=0.24: impact_time=-1.0
+		if impact_time>=recoil_duration: impact_time=-1.0
+	_apply_motion(delta)
 
-func _telegraph_pose(anticipation: float) -> void:
-	if attack_style!="telegraph": return
-	left_arm.rotation.x += -0.86*anticipation
-	right_arm.rotation.x += -0.98*anticipation
-	left_arm.rotation.z += -0.18*anticipation
-	right_arm.rotation.z += 0.18*anticipation
-	body.rotation.x += 0.12*anticipation
+func _action_phrase() -> String:
+	if hostile:
+		return "heavy" if attack_style=="heavy" else Rig.Clips.hostile_action(appearance_key)
+	if source_avatar and kind=="Vowkeeper" and attack_style in ["sunder","judgment"]:
+		return "heavy"
+	return "heavy" if source_avatar and kind=="Arcanist" and attack_style=="starfall" else ("skill" if attack_style in SKILL_STYLES else "basic")
 
-func _build_boss_regalia() -> void:
-	# Each region's boss has a silhouette readable from the following camera.
-	match region_index:
-		0:
-			for side in [-1.0,1.0]:
-				_cylinder(body,Vector3(side*0.57,1.85,0),0.18,0.10,0.35,materials.trim,8)
-		1:
-			_cylinder(body,Vector3(0,0.69,0),0.53,0.27,1.15,materials.cloth,12)
-			_cylinder(body,Vector3(0,2.06,0),0.29,0.09,0.68,materials.cloth,6)
-			for side in [-1.0,1.0]:
-				_box(body,Vector3(side*0.26,1.15,-0.30),Vector3(0.11,0.9,0.04),materials.trim)
-		2:
-			for i in range(7):
-				var angle:=float(i)*TAU/7.0
-				_cylinder(body,Vector3(sin(angle)*0.25,2.19,cos(angle)*0.25),0.065,0.0,0.50,materials.edge,5)
-			for side in [-1.0,1.0]:
-				var rib:=_box(body,Vector3(side*0.66,1.75,0.12),Vector3(0.65,0.10,0.16),materials.skin)
-				rib.rotation.z=side*0.6
-		3:
-			for side in [-1.0,1.0]:
-				var vent:=_box(body,Vector3(side*0.38,1.78,0.18),Vector3(0.20,0.68,0.24),materials.metal)
-				vent.rotation.z=-side*0.22
-				_sphere(body,Vector3(side*0.43,2.16,0.18),Vector3(0.11,0.17,0.11),materials.glow)
-			_box(body,Vector3(0,1.36,-0.31),Vector3(0.20,0.28,0.03),materials.glow)
+func _apply_motion(delta: float=0.0,contact: bool=false) -> void:
+	var clip:="idle"; var time:=fposmod(clock,4.2) if not reduced_motion else 0.0
+	# Starfall is the existing long ground-burst cast. Give the authored
+	# Arcanist its low chamber and heavy thrust without changing the skill's
+	# simulation windup, damage, cooldown, or any other class's animation.
+	var action:=_action_phrase()
+	var blend_duration:=.10
+	if death_time>=0.0: clip="death"; time=minf(death_time,COLLAPSE_DURATION)
+	elif telegraph_left>0.0:
+		clip="windup_heavy"; time=clampf(1.0-telegraph_left/maxf(telegraph_duration,.001),0,1)
+	elif attack_time>=0.0:
+		if attack_style=="heavy": action="heavy"
+		if release_time<0.0:
+			# DungeonWorld launches basic/signature projectiles this far before
+			# damage. Finish the authored draw/cast on that existing launch frame;
+			# this mapping never releases an attack or advances simulation time.
+			var visual_duration:=attack_duration
+			if external_release and kind in ["Arcanist","Ranger"] and attack_style in ["basic","signature"]:
+				visual_duration=maxf(.06,attack_duration-PROJECTILE_RELEASE_LEAD)
+			clip="windup_"+action; time=clampf(attack_time/visual_duration,0,1)
+			blend_duration=minf(.060,visual_duration*.20)
+		else: clip="recover_"+action; time=minf(release_time,Rig.Clips.recovery_duration(appearance_key,action))
+	elif hostile and anticipation>0.0:
+		# Ordinary hostile hits already expose their final cooldown fraction.
+		# Use that real preparation window instead of appearing at contact.
+		clip="windup_"+Rig.Clips.hostile_action(appearance_key); time=clampf(anticipation,0,1); blend_duration=.035
+	elif evade_time>=0.0:
+		clip="evade"; time=evade_phase; blend_duration=.055
+	elif gait_blend>.04:
+		clip="walk"; time=fposmod(gait_phase,TAU)/TAU
+	if clip!=last_clip:
+		blend_pose=motion_rig.capture_pose(); blend_age=0.0
+		# Restored casts and short interruptions must enter at their real pose.
+		if clip.begins_with("windup") and time>.24: blend_age=1.0
+		last_clip=clip
+	motion_rig.pose(clip,time)
+	if source_avatar:
+		if contact: blend_age=1.0
+		else: blend_age+=delta
+		if clip=="evade": Evade.apply(motion_rig,self,time,evade_state)
+		if not hostile and not boss:
+			# Blend the complete directional evade/cast base before the fresh
+			# recoil and weapon fit. The evade must not replace a blended pose.
+			motion_rig.blend_native_transition(self,clip,time,delta,contact,blend_duration)
+		elif blend_age<blend_duration and not blend_pose.is_empty():
+			motion_rig.blend_from(blend_pose,smoothstep(0,blend_duration,blend_age))
+		motion_rig.apply_actor_postprocess(self,clip,time,delta,contact)
+		return
+	if clip=="death":
+		# Deterministic variations keep fallen fighters from repeating the same
+		# prop silhouette. They are native joint poses on the original ground.
+		var settle:=smoothstep(.15,.82,time)
+		var skeleton: Skeleton3D=motion_rig.skeleton
+		var root_pose:=skeleton.get_bone_pose_rotation(0)
+		skeleton.set_bone_pose_rotation(0,Quaternion(Vector3.UP,death_lean*.24*settle)*root_pose)
+		skeleton.force_update_all_bone_transforms()
+	if contact: blend_age=1.0
+	else: blend_age+=delta
+	if blend_age<blend_duration and not blend_pose.is_empty(): motion_rig.blend_from(blend_pose,smoothstep(0,blend_duration,blend_age))
+	if clip=="walk": _plant_feet()
+	elif clip.begins_with("windup") or clip.begins_with("recover"):
+		# Correct quaternion-interpolation drift against the actual contact
+		# curve. The free boot keeps its authored step and lift; the loaded boot
+		# keeps its exact sole position. Pinning both to idle erased the phrase.
+		var skeleton: Skeleton3D=motion_rig.skeleton
+		var phase:=time/Rig.Clips.recovery_duration(appearance_key,action) if clip.begins_with("recover") else time
+		plant_active=[false,false]
+		for side in range(2):
+			var thigh:=12 if side==0 else 15
+			var knee_pole:=skeleton.get_bone_global_pose(thigh+1).origin-skeleton.get_bone_global_pose(thigh).origin
+			motion_rig.solve_leg(side,Rig.Clips.action_foot(appearance_key,clip,phase,side,motion_rig.animation_profile),knee_pole)
+			var foot_basis: Basis=skeleton.get_bone_global_pose(thigh+1).basis.inverse()*Rig.Clips.action_foot_basis(appearance_key,side,motion_rig.animation_profile)
+			skeleton.set_bone_pose_rotation(thigh+2,foot_basis.get_rotation_quaternion())
+			skeleton.force_update_all_bone_transforms()
+	elif clip=="death" and time<.12:
+		# Entry blending must not pull the sole through the floor while the
+		# knees fold. The authored root fall begins after this short interval.
+		var skeleton: Skeleton3D=motion_rig.skeleton
+		for side in range(2):
+			var thigh:=12 if side==0 else 15
+			var target:=skeleton.get_bone_global_pose(thigh+2).origin
+			target.y=maxf(target.y,motion_rig.rest[thigh+2].origin.y)
+			var knee_pole:=skeleton.get_bone_global_pose(thigh+1).origin-skeleton.get_bone_global_pose(thigh).origin
+			motion_rig.solve_leg(side,target,knee_pole)
+	elif stop_time<0.0 or stop_time>.24: plant_active=[false,false]
+	var recoil_phase:=clampf(impact_time/recoil_duration,0,1)
+	hit_strength=(smoothstep(0,.16,recoil_phase)*(1.0-smoothstep(.16,1.0,recoil_phase)))*recoil_intensity if impact_time>=0.0 and death_time<0.0 else 0.0
+	if hit_strength>0.0 and not reduced_motion:
+		# A quick shoulder compression makes a real impact legible. Committed
+		# windups keep priority, and neither world position nor camera is kicked.
+		var influence:=.22 if (attack_time>=0.0 and release_time<0.0) or telegraph_left>0.0 else (.45 if attack_time>=0.0 else 1.0)
+		var skeleton: Skeleton3D=motion_rig.skeleton
+		var feet: Array[Vector3]=[skeleton.get_bone_global_pose(14).origin,skeleton.get_bone_global_pose(17).origin]
+		var sole_bases: Array[Basis]=[skeleton.get_bone_global_pose(14).basis,skeleton.get_bone_global_pose(17).basis]
+		var pelvis:=skeleton.get_bone_pose_rotation(1)
+		var chest:=skeleton.get_bone_pose_rotation(2)
+		var head:=skeleton.get_bone_pose_rotation(3)
+		skeleton.set_bone_pose_rotation(1,pelvis*Quaternion.from_euler(Vector3(-.025,-.03*recoil_direction,-.02*recoil_direction)*hit_strength*influence))
+		skeleton.set_bone_pose_position(1,skeleton.get_bone_pose_position(1)+Vector3(0,-.012,0)*hit_strength*influence)
+		skeleton.set_bone_pose_rotation(2,chest*Quaternion.from_euler(Vector3(.12,.045*recoil_direction,.085*recoil_direction)*hit_strength*influence))
+		skeleton.set_bone_pose_rotation(3,head*Quaternion.from_euler(Vector3(-.055,-.015*recoil_direction,-.035*recoil_direction)*hit_strength*influence))
+		skeleton.force_update_all_bone_transforms()
+		for side in range(2):
+			motion_rig.solve_leg(side,feet[side])
+			var foot:=14 if side==0 else 17
+			var basis: Basis=skeleton.get_bone_global_pose(foot-1).basis.inverse()*sole_bases[side]
+			skeleton.set_bone_pose_rotation(foot,basis.get_rotation_quaternion())
+			skeleton.force_update_all_bone_transforms()
+	motion_offset=motion_rig.skeleton.get_bone_pose_position(0)
+	surface_material.set_shader_parameter("hit_flash",hit_strength*.32)
+	surface_material.set_shader_parameter("action_intensity",action_intensity)
+	motion_rig.refresh_bounds()
 
-func _merge_rigid_parts(pivot: Node3D) -> void:
-	# Keep animated joints, merge only static meshes attached to each joint.
-	# The authored silhouette and materials stay intact with fewer draw calls.
-	var groups: Dictionary = {}
-	var meshes: Array[MeshInstance3D] = []
-	_collect_rigid_meshes(pivot,pivot,groups,meshes)
-	if not groups.is_empty():
-		var key:=str([kind,hostile,boss,region_index,get_path_to(pivot),"vertex-materials"])
-		if not merged_cache.has(key):
-			var surface:=SurfaceTool.new()
-			surface.begin(Mesh.PRIMITIVE_TRIANGLES)
-			for group in groups.values():
-				var tint: Color=group.material.get_meta("art_tint",Color.WHITE)
-				var packed_material:=Vector2(group.material.get_meta("art_metal",0.0),group.material.get_meta("art_glow",0.0))
-				for entry in group.entries:
-					var arrays: Array=entry.mesh.surface_get_arrays(0)
-					var vertices: PackedVector3Array=arrays[Mesh.ARRAY_VERTEX]
-					var normals: PackedVector3Array=arrays[Mesh.ARRAY_NORMAL]
-					var uv: PackedVector2Array=arrays[Mesh.ARRAY_TEX_UV]
-					var indices: PackedInt32Array=arrays[Mesh.ARRAY_INDEX] if arrays[Mesh.ARRAY_INDEX]!=null else PackedInt32Array()
-					var normal_basis: Basis=entry.transform.basis.inverse().transposed()
-					for i in range(indices.size() if not indices.is_empty() else vertices.size()):
-						var index: int=indices[i] if not indices.is_empty() else i
-						surface.set_color(tint)
-						surface.set_uv2(packed_material)
-						surface.set_uv(uv[index] if index<uv.size() else Vector2.ZERO)
-						surface.set_normal((normal_basis*normals[index]).normalized())
-						surface.add_vertex(entry.transform*vertices[index])
-			surface.index()
-			merged_cache[key]=surface.commit()
-		if shared_surface==null:
-			shared_surface=ShaderMaterial.new()
-			shared_surface.shader=preload("res://assets/shaders/forged_surface.gdshader")
-			shared_surface.set_shader_parameter("vertex_materials",true)
-		var combined:=MeshInstance3D.new()
-		combined.mesh=merged_cache[key]
-		combined.material_override=shared_surface
-		pivot.add_child(combined)
-	# Remove deepest children first so nested shield details are merged once.
-	meshes.reverse()
-	for mesh in meshes:
-		mesh.get_parent().remove_child(mesh)
-		mesh.queue_free()
+func _plant_feet() -> void:
+	var skeleton: Skeleton3D=motion_rig.skeleton
+	var phase:=fposmod(gait_phase,TAU)/TAU
+	var yaw:=atan2(-travel_direction.x,-travel_direction.z)
+	var direction_basis:=Basis(Vector3.UP,yaw)
+	for side in range(2):
+		var foot_index:=14 if side==0 else 17
+		var offset: Vector3=motion_rig.rest[foot_index].origin
+		if not motion_rig.animation_profile.is_empty(): offset=Rig.Clips.walk_anchor(appearance_key,side,motion_rig.animation_profile)
+		var target: Vector3=skeleton.get_bone_global_pose(foot_index).origin
+		target=offset+direction_basis*(target-offset)
+		var supporting:=fposmod(phase+side*.5,1.0)<.5
+		if not moving: supporting=side==stop_support and stop_time<.20
+		if supporting:
+			if not plant_active[side]: plant_points[side]=body.to_global(target); plant_active[side]=true
+			target=body.to_local(plant_points[side])
+		else:
+			plant_active[side]=false
+			if not moving:
+				target=target.lerp(offset,smoothstep(0,.20,stop_time))
+				target.y=maxf(target.y,offset.y+sin(clampf(stop_time/.20,0,1)*PI)*.035)
+		var foot_basis: Basis=Rig.Clips.action_foot_basis(appearance_key,side,motion_rig.animation_profile)
+		if not motion_rig.animation_profile.is_empty(): foot_basis=direction_basis*foot_basis
+		motion_rig.solve_leg(side,target,direction_basis*Vector3.FORWARD,foot_basis)
 
-func _collect_rigid_meshes(pivot: Node3D,parent: Node3D,groups: Dictionary,meshes: Array[MeshInstance3D]) -> void:
-	for child in parent.get_children():
-		if child is MeshInstance3D:
-			var mat: Material=child.material_override
-			var key:=mat.get_instance_id()
-			if not groups.has(key): groups[key]={"material":mat,"entries":[]}
-			var local_transform:=Transform3D.IDENTITY
-			var cursor: Node3D=child
-			while cursor!=pivot:
-				local_transform=cursor.transform*local_transform
-				cursor=cursor.get_parent()
-			groups[key].entries.append({"mesh":child.mesh,"transform":local_transform})
-			meshes.append(child)
-			_collect_rigid_meshes(pivot,child,groups,meshes)
-		elif child is Node3D:
-			_merge_rigid_parts(child)
+func _contact_shadow() -> void:
+	var material:=ShaderMaterial.new(); material.shader=preload("res://assets/shaders/ground_grime.gdshader")
+	material.set_shader_parameter("tint",Color(.01,.009,.013,.48))
+	var mesh:=PlaneMesh.new(); mesh.size=Vector2(2.2,1.2) if boss else Vector2(1.10,.66)
+	var shadow:=MeshInstance3D.new(); shadow.name="ContactShadow"
+	shadow.mesh=mesh; shadow.material_override=material; shadow.position.y=.028
+	shadow.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(shadow)

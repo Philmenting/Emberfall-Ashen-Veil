@@ -1,0 +1,13 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: no result is fabricated before active play
+PASS: known wall intervals yield correct mean and percentile
+PASS: case retains its rendering context
+PASS: pause and resume gap cannot pollute frame pacing
+PASS: real gameplay stall remains in measurements
+PASS: bounded rolling window discards old samples without distorting new ones
+PASS: bounded cases retain recent quality and display combinations
+PASS: returning to an existing mode updates the last-measured summary
+PASS: bounded history evicts the least recently measured case
+PASS: copyable report contains measurements and no save or account data
+FRAME METRICS SMOKE: 10 checks, 0 failures

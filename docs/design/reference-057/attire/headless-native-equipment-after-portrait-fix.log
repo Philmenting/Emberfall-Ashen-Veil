@@ -1,0 +1,132 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Vowkeeper: tests inspect the visible native figure and held weapon, beyond the hidden proxy
+PASS: Vowkeeper: native body sources share meshes/skins, fitted weapon geometry matches, and all materials are independent
+PASS: Vowkeeper Weapon: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Vowkeeper Weapon: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Vowkeeper Weapon: peer appearance and authoritative equipment data remain isolated
+PASS: Vowkeeper Weapon: repeated equip cannot accumulate tint or finish drift
+PASS: Vowkeeper Weapon: Common restores every original styled PBR value exactly
+PASS: Vowkeeper Weapon: unequip also restores the original visible finish exactly
+PASS: Vowkeeper Helmet: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Vowkeeper Helmet: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Vowkeeper Helmet: peer appearance and authoritative equipment data remain isolated
+PASS: Vowkeeper Helmet: repeated equip cannot accumulate tint or finish drift
+PASS: Vowkeeper Helmet: Common restores every original styled PBR value exactly
+PASS: Vowkeeper Helmet: unequip also restores the original visible finish exactly
+PASS: Vowkeeper Chest: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Vowkeeper Chest: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Vowkeeper Chest: peer appearance and authoritative equipment data remain isolated
+PASS: Vowkeeper Chest: repeated equip cannot accumulate tint or finish drift
+PASS: Vowkeeper Chest: Common restores every original styled PBR value exactly
+PASS: Vowkeeper Chest: unequip also restores the original visible finish exactly
+PASS: Vowkeeper Gloves: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Vowkeeper Gloves: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Vowkeeper Gloves: peer appearance and authoritative equipment data remain isolated
+PASS: Vowkeeper Gloves: repeated equip cannot accumulate tint or finish drift
+PASS: Vowkeeper Gloves: Common restores every original styled PBR value exactly
+PASS: Vowkeeper Gloves: unequip also restores the original visible finish exactly
+PASS: Vowkeeper Boots: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Vowkeeper Boots: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Vowkeeper Boots: peer appearance and authoritative equipment data remain isolated
+PASS: Vowkeeper Boots: repeated equip cannot accumulate tint or finish drift
+PASS: Vowkeeper Boots: Common restores every original styled PBR value exactly
+PASS: Vowkeeper Boots: unequip also restores the original visible finish exactly
+PASS: Vowkeeper Amulet: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Vowkeeper Amulet: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Vowkeeper Amulet: peer appearance and authoritative equipment data remain isolated
+PASS: Vowkeeper Amulet: repeated equip cannot accumulate tint or finish drift
+PASS: Vowkeeper Amulet: Common restores every original styled PBR value exactly
+PASS: Vowkeeper Amulet: unequip also restores the original visible finish exactly
+PASS: Vowkeeper: six observed equipment channels change separate real surfaces without overriding or compounding each other
+PASS: Vowkeeper: Rare and Legendary have distinct native pigments and a bounded progressing finish
+PASS: Vowkeeper: live portrait and battle show the same equipped native finish with independent overrides
+PASS: Vowkeeper: portrait unequip cannot reset battle gear or recolor either face
+PASS: Arcanist: tests inspect the visible native figure and held weapon, beyond the hidden proxy
+PASS: Arcanist: native body sources share meshes/skins, fitted weapon geometry matches, and all materials are independent
+PASS: Arcanist Weapon: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Arcanist Weapon: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Arcanist Weapon: peer appearance and authoritative equipment data remain isolated
+PASS: Arcanist Weapon: repeated equip cannot accumulate tint or finish drift
+PASS: Arcanist Weapon: Common restores every original styled PBR value exactly
+PASS: Arcanist Weapon: unequip also restores the original visible finish exactly
+PASS: Arcanist Helmet: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Arcanist Helmet: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Arcanist Helmet: peer appearance and authoritative equipment data remain isolated
+PASS: Arcanist Helmet: repeated equip cannot accumulate tint or finish drift
+PASS: Arcanist Helmet: Common restores every original styled PBR value exactly
+PASS: Arcanist Helmet: unequip also restores the original visible finish exactly
+PASS: Arcanist Chest: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Arcanist Chest: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Arcanist Chest: peer appearance and authoritative equipment data remain isolated
+PASS: Arcanist Chest: repeated equip cannot accumulate tint or finish drift
+PASS: Arcanist Chest: Common restores every original styled PBR value exactly
+PASS: Arcanist Chest: unequip also restores the original visible finish exactly
+PASS: Arcanist Gloves: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Arcanist Gloves: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Arcanist Gloves: peer appearance and authoritative equipment data remain isolated
+PASS: Arcanist Gloves: repeated equip cannot accumulate tint or finish drift
+PASS: Arcanist Gloves: Common restores every original styled PBR value exactly
+PASS: Arcanist Gloves: unequip also restores the original visible finish exactly
+PASS: Arcanist Boots: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Arcanist Boots: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Arcanist Boots: peer appearance and authoritative equipment data remain isolated
+PASS: Arcanist Boots: repeated equip cannot accumulate tint or finish drift
+PASS: Arcanist Boots: Common restores every original styled PBR value exactly
+PASS: Arcanist Boots: unequip also restores the original visible finish exactly
+PASS: Arcanist Amulet: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Arcanist Amulet: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Arcanist Amulet: peer appearance and authoritative equipment data remain isolated
+PASS: Arcanist Amulet: repeated equip cannot accumulate tint or finish drift
+PASS: Arcanist Amulet: Common restores every original styled PBR value exactly
+PASS: Arcanist Amulet: unequip also restores the original visible finish exactly
+PASS: Arcanist: six observed equipment channels change separate real surfaces without overriding or compounding each other
+PASS: Arcanist: Rare and Legendary have distinct native pigments and a bounded progressing finish
+PASS: Arcanist: live portrait and battle show the same equipped native finish with independent overrides
+PASS: Arcanist: portrait unequip cannot reset battle gear or recolor either face
+PASS: Ranger: tests inspect the visible native figure and held weapon, beyond the hidden proxy
+PASS: Ranger: native body sources share meshes/skins, fitted weapon geometry matches, and all materials are independent
+PASS: Ranger Weapon: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Ranger Weapon: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Ranger Weapon: peer appearance and authoritative equipment data remain isolated
+PASS: Ranger Weapon: repeated equip cannot accumulate tint or finish drift
+PASS: Ranger Weapon: Common restores every original styled PBR value exactly
+PASS: Ranger Weapon: unequip also restores the original visible finish exactly
+PASS: Ranger Helmet: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Ranger Helmet: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Ranger Helmet: peer appearance and authoritative equipment data remain isolated
+PASS: Ranger Helmet: repeated equip cannot accumulate tint or finish drift
+PASS: Ranger Helmet: Common restores every original styled PBR value exactly
+PASS: Ranger Helmet: unequip also restores the original visible finish exactly
+PASS: Ranger Chest: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Ranger Chest: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Ranger Chest: peer appearance and authoritative equipment data remain isolated
+PASS: Ranger Chest: repeated equip cannot accumulate tint or finish drift
+PASS: Ranger Chest: Common restores every original styled PBR value exactly
+PASS: Ranger Chest: unequip also restores the original visible finish exactly
+PASS: Ranger Gloves: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Ranger Gloves: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Ranger Gloves: peer appearance and authoritative equipment data remain isolated
+PASS: Ranger Gloves: repeated equip cannot accumulate tint or finish drift
+PASS: Ranger Gloves: Common restores every original styled PBR value exactly
+PASS: Ranger Gloves: unequip also restores the original visible finish exactly
+PASS: Ranger Boots: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Ranger Boots: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Ranger Boots: peer appearance and authoritative equipment data remain isolated
+PASS: Ranger Boots: repeated equip cannot accumulate tint or finish drift
+PASS: Ranger Boots: Common restores every original styled PBR value exactly
+PASS: Ranger Boots: unequip also restores the original visible finish exactly
+PASS: Ranger Amulet: real visible equipment changes with restrained pigment/finish, including the held weapon
+PASS: Ranger Amulet: textures, skin, vertices, facial features, exposed hands and emission remain unchanged
+PASS: Ranger Amulet: peer appearance and authoritative equipment data remain isolated
+PASS: Ranger Amulet: repeated equip cannot accumulate tint or finish drift
+PASS: Ranger Amulet: Common restores every original styled PBR value exactly
+PASS: Ranger Amulet: unequip also restores the original visible finish exactly
+PASS: Ranger: six observed equipment channels change separate real surfaces without overriding or compounding each other
+PASS: Ranger: Rare and Legendary have distinct native pigments and a bounded progressing finish
+PASS: Ranger: live portrait and battle show the same equipped native finish with independent overrides
+PASS: Ranger: portrait unequip cannot reset battle gear or recolor either face
+PASS: Vowkeeper: class switch resets to that class's own exact source finish
+PASS: Ranger: class switch resets to that class's own exact source finish
+PASS: Arcanist: class switch resets to that class's own exact source finish
+NATIVE EQUIPMENT FINISH SMOKE: 129 checks, 0 failures

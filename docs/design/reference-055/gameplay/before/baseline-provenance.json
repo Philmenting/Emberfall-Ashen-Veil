@@ -1,0 +1,38 @@
+{
+  "baseline_commit": "4b152d0fc8b99cf51569585af2695bf3554416ed",
+  "scope": "Original 054 runtime and assets; only observational audio hooks and the same capture fixture/tool are overlaid for comparison. No new attack, hostile, class, lighting or gameplay code.",
+  "overlays": [
+    {
+      "path": "scripts/audio_director.gd",
+      "original_sha256": "727ffc5dc1f97fd4bf499edf68da1d8ce34b0312bc550d781fbbfde714242f65",
+      "capture_sha256": "3c1519b5a1b8c2c222cb94804f70da20ef6f9d9a17a1aea7856ba883b1f73c5a"
+    },
+    {
+      "path": "tests/native_capture_audio.gd",
+      "original_sha256": null,
+      "capture_sha256": "f0649e8143a1445e90cbe2c8f13d8626becaf72d408e1a146b1fc93b44faa7d5"
+    },
+    {
+      "path": "tests/arcanist_quality_gameplay_preview.gd",
+      "original_sha256": "0185f78aa421b27da5f5f9a718259fdbb673f5201e2d591ea4fe9850c7e5dbc4",
+      "capture_sha256": "caa01332459af3eb3e75a7e1e3f728476cf033e5f37dc85b7e5cff8cebcb5af9"
+    },
+    {
+      "path": "tests/arcanist_quality_gameplay_preview.tscn",
+      "original_sha256": "50c6bb5b1508d0662c09348a38f7fbf373145dc23def11d8fa0bb57639aa7023",
+      "capture_sha256": "50c6bb5b1508d0662c09348a38f7fbf373145dc23def11d8fa0bb57639aa7023"
+    },
+    {
+      "path": "tools/capture_arcanist_quality.py",
+      "original_sha256": null,
+      "capture_sha256": "86ba3c014061ea6f6da59be808a8d21636b0c9ef1759553bab2310a459e4caa3"
+    }
+  ],
+  "import_override": "Only staging project [editor] import/use_multiple_threads=false; serial cold import.",
+  "archived_directories": [
+    "scripts",
+    "assets",
+    "tests",
+    "addons"
+  ]
+}

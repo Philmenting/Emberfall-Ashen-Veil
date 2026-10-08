@@ -1,0 +1,2227 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-08T00:37:16.465860+00:00",
+  "status": "post_staging_current_proof_hashes_counts_report_links_independently_validated",
+  "reviewer": "/root/temporal_review_resume_057/review_scope_audit_057",
+  "reviewer_type": "AI read-only staged proof audit; no new image viewing or human signoff claimed",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "supersedes_only": "Current final-byte binding of the three class verification summaries in final-motion-report-independent-audit.json. Prior report/semantic/count/visual findings remain preserved; no previous audit, inspection receipt or immutable proof file is changed.",
+  "historical_summary_disclosure": "The original pre-staging audit is preserved unchanged, but its three class-verification-summary SHA references are historical and are not current staged hashes. The stager made known scratch verifier reruns before hardlinking the current summaries; verifier code creates a fresh created_utc on each run. The old three summary byte versions were overwritten and are unavailable. This audit does not claim an independently proven only-created_utc byte diff and does not attempt to reconstruct those old bytes. Current staged summary hashes, counts, proof references and all593 staging-manifest file hashes have instead been independently revalidated.",
+  "preserved_pre_staging_audit": {
+    "file": "temporal-review/final-motion-report-independent-audit.json",
+    "sha256": "9e6d14b40d65b359550530392faf2104f462fff1fc9b61947dd6e619f43f821e",
+    "bytes": 16509
+  },
+  "current_report": {
+    "file": "MOTION_REVIEW.md",
+    "sha256": "791546d1efc045e5b38a538e74667d713907c03884b5018b07259b86c1bfc267",
+    "bytes": 13274
+  },
+  "current_readme": {
+    "file": "temporal-review/README.md",
+    "sha256": "f0acd906ac221a23c473725706d2f4bf8ee0d1aad7e9e950b400f180db1ca5ce",
+    "bytes": 3133
+  },
+  "staging_manifest": {
+    "file": "temporal-review-staging-receipt.json",
+    "sha256": "ab53c5b79b72b85a6a93a08a2b732de0b8d9df2736502236061ad54b4bc7f5b6",
+    "bytes": 236076,
+    "actual_manifest_file_count": 593,
+    "all593_current_staged_hashes_and_byte_counts_match": true,
+    "all593_original_execution_sources_match_current_manifest": true,
+    "all593_same_inodes_as_recorded_execution_sources": true,
+    "all593_rechecked_unchanged_before_new_audit_write": true,
+    "new_post_staging_audit_is_separate_from_these593_files": true,
+    "review_logical_bytes": 143266575
+  },
+  "current_verification_summaries": [
+    {
+      "file": "temporal-review/arcanist-temporal-review-verification.json",
+      "sha256": "6760d79705217aca51901a087558249f143394fa8587f72ec5410e34cf5ad8ff",
+      "bytes": 8326,
+      "character_class": "arcanist",
+      "current_created_utc": "2026-10-08T00:30:43.787771+00:00",
+      "historical_pre_staging_sha256": "e98d37c0c59d397c7e69017f344a5e301154eed05f88cabac544953936ee67ba",
+      "historical_summary_bytes_available": false,
+      "current_matches_staging_manifest": true,
+      "current_claims_independently_revalidated": true
+    },
+    {
+      "file": "temporal-review/ranger-temporal-review-verification.json",
+      "sha256": "e0b6df92364ad94132c9116ff72e4928350f37ce13f79b1986d45cb963a13c5f",
+      "bytes": 8830,
+      "character_class": "ranger",
+      "current_created_utc": "2026-10-08T00:30:43.883424+00:00",
+      "historical_pre_staging_sha256": "62470d27d765065bbef6d790fa97c630601797647935e762bd42a26020190ca7",
+      "historical_summary_bytes_available": false,
+      "current_matches_staging_manifest": true,
+      "current_claims_independently_revalidated": true
+    },
+    {
+      "file": "temporal-review/vowkeeper-temporal-review-verification.json",
+      "sha256": "82bbd504fd3830e859c143ff021e8e8e767e1f2bbd838f43ab8845a689dd5507",
+      "bytes": 9376,
+      "character_class": "vowkeeper",
+      "current_created_utc": "2026-10-08T00:30:44.008640+00:00",
+      "historical_pre_staging_sha256": "502c723817a9fe5a7496fa9186bdcfbe06e02f0d3594055b19a3293b78defac0",
+      "historical_summary_bytes_available": false,
+      "current_matches_staging_manifest": true,
+      "current_claims_independently_revalidated": true
+    }
+  ],
+  "counts": {
+    "arcanist": {
+      "frames_per_movie": 2496,
+      "duration_seconds_per_movie": 83.2,
+      "semantic_ranges_per_side": 17,
+      "actual_successful_bounded_decode_receipts": 34,
+      "actual_primary_sheet_files_with_recorded_ai_inspection": 80,
+      "retained_panels_including_overlap": 580,
+      "separately_inspected_original_native_pngs": 6,
+      "unique_retained_frame_indices_per_movie": 240
+    },
+    "ranger": {
+      "frames_per_movie": 2559,
+      "duration_seconds_per_movie": 85.3,
+      "semantic_ranges_per_side": 19,
+      "actual_successful_bounded_decode_receipts": 38,
+      "actual_primary_sheet_files_with_recorded_ai_inspection": 96,
+      "retained_panels_including_overlap": 730,
+      "separately_inspected_original_native_pngs": 12,
+      "unique_retained_frame_indices_per_movie": 305
+    },
+    "vowkeeper": {
+      "frames_per_movie": 3099,
+      "duration_seconds_per_movie": 103.3,
+      "semantic_ranges_per_side": 20,
+      "actual_successful_bounded_decode_receipts": 40,
+      "actual_primary_sheet_files_with_recorded_ai_inspection": 120,
+      "retained_panels_including_overlap": 870,
+      "separately_inspected_original_native_pngs": 16,
+      "unique_retained_frame_indices_per_movie": 340
+    }
+  },
+  "totals": {
+    "primary_sheet_files": 296,
+    "primary_retained_panels_including_overlap": 2180,
+    "separately_inspected_native_pngs": 34,
+    "successful_bounded_range_decode_receipts": 112,
+    "ranger_supplement_files_excluded_from_primary": 2,
+    "ranger_supplement_panels_excluded_from_primary": 8
+  },
+  "current_ai_inspection_receipt_hashes": [
+    {
+      "file": "temporal-review/arcanist-common-death-human-review.json",
+      "sha256": "32f9f4b733f05baf90d0bad51ef1169f3b074c6eddea89e686d150820ef499ae",
+      "bytes": 27817
+    },
+    {
+      "file": "temporal-review/arcanist-context-human-review.json",
+      "sha256": "4ca3432cc9b093d03a31305a133becf15967ae0bcb50360ef2e11b16ffbc1d41",
+      "bytes": 84638
+    },
+    {
+      "file": "temporal-review/arcanist-guardian-ending-human-review.json",
+      "sha256": "2a6a7f0c349c941b3b0db61c670543f51229373ed1d80637784519cc373490d8",
+      "bytes": 58873
+    },
+    {
+      "file": "temporal-review/arcanist-hero-human-review.json",
+      "sha256": "9fd8ab7a5ae72d45287ba0efffc81459e35f3f3086980418aa279175f23979d2",
+      "bytes": 9455
+    },
+    {
+      "file": "temporal-review/arcanist-hexer-human-review.json",
+      "sha256": "004a10339d5612aecb2aab77eb8b34004d3afcf99178e55d3d0b30f83ee6514a",
+      "bytes": 19501
+    },
+    {
+      "file": "temporal-review/ranger-common-death-ai-review.json",
+      "sha256": "b7156cfcd7b776b819485f954a2a014aedfd59fc48b99eae2dd8877ffbec3360",
+      "bytes": 46051
+    },
+    {
+      "file": "temporal-review/ranger-context-ai-review.json",
+      "sha256": "b8f791d6f8097a83965683013e7e10a69db2d7510d7b5dd648b76d02de64e2c2",
+      "bytes": 60371
+    },
+    {
+      "file": "temporal-review/ranger-guardian-ending-ai-review.json",
+      "sha256": "fff8aa5ee257e8350e09707d37dee840ec15142c3f655733d273931dbbd1c379",
+      "bytes": 40167
+    },
+    {
+      "file": "temporal-review/ranger-hero-ai-review.json",
+      "sha256": "602d21fc34a2fc6a15ae2a16da9cbd3528c5bbfe3c367f5f6d175729d5708c48",
+      "bytes": 14634
+    },
+    {
+      "file": "temporal-review/ranger-hexer-ai-review.json",
+      "sha256": "ccfe6ba3cac412ddf635d6d24c5c632aa6853620e9fd217eea46706a72cf7701",
+      "bytes": 22959
+    },
+    {
+      "file": "temporal-review/vowkeeper-common-death-and-elite-ai-review.json",
+      "sha256": "6c964ee37d5f10188fb2dcce757018168cc3bf60482492a6ef8ee4379a120a93",
+      "bytes": 45915
+    },
+    {
+      "file": "temporal-review/vowkeeper-context-ai-review.json",
+      "sha256": "c5e60da1ecc910de32c1b6643e5c540c51399a5a6f799329adf97cd27a838e79",
+      "bytes": 120719
+    },
+    {
+      "file": "temporal-review/vowkeeper-guardian-ending-ai-review.json",
+      "sha256": "aed30073f2b18362845d15ceb2587511cf938d1cf7447b0a38e9ec9955724e06",
+      "bytes": 77558
+    },
+    {
+      "file": "temporal-review/vowkeeper-hero-ai-review.json",
+      "sha256": "d355ec85d8cb2990e416aeb491b383e5c35be7b62dd50457e927a39483729a8e",
+      "bytes": 20756
+    },
+    {
+      "file": "temporal-review/vowkeeper-hexer-ai-review.json",
+      "sha256": "848f14749af498b4f89629e917ecacb5119ec85e0a4c2fe0342eaefdd1291101",
+      "bytes": 14413
+    }
+  ],
+  "frozen_decode_tool_hashes": [
+    {
+      "file": "temporal-review/review_final.py",
+      "sha256": "afd4ff67403623b767fa30b3a18431a2cefb7cfb374c9b572b1b7e938416a8bf",
+      "bytes": 21919
+    },
+    {
+      "file": "temporal-review/review_final_cropped.py",
+      "sha256": "f4f2ad49dd62a6dd220410f3ae56029352b71c9c07c2926927487730bd554a96",
+      "bytes": 23853
+    },
+    {
+      "file": "temporal-review/review_final_vowkeeper.py",
+      "sha256": "83bff1cabc3e915bbcf857bc5f628e159f82088cff10090c5ab0cbb223d9987d",
+      "bytes": 29213
+    }
+  ],
+  "current_verifier_tool": {
+    "file": "temporal-review/verify_review.py",
+    "sha256": "dcf20ff49cc0ad342668dfc6201536f0dce4bd869c30f584ab2596803bcfbdf7",
+    "bytes": 8450
+  },
+  "viewed_file_and_decode_receipt_binding": {
+    "binding_manifest_sha256": "ab53c5b79b72b85a6a93a08a2b732de0b8d9df2736502236061ad54b4bc7f5b6",
+    "all296_primary_image_hashes_match_decode_receipts_ai_records_and_manifest": true,
+    "all34_separately_viewed_native_png_hashes_match_ai_records": true,
+    "all15_ai_inspection_receipts_match_current_summary_and_manifest_bindings": true,
+    "all112_decode_receipt_hashes_match_current_summary_and_manifest_bindings": true,
+    "primary_image_hashes": [
+      {
+        "file": "temporal-review/arcanist/after/additional-evade-2114/derived-contact-sheet-00.png",
+        "sha256": "fe2084b157492e9471a6df4f16fa9e2d715136ca9c84b00a77054c129d1ec3ea"
+      },
+      {
+        "file": "temporal-review/arcanist/after/additional-evade-2114/derived-contact-sheet-01.png",
+        "sha256": "08365b60c39ca9dd9e6c5d77b609bb972d1f776b611cc75275b2e35e8dfd10ce"
+      },
+      {
+        "file": "temporal-review/arcanist/after/additional-hexer-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+        "sha256": "cc9499d3de43c5dde6561a324a02ad0a62de2326b7800bd63b91e52e747c6f21"
+      },
+      {
+        "file": "temporal-review/arcanist/after/additional-hexer-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+        "sha256": "8e92269142d278a6b247c70907500bc535f7a07c5835b1f6c4c0630b8272c46e"
+      },
+      {
+        "file": "temporal-review/arcanist/after/additional-hexer-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+        "sha256": "7cb19a55ed19513ef01f36690d2398870e5e254aa498f17d22c4149f5a97a398"
+      },
+      {
+        "file": "temporal-review/arcanist/after/additional-hexer-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+        "sha256": "cfbfcf134287a5a80b90566f557582a7126e5f689ffbd8143b9a5ca125fbe4e0"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-attack-to-evade/derived-contact-sheet-00.png",
+        "sha256": "c6665517c114441497d5c94a1871a812cf6ec096288d71a572ce0971b58ec5d6"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-attack-to-evade/derived-contact-sheet-01.png",
+        "sha256": "8352265b6c58bd44c0ac72a0e4f5048a1d2ea176905f61b0cc7c502645845a92"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-basic-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "f37d88d0b6b3f669adf401a12ed11925b0456883e12c10003c0bf4b3ce5af5fc"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-boss-death/derived-contact-sheet-00.jpg",
+        "sha256": "c88de4f7ea3f30ac3f516cd070d01805bfb0a014b17035ac0258e5ffe1c66f75"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-boss-death/derived-contact-sheet-01.jpg",
+        "sha256": "aaa9a4ba429b9eca1ad9f346e4dab87889bd32288107664b709e43c3d25739fd"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+        "sha256": "48a3d4885116ac82bbced80644f6d91a5ee1dd9a93e220d69852edfd3ba57efb"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+        "sha256": "66e55227d047b0b414b03b45bccfec8561332e799c9050f79bbfc961c77365fe"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+        "sha256": "0bf1e1a7e07035042b024ba39d0861807ccdf1945aa8e3ba9c3a232e5bb7f6c2"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+        "sha256": "c3767b260f57f3f07fad07107a0bf5db5fe7176435f27fe9b93ef2f51b01afb3"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-04.jpg",
+        "sha256": "a3cf9fa001943c828d5bd59708b0a660c9d13e91723d9a6493833433aea2a679"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-05.jpg",
+        "sha256": "9d260d6467f6668025f8f7ac3bf555080c163e55a7edc3c4daf7b2e9fc2bfe82"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-06.jpg",
+        "sha256": "baae0330eda0080b482dd8c219d1b6eb952b781f9508997315bebd499bc12403"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-07.jpg",
+        "sha256": "147221136376ffbf97ca8b248311bd79f8371838051d5b8f11de7f388eec3b06"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-bulwark-death/derived-contact-sheet-00.jpg",
+        "sha256": "5738c485bf5d4a5e09a1e2e96005c10bbbf37b21c2bc522cd00ccf45587a9d67"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-bulwark-death/derived-contact-sheet-01.jpg",
+        "sha256": "b160f8f5841bb9248ca4585f0a6a87ca7ef6b06594788959c83275c49b1f88a9"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-bulwark-death/derived-contact-sheet-02.jpg",
+        "sha256": "1527f59e932eee036adc0d6ca683d9789a476f21210ff0d69d7cddae04e371ec"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-chain-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "1e2941843a4fd6b93895f7a8e4ebd70de8efc56c12a6a46a98aebf847f92952c"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-chain-full-released-phrase/derived-contact-sheet-01.jpg",
+        "sha256": "88f5a16b68ac0f35c8c855add70b9564dc4783c92ba8d547d8b87a02792f4c5e"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-elite-death/derived-contact-sheet-00.jpg",
+        "sha256": "58fa139cb5256783b246866e2e265d13adcb49992ca56ee54dd2ef2429bea03a"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-elite-death/derived-contact-sheet-01.jpg",
+        "sha256": "aee6884eb228703f65515874027974463119113831d82a362dd27d42d21a7a52"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-hexer-death/derived-contact-sheet-00.jpg",
+        "sha256": "5cb36dfbac81bab88d4acf613b493e4eae2291427a6dfcc1ca096bedd8820b3f"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-hexer-death/derived-contact-sheet-01.jpg",
+        "sha256": "d171303b17b8dddd07ec336f52a32563cd9670339e486b57494a733913960b3f"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-hexer-telegraph-release-interrupted-recovery/derived-contact-sheet-00.jpg",
+        "sha256": "19b04e89255b03e06c94458e90f8e36cd11d4c719bca2471d36cf17b116f879c"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-hexer-telegraph-release-interrupted-recovery/derived-contact-sheet-01.jpg",
+        "sha256": "dc5a39d8b669332ed1fa4b87c9651127966f70142ba703ad187c92b39191925c"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-hexer-telegraph-release-interrupted-recovery/derived-contact-sheet-02.jpg",
+        "sha256": "69f94503ba95ec4b2db29b22dc1a95ff0a26274e62011d90af40871e7c07fd4c"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-hexer-telegraph-release-interrupted-recovery/derived-contact-sheet-03.jpg",
+        "sha256": "21180b0861f50d4055963ca9abbae247ebf4c9ab7742dcfdcc9756bdcddd79fc"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-lateral-evade/derived-contact-sheet-00.png",
+        "sha256": "78353339caa8aa7df02dcb9b2c373165fe22264786909cbfd06f4829dd40ff85"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-raider-death/derived-contact-sheet-00.jpg",
+        "sha256": "5cb36dfbac81bab88d4acf613b493e4eae2291427a6dfcc1ca096bedd8820b3f"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-raider-death/derived-contact-sheet-01.jpg",
+        "sha256": "d171303b17b8dddd07ec336f52a32563cd9670339e486b57494a733913960b3f"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-signature-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "c2af6ff4c9952df01da7d54641edcb7e9cd55b7bd5efea81416039cbddc09746"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-starfall-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "aa55e3c428e61f3fc898d21f05c059f3c8c0fb3372b87fe1c5d598a6b8606e33"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-starfall-full-released-phrase/derived-contact-sheet-01.jpg",
+        "sha256": "469558108df725d4a7cb260311a4bcfba3dc4ad24d5da56cf07d741e9b555e76"
+      },
+      {
+        "file": "temporal-review/arcanist/after/ordinary-travel-gait/derived-contact-sheet-00.jpg",
+        "sha256": "4202c54e1a80cc650b69ce8542726297c0542bf8fbe3a52f04f1579d5d008d0c"
+      },
+      {
+        "file": "temporal-review/arcanist/after/original-ending-loot-ui/derived-contact-sheet-00.jpg",
+        "sha256": "41b27204a7e6c75ff649a635fd3ca235456a7a14b07fc46ed12e5353bf5629cb"
+      },
+      {
+        "file": "temporal-review/arcanist/before/additional-evade-2114/derived-contact-sheet-00.png",
+        "sha256": "d39f4538696955be935163f45425601093c27014ae2707ff1858e03127ce4338"
+      },
+      {
+        "file": "temporal-review/arcanist/before/additional-evade-2114/derived-contact-sheet-01.png",
+        "sha256": "5425f4d307e74c3e5c6a34b1ff926c5585cc0d6f728b042e78e132cad82fc187"
+      },
+      {
+        "file": "temporal-review/arcanist/before/additional-hexer-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+        "sha256": "dcf53903608d0d0bcf8a16c914df5c991054953c085f797f8633733b249473c9"
+      },
+      {
+        "file": "temporal-review/arcanist/before/additional-hexer-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+        "sha256": "61e7fd64347b881f656b0066037157abe4071cecabbeee30702a10b8731f49c1"
+      },
+      {
+        "file": "temporal-review/arcanist/before/additional-hexer-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+        "sha256": "d9bff1ff069925c54d80727c9de25a7f1bcd02b32a424c6e4470aaeff9eab169"
+      },
+      {
+        "file": "temporal-review/arcanist/before/additional-hexer-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+        "sha256": "97016a32f6d61a0af1c5b6b43bfaa99d12b06f84f394e9ff38b0c0a83c5944ac"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-attack-to-evade/derived-contact-sheet-00.png",
+        "sha256": "f9d69a4b9f9d5a034305e547266d0a0a38b94b76f4a5a24364478c48fe25cc46"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-attack-to-evade/derived-contact-sheet-01.png",
+        "sha256": "3a0a8ce61cd6701b2fa417ed07835ed960b05cbe18d9cb76b891cc82c6ef4c09"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-basic-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "79a62e67d64730badf7a31c4eacfb0dd588479d1dc9d0c4d45a13f710bd96156"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-boss-death/derived-contact-sheet-00.jpg",
+        "sha256": "381c63637aa744c4768ae654134a5772ddc8fdf5c07b71383b8faf91cc7a66e4"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-boss-death/derived-contact-sheet-01.jpg",
+        "sha256": "37a8fdf8757d66a0f44af00fb9abd0aebf74ef2915549361347cd1977384235d"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+        "sha256": "a504e7287cc79e48384b6dff56bb4f0d7db99f0dc5cad3ff827aa8cb0b0e58d8"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+        "sha256": "2fcf9004206793de24d1ea17a59e6bf95292dddaee7c32080146c79c99fdb1b9"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+        "sha256": "e938fd6c7b1de0e4ea4da11a9c6680fbf2dba36ef9585f246d2b3abd35a331ca"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+        "sha256": "0f23471763dd14482792fdedc78076ac7348e8dfa047a3d145b1fdba8ea8df9e"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-04.jpg",
+        "sha256": "ac100da58da23a66d05f331750ab661e0ac4af151b619545e62bb73a039b0fbe"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-05.jpg",
+        "sha256": "5d11b974eec7733c79edc9d443e36e9bf48c64a3fd30bbca661d3034d04bb68f"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-06.jpg",
+        "sha256": "0e87badcc240af7a7083e8c8dab38e1cd3a48fb717771c4fa2bbda87e8b94fd5"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-07.jpg",
+        "sha256": "5286959497c7eae6fabf0a1fcaacf816317d50d0ff435639c109a295eaedf35c"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-bulwark-death/derived-contact-sheet-00.jpg",
+        "sha256": "f5805c9a37c522c705ac26ef189b6d41886009efddb1831677c3690915cef12a"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-bulwark-death/derived-contact-sheet-01.jpg",
+        "sha256": "4c5b18c0a681f9011d2d8ce75ed561a4b1247801894141ecaf04a3fb34edc9b8"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-bulwark-death/derived-contact-sheet-02.jpg",
+        "sha256": "76331956b86e3e42a6a61da6f78fe463ddce760d00198a65e40ff530907c44fb"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-chain-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "0d1a1e1b17e2f7f28a07a2d4e48909569904b03567c8045a32c6b62fa708b2f9"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-chain-full-released-phrase/derived-contact-sheet-01.jpg",
+        "sha256": "81185a01db5593ad6a6ce9253c582a3f456be22630d9f9807d26239ade5e3a06"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-elite-death/derived-contact-sheet-00.jpg",
+        "sha256": "b05e4337cfa6c4d67630f861d38fcc55332188de9254235ceedd6e43c31f7641"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-elite-death/derived-contact-sheet-01.jpg",
+        "sha256": "83d96bbb3e8a074462c714adddf1689f753fa32320e4cb2bef507c6f3db10bed"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-hexer-death/derived-contact-sheet-00.jpg",
+        "sha256": "bc9df4c333b3e6a17f202540d4a1af7701add8df426aa392cd3ca349df6829c3"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-hexer-death/derived-contact-sheet-01.jpg",
+        "sha256": "03aa9812e6fdbc1ea1708ee158f7645c684a44349976b0360615ff7d6a892b94"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-hexer-telegraph-release-interrupted-recovery/derived-contact-sheet-00.jpg",
+        "sha256": "6027cadef62f5d1ef0b5fbab49bd38da0523beb0af64d6f8f49a30ac43982e61"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-hexer-telegraph-release-interrupted-recovery/derived-contact-sheet-01.jpg",
+        "sha256": "5a089bb443ff8969cb2f41422609669d3ebfca4a3414ffb5257ae2c7ca68ad23"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-hexer-telegraph-release-interrupted-recovery/derived-contact-sheet-02.jpg",
+        "sha256": "d6ddde289e02ca8c4bb4932a40d800fc4d4357b470d85d8801c7ae3e21c80e79"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-hexer-telegraph-release-interrupted-recovery/derived-contact-sheet-03.jpg",
+        "sha256": "fde411b81deb5b00a43f96addbb91eb2f2285f19aae48fc10de822c687f921f0"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-lateral-evade/derived-contact-sheet-00.png",
+        "sha256": "682c37112f0934c01790c8ea61bab6fd079a0d99c3b003b5012fd8d99a1e1cf6"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-raider-death/derived-contact-sheet-00.jpg",
+        "sha256": "bc9df4c333b3e6a17f202540d4a1af7701add8df426aa392cd3ca349df6829c3"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-raider-death/derived-contact-sheet-01.jpg",
+        "sha256": "03aa9812e6fdbc1ea1708ee158f7645c684a44349976b0360615ff7d6a892b94"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-signature-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "369018466a3ad868b6ea30cdf3a454948dfcfd5e5475d3d13f06f4f4360ce1ef"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-starfall-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "439b70ca0a8c8942ff65bf119a5df8b213e6a2d039eebe83f0cda2b20ebb1375"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-starfall-full-released-phrase/derived-contact-sheet-01.jpg",
+        "sha256": "1ddc5747a576c6278d1ee8d9be1c720dea3e5e6ec1e91a47945b9f43aa773ac5"
+      },
+      {
+        "file": "temporal-review/arcanist/before/ordinary-travel-gait/derived-contact-sheet-00.jpg",
+        "sha256": "678fd7ab1af01473b41cd685bffef6c9856e740f865c4d61023001ed13a8a7b6"
+      },
+      {
+        "file": "temporal-review/arcanist/before/original-ending-loot-ui/derived-contact-sheet-00.jpg",
+        "sha256": "d11faecfe538d01011475fc241049180352456fe422d2a348b681550365f9b86"
+      },
+      {
+        "file": "temporal-review/ranger/after/additional-evade-1235/derived-contact-sheet-00.png",
+        "sha256": "95e712e3ccc70bddbce0ed6911fde197dd47b26270589ded885dc2eee40e3516"
+      },
+      {
+        "file": "temporal-review/ranger/after/additional-evade-1235/derived-contact-sheet-01.png",
+        "sha256": "864ea8df33bae61e037a7b5dca1bf958c552deb8aa2bbd65767a769d041e57c1"
+      },
+      {
+        "file": "temporal-review/ranger/after/additional-evade-2144/derived-contact-sheet-00.png",
+        "sha256": "f382e7f1917fdf317f1ab807a091e6a2879397adc1c18109e19c1328228cfb87"
+      },
+      {
+        "file": "temporal-review/ranger/after/additional-evade-2144/derived-contact-sheet-01.png",
+        "sha256": "a6a485233a195deb3893e28c15e29fcb9de6e11b35e7124aa7c6250b890f1275"
+      },
+      {
+        "file": "temporal-review/ranger/after/additional-evade-2252/derived-contact-sheet-00.png",
+        "sha256": "fd49e129c57bef89403145f0d516ef3b5b3728b29db1ca45d4941239f7a7bed2"
+      },
+      {
+        "file": "temporal-review/ranger/after/additional-evade-809/derived-contact-sheet-00.png",
+        "sha256": "5e7ccfc28bc446d692e4ef6a4d9d4838ed11517d43715ab9229eb067bba94e11"
+      },
+      {
+        "file": "temporal-review/ranger/after/additional-evade-809/derived-contact-sheet-01.png",
+        "sha256": "9dbfb720cade1111fcc9e5db59c7b273ba06715a67c2cebba5aca514c5cb3482"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-attack-to-evade/derived-contact-sheet-00.png",
+        "sha256": "b0d5cedb8a83e0c7046fc3a8894123576cdbb96df0f4a4568374f4f5c4a4dd05"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-attack-to-evade/derived-contact-sheet-01.png",
+        "sha256": "6aafc614b1da9da138fad026187e1ec3b717528d2d06ebbdab17388e0975389d"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-basic-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "3629a6cb0daa681df2a97c9c9332b1e665e3813ae7d8afe6183d982c1da71d39"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-death/derived-contact-sheet-00.jpg",
+        "sha256": "b1714d03d5a6876722f233bbb9274935a800efb7113fabf3d6104affc50093bf"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-death/derived-contact-sheet-01.jpg",
+        "sha256": "43c7ee665204d6ee9b5829b5e35be116cfff849ccf59df5a9ae3763e20a5beed"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+        "sha256": "2b11e7dee3622093b423b1103ad7ef096eb9dd16fc4ed011b57f7374c406ccd1"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+        "sha256": "7216973764d780009c0cd97368e62dc9f1eec57e5a79253b09e9f7b3cc60a30e"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+        "sha256": "3a51a5352d99ea19ff602f90ca3a696f4c9989953562dced7e79a367d3c03831"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+        "sha256": "056dfcdd626726af59fa8a2ebfa7954c5a97b0011b1b21ceabc91abc93eeadb4"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-04.jpg",
+        "sha256": "2705316b48b0b9a2cb54dec56611cd1f4825ba3d500174458c7ae554c6697244"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-05.jpg",
+        "sha256": "7885ccc782f120af50b04aeb0eb34ad38d9c50b4622314bfbdc3f699671cf845"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-06.jpg",
+        "sha256": "d8315d1e769ee43b55948ecf6acf93847869b18d5af0060a9cb2b84f5cfbf1f8"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-07.jpg",
+        "sha256": "00c4d5a7c45d7414df4f1337bebb23c379f5edbfbad5329148c2cbed8df4f4b5"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-08.jpg",
+        "sha256": "d403955cd4cc4a66cae3101c722211902b4a54b0dad8c1c8c54253d307b5de8f"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-09.jpg",
+        "sha256": "7e706cee9f6c07e9a00df27df2f678c2c93c8e0f6c657854a608221427334a0c"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-10.jpg",
+        "sha256": "bfa0b77eb5ddaf6a0ac3f1c17b0bd08d2443d1829207f7865b50fac2948f85c4"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-11.jpg",
+        "sha256": "2230d452dd7eaa9064d11aad0b813425646584f0ca89ddc96eb5c6811a179267"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-12.jpg",
+        "sha256": "bb0a11767983f483f84fe7fc2884c7a6a6429b05fd65593dc97547a1a5074db2"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-bulwark-death/derived-contact-sheet-00.jpg",
+        "sha256": "4ddaac5e49dbee0065e7c0ac40fa5daa1fa3efa0fe0e00741a090162ecdd9815"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-bulwark-death/derived-contact-sheet-01.jpg",
+        "sha256": "e349160c005031ffbcad285023066ca235a1db77ef6a5c4ab4ec4912e6b065e7"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-elite-death/derived-contact-sheet-00.jpg",
+        "sha256": "98576aee35e7e2fa36caa00f51145f0e8d7d9a5c9419b9318c278a205b9a88a8"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-elite-death/derived-contact-sheet-01.jpg",
+        "sha256": "980a427b0867df9cf93fcc335e11b52a25bb425ead548a5c168dce3ab9b58a73"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-hexer-death/derived-contact-sheet-00.jpg",
+        "sha256": "b32e69029295417a9e17fb2db3bd407524447383e11d8a9727eed984883119cf"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-hexer-death/derived-contact-sheet-01.jpg",
+        "sha256": "7c52fdea15081f0ba09f9faed95fa2f62438e8df557a7e8786ba606d30013a5c"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-hexer-death/derived-contact-sheet-02.jpg",
+        "sha256": "ff8e538bfbaf74f7650fc864bed776d2842d383c53fe8a1191c7c7d1885b46aa"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+        "sha256": "bf852471446eed9fb45283b25153ac709195036443de2daebd08f03f42bf549b"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+        "sha256": "217b6d3f6a72d8391b600b49e0997754cf9d03f71a08951e702cb056814aeff4"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+        "sha256": "345e75069361d664481e782886055ad33ca116809659e82e4490ec325d7d4d6a"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+        "sha256": "aabc5e57ff060580489e21cc2a325c036b207b86cfd21e4b2b2af15583956d4c"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-lateral-evade/derived-contact-sheet-00.png",
+        "sha256": "b2dcc6ebaf3152e37646e8a92b1166ff31c4f232109896fd4ca80cbaae7d367e"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-lateral-evade/derived-contact-sheet-01.png",
+        "sha256": "4abb087bdfe007922bd924d310689f4ecb4ee6c77968fd0f382dc48220ed72a4"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-marked-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "617a9c93cbc2fcdcc4f27b1cd9a9ba6545dea142b16bbd388bbe74d47d4adf92"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-marked-full-released-phrase/derived-contact-sheet-01.jpg",
+        "sha256": "45e6bef1d996f8e808347dfdf735fd6965239c6a4a9028476d846eb8bd2004b6"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-raider-death/derived-contact-sheet-00.jpg",
+        "sha256": "b32e69029295417a9e17fb2db3bd407524447383e11d8a9727eed984883119cf"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-raider-death/derived-contact-sheet-01.jpg",
+        "sha256": "7c52fdea15081f0ba09f9faed95fa2f62438e8df557a7e8786ba606d30013a5c"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-raider-death/derived-contact-sheet-02.jpg",
+        "sha256": "ff8e538bfbaf74f7650fc864bed776d2842d383c53fe8a1191c7c7d1885b46aa"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-rain-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "1d2e2a39469ceb39ab47a755c28205e5fac81c551b2ed57e01683eb865b8e4a0"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-rain-full-released-phrase/derived-contact-sheet-01.jpg",
+        "sha256": "02ffdf6445f299c64b89b1712b27f9846963146c38073a62d4ac90e9c7bd5370"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-signature-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "c135af1a410ca4223ebfd8f080558935fc8cda21055576c4627ce16337a6530b"
+      },
+      {
+        "file": "temporal-review/ranger/after/ordinary-travel-gait/derived-contact-sheet-00.jpg",
+        "sha256": "40ae0a6d3747f55a1cf1a6cd2d2223d49ed88347fbf111f631a82e0cf2590363"
+      },
+      {
+        "file": "temporal-review/ranger/after/original-ending-loot-ui/derived-contact-sheet-00.jpg",
+        "sha256": "a85527d40fb7d6e1eca276bc4fb2202cf0d7cd1d7223537fa5c1e4be8d495e19"
+      },
+      {
+        "file": "temporal-review/ranger/before/additional-evade-1235/derived-contact-sheet-00.png",
+        "sha256": "e5ffb5a9c5fb0f1cac636b1b32b56e9c0a4d6d62e4dbc820e332025e4455b6f9"
+      },
+      {
+        "file": "temporal-review/ranger/before/additional-evade-1235/derived-contact-sheet-01.png",
+        "sha256": "a5b1f451fd1238619961e9e5be3d8bac989348f351d1b77d19df5f78517af43e"
+      },
+      {
+        "file": "temporal-review/ranger/before/additional-evade-2144/derived-contact-sheet-00.png",
+        "sha256": "699b927a52df53726bc00d62a1f629c3627e4fca7f8605cf4476dad3b8f7140a"
+      },
+      {
+        "file": "temporal-review/ranger/before/additional-evade-2144/derived-contact-sheet-01.png",
+        "sha256": "079617ee8e2d19fcfb9a9939eb7225fda106c54ff4d646d56939344b15919977"
+      },
+      {
+        "file": "temporal-review/ranger/before/additional-evade-2252/derived-contact-sheet-00.png",
+        "sha256": "9ec0dd3759a12827d2cada90c6afbd57b9b7e37444efc359eb8aceceaf35ba7e"
+      },
+      {
+        "file": "temporal-review/ranger/before/additional-evade-809/derived-contact-sheet-00.png",
+        "sha256": "c2d67e56424797bc9ded8f70badc9e9059fc5b4a03b2e0d5c73f07ef49736c2e"
+      },
+      {
+        "file": "temporal-review/ranger/before/additional-evade-809/derived-contact-sheet-01.png",
+        "sha256": "fa7913ec62f5e883ae4d93a35cb25dc21301f2a90101a2a6e7fd3a2bb8afe699"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-attack-to-evade/derived-contact-sheet-00.png",
+        "sha256": "d8e041fe7f1a2109f89c57e7c4ef83b50de675f8cb871805b15fa9a1d0f4aba1"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-attack-to-evade/derived-contact-sheet-01.png",
+        "sha256": "1126ace533f516ed463f54c80daa32e860c3064f096b4f5b281c6f0f7c0e5849"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-basic-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "55164781f256847bdc4956035ef11c83393b9e77e09653e1bd6b88bc8208482d"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-death/derived-contact-sheet-00.jpg",
+        "sha256": "4bfb12240154e5ddd08beb57fdead705e1ac8f69b85aca6e50679886ba70669f"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-death/derived-contact-sheet-01.jpg",
+        "sha256": "874257f4934d2eb1ce85758dcccce580c7c3cd1d2e851d2ebf46f749ea60eed2"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+        "sha256": "2647171288cad85f7d855ffeacaca5765bc9c4cf446273bc20e12250b3f0ea9c"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+        "sha256": "c347a8e61df2b1147428a6956270259657b0f12a2681ad4e278947bd4d97550c"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+        "sha256": "95b8f813d6b8b8943f45ae881bad4e004a3748d278a41d0e2b3efcd8de1ca049"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+        "sha256": "b1d0ec37323857bb3777c0fa05527210975d7668764632796528a5ac7483f56d"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-04.jpg",
+        "sha256": "2dd56457d90f5ee0eea36afd3dad16d313c97c924c57cc43d0ee24e349ea2a1f"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-05.jpg",
+        "sha256": "edcf6bae3e77551a91172fa8e67b13b0098e915a45fe68f48aa5068149e37554"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-06.jpg",
+        "sha256": "af856376a8942d9e5d48434198522e5a4a0b3056e92f946c4aa22bdedda4cb67"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-07.jpg",
+        "sha256": "da93a23d2b646597c888655f828be941e136101a07b97d6135886cf77e60e91d"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-08.jpg",
+        "sha256": "b63a93b796cafc71db05847edd88d669733ab136b3edbd452b524ed924340f0e"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-09.jpg",
+        "sha256": "a2dbff905afaa6ba7646135d8733f52f4845509d06da75e586f1bd7c159b9229"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-10.jpg",
+        "sha256": "82a1b265971a68679838c620c8c61ff4631b652805f12c9fd2272ba3c058f0e0"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-11.jpg",
+        "sha256": "483a4c84d5290615e033d1ea187f1cd809dac2405629b70c4496ba8af85d820c"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-12.jpg",
+        "sha256": "8bedbea217c0e436af6925f896e5902f90f10da7b03df88b102c7a9c9d3a176a"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-bulwark-death/derived-contact-sheet-00.jpg",
+        "sha256": "7abd45d0c8dd9ee5653ced2f2ee6ecfa382c5822c95dab9ae63220e9adb21a6e"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-bulwark-death/derived-contact-sheet-01.jpg",
+        "sha256": "312123f487074ecb05ce13aecf51c006a9d413747e6100eb994c5f2b41fee6b0"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-elite-death/derived-contact-sheet-00.jpg",
+        "sha256": "dc2fa0e123515e498c55c7d4fb442b3e60822291de812671d602dd3b96a3a105"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-elite-death/derived-contact-sheet-01.jpg",
+        "sha256": "ea71832c11168c5f63228419bee3c8f85cc604dbf7cbeda3dc4fa2bd4614ca9f"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-hexer-death/derived-contact-sheet-00.jpg",
+        "sha256": "071a9124afb3c4d43db0ab1e17079437be864795599b76f137ce71169bcc2072"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-hexer-death/derived-contact-sheet-01.jpg",
+        "sha256": "76e5098c1bdc6492fc6bf6271eb4ac96b41a693f9b776aaf107212fcfb6b4ce3"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-hexer-death/derived-contact-sheet-02.jpg",
+        "sha256": "d7c4a8b50b60c50609745b596e12a0da4372108e9e93582fc3e972e266b9ae77"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+        "sha256": "500811b6e1cd753a1c246b33ea21dc0f4ab9e2fd124cb181a7e58daedb0d6d2d"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+        "sha256": "07f914bbc9ad4d5d7358ee9bdcd17b5a667c29da82229c30b863aec4c585b2ff"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+        "sha256": "0f15d4aea8b8cb8a7f45f3afb691ff8112b8ccf65f3bbb535c00bc83375dc0c4"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+        "sha256": "5dfeb7116998f1379dd904d89365277689eb9b81139839166b1457fb7de03cae"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-lateral-evade/derived-contact-sheet-00.png",
+        "sha256": "f873f444deee6e9ebaf6f04bac2a7808867607018e8ebba318a0888688df081c"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-lateral-evade/derived-contact-sheet-01.png",
+        "sha256": "7a8876021b1d9817f13d482eebcdcd366e4bcac7dd15ba664d7af3c54335ac0e"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-marked-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "e8d67f4b950bb88e40e1b1baca8d484ba300455656fe27de5fa4f30a742b1d29"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-marked-full-released-phrase/derived-contact-sheet-01.jpg",
+        "sha256": "811630992bbdb3492aceb3dd2f60c6240c1346e8da2f293bed84d557d47fc00a"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-raider-death/derived-contact-sheet-00.jpg",
+        "sha256": "071a9124afb3c4d43db0ab1e17079437be864795599b76f137ce71169bcc2072"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-raider-death/derived-contact-sheet-01.jpg",
+        "sha256": "76e5098c1bdc6492fc6bf6271eb4ac96b41a693f9b776aaf107212fcfb6b4ce3"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-raider-death/derived-contact-sheet-02.jpg",
+        "sha256": "d7c4a8b50b60c50609745b596e12a0da4372108e9e93582fc3e972e266b9ae77"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-rain-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "fd93fc9f29764c5db7e239dd825cd7daa512f338170e24152562a38cec196bbc"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-rain-full-released-phrase/derived-contact-sheet-01.jpg",
+        "sha256": "c258e2877a355e4c40cd4a52f07c7790c1cffdd14c08a3e5ae9876be1af0c03e"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-signature-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "2bbfe31a672f65a45446b455329e885af8403f8c02178b4d4640286ee3e79d2a"
+      },
+      {
+        "file": "temporal-review/ranger/before/ordinary-travel-gait/derived-contact-sheet-00.jpg",
+        "sha256": "59f5c24a658975c918dc529f29e90c1cc1c1f636631ee2d31dc6163edd6d637a"
+      },
+      {
+        "file": "temporal-review/ranger/before/original-ending-loot-ui/derived-contact-sheet-00.jpg",
+        "sha256": "bf3d523c9e6426b941e791e9057ef4047be33a147c52a0365598a96284d355a4"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/additional-evade-2501/derived-contact-sheet-00.png",
+        "sha256": "c2cca29f31f97041dc75c5a7d9a7c1e38a4382f273347addab34a993f732d293"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/additional-evade-2501/derived-contact-sheet-01.png",
+        "sha256": "dc13c230bdbfef09ba59dcb9502be47a7153ccb15c90b0ab4f3c7b404130a0e8"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/additional-evade-2684/derived-contact-sheet-00.png",
+        "sha256": "e26d0d598f1094d4caedc395b55cb42aea8f103003efbb1df4170aa73a776587"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/additional-evade-2684/derived-contact-sheet-01.png",
+        "sha256": "c4a5f985824a63a4fb45eb4b376bec7ece521abefa29e6f253c72cab25d6f831"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-attack-to-evade/derived-contact-sheet-00.png",
+        "sha256": "fb7487697d5973f1c60789aff025b9004241779aedd491e29ac233ca2447e1b1"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-attack-to-evade/derived-contact-sheet-01.png",
+        "sha256": "aeb41d7a043fdab15e32d376339d08d355f67365db0a6532eaf7e77813bb85ee"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-basic-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "14cda56533e1cce68f6118fa4624f559c8c803882d671df8f7482fda673cbd88"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-death/derived-contact-sheet-00.jpg",
+        "sha256": "3306a3513087dee1e2d3c499fdd73e9ad637dd62ea9841b5469c6a8d76699953"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-death/derived-contact-sheet-01.jpg",
+        "sha256": "f5dce36a585a3f547c4cb4de68bb6acf161bbefe3d5f225f7d0597dd3a5b320b"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-phase0-ordinary-melee/derived-contact-sheet-00.jpg",
+        "sha256": "3a9ef1a3be928d480fb4ef5d3494e88ecc40cd7b7d231a241a73bafbd89a024b"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-phase0-ordinary-melee/derived-contact-sheet-01.jpg",
+        "sha256": "0d63d903e2448c910615a449a3f361b915f55acb99b9006bdf572ad8546556d1"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-phase0-ordinary-melee/derived-contact-sheet-02.jpg",
+        "sha256": "33955c5592eea5009cfc4cd0bf96ef9e1430314cdc000aeb12f6e2d2881632d6"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+        "sha256": "18311d2ae72d50998c9d5f0fd2109f2ebfa95dab629a16ab0280cfe97af33a87"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+        "sha256": "b6c29c9850fe237496cb536484e312fb9584a9004388dfaa9c7a41fc887f2803"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+        "sha256": "47161e83a56991cf03c3b624a6c05eff467ce12dd26f0ce3719400b43890da37"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+        "sha256": "6b0dc55906d2195ae1f9b42e440260d24a5f22a905c6ecd2dabada1bcb6c94fd"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-04.jpg",
+        "sha256": "a5ebaf2647506f81f252da09f8cf28e0744c1268dccbc085e429d56b80afd196"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-05.jpg",
+        "sha256": "7da0a3bb6b0ca54b0bf65ad36506811ec9e46f81b9e174d07f381c9ce63d0d6f"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-06.jpg",
+        "sha256": "a05aa744dc847da98d4c3b9e295327d3d9760fa26a750c7b5afc06145a18ce1e"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-07.jpg",
+        "sha256": "d3a1c7cfd159db4e0db1185b6a7e2d2c7fa69a644fe7184da3ff2bf5183e54c0"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-08.jpg",
+        "sha256": "1d7435d8c83f3c27820336a4a429635621a1de524d6a3113d90a2fbde2f10616"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-09.jpg",
+        "sha256": "36743006da82be73ad823afb2ed26966155f1ab61f5c72071e440b61cafdbb7b"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-10.jpg",
+        "sha256": "aed582b96c893a4a467e04d196504a73c702cb4b9931ab40d7526aeb4b787fad"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-11.jpg",
+        "sha256": "f8a992596b0ad5c892b673b6623f94398fc966dbcdc485aa2a3c37fe69cbc872"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-12.jpg",
+        "sha256": "4d075a6b9cdf43aca020ca5db526d7b4845ec594706c3337626156e23fda69c5"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-13.jpg",
+        "sha256": "d52b36b5a03975d95d315d886905095f80ca94be0b6aefeaed37f9f0b70b166f"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-14.jpg",
+        "sha256": "e063e4620e9d5b3e0641d361a236e54905aaa27134d5f9b8b9934c82f6fa1705"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-15.jpg",
+        "sha256": "ede27e66b7c1a653948f7e839f85b7238b079f6342ca91e66186c98e7c6973ba"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-16.jpg",
+        "sha256": "9c4bbce0353508c0e41a8c410e5692c43f56b6c59c7bbbbe9a271e487657e1ed"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-17.jpg",
+        "sha256": "3e03a48bb4c1a76246ee2ce3a7ae3346a24089c91202e78a720d35e2f5683d99"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-18.jpg",
+        "sha256": "f52fdde392838c4c6b37cea34ab775bda90f04ec8b79de0e81d9b95ce31d8815"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-19.jpg",
+        "sha256": "5bb39979875f0494aa2b7ad7b08a7aa91dd910da62c0e03034fc40f1262e3d0c"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-bulwark-death/derived-contact-sheet-00.jpg",
+        "sha256": "3103209564dd649e231e1c61a6b72267a2eaa8d92dbd2bf09af7dc5096c6611d"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-bulwark-death/derived-contact-sheet-01.jpg",
+        "sha256": "be50437c4ccd64d048a540cdbae855f1309ad8f69c8182da68a1a063d1a4cff2"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-elite-death/derived-contact-sheet-00.jpg",
+        "sha256": "5d9b2514889291988e10b235ff188c997751d461c8f0fb94133e73f6df4a24f9"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-elite-death/derived-contact-sheet-01.jpg",
+        "sha256": "99762a4ed9425d4641686ba2bfe80867eadc050589b9b84a321b61bebd868d5d"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-elite-death/derived-contact-sheet-02.jpg",
+        "sha256": "19c4d025b79a77acc0dcd9a4ddd022a3ccb761eb49679dd1d458856250fd5c29"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-elite-interrupted-telegraph/derived-contact-sheet-00.jpg",
+        "sha256": "5d9b2514889291988e10b235ff188c997751d461c8f0fb94133e73f6df4a24f9"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-elite-interrupted-telegraph/derived-contact-sheet-01.jpg",
+        "sha256": "99762a4ed9425d4641686ba2bfe80867eadc050589b9b84a321b61bebd868d5d"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-elite-interrupted-telegraph/derived-contact-sheet-02.jpg",
+        "sha256": "8a03c8d36d906827d2eab8689c860791ec5bf4f34efec41d32d343bd9e7dad02"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-hexer-death/derived-contact-sheet-00.jpg",
+        "sha256": "e131cba4f6945e968e2592197e7bb8323384191c1c75a17ae6e2237df90de786"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-hexer-death/derived-contact-sheet-01.jpg",
+        "sha256": "12452690f74afb63565f9b489be917ea480820bb369fb58c7e9c23bf036355dd"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-hexer-death/derived-contact-sheet-02.jpg",
+        "sha256": "2247f62dde3ac540b73601a787d758ee204656d9ba6b07a268a29aa3ca875db2"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+        "sha256": "2223107d2409da0b57be5905b84bc9ff1dda1e23cb1af56b53fef829858460b3"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+        "sha256": "0050bfaa1d4a50baaccebdfa0101f83c3a43745546d9d280c5d18a05b06dad2a"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+        "sha256": "87e98896e644986db49010bdb7774901199a053423e3d2aa4c480b5eb339c78c"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+        "sha256": "8fa4312d68cd4a7fcf935c7c25439f9bc0efbcaea73a16fc83c96ff4a37097ce"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-judgment-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "7722ef85191b1e6994a77bd3f34b8d4173c31ba4361b16c478eaf19d65cd7e43"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-judgment-full-released-phrase/derived-contact-sheet-01.jpg",
+        "sha256": "f055c08e8a60594c0b00158df00a1639cdd26869c4b82ea59b72f93d4c285ce4"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-lateral-evade/derived-contact-sheet-00.png",
+        "sha256": "4a5e3d211067953beae181bc58a69ce7614429ee5f2778950589cb7e83a6f924"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-lateral-evade/derived-contact-sheet-01.png",
+        "sha256": "c64b5be7195719bce3843d2203927493e5d15cce37bd661f629fd2cb2b335600"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-raider-death/derived-contact-sheet-00.jpg",
+        "sha256": "cb4268d3e55cb279957934509e515662d7d697aa4c7a3e99847bc152d87707cc"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-raider-death/derived-contact-sheet-01.jpg",
+        "sha256": "20af50f2555fa137f267d270bb1719ef21424cedcb162dd7496fb7d3353eefa3"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-recovery-to-evade/derived-contact-sheet-00.png",
+        "sha256": "c2478168bf19fd01bb30ce3e8afe3a95864ffdaacb5e3529ac0f523fce69e983"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-recovery-to-evade/derived-contact-sheet-01.png",
+        "sha256": "6cb5c6eae110400fbd73baead47a8b6266826ab7358789fcb9d96cb3ddca41b9"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-signature-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "5e380cf82a5afe0ba763c984d5b05b8557f8d2d9a428e4e5f7137ff880f98059"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-sunder-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "97528118734a65530d2fa01c722abbaafb40eb19726b7713f7ccf6f1798d03e6"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-sunder-full-released-phrase/derived-contact-sheet-01.jpg",
+        "sha256": "cab5838debc90e84fce1727d1d34fb0a249edff4697720ee68d98c0e19b2b5d2"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/ordinary-travel-gait/derived-contact-sheet-00.jpg",
+        "sha256": "7242e7d4b5594fda3d10cb4c3971c4909a89387f64af1d8b42adca6ccd906a7d"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/original-ending-loot-ui/derived-contact-sheet-00.jpg",
+        "sha256": "4fd5bd4b6f9400353dde1e18f4b6f2dccaca1c594da8dc74a086ea8421fb9ed5"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/additional-evade-2501/derived-contact-sheet-00.png",
+        "sha256": "8ab3d804f8bc555fbaf23554db4f937fbae6eb20b5968ed4bd7c9ca7f86eeb0e"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/additional-evade-2501/derived-contact-sheet-01.png",
+        "sha256": "edd018c217e14c89389e9e2933cf4d10e5eb80bbf06ecb819d92c388550e7749"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/additional-evade-2684/derived-contact-sheet-00.png",
+        "sha256": "0f8c4c22290494ecd0a0812996afed2366e5f9c79f79ccb36ccc7e71cfabd904"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/additional-evade-2684/derived-contact-sheet-01.png",
+        "sha256": "c882603e5adc87af8185a0adb6b8ed46bc1f9164e10d88d323b1f4a6007c0a81"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-attack-to-evade/derived-contact-sheet-00.png",
+        "sha256": "412eedc398c211344c75d5380799686a201a26a18cfc13c80962ee8081cab760"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-attack-to-evade/derived-contact-sheet-01.png",
+        "sha256": "54afeb35e5e40e28540353e751a00e02c5ba4f3aaca107b88b680eac793a434c"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-basic-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "cc5e4560ef6559916f63c1086fdd8bd48302b6c3f8d1c20d455a294c1e2d03c1"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-death/derived-contact-sheet-00.jpg",
+        "sha256": "3bcdcde9962963bcf1fdec155dd7b02cfb5b07926968d390d615f71ee3bf8355"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-death/derived-contact-sheet-01.jpg",
+        "sha256": "dc9de05365f7fefd63ebf9a174802fca9ae7f98633166a30b9f7864bc3a50e06"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-phase0-ordinary-melee/derived-contact-sheet-00.jpg",
+        "sha256": "bd1572496682ead3de1b12bf91581190472b536cba5417a7ca3764463d073152"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-phase0-ordinary-melee/derived-contact-sheet-01.jpg",
+        "sha256": "657d2c6f0f4605344c3403a2b806bb8edd939c1953ca57fb624131eca76031eb"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-phase0-ordinary-melee/derived-contact-sheet-02.jpg",
+        "sha256": "e854964f47bc808831b1d1d1a0aa963d58b32b103f71bc613b0bf8f2e1557bba"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+        "sha256": "d4c0c473819b3310f4c56fafed1c0bb99e5971338ab7c6cc170a0d9dc5b37216"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+        "sha256": "85e0565c2557cb15e114852fe8d8021e58fc870f3fca853f07f870ce26cfd906"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+        "sha256": "a6a1c358e0877378f1835d701901618f6e2f8e89a5b4d5b1d0ea53766d403c2f"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+        "sha256": "dcc50a4da606e8d195c4ac9e4776526fbf0477daa8fced41d7f7d2d3c33c14d4"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-04.jpg",
+        "sha256": "88ca84908ba5822f88c221f5f342b39a16c5afb8472491be73f1a13e6830eb12"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-05.jpg",
+        "sha256": "17ede6b1d1bbfd26a385fa7d5600990ab05de60b2309efad428a97385fb1e52b"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-06.jpg",
+        "sha256": "7988d5af0cd90d8f9018a7c2f7e95aa024d49c50e045ab3961d1c0dd3ffb4ea4"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-07.jpg",
+        "sha256": "abfec16ea2aac89b7547ce7ff6fedbec503679709d9e4f32e2b78e94d87eb989"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-08.jpg",
+        "sha256": "a0cbbacc04df8af0f6e6c4163129fdc6b75939608037626737b7d26e523d024d"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-09.jpg",
+        "sha256": "7256d9c4fd78f1a93b1228cbc53fb50c7ff2a2b8c8a16f83091df5e4cc8e63d3"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-10.jpg",
+        "sha256": "cea927a7f0a3d709c2d1122fa6517eb6422eec89f54b0eecc160b26ff67b3631"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-11.jpg",
+        "sha256": "6589c3b2f0f5c02f5ab8c0b16fdfd56056b7c39f52bfefe5c6d15f995235e654"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-12.jpg",
+        "sha256": "bafcf71da872559327494c44e6bb9e892688deaf52957bcbcbb2ab683d8f28b8"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-13.jpg",
+        "sha256": "469854508bbe4ef8f0937251049341adf6a3990cb7792d6bc216dd130a64363f"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-14.jpg",
+        "sha256": "33ca6ecd8137e77fda5a62c518a1970c2b9a0fb735c28e527a977590ff041433"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-15.jpg",
+        "sha256": "013680070be777f65b1debe0a0d0241e6b7a835948f85caa2ac67e4f9900a49f"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-16.jpg",
+        "sha256": "15f619294f847a4ab40220aa2f8c212b623d22cc87e64fb9558d79a40fe5ae01"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-17.jpg",
+        "sha256": "7fa5fff934c70f70b523318b69b31bf80efbe12acc5652de5961edf1fb0ff53d"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-18.jpg",
+        "sha256": "8d016a633a07d10efff0ccbd3f279bfb459e2756079e9809393b3318df671c15"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-19.jpg",
+        "sha256": "67f6b870d7988dedbc83a3ce76c248503ddc80b3e313c24893ce3695f2b3322b"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-bulwark-death/derived-contact-sheet-00.jpg",
+        "sha256": "80c90d77e5d57a0f35d1672d5b63e41103763a5c8b496ae246158fd1acc09793"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-bulwark-death/derived-contact-sheet-01.jpg",
+        "sha256": "96895c451c61477f8699c8ad6ccf72b49745f789d34b9fb05f00c05ca2037b37"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-elite-death/derived-contact-sheet-00.jpg",
+        "sha256": "8f4c24d2dc2b671261eb4b9bf0692970a5b47f83133bdb4a47201d0153bf6b6f"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-elite-death/derived-contact-sheet-01.jpg",
+        "sha256": "25de6749bf9085c51787803839b340eb4ee41918be2ec5a8f2f946a521ad1001"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-elite-death/derived-contact-sheet-02.jpg",
+        "sha256": "aa3ff4d3e187ae71280609624ef0f318e781de939d8f769de1eedb06c46f1d4f"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-elite-interrupted-telegraph/derived-contact-sheet-00.jpg",
+        "sha256": "8f4c24d2dc2b671261eb4b9bf0692970a5b47f83133bdb4a47201d0153bf6b6f"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-elite-interrupted-telegraph/derived-contact-sheet-01.jpg",
+        "sha256": "25de6749bf9085c51787803839b340eb4ee41918be2ec5a8f2f946a521ad1001"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-elite-interrupted-telegraph/derived-contact-sheet-02.jpg",
+        "sha256": "7dddb6c8aca24045f1436a50f4f1d84f4d4c6becc55bc31b3f0e56ceed6b622e"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-hexer-death/derived-contact-sheet-00.jpg",
+        "sha256": "d59a40e4767c7da5285730be402bebf8597ca65e5a55454573650e85181a9c26"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-hexer-death/derived-contact-sheet-01.jpg",
+        "sha256": "98feec3cfed65fa2f1c56952ed619e64309a81e8300c028b90f1935383146e80"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-hexer-death/derived-contact-sheet-02.jpg",
+        "sha256": "c770f0b22efe6ef29309c7062ac34847b2cc4fb822aba0e96d0f74270392add1"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+        "sha256": "1f017eb29763ccdf2f31a66f258b00c2e7b057006d58a996436395f90d32b007"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+        "sha256": "6f338e42842554f3dde5eac0e640af8f43ddbd0d79fe652e9a1750a3e72a1103"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+        "sha256": "2740e278faaf632ada4bfff7de89e05688e7504e5a87d9d0632368a8babf2c9e"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+        "sha256": "cb744363d884cfb617e0aa89a656d6c7547f811315c947bb6c14bd1efc6774c7"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-judgment-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "85a9d467e15834402b039f2759ab78730bdc5b8cd4c260bce96787c1cec374c7"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-judgment-full-released-phrase/derived-contact-sheet-01.jpg",
+        "sha256": "3a39ce04cfea4dec0f4c8db087875ac54c485ae033c4c05810d542a1a52539df"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-lateral-evade/derived-contact-sheet-00.png",
+        "sha256": "3781b0564888003b24b43c46687bb3c1d28f00e4afa9890d3226528cd42ee958"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-lateral-evade/derived-contact-sheet-01.png",
+        "sha256": "39a667d44529f8e6b55c1ac3883905176b2913d046a0fe598dde41d35258d22d"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-raider-death/derived-contact-sheet-00.jpg",
+        "sha256": "10a4576d8b7b7465b932c10c2812176c01f9ca8e9e28e4b2cdabd0c3e39aa01a"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-raider-death/derived-contact-sheet-01.jpg",
+        "sha256": "38c3354cef7d5eb34b118a4c4a49afc1fa36d394ee073064886cd3d575449e58"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-recovery-to-evade/derived-contact-sheet-00.png",
+        "sha256": "1a1f817bb739ce8a4869735cefe5687d3ef214ca02b087214db3ab8cd19d8013"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-recovery-to-evade/derived-contact-sheet-01.png",
+        "sha256": "fc01edead51893f2822f89f85f7aa421e94c507f72aef3315fcfd94d25885346"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-signature-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "5552b26bee1156158f047c41d835ef3cc9dddd1779995f107edb55f7d3e78194"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-sunder-full-released-phrase/derived-contact-sheet-00.jpg",
+        "sha256": "40304e0a37ef04db949bc22e3a3b46908d86ec158cf7e53f2d0875e6391e5796"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-sunder-full-released-phrase/derived-contact-sheet-01.jpg",
+        "sha256": "31480b32e11151597a1aa5938de309cec317e304847db2063144ef707a38d9de"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/ordinary-travel-gait/derived-contact-sheet-00.jpg",
+        "sha256": "e7dc3efc07353121a83f5acce02031805df964c86fd53e0da875548430076498"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/original-ending-loot-ui/derived-contact-sheet-00.jpg",
+        "sha256": "15bacc2c0000e436582c24883130939e06c92e2ffd552dc85aebf69a9f6241c1"
+      }
+    ],
+    "original_native_png_hashes": [
+      {
+        "file": "arcanist/before/selected-frames/frame-00014.png",
+        "sha256": "74e4c06dafb61b3cf8a542a19f6b02594638fdb2f7b6c6865ee19b6349b95323",
+        "bytes": 825184
+      },
+      {
+        "file": "arcanist/after/selected-frames/frame-00014.png",
+        "sha256": "da4d58af90b33aeb244e7d0340ba2b96e41a5e840e4cbeb4c3cc5a99ab5a00b1",
+        "bytes": 825139
+      },
+      {
+        "file": "arcanist/before/selected-frames/frame-00314.png",
+        "sha256": "2670d864e32497e7be5d13471016d85757632c41bc8ee19a92add163b62bfab3",
+        "bytes": 845671
+      },
+      {
+        "file": "arcanist/after/selected-frames/frame-00314.png",
+        "sha256": "4ef063e140655a9306565d5788ba3e2f99b66a908b294f70f1b994b341c24c51",
+        "bytes": 845210
+      },
+      {
+        "file": "arcanist/after/selected-frames/frame-00317.png",
+        "sha256": "e87bbd2650c20e00543c76fe71d71b5121294cb5a7e50cb14ce414fc198ac5c3",
+        "bytes": 845500
+      },
+      {
+        "file": "arcanist/after/selected-frames/frame-00323.png",
+        "sha256": "685e362cdc940224099542bc8bbf05a424eeee94f327d59b2348c6213ffee34a",
+        "bytes": 853572
+      },
+      {
+        "file": "ranger/before/selected-frames/frame-00007.png",
+        "sha256": "c1cced9c88515210f1bb2481eda2ad1124179aa5e2a452d49a26d225139d66e7",
+        "bytes": 815584
+      },
+      {
+        "file": "ranger/before/selected-frames/frame-00012.png",
+        "sha256": "853392a3ff58215c06cf737fe327b0cb65296d4914847a4c27fe896927451927",
+        "bytes": 814833
+      },
+      {
+        "file": "ranger/before/selected-frames/frame-00344.png",
+        "sha256": "144d23cbbe2e05025b35b369243584808e4b465392c8287a608e4d987a8f8a18",
+        "bytes": 840745
+      },
+      {
+        "file": "ranger/before/selected-frames/frame-00347.png",
+        "sha256": "49a19c3c9f39899724a42b46f75e2608b818ce5293fd9a02a8df6ab109bda0ae",
+        "bytes": 838707
+      },
+      {
+        "file": "ranger/before/selected-frames/frame-00350.png",
+        "sha256": "f620a2e7c31df1b1f69ba0f58c76824145035ad00061bfa3f039a5ff3848a2da",
+        "bytes": 839637
+      },
+      {
+        "file": "ranger/before/selected-frames/frame-00353.png",
+        "sha256": "89788ba49834a984ea3c89f3836950e98b63327d45d0b42f6fbe09cfe394d641",
+        "bytes": 839384
+      },
+      {
+        "file": "ranger/after/selected-frames/frame-00007.png",
+        "sha256": "b58a80c020a5acfadae52f109cb90e633ad995a6ad1c68b9c925f55b91ffc6db",
+        "bytes": 815022
+      },
+      {
+        "file": "ranger/after/selected-frames/frame-00012.png",
+        "sha256": "ec478416464f45b8c6fe8749710e64c17374d10b7ce779cf2eecfdd556712ec2",
+        "bytes": 814694
+      },
+      {
+        "file": "ranger/after/selected-frames/frame-00344.png",
+        "sha256": "69c6e47aa37bb382c61bdebba3e4e070d0a2db60964688c7667d021627c63f01",
+        "bytes": 841629
+      },
+      {
+        "file": "ranger/after/selected-frames/frame-00347.png",
+        "sha256": "c09ee3fc787b36f8c168272ea0c96fe309d1511a557d152b781847014581e180",
+        "bytes": 838235
+      },
+      {
+        "file": "ranger/after/selected-frames/frame-00350.png",
+        "sha256": "f3ee8873406f066f3c7e885eb6c3f7b3328b13e7825a3131a6149e7ce81df60c",
+        "bytes": 838517
+      },
+      {
+        "file": "ranger/after/selected-frames/frame-00353.png",
+        "sha256": "bf7c20d32b0d9d52791b20969d8a205292fc4a4f32def52b480ae18df2a49840",
+        "bytes": 837890
+      },
+      {
+        "file": "vowkeeper/before/selected-frames/frame-00008.png",
+        "sha256": "d3342eb09666c815ffcaa33f84d36a8fc82bb94fc7c4b53ad9e264ca6b59c529",
+        "bytes": 809170
+      },
+      {
+        "file": "vowkeeper/after/selected-frames/frame-00008.png",
+        "sha256": "4b2134f6c9a3b7f52e39dd484a68aa3190e6e48685b9fafe61f254a11a342d6b",
+        "bytes": 808462
+      },
+      {
+        "file": "vowkeeper/before/selected-frames/frame-00011.png",
+        "sha256": "60168e06e8b11b322edd94d767f9ad881484d9d1f89e4a91786246968840d265",
+        "bytes": 808859
+      },
+      {
+        "file": "vowkeeper/after/selected-frames/frame-00011.png",
+        "sha256": "cd55ff1aa764bfb7f3bc565fd2fb40d65062b3aea2fbef5204be6a105df9807d",
+        "bytes": 808627
+      },
+      {
+        "file": "vowkeeper/before/selected-frames/frame-00074.png",
+        "sha256": "16e3f82f6c48bc3915638f7b5ed2e95da824def7b0f72c53fee54e07f3ff5145",
+        "bytes": 794755
+      },
+      {
+        "file": "vowkeeper/after/selected-frames/frame-00074.png",
+        "sha256": "2581619822a9a250d9ad4a9e3a2829ade5a4cb2ba759ae0ad6ec2ef6c0aef765",
+        "bytes": 794393
+      },
+      {
+        "file": "vowkeeper/before/selected-frames/frame-00425.png",
+        "sha256": "fd9999b45ff19c12f3edaa922aa2dec0092b0550ff875bfecf31a55cf0be8ebe",
+        "bytes": 843291
+      },
+      {
+        "file": "vowkeeper/after/selected-frames/frame-00425.png",
+        "sha256": "74720bb3e4fc01c50170efaa01138f2e65df62a314dc12caf4b92a7e357319ad",
+        "bytes": 843138
+      },
+      {
+        "file": "vowkeeper/before/selected-frames/frame-00428.png",
+        "sha256": "955e2552fad150c488ed076e5f303ce0475cd7a7affd36fc8a2a69962f063800",
+        "bytes": 842806
+      },
+      {
+        "file": "vowkeeper/after/selected-frames/frame-00428.png",
+        "sha256": "e48e61df94c1f3270e52cd9b7681e8e13c8412da9763f4a4fa4b7bb856bb8a00",
+        "bytes": 842997
+      },
+      {
+        "file": "vowkeeper/before/selected-frames/frame-00431.png",
+        "sha256": "28c4a0b907d5c7845cb8c93161f0aead1a80682bc7b8d601e54955c04df5bb16",
+        "bytes": 843664
+      },
+      {
+        "file": "vowkeeper/after/selected-frames/frame-00431.png",
+        "sha256": "0e72aae73916b3d6a39d3eec9cf47e3fb0ee39ed367236a9296e313ebeca99d5",
+        "bytes": 844345
+      },
+      {
+        "file": "vowkeeper/before/selected-frames/frame-00434.png",
+        "sha256": "b8a5fcfab7b79f1d6707fe9656a6093465a08c4e90256878f7a11655a1306936",
+        "bytes": 843562
+      },
+      {
+        "file": "vowkeeper/after/selected-frames/frame-00434.png",
+        "sha256": "a0cbde5ddb9f5ac5ff10c1579438e12431c271c1d335cba78a2b3cff3f5d506b",
+        "bytes": 843827
+      },
+      {
+        "file": "vowkeeper/before/selected-frames/frame-02700.png",
+        "sha256": "275e04ecd51dcb44ffd7859f0f74dd8ce0af5b544c048dc684ed7e45aae73b62",
+        "bytes": 863441
+      },
+      {
+        "file": "vowkeeper/after/selected-frames/frame-02700.png",
+        "sha256": "994adc073234952e8113cd209010c416ec78b2bfe3f2c7ec8b2bba469701e06e",
+        "bytes": 864210
+      }
+    ],
+    "decode_receipt_hashes": [
+      {
+        "file": "temporal-review/arcanist/before/first-signature-full-released-phrase/decode-receipt.json",
+        "sha256": "77cd586d10cf32275c9486f44d3881b416ff8bee21a15c9f49b3eaf3b3166376"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-basic-full-released-phrase/decode-receipt.json",
+        "sha256": "44765d55b9e0cc6c7cc1e19e63d6cbdce0d96bdee0c54bccd6314b25295c1bf2"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-starfall-full-released-phrase/decode-receipt.json",
+        "sha256": "6a23aabe17d8879afb009e244e94aa04fe335fb2cb00730d020dad6f7b56f857"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-chain-full-released-phrase/decode-receipt.json",
+        "sha256": "9a909b54123f4c816c23d44bbc77c72aacc5d85a2619d2217da94147d7b12387"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-lateral-evade/decode-receipt.json",
+        "sha256": "5228fb917e79a7ba35c50d1b0acbb78b19b4d75403cdfbe9d931ea616a278bfd"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-attack-to-evade/decode-receipt.json",
+        "sha256": "eb53c5fcb945ee7b461a9d9ad11ff98df55dbdae1920424315b441c623502676"
+      },
+      {
+        "file": "temporal-review/arcanist/before/additional-evade-2114/decode-receipt.json",
+        "sha256": "6572984afd574bc4f5e51c1ccc9a5f12a8c1940c8189f368e96adf8a61dbdf50"
+      },
+      {
+        "file": "temporal-review/arcanist/before/ordinary-travel-gait/decode-receipt.json",
+        "sha256": "fe538e32af06a855bfd3dd6ea6c79de27b5f6c6a6b36aff4c51cc86196bf5723"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-raider-death/decode-receipt.json",
+        "sha256": "77ef8263e5386c4c684e69bdeaa09dba6aa896f0876524693eccae6924607775"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-hexer-death/decode-receipt.json",
+        "sha256": "edd26945a8c303f41a82ef2a646e59ec0a1f25cf97ec499968b444c844899ec4"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-bulwark-death/decode-receipt.json",
+        "sha256": "a63300210da59b089d06e79fb39440956db4a98bdae8920faef66895590f9921"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-elite-death/decode-receipt.json",
+        "sha256": "ca57a543067c547e0c1c1b8a606cdcfecd9b8ca60499a86a69851fcd9c417252"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-boss-death/decode-receipt.json",
+        "sha256": "5958e2cb4aedf2f0c7088f304332904674e2f742fdf86e99695dc6acacb393eb"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-hexer-telegraph-release-interrupted-recovery/decode-receipt.json",
+        "sha256": "6588df479af7caa30a59abcb677050d619eecb4c122c6f0cf8f4c48616c983a8"
+      },
+      {
+        "file": "temporal-review/arcanist/before/additional-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+        "sha256": "d9ba33e3b9d4cc713d0e3f4e5d3a7d0df11076820c7aebdd5c46676e7444ef0a"
+      },
+      {
+        "file": "temporal-review/arcanist/before/first-boss-telegraph-release-recovery-reset/decode-receipt.json",
+        "sha256": "b44f4196fd76989200e23dc0bb72d2eaa2515926467f85ebe1f31d1c34e49caf"
+      },
+      {
+        "file": "temporal-review/arcanist/before/original-ending-loot-ui/decode-receipt.json",
+        "sha256": "7618f688cae853e81ff7f35620fb11d32cceda1bfff8a7975527d4d211fd0d9c"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-signature-full-released-phrase/decode-receipt.json",
+        "sha256": "003ad9699c5a1eb68872d1e3ce751eac20d6e91e08355362876837972363469c"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-basic-full-released-phrase/decode-receipt.json",
+        "sha256": "d19683013e23a8f324e684cc24fd7b000b738ca3213261b8b3db430e8731ebd2"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-starfall-full-released-phrase/decode-receipt.json",
+        "sha256": "4085c2f4851bfd745adb862dad00d349e4a9b628924482447fee33dc3f3c4bb4"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-chain-full-released-phrase/decode-receipt.json",
+        "sha256": "21056f86703dedda418be8b93efc2144c7b4ba790878c4f859de0fce12458605"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-lateral-evade/decode-receipt.json",
+        "sha256": "34fcadee3f20162334a029a5ea59b2ae58eef7d69c10e0f57620387e3c428f79"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-attack-to-evade/decode-receipt.json",
+        "sha256": "d7ab1cdbc79530a94b3a72e2133962dcfc1a8eeebde7c21fb1433202e8756b58"
+      },
+      {
+        "file": "temporal-review/arcanist/after/additional-evade-2114/decode-receipt.json",
+        "sha256": "2331febf7d77014c9b776ea0eed41f3ec7de1b79f42a90cd1023e8d9197bba3b"
+      },
+      {
+        "file": "temporal-review/arcanist/after/ordinary-travel-gait/decode-receipt.json",
+        "sha256": "a3f850a11385e86d5dce216a6a2859e6ef21e9fce6bf6db11fc3caae6e664d59"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-raider-death/decode-receipt.json",
+        "sha256": "d57d9cde16b57f438e5550bc4362cca27179cfbaae1fa6dc9c6fc139ea252a36"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-hexer-death/decode-receipt.json",
+        "sha256": "ad5f83dd6a08258859b36211d5338bd869415d3c1fa9c06d3865fd343577b105"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-bulwark-death/decode-receipt.json",
+        "sha256": "d5bc2bd85f5b5be618eab66031cd1b65efa7b144b5c385c8d2beea3d7899ac51"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-elite-death/decode-receipt.json",
+        "sha256": "70965bac7bd2a04b6088bd54d77efaffaa694f117c7fa16bc78e524c7cd846a2"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-boss-death/decode-receipt.json",
+        "sha256": "1081abba7717782e2e01ed1c1adf85c22bbe71751af24f92e0a5439e2d936a03"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-hexer-telegraph-release-interrupted-recovery/decode-receipt.json",
+        "sha256": "580ee93356afb78fa4cf12606293feaa269d0ff8fc5c1a39773a0e0ff65e7c83"
+      },
+      {
+        "file": "temporal-review/arcanist/after/additional-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+        "sha256": "732363b3e764a0f11cadaefb15d80ae1c7e890a9e7b0969fece9a16d5be2d494"
+      },
+      {
+        "file": "temporal-review/arcanist/after/first-boss-telegraph-release-recovery-reset/decode-receipt.json",
+        "sha256": "e726bf5182a6c08934b6dbc2ff5558794cd970e5290305a8f47533686a334daf"
+      },
+      {
+        "file": "temporal-review/arcanist/after/original-ending-loot-ui/decode-receipt.json",
+        "sha256": "f004f3e803f4e4aa85b997048fe85df82ddc5ddf9f69446a8b7e49b105dd57a0"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-signature-full-released-phrase/decode-receipt.json",
+        "sha256": "aaf2a6a9f140b83df3166a699c2a0b94dca474c881c55d4ae14ac02875750171"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-basic-full-released-phrase/decode-receipt.json",
+        "sha256": "a8ba0be78cb839f1bccfdfb13ac8bf25b04e80bc596e9fee7aad494e2500f04c"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-marked-full-released-phrase/decode-receipt.json",
+        "sha256": "d387a3aa42058169a229c7554566d3c513b1989f1b0fbec2b86e6c73a01611fc"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-rain-full-released-phrase/decode-receipt.json",
+        "sha256": "39ecfc7ac42a40ca05483e4800c7668f7365991019a020ad875c167d0d8cc54a"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-lateral-evade/decode-receipt.json",
+        "sha256": "9dba7f2cd5b2469ac9b18dccf004cd0a471c5961784526185d75c1f626ddf071"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-attack-to-evade/decode-receipt.json",
+        "sha256": "98833e99276369fdb9aec3002f5bb8b52630b3257908733e684a7568a0359ccc"
+      },
+      {
+        "file": "temporal-review/ranger/before/additional-evade-809/decode-receipt.json",
+        "sha256": "f683a644ede4e0eca7f69a1a5d5775056a9d3201c0ba746bd16ebad66f8959dc"
+      },
+      {
+        "file": "temporal-review/ranger/before/additional-evade-1235/decode-receipt.json",
+        "sha256": "ce62df94d155cc7f1f8d75bd9277dda062908be124532f001b5a785f8221789e"
+      },
+      {
+        "file": "temporal-review/ranger/before/additional-evade-2144/decode-receipt.json",
+        "sha256": "c5a6693f04732b8257e4cc3e2624ae1219e5ca1a331417da7aff06de21c65520"
+      },
+      {
+        "file": "temporal-review/ranger/before/additional-evade-2252/decode-receipt.json",
+        "sha256": "922ef500d5d42407732da0516dea4351132ae9b1ce4537c64ddcd95ad1c74be5"
+      },
+      {
+        "file": "temporal-review/ranger/before/ordinary-travel-gait/decode-receipt.json",
+        "sha256": "0e7246de74f1860c0ac6355af208c472cb3ee7292df0ded13b31c4b5dd0d2644"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-raider-death/decode-receipt.json",
+        "sha256": "dd748ff4b5afada9bc831309071ea12b1b5c5320b6688392a5f1cfe49a22cb21"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-hexer-death/decode-receipt.json",
+        "sha256": "65de594ce99077c493a49678394cf5e61cc958c159a5fd2c5c0b1024cf7d4366"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-bulwark-death/decode-receipt.json",
+        "sha256": "ffc2de5ee2cf31034e3f8fcf6ce101d5725b1989390e579999da80ed67deeba0"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-elite-death/decode-receipt.json",
+        "sha256": "8acbd0b4f0cf6b2c4e3cd12a4b6f651e88f08a90a9f922f96f4f7ac052e1bc27"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-death/decode-receipt.json",
+        "sha256": "bde6d4e9faec5df9fcef40c57149ad8920886eaa04026dfc29d173eedf4b5328"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+        "sha256": "6ae0d842fc44c40ff880feebb8cf3152fa3980994618aad8ab896cb069984680"
+      },
+      {
+        "file": "temporal-review/ranger/before/first-boss-telegraph-release-recovery-reset/decode-receipt.json",
+        "sha256": "9b613dd86d221aeceeac0d41073d90e3192624a663da738e3d0cb45f006fd601"
+      },
+      {
+        "file": "temporal-review/ranger/before/original-ending-loot-ui/decode-receipt.json",
+        "sha256": "cc6be95400c0802c38162eedcb65b64e16c6cab82f3f7379e2bdf9e496d0b1db"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-signature-full-released-phrase/decode-receipt.json",
+        "sha256": "2a78e34399c78eaa6400ed09efbc47f412fa71785805f02b3e6177e38489f705"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-basic-full-released-phrase/decode-receipt.json",
+        "sha256": "0db0d6f3629985f05b041539ffd72f50539655fa6a4315374b822c1e481d4fa4"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-marked-full-released-phrase/decode-receipt.json",
+        "sha256": "947f0530dceb0a1adc8d0456065721973bf001dd50ff1a26d0c8045eabbba420"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-rain-full-released-phrase/decode-receipt.json",
+        "sha256": "744942ed25df91cada8d1c9f7f23369dbb0541d28e80d7f5ec901c115ea33109"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-lateral-evade/decode-receipt.json",
+        "sha256": "a796b00d511fa41e8290f95e59aeac302b70a3bab4565d402ca004f2a2cb5a13"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-attack-to-evade/decode-receipt.json",
+        "sha256": "6babc2ff32567665f139d997ea63326fb4895916dcfafe0987bbc586a5601e2e"
+      },
+      {
+        "file": "temporal-review/ranger/after/additional-evade-809/decode-receipt.json",
+        "sha256": "671195723edd26e386bec825504b2c303130a3136c33f91ee416032a045e05ed"
+      },
+      {
+        "file": "temporal-review/ranger/after/additional-evade-1235/decode-receipt.json",
+        "sha256": "5c1527ed9c7d7f57d19d12495cd664685e930308eb827586c6d60b91f46341f5"
+      },
+      {
+        "file": "temporal-review/ranger/after/additional-evade-2144/decode-receipt.json",
+        "sha256": "9328dbad842406fab100880eb0b54833a8f09327285fc48cd647c65f10533703"
+      },
+      {
+        "file": "temporal-review/ranger/after/additional-evade-2252/decode-receipt.json",
+        "sha256": "98de39bdcc5e79f176b207677ca907dc0cbd0bff95230a13705b7dd20faec01c"
+      },
+      {
+        "file": "temporal-review/ranger/after/ordinary-travel-gait/decode-receipt.json",
+        "sha256": "55373a57653af9f619f83173e62d8fcfaca314e90d0af855b93a1740b4208b79"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-raider-death/decode-receipt.json",
+        "sha256": "3cb02a5e10e9b2057e53b85097fb3c2c784eb5256ea85580296f0eb719cfa6c9"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-hexer-death/decode-receipt.json",
+        "sha256": "02db0af275da4436998e34ba59501c005a713d2bd2c37da45120287b76b003d6"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-bulwark-death/decode-receipt.json",
+        "sha256": "0ecaac4e9a9e1fe3050ce7591af45de258323184fe43333e1fd293a0be96d6a6"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-elite-death/decode-receipt.json",
+        "sha256": "04bdff56cbc41d27e2b95bc2316b9f97c30dae3e9aa4903dfd5d9508faeafe60"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-death/decode-receipt.json",
+        "sha256": "7d9e3b37f6196c861924c297dc3ddc3806b65cc0cf165df873dc3a8c9a9d3a6b"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+        "sha256": "f0f67333029eaa06288ff836b31e91dc934d2be571afca25ef021b2d7b88f797"
+      },
+      {
+        "file": "temporal-review/ranger/after/first-boss-telegraph-release-recovery-reset/decode-receipt.json",
+        "sha256": "df2ffb2193ada7ffdc4cbabac654adc4c028d8e86d27d6717b582010237e79f1"
+      },
+      {
+        "file": "temporal-review/ranger/after/original-ending-loot-ui/decode-receipt.json",
+        "sha256": "f0ed064e4970b951ec91e795cdb14d5d71547a30ca8e657a94611ac9e7a4637b"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-signature-full-released-phrase/decode-receipt.json",
+        "sha256": "a503c13e92bfc56329e8b7579518637761b4d0b178f14f3200b4994481c82095"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-basic-full-released-phrase/decode-receipt.json",
+        "sha256": "acdf756236f867d1abef2157904667b90b8c30e14d41eed9b79b1baaa7674f4c"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-judgment-full-released-phrase/decode-receipt.json",
+        "sha256": "d2e80bd38902903a17226f69deabfaf1b8f7b22e965ae57cfbb55640c0a567ae"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-sunder-full-released-phrase/decode-receipt.json",
+        "sha256": "cf87ef7ccfc5a81d1925c800264873598856d9f552fce58ffd2636eaa1f09c44"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-lateral-evade/decode-receipt.json",
+        "sha256": "946116a02263d3228ab7f9363bd016ff34b23aadb6115e98a46f1351dfbcbde4"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-recovery-to-evade/decode-receipt.json",
+        "sha256": "4778fd6842b6cb6423348f7e1d4deac89701b08535142789c18a9b49f8555092"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-attack-to-evade/decode-receipt.json",
+        "sha256": "1312920ff0689e6c144f522eb04951a74393f2046fcf67e70fac4f39de379007"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/additional-evade-2501/decode-receipt.json",
+        "sha256": "705bd5fcfd53950bc40b22dae43da742facfa59728ea5936f349683b1533d26e"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/additional-evade-2684/decode-receipt.json",
+        "sha256": "f83f702a8ec3cded80ba34822db6dc3fe5c8ee544b7fee0409993fc4caffd33b"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/ordinary-travel-gait/decode-receipt.json",
+        "sha256": "06017c5467d792f0a2c3adaf54cbba9940c4092c7f6fd676b461a9d796b4a4df"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-raider-death/decode-receipt.json",
+        "sha256": "8da800977a19fe9cafc3148807c22f5e1399ad0c6dc31a12f23d969eaaf5f2c2"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-hexer-death/decode-receipt.json",
+        "sha256": "7b1914eb2c95402b0ac9369f3d53f3406f7a6b8e1bfc7febba9e0e09db3a374e"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-bulwark-death/decode-receipt.json",
+        "sha256": "816d3bd94af9322f9a79e4a70fbdb3c9e6fd3660bdff13d48615b014c5ed0c25"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-elite-death/decode-receipt.json",
+        "sha256": "df5d4638a4cfa2cdb926b66eae6ff50903beba305e85fe121da1dda87eebca74"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-death/decode-receipt.json",
+        "sha256": "dd1768b90a96b03fc82b36c2bfa3f5795e8e53a15aae25c17f1885d75957b781"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-phase0-ordinary-melee/decode-receipt.json",
+        "sha256": "632a5d91ac323f644dfb994c5bb03c48913419a85745e82bd3650680d9f5135f"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+        "sha256": "3b40e20a49131c568277448a39511c7016bf089f3a789072c737fff5a87bb9de"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-elite-interrupted-telegraph/decode-receipt.json",
+        "sha256": "303eb8d06397563886050d2b475e35568c7fe2a39cdab55dd3948a85da5cc55c"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/decode-receipt.json",
+        "sha256": "c53d39329c78116e07ffcf7fcc6653c9e8e6c3241baf129ce429bc575ce37279"
+      },
+      {
+        "file": "temporal-review/vowkeeper/before/original-ending-loot-ui/decode-receipt.json",
+        "sha256": "6c2255ff09c7433ea6136a2ae912905301a616848eb0069137502c75b307e8d1"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-signature-full-released-phrase/decode-receipt.json",
+        "sha256": "aec7a75f730b71c539d5dd9d70557c0bd044557272326c9d732286b0caea7fe5"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-basic-full-released-phrase/decode-receipt.json",
+        "sha256": "a72e91481560b2b497f87a04f3140cff0608362fb65ae816175bb1a2c789c685"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-judgment-full-released-phrase/decode-receipt.json",
+        "sha256": "eedef95cfe945d91666f0d8e328c3fd7c801bb5fdd5c56199a05cf91cd9e25a6"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-sunder-full-released-phrase/decode-receipt.json",
+        "sha256": "b7460efe2a175e7aa38415c15a165be277c52daad007914aaa467cd325e8d474"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-lateral-evade/decode-receipt.json",
+        "sha256": "e362f0e5b6e4c75daf6b39439f8e5dedeb5c09d4e72384157867c139778bdd28"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-recovery-to-evade/decode-receipt.json",
+        "sha256": "eb49d2ee4a5dd415e1878427a033c02b3c127cd42cb9779573133690f0905f9c"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-attack-to-evade/decode-receipt.json",
+        "sha256": "b6c6cae0e6e15961e9669fea211f95ebd4bcaa178af224cce01d7d6a5729ec57"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/additional-evade-2501/decode-receipt.json",
+        "sha256": "74aa9d3f3f0c78d95c119a899341c4dd7236000860ed528c701946da19301675"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/additional-evade-2684/decode-receipt.json",
+        "sha256": "1a0a485f0b92f2a8bf5091f3776e418f59564c51fee1c3cd2b2b5fcf076a92e2"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/ordinary-travel-gait/decode-receipt.json",
+        "sha256": "1a23a66dc84a4cb3ea6c0ed67629c6efd9ad05fa2a9a8741849fbe583f010fec"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-raider-death/decode-receipt.json",
+        "sha256": "e4b9aa19cd568e7053ee05a286663d0b1b7e9d4f9ca6540cb4a33469965cf679"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-hexer-death/decode-receipt.json",
+        "sha256": "0668b08023c7bf4999c42fd67a452f7ca28091781aee0d64533000adcd6c933f"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-bulwark-death/decode-receipt.json",
+        "sha256": "78967a1a2cb02a734c95760a815fe5adecc4e16f2fb4086741c38c892acec9d6"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-elite-death/decode-receipt.json",
+        "sha256": "149e8ae1bdd9f8bfbae6a7486cb6de4ae2c0eb6b082d6e1f1d43bf07632a7545"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-death/decode-receipt.json",
+        "sha256": "296267952a4ca687b07109c477faa945ad674570970fef699b8e8b41e61f40ef"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-phase0-ordinary-melee/decode-receipt.json",
+        "sha256": "4eb30b1b83a2612abae4baa455a3b159a2d4a7ba9f4eacb6a04459bfe30a5344"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+        "sha256": "a11bb82855157444844734dddf308ca6229ac5f4812879d14076d2673ce22130"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-elite-interrupted-telegraph/decode-receipt.json",
+        "sha256": "7e0773de745d17a95f9951f9ca5e2a2baaa5928fa6e6c06f00d6b98effb8d742"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/decode-receipt.json",
+        "sha256": "d44e9f4b603ce9b8d3190bdd17232046188426fb205e7973ca12df36208fd7a8"
+      },
+      {
+        "file": "temporal-review/vowkeeper/after/original-ending-loot-ui/decode-receipt.json",
+        "sha256": "ca9ac17597a849c333617e8be32849c2e87b8840ed4ca34a1719edef389cfce7"
+      }
+    ]
+  },
+  "relative_links": [
+    {
+      "relative_href": "temporal-review/README.md",
+      "exists": true,
+      "type": "file",
+      "sha256": "f0acd906ac221a23c473725706d2f4bf8ee0d1aad7e9e950b400f180db1ca5ce"
+    },
+    {
+      "relative_href": "temporal-review/ranger/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+      "exists": true,
+      "type": "file",
+      "sha256": "345e75069361d664481e782886055ad33ca116809659e82e4490ec325d7d4d6a"
+    },
+    {
+      "relative_href": "temporal-review/ranger/after/additional-evade-1235/derived-contact-sheet-00.png",
+      "exists": true,
+      "type": "file",
+      "sha256": "95e712e3ccc70bddbce0ed6911fde197dd47b26270589ded885dc2eee40e3516"
+    },
+    {
+      "relative_href": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-16.jpg",
+      "exists": true,
+      "type": "file",
+      "sha256": "15f619294f847a4ab40220aa2f8c212b623d22cc87e64fb9558d79a40fe5ae01"
+    },
+    {
+      "relative_href": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-16.jpg",
+      "exists": true,
+      "type": "file",
+      "sha256": "9c4bbce0353508c0e41a8c410e5692c43f56b6c59c7bbbbe9a271e487657e1ed"
+    },
+    {
+      "relative_href": "temporal-review/vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-17.jpg",
+      "exists": true,
+      "type": "file",
+      "sha256": "7fa5fff934c70f70b523318b69b31bf80efbe12acc5652de5961edf1fb0ff53d"
+    },
+    {
+      "relative_href": "temporal-review/vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-17.jpg",
+      "exists": true,
+      "type": "file",
+      "sha256": "3e03a48bb4c1a76246ee2ce3a7ae3346a24089c91202e78a720d35e2f5683d99"
+    },
+    {
+      "relative_href": "temporal-review/ranger-critical-guardian-idle-visual-check.json",
+      "exists": true,
+      "type": "file",
+      "sha256": "a5daabfd45da1f827e34611afec754b6251832c8987f6495066465d9a03c5836"
+    },
+    {
+      "relative_href": "temporal-review/vowkeeper-review-scope-correction.json",
+      "exists": true,
+      "type": "file",
+      "sha256": "3eac3e360c03412f2dbcc19e46fe39590dcae446e85a61b26fe4825bceb056a1"
+    },
+    {
+      "relative_href": "temporal-review/vowkeeper-review-preparation-history/",
+      "exists": true,
+      "type": "directory"
+    },
+    {
+      "relative_href": "arcanist/before/ordinary-arcanist-complete.mp4",
+      "exists": true,
+      "type": "file",
+      "sha256": "eaa5c56c8cb4994d515271cc6e97f7e1ef2d26658cdad05aadeeba575355021c"
+    },
+    {
+      "relative_href": "arcanist/after/ordinary-arcanist-complete.mp4",
+      "exists": true,
+      "type": "file",
+      "sha256": "27f282aa3ab14069b88eb079795c44a7331cd24ca43c9ad7cd1d2e47ab655d35"
+    },
+    {
+      "relative_href": "ranger/before/ordinary-ranger-complete.mp4",
+      "exists": true,
+      "type": "file",
+      "sha256": "8c01eef238de70c33dad7ff99abb8812c2a75ebee485e0feb71c7d32244d5b72"
+    },
+    {
+      "relative_href": "ranger/after/ordinary-ranger-complete.mp4",
+      "exists": true,
+      "type": "file",
+      "sha256": "008b0c71db628429e3c826fb2de2beeb8510d8b04496333e0e7952f42d7e2948"
+    },
+    {
+      "relative_href": "vowkeeper/before/ordinary-vowkeeper-complete.mp4",
+      "exists": true,
+      "type": "file",
+      "sha256": "e0f3194f1ad288bfa650143fa18d253e5220f09cad22fde5bb90fb494e6095b1"
+    },
+    {
+      "relative_href": "vowkeeper/after/ordinary-vowkeeper-complete.mp4",
+      "exists": true,
+      "type": "file",
+      "sha256": "56f5a3cceeb8f10c8df035e1cc570ee3680fa7d7ecd5a0bd8e888f044a67b7d8"
+    },
+    {
+      "relative_href": "temporal-review/arcanist-temporal-review-verification.json",
+      "exists": true,
+      "type": "file",
+      "sha256": "6760d79705217aca51901a087558249f143394fa8587f72ec5410e34cf5ad8ff"
+    },
+    {
+      "relative_href": "temporal-review/ranger-temporal-review-verification.json",
+      "exists": true,
+      "type": "file",
+      "sha256": "e0b6df92364ad94132c9116ff72e4928350f37ce13f79b1986d45cb963a13c5f"
+    },
+    {
+      "relative_href": "temporal-review/vowkeeper-temporal-review-verification.json",
+      "exists": true,
+      "type": "file",
+      "sha256": "82bbd504fd3830e859c143ff021e8e8e767e1f2bbd838f43ab8845a689dd5507"
+    },
+    {
+      "relative_href": "temporal-review/vowkeeper-final-byte-verification-schema-failure.json",
+      "exists": true,
+      "type": "file",
+      "sha256": "265dc7d277766101517fdbb92169cc20e8d23407f6268136e44577639173927d"
+    },
+    {
+      "relative_href": "temporal-review/all-three-final-byte-verification-execution.json",
+      "exists": true,
+      "type": "file",
+      "sha256": "a7ead4841fbf4d831b7c4e7f1f81ee444bee34c2cdbabd94c4c94f55f2cee822"
+    },
+    {
+      "relative_href": "temporal-review-staging-receipt.json",
+      "exists": true,
+      "type": "file",
+      "sha256": "ab53c5b79b72b85a6a93a08a2b732de0b8d9df2736502236061ad54b4bc7f5b6"
+    },
+    {
+      "readme_relative_href": "../MOTION_REVIEW.md",
+      "exists": true,
+      "sha256": "791546d1efc045e5b38a538e74667d713907c03884b5018b07259b86c1bfc267"
+    }
+  ],
+  "actual_stage_execution": {
+    "execution_receipt": "/workspace/scratch/emberfall-quality-057/temporal-review-stage-execution.json",
+    "execution_receipt_sha256": "dbdb88931662168084d4fb71b036f0cff2eba94a071fb56ca75f2f988c6062d0",
+    "actual_process_exit": 0,
+    "stage_tool_sha256": "adf8ac45243b64e77df91ece8643c53262fe21eaf236650d90054b5b90617e4f",
+    "execution_log_sha256": "5c1ddd97b6afaf9ea49c13b36a305e90811849bd700355eb1514f934ddffab87"
+  },
+  "staged_read_only_verifier_logs": [
+    {
+      "character_class": "arcanist",
+      "execution_log": "/workspace/scratch/emberfall-quality-057/arcanist-staged-temporal-review-verification-execution.log",
+      "execution_log_sha256": "6655d058df9db59d131c05dd3d6a25f1241407687ebe789fd7488a4800a67bc5",
+      "owner_reported_actual_process_exit": 0,
+      "independently_read_success_result": {
+        "status": "all_retained_derived_sheets_have_recorded_ai_visual_inspection; quality_concerns_remain",
+        "character_class": "arcanist",
+        "planned_ranges_per_side": 17,
+        "actual_successful_range_decode_receipts": 34,
+        "all_retained_derived_sheet_files_recorded_as_actually_inspected": 80,
+        "separately_inspected_original_native_pngs": 6
+      },
+      "audit_reran_verifier": false
+    },
+    {
+      "character_class": "ranger",
+      "execution_log": "/workspace/scratch/emberfall-quality-057/ranger-staged-temporal-review-verification-execution.log",
+      "execution_log_sha256": "c3b21416622615aef778e6dca04aa6a2dc68e9766c33664592f67a5122158256",
+      "owner_reported_actual_process_exit": 0,
+      "independently_read_success_result": {
+        "status": "all_retained_derived_sheets_have_recorded_ai_visual_inspection; quality_concerns_remain",
+        "character_class": "ranger",
+        "planned_ranges_per_side": 19,
+        "actual_successful_range_decode_receipts": 38,
+        "all_retained_derived_sheet_files_recorded_as_actually_inspected": 96,
+        "separately_inspected_original_native_pngs": 12
+      },
+      "audit_reran_verifier": false
+    },
+    {
+      "character_class": "vowkeeper",
+      "execution_log": "/workspace/scratch/emberfall-quality-057/vowkeeper-staged-temporal-review-verification-execution.log",
+      "execution_log_sha256": "44302f9c63e2d67bf589f6189cac08f4fd7ba0ef8246f6086889b18f88c53adb",
+      "owner_reported_actual_process_exit": 0,
+      "independently_read_success_result": {
+        "status": "all_retained_derived_sheets_have_recorded_ai_visual_inspection; quality_concerns_remain",
+        "character_class": "vowkeeper",
+        "planned_ranges_per_side": 20,
+        "actual_successful_range_decode_receipts": 40,
+        "all_retained_derived_sheet_files_recorded_as_actually_inspected": 120,
+        "separately_inspected_original_native_pngs": 16
+      },
+      "audit_reran_verifier": false
+    }
+  ],
+  "remaining_report_factual_issue": null,
+  "limits": [
+    "This audit checks current staged bytes and recorded evidence. It runs no Engine, Blender, FFmpeg decode, Git or verifier command and performs no additional visual inspection.",
+    "The prior audit remains an immutable pre-staging snapshot; old three verification-summary byte versions are unavailable. No only-timestamp byte-diff proof is asserted.",
+    "Recorded AI reviews remain bounded retained-sample reviews. No whole-movie watching, human signoff, full death/settling approval, detailed bone anatomy or beta/release readiness is inferred.",
+    "Quiet Hexer release, held-low Guardian preparation, broad Ranger backstep and the real Vowkeeper2697-2698 Guardian excursion remain explicit presentation limits.",
+    "Lossy H264/JPEG92, crop omissions, small/dark/overlapping silhouettes and temporal gaps remain unjudged fine-detail limits."
+  ]
+}

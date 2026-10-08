@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "scope": "Observer implementation verification and genuine local tool/device availability, not a physical-phone measurement. Contract output contains deliberately synthetic fake-adb responses.",
+  "base_commit": "4b152d0fc8b99cf51569585af2695bf3554416ed",
+  "candidate_committed": false,
+  "observer_contracts": {
+    "tests": 13,
+    "failures": 0,
+    "process_exit_code": 0,
+    "log": "observer-contracts.log"
+  },
+  "actual_device_discovery": {
+    "status": "unavailable",
+    "process_exit_code": 3,
+    "physical_device_measured": false,
+    "report": "physical-availability.json"
+  },
+  "native_fixture_validation": {
+    "status": "passed",
+    "scope": "Linux native parse and six short live-combat cases, Xvfb llvmpipe software renderer and Dummy audio. No Android/phone FPS, guardian, thermal, battery or touch acceptance.",
+    "parse_process_exit_code": 0,
+    "native_process_exit_code": 0,
+    "case_seconds": 20,
+    "cases": 6,
+    "short_fixture_smoke": true,
+    "frame_counts": [
+      51,
+      53,
+      51,
+      276,
+      277,
+      316
+    ],
+    "hero_attacks": [
+      3,
+      3,
+      3,
+      7,
+      3,
+      7
+    ],
+    "source_inventory_count": 808,
+    "source_inputs_unchanged": true,
+    "source_inputs_sha256": "3b13d201c3e46df62ebddc30b3f8c0fc1b4622163dd2c950fbec1bbda1860928",
+    "first_attempt": {
+      "case_seconds": 12,
+      "native_process_exit_code": 1,
+      "reason": "Balanced Vowkeeper 22 and Ranger 29 frames were below the unchanged 30-frame minimum; every case had advancing simulation and genuine attacks. Only the marked desktop config was extended to 20 seconds; the ordinary 200-second workload/assertions stayed unchanged."
+    },
+    "completed_at": "2026-10-06T19:12:42.756396+00:00"
+  },
+  "file_sha256": {
+    "scripts/android_device_probe.py": "3edf12755eaebaca1f3ee1dd35645b1212847c4ac4ad14e0264d0eda25592d66",
+    "tests/android_device_probe.gd": "81cd2b1e406e0714860c4a5d235471860e5e5173780c0bf038e45eaafee0f0a5",
+    "tests/test_android_device_probe.py": "5b73646613c80981e4b1eb9c7a3ad2b5bbcd7be7e9b137e2ab641a7b6a72ecb3"
+  },
+  "evidence_sha256": {
+    "native-parse.log": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "native-12s-attempt-summary.json": "c6d3c736aa28562bd456e7b8fdd969858c11addce39c08a10297b9add35c633a",
+    "physical-availability.json": "8c28cfc9a39df2a3939496c3e7782a6170fea3505fabfaa0030776e738a4c131",
+    "observer-contracts.log": "5acee976deec833bcc590877531502b14d97202ccf44d0bc4bc57d026d764461",
+    "native-20s-smoke.log": "80869becf9fa8de9296eb78ce5b1b33d890e804056be2c2444ddf165e28b3a9e",
+    "native-source-inputs.json": "3b13d201c3e46df62ebddc30b3f8c0fc1b4622163dd2c950fbec1bbda1860928",
+    "native-20s-smoke-config.json": "a9169301b5372c8c4d9c591e62ae505d54141a5a242f5c51a52ae80476a18954",
+    "native-12s-attempt.log": "47794dc86c8bc65173d1e030b7090de423046f708f8e82eceac2fa37b066d1ac",
+    "native-20s-smoke-report.json": "2b242acb116976cbdab1ef0c43cbcbbec35b11a7029fe1a03e8b1b08af027f4d"
+  }
+}

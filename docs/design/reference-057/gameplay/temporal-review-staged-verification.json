@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "status": "three_staged_readonly_verifier_process_exits_zero_and_exact_review_bytes_unchanged",
+  "created_utc": "2026-10-08T00:31:30.785065+00:00",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "actual_review_stage_process_exit": 0,
+  "stage_execution_receipt_original_path": "/workspace/scratch/emberfall-quality-057/temporal-review-stage-execution.json",
+  "stage_execution_receipt_sha256": "dbdb88931662168084d4fb71b036f0cff2eba94a071fb56ca75f2f988c6062d0",
+  "staging_receipt_sha256": "ab53c5b79b72b85a6a93a08a2b732de0b8d9df2736502236061ad54b4bc7f5b6",
+  "review_report_sha256": "791546d1efc045e5b38a538e74667d713907c03884b5018b07259b86c1bfc267",
+  "verified_review_hardlink_file_count": 593,
+  "verified_review_file_logical_bytes": 143266575,
+  "exact_staged_file_set_unchanged": true,
+  "all_593_staged_review_hashes_bytes_and_hardlink_inodes_match_original_execution_sources": true,
+  "review_report_and_staging_receipt_unchanged": true,
+  "executions": [
+    {
+      "character_class": "arcanist",
+      "actual_process_exit": 0,
+      "execution_log_original_path": "/workspace/scratch/emberfall-quality-057/arcanist-staged-temporal-review-verification-execution.log",
+      "execution_log_sha256": "6655d058df9db59d131c05dd3d6a25f1241407687ebe789fd7488a4800a67bc5",
+      "stdout": {
+        "status": "all_retained_derived_sheets_have_recorded_ai_visual_inspection; quality_concerns_remain",
+        "character_class": "arcanist",
+        "planned_ranges_per_side": 17,
+        "actual_successful_range_decode_receipts": 34,
+        "all_retained_derived_sheet_files_recorded_as_actually_inspected": 80,
+        "separately_inspected_original_native_pngs": 6
+      }
+    },
+    {
+      "character_class": "ranger",
+      "actual_process_exit": 0,
+      "execution_log_original_path": "/workspace/scratch/emberfall-quality-057/ranger-staged-temporal-review-verification-execution.log",
+      "execution_log_sha256": "c3b21416622615aef778e6dca04aa6a2dc68e9766c33664592f67a5122158256",
+      "stdout": {
+        "status": "all_retained_derived_sheets_have_recorded_ai_visual_inspection; quality_concerns_remain",
+        "character_class": "ranger",
+        "planned_ranges_per_side": 19,
+        "actual_successful_range_decode_receipts": 38,
+        "all_retained_derived_sheet_files_recorded_as_actually_inspected": 96,
+        "separately_inspected_original_native_pngs": 12
+      }
+    },
+    {
+      "character_class": "vowkeeper",
+      "actual_process_exit": 0,
+      "execution_log_original_path": "/workspace/scratch/emberfall-quality-057/vowkeeper-staged-temporal-review-verification-execution.log",
+      "execution_log_sha256": "44302f9c63e2d67bf589f6189cac08f4fd7ba0ef8246f6086889b18f88c53adb",
+      "stdout": {
+        "status": "all_retained_derived_sheets_have_recorded_ai_visual_inspection; quality_concerns_remain",
+        "character_class": "vowkeeper",
+        "planned_ranges_per_side": 20,
+        "actual_successful_range_decode_receipts": 40,
+        "all_retained_derived_sheet_files_recorded_as_actually_inspected": 120,
+        "separately_inspected_original_native_pngs": 16
+      }
+    }
+  ],
+  "human_signoff_claimed": false,
+  "whole_movie_viewing_claimed": false,
+  "release_readiness_claimed": false,
+  "limits_preserved": [
+    "Quiet low-staff Hexer release",
+    "Held-low Guardian preparation",
+    "Wide Ranger lunge1238\u20131240",
+    "Vowkeeper Guardian2697\u20132698 pose excursion"
+  ]
+}

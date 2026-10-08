@@ -1,0 +1,332 @@
+{
+  "source_not_frozen": true,
+  "scope": "Headless checks explicitly use Dummy CPU upload/skin/bounds oracles. Native X11 GL checks additionally validate real RenderingServer vertex_data and ArrayMesh readback. Diagnostic stills are unedited actual production actors, not ordinary combat or physical-phone measurement.",
+  "runs": [
+    {
+      "label": "headless-attire-smoke",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--headless",
+        "--script",
+        "res://tests/avatar_attire_quality_smoke.gd"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 4.478,
+      "log": "/workspace/scratch/emberfall-quality-057/attire/headless-attire-smoke.log",
+      "log_sha256": "b782956dfd78cd311d3bc5b7807d8a62163472623e8b667d6430075a5fa9cc36",
+      "render_scope": "headless Dummy CPU oracle",
+      "script_shader_parse_error": false
+    },
+    {
+      "label": "headless-source-style",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--headless",
+        "--script",
+        "res://tests/source_avatar_style_smoke.gd"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 3.274,
+      "log": "/workspace/scratch/emberfall-quality-057/attire/headless-source-style.log",
+      "log_sha256": "e395d46678c6f085592820038312ff44711498b0c2a033f8f8cafb70c4b196fa",
+      "render_scope": "headless Dummy CPU oracle",
+      "script_shader_parse_error": false
+    },
+    {
+      "label": "headless-native-equipment",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--headless",
+        "--script",
+        "res://tests/native_equipment_finish_smoke.gd"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 5.684,
+      "log": "/workspace/scratch/emberfall-quality-057/attire/headless-native-equipment.log",
+      "log_sha256": "ca70a11ab76e6196af1ee7b7c9778154fa40989ddb1bf67682922f55d3e3df19",
+      "render_scope": "headless Dummy CPU oracle",
+      "script_shader_parse_error": true
+    },
+    {
+      "label": "native-gpu-attire-smoke",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--display-driver",
+        "x11",
+        "--rendering-method",
+        "gl_compatibility",
+        "--audio-driver",
+        "Dummy",
+        "--script",
+        "res://tests/avatar_attire_quality_smoke.gd",
+        "--",
+        "--require-gpu"
+      ],
+      "exit_code": 1,
+      "wall_seconds": 0.114,
+      "log": "/workspace/scratch/emberfall-quality-057/attire/native-gpu-attire-smoke.log",
+      "log_sha256": "2604d8e1e4e1cdd381e3c30d023589a8cc94b884e84dc640d8c0dab1dbe91952",
+      "render_scope": "native X11 GL (software llvmpipe; not phone)",
+      "script_shader_parse_error": false
+    },
+    {
+      "label": "native-gpu-attire-smoke-retry-5",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--display-driver",
+        "x11",
+        "--rendering-method",
+        "gl_compatibility",
+        "--audio-driver",
+        "Dummy",
+        "--script",
+        "res://tests/avatar_attire_quality_smoke.gd",
+        "--",
+        "--require-gpu"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 4.978,
+      "log": "/workspace/scratch/emberfall-quality-057/attire/native-gpu-attire-smoke-retry-5.log",
+      "log_sha256": "9b1a14fee67d0fa05128694f368a5d1c05e8c6bd95afbb74a68776b974d833d7",
+      "render_scope": "native X11 GL (software llvmpipe; not phone)",
+      "script_shader_parse_error": false
+    },
+    {
+      "label": "native-production-studio",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--display-driver",
+        "x11",
+        "--rendering-method",
+        "gl_compatibility",
+        "--audio-driver",
+        "Dummy",
+        "--script",
+        "res://tests/avatar_attire_quality_preview.gd",
+        "--",
+        "--capture-dir=/workspace/scratch/emberfall-quality-057/attire/native"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 6.699,
+      "log": "/workspace/scratch/emberfall-quality-057/attire/native-production-studio.log",
+      "log_sha256": "4acc409c6c5576b0908f6526d626a14d39b85f779c78eec22191be20e78f0a15",
+      "render_scope": "native X11 GL (software llvmpipe; not phone)",
+      "script_shader_parse_error": false
+    },
+    {
+      "label": "headless-native-equipment-after-portrait-fix",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--headless",
+        "--script",
+        "res://tests/native_equipment_finish_smoke.gd"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 5.429,
+      "log": "/workspace/scratch/emberfall-quality-057/attire/headless-native-equipment-after-portrait-fix.log",
+      "log_sha256": "303d670418b9ffa7d301bccb8e8d6f1f5889fed309b69c87309ef38e5329305a",
+      "render_scope": "headless Dummy CPU oracle",
+      "script_shader_parse_error": false
+    },
+    {
+      "label": "native-gpu-attire-smoke-retry-8",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--display-driver",
+        "x11",
+        "--rendering-method",
+        "gl_compatibility",
+        "--audio-driver",
+        "Dummy",
+        "--script",
+        "res://tests/avatar_attire_quality_smoke.gd",
+        "--",
+        "--require-gpu"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 4.98,
+      "log": "/workspace/scratch/emberfall-quality-057/attire/native-gpu-attire-smoke-retry-8.log",
+      "log_sha256": "9b1a14fee67d0fa05128694f368a5d1c05e8c6bd95afbb74a68776b974d833d7",
+      "render_scope": "native X11 GL (software llvmpipe; not phone)",
+      "script_shader_parse_error": false
+    },
+    {
+      "label": "native-production-studio-retry-9",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--display-driver",
+        "x11",
+        "--rendering-method",
+        "gl_compatibility",
+        "--audio-driver",
+        "Dummy",
+        "--script",
+        "res://tests/avatar_attire_quality_preview.gd",
+        "--",
+        "--capture-dir=/workspace/scratch/emberfall-quality-057/attire/native"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 6.507,
+      "log": "/workspace/scratch/emberfall-quality-057/attire/native-production-studio-retry-9.log",
+      "log_sha256": "4acc409c6c5576b0908f6526d626a14d39b85f779c78eec22191be20e78f0a15",
+      "render_scope": "native X11 GL (software llvmpipe; not phone)",
+      "script_shader_parse_error": false
+    }
+  ],
+  "files": [
+    {
+      "path": "native/arcanist-cast-front.png",
+      "bytes": 163447,
+      "sha256": "a800fef687d9dad78b29b37643413877d47c9ac72ff13fa5cfbd64d61604bc79"
+    },
+    {
+      "path": "native/arcanist-cast-rear.png",
+      "bytes": 149504,
+      "sha256": "7b6ed3b4f9bddfb4436fb43d06c34fb5dd9637e34473b6ef6ec28db981d2490f"
+    },
+    {
+      "path": "native/arcanist-idle-front.png",
+      "bytes": 167523,
+      "sha256": "f6d4d3e726b1090f127760d62f08de08a8d8887f3e2521d159ae8d4458883e0b"
+    },
+    {
+      "path": "native/arcanist-walk-rear.png",
+      "bytes": 144807,
+      "sha256": "224c6a35b930e28ca647e08214777831e8515b9fbb7f7fd51428d71095b521a3"
+    },
+    {
+      "path": "native/native-receipt.json",
+      "bytes": 3699,
+      "sha256": "003f86b5ee4ac1a8aee65e6e36b5eda544cba2a964ceb8c8455b3ac98c2afd43"
+    },
+    {
+      "path": "native/ranger-cast-front.png",
+      "bytes": 133775,
+      "sha256": "04f6a086573d63caba458ec15ddd7071bdc571dcd4ded260453a032df7f9a8b1"
+    },
+    {
+      "path": "native/ranger-cast-rear.png",
+      "bytes": 103026,
+      "sha256": "53745f8e33e7994d2f19242305bac759bb8ed8a40cac760b9d3bf42862088528"
+    },
+    {
+      "path": "native/ranger-idle-front.png",
+      "bytes": 128423,
+      "sha256": "9fe4da2dd57d373d6c12eaebd80d8b9f2626bfa8d5dc1b0f4bc9d7278fce4034"
+    },
+    {
+      "path": "native/ranger-walk-rear.png",
+      "bytes": 103772,
+      "sha256": "74206714862565a250b90096299408354ed343d4664e913ced3603d0e6f13076"
+    },
+    {
+      "path": "native/vowkeeper-cast-front.png",
+      "bytes": 135289,
+      "sha256": "f76ed1dc570702f62e2ed7c6824dc76f2c51c0577a804fa8abc7c69386d0d2b7"
+    },
+    {
+      "path": "native/vowkeeper-cast-rear.png",
+      "bytes": 120428,
+      "sha256": "524df479272f97ffb329563abe2f6f58b869dfac738194c1e6b858509152c837"
+    },
+    {
+      "path": "native/vowkeeper-idle-front.png",
+      "bytes": 139497,
+      "sha256": "31991d81e3a7354e7653f1a52efaf522bd407df617cef22ae2f9acb8ca878d62"
+    },
+    {
+      "path": "native/vowkeeper-walk-rear.png",
+      "bytes": 116999,
+      "sha256": "f74afd862a6f836b6e94b92102be6e428e5e63bf4aad86843a3e488883119eb3"
+    }
+  ],
+  "archived_original_native": {
+    "path": "native-first-tone",
+    "reason": "Original first-tone diagnostic frames retained before correcting cloth/leather PBR colors from linear asset factors to readable runtime sRGB values",
+    "original_files": [
+      {
+        "path": "native/arcanist-cast-front.png",
+        "bytes": 155744,
+        "sha256": "cdfa609ebf7a06f2d85bb87591643fad6ba5dd93912cb295d905482bad3a6441"
+      },
+      {
+        "path": "native/arcanist-cast-rear.png",
+        "bytes": 141847,
+        "sha256": "39236dfb47c499e778692cb1e8c98ea2071188127df1e65830af17ef27764afd"
+      },
+      {
+        "path": "native/arcanist-idle-front.png",
+        "bytes": 158939,
+        "sha256": "dc040cde2984405f423674067819e475d4366a53d7542516b4c2a26a53c8bb40"
+      },
+      {
+        "path": "native/arcanist-walk-rear.png",
+        "bytes": 138216,
+        "sha256": "500bd4abfd15e0410f95c7daeb4e8046966c70186b54d74016e916f4222ca7e3"
+      },
+      {
+        "path": "native/native-receipt.json",
+        "bytes": 3699,
+        "sha256": "003f86b5ee4ac1a8aee65e6e36b5eda544cba2a964ceb8c8455b3ac98c2afd43"
+      },
+      {
+        "path": "native/ranger-cast-front.png",
+        "bytes": 133775,
+        "sha256": "04f6a086573d63caba458ec15ddd7071bdc571dcd4ded260453a032df7f9a8b1"
+      },
+      {
+        "path": "native/ranger-cast-rear.png",
+        "bytes": 103026,
+        "sha256": "53745f8e33e7994d2f19242305bac759bb8ed8a40cac760b9d3bf42862088528"
+      },
+      {
+        "path": "native/ranger-idle-front.png",
+        "bytes": 128423,
+        "sha256": "9fe4da2dd57d373d6c12eaebd80d8b9f2626bfa8d5dc1b0f4bc9d7278fce4034"
+      },
+      {
+        "path": "native/ranger-walk-rear.png",
+        "bytes": 103772,
+        "sha256": "74206714862565a250b90096299408354ed343d4664e913ced3603d0e6f13076"
+      },
+      {
+        "path": "native/vowkeeper-cast-front.png",
+        "bytes": 135289,
+        "sha256": "f76ed1dc570702f62e2ed7c6824dc76f2c51c0577a804fa8abc7c69386d0d2b7"
+      },
+      {
+        "path": "native/vowkeeper-cast-rear.png",
+        "bytes": 120428,
+        "sha256": "524df479272f97ffb329563abe2f6f58b869dfac738194c1e6b858509152c837"
+      },
+      {
+        "path": "native/vowkeeper-idle-front.png",
+        "bytes": 139497,
+        "sha256": "31991d81e3a7354e7653f1a52efaf522bd407df617cef22ae2f9acb8ca878d62"
+      },
+      {
+        "path": "native/vowkeeper-walk-rear.png",
+        "bytes": 116999,
+        "sha256": "f74afd862a6f836b6e94b92102be6e428e5e63bf4aad86843a3e488883119eb3"
+      }
+    ]
+  }
+}

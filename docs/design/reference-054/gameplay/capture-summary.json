@@ -1,0 +1,13 @@
+{
+	"complete": true,
+	"frames": 2496,
+	"guardian_seen": true,
+	"guardian_warning_seen": true,
+	"playback_seconds": 83.2,
+	"schema": 1,
+	"scope": "Recording completeness and actual combat outcome; no visual or release approval.",
+	"settle_frames_recorded": 90,
+	"simulation_elapsed": 80.1999999999997,
+	"simulation_finished": true,
+	"won": true
+}

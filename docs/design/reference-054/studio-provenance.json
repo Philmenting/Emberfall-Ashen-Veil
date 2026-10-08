@@ -1,0 +1,22 @@
+{
+  "scope": "Original native diagnostic PNGs of final production Arcanist, source materials under three studio lights; not ordinary gameplay or continuous animation proof.",
+  "godot_version": "4.7.2",
+  "renderer": "Mesa llvmpipe OpenGL compatibility, DISPLAY=:107",
+  "fixture": "tests/source_avatar_grip_scene_preview.gd",
+  "captured_audio": false,
+  "files": {
+    "face.png": "92446a2b632386f9714b2bff2993ad7ee6549467c48570b3b57ab6d3f1b50bf2",
+    "walk.png": "07551f3bc64fa0ebe25bfd5dff364cb5fec2cf5b197f055fdaf791c044bf27d9",
+    "idle-front.png": "91d48cc9d57cf2ab72ecd8d97367820f260c31e6d8dcecd6b54ee32b67f4ef18",
+    "cast-recovery.png": "99c0c73f0dd544f4548e8787f89f1efcc4ddf19b07a2a788edab3cacb90514e2",
+    "idle-threequarter.png": "e8ab167babbe7cc4086de8ccdd0ec6af81f74eb2643744aadc447bb4ed86e669",
+    "cast-contact.png": "beb37054aba88b65ccd15ca334184336ef70b552de65324f137c77ff53075402",
+    "cast-windup.png": "bdc3a886078a2635ad23df09b0a45b14a2a5580c682a6d38048da4aec2e12903"
+  },
+  "runtime_inputs": {
+    "scripts/source_avatar_rig.gd": "1d5de716e8deac1ddeffd4e293b497de5f2884aebc0469578073b81277cf261d",
+    "scripts/source_avatar_combat.gd": "9066888875cec7671593c158473ec8343b51fad0ace58c89046bee92cb3e4e18",
+    "scripts/source_avatar_style.gd": "54ae9ef1b1d12d8379d106797141302be873b58717ab223fb499333f330c6ccc",
+    "assets/models/nyra054/nyra-attire054.glb": "8a96a9bac63a934213ddea77020d1b50dfd57e5270842ada69355925a5e906f1"
+  }
+}

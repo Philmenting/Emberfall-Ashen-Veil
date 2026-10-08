@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "scope": "Working-tree local integration evidence. Full 45-suite final source CI and complete sound movies remain pending. Initial 44-suite run had five migration/expectation failures; final corrected nine suites passed 1394 checks plus server checks. Physical Android remains unavailable.",
+  "results": {
+    "initial44_exit": 1,
+    "corrected9_exit": 0,
+    "corrected9_checks": 1394,
+    "python_exit": 0,
+    "python_tests": 39,
+    "native_audio_eof_exit": 0,
+    "native_audio_eof_checks": 79,
+    "cold_import_exit": 0,
+    "cold_export_exit": 0,
+    "packaged_avatar_exit": 0,
+    "packaged_avatar_checks": 20
+  },
+  "packaged_scope": "Cold staged assets and class runtime. All staged inputs are listed in cold-source-inputs.json. External accepted smoke is the final source script; capture EOF helper changed after this asset package was exported. Exact final source package will be covered by source CI.",
+  "packaged_avatar_test_sha256": "b6bbf98aebe52fd5267338ae31b0612e5f9c21bc3359fef1e9903474d3037401",
+  "pck_sha256": "91bf67aa0480bcf63b5d6efcf69863c19747cf8e7c85b61b881c82255bf554f2",
+  "shutdown_note": "The old dynamic class-script load order retained 3 SDK script resources at shutdown. Preloading the derived rig as production does, releasing owners and deferring final quit gives clean 20-check output. No SDK or product lifecycle was changed.",
+  "files": {
+    "regression-first44.log": "bfab15327674d0f787606cc9ff1006c3b664d455ea7a79ee892a73b715c6f8e5",
+    "regression-corrected9.log": "3f80c7480f9f6dab7c71c05c42fbbdf391b497961f1878cf8d6b5e5fe4c127e9",
+    "python-contracts.log": "61112a7de9ed2ec2d2d82d14e493ce8438716224a573fa6bf57e02eaff6a7fc8",
+    "native-audio-eof.log": "3a6e6ee4b47437b85aa04c25f42b4e4e7ea7e0411142296e7c170b90de3c7c30",
+    "cold-import.log": "28604579cb6a9939a52418eb4f5baf9eaebc88b0bac1d0bd5caa777479410af0",
+    "cold-export.log": "d44de8690007e4069d88cd030c203f4259fce9262eb2a03c8bf2e6b31a6cc55b",
+    "packaged-avatars.log": "69a2375a4b2de0b4e630eef18a76f89e0ca6e18e8396dba15a431e5ab7eb68ad",
+    "cold-source-inputs.json": "0155b658d7fd210c9eb501071f10cba168e908367d662aa7a1744db348d0f9c5"
+  }
+}

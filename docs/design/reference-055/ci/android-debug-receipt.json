@@ -1,0 +1,191 @@
+{
+  "schema": 1,
+  "observed_at": "2026-10-06T20:21:15.275763+00:00",
+  "source_commit": "ad4d50bb9dbdc07cea42e2306a79fc65bb642489",
+  "actual_checkout_commit": "d7d10a856b913ba07eb056c783564a8eebe915e4",
+  "actual_checkout_tree": "e6b3ca7a18af16f82ef9a883df82f6a71a597b1a",
+  "checkout_tree_matches_source_head": true,
+  "source_binding_receipt": "source-checkout-tree-binding.json",
+  "workflow": "Android Debug APK",
+  "workflow_run": 37523667981,
+  "job_id": 112475124129,
+  "run_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37523667981",
+  "job_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37523667981/job/112475124129",
+  "job_conclusion": "success",
+  "python_tests": 34,
+  "suites": [
+    {
+      "suite": "DUNGEON SMOKE",
+      "checks": 55,
+      "failures": 0
+    },
+    {
+      "suite": "PERSISTENCE SMOKE",
+      "checks": 89,
+      "failures": 0
+    },
+    {
+      "suite": "FELLOWSHIP UI SMOKE",
+      "checks": 11,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT MOVEMENT SMOKE",
+      "checks": 8,
+      "failures": 0
+    },
+    {
+      "suite": "BETA FLOW SMOKE",
+      "checks": 46,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT STANCES SMOKE",
+      "checks": 140,
+      "failures": 0
+    },
+    {
+      "suite": "RECOVERY SMOKE",
+      "checks": 48,
+      "failures": 0
+    },
+    {
+      "suite": "COMBINED OATHS / PHASES SMOKE",
+      "checks": 338,
+      "failures": 0
+    },
+    {
+      "suite": "CHARACTER EQUIPMENT SMOKE",
+      "checks": 38,
+      "failures": 0
+    },
+    {
+      "suite": "CHARACTER THREE D SMOKE",
+      "checks": 150,
+      "failures": 0
+    },
+    {
+      "suite": "PRESENTATION SMOKE",
+      "checks": 77,
+      "failures": 0
+    },
+    {
+      "suite": "MAIN COMBINED RULES SMOKE",
+      "checks": 156,
+      "failures": 0
+    },
+    {
+      "suite": "CAMP HUD SMOKE",
+      "checks": 44,
+      "failures": 0
+    },
+    {
+      "suite": "WORLD FRAMING SMOKE",
+      "checks": 900,
+      "failures": 0
+    },
+    {
+      "suite": "AUTHORED ART SMOKE",
+      "checks": 105,
+      "failures": 0
+    },
+    {
+      "suite": "REGIONS SMOKE",
+      "checks": 36,
+      "failures": 0
+    },
+    {
+      "suite": "GEAR / FORECAST SMOKE",
+      "checks": 38,
+      "failures": 0
+    },
+    {
+      "suite": "ONBOARDING SMOKE",
+      "checks": 19,
+      "failures": 0
+    },
+    {
+      "suite": "OPTIONS SMOKE",
+      "checks": 82,
+      "failures": 0
+    },
+    {
+      "suite": "CLOUD IDENTITY SMOKE",
+      "checks": 14,
+      "failures": 0
+    },
+    {
+      "suite": "MANA WARD SMOKE",
+      "checks": 27,
+      "failures": 0
+    },
+    {
+      "suite": "BOSS PATTERNS SMOKE",
+      "checks": 122,
+      "failures": 0
+    },
+    {
+      "suite": "CLASS LOOT SMOKE",
+      "checks": 29,
+      "failures": 0
+    },
+    {
+      "suite": "ARCANE TACTICS SMOKE",
+      "checks": 29,
+      "failures": 0
+    },
+    {
+      "suite": "JOURNEY SMOKE",
+      "checks": 413,
+      "failures": 0
+    },
+    {
+      "suite": "SKILL ROTATION SMOKE",
+      "checks": 135,
+      "failures": 0
+    },
+    {
+      "suite": "CONTRACTS SMOKE",
+      "checks": 68,
+      "failures": 0
+    },
+    {
+      "suite": "VISUALS SMOKE",
+      "checks": 73,
+      "failures": 0
+    }
+  ],
+  "godot_checks": 3290,
+  "godot_failures": 0,
+  "original_log_sha256": "71da140fc0f29e93a4ed339bfb308c7869a21c67cc3068ccdf2cef50ae274455",
+  "summary_sha256": "0995d18e0e3755fc82683457a326a7aca750f552ad7c1f4d57270d0262b28a09",
+  "diagnostics": [
+    "2026-10-06T20:08:59.6534637Z ERROR: ConfigFile parse error at <string>:0: Unexpected EOF while parsing simple tag.",
+    "2026-10-06T20:08:59.6538068Z ERROR: ConfigFile parse error at <string>:0: Unexpected EOF while parsing simple tag."
+  ],
+  "scope": "Actual hosted CI SDK packaging and headless regression success. Debug APK, CI-signed closed-beta APK and release AAB export/manifest/signature checks succeeded. Runtime emulator is a separate workflow; physical phone GPU, sustained performance and touch remain unmeasured.",
+  "diagnostics_scope": "Exactly two ConfigFile parser diagnostics are emitted by persistence_smoke.gd:176 after the test deliberately writes two malformed save generations. The same original log records the recovery assertion passing and PERSISTENCE SMOKE 89 checks, 0 failures. No GDScript or shader parse/runtime error, SDK build error or packaging failure occurs.",
+  "android_exports": [
+    {
+      "file": "emberfall-debug.apk",
+      "package": "com.philmenting.emberfallashenveil.test029",
+      "version_code": 54,
+      "version_name": "0.48.0-online-test",
+      "signature_v2_v3_verified": true
+    },
+    {
+      "file": "emberfall-closed-beta-ci.apk",
+      "package": "com.philmenting.emberfallashenveil.closedbeta",
+      "version_code": 54,
+      "version_name": "0.48.0-beta.1",
+      "target_sdk": 36,
+      "signature_v2_v3_verified": true,
+      "signing_scope": "CI smoke signing, not a production release certificate"
+    },
+    {
+      "file": "emberfall-beta-ci-release.aab",
+      "validation": "bundletool validates successfully in the export step",
+      "signing_scope": "CI smoke export, not Play publication"
+    }
+  ]
+}

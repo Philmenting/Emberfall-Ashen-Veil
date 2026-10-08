@@ -1,0 +1,82 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: native capture uses the actual AudioServer output rate and the live six-voice capacity
+PASS: crossing a real music loop returns precisely the requested stereo float samples
+PASS: the actual native music decoder wraps and continues playing
+PASS: a looping score fills the whole requested span and never receives one-shot EOF padding
+PASS: the native music bed remains finite, nonzero and below full scale
+PASS: music evidence fingerprints the exact original PCM bytes
+PASS: a real dungeon context change replaces and restarts the native score
+PASS: an unchanged music context does not restart or invent a transition
+PASS: an interrupted cast records actual gather/evade without an invented discharge or hit
+PASS: coincident accepted cues begin at the same explicit fixed-step sample boundary
+PASS: the real wall-clock duplicate rejection allocates neither a capture cue nor a live voice
+PASS: production suspension stops every captured effects playback
+PASS: suspension emits exact silence while preserving the paused score position
+PASS: suspended cues remain rejected by the ordinary director
+PASS: the seventh accepted cue steals the actual first ring slot, rather than adding a seventh voice
+PASS: coincident accepted sounds keep exactly the live six slots and cursor order
+PASS: captured slot 2 retains the exact stream allocated by AudioDirector
+PASS: captured slot 3 retains the exact stream allocated by AudioDirector
+PASS: captured slot 4 retains the exact stream allocated by AudioDirector
+PASS: captured slot 5 retains the exact stream allocated by AudioDirector
+PASS: captured slot 0 retains the exact stream allocated by AudioDirector
+PASS: captured slot 1 retains the exact stream allocated by AudioDirector
+PASS: six accepted effects and the original music bed mix audibly with retained headroom
+PASS: actual master mute produces silence and clears existing effects
+PASS: master mute cannot create a native capture discharge
+PASS: capture reads the real normalized gain and independent music mute
+PASS: muting the music keeps an accepted effects cue audible
+PASS: effects mute clears voices while the score resumes from its preserved position
+PASS: chronological frame 0 has no missing or overlapping native PCM samples
+PASS: chronological frame 1 has no missing or overlapping native PCM samples
+PASS: chronological frame 2 has no missing or overlapping native PCM samples
+PASS: chronological frame 3 has no missing or overlapping native PCM samples
+PASS: chronological frame 4 has no missing or overlapping native PCM samples
+PASS: chronological frame 5 has no missing or overlapping native PCM samples
+PASS: chronological frame 6 has no missing or overlapping native PCM samples
+PASS: chronological frame 7 has no missing or overlapping native PCM samples
+PASS: chronological frame 8 has no missing or overlapping native PCM samples
+PASS: chronological frame 9 has no missing or overlapping native PCM samples
+PASS: chronological frame 10 has no missing or overlapping native PCM samples
+PASS: chronological frame 11 has no missing or overlapping native PCM samples
+PASS: chronological frame 12 has no missing or overlapping native PCM samples
+PASS: chronological frame 13 has no missing or overlapping native PCM samples
+PASS: chronological frame 14 has no missing or overlapping native PCM samples
+PASS: chronological frame 15 has no missing or overlapping native PCM samples
+PASS: chronological frame 16 has no missing or overlapping native PCM samples
+PASS: chronological frame 17 has no missing or overlapping native PCM samples
+PASS: chronological frame 18 has no missing or overlapping native PCM samples
+PASS: chronological frame 19 has no missing or overlapping native PCM samples
+PASS: chronological frame 20 has no missing or overlapping native PCM samples
+PASS: chronological frame 21 has no missing or overlapping native PCM samples
+PASS: chronological frame 22 has no missing or overlapping native PCM samples
+PASS: chronological frame 23 has no missing or overlapping native PCM samples
+PASS: chronological frame 24 has no missing or overlapping native PCM samples
+PASS: chronological frame 25 has no missing or overlapping native PCM samples
+PASS: chronological frame 26 has no missing or overlapping native PCM samples
+PASS: chronological frame 27 has no missing or overlapping native PCM samples
+PASS: chronological frame 28 has no missing or overlapping native PCM samples
+PASS: chronological frame 29 has no missing or overlapping native PCM samples
+PASS: thirty recorded frames produce exactly one second of native audio
+PASS: the durable audio summary describes the real finite stereo PCM and audible energy
+PASS: detaching removes all observational connections
+PASS: halving the actual master preference halves every captured native effects sample in both channels
+PASS: short native effect EOF preserves every sample in chronological frame 0
+PASS: short native effect EOF preserves every sample in chronological frame 1
+PASS: short native effect EOF preserves every sample in chronological frame 2
+PASS: real SFX EOF evidence records the exact valid tail and zero-padding boundary
+PASS: short native effect EOF preserves every sample in chronological frame 3
+PASS: short native effect EOF preserves every sample in chronological frame 4
+PASS: short native effect EOF preserves every sample in chronological frame 5
+PASS: short native effect EOF preserves every sample in chronological frame 6
+PASS: short native effect EOF preserves every sample in chronological frame 7
+PASS: the real short WAV decoder returns a partial block at actual EOF
+PASS: every valid EOF-tail sample matches the independent native decoder and every remaining sample is exact zero
+PASS: an ended one-shot is recorded exactly once and remains ended
+PASS: completed effects leave the future recording timeline silent without restarting or inventing cues
+PASS: the native resampler's final valid samples are drained after is_playing becomes false
+PASS: native buffered one-shot data is exhausted exactly once at the decoder's actual EOF
+PASS: single-sample EOF draining matches native output without shortening or extending the sample clock
+PASS: drained native resampler history cannot resurrect an ended cue
+NATIVE CAPTURE AUDIO SMOKE: 79 checks, 0 failures

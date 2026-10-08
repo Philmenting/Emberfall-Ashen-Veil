@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "file": "native-game-audio.f32le.gz",
+  "compressed_bytes": 12716386,
+  "compressed_sha256": "68165e45535ed270bcb482ba6621030be758024ca867c17f27046411c1982d70",
+  "uncompressed_bytes": 29352960,
+  "uncompressed_sha256": "ae1553e7bb746cff82181785597ef5c7246900008be5f93d2f11cccf67c21316",
+  "compression": "Lossless gzip level6, mtime0, no filename header; original native stereo float32 little-endian PCM unchanged, not AAC-decoded audio."
+}

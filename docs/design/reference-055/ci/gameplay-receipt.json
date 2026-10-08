@@ -1,0 +1,229 @@
+{
+  "schema": 1,
+  "observed_at": "2026-10-06T20:18:21.974422+00:00",
+  "source_commit": "ad4d50bb9dbdc07cea42e2306a79fc65bb642489",
+  "workflow": "Gameplay Quality",
+  "workflow_run": 37523667376,
+  "job_id": 112475122423,
+  "run_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37523667376",
+  "job_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37523667376/job/112475122423",
+  "job_conclusion": "success",
+  "godot_suites": 45,
+  "godot_checks": 5300,
+  "godot_failures": 0,
+  "suites": [
+    {
+      "suite": "BETA FLOW SMOKE",
+      "checks": 46
+    },
+    {
+      "suite": "COMBAT STANCES SMOKE",
+      "checks": 140
+    },
+    {
+      "suite": "COMBAT MOVEMENT SMOKE",
+      "checks": 8
+    },
+    {
+      "suite": "JOURNEY SMOKE",
+      "checks": 413
+    },
+    {
+      "suite": "DUNGEON SMOKE",
+      "checks": 55
+    },
+    {
+      "suite": "PERSISTENCE SMOKE",
+      "checks": 89
+    },
+    {
+      "suite": "ARCANE TACTICS SMOKE",
+      "checks": 29
+    },
+    {
+      "suite": "BOSS PATTERNS SMOKE",
+      "checks": 122
+    },
+    {
+      "suite": "CLASS LOOT SMOKE",
+      "checks": 29
+    },
+    {
+      "suite": "CONTRACTS SMOKE",
+      "checks": 68
+    },
+    {
+      "suite": "COMBINED OATHS / PHASES SMOKE",
+      "checks": 338
+    },
+    {
+      "suite": "MAIN COMBINED RULES SMOKE",
+      "checks": 156
+    },
+    {
+      "suite": "GEAR / FORECAST SMOKE",
+      "checks": 38
+    },
+    {
+      "suite": "GEAR GOALS SMOKE",
+      "checks": 114
+    },
+    {
+      "suite": "REGIONS SMOKE",
+      "checks": 36
+    },
+    {
+      "suite": "ONBOARDING SMOKE",
+      "checks": 19
+    },
+    {
+      "suite": "SUCCESS LOOP SMOKE",
+      "checks": 87
+    },
+    {
+      "suite": "RECOVERY SMOKE",
+      "checks": 48
+    },
+    {
+      "suite": "OPTIONS SMOKE",
+      "checks": 82
+    },
+    {
+      "suite": "SKILL ROTATION SMOKE",
+      "checks": 135
+    },
+    {
+      "suite": "VISUALS SMOKE",
+      "checks": 73
+    },
+    {
+      "suite": "WORLD FRAMING SMOKE",
+      "checks": 900
+    },
+    {
+      "suite": "AUTHORED ART SMOKE",
+      "checks": 105
+    },
+    {
+      "suite": "CHARACTER EQUIPMENT SMOKE",
+      "checks": 38
+    },
+    {
+      "suite": "NATIVE EQUIPMENT FINISH SMOKE",
+      "checks": 129
+    },
+    {
+      "suite": "PRESENTATION SMOKE",
+      "checks": 77
+    },
+    {
+      "suite": "FRAME METRICS SMOKE",
+      "checks": 10
+    },
+    {
+      "suite": "ROOM GROUND SMOKE",
+      "checks": 19
+    },
+    {
+      "suite": "CHARACTER THREE D SMOKE",
+      "checks": 150
+    },
+    {
+      "suite": "SOURCE AVATAR",
+      "checks": 39
+    },
+    {
+      "suite": "SOURCE AVATAR GRIP",
+      "checks": 296
+    },
+    {
+      "suite": "SOURCE AVATAR ATTACK",
+      "checks": 120
+    },
+    {
+      "suite": "SOURCE AVATAR STYLE SMOKE",
+      "checks": 131
+    },
+    {
+      "suite": "CLASS AVATAR QUALITY SMOKE",
+      "checks": 398
+    },
+    {
+      "suite": "GUARDIAN PRESENTATION SMOKE",
+      "checks": 274
+    },
+    {
+      "suite": "HOSTILE QUALITY SMOKE",
+      "checks": 81
+    },
+    {
+      "suite": "DUNGEON LIGHTING SMOKE",
+      "checks": 60
+    },
+    {
+      "suite": "COMBAT AUDIO SMOKE",
+      "checks": 61
+    },
+    {
+      "suite": "NATIVE CAPTURE AUDIO SMOKE",
+      "checks": 79
+    },
+    {
+      "suite": "ANIMATION CRAFT SMOKE",
+      "checks": 55
+    },
+    {
+      "suite": "CAMP HUD SMOKE",
+      "checks": 44
+    },
+    {
+      "suite": "COMBAT READABILITY SMOKE",
+      "checks": 57
+    },
+    {
+      "suite": "FELLOWSHIP UI SMOKE",
+      "checks": 11
+    },
+    {
+      "suite": "CLOUD IDENTITY SMOKE",
+      "checks": 14
+    },
+    {
+      "suite": "MANA WARD SMOKE",
+      "checks": 27
+    }
+  ],
+  "python_tests": 39,
+  "exported_avatar_pck_checks": 20,
+  "exported_avatar_pck_failures": 0,
+  "server_checks": [
+    "PASS emberfall.js",
+    "PASS progression_runtime_test.js"
+  ],
+  "scope": "Actual CI success for regression and exported native resources on the checkout identified in the original job log. No script, shader or parse errors occur in that decoded log. This workflow does not build Android SDK APKs, execute Android or verify physical phone graphics, performance or touch. Android Debug and Android Beta Runtime are tracked separately.",
+  "evidence": {
+    "summary_log": "gameplay-summary.log",
+    "summary_sha256": "5ebb7e4a86b731a01f92f65157525db677fddb2205f13397c703e83816c00dd3",
+    "decoded_original_job_log": "gameplay-original-job.log",
+    "decoded_original_sha256": "bf6223351efd40d505e55481f31764b4c3231f5499a3560a663e822998648c2b"
+  },
+  "summary_sha256": "ac3468c49fe9a570cbd171c6d6a5921aec3959e3e08a03c5dd3150aa4aef6e50",
+  "original_log_sha256": "bf6223351efd40d505e55481f31764b4c3231f5499a3560a663e822998648c2b",
+  "checkout_evidence": [
+    "2026-10-06T20:04:31.0342735Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b",
+    "2026-10-06T20:04:31.2524578Z Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)",
+    "2026-10-06T20:04:31.3638424Z Download action repository 'actions/upload-artifact@v7' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)",
+    "2026-10-06T20:04:31.9479321Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +d7d10a856b913ba07eb056c783564a8eebe915e4:refs/remotes/pull/5/merge",
+    "2026-10-06T20:05:51.9070551Z  * [new ref]         d7d10a856b913ba07eb056c783564a8eebe915e4 -> pull/5/merge",
+    "2026-10-06T20:05:51.9155524Z ##[group]Checking out the ref",
+    "2026-10-06T20:05:53.0241305Z HEAD is now at d7d10a8 Merge ad4d50bb9dbdc07cea42e2306a79fc65bb642489 into 610c343073e7186589cba92c3fefb55a4db68e12",
+    "2026-10-06T20:05:53.0408791Z [command]/usr/bin/git log -1 --format=%H",
+    "2026-10-06T20:05:53.0436410Z d7d10a856b913ba07eb056c783564a8eebe915e4",
+    "2026-10-06T20:14:32.9336945Z SHA256 digest of uploaded artifact is 307e132d5b23216313e227e8659c7fde6631baf07955122352da142815312d5a"
+  ],
+  "actual_checkout_commit": "d7d10a856b913ba07eb056c783564a8eebe915e4",
+  "actual_checkout_tree": "e6b3ca7a18af16f82ef9a883df82f6a71a597b1a",
+  "source_head_tree": "e6b3ca7a18af16f82ef9a883df82f6a71a597b1a",
+  "checkout_tree_matches_source_head": true,
+  "source_binding_receipt": "source-checkout-tree-binding.json"
+}

@@ -1,0 +1,26 @@
+test_complete_profile_is_measurement_with_touch_pending_and_no_release_pass (test_android_device_probe.ObserverLifecycle.test_complete_profile_is_measurement_with_touch_pending_and_no_release_pass) ... ok
+test_live_failure_never_becomes_a_profile_pass (test_android_device_probe.ObserverLifecycle.test_live_failure_never_becomes_a_profile_pass) ... ok
+test_all_known_emulator_signals_are_refused (test_android_device_probe.ProbeContracts.test_all_known_emulator_signals_are_refused) ... ok
+test_android_service_parsers_preserve_units_and_missing_data (test_android_device_probe.ProbeContracts.test_android_service_parsers_preserve_units_and_missing_data) ... ok
+test_fixture_requires_all_distinct_cases_matching_apk_and_real_time (test_android_device_probe.ProbeContracts.test_fixture_requires_all_distinct_cases_matching_apk_and_real_time) ... ok
+test_identity_is_bounded_and_does_not_store_raw_serial (test_android_device_probe.ProbeContracts.test_identity_is_bounded_and_does_not_store_raw_serial) ... ok
+test_manifest_gate_refuses_shipping_or_online_or_nondebuggable_apks (test_android_device_probe.ProbeContracts.test_manifest_gate_refuses_shipping_or_online_or_nondebuggable_apks) ... ok
+test_missing_adb_is_explicit_unavailable_not_a_measurement (test_android_device_probe.ProbeContracts.test_missing_adb_is_explicit_unavailable_not_a_measurement) ... ok
+test_process_cpu_stat_accepts_names_with_spaces_and_parentheses (test_android_device_probe.ProbeContracts.test_process_cpu_stat_accepts_names_with_spaces_and_parentheses) ... ok
+test_subprocess_target_is_selected_without_a_host_shell (test_android_device_probe.ProbeContracts.test_subprocess_target_is_selected_without_a_host_shell) ... ok
+test_target_selection_never_implicitly_chooses_among_multiple_devices (test_android_device_probe.ProbeContracts.test_target_selection_never_implicitly_chooses_among_multiple_devices) ... ok
+test_unavailable_optional_services_do_not_hide_other_samples (test_android_device_probe.ProbeContracts.test_unavailable_optional_services_do_not_hide_other_samples) ... ok
+test_usb_charging_or_missing_power_state_never_claims_battery_drain (test_android_device_probe.ProbeContracts.test_usb_charging_or_missing_power_state_never_claims_battery_drain) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.024s
+
+OK
+{"status": "measured_touch_pending", "report": "/tmp/tmpm6m87l15/output/device-profile.json", "reason": null, "physical_device_measured": true}
+{"status": "failed", "report": "/tmp/tmpf7zl4v58/output/device-profile.json", "reason": "Activity start reported an error: Error type 3\nError: Activity does not exist", "physical_device_measured": false}
+{"status": "failed", "report": "/tmp/tmpmc180hhc/output/device-profile.json", "reason": "The QA process disappeared or failed to start", "physical_device_measured": false}
+{"status": "failed", "report": "/tmp/tmp9de9qs_3/output/device-profile.json", "reason": "The QA process restarted before finishing the profile", "physical_device_measured": false}
+{"status": "failed", "report": "/tmp/tmprmbfonr0/output/device-profile.json", "reason": "The fixture failed: missing combat", "physical_device_measured": false}
+{"status": "failed", "report": "/tmp/tmpt8b0t5jg/output/device-profile.json", "reason": "The QA process reported a script/runtime/shader error; see qa-logcat.txt", "physical_device_measured": false}
+{"status": "failed", "report": "/tmp/tmptq_c_jlz/output/device-profile.json", "reason": "Timed out without all six real-time class/quality measurements", "physical_device_measured": false}
+{"status": "unavailable", "report": "/tmp/tmpq2gmsfum/device-profile.json", "reason": "adb is unavailable; no physical Android device could be inspected", "physical_device_measured": false}

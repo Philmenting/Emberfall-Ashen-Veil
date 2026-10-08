@@ -1,0 +1,7 @@
+{
+  "scripts/class_avatar_rig.gd": "2a19ade9e2f8edf88cd81775ca92329098511c558ce96a8e9e52bb57c2f3f104",
+  "scripts/class_avatar_pose.gd": "55c67da5f08f91f3e8861fb6a58b6f19b31e0950657fe391ff274300be26350d",
+  "scripts/class_avatar_style.gd": "aef464e19ac01dab4d309e467c941df820ce7d47e07a1115a37f23de4936a166",
+  "tests/class_avatar_quality_smoke.gd": "a455f226dace8dad6ef563b977c115a5b8947110dbb09a63da3f2a7bffe33c03",
+  "tests/class_avatar_quality_preview.gd": "349dfe6c73c032c8fada837f2fc5d3b980f48a399127ee08ece87bd3ae26474d"
+}

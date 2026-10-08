@@ -1,0 +1,61 @@
+2026-10-07T20:23:07.5799382Z Version: 20261002.596
+2026-10-07T20:23:07.5805045Z Version: 20261004.327.1
+2026-10-07T20:28:27.0572925Z DUNGEON SMOKE: 55 checks, 0 failures
+2026-10-07T20:28:32.5086378Z ERROR: ConfigFile parse error at <string>:0: Unexpected EOF while parsing simple tag.
+2026-10-07T20:28:32.5104778Z ERROR: ConfigFile parse error at <string>:0: Unexpected EOF while parsing simple tag.
+2026-10-07T20:28:36.8121843Z PERSISTENCE SMOKE: 89 checks, 0 failures
+2026-10-07T20:28:39.6757206Z FELLOWSHIP UI SMOKE: 11 checks, 0 failures
+2026-10-07T20:28:42.0766898Z COMBAT MOVEMENT SMOKE: 8 checks, 0 failures
+2026-10-07T20:29:04.2759273Z BETA FLOW SMOKE: 46 checks, 0 failures
+2026-10-07T20:29:07.6901936Z COMBAT STANCES SMOKE: 140 checks, 0 failures
+2026-10-07T20:29:09.8728149Z RECOVERY SMOKE: 48 checks, 0 failures
+2026-10-07T20:29:10.3822809Z PROGRESSION RUNTIME: server-owned profile, bounded AFK settlement, allowlists, inventory and replay protection passed.
+2026-10-07T20:29:10.7824523Z Ran 39 tests in 0.119s
+2026-10-07T20:29:21.8891039Z COMBINED OATHS / PHASES SMOKE: 338 checks, 0 failures
+2026-10-07T20:29:26.2295037Z CHARACTER EQUIPMENT SMOKE: 48 checks, 0 failures
+2026-10-07T20:29:43.7217842Z CHARACTER THREE D SMOKE: 168 checks, 0 failures
+2026-10-07T20:29:48.7546272Z NATIVE MOTION TRANSITION SMOKE: 706 checks, 0 failures
+2026-10-07T20:29:52.3980203Z AVATAR ATTIRE QUALITY SMOKE: 306 checks, 0 failures
+2026-10-07T20:30:01.5633936Z NATIVE HOSTILE SMOKE: 3775 checks, 0 failures
+2026-10-07T20:30:07.4086851Z RENDER BUDGET SMOKE: 287 checks, 0 failures
+2026-10-07T20:30:15.3906784Z PRESENTATION SMOKE: 188 checks, 0 failures
+2026-10-07T20:30:23.5326782Z MAIN COMBINED RULES SMOKE: 156 checks, 0 failures
+2026-10-07T20:30:37.0837495Z CAMP HUD SMOKE: 44 checks, 0 failures
+2026-10-07T20:30:56.7244255Z WORLD FRAMING SMOKE: 900 checks, 0 failures
+2026-10-07T20:31:04.9595074Z AUTHORED ART SMOKE: 105 checks, 0 failures
+2026-10-07T20:32:47.7761024Z Verifies
+2026-10-07T20:32:47.7761923Z Verified using v1 scheme (JAR signing): false
+2026-10-07T20:32:47.7762224Z Verified using v2 scheme (APK Signature Scheme v2): true
+2026-10-07T20:32:47.7762491Z Verified using v3 scheme (APK Signature Scheme v3): true
+2026-10-07T20:32:47.7762760Z Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+2026-10-07T20:32:47.7763034Z Verified using v4 scheme (APK Signature Scheme v4): false
+2026-10-07T20:32:48.1284859Z Verifies
+2026-10-07T20:32:48.1285378Z Verified using v1 scheme (JAR signing): false
+2026-10-07T20:32:48.1285807Z Verified using v2 scheme (APK Signature Scheme v2): true
+2026-10-07T20:32:48.1286221Z Verified using v3 scheme (APK Signature Scheme v3): true
+2026-10-07T20:32:48.1286633Z Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+2026-10-07T20:32:48.1287069Z Verified using v4 scheme (APK Signature Scheme v4): false
+2026-10-07T20:32:48.3262495Z package: name='com.philmenting.emberfallashenveil.test029' versionCode='54' versionName='0.48.0-online-test' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'
+2026-10-07T20:32:48.3310391Z package: name='com.philmenting.emberfallashenveil.closedbeta' versionCode='54' versionName='0.48.0-beta.1' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'
+2026-10-07T20:32:53.6100476Z ANDROID AAB VERIFIED
+2026-10-07T20:32:53.6100930Z Package: com.philmenting.emberfallashenveil
+2026-10-07T20:32:53.6101274Z Version: 0.48.0-beta.1 (54)
+2026-10-07T20:32:53.6101779Z SDK range: 24–36
+2026-10-07T20:32:53.6102002Z Internet permission: absent
+2026-10-07T20:32:53.6102290Z Bundle structure and JAR signature: valid
+2026-10-07T20:32:53.6102698Z ARM64 native libraries: 2, all ELF LOAD segments support 16 KB pages
+2026-10-07T20:32:53.6103297Z Release manifest: landscape, not debuggable, OS backup disabled, VIBRATE only (optional haptics)
+2026-10-07T20:33:06.6558127Z CLOUD TRANSFER E2E: 36 checks, 0 failures
+2026-10-07T20:33:15.7361986Z REGIONS SMOKE: 36 checks, 0 failures
+2026-10-07T20:33:46.4854317Z GEAR / FORECAST SMOKE: 38 checks, 0 failures
+2026-10-07T20:33:53.3136185Z ONBOARDING SMOKE: 19 checks, 0 failures
+2026-10-07T20:33:58.4126198Z OPTIONS SMOKE: 82 checks, 0 failures
+2026-10-07T20:33:58.9123448Z CLOUD IDENTITY SMOKE: 14 checks, 0 failures
+2026-10-07T20:34:02.4435810Z MANA WARD SMOKE: 27 checks, 0 failures
+2026-10-07T20:34:25.9457698Z BOSS PATTERNS SMOKE: 122 checks, 0 failures
+2026-10-07T20:34:29.1989709Z CLASS LOOT SMOKE: 29 checks, 0 failures
+2026-10-07T20:34:41.8500941Z ARCANE TACTICS SMOKE: 29 checks, 0 failures
+2026-10-07T20:35:20.9357420Z JOURNEY SMOKE: 413 checks, 0 failures
+2026-10-07T20:35:35.1734995Z SKILL ROTATION SMOKE: 135 checks, 0 failures
+2026-10-07T20:35:56.4273008Z CONTRACTS SMOKE: 68 checks, 0 failures
+2026-10-07T20:36:03.1952339Z VISUALS SMOKE: 73 checks, 0 failures

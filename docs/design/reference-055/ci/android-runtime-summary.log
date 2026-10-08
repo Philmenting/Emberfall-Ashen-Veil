@@ -1,0 +1,15 @@
+2026-10-06T20:05:53.8130328Z HEAD is now at d7d10a8 Merge ad4d50bb9dbdc07cea42e2306a79fc65bb642489 into 610c343073e7186589cba92c3fefb55a4db68e12
+2026-10-06T20:06:28.9709498Z Ran 34 tests in 3.978s
+2026-10-06T20:07:06.5089648Z Exporting res://tests/android_beta_flow.tscn (x86_64) to /home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-afk-qa.apk
+2026-10-06T20:07:21.7555141Z Exporting res://tests/android_success_flow.tscn (x86_64) to /home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-success-qa.apk
+2026-10-06T20:07:32.3490591Z Exporting res://tests/android_art_flow.tscn (x86_64) to /home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-art-qa.apk
+2026-10-06T20:07:42.9422465Z Exporting res://tests/android_device_probe.tscn (arm64-v8a) to /home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-pixel-probe.apk
+2026-10-06T20:09:24.8926631Z Emulator booted.
+2026-10-06T20:15:14.5172572Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=324.252 pids=[2782] marker=ANDROID_BETA_PASS exact AFK ledger
+2026-10-06T20:15:28.5862241Z ANDROID_RUNTIME_MARKER verified launch=2 elapsed_seconds=13.294 pids=[5891] marker=ANDROID_BETA_PASS restart does not repeat
+2026-10-06T20:15:29.1438105Z ANDROID BETA RUNTIME VERIFIED: cooperative AFK, exact rewards and cold restart without duplicate settlement
+2026-10-06T20:16:28.8979786Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=53.928 pids=[6135] marker=ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI
+2026-10-06T20:16:39.2745442Z ANDROID_RUNTIME_MARKER verified launch=2 elapsed_seconds=9.494 pids=[6395] marker=ANDROID_SUCCESS_PASS restart preserves combined oaths
+2026-10-06T20:16:39.2777782Z ANDROID SUCCESS LOOP VERIFIED: first fight, skill inspection and resume, one-time relic, gear protection, bag filters, combined oaths and cold restart
+2026-10-06T20:22:15.5645985Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=331.776 pids=[6535] marker=ANDROID_ART_PASS all four regions rendered
+2026-10-06T20:22:17.0072348Z ANDROID ART VERIFIED: four guardian scenes, native 29-bone 3D skins, lit materials and moving screenshots

@@ -1,0 +1,326 @@
+{
+  "schema": 1,
+  "status": "complete_ai_visual_inspection_of_all_listed_retained_sheets; bounded_observations_not_whole_movie_acceptance",
+  "created_utc": "2026-10-08T00:18:44.186913+00:00",
+  "character_class": "vowkeeper",
+  "reviewer": "Codex agent receipt_binding",
+  "reviewer_type": "AI visual inspection through tools.view_image; no separate human signoff claimed",
+  "human_signoff": false,
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "review_tool_sha256": "83bff1cabc3e915bbcf857bc5f628e159f82088cff10090c5ab0cbb223d9987d",
+  "plan_file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper-review-plan.json",
+  "plan_sha256": "a8e1ba5f9721e00c8c8349131398cf6e0bfce04fe16ec2895bfea5a21a635301",
+  "comparison_file": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/vowkeeper-comparison.json",
+  "comparison_sha256": "4b59eefbe7166104f0dc93e96dc9bd5895284fbdc30bf2da7150c292e23d20a8",
+  "label": "first-hexer-telegraph-release-recovery-reset",
+  "provenance_binding": {
+    "before": {
+      "capture_receipt_file": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/receipt.json",
+      "capture_receipt_sha256": "840e980a74d05da1227173f9e0c3adaadaf532fbebbb88d4a2e9ac2ced795803",
+      "movie_sha256_from_finalized_capture_receipt": "e0f3194f1ad288bfa650143fa18d253e5220f09cad22fde5bb90fb494e6095b1",
+      "journal_sha256_from_finalized_capture_receipt": "6015c7d0c261abe1b70275ae2837ba7fb839b0110448ccc4042d7a47d63910a5"
+    },
+    "after": {
+      "capture_receipt_file": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/receipt.json",
+      "capture_receipt_sha256": "94f51f08ec795e87281c15b521513cf5717623de124cddd51a341589fbdd0561",
+      "movie_sha256_from_finalized_capture_receipt": "56f5a3cceeb8f10c8df035e1cc570ee3680fa7d7ecd5a0bd8e888f044a67b7d8",
+      "journal_sha256_from_finalized_capture_receipt": "48783f98c3e6df6c61815aea7d8c6791755757f7fa837e560928dae8c9f4c042"
+    }
+  },
+  "viewed_file_count": 8,
+  "viewed_panel_count": 44,
+  "pair": [
+    {
+      "side": "before",
+      "decode_receipt_file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+      "decode_receipt_sha256": "3b40e20a49131c568277448a39511c7016bf089f3a789072c737fff5a87bb9de",
+      "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+      "actual_ffmpeg_exit_code": 0,
+      "every_consecutive_frame_decoded": true,
+      "decoded_range": [
+        414,
+        462
+      ],
+      "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+      "exact_semantic_frames_retained": [
+        415,
+        416,
+        421,
+        422,
+        424,
+        425,
+        434,
+        435,
+        444,
+        445,
+        446,
+        458,
+        459
+      ],
+      "crop_xyxy": [
+        420,
+        65,
+        1041,
+        396
+      ],
+      "crop_size_pixels": [
+        621,
+        331
+      ],
+      "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+      "files": [
+        {
+          "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+          "sha256": "1f017eb29763ccdf2f31a66f258b00c2e7b057006d58a996436395f90d32b007",
+          "bytes": 333511,
+          "frames": [
+            414,
+            415,
+            416,
+            418,
+            421,
+            422
+          ],
+          "panel_count": 6,
+          "crop_xyxy": [
+            420,
+            65,
+            1041,
+            396
+          ],
+          "actually_viewed": true,
+          "view_tool": "tools.view_image",
+          "view_detail": "original",
+          "observation": "Source11 is the standing rear-left caster, separate from the caster beside the hero. Its tall green orb-topped staff is visible at414-422. An orange floor warning appears at416 and counts down; the near-hero source10 caster receives its lethal hit at422."
+        },
+        {
+          "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+          "sha256": "6f338e42842554f3dde5eac0e640af8f43ddbd0d79fe652e9a1750a3e72a1103",
+          "bytes": 339915,
+          "frames": [
+            424,
+            425,
+            426,
+            430,
+            434,
+            435
+          ],
+          "panel_count": 6,
+          "crop_xyxy": [
+            420,
+            65,
+            1041,
+            396
+          ],
+          "actually_viewed": true,
+          "view_tool": "tools.view_image",
+          "view_detail": "original",
+          "observation": "Orange countdown remains visible at424-435 while the hero moves right. Source11 remains rear-left with a prominent raised orb/staff; the source10 death response near the hero must not be mistaken for source11 release or recovery."
+        },
+        {
+          "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+          "sha256": "2740e278faaf632ada4bfff7de89e05688e7504e5a87d9d0632368a8babf2c9e",
+          "bytes": 333915,
+          "frames": [
+            438,
+            442,
+            444,
+            445,
+            446,
+            450
+          ],
+          "panel_count": 6,
+          "crop_xyxy": [
+            420,
+            65,
+            1041,
+            396
+          ],
+          "actually_viewed": true,
+          "view_tool": "tools.view_image",
+          "view_detail": "original",
+          "observation": "At438-442 source11 staff remains raised, then dips forward/lower at444-446. At446 the orange warning becomes a yellow impact ring and damage6 appears by the hero. This is the impact boundary, not the transient idle at445."
+        },
+        {
+          "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/before/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+          "sha256": "cb744363d884cfb617e0aa89a656d6c7547f811315c947bb6c14bd1efc6774c7",
+          "bytes": 217460,
+          "frames": [
+            454,
+            458,
+            459,
+            462
+          ],
+          "panel_count": 4,
+          "crop_xyxy": [
+            420,
+            65,
+            1041,
+            396
+          ],
+          "actually_viewed": true,
+          "view_tool": "tools.view_image",
+          "view_detail": "original",
+          "observation": "Staff/orb rises again at454-458; by459-462 the caster is upright in a walking/reset stance. The yellow impact ring is absent by458."
+        }
+      ]
+    },
+    {
+      "side": "after",
+      "decode_receipt_file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+      "decode_receipt_sha256": "a11bb82855157444844734dddf308ca6229ac5f4812879d14076d2673ce22130",
+      "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+      "actual_ffmpeg_exit_code": 0,
+      "every_consecutive_frame_decoded": true,
+      "decoded_range": [
+        414,
+        462
+      ],
+      "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+      "exact_semantic_frames_retained": [
+        415,
+        416,
+        421,
+        422,
+        424,
+        425,
+        434,
+        435,
+        444,
+        445,
+        446,
+        458,
+        459
+      ],
+      "crop_xyxy": [
+        420,
+        65,
+        1041,
+        396
+      ],
+      "crop_size_pixels": [
+        621,
+        331
+      ],
+      "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+      "files": [
+        {
+          "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+          "sha256": "2223107d2409da0b57be5905b84bc9ff1dda1e23cb1af56b53fef829858460b3",
+          "bytes": 331683,
+          "frames": [
+            414,
+            415,
+            416,
+            418,
+            421,
+            422
+          ],
+          "panel_count": 6,
+          "crop_xyxy": [
+            420,
+            65,
+            1041,
+            396
+          ],
+          "actually_viewed": true,
+          "view_tool": "tools.view_image",
+          "view_detail": "original",
+          "observation": "The rear-left source11 human green hood and full body are clearer. It carries the staff low and extends the free hand forward as the orange warning appears at416. The nearby source10 caster is hit lethally at422, a separate action."
+        },
+        {
+          "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+          "sha256": "0050bfaa1d4a50baaccebdfa0101f83c3a43745546d9d280c5d18a05b06dad2a",
+          "bytes": 337892,
+          "frames": [
+            424,
+            425,
+            426,
+            430,
+            434,
+            435
+          ],
+          "panel_count": 6,
+          "crop_xyxy": [
+            420,
+            65,
+            1041,
+            396
+          ],
+          "actually_viewed": true,
+          "view_tool": "tools.view_image",
+          "view_detail": "original",
+          "observation": "Through424-435 source11 holds a mostly sustained forward free-hand gesture with the staff low near the thigh/waist. Its weapon silhouette gives a quieter windup cue than the baseline raised orb staff. The hero and dying source10 caster overlap at the right."
+        },
+        {
+          "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+          "sha256": "87e98896e644986db49010bdb7774901199a053423e3d2aa4c480b5eb339c78c",
+          "bytes": 337226,
+          "frames": [
+            438,
+            442,
+            444,
+            445,
+            446,
+            450
+          ],
+          "panel_count": 6,
+          "crop_xyxy": [
+            420,
+            65,
+            1041,
+            396
+          ],
+          "actually_viewed": true,
+          "view_tool": "tools.view_image",
+          "view_detail": "original",
+          "observation": "At438-446 the source11 free-hand/staff silhouette changes little. No clear large staff release pose is distinguishable between445 and446. The floor warning-to-yellow-impact-ring change and damage6 at446 provide the readable release timing."
+        },
+        {
+          "file": "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/vowkeeper/after/first-hexer-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+          "sha256": "8fa4312d68cd4a7fcf935c7c25439f9bc0efbcaea73a16fc83c96ff4a37097ce",
+          "bytes": 218494,
+          "frames": [
+            454,
+            458,
+            459,
+            462
+          ],
+          "panel_count": 4,
+          "crop_xyxy": [
+            420,
+            65,
+            1041,
+            396
+          ],
+          "actually_viewed": true,
+          "view_tool": "tools.view_image",
+          "view_detail": "original",
+          "observation": "At454-458 source11 still has a quiet forward hand/low-staff pose. At459-462 the free hand settles lower and the stance shifts toward walking while the impact ring is gone. Fine recovery cadence is difficult to judge at game scale."
+        }
+      ]
+    }
+  ],
+  "ledger_semantics_verified_in_both_finalized_journals": {
+    "source_actor_id": 11,
+    "source_actor_location_in_views": "standing rear-left caster; source10 beside the hero dies at422 and is a separate actor",
+    "warning_frame": 416,
+    "transient_idle_frame_before_impact": 445,
+    "impact_and_hero_hit_frame": 446,
+    "hero_hit_damage": 6,
+    "last_recovery_frame": 458,
+    "true_walk_reset_frame": 459,
+    "native_bone_sample_scope": "The generic actor clip/release ledger supplies timing; no native bone samples were present for this common hexer, so fine skeletal timing is not established by those fields."
+  },
+  "comparison_observation": "After human hood/body silhouette is clearer. The orange floor countdown, yellow impact ring and damage6 visibly preserve readable warning/impact timing. After staff motion is quiet: a sustained forward free-hand gesture and low staff show little distinct release change at445/446 and subtle recovery. Baseline raised orb staff makes a larger visible dip/rise around release/recovery. This review does not claim that the updated staff animation has a strong game-scale windup-release-recovery silhouette.",
+  "limits": [
+    "All eight listed contact-sheet files and 44 retained panels were actually viewed with tools.view_image original detail. Every frame was decoded by the completed receipts, but only retained panels were visually inspected.",
+    "Shared crop is621x331 at 1:1 decoded pixel scale. Off-crop actors and environment are unjudged; the display may resize the whole sheet.",
+    "H264-decoded lossy video plus JPEG92 4:4:4 sheets; these are derived images rather than original Godot PNG captures.",
+    "Dark lighting and small on-screen caster scale limit exact hand, finger, staff grip, weapon contact, bone motion and subtle recovery judgments.",
+    "Journal timing distinguishes the true reset459 from transient idle445. Generic clip labels alone do not establish native skeletal windup, release or recovery quality.",
+    "No native bone-position validation, physical-device FPS, whole-movie human review, separate human signoff or release approval is claimed.",
+    "Commit binding uses completed comparison and decoder/capture provenance; Git/source content was not re-audited during this visual review."
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "recorded_at_utc": "2026-10-07T04:53:37.314041+00:00",
+  "engine": "Godot 4.7.2 stable linux x86_64",
+  "engine_binary": "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+  "command": "GODOT_BIN=/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64 python3 scripts/run_beta_checks.py --suite character_3d --suite presentation --suite hostile_quality",
+  "process_exit_code": 0,
+  "base_git_commit": "6b382e3dbdedce4e7d2a6d466b218ed959501242",
+  "source_state": "Uncommitted pass056 working tree; final offline Raider finger-fit changes were still pending. These results must not be attributed to the later frozen source without its final regression/CI run.",
+  "suites": {
+    "character_3d": {
+      "checks": 144,
+      "failures": 0
+    },
+    "presentation": {
+      "checks": 91,
+      "failures": 0
+    },
+    "hostile_quality": {
+      "checks": 82,
+      "failures": 0
+    }
+  },
+  "total_checks": 317,
+  "total_failures": 0,
+  "node_checks": {
+    "server/modules/emberfall.js": "passed syntax check",
+    "tests/progression_runtime_test.js": "passed"
+  },
+  "original_log_sha256": "9c9f2dede48c37204ebe13d16e6cc5142cd87f0549e9cd22f6c07b51648ee800",
+  "copied_log_sha256": "9c9f2dede48c37204ebe13d16e6cc5142cd87f0549e9cd22f6c07b51648ee800",
+  "checked_source_sha256": {
+    "tests/character_3d_smoke.gd": "e7a29346a262903a41116e5f581ee4f032d43811cbc1ad83b43435099ed699d9",
+    "tests/presentation_smoke.gd": "578d2f8222c2f09657198632098366e7726dec7750c229cf7ece39c53042fa0e",
+    "tests/hostile_quality_smoke.gd": "a7c35b5871027dc8602f70fbbb68310d9747ae25ab5b2306b454f6d3cb50ce2c",
+    "scripts/run_beta_checks.py": "ddbc6bb37f22f577c4ea81d196516e09d7e4bc1efa03b1f9c131052aab54c446",
+    "scripts/dungeon_actor.gd": "dd4716c699d0de56f5239e31f2d3b34ce15d61d5c7a5a6bee07bff2028f2ad37",
+    "scripts/dungeon_world.gd": "78dd8ec2d7bd86271f26120b515bc429dacf9853052d650d0ea33469de938209",
+    "scripts/source_avatar_rig.gd": "a7edaf2e5f364112b2f2e0c15991b21799d2d93e3fcefcb27324c6c13677bcc1",
+    "scripts/source_avatar_combat.gd": "567c47ab144411cb85cd829878484d45fac4cc0d133f4c50f5462f7db4053318",
+    "scripts/class_avatar_rig.gd": "e31e858975be1f50cd8dab0c6fb4b19c15f16bfc8a71d22fb5c2f0da4b6d313f",
+    "scripts/source_avatar_evade.gd": "ee8421c7ed9199ba2fece7989ac2e37be615d1feb2f151e273cfdb7419eb9fd2",
+    "scripts/raider_avatar_rig.gd": "98d1491c71a8fde167846498fe4b25cb00a8e067122f8d68892082d050032a17",
+    "tests/source_avatar_skin.gd": "c88a2bfc73ae8d57c6bf8aca3d608a1d5acc67fe051b651592ae45fe303a41dc",
+    "assets/models/raider056/raider-native65.glb": "8a89cbeb87691222f80a522145e7203139483adba17cd85edd0adff369da59b4",
+    "assets/models/raider056/raider-native65.json": "59b8ad1b5655207780956902241fd364994eb60edca48f552cf6bf9b7d85d32e",
+    "assets/models/raider056/axe-fitted.glb": "d2dfdc3ac3acc894362c9491e78d61071ed7e7c2e445288d0126f5ceb92044bc",
+    "assets/models/raider056/axe-grip.json": "af6eacbe20cbc1b63b1257b6c3364a614b89a3b71859d7d8ff318ebc1b8fd963",
+    "assets/models/raider056/death-grounding.json": "10e4e4536d3c2c76a9889176c729569e193e8f10c2f6191d1db43bbe4fb81b4e",
+    "server/modules/emberfall.js": "355664e2ca6dadb12e5f82ce3dd9b1d90439827499741f9399d3e1531394a5fc",
+    "tests/progression_runtime_test.js": "2bec52af70db9898dabe3a4ac40825c7764d9155fdee4e637fc3e879e2e0dd3a"
+  },
+  "coverage_note": "All seven remaining legacy hostile-role checks are retained. Native Raider is checked via all 65 bone lengths/scales, eight actual skin surfaces, actual indexed axe meshes and skin binds, attack/recovery contact continuity, hit reaction, zero-time stability, floor clearance and PBR ranges. Native65/legacy29 role silhouettes use six shared physical landmarks normalized by actual figure height.",
+  "source_hash_scope": "Selected integration inputs recorded immediately after the focused run; this working-tree receipt is not a complete immutable runtime manifest."
+}

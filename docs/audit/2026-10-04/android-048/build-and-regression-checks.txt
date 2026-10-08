@@ -1,0 +1,67 @@
+Actual filtered success lines; full logs remain in the linked GitHub runs.
+Source: 850721fd010dd62ddbf1a6c681f73955ffddc8b3
+
+quality-full.log
+PASS BETA FLOW SMOKE: 46 checks
+PASS COMBAT STANCES SMOKE: 140 checks
+PASS COMBAT MOVEMENT SMOKE: 8 checks
+PASS JOURNEY SMOKE: 413 checks
+PASS DUNGEON SMOKE: 55 checks
+PASS PERSISTENCE SMOKE: 89 checks
+PASS ARCANE TACTICS SMOKE: 29 checks
+PASS BOSS PATTERNS SMOKE: 122 checks
+PASS CLASS LOOT SMOKE: 29 checks
+PASS CONTRACTS SMOKE: 68 checks
+PASS COMBINED OATHS / PHASES SMOKE: 338 checks
+PASS MAIN COMBINED RULES SMOKE: 156 checks
+PASS GEAR / FORECAST SMOKE: 38 checks
+PASS GEAR GOALS SMOKE: 114 checks
+PASS REGIONS SMOKE: 36 checks
+PASS ONBOARDING SMOKE: 19 checks
+PASS SUCCESS LOOP SMOKE: 87 checks
+PASS RECOVERY SMOKE: 48 checks
+PASS OPTIONS SMOKE: 82 checks
+PASS SKILL ROTATION SMOKE: 135 checks
+PASS VISUALS SMOKE: 73 checks
+PASS WORLD FRAMING SMOKE: 900 checks
+PASS AUTHORED ART SMOKE: 105 checks
+PASS CHARACTER EQUIPMENT SMOKE: 37 checks
+PASS PRESENTATION SMOKE: 71 checks
+PASS FRAME METRICS SMOKE: 10 checks
+PASS ROOM GROUND SMOKE: 19 checks
+PASS CHARACTER THREE D SMOKE: 172 checks
+PASS ANIMATION CRAFT SMOKE: 50 checks
+PASS CAMP HUD SMOKE: 44 checks
+PASS COMBAT READABILITY SMOKE: 57 checks
+PASS FELLOWSHIP UI SMOKE: 11 checks
+PASS CLOUD IDENTITY SMOKE: 14 checks
+PASS MANA WARD SMOKE: 27 checks
+PASS emberfall.js
+PASS progression_runtime_test.js
+PROGRESSION RUNTIME: server-owned profile, bounded AFK settlement, allowlists, inventory and replay protection passed.
+
+build-full.log
+PROGRESSION RUNTIME: server-owned profile, bounded AFK settlement, allowlists, inventory and replay protection passed.
+Ran 5 tests in 0.007s
+OK
+Verifies
+Verified using v1 scheme (JAR signing): false
+Verified using v2 scheme (APK Signature Scheme v2): true
+Verified using v3 scheme (APK Signature Scheme v3): true
+Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+Verified using v4 scheme (APK Signature Scheme v4): false
+Verified for SourceStamp: false
+Verifies
+Verified using v1 scheme (JAR signing): false
+Verified using v2 scheme (APK Signature Scheme v2): true
+Verified using v3 scheme (APK Signature Scheme v3): true
+Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+Verified using v4 scheme (APK Signature Scheme v4): false
+Verified for SourceStamp: false
+package: name='com.philmenting.emberfallashenveil.test029' versionCode='54' versionName='0.48.0-online-test' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'
+package: name='com.philmenting.emberfallashenveil.closedbeta' versionCode='54' versionName='0.48.0-beta.1' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'
+sdkVersion:'24'
+targetSdkVersion:'36'
+ANDROID AAB VERIFIED
+Package: com.philmenting.emberfallashenveil
+ARM64 native libraries: 2, all ELF LOAD segments support 16 KB pages

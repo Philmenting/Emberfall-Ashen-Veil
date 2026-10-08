@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "godot": "4.7.2",
+  "suites": [
+    {
+      "name": "BETA FLOW SMOKE",
+      "checks": 46
+    },
+    {
+      "name": "COMBAT STANCES SMOKE",
+      "checks": 140
+    },
+    {
+      "name": "COMBAT MOVEMENT SMOKE",
+      "checks": 8
+    },
+    {
+      "name": "JOURNEY SMOKE",
+      "checks": 413
+    },
+    {
+      "name": "DUNGEON SMOKE",
+      "checks": 55
+    },
+    {
+      "name": "PERSISTENCE SMOKE",
+      "checks": 89
+    },
+    {
+      "name": "ARCANE TACTICS SMOKE",
+      "checks": 29
+    },
+    {
+      "name": "BOSS PATTERNS SMOKE",
+      "checks": 114
+    },
+    {
+      "name": "CLASS LOOT SMOKE",
+      "checks": 29
+    },
+    {
+      "name": "CONTRACTS SMOKE",
+      "checks": 68
+    },
+    {
+      "name": "GEAR / FORECAST SMOKE",
+      "checks": 38
+    },
+    {
+      "name": "REGIONS SMOKE",
+      "checks": 36
+    },
+    {
+      "name": "ONBOARDING SMOKE",
+      "checks": 19
+    },
+    {
+      "name": "SUCCESS LOOP SMOKE",
+      "checks": 86
+    },
+    {
+      "name": "OPTIONS SMOKE",
+      "checks": 77
+    },
+    {
+      "name": "SKILL ROTATION SMOKE",
+      "checks": 135
+    },
+    {
+      "name": "VISUALS SMOKE",
+      "checks": 69
+    },
+    {
+      "name": "AUTHORED ART SMOKE",
+      "checks": 56
+    },
+    {
+      "name": "PRESENTATION SMOKE",
+      "checks": 51
+    },
+    {
+      "name": "FELLOWSHIP UI SMOKE",
+      "checks": 11
+    },
+    {
+      "name": "CLOUD IDENTITY SMOKE",
+      "checks": 14
+    },
+    {
+      "name": "MANA WARD SMOKE",
+      "checks": 27
+    }
+  ],
+  "total_checks": 1610,
+  "failures": 0,
+  "android_release_unit_tests": 5,
+  "server_progression": "passed",
+  "first_descent_balance_runs": 72,
+  "oath_comparison_runs": 288,
+  "local_ui_resolutions": [
+    [
+      1200,
+      535
+    ],
+    [
+      1040,
+      1080
+    ],
+    [
+      854,
+      480
+    ]
+  ],
+  "local_native_fixture": "first descent, relic, oath and cold restart passed on Linux GL Compatibility; Android CI pending",
+  "physical_pixel_measurements": "not collected"
+}

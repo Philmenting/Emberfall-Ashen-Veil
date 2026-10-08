@@ -1,0 +1,83 @@
+{
+  "description": "Final imported source, affected suites, then exported PCK in empty external cwd",
+  "commands": [
+    {
+      "name": "editor-import",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "cwd": "/workspace/Emberfall-Ashen-Veil",
+      "actual_exit_code": 0,
+      "log": "editor-import.log",
+      "log_sha256": "18b830e220eb0d217959132aceda4b56cb37ed7f040fc80e8d8425e7e1356090",
+      "engine_error": false
+    },
+    {
+      "name": "affected-suites",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/Emberfall-Ashen-Veil/scripts/run_beta_checks.py",
+        "--suite",
+        "character_3d",
+        "--suite",
+        "presentation",
+        "--suite",
+        "hostile_quality",
+        "--suite",
+        "raider_native"
+      ],
+      "cwd": "/workspace/Emberfall-Ashen-Veil",
+      "actual_exit_code": 0,
+      "log": "affected-suites.log",
+      "log_sha256": "da6cc78e24900ad73e9765fd0860effe63fe741d0b3b543993417e82c89ea984",
+      "engine_error": false,
+      "summary": "BETA CHECKS: 4 Godot suites, 641 checks, 0 failures"
+    },
+    {
+      "name": "export-pack",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--export-pack",
+        "Android Closed Beta APK",
+        "/workspace/scratch/emberfall-quality-056/final-local/native-avatar-smoke.pck"
+      ],
+      "cwd": "/workspace/Emberfall-Ashen-Veil",
+      "actual_exit_code": 0,
+      "log": "export-pack.log",
+      "log_sha256": "30c894c4a9e303ea9530d25009d6421408c6f36640479a6e2aa14e4709c3141d",
+      "engine_error": false
+    },
+    {
+      "name": "exported-resources",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--main-pack",
+        "/workspace/scratch/emberfall-quality-056/final-local/native-avatar-smoke.pck",
+        "--script",
+        "/workspace/Emberfall-Ashen-Veil/tests/source_avatar_export_smoke.gd"
+      ],
+      "cwd": "/workspace/scratch/emberfall-quality-056/final-local/empty-cwd",
+      "actual_exit_code": 0,
+      "log": "exported-resources.log",
+      "log_sha256": "bc0832e5e755a040d1e6a736ab67fcece13b86adc887a881b6221a02b63a64cc",
+      "engine_error": false,
+      "summary": "EXPORTED AVATAR SMOKE: 32 checks, 0 failures"
+    }
+  ],
+  "package": {
+    "name": "native-avatar-smoke.pck",
+    "bytes": 85802304,
+    "sha256": "ab53aad429a79e3e39205aa4ddeaa39a87b9927608564e228dd818ded9976d9f"
+  },
+  "passed": true
+}

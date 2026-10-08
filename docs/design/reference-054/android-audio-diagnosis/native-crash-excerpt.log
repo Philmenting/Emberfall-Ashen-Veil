@@ -1,0 +1,31 @@
+10-06 14:50:40.488  2702  3080 F libc    : Fatal signal 11 (SIGSEGV), code 2 (SEGV_ACCERR), fault addr 0x7b3c93724000 in tid 3080 (AudioTrack), pid 2702 (shenveil.betaqa)
+10-06 14:50:41.623  4044  4044 F DEBUG   : *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+10-06 14:50:41.623  4044  4044 F DEBUG   : Build fingerprint: 'google/sdk_gphone64_x86_64/emu64xa:16/BE2A.250530.026.F3/13894323:userdebug/dev-keys'
+10-06 14:50:41.623  4044  4044 F DEBUG   : Revision: '0'
+10-06 14:50:41.623  4044  4044 F DEBUG   : ABI: 'x86_64'
+10-06 14:50:41.623  4044  4044 F DEBUG   : Timestamp: 2026-10-06 14:50:40.576525870+0000
+10-06 14:50:41.623  4044  4044 F DEBUG   : Process uptime: 36s
+10-06 14:50:41.623  4044  4044 F DEBUG   : Cmdline: com.philmenting.emberfallashenveil.betaqa
+10-06 14:50:41.623  4044  4044 F DEBUG   : pid: 2702, tid: 3080, name: AudioTrack  >>> com.philmenting.emberfallashenveil.betaqa <<<
+10-06 14:50:41.623  4044  4044 F DEBUG   : uid: 10216
+10-06 14:50:41.623  4044  4044 F DEBUG   : signal 11 (SIGSEGV), code 2 (SEGV_ACCERR), fault addr 0x00007b3c93724000
+10-06 14:50:41.623  4044  4044 F DEBUG   :     rax 00007b3c9ca7a520  rbx 0000000000000019  rcx 0000000000000000  rdx 0000000000000018
+10-06 14:50:41.623  4044  4044 F DEBUG   :     r8  0000000000000016  r9  0000000000000001  r10 0000000000000000  r11 0000000000040998
+10-06 14:50:41.623  4044  4044 F DEBUG   :     r12 00007b3c9ca7a518  r13 00007b3c936a2cd0  r14 00007b3c9ca7aaa8  r15 0000000000000080
+10-06 14:50:41.623  4044  4044 F DEBUG   :     rdi 00007b3c9ca7a390  rsi 0000000000040998
+10-06 14:50:41.623  4044  4044 F DEBUG   :     rbp 00007b3c0ceb4060  rsp 00007b3c0ceb3fb0  rip 00007b3c10e18ebb
+10-06 14:50:41.623  4044  4044 F DEBUG   : 13 total frames
+10-06 14:50:41.623  4044  4044 F DEBUG   : backtrace:
+10-06 14:50:41.623  4044  4044 F DEBUG   :       #00 pc 0000000003205ebb  /data/app/~~fOXnJRQxiwVnzoDr61xOqw==/com.philmenting.emberfallashenveil.betaqa-W1FjkC0VheyOUJxyiXtPUQ==/lib/x86_64/libgodot_android.so (BuildId: f0c5138191a465a56ba55d32ef7ba7d2ea4a7762)
+10-06 14:50:41.623  4044  4044 F DEBUG   :       #01 pc 00000000037cb8a3  /data/app/~~fOXnJRQxiwVnzoDr61xOqw==/com.philmenting.emberfallashenveil.betaqa-W1FjkC0VheyOUJxyiXtPUQ==/lib/x86_64/libgodot_android.so (BuildId: f0c5138191a465a56ba55d32ef7ba7d2ea4a7762)
+10-06 14:50:41.623  4044  4044 F DEBUG   :       #02 pc 00000000037a464c  /data/app/~~fOXnJRQxiwVnzoDr61xOqw==/com.philmenting.emberfallashenveil.betaqa-W1FjkC0VheyOUJxyiXtPUQ==/lib/x86_64/libgodot_android.so (BuildId: f0c5138191a465a56ba55d32ef7ba7d2ea4a7762)
+10-06 14:50:41.623  4044  4044 F DEBUG   :       #03 pc 00000000037a211e  /data/app/~~fOXnJRQxiwVnzoDr61xOqw==/com.philmenting.emberfallashenveil.betaqa-W1FjkC0VheyOUJxyiXtPUQ==/lib/x86_64/libgodot_android.so (BuildId: f0c5138191a465a56ba55d32ef7ba7d2ea4a7762)
+10-06 14:50:41.623  4044  4044 F DEBUG   :       #04 pc 0000000001218bbd  /data/app/~~fOXnJRQxiwVnzoDr61xOqw==/com.philmenting.emberfallashenveil.betaqa-W1FjkC0VheyOUJxyiXtPUQ==/lib/x86_64/libgodot_android.so (BuildId: f0c5138191a465a56ba55d32ef7ba7d2ea4a7762)
+10-06 14:50:41.623  4044  4044 F DEBUG   :       #05 pc 000000000001f5cd  /system/lib64/libwilhelm.so (android::AudioTrackCallback::onMoreData(android::AudioTrack::Buffer const&)+157) (BuildId: a275562ea5a4d21868ddcdc6068d321a)
+10-06 14:50:41.623  4044  4044 F DEBUG   :       #06 pc 00000000000b9245  /system/lib64/libaudioclient.so (android::AudioTrack::processAudioBuffer()+3301) (BuildId: 3a4034f2e26b43ec8efce431ad06dfd5)
+10-06 14:50:41.623  4044  4044 F DEBUG   :       #07 pc 00000000000b82bb  /system/lib64/libaudioclient.so (android::AudioTrack::AudioTrackThread::threadLoop()+443) (BuildId: 3a4034f2e26b43ec8efce431ad06dfd5)
+10-06 14:50:41.623  4044  4044 F DEBUG   :       #08 pc 00000000000196f1  /system/lib64/libutils.so (android::Thread::_threadLoop(void*)+161) (BuildId: 5cc628b071d29c54b7d93955e6a5c990)
+10-06 14:50:41.623  4044  4044 F DEBUG   :       #09 pc 000000000011b82e  /system/lib64/libandroid_runtime.so (android::AndroidRuntime::javaThreadShell(void*)+142) (BuildId: 88fea1b94cf3198cbd0e8df7e23e9710)
+10-06 14:50:41.623  4044  4044 F DEBUG   :       #10 pc 000000000001b9af  /system/lib64/libutils.so (libutil_thread_trampoline(void*) (.__uniq.226528677032898775202282855395389835431)+15) (BuildId: 5cc628b071d29c54b7d93955e6a5c990)
+10-06 14:50:41.623  4044  4044 F DEBUG   :       #11 pc 000000000007ac5f  /apex/com.android.runtime/lib64/bionic/libc.so (__pthread_start(void*)+63) (BuildId: fcb82240218d1473de1e3d2137c0be35)
+10-06 14:50:41.623  4044  4044 F DEBUG   :       #12 pc 000000000006d94d  /apex/com.android.runtime/lib64/bionic/libc.so (__start_thread+61) (BuildId: fcb82240218d1473de1e3d2137c0be35)

@@ -1,0 +1,68 @@
+RUN beta_flow_smoke.gd
+PASS BETA FLOW SMOKE: 46 checks
+RUN combat_stances_smoke.gd
+PASS COMBAT STANCES SMOKE: 140 checks
+RUN combat_movement_smoke.gd
+PASS COMBAT MOVEMENT SMOKE: 8 checks
+RUN journey_smoke.gd
+PASS JOURNEY SMOKE: 413 checks
+RUN dungeon_smoke.gd
+PASS DUNGEON SMOKE: 55 checks
+RUN persistence_smoke.gd
+PASS PERSISTENCE SMOKE: 89 checks
+RUN arcane_tactics_smoke.gd
+PASS ARCANE TACTICS SMOKE: 29 checks
+RUN boss_patterns_smoke.gd
+PASS BOSS PATTERNS SMOKE: 122 checks
+RUN class_loot_smoke.gd
+PASS CLASS LOOT SMOKE: 29 checks
+RUN contracts_smoke.gd
+PASS CONTRACTS SMOKE: 68 checks
+RUN combined_oaths_phases_smoke.gd
+PASS COMBINED OATHS / PHASES SMOKE: 338 checks
+RUN main_combined_rules_smoke.gd
+PASS MAIN COMBINED RULES SMOKE: 156 checks
+RUN gear_forecast_smoke.gd
+PASS GEAR / FORECAST SMOKE: 38 checks
+RUN gear_goals_smoke.gd
+PASS GEAR GOALS SMOKE: 114 checks
+RUN regions_smoke.gd
+PASS REGIONS SMOKE: 36 checks
+RUN onboarding_smoke.gd
+PASS ONBOARDING SMOKE: 19 checks
+RUN success_loop_smoke.gd
+PASS SUCCESS LOOP SMOKE: 87 checks
+RUN recovery_smoke.gd
+PASS RECOVERY SMOKE: 48 checks
+RUN options_smoke.gd
+PASS OPTIONS SMOKE: 77 checks
+RUN skill_rotation_smoke.gd
+PASS SKILL ROTATION SMOKE: 135 checks
+RUN visuals_smoke.gd
+PASS VISUALS SMOKE: 73 checks
+RUN world_framing_smoke.gd
+PASS WORLD FRAMING SMOKE: 900 checks
+RUN authored_art_smoke.gd
+PASS AUTHORED ART SMOKE: 105 checks
+RUN character_equipment_smoke.gd
+PASS CHARACTER EQUIPMENT SMOKE: 28 checks
+RUN presentation_smoke.gd
+PASS PRESENTATION SMOKE: 71 checks
+RUN character_3d_smoke.gd
+PASS CHARACTER THREE D SMOKE: 153 checks
+RUN animation_craft_smoke.gd
+PASS ANIMATION CRAFT SMOKE: 50 checks
+RUN camp_hud_smoke.gd
+PASS CAMP HUD SMOKE: 44 checks
+RUN combat_readability_smoke.gd
+PASS COMBAT READABILITY SMOKE: 57 checks
+RUN fellowship_ui_smoke.gd
+PASS FELLOWSHIP UI SMOKE: 11 checks
+RUN cloud_identity_smoke.gd
+PASS CLOUD IDENTITY SMOKE: 14 checks
+RUN mana_ward_smoke.gd
+PASS MANA WARD SMOKE: 27 checks
+PASS emberfall.js
+PASS progression_runtime_test.js
+PROGRESSION RUNTIME: server-owned profile, bounded AFK settlement, allowlists, inventory and replay protection passed.
+BETA CHECKS: 32 Godot suites, 3580 checks, 0 failures

@@ -1,0 +1,9 @@
+extends "res://tests/native_hostile_smoke.gd"
+var minimum_living_prop:=INF
+func audit_pose(actor: Node3D,label: String) -> void:
+ super.audit_pose(actor,label)
+ var rig=actor.motion_rig;var minimum=INF
+ for point in rig.weapon_points:minimum=minf(minimum,(rig.motion_node.transform*(rig.weapon.transform*point)).y)
+ minimum_living_prop=minf(minimum_living_prop,minimum)
+ check(minimum>=.0029,label+": all actual referenced held-prop vertices clear living floor; min="+str(minimum))
+ print("LIVING_PROP_FLOOR ",label," min_m=",minimum)

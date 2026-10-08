@@ -1,0 +1,11 @@
+# Quality 055: actual source CI receipts
+
+Head `ad4d50bb9dbdc07cea42e2306a79fc65bb642489` triggered all three completed, successful workflows. Each actual original job log records checkout `d7d10a856b913ba07eb056c783564a8eebe915e4` (PR merge into main `610c343073e7186589cba92c3fefb55a4db68e12`). The GitHub Git commit API confirms both head and merge share tree `e6b3ca7a18af16f82ef9a883df82f6a71a597b1a`; `source-checkout-tree-binding.json` preserves that binding. This is source-tree evidence, not independent embedded APK attestation.
+
+- Gameplay Quality: 45 Godot suites, 5,300 checks, 0 failures; 39 Python contracts; 20 exported native-resource/PCK checks, 0 failures; server syntax and progression pass.
+- Android Debug APK: 28 Godot suites, 3,290 checks, 0 failures; 34 Python contracts; SDK export and validation of debug APK, CI-signed closed-beta APK and release AAB pass. Two intentionally malformed-save ConfigFile diagnostics are preserved and identified in the debug receipt.
+- Android Beta Runtime: 34 Python contracts; four isolated QA exports, including ARM64 physical-probe APK; Android 16 x86_64 emulator markers for AFK/restart, success/restart, and art in all four regions. Five initial offline boot polls are preserved; the emulator booted and all five workloads passed.
+
+Each individual receipt links the actual run/job URLs and SHA256 of the decoded original log and bounded summary. `final-runs-runtime-status.json` contains actual final workflow/job/artifact metadata. The runtime evidence artifact is ID 11442207420, 53,496,975 bytes, archive SHA256 `c08f8e185832947517bba38091c4e27d372bab3013ed96b29b440bdf8d67110a`. No APK archives were downloaded by this observer. Four original region scenes and four Bell Warden motion stills have been reviewed; the unchanged selected PNGs, archive hash and observations are preserved in [the Android evidence](../android/receipt.json).
+
+No physical Android device exists in this workspace. The actual availability receipt remains `unavailable`, exit 3, `physical_device_measured:false`. The six-case Linux instrumentation smoke remains bounded to 20 seconds per case with its own frozen source manifest; the planned full hardware workload remains 200 seconds per case. Emulator results do not fill the physical performance, thermal, battery or touch boundary.

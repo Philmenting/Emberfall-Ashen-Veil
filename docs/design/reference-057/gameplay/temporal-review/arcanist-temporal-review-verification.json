@@ -1,0 +1,183 @@
+{
+  "schema": 1,
+  "status": "all_retained_derived_sheets_have_recorded_ai_visual_inspection; quality_concerns_remain",
+  "created_utc": "2026-10-08T00:30:43.787771+00:00",
+  "character_class": "arcanist",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "comparison_sha256": "89cb54bb8b6cc0cb3057a277a1475a915f786ef963b82aeed01f07ad4cb1262c",
+  "actual_native_capture_and_full_decode_exits": "Both finalized captures have actual Godot, FFmpeg encoder and complete media decode exit0; this verifier runs no engine.",
+  "planned_ranges_per_side": 17,
+  "actual_successful_range_decode_receipts": 34,
+  "all_retained_derived_sheet_files_recorded_as_actually_inspected": 80,
+  "separately_inspected_original_native_pngs": 6,
+  "decode_receipts": [
+    {
+      "file": "arcanist/before/first-signature-full-released-phrase/decode-receipt.json",
+      "sha256": "77cd586d10cf32275c9486f44d3881b416ff8bee21a15c9f49b3eaf3b3166376"
+    },
+    {
+      "file": "arcanist/before/first-basic-full-released-phrase/decode-receipt.json",
+      "sha256": "44765d55b9e0cc6c7cc1e19e63d6cbdce0d96bdee0c54bccd6314b25295c1bf2"
+    },
+    {
+      "file": "arcanist/before/first-starfall-full-released-phrase/decode-receipt.json",
+      "sha256": "6a23aabe17d8879afb009e244e94aa04fe335fb2cb00730d020dad6f7b56f857"
+    },
+    {
+      "file": "arcanist/before/first-chain-full-released-phrase/decode-receipt.json",
+      "sha256": "9a909b54123f4c816c23d44bbc77c72aacc5d85a2619d2217da94147d7b12387"
+    },
+    {
+      "file": "arcanist/before/first-lateral-evade/decode-receipt.json",
+      "sha256": "5228fb917e79a7ba35c50d1b0acbb78b19b4d75403cdfbe9d931ea616a278bfd"
+    },
+    {
+      "file": "arcanist/before/first-attack-to-evade/decode-receipt.json",
+      "sha256": "eb53c5fcb945ee7b461a9d9ad11ff98df55dbdae1920424315b441c623502676"
+    },
+    {
+      "file": "arcanist/before/additional-evade-2114/decode-receipt.json",
+      "sha256": "6572984afd574bc4f5e51c1ccc9a5f12a8c1940c8189f368e96adf8a61dbdf50"
+    },
+    {
+      "file": "arcanist/before/ordinary-travel-gait/decode-receipt.json",
+      "sha256": "fe538e32af06a855bfd3dd6ea6c79de27b5f6c6a6b36aff4c51cc86196bf5723"
+    },
+    {
+      "file": "arcanist/before/first-raider-death/decode-receipt.json",
+      "sha256": "77ef8263e5386c4c684e69bdeaa09dba6aa896f0876524693eccae6924607775"
+    },
+    {
+      "file": "arcanist/before/first-hexer-death/decode-receipt.json",
+      "sha256": "edd26945a8c303f41a82ef2a646e59ec0a1f25cf97ec499968b444c844899ec4"
+    },
+    {
+      "file": "arcanist/before/first-bulwark-death/decode-receipt.json",
+      "sha256": "a63300210da59b089d06e79fb39440956db4a98bdae8920faef66895590f9921"
+    },
+    {
+      "file": "arcanist/before/first-elite-death/decode-receipt.json",
+      "sha256": "ca57a543067c547e0c1c1b8a606cdcfecd9b8ca60499a86a69851fcd9c417252"
+    },
+    {
+      "file": "arcanist/before/first-boss-death/decode-receipt.json",
+      "sha256": "5958e2cb4aedf2f0c7088f304332904674e2f742fdf86e99695dc6acacb393eb"
+    },
+    {
+      "file": "arcanist/before/first-hexer-telegraph-release-interrupted-recovery/decode-receipt.json",
+      "sha256": "6588df479af7caa30a59abcb677050d619eecb4c122c6f0cf8f4c48616c983a8"
+    },
+    {
+      "file": "arcanist/before/additional-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "d9ba33e3b9d4cc713d0e3f4e5d3a7d0df11076820c7aebdd5c46676e7444ef0a"
+    },
+    {
+      "file": "arcanist/before/first-boss-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "b44f4196fd76989200e23dc0bb72d2eaa2515926467f85ebe1f31d1c34e49caf"
+    },
+    {
+      "file": "arcanist/before/original-ending-loot-ui/decode-receipt.json",
+      "sha256": "7618f688cae853e81ff7f35620fb11d32cceda1bfff8a7975527d4d211fd0d9c"
+    },
+    {
+      "file": "arcanist/after/first-signature-full-released-phrase/decode-receipt.json",
+      "sha256": "003ad9699c5a1eb68872d1e3ce751eac20d6e91e08355362876837972363469c"
+    },
+    {
+      "file": "arcanist/after/first-basic-full-released-phrase/decode-receipt.json",
+      "sha256": "d19683013e23a8f324e684cc24fd7b000b738ca3213261b8b3db430e8731ebd2"
+    },
+    {
+      "file": "arcanist/after/first-starfall-full-released-phrase/decode-receipt.json",
+      "sha256": "4085c2f4851bfd745adb862dad00d349e4a9b628924482447fee33dc3f3c4bb4"
+    },
+    {
+      "file": "arcanist/after/first-chain-full-released-phrase/decode-receipt.json",
+      "sha256": "21056f86703dedda418be8b93efc2144c7b4ba790878c4f859de0fce12458605"
+    },
+    {
+      "file": "arcanist/after/first-lateral-evade/decode-receipt.json",
+      "sha256": "34fcadee3f20162334a029a5ea59b2ae58eef7d69c10e0f57620387e3c428f79"
+    },
+    {
+      "file": "arcanist/after/first-attack-to-evade/decode-receipt.json",
+      "sha256": "d7ab1cdbc79530a94b3a72e2133962dcfc1a8eeebde7c21fb1433202e8756b58"
+    },
+    {
+      "file": "arcanist/after/additional-evade-2114/decode-receipt.json",
+      "sha256": "2331febf7d77014c9b776ea0eed41f3ec7de1b79f42a90cd1023e8d9197bba3b"
+    },
+    {
+      "file": "arcanist/after/ordinary-travel-gait/decode-receipt.json",
+      "sha256": "a3f850a11385e86d5dce216a6a2859e6ef21e9fce6bf6db11fc3caae6e664d59"
+    },
+    {
+      "file": "arcanist/after/first-raider-death/decode-receipt.json",
+      "sha256": "d57d9cde16b57f438e5550bc4362cca27179cfbaae1fa6dc9c6fc139ea252a36"
+    },
+    {
+      "file": "arcanist/after/first-hexer-death/decode-receipt.json",
+      "sha256": "ad5f83dd6a08258859b36211d5338bd869415d3c1fa9c06d3865fd343577b105"
+    },
+    {
+      "file": "arcanist/after/first-bulwark-death/decode-receipt.json",
+      "sha256": "d5bc2bd85f5b5be618eab66031cd1b65efa7b144b5c385c8d2beea3d7899ac51"
+    },
+    {
+      "file": "arcanist/after/first-elite-death/decode-receipt.json",
+      "sha256": "70965bac7bd2a04b6088bd54d77efaffaa694f117c7fa16bc78e524c7cd846a2"
+    },
+    {
+      "file": "arcanist/after/first-boss-death/decode-receipt.json",
+      "sha256": "1081abba7717782e2e01ed1c1adf85c22bbe71751af24f92e0a5439e2d936a03"
+    },
+    {
+      "file": "arcanist/after/first-hexer-telegraph-release-interrupted-recovery/decode-receipt.json",
+      "sha256": "580ee93356afb78fa4cf12606293feaa269d0ff8fc5c1a39773a0e0ff65e7c83"
+    },
+    {
+      "file": "arcanist/after/additional-hexer-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "732363b3e764a0f11cadaefb15d80ae1c7e890a9e7b0969fece9a16d5be2d494"
+    },
+    {
+      "file": "arcanist/after/first-boss-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "e726bf5182a6c08934b6dbc2ff5558794cd970e5290305a8f47533686a334daf"
+    },
+    {
+      "file": "arcanist/after/original-ending-loot-ui/decode-receipt.json",
+      "sha256": "f004f3e803f4e4aa85b997048fe85df82ddc5ddf9f69446a8b7e49b105dd57a0"
+    }
+  ],
+  "ai_visual_review_receipts": [
+    {
+      "file": "arcanist-common-death-human-review.json",
+      "sha256": "32f9f4b733f05baf90d0bad51ef1169f3b074c6eddea89e686d150820ef499ae"
+    },
+    {
+      "file": "arcanist-context-human-review.json",
+      "sha256": "4ca3432cc9b093d03a31305a133becf15967ae0bcb50360ef2e11b16ffbc1d41"
+    },
+    {
+      "file": "arcanist-guardian-ending-human-review.json",
+      "sha256": "2a6a7f0c349c941b3b0db61c670543f51229373ed1d80637784519cc373490d8"
+    },
+    {
+      "file": "arcanist-hero-human-review.json",
+      "sha256": "9fd8ab7a5ae72d45287ba0efffc81459e35f3f3086980418aa279175f23979d2"
+    },
+    {
+      "file": "arcanist-hexer-human-review.json",
+      "sha256": "004a10339d5612aecb2aab77eb8b34004d3afcf99178e55d3d0b30f83ee6514a"
+    }
+  ],
+  "human_signoff_claimed": false,
+  "release_readiness_claimed": false,
+  "limits": [
+    "AI inspection of bounded, retained frame samples; neither complete movie was watched frame by frame.",
+    "Derived H264 pixels remain lossy, including PNG contact sheets; JPEG92 context sheets add another documented compression step.",
+    "Successful capture/result/hash verification does not resolve the recorded Hexer/Guardian release-readability concerns.",
+    "No bone-detail-none ankle/anatomy proof, full death-completion approval, physical phone FPS or general beta quality acceptance inferred."
+  ],
+  "verifier_sha256": "dcf20ff49cc0ad342668dfc6201536f0dce4bd869c30f584ab2596803bcfbdf7"
+}

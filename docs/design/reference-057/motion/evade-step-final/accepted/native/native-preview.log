@@ -1,0 +1,24 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+NATIVE_MOTION_057_CAPTURE arcanist-signature-load.png
+NATIVE_MOTION_057_CAPTURE arcanist-signature-release.png
+NATIVE_MOTION_057_CAPTURE arcanist-signature-follow.png
+NATIVE_MOTION_057_CAPTURE arcanist-cancel-departure.png
+NATIVE_MOTION_057_CAPTURE arcanist-cancel-entry.png
+NATIVE_MOTION_057_CAPTURE arcanist-evade-low-step.png
+NATIVE_MOTION_057_CAPTURE ranger-signature-load.png
+NATIVE_MOTION_057_CAPTURE ranger-signature-release.png
+NATIVE_MOTION_057_CAPTURE ranger-signature-follow.png
+NATIVE_MOTION_057_CAPTURE ranger-cancel-departure.png
+NATIVE_MOTION_057_CAPTURE ranger-cancel-entry.png
+NATIVE_MOTION_057_CAPTURE ranger-evade-low-step.png
+NATIVE_MOTION_057_CAPTURE vowkeeper-signature-load.png
+NATIVE_MOTION_057_CAPTURE vowkeeper-signature-release.png
+NATIVE_MOTION_057_CAPTURE vowkeeper-signature-follow.png
+NATIVE_MOTION_057_CAPTURE vowkeeper-cancel-departure.png
+NATIVE_MOTION_057_CAPTURE vowkeeper-cancel-entry.png
+NATIVE_MOTION_057_CAPTURE vowkeeper-evade-low-step.png
+NATIVE MOTION TRANSITION PREVIEW: 18 original native diagnostic images

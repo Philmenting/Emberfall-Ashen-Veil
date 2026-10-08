@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "status": "verified_baseline_native_first30s",
+  "source_commit": "ad4d50bb9dbdc07cea42e2306a79fc65bb642489",
+  "original_full_capture_mp4_sha256": "4e3af95ae6bf92a27398cdbd6e6d6f39c45f6297515cd8f076b5492121fffa4e",
+  "original_full_frame_log_sha256": "7827333decafbb893be0eca815cbcde73d24ca0b09f13fe57be025a0b87fac39",
+  "frames": 900,
+  "playback_seconds": 30,
+  "simulation_clock_at_last_frame": 30.0000000000002,
+  "simulation_finished": false,
+  "won": false,
+  "event_counts": {
+    "hero_attack": 8,
+    "hero_release": 7,
+    "nova": 3,
+    "hit": 14,
+    "interrupt": 2,
+    "reinforcement_spawn": 1,
+    "engage": 2,
+    "warning": 3,
+    "evade": 2,
+    "technique_cast": 2,
+    "miss": 2,
+    "impact": 2,
+    "technique": 1,
+    "well": 1,
+    "objective": 1
+  },
+  "comparison_self": {
+    "compared_frames": 900,
+    "authoritative_trace_equal": true,
+    "before_authority_sha256": "432d6f7428949213873f65c567fd32b6b46eb64d581c9e847d63bc3ef4f00c6a",
+    "after_authority_sha256": "432d6f7428949213873f65c567fd32b6b46eb64d581c9e847d63bc3ef4f00c6a",
+    "authoritative_difference_frames": [],
+    "camera_transforms_equal": true,
+    "camera_difference_frames": [],
+    "accepted_audio_events_equal": true,
+    "audio_event_difference_frames": [],
+    "scope": "Actual clocks, HP, pending attacks, stages, guardian and combat events; hero_release and presentation poses are excluded from the authoritative trace."
+  },
+  "native_pcm": {
+    "sample_frames": 1323000,
+    "channels": 2,
+    "format": "IEEE float32 little endian",
+    "bytes_scanned": 10584000,
+    "sha256": "0cc976e2548be532070a43e12e5e1f5b6d783f8e30b9379561b4ca24ba150ffc",
+    "peak": 0.08527204394340515,
+    "rms": 0.007777785776120773,
+    "nonfinite_samples": 0,
+    "source_file": "native-game-audio.f32le.gz",
+    "exact_prefix_length_required": false,
+    "full_source_sha256": "ae1553e7bb746cff82181785597ef5c7246900008be5f93d2f11cccf67c21316",
+    "full_source_bytes": 29352960
+  },
+  "git_source_audit": {
+    "status": "all_exact_git_blob_bytes_matched",
+    "source_commit": "ad4d50bb9dbdc07cea42e2306a79fc65bb642489",
+    "compared_files": 168,
+    "disclosed_overlays": []
+  },
+  "world_seed": 1979,
+  "run_seed": 95635017,
+  "initial_stats": {
+    "ability_damage": 660,
+    "arcane_tactics": 1,
+    "armor": 104,
+    "attack": 216,
+    "attributes": {
+      "Dexterity": 10,
+      "Intellect": 22,
+      "Spirit": 21,
+      "Strength": 9,
+      "Vitality": 20
+    },
+    "auto_target_variance": 1,
+    "boss_patterns": 1,
+    "boss_phases": 1,
+    "class_mitigation": 0,
+    "combat_stance": "balanced",
+    "crit": 3.5,
+    "dungeon_generation": 6,
+    "dungeon_journey": 1,
+    "first_descent": 1,
+    "gear_power": 217,
+    "mana_cost": 25,
+    "mana_guard": 0.35,
+    "max_hp": 380,
+    "max_mana": 300,
+    "power": 530,
+    "route_pattern_version": 4,
+    "skill_loadout": [
+      "chain",
+      "starfall"
+    ],
+    "skill_rotation": 1
+  },
+  "selected_skill_loadout": [
+    "chain",
+    "starfall"
+  ],
+  "scope": "Read-only first900 recorded steps of the completed055native expedition; no new native frames or derived video produced by this analysis.",
+  "baseline_full_pcm_original_receipt_matches": true
+}

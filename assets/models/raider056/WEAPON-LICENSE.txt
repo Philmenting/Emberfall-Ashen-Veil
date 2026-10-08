@@ -1,0 +1,17 @@
+Axe Small by Quaternius
+License: CC0 1.0 Universal (Public Domain Dedication)
+https://creativecommons.org/publicdomain/zero/1.0/
+
+Author's Medieval Weapons source page, explicitly marked CC0:
+https://quaternius.com/packs/medievalweapons.html
+Public author listing for the original Axe Small FBX/GLTF, marked CC0 1.0:
+https://poly.pizza/m/o54NXjRI4V
+
+The original supplied model is retained byte for byte as axe-original.glb.
+Its download URL and original SHA-256 are recorded in axe-fitted.json.
+The fitted version retains the original steel blade and bevel geometry/normals;
+only its wooden handle fits the measured native male hand.
+
+This is an Emberfall source/attribution notice compiled from the public author
+license listings. It is not a claimed byte copy of the original Drive License.txt;
+that download endpoint returned a public quota-exceeded page.

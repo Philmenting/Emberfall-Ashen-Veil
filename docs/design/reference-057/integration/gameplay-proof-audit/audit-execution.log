@@ -1,0 +1,40 @@
+{
+  "status": "independent_finalized_technical_gameplay_proof_verified",
+  "assertions": 6188,
+  "mismatches": [],
+  "classes": [
+    {
+      "class": "arcanist",
+      "frames_each_side": 2496,
+      "seconds_each_side": 83.2,
+      "stereo_pcm_sample_frames": 3669120,
+      "paired_full_authority_equal": true,
+      "paired_camera_equal": true,
+      "paired_cues_equal_except_acceptance_wall_msec": true,
+      "after_guardian_combat_frames": 225,
+      "after_guardian_warning_frames": 87
+    },
+    {
+      "class": "ranger",
+      "frames_each_side": 2559,
+      "seconds_each_side": 85.3,
+      "stereo_pcm_sample_frames": 3761730,
+      "paired_full_authority_equal": true,
+      "paired_camera_equal": true,
+      "paired_cues_equal_except_acceptance_wall_msec": true,
+      "after_guardian_combat_frames": 291,
+      "after_guardian_warning_frames": 138
+    },
+    {
+      "class": "vowkeeper",
+      "frames_each_side": 3099,
+      "seconds_each_side": 103.3,
+      "stereo_pcm_sample_frames": 4555530,
+      "paired_full_authority_equal": true,
+      "paired_camera_equal": true,
+      "paired_cues_equal_except_acceptance_wall_msec": true,
+      "after_guardian_combat_frames": 468,
+      "after_guardian_warning_frames": 87
+    }
+  ]
+}

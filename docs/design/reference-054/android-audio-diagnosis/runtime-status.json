@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "status": "failed",
+  "package": "com.philmenting.emberfallashenveil.betaqa",
+  "fixture": "afk",
+  "started_at": "2026-10-06T14:49:45.904447+00:00",
+  "apk": {
+    "path": "/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-afk-qa.apk",
+    "sha256": "8c7da320df0b8bf303f9ac0061301c1ee0f66a385b30fed7012847d1dc12628a"
+  },
+  "provenance": {
+    "source_commit": "f78e68bc4a8da275f3d40612ea0aa3d448fb2586",
+    "github_sha": "744c95e3e1b4314e39e8cdb3083ae35b19a1c8b3",
+    "github_head_ref": "improve/animation-craft",
+    "github_run_id": "37481573580",
+    "github_run_attempt": "1",
+    "observer_sha256": "5c810ca9f7f50270f402089db3da399977b3544ad683d899a4f3e742db4edc8d"
+  },
+  "launches": [
+    {
+      "number": 1,
+      "status": "failed",
+      "process_observed": true,
+      "started_at": "2026-10-06T14:50:05.823427+00:00",
+      "pid_samples": [
+        {
+          "elapsed_seconds": 0.449,
+          "pids": []
+        },
+        {
+          "elapsed_seconds": 3.85,
+          "pids": [
+            2702
+          ]
+        },
+        {
+          "elapsed_seconds": 7.466,
+          "pids": [
+            2702
+          ]
+        },
+        {
+          "elapsed_seconds": 10.791,
+          "pids": [
+            2702
+          ]
+        },
+        {
+          "elapsed_seconds": 13.93,
+          "pids": [
+            2702
+          ]
+        },
+        {
+          "elapsed_seconds": 17.277,
+          "pids": [
+            2702
+          ]
+        },
+        {
+          "elapsed_seconds": 20.595,
+          "pids": [
+            2702
+          ]
+        },
+        {
+          "elapsed_seconds": 23.792,
+          "pids": [
+            2702
+          ]
+        },
+        {
+          "elapsed_seconds": 27.057,
+          "pids": [
+            2702
+          ]
+        },
+        {
+          "elapsed_seconds": 30.42,
+          "pids": [
+            2702
+          ]
+        },
+        {
+          "elapsed_seconds": 33.765,
+          "pids": [
+            2702
+          ]
+        },
+        {
+          "elapsed_seconds": 37.418,
+          "pids": []
+        }
+      ],
+      "marker": "ANDROID_BETA_PASS exact AFK ledger",
+      "log_file": "first-launch.log",
+      "all_log_file": "first-launch-all.log",
+      "marker_deadline_seconds": 900,
+      "start_grace_seconds": 30,
+      "elapsed_seconds": 38.447
+    }
+  ],
+  "diagnostic_errors": [],
+  "finished_at": "2026-10-06T14:50:44.269899+00:00",
+  "failure": {
+    "kind": "process_lost",
+    "message": "QA process disappeared before completing ANDROID_BETA_PASS exact AFK ledger (last PID(s): [2702]); see failure-logcat-all.log and failure-exit-info.txt"
+  }
+}

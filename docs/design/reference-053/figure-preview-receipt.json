@@ -1,0 +1,38 @@
+{
+  "command": [
+    "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+    "--path",
+    "/workspace/Emberfall-Ashen-Veil",
+    "--audio-driver",
+    "Dummy",
+    "--script",
+    "res://tests/source_avatar_grip_scene_preview.gd",
+    "--",
+    "--capture-dir=/workspace/scratch/emberfall-staff-grip-053/full-scene-001/captures"
+  ],
+  "started_utc": "2026-10-06T07:11:57Z",
+  "inputs_before": {
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/arcanist.glb": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/staff-grip053.glb": "98bd5832256f9a2fdbb68198d1dbf0d2db0b87c9c4d9d28b136cdfe54db0f11c",
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/staff-grip053.json": "fa80f22d398ee8d8947a2be4e6b8c8bb64a7d71a1b41b3489171257ea35735dc",
+    "/workspace/Emberfall-Ashen-Veil/scripts/dungeon_actor.gd": "371eac851948d14fbb5156f16d42352af36487416ff9c3ae3359fd546058448c",
+    "/workspace/Emberfall-Ashen-Veil/scripts/source_avatar_rig.gd": "6e47bd07bf876e7c3d8c9d37aef1ac6fe874eecaabb7cf978583c28e04282d64",
+    "/workspace/Emberfall-Ashen-Veil/tests/source_avatar_grip_scene_preview.gd": "8142ed0794166170f44f0d887c410d9c9bc0dee961ead60a92d3d0c601c9df6d"
+  },
+  "appearance_accepted": false,
+  "pid": 2369,
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_seconds": 4.468,
+  "inputs_after": {
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/arcanist.glb": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/staff-grip053.glb": "98bd5832256f9a2fdbb68198d1dbf0d2db0b87c9c4d9d28b136cdfe54db0f11c",
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/staff-grip053.json": "fa80f22d398ee8d8947a2be4e6b8c8bb64a7d71a1b41b3489171257ea35735dc",
+    "/workspace/Emberfall-Ashen-Veil/scripts/dungeon_actor.gd": "371eac851948d14fbb5156f16d42352af36487416ff9c3ae3359fd546058448c",
+    "/workspace/Emberfall-Ashen-Veil/scripts/source_avatar_rig.gd": "6e47bd07bf876e7c3d8c9d37aef1ac6fe874eecaabb7cf978583c28e04282d64",
+    "/workspace/Emberfall-Ashen-Veil/tests/source_avatar_grip_scene_preview.gd": "8142ed0794166170f44f0d887c410d9c9bc0dee961ead60a92d3d0c601c9df6d"
+  },
+  "inputs_unchanged": true,
+  "log_sha256": "04f2a1f2e4562217de3f398af192be334e219600b5f984bd29f901bcb43618f2",
+  "finished_utc": "2026-10-06T07:12:01Z"
+}

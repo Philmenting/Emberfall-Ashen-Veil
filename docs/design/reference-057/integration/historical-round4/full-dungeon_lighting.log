@@ -1,0 +1,63 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Vowkeeper region 0: real world contains its existing room key, actor rim, actor key and local fill
+PASS: Vowkeeper region 0: every visible authored body, garment and held weapon is eligible for the same character lights
+PASS: Vowkeeper region 0: actual batched court and masonry keep room lighting while character fill and rim cannot wash the floor
+PASS: Vowkeeper region 0: lighting retains the single existing room shadow pass and three existing directional lights
+PASS: Vowkeeper region 0: readability and room-light setup change no combat authority or settled camera
+PASS: Vowkeeper region 1: real world contains its existing room key, actor rim, actor key and local fill
+PASS: Vowkeeper region 1: every visible authored body, garment and held weapon is eligible for the same character lights
+PASS: Vowkeeper region 1: actual batched court and masonry keep room lighting while character fill and rim cannot wash the floor
+PASS: Vowkeeper region 1: lighting retains the single existing room shadow pass and three existing directional lights
+PASS: Vowkeeper region 1: readability and room-light setup change no combat authority or settled camera
+PASS: Vowkeeper region 2: real world contains its existing room key, actor rim, actor key and local fill
+PASS: Vowkeeper region 2: every visible authored body, garment and held weapon is eligible for the same character lights
+PASS: Vowkeeper region 2: actual batched court and masonry keep room lighting while character fill and rim cannot wash the floor
+PASS: Vowkeeper region 2: lighting retains the single existing room shadow pass and three existing directional lights
+PASS: Vowkeeper region 2: readability and room-light setup change no combat authority or settled camera
+PASS: Vowkeeper region 3: real world contains its existing room key, actor rim, actor key and local fill
+PASS: Vowkeeper region 3: every visible authored body, garment and held weapon is eligible for the same character lights
+PASS: Vowkeeper region 3: actual batched court and masonry keep room lighting while character fill and rim cannot wash the floor
+PASS: Vowkeeper region 3: lighting retains the single existing room shadow pass and three existing directional lights
+PASS: Vowkeeper region 3: readability and room-light setup change no combat authority or settled camera
+PASS: Arcanist region 0: real world contains its existing room key, actor rim, actor key and local fill
+PASS: Arcanist region 0: every visible authored body, garment and held weapon is eligible for the same character lights
+PASS: Arcanist region 0: actual batched court and masonry keep room lighting while character fill and rim cannot wash the floor
+PASS: Arcanist region 0: lighting retains the single existing room shadow pass and three existing directional lights
+PASS: Arcanist region 0: readability and room-light setup change no combat authority or settled camera
+PASS: Arcanist region 1: real world contains its existing room key, actor rim, actor key and local fill
+PASS: Arcanist region 1: every visible authored body, garment and held weapon is eligible for the same character lights
+PASS: Arcanist region 1: actual batched court and masonry keep room lighting while character fill and rim cannot wash the floor
+PASS: Arcanist region 1: lighting retains the single existing room shadow pass and three existing directional lights
+PASS: Arcanist region 1: readability and room-light setup change no combat authority or settled camera
+PASS: Arcanist region 2: real world contains its existing room key, actor rim, actor key and local fill
+PASS: Arcanist region 2: every visible authored body, garment and held weapon is eligible for the same character lights
+PASS: Arcanist region 2: actual batched court and masonry keep room lighting while character fill and rim cannot wash the floor
+PASS: Arcanist region 2: lighting retains the single existing room shadow pass and three existing directional lights
+PASS: Arcanist region 2: readability and room-light setup change no combat authority or settled camera
+PASS: Arcanist region 3: real world contains its existing room key, actor rim, actor key and local fill
+PASS: Arcanist region 3: every visible authored body, garment and held weapon is eligible for the same character lights
+PASS: Arcanist region 3: actual batched court and masonry keep room lighting while character fill and rim cannot wash the floor
+PASS: Arcanist region 3: lighting retains the single existing room shadow pass and three existing directional lights
+PASS: Arcanist region 3: readability and room-light setup change no combat authority or settled camera
+PASS: Ranger region 0: real world contains its existing room key, actor rim, actor key and local fill
+PASS: Ranger region 0: every visible authored body, garment and held weapon is eligible for the same character lights
+PASS: Ranger region 0: actual batched court and masonry keep room lighting while character fill and rim cannot wash the floor
+PASS: Ranger region 0: lighting retains the single existing room shadow pass and three existing directional lights
+PASS: Ranger region 0: readability and room-light setup change no combat authority or settled camera
+PASS: Ranger region 1: real world contains its existing room key, actor rim, actor key and local fill
+PASS: Ranger region 1: every visible authored body, garment and held weapon is eligible for the same character lights
+PASS: Ranger region 1: actual batched court and masonry keep room lighting while character fill and rim cannot wash the floor
+PASS: Ranger region 1: lighting retains the single existing room shadow pass and three existing directional lights
+PASS: Ranger region 1: readability and room-light setup change no combat authority or settled camera
+PASS: Ranger region 2: real world contains its existing room key, actor rim, actor key and local fill
+PASS: Ranger region 2: every visible authored body, garment and held weapon is eligible for the same character lights
+PASS: Ranger region 2: actual batched court and masonry keep room lighting while character fill and rim cannot wash the floor
+PASS: Ranger region 2: lighting retains the single existing room shadow pass and three existing directional lights
+PASS: Ranger region 2: readability and room-light setup change no combat authority or settled camera
+PASS: Ranger region 3: real world contains its existing room key, actor rim, actor key and local fill
+PASS: Ranger region 3: every visible authored body, garment and held weapon is eligible for the same character lights
+PASS: Ranger region 3: actual batched court and masonry keep room lighting while character fill and rim cannot wash the floor
+PASS: Ranger region 3: lighting retains the single existing room shadow pass and three existing directional lights
+PASS: Ranger region 3: readability and room-light setup change no combat authority or settled camera
+DUNGEON LIGHTING SMOKE: 60 checks, 0 failures

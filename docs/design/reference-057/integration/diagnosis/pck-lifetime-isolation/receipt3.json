@@ -1,0 +1,50 @@
+[
+  {
+    "name": "new_without_class_preload",
+    "command": [
+      "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--audio-driver",
+      "Dummy",
+      "--main-pack",
+      "/workspace/scratch/emberfall-quality-057/integration/package-native/native-avatar-smoke.pck",
+      "--script",
+      "/workspace/scratch/emberfall-quality-057/integration/pck-lifetime-isolation/new_without_class_preload.gd"
+    ],
+    "actual_exit_code": 0,
+    "seconds": 3.2296366110094823,
+    "log_sha256": "5a84fcdd6e147f10755b1fb1dbab99db19177e231b04f5d407babc758121d201"
+  },
+  {
+    "name": "single_hexer_without_class_preload",
+    "command": [
+      "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--audio-driver",
+      "Dummy",
+      "--main-pack",
+      "/workspace/scratch/emberfall-quality-057/integration/package-native/native-avatar-smoke.pck",
+      "--script",
+      "/workspace/scratch/emberfall-quality-057/integration/pck-lifetime-isolation/single_hexer_without_class_preload.gd"
+    ],
+    "actual_exit_code": 0,
+    "seconds": 1.9289077770081349,
+    "log_sha256": "4cb559433038acdbe7fdab6f104daf11327e21b190e08c6022f30ca3003240b9"
+  },
+  {
+    "name": "single_hexer",
+    "command": [
+      "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--audio-driver",
+      "Dummy",
+      "--main-pack",
+      "/workspace/scratch/emberfall-quality-057/integration/package-native/native-avatar-smoke.pck",
+      "--script",
+      "/workspace/scratch/emberfall-quality-057/integration/pck-lifetime-isolation/single_hexer.gd"
+    ],
+    "actual_exit_code": 0,
+    "seconds": 2.2163794719963335,
+    "log_sha256": "5a8155896977b1cc87071c003ae783190f93ad3d4c7a40bdc5cb725d5d30ab76"
+  }
+]

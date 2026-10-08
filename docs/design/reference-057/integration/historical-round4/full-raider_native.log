@@ -1,0 +1,4 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+RAIDER_NATIVE_SMOKE checks=324 failures=0 poses=15 max_finger_gap_m=0.00120912364218 max_penetration_m=0.00076865854859 max_actual_thumb_gap_m=0.00282471138053
+RAIDER NATIVE SMOKE: 324 checks, 0 failures

@@ -1,0 +1,134 @@
+[
+  {
+    "name": "focused-character_3d",
+    "command": [
+      "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--audio-driver",
+      "Dummy",
+      "--path",
+      "/workspace/Emberfall-Ashen-Veil",
+      "--fixed-fps",
+      "60",
+      "--script",
+      "res://tests/character_3d_smoke.gd"
+    ],
+    "cwd": "/workspace/Emberfall-Ashen-Veil",
+    "scope": "headless",
+    "actual_exit_code": 0,
+    "timed_out": false,
+    "wall_seconds": 24.27,
+    "strict_success": true,
+    "engine_error": false,
+    "bad_warning": false,
+    "allowed_intentional_diagnostics": [],
+    "summary_matches": [
+      [
+        "CHARACTER THREE D SMOKE",
+        "168",
+        "0"
+      ]
+    ],
+    "log": "focused-character_3d.log",
+    "log_sha256": "1981483b065f65a3c047b91a2d148101caf647324f548ad927ed7eb7bcca910d"
+  },
+  {
+    "name": "focused-source_avatar",
+    "command": [
+      "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--audio-driver",
+      "Dummy",
+      "--path",
+      "/workspace/Emberfall-Ashen-Veil",
+      "--fixed-fps",
+      "60",
+      "--script",
+      "res://tests/source_avatar_smoke.gd"
+    ],
+    "cwd": "/workspace/Emberfall-Ashen-Veil",
+    "scope": "headless",
+    "actual_exit_code": 0,
+    "timed_out": false,
+    "wall_seconds": 3.876,
+    "strict_success": true,
+    "engine_error": false,
+    "bad_warning": false,
+    "allowed_intentional_diagnostics": [],
+    "summary_matches": [
+      [
+        "SOURCE AVATAR",
+        "39",
+        "0"
+      ]
+    ],
+    "log": "focused-source_avatar.log",
+    "log_sha256": "f35f3a813a0c667afa65fd4f0ec6716ed83e4555ad1ade7711fd5672b11b75a7"
+  },
+  {
+    "name": "focused-source_avatar_attack_contact",
+    "command": [
+      "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--audio-driver",
+      "Dummy",
+      "--path",
+      "/workspace/Emberfall-Ashen-Veil",
+      "--fixed-fps",
+      "60",
+      "--script",
+      "res://tests/source_avatar_attack_contact_smoke.gd"
+    ],
+    "cwd": "/workspace/Emberfall-Ashen-Veil",
+    "scope": "headless",
+    "actual_exit_code": 0,
+    "timed_out": false,
+    "wall_seconds": 4.169,
+    "strict_success": true,
+    "engine_error": false,
+    "bad_warning": false,
+    "allowed_intentional_diagnostics": [],
+    "summary_matches": [
+      [
+        "SOURCE AVATAR ATTACK CONTACT SMOKE",
+        "295",
+        "0"
+      ]
+    ],
+    "log": "focused-source_avatar_attack_contact.log",
+    "log_sha256": "c512f87353c60bf929c9b27a2337bd360841442d5909db1480009c490b47ecf6"
+  },
+  {
+    "name": "focused-persistence",
+    "command": [
+      "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--audio-driver",
+      "Dummy",
+      "--path",
+      "/workspace/Emberfall-Ashen-Veil",
+      "--fixed-fps",
+      "60",
+      "--script",
+      "res://tests/persistence_smoke.gd"
+    ],
+    "cwd": "/workspace/Emberfall-Ashen-Veil",
+    "scope": "headless",
+    "actual_exit_code": 0,
+    "timed_out": false,
+    "wall_seconds": 13.564,
+    "strict_success": false,
+    "engine_error": true,
+    "bad_warning": false,
+    "allowed_intentional_diagnostics": [],
+    "summary_matches": [
+      [
+        "PERSISTENCE SMOKE",
+        "89",
+        "0"
+      ]
+    ],
+    "log": "focused-persistence.log",
+    "log_sha256": "ede87c32ec40b8fddc53c835f47bb87e23c22ae9ec05721b98cab126b3b9cae5"
+  }
+]

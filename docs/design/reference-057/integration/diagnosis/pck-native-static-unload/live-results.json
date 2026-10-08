@@ -1,0 +1,85 @@
+[
+  {
+    "name": "editor-import",
+    "command": [
+      "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--audio-driver",
+      "Dummy",
+      "--path",
+      "/workspace/Emberfall-Ashen-Veil",
+      "--editor",
+      "--import",
+      "--quit"
+    ],
+    "cwd": "/workspace/Emberfall-Ashen-Veil",
+    "scope": "headless",
+    "actual_exit_code": 0,
+    "timed_out": false,
+    "wall_seconds": 7.151,
+    "strict_success": true,
+    "engine_error": false,
+    "bad_warning": false,
+    "allowed_intentional_diagnostics": [],
+    "summary_matches": [],
+    "log": "editor-import.log",
+    "log_sha256": "5667e0012a5b9eeb1a655e8964e1229450bab5f7da1804d5169ff8b61d4c9af5"
+  },
+  {
+    "name": "export-pack",
+    "command": [
+      "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--audio-driver",
+      "Dummy",
+      "--path",
+      "/workspace/Emberfall-Ashen-Veil",
+      "--export-pack",
+      "Android Closed Beta APK",
+      "/workspace/scratch/emberfall-quality-057/integration/pck-native-static-unload/native-avatar-smoke.pck"
+    ],
+    "cwd": "/workspace/Emberfall-Ashen-Veil",
+    "scope": "headless",
+    "actual_exit_code": 0,
+    "timed_out": false,
+    "wall_seconds": 4.113,
+    "strict_success": true,
+    "engine_error": false,
+    "bad_warning": false,
+    "allowed_intentional_diagnostics": [],
+    "summary_matches": [],
+    "log": "export-pack.log",
+    "log_sha256": "af415c226cf72c8bfe0a4d523028416151e3b920eb96b809996182e417983732"
+  },
+  {
+    "name": "exported-resources",
+    "command": [
+      "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--audio-driver",
+      "Dummy",
+      "--main-pack",
+      "/workspace/scratch/emberfall-quality-057/integration/pck-native-static-unload/native-avatar-smoke.pck",
+      "--script",
+      "/workspace/Emberfall-Ashen-Veil/tests/source_avatar_export_smoke.gd"
+    ],
+    "cwd": "/workspace/scratch/emberfall-quality-057/integration/pck-native-static-unload/empty-cwd",
+    "scope": "headless",
+    "actual_exit_code": 0,
+    "timed_out": false,
+    "wall_seconds": 4.07,
+    "strict_success": false,
+    "engine_error": true,
+    "bad_warning": false,
+    "allowed_intentional_diagnostics": [],
+    "summary_matches": [
+      [
+        "EXPORTED AVATAR SMOKE",
+        "60",
+        "0"
+      ]
+    ],
+    "log": "exported-resources.log",
+    "log_sha256": "d0416929414bcc92aa00c7f567267eeacdcd61e2927fc17c3f0e6b89ef20c4f0"
+  }
+]

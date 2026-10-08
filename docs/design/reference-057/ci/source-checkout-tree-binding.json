@@ -1,0 +1,52 @@
+{
+  "schema": 2,
+  "observed_at": "2026-10-07T21:36:30.522498+00:00",
+  "bindings": [
+    {
+      "workflow": "Gameplay Quality",
+      "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+      "source_tree": "e491d100b89c7b9eae92885d28053086f77c8563",
+      "actual_checkout_commit": "46ba36f6cd0871ae469cdb4ce9c04f32b479f0f5",
+      "actual_checkout_tree": "e491d100b89c7b9eae92885d28053086f77c8563",
+      "checkout_parents": [
+        "610c343073e7186589cba92c3fefb55a4db68e12",
+        "1cc13152a83c6631590d4df32ca298700a417df7"
+      ],
+      "source_is_checkout_or_parent": true,
+      "exact_whole_tree_match": true,
+      "raw_source_commit_metadata_sha256": "8831d6e7b7f4e0ef54a9a14616f5fcbd8e8c8ce6bc9ae7cc8c962c3924677d99",
+      "raw_checkout_metadata_sha256": "fad428a572b07ee0453f4ca09d249b6e16ce8862f8992c910690edd928064782"
+    },
+    {
+      "workflow": "Android Debug APK",
+      "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+      "source_tree": "e491d100b89c7b9eae92885d28053086f77c8563",
+      "actual_checkout_commit": "46ba36f6cd0871ae469cdb4ce9c04f32b479f0f5",
+      "actual_checkout_tree": "e491d100b89c7b9eae92885d28053086f77c8563",
+      "checkout_parents": [
+        "610c343073e7186589cba92c3fefb55a4db68e12",
+        "1cc13152a83c6631590d4df32ca298700a417df7"
+      ],
+      "source_is_checkout_or_parent": true,
+      "exact_whole_tree_match": true,
+      "raw_source_commit_metadata_sha256": "8831d6e7b7f4e0ef54a9a14616f5fcbd8e8c8ce6bc9ae7cc8c962c3924677d99",
+      "raw_checkout_metadata_sha256": "fad428a572b07ee0453f4ca09d249b6e16ce8862f8992c910690edd928064782"
+    },
+    {
+      "workflow": "Android Beta Runtime",
+      "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+      "source_tree": "e491d100b89c7b9eae92885d28053086f77c8563",
+      "actual_checkout_commit": "46ba36f6cd0871ae469cdb4ce9c04f32b479f0f5",
+      "actual_checkout_tree": "e491d100b89c7b9eae92885d28053086f77c8563",
+      "checkout_parents": [
+        "610c343073e7186589cba92c3fefb55a4db68e12",
+        "1cc13152a83c6631590d4df32ca298700a417df7"
+      ],
+      "source_is_checkout_or_parent": true,
+      "exact_whole_tree_match": true,
+      "raw_source_commit_metadata_sha256": "8831d6e7b7f4e0ef54a9a14616f5fcbd8e8c8ce6bc9ae7cc8c962c3924677d99",
+      "raw_checkout_metadata_sha256": "fad428a572b07ee0453f4ca09d249b6e16ce8862f8992c910690edd928064782"
+    }
+  ],
+  "all_three_exact_whole_tree_match": true
+}

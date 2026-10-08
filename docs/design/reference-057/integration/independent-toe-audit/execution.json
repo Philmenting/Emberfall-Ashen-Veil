@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "scope": "New independent execution on current UTC date; reproduces historical pre-fix Engine trace rather than claiming a new Engine run",
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/emberfall-quality-057/independent-toe-audit/20261007T190024Z/reproduce_toe_geometry.py",
+    "--glb",
+    "/workspace/Emberfall-Ashen-Veil/assets/models/raider056/raider-native65.glb",
+    "--trace",
+    "/workspace/scratch/emberfall-quality-057/independent-toe-audit/20261007T190024Z/original-pre-toe-lock-engine-trace.log"
+  ],
+  "cwd": "/workspace/Emberfall-Ashen-Veil",
+  "started_utc": "2026-10-07T19:01:57.841501+00:00",
+  "ended_utc": "2026-10-07T19:01:57.989951+00:00",
+  "wall_seconds": 0.16213549999520183,
+  "exit_code": 0,
+  "input_sha256_before": {
+    "/workspace/Emberfall-Ashen-Veil/assets/models/raider056/raider-native65.glb": "8a89cbeb87691222f80a522145e7203139483adba17cd85edd0adff369da59b4",
+    "/workspace/scratch/emberfall-quality-057/integration/walk-twist-floor-frame-detail.log": "adac06690f7da1d3dadaa10301d1db7c9bf55368dc7fb921f98c4e741becce5f",
+    "/workspace/scratch/emberfall-quality-057/independent-toe-audit/20261007T190024Z/original-pre-toe-lock-engine-trace.log": "adac06690f7da1d3dadaa10301d1db7c9bf55368dc7fb921f98c4e741becce5f",
+    "/workspace/scratch/emberfall-quality-057/independent-toe-audit/20261007T190024Z/reproduce_toe_geometry.py": "0d9038a6392c774dcabf56730864fd1f4161babb7020b29039883f159994bdf5"
+  },
+  "input_sha256_after": {
+    "/workspace/Emberfall-Ashen-Veil/assets/models/raider056/raider-native65.glb": "8a89cbeb87691222f80a522145e7203139483adba17cd85edd0adff369da59b4",
+    "/workspace/scratch/emberfall-quality-057/integration/walk-twist-floor-frame-detail.log": "adac06690f7da1d3dadaa10301d1db7c9bf55368dc7fb921f98c4e741becce5f",
+    "/workspace/scratch/emberfall-quality-057/independent-toe-audit/20261007T190024Z/original-pre-toe-lock-engine-trace.log": "adac06690f7da1d3dadaa10301d1db7c9bf55368dc7fb921f98c4e741becce5f",
+    "/workspace/scratch/emberfall-quality-057/independent-toe-audit/20261007T190024Z/reproduce_toe_geometry.py": "0d9038a6392c774dcabf56730864fd1f4161babb7020b29039883f159994bdf5"
+  },
+  "inputs_unchanged": true,
+  "original_historical_trace_copied_byte_identically": true,
+  "outputs": {
+    "toe-geometry-reproduction.json": "36c2ef5440fa6cadf92f10a047398c1cfa02f9b11582da9780c8aaca87c6b651",
+    "execution.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

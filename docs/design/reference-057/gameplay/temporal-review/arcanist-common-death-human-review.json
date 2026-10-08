@@ -1,0 +1,608 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-10-07T22:26:19.767949+00:00",
+  "reviewer": "/root/temporal_review_resume_057/review_scope_audit_057/receipt_binding",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "status": "actual_visual_review_complete_for_all_18_common_death_contact_sheet_files; narrow_initial_response_only",
+  "scope": "Actual viewing of every derived contact-sheet file in the four paired common-role Arcanist death windows. Only scratch review receipt created. No additional decode, Engine, Blender, Git, production source or frozen reviewer edits.",
+  "viewed_file_count": 18,
+  "image_origin": "H264-decoded lossy movie frames assembled into JPEG92 4:4:4 sheets. Full 1200x536 game viewport tiles retained at 1:1 contact pixels with external labels. Every sheet was sent through tools.view_image with original detail; viewing/rendering may still affect displayed scale. These are not saved native Godot PNGs.",
+  "all_viewed_sheet_hashes_and_byte_counts_match_decode_receipts": true,
+  "pair_frame_ranges_and_crops_match": true,
+  "ranges": [
+    {
+      "label": "first-raider-death",
+      "sides": [
+        {
+          "side": "before",
+          "decode_receipt": "arcanist/before/first-raider-death/decode-receipt.json",
+          "decode_receipt_sha256": "77ef8263e5386c4c684e69bdeaa09dba6aa896f0876524693eccae6924607775",
+          "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+          "first_frame_zero_based": 9,
+          "last_frame_zero_based_inclusive": 39,
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "movie_sha256": "eaa5c56c8cb4994d515271cc6e97f7e1ef2d26658cdad05aadeeba575355021c",
+          "capture_receipt_sha256": "2509f93366faedc6ab083678d8f0c24126beb703624176ca1f9174c90839289a",
+          "crop_xyxy": [
+            0,
+            0,
+            1200,
+            536
+          ],
+          "observations": [
+            "Three foreground bareheaded axe users change from upright to bent knees and backward-leaning torsos, then readable supine silhouettes in the later samples. Weapons remain visible during the fall."
+          ],
+          "ai_viewed_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries"
+        },
+        {
+          "side": "after",
+          "decode_receipt": "arcanist/after/first-raider-death/decode-receipt.json",
+          "decode_receipt_sha256": "d57d9cde16b57f438e5550bc4362cca27179cfbaae1fa6dc9c6fc139ea252a36",
+          "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "first_frame_zero_based": 9,
+          "last_frame_zero_based_inclusive": 39,
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "movie_sha256": "27f282aa3ab14069b88eb079795c44a7331cd24ca43c9ad7cd1d2e47ab655d35",
+          "capture_receipt_sha256": "a41907dbda10bdce78730d8a58a099264e418c148e7bb3c9bd427de3be4667c9",
+          "crop_xyxy": [
+            0,
+            0,
+            1200,
+            536
+          ],
+          "observations": [
+            "The same foreground axe users retain a visually comparable backward fall and supine arrangement at the same labeled frames. No gross new deformation or detached body part is apparent in these game-scale samples."
+          ],
+          "ai_viewed_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries"
+        }
+      ],
+      "paired_observations": [
+        "Scene, HUD, hero placement, damage numbers and reinforcement entry visually line up. Raider fall silhouettes are closely comparable; the conspicuous background difference belongs to the changed Hexer presentation."
+      ],
+      "status": "actual_sampled_contact_sheets_visually_reviewed_initial_response_only"
+    },
+    {
+      "label": "first-hexer-death",
+      "sides": [
+        {
+          "side": "before",
+          "decode_receipt": "arcanist/before/first-hexer-death/decode-receipt.json",
+          "decode_receipt_sha256": "edd26945a8c303f41a82ef2a646e59ec0a1f25cf97ec499968b444c844899ec4",
+          "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+          "first_frame_zero_based": 9,
+          "last_frame_zero_based_inclusive": 39,
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "movie_sha256": "eaa5c56c8cb4994d515271cc6e97f7e1ef2d26658cdad05aadeeba575355021c",
+          "capture_receipt_sha256": "2509f93366faedc6ab083678d8f0c24126beb703624176ca1f9174c90839289a",
+          "crop_xyxy": [
+            0,
+            0,
+            1200,
+            536
+          ],
+          "observations": [
+            "The rear caster near the arch is a dark compact silhouette, partly merged with the arch shadow. Its small size and low contrast make limb/death response detail difficult to resolve."
+          ],
+          "ai_viewed_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries"
+        },
+        {
+          "side": "after",
+          "decode_receipt": "arcanist/after/first-hexer-death/decode-receipt.json",
+          "decode_receipt_sha256": "ad5f83dd6a08258859b36211d5338bd869415d3c1fa9c06d3865fd343577b105",
+          "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "first_frame_zero_based": 9,
+          "last_frame_zero_based_inclusive": 39,
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "movie_sha256": "27f282aa3ab14069b88eb079795c44a7331cd24ca43c9ad7cd1d2e47ab655d35",
+          "capture_receipt_sha256": "a41907dbda10bdce78730d8a58a099264e418c148e7bb3c9bd427de3be4667c9",
+          "crop_xyxy": [
+            0,
+            0,
+            1200,
+            536
+          ],
+          "observations": [
+            "The rear caster reads as a green hooded human carrying a staff with a bright circular head. Its torso lowers through the samples and becomes obscured by the hero/staff area in later frames. This is a clearer human initial response, but the overlapping staffs and dark floor do not support exact hand, ankle or ground-contact judgments."
+          ],
+          "ai_viewed_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries"
+        }
+      ],
+      "paired_observations": [
+        "These sheets repeat the same frames 9-39 as first-raider-death; corresponding sheet bytes and hashes are identical within each side. They are one shared simultaneous event window, not independent temporal evidence."
+      ],
+      "status": "actual_sampled_contact_sheets_visually_reviewed_initial_response_only"
+    },
+    {
+      "label": "first-bulwark-death",
+      "sides": [
+        {
+          "side": "before",
+          "decode_receipt": "arcanist/before/first-bulwark-death/decode-receipt.json",
+          "decode_receipt_sha256": "a63300210da59b089d06e79fb39440956db4a98bdae8920faef66895590f9921",
+          "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+          "first_frame_zero_based": 756,
+          "last_frame_zero_based_inclusive": 786,
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "movie_sha256": "eaa5c56c8cb4994d515271cc6e97f7e1ef2d26658cdad05aadeeba575355021c",
+          "capture_receipt_sha256": "2509f93366faedc6ab083678d8f0c24126beb703624176ca1f9174c90839289a",
+          "crop_xyxy": [
+            0,
+            0,
+            1200,
+            536
+          ],
+          "observations": [
+            "The front-left enemy has a dark bulky armored form and large upright shield; much of its response is hidden by the hero and staff. In the late samples it is largely absent while the adjacent Raider lies down."
+          ],
+          "ai_viewed_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries"
+        },
+        {
+          "side": "after",
+          "decode_receipt": "arcanist/after/first-bulwark-death/decode-receipt.json",
+          "decode_receipt_sha256": "d5bc2bd85f5b5be618eab66031cd1b65efa7b144b5c385c8d2beea3d7899ac51",
+          "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "first_frame_zero_based": 756,
+          "last_frame_zero_based_inclusive": 786,
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "movie_sha256": "27f282aa3ab14069b88eb079795c44a7331cd24ca43c9ad7cd1d2e47ab655d35",
+          "capture_receipt_sha256": "a41907dbda10bdce78730d8a58a099264e418c148e7bb3c9bd427de3be4667c9",
+          "crop_xyxy": [
+            0,
+            0,
+            1200,
+            536
+          ],
+          "observations": [
+            "The front-left enemy has a human armored head/torso and a bright round shield. It bends and drops to the left of the hero with arms/weapon extending; shield and body remain visibly identifiable near the hero at the final frame 786. Hero overlap prevents a confident settled-ground-contact judgment."
+          ],
+          "ai_viewed_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries"
+        }
+      ],
+      "paired_observations": [
+        "The same damage markers, adjacent Raider collapse, remaining foes and warning ring align in the paired images. AFTER has a more readable humanoid/shield fall silhouette and remains visible longer within this window; the sequence ends before complete death/settling can be assessed."
+      ],
+      "status": "actual_sampled_contact_sheets_visually_reviewed_initial_response_only"
+    },
+    {
+      "label": "first-elite-death",
+      "sides": [
+        {
+          "side": "before",
+          "decode_receipt": "arcanist/before/first-elite-death/decode-receipt.json",
+          "decode_receipt_sha256": "ca57a543067c547e0c1c1b8a606cdcfecd9b8ca60499a86a69851fcd9c417252",
+          "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+          "first_frame_zero_based": 1317,
+          "last_frame_zero_based_inclusive": 1347,
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "movie_sha256": "eaa5c56c8cb4994d515271cc6e97f7e1ef2d26658cdad05aadeeba575355021c",
+          "capture_receipt_sha256": "2509f93366faedc6ab083678d8f0c24126beb703624176ca1f9174c90839289a",
+          "crop_xyxy": [
+            0,
+            0,
+            1200,
+            536
+          ],
+          "observations": [
+            "The isolated target is a short horned dark armored silhouette with an upright sword. Later samples show a lowering and sideward collapse with a dark body lying close to the hero."
+          ],
+          "ai_viewed_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries"
+        },
+        {
+          "side": "after",
+          "decode_receipt": "arcanist/after/first-elite-death/decode-receipt.json",
+          "decode_receipt_sha256": "70965bac7bd2a04b6088bd54d77efaffaa694f117c7fa16bc78e524c7cd846a2",
+          "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+          "first_frame_zero_based": 1317,
+          "last_frame_zero_based_inclusive": 1347,
+          "actual_ffmpeg_exit_code": 0,
+          "every_consecutive_frame_decoded": true,
+          "movie_sha256": "27f282aa3ab14069b88eb079795c44a7331cd24ca43c9ad7cd1d2e47ab655d35",
+          "capture_receipt_sha256": "a41907dbda10bdce78730d8a58a099264e418c148e7bb3c9bd427de3be4667c9",
+          "crop_xyxy": [
+            0,
+            0,
+            1200,
+            536
+          ],
+          "observations": [
+            "The isolated target reads as a full human in dark clothes with bright shoulder armor and a sword. Its knees bend, torso leans backward, and the later samples show an extended supine body with the sword still visible. The fall has a clearly readable human silhouette."
+          ],
+          "ai_viewed_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries"
+        }
+      ],
+      "paired_observations": [
+        "The target position, 375 damage marker, foe-count change and reinforcement arrival align in the paired images. AFTER changes the body proportions and fall shape; no gross mesh tearing or disconnected body part is apparent at this game scale. The short sampled window does not establish the complete skeletal death or final corpse behavior."
+      ],
+      "status": "actual_sampled_contact_sheets_visually_reviewed_initial_response_only"
+    }
+  ],
+  "viewed_files": [
+    {
+      "file": "arcanist/before/first-raider-death/derived-contact-sheet-00.jpg",
+      "sha256": "bc9df4c333b3e6a17f202540d4a1af7701add8df426aa392cd3ca349df6829c3",
+      "bytes": 953828,
+      "side": "before",
+      "label": "first-raider-death",
+      "frames": [
+        9,
+        11,
+        13,
+        17,
+        19,
+        20
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "Three foreground bareheaded axe users change from upright to bent knees and backward-leaning torsos, then readable supine silhouettes in the later samples. Weapons remain visible during the fall."
+      ]
+    },
+    {
+      "file": "arcanist/before/first-raider-death/derived-contact-sheet-01.jpg",
+      "sha256": "03aa9812e6fdbc1ea1708ee158f7645c684a44349976b0360615ff7d6a892b94",
+      "bytes": 949650,
+      "side": "before",
+      "label": "first-raider-death",
+      "frames": [
+        21,
+        25,
+        29,
+        33,
+        37,
+        39
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "Three foreground bareheaded axe users change from upright to bent knees and backward-leaning torsos, then readable supine silhouettes in the later samples. Weapons remain visible during the fall."
+      ]
+    },
+    {
+      "file": "arcanist/after/first-raider-death/derived-contact-sheet-00.jpg",
+      "sha256": "5cb36dfbac81bab88d4acf613b493e4eae2291427a6dfcc1ca096bedd8820b3f",
+      "bytes": 953742,
+      "side": "after",
+      "label": "first-raider-death",
+      "frames": [
+        9,
+        11,
+        13,
+        17,
+        19,
+        20
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "The same foreground axe users retain a visually comparable backward fall and supine arrangement at the same labeled frames. No gross new deformation or detached body part is apparent in these game-scale samples."
+      ]
+    },
+    {
+      "file": "arcanist/after/first-raider-death/derived-contact-sheet-01.jpg",
+      "sha256": "d171303b17b8dddd07ec336f52a32563cd9670339e486b57494a733913960b3f",
+      "bytes": 948398,
+      "side": "after",
+      "label": "first-raider-death",
+      "frames": [
+        21,
+        25,
+        29,
+        33,
+        37,
+        39
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "The same foreground axe users retain a visually comparable backward fall and supine arrangement at the same labeled frames. No gross new deformation or detached body part is apparent in these game-scale samples."
+      ]
+    },
+    {
+      "file": "arcanist/before/first-hexer-death/derived-contact-sheet-00.jpg",
+      "sha256": "bc9df4c333b3e6a17f202540d4a1af7701add8df426aa392cd3ca349df6829c3",
+      "bytes": 953828,
+      "side": "before",
+      "label": "first-hexer-death",
+      "frames": [
+        9,
+        11,
+        13,
+        17,
+        19,
+        20
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "The rear caster near the arch is a dark compact silhouette, partly merged with the arch shadow. Its small size and low contrast make limb/death response detail difficult to resolve."
+      ]
+    },
+    {
+      "file": "arcanist/before/first-hexer-death/derived-contact-sheet-01.jpg",
+      "sha256": "03aa9812e6fdbc1ea1708ee158f7645c684a44349976b0360615ff7d6a892b94",
+      "bytes": 949650,
+      "side": "before",
+      "label": "first-hexer-death",
+      "frames": [
+        21,
+        25,
+        29,
+        33,
+        37,
+        39
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "The rear caster near the arch is a dark compact silhouette, partly merged with the arch shadow. Its small size and low contrast make limb/death response detail difficult to resolve."
+      ]
+    },
+    {
+      "file": "arcanist/after/first-hexer-death/derived-contact-sheet-00.jpg",
+      "sha256": "5cb36dfbac81bab88d4acf613b493e4eae2291427a6dfcc1ca096bedd8820b3f",
+      "bytes": 953742,
+      "side": "after",
+      "label": "first-hexer-death",
+      "frames": [
+        9,
+        11,
+        13,
+        17,
+        19,
+        20
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "The rear caster reads as a green hooded human carrying a staff with a bright circular head. Its torso lowers through the samples and becomes obscured by the hero/staff area in later frames. This is a clearer human initial response, but the overlapping staffs and dark floor do not support exact hand, ankle or ground-contact judgments."
+      ]
+    },
+    {
+      "file": "arcanist/after/first-hexer-death/derived-contact-sheet-01.jpg",
+      "sha256": "d171303b17b8dddd07ec336f52a32563cd9670339e486b57494a733913960b3f",
+      "bytes": 948398,
+      "side": "after",
+      "label": "first-hexer-death",
+      "frames": [
+        21,
+        25,
+        29,
+        33,
+        37,
+        39
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "The rear caster reads as a green hooded human carrying a staff with a bright circular head. Its torso lowers through the samples and becomes obscured by the hero/staff area in later frames. This is a clearer human initial response, but the overlapping staffs and dark floor do not support exact hand, ankle or ground-contact judgments."
+      ]
+    },
+    {
+      "file": "arcanist/before/first-bulwark-death/derived-contact-sheet-00.jpg",
+      "sha256": "f5805c9a37c522c705ac26ef189b6d41886009efddb1831677c3690915cef12a",
+      "bytes": 952974,
+      "side": "before",
+      "label": "first-bulwark-death",
+      "frames": [
+        756,
+        758,
+        760,
+        764,
+        766,
+        767
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "The front-left enemy has a dark bulky armored form and large upright shield; much of its response is hidden by the hero and staff. In the late samples it is largely absent while the adjacent Raider lies down."
+      ]
+    },
+    {
+      "file": "arcanist/before/first-bulwark-death/derived-contact-sheet-01.jpg",
+      "sha256": "4c5b18c0a681f9011d2d8ce75ed561a4b1247801894141ecaf04a3fb34edc9b8",
+      "bytes": 952895,
+      "side": "before",
+      "label": "first-bulwark-death",
+      "frames": [
+        768,
+        772,
+        776,
+        780,
+        784,
+        785
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "The front-left enemy has a dark bulky armored form and large upright shield; much of its response is hidden by the hero and staff. In the late samples it is largely absent while the adjacent Raider lies down."
+      ]
+    },
+    {
+      "file": "arcanist/before/first-bulwark-death/derived-contact-sheet-02.jpg",
+      "sha256": "76331956b86e3e42a6a61da6f78fe463ddce760d00198a65e40ff530907c44fb",
+      "bytes": 182239,
+      "side": "before",
+      "label": "first-bulwark-death",
+      "frames": [
+        786
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "The front-left enemy has a dark bulky armored form and large upright shield; much of its response is hidden by the hero and staff. In the late samples it is largely absent while the adjacent Raider lies down."
+      ]
+    },
+    {
+      "file": "arcanist/after/first-bulwark-death/derived-contact-sheet-00.jpg",
+      "sha256": "5738c485bf5d4a5e09a1e2e96005c10bbbf37b21c2bc522cd00ccf45587a9d67",
+      "bytes": 954048,
+      "side": "after",
+      "label": "first-bulwark-death",
+      "frames": [
+        756,
+        758,
+        760,
+        764,
+        766,
+        767
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "The front-left enemy has a human armored head/torso and a bright round shield. It bends and drops to the left of the hero with arms/weapon extending; shield and body remain visibly identifiable near the hero at the final frame 786. Hero overlap prevents a confident settled-ground-contact judgment."
+      ]
+    },
+    {
+      "file": "arcanist/after/first-bulwark-death/derived-contact-sheet-01.jpg",
+      "sha256": "b160f8f5841bb9248ca4585f0a6a87ca7ef6b06594788959c83275c49b1f88a9",
+      "bytes": 957504,
+      "side": "after",
+      "label": "first-bulwark-death",
+      "frames": [
+        768,
+        772,
+        776,
+        780,
+        784,
+        785
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "The front-left enemy has a human armored head/torso and a bright round shield. It bends and drops to the left of the hero with arms/weapon extending; shield and body remain visibly identifiable near the hero at the final frame 786. Hero overlap prevents a confident settled-ground-contact judgment."
+      ]
+    },
+    {
+      "file": "arcanist/after/first-bulwark-death/derived-contact-sheet-02.jpg",
+      "sha256": "1527f59e932eee036adc0d6ca683d9789a476f21210ff0d69d7cddae04e371ec",
+      "bytes": 183226,
+      "side": "after",
+      "label": "first-bulwark-death",
+      "frames": [
+        786
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "The front-left enemy has a human armored head/torso and a bright round shield. It bends and drops to the left of the hero with arms/weapon extending; shield and body remain visibly identifiable near the hero at the final frame 786. Hero overlap prevents a confident settled-ground-contact judgment."
+      ]
+    },
+    {
+      "file": "arcanist/before/first-elite-death/derived-contact-sheet-00.jpg",
+      "sha256": "b05e4337cfa6c4d67630f861d38fcc55332188de9254235ceedd6e43c31f7641",
+      "bytes": 921590,
+      "side": "before",
+      "label": "first-elite-death",
+      "frames": [
+        1317,
+        1319,
+        1321,
+        1325,
+        1327,
+        1328
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "The isolated target is a short horned dark armored silhouette with an upright sword. Later samples show a lowering and sideward collapse with a dark body lying close to the hero."
+      ]
+    },
+    {
+      "file": "arcanist/before/first-elite-death/derived-contact-sheet-01.jpg",
+      "sha256": "83d96bbb3e8a074462c714adddf1689f753fa32320e4cb2bef507c6f3db10bed",
+      "bytes": 925609,
+      "side": "before",
+      "label": "first-elite-death",
+      "frames": [
+        1329,
+        1333,
+        1337,
+        1341,
+        1345,
+        1347
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "The isolated target is a short horned dark armored silhouette with an upright sword. Later samples show a lowering and sideward collapse with a dark body lying close to the hero."
+      ]
+    },
+    {
+      "file": "arcanist/after/first-elite-death/derived-contact-sheet-00.jpg",
+      "sha256": "58fa139cb5256783b246866e2e265d13adcb49992ca56ee54dd2ef2429bea03a",
+      "bytes": 922487,
+      "side": "after",
+      "label": "first-elite-death",
+      "frames": [
+        1317,
+        1319,
+        1321,
+        1325,
+        1327,
+        1328
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "The isolated target reads as a full human in dark clothes with bright shoulder armor and a sword. Its knees bend, torso leans backward, and the later samples show an extended supine body with the sword still visible. The fall has a clearly readable human silhouette."
+      ]
+    },
+    {
+      "file": "arcanist/after/first-elite-death/derived-contact-sheet-01.jpg",
+      "sha256": "aee6884eb228703f65515874027974463119113831d82a362dd27d42d21a7a52",
+      "bytes": 930239,
+      "side": "after",
+      "label": "first-elite-death",
+      "frames": [
+        1329,
+        1333,
+        1337,
+        1341,
+        1345,
+        1347
+      ],
+      "actually_viewed": true,
+      "view_tool": "tools.view_image",
+      "requested_detail": "original",
+      "observations": [
+        "The isolated target reads as a full human in dark clothes with bright shoulder armor and a sword. Its knees bend, torso leans backward, and the later samples show an extended supine body with the sword still visible. The fall has a clearly readable human silhouette."
+      ]
+    }
+  ],
+  "limits": [
+    "The decoder reports every consecutive frame decoded, but actual AI visual inspection covers only the retained frames on the sheets: every fourth plus semantic boundaries and range end. No claim of every consecutive frame visually viewed. No separate human signoff is claimed.",
+    "Death windows cover the short initial response, approximately the first 0.97s of death. This does not certify complete skeletal death, final settling, ground contact or eventual fading.",
+    "Dark rear enemies, shared hero/enemy staff silhouettes and hero overlap limit anatomical and ground-contact judgments. JPEG/H264 artifacts and ordinary game-scale actor size prevent precise joint or mesh measurements.",
+    "Raider and Hexer label directories repeat one simultaneous event window and identical sheets within each side; they do not add independent temporal samples.",
+    "No whole-movie viewing, physical phone performance, source revalidation or release approval is claimed."
+  ],
+  "conclusion": "Matching game-scale event windows support recognizable Raider initial falls and clearer humanoid Hexer, Bulwark and Elite presentations in AFTER. Elite backward collapse is especially readable. No gross new torn/disconnected body geometry is apparent in the viewed samples; full death/settling remains outside these ranges.",
+  "reviewer_type": "AI visual inspection through tools.view_image; no separate human signoff claimed",
+  "ai_visual_inspection_is_sampled": true,
+  "separate_human_signoff_claimed": false
+}

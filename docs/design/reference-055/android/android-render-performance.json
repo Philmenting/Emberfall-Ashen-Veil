@@ -1,0 +1,175 @@
+{
+  "device": "sdk_gphone64_x86_64",
+  "measurements": [
+    {
+      "frames": 30,
+      "median_draw_calls": 280.0,
+      "median_frame_ms": 934.232,
+      "p95_frame_ms": 1631.775,
+      "quality": "balanced",
+      "region": 0,
+      "render_height": 540,
+      "render_width": 1212,
+      "target_fps": 60
+    },
+    {
+      "frames": 30,
+      "median_draw_calls": 225.0,
+      "median_frame_ms": 364.213,
+      "p95_frame_ms": 417.842,
+      "quality": "battery",
+      "region": 0,
+      "render_height": 270,
+      "render_width": 606,
+      "target_fps": 30
+    },
+    {
+      "frames": 30,
+      "median_draw_calls": 303.0,
+      "median_frame_ms": 763.682,
+      "p95_frame_ms": 1509.583,
+      "quality": "balanced",
+      "region": 1,
+      "render_height": 540,
+      "render_width": 1212,
+      "target_fps": 60
+    },
+    {
+      "frames": 30,
+      "median_draw_calls": 250.0,
+      "median_frame_ms": 342.093,
+      "p95_frame_ms": 634.545,
+      "quality": "battery",
+      "region": 1,
+      "render_height": 270,
+      "render_width": 606,
+      "target_fps": 30
+    },
+    {
+      "frames": 30,
+      "median_draw_calls": 281.0,
+      "median_frame_ms": 847.333,
+      "p95_frame_ms": 1657.51,
+      "quality": "balanced",
+      "region": 2,
+      "render_height": 540,
+      "render_width": 1212,
+      "target_fps": 60
+    },
+    {
+      "frames": 30,
+      "median_draw_calls": 227.0,
+      "median_frame_ms": 351.619,
+      "p95_frame_ms": 646.0,
+      "quality": "battery",
+      "region": 2,
+      "render_height": 270,
+      "render_width": 606,
+      "target_fps": 30
+    },
+    {
+      "frames": 30,
+      "median_draw_calls": 292.0,
+      "median_frame_ms": 762.306,
+      "p95_frame_ms": 1469.934,
+      "quality": "balanced",
+      "region": 3,
+      "render_height": 540,
+      "render_width": 1212,
+      "target_fps": 60
+    },
+    {
+      "frames": 30,
+      "median_draw_calls": 253.0,
+      "median_frame_ms": 349.959,
+      "p95_frame_ms": 433.351,
+      "quality": "battery",
+      "region": 3,
+      "render_height": 270,
+      "render_width": 606,
+      "target_fps": 30
+    }
+  ],
+  "motion": [
+    {
+      "bone_changes": 17,
+      "captures": [
+        0,
+        5,
+        11,
+        17
+      ],
+      "frames": 20,
+      "native_clips": 9,
+      "passed": true,
+      "physical_device_performance": false,
+      "region": 0,
+      "simulation_step_seconds": 0.05,
+      "skeleton_bones": 29,
+      "source_depth": 0.756339430809021,
+      "unique_rendered_frames": 4
+    },
+    {
+      "bone_changes": 17,
+      "captures": [
+        0,
+        5,
+        11,
+        17
+      ],
+      "frames": 20,
+      "native_clips": 9,
+      "passed": true,
+      "physical_device_performance": false,
+      "region": 1,
+      "simulation_step_seconds": 0.05,
+      "skeleton_bones": 29,
+      "source_depth": 0.660642623901367,
+      "unique_rendered_frames": 4
+    },
+    {
+      "bone_changes": 12,
+      "captures": [
+        0,
+        5,
+        11,
+        17
+      ],
+      "frames": 20,
+      "native_clips": 9,
+      "passed": true,
+      "physical_device_performance": false,
+      "region": 2,
+      "simulation_step_seconds": 0.05,
+      "skeleton_bones": 29,
+      "source_depth": 0.739483594894409,
+      "unique_rendered_frames": 4
+    },
+    {
+      "bone_changes": 17,
+      "captures": [
+        0,
+        5,
+        11,
+        17
+      ],
+      "frames": 20,
+      "native_clips": 9,
+      "passed": true,
+      "physical_device_performance": false,
+      "region": 3,
+      "simulation_step_seconds": 0.05,
+      "skeleton_bones": 29,
+      "source_depth": 0.714139461517334,
+      "unique_rendered_frames": 4
+    }
+  ],
+  "platform": "Android",
+  "renderer": "gl_compatibility",
+  "resolution": {
+    "height": 540.0,
+    "width": 1212.0
+  },
+  "scenario": "frozen guardian render workload; separately stepped real combat animation",
+  "schema": 1
+}

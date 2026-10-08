@@ -1,0 +1,34 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: bulwark actual hit overlay: actual weighted breastplate clears original tunic and raised belt by3mm; min=0.00294218672119 vertices=889
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_breastplate_clearance (res://tests/native_hostile_smoke.gd:57)
+       [2] run (res://tests/native_hostile_smoke.gd:202)
+ERROR: elite actual hit overlay: actual weighted breastplate clears original tunic and raised belt by3mm; min=0.00294218672119 vertices=889
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_breastplate_clearance (res://tests/native_hostile_smoke.gd:57)
+       [2] run (res://tests/native_hostile_smoke.gd:202)
+ERROR: guardian_0 actual hit overlay: actual weighted breastplate clears original tunic and raised belt by3mm; min=0.00294218672119 vertices=889
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_breastplate_clearance (res://tests/native_hostile_smoke.gd:57)
+       [2] run (res://tests/native_hostile_smoke.gd:202)
+ERROR: guardian_3 actual hit overlay: actual weighted breastplate clears original tunic and raised belt by3mm; min=0.00294218672119 vertices=889
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/source_avatar_grip_smoke.gd:22)
+       [1] audit_breastplate_clearance (res://tests/native_hostile_smoke.gd:57)
+       [2] run (res://tests/native_hostile_smoke.gd:202)
+NATIVE_HOSTILE_METRICS {"bulwark":{"armor_surfaces":4,"triangles":22162,"visible_skin_surfaces":14,"weapon_surfaces":4},"elite":{"armor_surfaces":3,"triangles":22114,"visible_skin_surfaces":13,"weapon_surfaces":4},"guardian_0":{"armor_surfaces":3,"triangles":24494,"visible_skin_surfaces":13,"weapon_surfaces":2},"guardian_1":{"armor_surfaces":1,"triangles":29392,"visible_skin_surfaces":12,"weapon_surfaces":5},"guardian_2":{"armor_surfaces":1,"triangles":29070,"visible_skin_surfaces":12,"weapon_surfaces":5},"guardian_3":{"armor_surfaces":3,"triangles":22138,"visible_skin_surfaces":13,"weapon_surfaces":3},"hexer":{"armor_surfaces":0,"triangles":28506,"visible_skin_surfaces":11,"weapon_surfaces":5}}
+NATIVE_HOSTILE_CONTACT poses=49 max_finger_gap_m=0.00187370111234 max_penetration_m=0.00076865296066 max_actual_thumb_gap_m=0.00239018956199
+NATIVE_HOSTILE_BREASTPLATE min_actual_weighted_tunic_and_belt_clearance_m=0.00294218672119
+NATIVE HOSTILE SMOKE: 3775 checks, 4 failures
+FAIL bulwark actual hit overlay: actual weighted breastplate clears original tunic and raised belt by3mm; min=0.00294218672119 vertices=889
+FAIL elite actual hit overlay: actual weighted breastplate clears original tunic and raised belt by3mm; min=0.00294218672119 vertices=889
+FAIL guardian_0 actual hit overlay: actual weighted breastplate clears original tunic and raised belt by3mm; min=0.00294218672119 vertices=889
+FAIL guardian_3 actual hit overlay: actual weighted breastplate clears original tunic and raised belt by3mm; min=0.00294218672119 vertices=889

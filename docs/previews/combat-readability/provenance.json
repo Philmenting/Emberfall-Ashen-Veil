@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "version": "0.44.0-beta.1",
+  "created_utc": "2026-10-03T17:30:12.728039+00:00",
+  "source": "Actual native Godot 4.7.2 project viewport capture; Mesa llvmpipe on Xvfb. No generated artwork.",
+  "layouts": {
+    "2424x1080": "Closed Fold aspect, standard text",
+    "1040x1080": "Unfolded aspect, standard text",
+    "854x480": "Compact landscape, Large Text"
+  },
+  "fixtures": "27 PNGs: three ordinary-gear class combats, reading, synthetic Guard/Mana reserve, four guardian warnings at each size. Guardian fixtures increase Life only; no balance claim.",
+  "video": {
+    "filename": "emberfall-combat-044.mp4",
+    "frames": 360,
+    "fps": 30,
+    "duration_seconds": 12,
+    "size": [
+      1200,
+      536
+    ],
+    "gear": "ordinary Arcanist starter equipment",
+    "reading_pause_frames": [
+      150,
+      239
+    ],
+    "sound": "none",
+    "timing": "Godot fixed 30 FPS native frame export; no edit cuts or speed changes",
+    "physical_device_measurement": false
+  },
+  "artifact_sha256": {
+    "emberfall-combat-044.mp4": "c1af6226f3e81502a80a50226f95efd3eb3456226282142ae71094084c0ea4fd",
+    "guardian-0-1040x1080.png": "e283b583890d3e7ae8821f4061f19db5e335e023751c3f205447d580b14995d3",
+    "guardian-0-2424x1080.png": "ac9b32ca9beba037d4a86d12d0782db7422e0874cd4a4bf65b20a4b53fc221ed",
+    "guardian-0-854x480.png": "e36bbac3cd453aaabd539e20078178320eac7ab0ca9a7eb4bcbfd30428740534",
+    "guardian-1-1040x1080.png": "e76da76c3c51a859314402d1a2c6b0913630b0b131ac48592e9ed903a1225ee4",
+    "guardian-1-2424x1080.png": "d40d382599d81ee2bd7ab0c645623018aea5787113312ef53e5295c9eaabbd1a",
+    "guardian-1-854x480.png": "1b5d5f4fd2fd2037d5b4208be3aa33dd3a13abff4fdc8a86ca11a8411206e73b",
+    "guardian-2-1040x1080.png": "c769adc41dc22f5c97f47d6fc5972abf568a7fa365c7f5e1d72aeb6cafa0e557",
+    "guardian-2-2424x1080.png": "8ff4aa0bb940d634b9e4c5ae6d15308c553b4c8c801cd5890bf74748c00a2da0",
+    "guardian-2-854x480.png": "e61d28ab57ba2f5cd9542e55d487ddabd061c722b22f4bc8319abb45977ce36f",
+    "guardian-3-1040x1080.png": "a39edcc2aa74bf41cc38264aa88b5742716a9c14af4035a3dee19c77e996d76b",
+    "guardian-3-2424x1080.png": "9f625be8451e60935a1f30e6bf1a6211bb10bc252ea2286a708efc95918d3f0d",
+    "guardian-3-854x480.png": "f17865e8f79f71e17308a442e2e63a98c9a486955e543385f257133444df6878",
+    "reading-1040x1080.png": "6bf62f4ca0fe3d296dfb79cf75c9a099c9908835eda749ca9ff5ea3dc6561925",
+    "reading-2424x1080.png": "b5d0292e5aef77afce45ffb5387963084ec8c47f9adb582b201c2e47bd24fff2",
+    "reading-854x480.png": "aaf101e189d5ef2ca7e899c393bff6376a2c550585340e873c3de1fefcf924ae",
+    "skills-Arcanist-1040x1080.png": "dec151fd3287e7d35032a3bd8c962fc3acc15fd0bc436518dbdcd8bd96edac28",
+    "skills-Arcanist-2424x1080.png": "4bc9769ec2fef70348d17c35aa3d3cd36a8e29cac5a76b40f71ea1daaf7e2dd2",
+    "skills-Arcanist-854x480.png": "d074b729eef9c3da5173b9d5a064274163ed418fb4e4a048169e13a7150f1ac5",
+    "skills-Ranger-1040x1080.png": "ea528d90296f4c7c494fff1c50cd22a7fa4851642146e2a36dd15cbc779f709e",
+    "skills-Ranger-2424x1080.png": "d1a96b32abd114e08d9207b323ccf4a33bdc740355ada2abdc5041657d215f50",
+    "skills-Ranger-854x480.png": "f7448a5aaab7d66e67d5737c1b25e5f1d4643b5ddaa01808aefcc45c2247bb40",
+    "skills-Vowkeeper-1040x1080.png": "5f502a8c34b9ac17d07104f4622a5beb192b87770b32bc72e648ce34243d1b47",
+    "skills-Vowkeeper-2424x1080.png": "54d930b728bfd5a436dc82234e239b069d7d522567b4a78b79c9d91303303ff3",
+    "skills-Vowkeeper-854x480.png": "8434ce6ff6d6d8df6764ddcbcdf8c8b2eff4a9569ff4d568f9e94033fbff7ea3",
+    "ward-reserve-1040x1080.png": "f1d30ecf5350f0513554aa19cadb3aa59a8299b31bb1bc056ea0bafbf128efa3",
+    "ward-reserve-2424x1080.png": "ecdbeb0ba1620ac10589ddbb55c6cddf28492f0a0d7f1fc27c5b7498db741131",
+    "ward-reserve-854x480.png": "1c2cbbbfbfdaa612e28b7d7a66fbb2fad1b17c03c01fa0365f41cadfff3ae713"
+  },
+  "capture_source_sha256": {
+    "scripts/main.gd": "45636f7e5e73b0994f66a42a75b98530037aeb79c7ca6ff5ad6433111e6ba6e8",
+    "scripts/combat_readout.gd": "8c3563909c6100ccb034cef1c61589a218e71bf4d9b36424de2de5e68e466a55",
+    "scripts/combat_health_bar.gd": "86cf42d3009ce34ca94059a61d654b09c2b2435b8820c23ce73d50be83726f75",
+    "scripts/dungeon_world.gd": "77eb87e91efa41f101e53644e5e1f39191e2d798e784b499c176f6c4ee2f0def",
+    "tests/combat_readability_preview.gd": "1558df6152dd5cc65aa79029a146d72f3794ce8c8a5ea15dbeb8725df57c7bd2",
+    "tests/combat_readability_preview.tscn": "71067b66706e3967c8d5b068ecfd986aa6aa58190521a89467bce028d1f440c7",
+    "scripts/expedition_simulation.gd": "ed4cabb75e65486aa277632ad2d25700bfca4d60e79b7e7fc0a28bbffe6c649b",
+    "scripts/class_skills.gd": "25e37394f53126478b955108f9d604505e83a8c7fff7e50ef446b34407f06898",
+    "scripts/oath_combat_rules.gd": "c0b5f85c487237963cdff96b5f2002f03eac65c17dbda483c3393a402c4fd1b2"
+  },
+  "reviewed_source_sha256": {
+    "scripts/main.gd": "b050eb5a7eb5b67b4bf2723cc7f440ac299964584980bcb472ba523483339e41",
+    "scripts/combat_readout.gd": "8c3563909c6100ccb034cef1c61589a218e71bf4d9b36424de2de5e68e466a55",
+    "scripts/combat_health_bar.gd": "86cf42d3009ce34ca94059a61d654b09c2b2435b8820c23ce73d50be83726f75",
+    "scripts/dungeon_world.gd": "77eb87e91efa41f101e53644e5e1f39191e2d798e784b499c176f6c4ee2f0def",
+    "tests/combat_readability_preview.gd": "1558df6152dd5cc65aa79029a146d72f3794ce8c8a5ea15dbeb8725df57c7bd2",
+    "tests/combat_readability_preview.tscn": "71067b66706e3967c8d5b068ecfd986aa6aa58190521a89467bce028d1f440c7",
+    "scripts/expedition_simulation.gd": "ed4cabb75e65486aa277632ad2d25700bfca4d60e79b7e7fc0a28bbffe6c649b",
+    "scripts/class_skills.gd": "25e37394f53126478b955108f9d604505e83a8c7fff7e50ef446b34407f06898",
+    "scripts/oath_combat_rules.gd": "c0b5f85c487237963cdff96b5f2002f03eac65c17dbda483c3393a402c4fd1b2"
+  },
+  "post_capture_correction": "Only main.gd changed after capture: warm background resume and saved checkpoints now share _run_intends_progress(), so AFK follows the same prior active/manual-pause intent. No renderer, layout, animation, foreground inspection or capture code changed. Four additional warm/cold AFK parity checks and existing persistence/combined-rule suites pass. Capture hashes remain the exact source at capture time; reviewed hashes identify the final source."
+}

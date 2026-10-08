@@ -1,0 +1,27 @@
+{
+  "actual_exit_code": 0,
+  "actual_samples": 2904,
+  "classes": [
+    {
+      "class": "Arcanist",
+      "min_ankle_m": 0.422102868556976,
+      "min_weighted_sole_center_m": 0.506805062294006,
+      "min_weighted_sole_gap_m": 0.300944745540619,
+      "scale_world": 1.16216218471527
+    },
+    {
+      "class": "Ranger",
+      "min_ankle_m": 0.421745479106903,
+      "min_weighted_sole_center_m": 0.54414314031601,
+      "min_weighted_sole_gap_m": 0.30812931060791,
+      "scale_world": 1.16216218471527
+    },
+    {
+      "class": "Vowkeeper",
+      "min_ankle_m": 0.410144507884979,
+      "min_weighted_sole_center_m": 0.533945262432098,
+      "min_weighted_sole_gap_m": 0.292991816997528,
+      "scale_world": 1.16216218471527
+    }
+  ]
+}

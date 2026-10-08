@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "status": "prospective_semantic_scope_from_complete_before_only; after_pair_pending_not_acceptance",
+  "created_utc": "2026-10-07T23:35:59.057560+00:00",
+  "character_class": "vowkeeper",
+  "basis_side": "before",
+  "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "intended_after_source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "before_receipt_sha256": "840e980a74d05da1227173f9e0c3adaadaf532fbebbb88d4a2e9ac2ced795803",
+  "before_movie_sha256": "e0f3194f1ad288bfa650143fa18d253e5220f09cad22fde5bb90fb494e6095b1",
+  "before_journal_sha256": "6015c7d0c261abe1b70275ae2837ba7fb839b0110448ccc4042d7a47d63910a5",
+  "before_frames": 3099,
+  "frozen_final_review_tool_sha256": "f4f2ad49dd62a6dd220410f3ae56029352b71c9c07c2926927487730bd554a96",
+  "ranges": [
+    {
+      "label": "first-signature-cancelled-phrase",
+      "first": 1,
+      "last": 24,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "first-basic-cancelled-phrase",
+      "first": 64,
+      "last": 87,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "first-judgment-full-released-phrase",
+      "first": 1621,
+      "last": 1653,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "first-sunder-full-released-phrase",
+      "first": 961,
+      "last": 990,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "first-lateral-evade",
+      "first": 423,
+      "last": 439,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "first-attack-to-evade",
+      "first": 412,
+      "last": 439,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "additional-evade-923",
+      "first": 919,
+      "last": 937,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "additional-evade-2501",
+      "first": 2499,
+      "last": 2527,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "additional-evade-2684",
+      "first": 2682,
+      "last": 2707,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "ordinary-travel-gait",
+      "first": 24,
+      "last": 44,
+      "crop_scope": "hero_and_surrounding_scene"
+    },
+    {
+      "label": "first-raider-death",
+      "first": 9,
+      "last": 39,
+      "crop_scope": "full_viewport"
+    },
+    {
+      "label": "first-hexer-death",
+      "first": 72,
+      "last": 102,
+      "crop_scope": "full_viewport"
+    },
+    {
+      "label": "first-bulwark-death",
+      "first": 975,
+      "last": 1005,
+      "crop_scope": "full_viewport"
+    },
+    {
+      "label": "first-elite-death",
+      "first": 1638,
+      "last": 1668,
+      "crop_scope": "full_viewport"
+    },
+    {
+      "label": "first-boss-death",
+      "first": 2820,
+      "last": 2850,
+      "crop_scope": "full_viewport"
+    },
+    {
+      "label": "first-hexer-telegraph-release-recovery-reset",
+      "first": 414,
+      "last": 462,
+      "crop_scope": "full_viewport"
+    },
+    {
+      "label": "first-elite-interrupted-telegraph",
+      "first": 1638,
+      "last": 1670,
+      "crop_scope": "full_viewport"
+    },
+    {
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "first": 2481,
+      "last": 2718,
+      "crop_scope": "full_viewport"
+    },
+    {
+      "label": "original-ending-loot-ui",
+      "first": 3093,
+      "last": 3098,
+      "crop_scope": "full_viewport"
+    }
+  ],
+  "scope": "Only the actually completed BEFORE receipt, movie hash and authority journal are read. No unfinished AFTER media read or decoded. Final plan must be generated from the actual completed paired comparison and matched afterward."
+}

@@ -1,0 +1,665 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "package": "com.philmenting.emberfallashenveil.betaqa",
+  "fixture": "art",
+  "started_at": "2026-10-06T20:16:39.386674+00:00",
+  "apk": {
+    "path": "/home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-art-qa.apk",
+    "sha256": "a4daecf6d5e55509eb2d9b9c637cd0b7ca9dac72b5f936b6be5f04d747be9559"
+  },
+  "provenance": {
+    "source_commit": "ad4d50bb9dbdc07cea42e2306a79fc65bb642489",
+    "github_sha": "d7d10a856b913ba07eb056c783564a8eebe915e4",
+    "github_head_ref": "improve/animation-craft",
+    "github_run_id": "37523666852",
+    "github_run_attempt": "1",
+    "observer_sha256": "5c810ca9f7f50270f402089db3da399977b3544ad683d899a4f3e742db4edc8d"
+  },
+  "launches": [
+    {
+      "number": 1,
+      "status": "marker_observed",
+      "process_observed": true,
+      "started_at": "2026-10-06T20:16:43.557701+00:00",
+      "pid_samples": [
+        {
+          "elapsed_seconds": 0.526,
+          "pids": []
+        },
+        {
+          "elapsed_seconds": 4.214,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 7.377,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 10.45,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 13.525,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 16.602,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 19.684,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 22.762,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 25.838,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 28.925,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 32.098,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 35.214,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 38.345,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 41.451,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 44.61,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 47.778,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 50.902,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 54.087,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 57.249,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 60.384,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 63.527,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 66.678,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 69.861,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 73.02,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 76.112,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 79.201,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 82.347,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 85.496,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 88.655,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 91.783,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 94.884,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 97.998,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 101.124,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 104.268,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 107.499,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 110.652,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 113.872,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 117.025,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 120.205,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 123.391,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 126.558,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 129.688,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 132.808,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 135.94,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 139.097,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 142.247,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 145.401,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 148.595,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 151.834,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 155.032,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 158.163,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 161.357,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 164.552,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 167.695,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 170.933,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 174.079,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 177.255,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 180.398,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 183.56,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 186.701,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 189.858,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 193.014,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 196.185,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 199.376,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 202.613,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 205.989,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 209.164,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 213.295,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 216.533,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 219.74,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 222.937,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 226.108,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 229.301,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 232.476,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 235.681,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 238.973,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 242.177,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 245.324,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 248.496,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 251.67,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 254.83,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 258.023,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 261.151,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 264.316,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 267.549,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 270.726,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 274.001,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 277.237,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 280.442,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 283.646,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 286.905,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 290.115,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 293.316,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 296.526,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 299.752,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 302.954,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 306.159,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 309.383,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 312.57,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 315.736,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 318.992,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 322.193,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 325.361,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 328.578,
+          "pids": [
+            6535
+          ]
+        },
+        {
+          "elapsed_seconds": 331.776,
+          "pids": [
+            6535
+          ]
+        }
+      ],
+      "marker": "ANDROID_ART_PASS all four regions rendered",
+      "log_file": "art-launch.log",
+      "all_log_file": "art-launch-all.log",
+      "marker_deadline_seconds": 900,
+      "start_grace_seconds": 30,
+      "elapsed_seconds": 331.776
+    }
+  ],
+  "diagnostic_errors": [],
+  "finished_at": "2026-10-06T20:22:17.003982+00:00"
+}

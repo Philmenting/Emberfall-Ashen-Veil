@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "status": "complete_consecutive_h264_decoded_range",
+  "character_class": "arcanist",
+  "side": "before",
+  "label": "first-attack-to-evade",
+  "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "first_frame_zero_based": 789,
+  "last_frame_zero_based_inclusive": 808,
+  "every_consecutive_frame_decoded": true,
+  "retained_frame_sampling": "Every consecutive decoded frame",
+  "exact_semantic_frames_retained": [
+    791,
+    793,
+    794
+  ],
+  "actual_ffmpeg_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-threads",
+    "1",
+    "-filter_threads",
+    "1",
+    "-i",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/ordinary-arcanist-complete.mp4",
+    "-map",
+    "0:v:0",
+    "-an",
+    "-vf",
+    "select=between(n\\,789\\,808)",
+    "-frames:v",
+    "20",
+    "-fps_mode",
+    "passthrough",
+    "-pix_fmt",
+    "rgb24",
+    "-f",
+    "rawvideo",
+    "pipe:1"
+  ],
+  "actual_ffmpeg_exit_code": 0,
+  "movie_sha256": "eaa5c56c8cb4994d515271cc6e97f7e1ef2d26658cdad05aadeeba575355021c",
+  "capture_receipt_sha256": "2509f93366faedc6ab083678d8f0c24126beb703624176ca1f9174c90839289a",
+  "crop_xyxy": [
+    385,
+    176,
+    706,
+    445
+  ],
+  "contact_sheet_pixel_scale": "1:1 original decoded pixels; shared fixed crop for this before/after range",
+  "image_origin": "H264-decoded lossy movie frames, lossless PNG contact sheets, cropped only with external labels. Not original Godot PNGs.",
+  "human_visual_review": "pending; decoding alone is not visual acceptance",
+  "sheets": [
+    {
+      "file": "derived-contact-sheet-00.png",
+      "sha256": "f9d69a4b9f9d5a034305e547266d0a0a38b94b76f4a5a24364478c48fe25cc46",
+      "bytes": 1058586,
+      "first_frame": 789,
+      "last_frame": 804,
+      "frames": [
+        789,
+        790,
+        791,
+        792,
+        793,
+        794,
+        795,
+        796,
+        797,
+        798,
+        799,
+        800,
+        801,
+        802,
+        803,
+        804
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-01.png",
+      "sha256": "3a0a8ce61cd6701b2fa417ed07835ed960b05cbe18d9cb76b891cc82c6ef4c09",
+      "bytes": 250548,
+      "first_frame": 805,
+      "last_frame": 808,
+      "frames": [
+        805,
+        806,
+        807,
+        808
+      ]
+    }
+  ],
+  "review_tool_sha256": "afd4ff67403623b767fa30b3a18431a2cefb7cfb374c9b572b1b7e938416a8bf"
+}

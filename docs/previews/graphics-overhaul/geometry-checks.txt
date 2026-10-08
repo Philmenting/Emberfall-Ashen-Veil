@@ -1,0 +1,103 @@
+Godot 4.7.2 native headless geometry inspection; no device performance claim.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Vowkeeper: own exported character appearance
+PASS: Vowkeeper: finite geometry and normals fit the animated joint contract
+PASS: Vowkeeper: character geometry remains within the 40k triangle ceiling (39282)
+PASS: Arcanist: own exported character appearance
+PASS: Arcanist: finite geometry and normals fit the animated joint contract
+PASS: Arcanist: character geometry remains within the 40k triangle ceiling (39794)
+PASS: Ranger: own exported character appearance
+PASS: Ranger: finite geometry and normals fit the animated joint contract
+PASS: Ranger: character geometry remains within the 40k triangle ceiling (39770)
+PASS: raider: own exported character appearance
+PASS: raider: finite geometry and normals fit the animated joint contract
+PASS: raider: character geometry remains within the 40k triangle ceiling (18508)
+PASS: hexer: own exported character appearance
+PASS: hexer: finite geometry and normals fit the animated joint contract
+PASS: hexer: character geometry remains within the 40k triangle ceiling (35016)
+PASS: bulwark: own exported character appearance
+PASS: bulwark: finite geometry and normals fit the animated joint contract
+PASS: bulwark: character geometry remains within the 40k triangle ceiling (22872)
+PASS: elite: own exported character appearance
+PASS: elite: finite geometry and normals fit the animated joint contract
+PASS: elite: character geometry remains within the 40k triangle ceiling (22016)
+PASS: guardian_0: own exported character appearance
+PASS: guardian_0: finite geometry and normals fit the animated joint contract
+PASS: guardian_0: character geometry remains within the 40k triangle ceiling (37092)
+PASS: guardian_1: own exported character appearance
+PASS: guardian_1: finite geometry and normals fit the animated joint contract
+PASS: guardian_1: character geometry remains within the 40k triangle ceiling (38712)
+PASS: guardian_2: own exported character appearance
+PASS: guardian_2: finite geometry and normals fit the animated joint contract
+PASS: guardian_2: character geometry remains within the 40k triangle ceiling (38292)
+PASS: guardian_3: own exported character appearance
+PASS: guardian_3: finite geometry and normals fit the animated joint contract
+PASS: guardian_3: character geometry remains within the 40k triangle ceiling (24868)
+PASS: field_table: architectural GLTF is available for export
+PASS: field_forge: architectural GLTF is available for export
+PASS: seal_shrine: architectural GLTF is available for export
+PASS: vault: architectural GLTF is available for export
+PASS: vault: repeated landmark stays joined within twelve material meshes
+PASS: library: architectural GLTF is available for export
+PASS: library: repeated landmark stays joined within twelve material meshes
+PASS: altar: architectural GLTF is available for export
+PASS: altar: repeated landmark stays joined within twelve material meshes
+PASS: throne: architectural GLTF is available for export
+PASS: throne: repeated landmark stays joined within twelve material meshes
+PASS: brazier: architectural GLTF is available for export
+PASS: lancet: architectural GLTF is available for export
+PASS: intarsia: architectural GLTF is available for export
+PASS: pillar: architectural GLTF is available for export
+PASS: broken_pillar: architectural GLTF is available for export
+PASS: arch: architectural GLTF is available for export
+PASS: tomb: architectural GLTF is available for export
+PASS: bell: architectural GLTF is available for export
+PASS: bone_arch: architectural GLTF is available for export
+PASS: furnace: architectural GLTF is available for export
+PASS: well: architectural GLTF is available for export
+PASS: guardian 0: cached runtime uses one shared volumetric surface plus contact shadow
+PASS: guardian 0: actual 3D attack, impact and defeat states remain finite
+PASS: guardian 1: cached runtime uses one shared volumetric surface plus contact shadow
+PASS: guardian 1: actual 3D attack, impact and defeat states remain finite
+PASS: guardian 2: cached runtime uses one shared volumetric surface plus contact shadow
+PASS: guardian 2: actual 3D attack, impact and defeat states remain finite
+PASS: guardian 3: cached runtime uses one shared volumetric surface plus contact shadow
+PASS: guardian 3: actual 3D attack, impact and defeat states remain finite
+PASS: region 0 seed 1979: route audit includes real standing-height dressing
+PASS: region 0 seed 1979: added walls and complete props leave authoritative passages clear (0 intersections)
+PASS: region 0 seed 1979: repeated static geometry stays below 450 batches (271)
+PASS: region 0 seed 1042: route audit includes real standing-height dressing
+PASS: region 0 seed 1042: added walls and complete props leave authoritative passages clear (0 intersections)
+PASS: region 0 seed 1042: repeated static geometry stays below 450 batches (286)
+PASS: region 0 seed 7351: route audit includes real standing-height dressing
+PASS: region 0 seed 7351: added walls and complete props leave authoritative passages clear (0 intersections)
+PASS: region 0 seed 7351: repeated static geometry stays below 450 batches (282)
+PASS: region 1 seed 1979: route audit includes real standing-height dressing
+PASS: region 1 seed 1979: added walls and complete props leave authoritative passages clear (0 intersections)
+PASS: region 1 seed 1979: repeated static geometry stays below 450 batches (315)
+PASS: region 1 seed 1042: route audit includes real standing-height dressing
+PASS: region 1 seed 1042: added walls and complete props leave authoritative passages clear (0 intersections)
+PASS: region 1 seed 1042: repeated static geometry stays below 450 batches (325)
+PASS: region 1 seed 7351: route audit includes real standing-height dressing
+PASS: region 1 seed 7351: added walls and complete props leave authoritative passages clear (0 intersections)
+PASS: region 1 seed 7351: repeated static geometry stays below 450 batches (305)
+PASS: region 2 seed 1979: route audit includes real standing-height dressing
+PASS: region 2 seed 1979: added walls and complete props leave authoritative passages clear (0 intersections)
+PASS: region 2 seed 1979: repeated static geometry stays below 450 batches (289)
+PASS: region 2 seed 1042: route audit includes real standing-height dressing
+PASS: region 2 seed 1042: added walls and complete props leave authoritative passages clear (0 intersections)
+PASS: region 2 seed 1042: repeated static geometry stays below 450 batches (301)
+PASS: region 2 seed 7351: route audit includes real standing-height dressing
+PASS: region 2 seed 7351: added walls and complete props leave authoritative passages clear (0 intersections)
+PASS: region 2 seed 7351: repeated static geometry stays below 450 batches (298)
+PASS: region 3 seed 1979: route audit includes real standing-height dressing
+PASS: region 3 seed 1979: added walls and complete props leave authoritative passages clear (0 intersections)
+PASS: region 3 seed 1979: repeated static geometry stays below 450 batches (300)
+PASS: region 3 seed 1042: route audit includes real standing-height dressing
+PASS: region 3 seed 1042: added walls and complete props leave authoritative passages clear (0 intersections)
+PASS: region 3 seed 1042: repeated static geometry stays below 450 batches (296)
+PASS: region 3 seed 7351: route audit includes real standing-height dressing
+PASS: region 3 seed 7351: added walls and complete props leave authoritative passages clear (0 intersections)
+PASS: region 3 seed 7351: repeated static geometry stays below 450 batches (292)
+AUTHORED ART SMOKE: 99 checks, 0 failures

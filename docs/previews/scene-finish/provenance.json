@@ -1,0 +1,445 @@
+{
+  "version": "0.46.0-beta.1",
+  "version_code": 52,
+  "engine": "Godot 4.7.2 stable",
+  "renderer": "Native OpenGL compatibility / Mesa llvmpipe / Linux Xvfb",
+  "pixel_changes": "None in native stills; metadata only. Video is H.264 encoded from native frame sequences.",
+  "limits": "Recorded simulation steps establish visible animation and layout, not physical phone FPS or thermal performance. Guardian scene stills use raised Life; attack gameplay and 15s reading/travel use ordinary equipment.",
+  "capture_note": "Camp label positioning and the effects-hidden QA fixture null guard were corrected while the ordinary combat/travel renderers were already running. Neither change affects their recorded gameplay paths; hashes describe the final packaged candidate.",
+  "source_sha256": {
+    "scripts/ruin_architecture.gd": "974f9afbc5ecf509352b2155a58f33f8b5f7d8f50320754550d6702161796e74",
+    "scripts/dungeon_world.gd": "143b35747788529b1ae3fade10d22fd0ee147d97036a6e29b716320320efc399",
+    "scripts/character_animation.gd": "8d9c13241dd6e55ed1cb6ea307658fa4297b60c24388b88197d9f931c80ea781",
+    "scripts/dungeon_actor.gd": "aaae675efdc07cd7cb6f1575285eb54559b7366bf245adc8bae7982fbbf274ee",
+    "scripts/main.gd": "ce0aa6687e85dc78b9c33a3ed848f138a5005db5d1233712794694e1dfbcc63b",
+    "scripts/camp_scene.gd": "30ede3a1073e9605bcf1308096adf01005ac83e16da554c0437d9768686f52ff",
+    "tools/art/build_characters.py": "dc8d310c140f87f1c3da2a5c958d32994e00175f6006e3e4491fc4d1656453aa",
+    "assets/shaders/ruin_floor.gdshader": "1f26defac45ef200fef39a32896188b475f832705b2fb46a2dc658ada233d102",
+    "assets/shaders/ruin_deposit.gdshader": "aeacef77c5a3165038c0ab4c647a97afd31cfc649495e69e517497f9ada1d513",
+    "assets/shaders/weathered_stone.gdshader": "14c1aa69bd8aff96824e85b26c07625efab2516c2e35c4ea889f7f82c79adb8a",
+    "assets/shaders/character_surface.gdshader": "34892374b6bcfa70527c692894da6646df2ba7ad355fba8e56702392b46f65e0",
+    "assets/shaders/dungeon_water.gdshader": "3beefed1c6f9e8fd557eba31d3a826d033475d5af25b34e9295b6753adcf2e9b",
+    "tests/graphics_overhaul_preview.gd": "f204c677b74b00f64f2102fa9a7458264d09413cc2e3115773b41f03947276a4",
+    "tests/attack_gameplay_preview.gd": "97c837dc322778a0d2cc94b5a549144aa83376dde1ef181f07a51c5c02b43190",
+    "tests/character_motion_preview.gd": "6cca163b813e3883dc8dcb2ed51c614ba7037eff1bdec68c95926868cb2d5d6c",
+    "tests/character_portrait_preview.gd": "17a364389b3b54b0913dfaa6b0f6c7d1c92b9d782a6754a11f72e4f34a68bef8",
+    "assets/materials/ruin-floor/ruin-floor-albedo.png": "22ee5f0802a34e1f2f53d0f4da2f273fd3510f9b76d4797f617cfe0af1f2138e",
+    "assets/models/arcanist.glb": "e4f7e14567a3e6e194d91f8e865249aa3431264823b40b7eff14267995d94990",
+    "assets/models/bone_arch.glb": "2cca35fb9cf63a75078e2ce8e7aad1fa68d7d5c905d2a8a82ba73ebf6dd2c6b6",
+    "assets/models/broken_pillar.glb": "280ef66c2414030851d42daff0f9846461d8991b39bdbba6ccf6909424ec231a",
+    "assets/models/bulwark.glb": "24b340657595061b33e4a8c73ff88f0af07f0275200492233d8f9fbbd5c0ddcd",
+    "assets/models/carved_tomb.glb": "691e24da8cdf054401740929636c04afbc5b05a30aacf4f7b0d6946963e0e047",
+    "assets/models/ceremonial_brazier.glb": "de35c9f917ec4b33cedfc8efe49de993cb674a6f8da854a8b842e519534b1979",
+    "assets/models/drowned_library.glb": "f0cb0c3005c6aff9370760294870b4a0d8aba11d2a2eb8b26876b08eb0d9b0ba",
+    "assets/models/elite.glb": "fcac67ef3cb0c878c8d762a91031820ad67b63d412f4a5c943fb3a0cce21bede",
+    "assets/models/expedition_table.glb": "7709ec4ff594917c45cb31fb0ab76b6f4ca92cbde20a3c4c2b11460c95bb1320",
+    "assets/models/field_forge.glb": "59c30f79d5c3af7cc62f322295404678df499acde4050a41365d5ea98a6f15ff",
+    "assets/models/furnace.glb": "38468753c8d06f8018be4a92f7c5bc76d037acb89ff310d13b25355e441a846a",
+    "assets/models/furnace_throne.glb": "fec7da39352509db0727de72947f65b6ca6921af4ea9446f54b4a993bdd75d75",
+    "assets/models/gothic_arch.glb": "5d260b7a40aa91d1227878790f6fa30b8259d77fb2f900c7e91b141e540d4b3d",
+    "assets/models/guardian_0.glb": "e40868d235589901eec50b973125e15e95d874304e89913ff054e9242f0f89ca",
+    "assets/models/guardian_1.glb": "4861dff2c2f7862f438cfa56c827a6ac84fdc467cb2d8540811d9b5824336c5b",
+    "assets/models/guardian_2.glb": "e457752ec9b50c64bee47239335d3a2a02e067839e6218cdd3ee3d7c1993de82",
+    "assets/models/guardian_3.glb": "1d2c49990bd9ae7e29c1a349b110d3f4f6ab2cbb3ccfa6290bbab0deddbc3f75",
+    "assets/models/hanging_bell.glb": "5422935a955881704ad8da6d5a4445792e2ecc2c3106a73b19197d7959cdcb0f",
+    "assets/models/hexer.glb": "4ef9a500051f016c4b97394bd6b51059b72ac7395eca1c8fe605e9f758fbc88e",
+    "assets/models/leaded_lancet.glb": "bf4dcbb0959853d53adbdf32c9f979fa17759ad542695951c745c914b5bb3e4c",
+    "assets/models/pilgrim_well.glb": "3982edea5472d0280f5cc20be14e8963041aebeeed7940fe09c19e963d93f471",
+    "assets/models/pillar.glb": "e764c2643e8cc91cb06e763413933f5ec61e2141438d8f5afc10054d9247805c",
+    "assets/models/raider.glb": "a410fcc22172fc9506c7742c181ff4d6b0dad064b0121837ac051ed32c80eb1f",
+    "assets/models/ranger.glb": "9a757b9f18b1ce8a5cb946a81eb11e90d696f3986a1923dec2608f78289c8cdd",
+    "assets/models/reliquary_altar.glb": "b717c36ca847242c5faa4e15e3bcc1e9a560a3927ce7e62bd19d793bb0598cfe",
+    "assets/models/ruined_vault.glb": "3b2f8400c5887dc50f7c1100f9218c7d56796222cd7f9a12f8e303356a9b5e27",
+    "assets/models/sanctuary_intarsia.glb": "ebc30c10957645239ea734d518f7e46d4e74492bcfe697e4a24f69cc1a376ec2",
+    "assets/models/seal_shrine.glb": "0d8d584c32dba088b6cee34b3ec5a72939dc219739a7be63ba9c180f362598ff",
+    "assets/models/vowkeeper.glb": "7dac4f6845e6a58d0ba66e703938eeae0d867e2accbab08278fc81204a04cd69"
+  },
+  "stills": [
+    {
+      "file": "camp-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "94557a0ba863bb35f240c820f01e4f798e9198872bd536babf092a4b64574bf7",
+      "pixel_sha256": "4f1478d1b6a2f54fa80824e1b6e63be7091b80bbbd0f07fd1790d80bfef87184",
+      "origin_embedded": true
+    },
+    {
+      "file": "camp-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "30bc667c377438e8e266362aed9d60f5231838fc8280497a805106d1eb1b9755",
+      "pixel_sha256": "1a1623d1046e11fa544965ff73d289cd578a8a9364a48509aceb6daa0a9a3de5",
+      "origin_embedded": true
+    },
+    {
+      "file": "camp-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "523a8278c7c020a14e568f899bec1a36aa710fec7ba16b7968309e0bff1bc487",
+      "pixel_sha256": "9caa254c829942e2f09f28663ae2b25363011915de659dce7aa19dc2bbca272e",
+      "origin_embedded": true
+    },
+    {
+      "file": "guardian-0-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "54604733609ebfeeb0c5a692cc8409231c5a2c83139e2028a68e568c2e5b2fec",
+      "pixel_sha256": "d81c34e334ccb2d905b193d9e1f1de0563018205ea65ad37d70f94cd4a54909e",
+      "origin_embedded": true
+    },
+    {
+      "file": "guardian-0-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "944d4272fb1fb6377147ca5ae1e5c1600a6b6867d4c444c7606ba4b12bd764e2",
+      "pixel_sha256": "88bb276311fc130e77587e2bfb42ed14ffa047c52dea2a72301a0e6114c82476",
+      "origin_embedded": true
+    },
+    {
+      "file": "guardian-0-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "56f9d09d31a167af4d6d330830f317d97c5415fd76a221b8b2ac465ffc7af943",
+      "pixel_sha256": "31391d504267ab6559d329e610627e56c6a57bcaa513d0892e3afabb6ad9366b",
+      "origin_embedded": true
+    },
+    {
+      "file": "guardian-1-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "7f29134f527e9b6226f8209ef8cd43b1de79bd8105287ab4373e8ce9f1909d18",
+      "pixel_sha256": "9f5a2d87fe68dd0f93edd5dea7cea23cb2959b69b0550dfe380cf47b46e34b4c",
+      "origin_embedded": true
+    },
+    {
+      "file": "guardian-1-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "b9bca71cbcb5cc54244de729785ea966afb43ac57ac400c5f00e5c85f67b2234",
+      "pixel_sha256": "9dee460d719b59742c6f24d4aad34a8586e2a80dfa30c92a7dbedd5bd15b76e5",
+      "origin_embedded": true
+    },
+    {
+      "file": "guardian-1-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "cf1ee4ac0f0911a699b5300e57484281e61c601a87c02b54cf1f172326adc06c",
+      "pixel_sha256": "6f8cdbd684ce64830e2d28fc16c80bf23b4006de728072f615c6c6c0297978e1",
+      "origin_embedded": true
+    },
+    {
+      "file": "guardian-2-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "f32f4d087c078cfed6f4c07de9a8161eb6e376f2ac238eb701a681c377724e43",
+      "pixel_sha256": "f0fdcd19e2602dae3ba69c14f46f2878c669672811785ebf8e0be328eb7c1007",
+      "origin_embedded": true
+    },
+    {
+      "file": "guardian-2-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "61cca97ab90ea67cd0add8fb7e8c658fc5d3377b9bb9482aad2c87abf158808a",
+      "pixel_sha256": "025bc8b53cf6ed87d70d25eb71d5e0c476f9e101e9446224c0f2b4434c491deb",
+      "origin_embedded": true
+    },
+    {
+      "file": "guardian-2-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "00b01c22bf044d10239070498f82242684e7a39e482fbdeeeb75798fc7fc1540",
+      "pixel_sha256": "9dd9e23f8d7fa49f692a005f02cb5a732b2c2d674690562e651e26bdcf78d0e7",
+      "origin_embedded": true
+    },
+    {
+      "file": "guardian-3-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "c7e2e36927beb3d842da1105da1df5d199e0d5c7fab38ab4c9571414408f958a",
+      "pixel_sha256": "638015a97d469af3f8151526dca53cdd97ee92f48ca639b228c6057747bcfd92",
+      "origin_embedded": true
+    },
+    {
+      "file": "guardian-3-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "3471a593713341684ee24926456813d0043932171823e98f57c31e7cff4228ee",
+      "pixel_sha256": "a73c7d9f56f045fed3ba691d524d4d79dd2b273a9bc4b679cfd7698a9ab94abc",
+      "origin_embedded": true
+    },
+    {
+      "file": "guardian-3-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "6e56800f9048d751a28c3e6bf03eb9816cf2c8ceb6753a0e65044cc8ec908224",
+      "pixel_sha256": "bc189e89d93c8b6a075e9be79a0839858ac1042cee420bbcbc01ed9a06f0769c",
+      "origin_embedded": true
+    },
+    {
+      "file": "portraits.png",
+      "dimensions": [
+        1000,
+        550
+      ],
+      "sha256": "9af5fe92e4b45d5053f952a55f56e91b5eb107e0bee59411c799015f9652274c",
+      "pixel_sha256": "5947259dc63c6012627450bf43ac2a09651412d2a0bd7d84596a4d8baabca304",
+      "origin_embedded": true
+    },
+    {
+      "file": "reading-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "f6c570925edcbcc187d62c41f17bfbbef51cf741bfe78d537288c17c2c8d555f",
+      "pixel_sha256": "d714de87c16871f22a94d5188bc9d91c6c877d571338c84e0f925c6e087098d5",
+      "origin_embedded": true
+    },
+    {
+      "file": "reading-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "5f6788f49c059c391b9bd7d6ca20ee507920e3cb97fb56a7f6b2d0b78c3e593a",
+      "pixel_sha256": "7f0f802b10c4722e9892d3a6480f3f255922513c2737a6d9da20b4a5f91d3608",
+      "origin_embedded": true
+    },
+    {
+      "file": "reading-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "1316abdbdbda7b1fa086d8117575839bac8968435697e1d1de8e12fd8b827f96",
+      "pixel_sha256": "be5477f8cc907839c511774c69725da19831272a434fc45c04162dba9ba9739a",
+      "origin_embedded": true
+    },
+    {
+      "file": "skills-Arcanist-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "66668d2e19aa6ec0d76673dd5806420a31025bf8f692e0d6eeb8067aa4c57560",
+      "pixel_sha256": "b2f8c7b7b4af09fb442341a588941da1ea7693519ef776b6f57885f7a0755731",
+      "origin_embedded": true
+    },
+    {
+      "file": "skills-Arcanist-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "fb4372e5751c1f413c8dce8ad3032e68c862e2a9032910f6757e585394f21ed8",
+      "pixel_sha256": "3750543a3c063450661d669a2a16c6e25b6b4caca0cc68f2c4b48605c3f428c9",
+      "origin_embedded": true
+    },
+    {
+      "file": "skills-Arcanist-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "6007d94b19c654904a08c95cc41213c22e62bd6cff9f18d912c40b3a9f795df1",
+      "pixel_sha256": "483a4835b85fe3ac43d5cedf850100056e0f5aa2cb4981ec0b0527755529d7df",
+      "origin_embedded": true
+    },
+    {
+      "file": "skills-Ranger-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "3f7fbdfde36dc5a2c55043b87e8dea38fa25330c5e5f6f9a07855a1f60d38295",
+      "pixel_sha256": "74841ab7b13503f56cdb1ade7c3ab8a8b4531cc9052c33237246d95dbf38db9d",
+      "origin_embedded": true
+    },
+    {
+      "file": "skills-Ranger-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "a3db3ba229d4c1368c9ac1f3ad5a4372c19251d34dfaf0a76f0033f9544c2516",
+      "pixel_sha256": "37bb48113d5777c038fb39a9d57283b75ef438a37343b82ba8e724515360065b",
+      "origin_embedded": true
+    },
+    {
+      "file": "skills-Ranger-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "228f8bdb64047b5a77c8fccbea1bf8fa7358e4d12a9e23800fb4826fc36fa0e2",
+      "pixel_sha256": "561f8f015d8a09aea56117f9c09e72977e39c7b54934bbf0558d742c65c7e01d",
+      "origin_embedded": true
+    },
+    {
+      "file": "skills-Vowkeeper-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "86ce810afb9858a6fffa7015afbfe08461c1dd3680bef190b3aef2b03d3592a2",
+      "pixel_sha256": "071799dcee3e3d2c6073d91ad2b741ce505339c2e7de2b50210d627b3c9996cb",
+      "origin_embedded": true
+    },
+    {
+      "file": "skills-Vowkeeper-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "064bd103ee8bfdde4e1241a247265ee1b5182496a8349cb30d68954197954dab",
+      "pixel_sha256": "676aca8af18c1196964ef772dcb6b6ccd22b26b4c3e1b5f914075b43c4840e5e",
+      "origin_embedded": true
+    },
+    {
+      "file": "skills-Vowkeeper-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "5b9487c5807fcb1ed17399bbba824bb603bedc2beffec64954d5a24b1b71ad40",
+      "pixel_sha256": "4633ce8d2fa2ba2311dad490adba3edb8dd4db73043165472a650ff84f54c9be",
+      "origin_embedded": true
+    },
+    {
+      "file": "ward-reserve-1040x1080.png",
+      "dimensions": [
+        1040,
+        1080
+      ],
+      "sha256": "f6972ac56c8a31bfcc4ea56277a65365051937d50560e886645855f3615a33e2",
+      "pixel_sha256": "e06165dbc42a429ae02307c6e9fe7b0299c17044f5efd5591ce184322c9c8008",
+      "origin_embedded": true
+    },
+    {
+      "file": "ward-reserve-2424x1080.png",
+      "dimensions": [
+        2424,
+        1080
+      ],
+      "sha256": "0382ce4c241997d5e629f59603653d73f2c6c498422827c58e060b955d6970f0",
+      "pixel_sha256": "bd5069a87065472ae5efbdcec0591b9eddee11944af87f34d05467b8fadc761e",
+      "origin_embedded": true
+    },
+    {
+      "file": "ward-reserve-854x480.png",
+      "dimensions": [
+        854,
+        480
+      ],
+      "sha256": "30587f03a293ca762481f922311698c98305b444d601802ad098915ad29d13d5",
+      "pixel_sha256": "770ecbca2ac7ad3b035077896f01c4ce463806e90be761ed03938fae4b16d347",
+      "origin_embedded": true
+    }
+  ],
+  "clips": [
+    {
+      "file": "emberfall-attacks-bare-046.mp4",
+      "frames": 360,
+      "fps": 30,
+      "seconds": 12.0,
+      "dimensions": [
+        1200,
+        536
+      ],
+      "audio": false,
+      "fixture": "QA inspection: ordinary equipment, 4s first fight per class at actual speed; effects, numbers and actor markers temporarily hidden. Not a shipping visual setting.",
+      "sha256": "23c4129e01027774037dea8728945947f637a3d6f11a09b00f23542774726324",
+      "full_decode": "pass"
+    },
+    {
+      "file": "emberfall-motion-046.mp4",
+      "frames": 720,
+      "fps": 30,
+      "seconds": 24.0,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "audio": false,
+      "fixture": "Native gallery, 650ms QA attacks; three heroes / four hostile kinds / four guardians, eight seconds each.",
+      "sha256": "7b6f2dc7404af4ca2d2a46df972963aafb5ebb7e2b976964ef7f23a36a9d1066",
+      "full_decode": "pass"
+    },
+    {
+      "file": "emberfall-attacks-046.mp4",
+      "frames": 720,
+      "fps": 30,
+      "seconds": 24.0,
+      "dimensions": [
+        1200,
+        536
+      ],
+      "audio": false,
+      "fixture": "Ordinary equipment, 4s first fight + 4s first guardian for Vowkeeper / Arcanist / Ranger. Cuts skip travel only; recorded time is actual simulation speed.",
+      "sha256": "ca54ac261b21a9754d3fd2c5a2aee19e2f5c5389fc399844796a4ca6c69f8cda",
+      "full_decode": "pass"
+    },
+    {
+      "file": "emberfall-graphics-046.mp4",
+      "frames": 450,
+      "fps": 30,
+      "seconds": 15.0,
+      "dimensions": [
+        1200,
+        536
+      ],
+      "audio": false,
+      "fixture": "Ordinary Arcanist; 5–8s actual reading pause, subsequent travel and arrival at Pilgrim’s Well.",
+      "sha256": "bf4f3b4d9631ecf1866a4f1e316c0341b859e68a52b73bbe9b46e9513f52dc4a",
+      "full_decode": "pass"
+    }
+  ],
+  "measurements": [
+    {
+      "file": "attack-effort.json",
+      "sha256": "1cb071dec22c2a6bfabeb0ab823bf5e5c1d28e5b7da07e88121529af444e3d4b"
+    },
+    {
+      "file": "character-geometry.json",
+      "sha256": "4aecc50899b3d0aa0d77c944589a588e74ae40ff18ac1c48776a33658bd22a7a"
+    },
+    {
+      "file": "death-envelope.json",
+      "sha256": "7dc37fa48f851345a08e4deeb1e62800ba798da6f7f4da3feec1320363314db2"
+    },
+    {
+      "file": "framing-gain.json",
+      "sha256": "fef9b0c2553b1a2b52e2f48a8aad1d0b06e4a2559dfb2ed990d12fdf0d58f703"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "case_seconds": 20,
+  "warmup_seconds": 1,
+  "short_fixture_smoke": true,
+  "provenance": {
+    "scope": "Desktop/native short fixture only; not Android hardware or performance evidence",
+    "source_base_commit": "4b152d0fc8b99cf51569585af2695bf3554416ed",
+    "candidate_committed": false
+  }
+}

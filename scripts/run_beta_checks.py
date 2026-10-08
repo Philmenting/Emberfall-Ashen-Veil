@@ -15,6 +15,8 @@ import tempfile
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 GODOT_SUITES = (
+    "beta_flow",
+    "combat_stances",
     "combat_movement",
     "journey",
     "dungeon",
@@ -23,18 +25,75 @@ GODOT_SUITES = (
     "boss_patterns",
     "class_loot",
     "contracts",
+    "combined_oaths_phases",
+    "main_combined_rules",
     "gear_forecast",
+    "gear_goals",
     "regions",
     "onboarding",
+    "success_loop",
+    "recovery",
     "options",
     "skill_rotation",
     "visuals",
+    "world_framing",
+    "authored_art",
+    "character_equipment",
+    "native_equipment_finish",
+    "presentation",
+    "frame_metrics",
+    "room_ground",
+    "character_3d",
+    "source_avatar",
+    "source_avatar_grip",
+    "source_avatar_attack",
+    "source_avatar_attack_contact",
+    "source_avatar_evade",
+    "native_motion_transition",
+    "raider_native",
+    "native_hostile",
+    "combat_occlusion",
+    "render_budget",
+    "source_avatar_style",
+    "avatar_attire_quality",
+    "class_avatar_quality",
+    "guardian_presentation",
+    "hostile_quality",
+    "dungeon_lighting",
+    "combat_audio",
+    "native_capture_audio",
+    "animation_craft",
+    "camp_hud",
+    "combat_readability",
     "fellowship_ui",
     "cloud_identity",
     "mana_ward",
 )
 SUITE_TIMEOUT_SECONDS = {"journey": 600}
-SUMMARY = re.compile(r"([A-Z][A-Z /]+ SMOKE):\s*(\d+)\s+checks,\s*(\d+)\s+failures")
+SUMMARY = re.compile(
+    r"([A-Z][A-Z /]+ SMOKE|SOURCE AVATAR(?: GRIP| ATTACK)?):\s*(\d+)\s+checks,\s*"
+    r"(?:\d+\s+actual poses,\s*)?(\d+)\s+failures"
+)
+ENGINE_ERROR = re.compile(
+    r"(?:^|\n)\s*(?:(?:SCRIPT|SHADER)\s+)?ERROR:|Parse Error:", re.IGNORECASE
+)
+ENGINE_WARNING = re.compile(
+    r"WARNING:.*(?:couldn.t resolve|shader|script|track|rendering|gpu|vulkan|opengl|uniform|material|parse)",
+    re.IGNORECASE,
+)
+INTENTIONAL_CORRUPT_CONFIG = (
+    "ERROR: ConfigFile parse error at <string>:0: Unexpected EOF while parsing simple tag."
+)
+
+
+def unexpected_engine_diagnostic(suite: str, output: str) -> bool:
+    # Persistence writes exactly two '[broken' slot contents and parses
+    # those strings with ConfigFile. Keep only that exact EOF exception;
+    # every other engine/script/shader diagnostic remains a failed suite.
+    lines = output.splitlines()
+    if suite == "persistence" and lines.count(INTENTIONAL_CORRUPT_CONFIG) == 2:
+        output = "\n".join(line for line in lines if line != INTENTIONAL_CORRUPT_CONFIG)
+    return bool(ENGINE_ERROR.search(output) or ENGINE_WARNING.search(output))
 
 
 def report_failure(name: str, output: str) -> None:
@@ -111,7 +170,7 @@ def main() -> int:
                 continue
             output = result.stdout + result.stderr
             matches = list(SUMMARY.finditer(output))
-            if result.returncode != 0 or not matches:
+            if result.returncode != 0 or not matches or unexpected_engine_diagnostic(suite, output):
                 failures.append(suite)
                 report_failure(suite, output)
                 continue

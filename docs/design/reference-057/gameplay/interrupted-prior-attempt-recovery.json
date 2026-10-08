@@ -1,0 +1,273 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-10-07T20:47:38Z",
+  "status": "interrupted_native_recording_not_completed_not_accepted",
+  "source_commit": "02a3fc905e55a4e64cbece4eb6b07c65c1bf4afb",
+  "original_session_status_preserved": "running",
+  "original_capture_status_preserved": "running",
+  "original_godot_actual_wait_exit": null,
+  "original_ffmpeg_actual_wait_exit": null,
+  "observed_children": [
+    {
+      "pid": 60073,
+      "observed_proc_state": "Z",
+      "original_parent_wait_exit_not_available": true
+    },
+    {
+      "pid": 60132,
+      "observed_proc_state": "Z",
+      "original_parent_wait_exit_not_available": true
+    }
+  ],
+  "complete_jsonl_rows": 2033,
+  "last_complete_row": {
+    "frame": 2032,
+    "stage": 5,
+    "phase": "travel",
+    "finished": false,
+    "won": false,
+    "simulation_elapsed": 67.7000000000004
+  },
+  "capture_summary_exists": false,
+  "ffprobe": {
+    "command": [
+      "ffprobe",
+      "-v",
+      "error",
+      "-count_frames",
+      "-select_streams",
+      "v:0",
+      "-show_entries",
+      "stream=width,height,nb_read_frames,r_frame_rate,duration",
+      "-of",
+      "json",
+      "/workspace/scratch/emberfall-quality-057/gameplay/before-arcanist/viewport-video-only.mp4"
+    ],
+    "actual_process_exit": 1,
+    "stdout": "{\n\n}\n",
+    "stderr": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x5600d0e461c0] moov atom not found\n/workspace/scratch/emberfall-quality-057/gameplay/before-arcanist/viewport-video-only.mp4: Invalid data found when processing input\n"
+  },
+  "original_files_preserved_without_changes": [
+    {
+      "path": "capture-metadata.json",
+      "bytes": 5746,
+      "sha256": "cbec71aeb1bf5e3df0386ebceb33c3cd66d0e59a9880a041ff757c582561a890"
+    },
+    {
+      "path": "ffmpeg.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "frames.jsonl",
+      "bytes": 23613136,
+      "sha256": "4c4b131a8021a161ed776bbde52d707ce3a91ce468ea75e9b44f617a155ceafb"
+    },
+    {
+      "path": "godot.log",
+      "bytes": 368,
+      "sha256": "052211730d2e6bad1bb27d0ba1621ed54bb0ef792b898c4c8600ed8b3be20a67"
+    },
+    {
+      "path": "native-game-audio.f32le",
+      "bytes": 23904256,
+      "sha256": "160ae066c6256f8dd99b7a0bbaffd4953e35c6ccf9c44b787aa71ea373777a2c"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 22152,
+      "sha256": "6737af0671a903fd3acec2a94ce8bcb3d159438356c9a54784521bed56aad576"
+    },
+    {
+      "path": "selected-frames/frame-00000.png",
+      "bytes": 815455,
+      "sha256": "b869491d8aad596026951800c89293aa83ac3f185746616111f5cec3fbd1d55c"
+    },
+    {
+      "path": "selected-frames/frame-00002.png",
+      "bytes": 818585,
+      "sha256": "db01c7e81c1177a88e1bb9446fc9c6a659c2b5bfcb2f8fdc7736999b2cacb14f"
+    },
+    {
+      "path": "selected-frames/frame-00004.png",
+      "bytes": 818444,
+      "sha256": "7e48743ec73788e9e0a0b35f52cd386a6372b0b9a59528e2544e99391a778d4b"
+    },
+    {
+      "path": "selected-frames/frame-00006.png",
+      "bytes": 818978,
+      "sha256": "2609fb3679df6df5239cf5a50bdbb524f34d08108c54778646a7a00ea46dca1e"
+    },
+    {
+      "path": "selected-frames/frame-00008.png",
+      "bytes": 818217,
+      "sha256": "a3c8c27100a36bc6b310695db9edf9e93deabe18888e6a1c81ca07b15d5b9cab"
+    },
+    {
+      "path": "selected-frames/frame-00009.png",
+      "bytes": 818716,
+      "sha256": "4052a3c3ed5ed5531d4b1e15afcd7c9ca48dbcdf2344899f53a896081b61a47a"
+    },
+    {
+      "path": "selected-frames/frame-00011.png",
+      "bytes": 819120,
+      "sha256": "13be0d40d038c1ae4239f65e4aafcbdbda8794ac7b8d1927bdf63fcc5578f90d"
+    },
+    {
+      "path": "selected-frames/frame-00014.png",
+      "bytes": 825190,
+      "sha256": "37f84040fc874273a57ba6f17516cca9f8819ce3232768283b8d444ef3a8b96d"
+    },
+    {
+      "path": "selected-frames/frame-00015.png",
+      "bytes": 824786,
+      "sha256": "787305f7e5c8e4303eb9953038151de340c6cea412df14437bd9673dbdc2a3db"
+    },
+    {
+      "path": "selected-frames/frame-00019.png",
+      "bytes": 829651,
+      "sha256": "9effd1f248327319f608b353d83ea6f61a40b946b9067deb7b54cc0f7b6e5f9f"
+    },
+    {
+      "path": "selected-frames/frame-00044.png",
+      "bytes": 804424,
+      "sha256": "b57b462779e99d8a3b98a00c11b9f085814ea975a8efe7925e4b4aa2470f4d3e"
+    },
+    {
+      "path": "selected-frames/frame-00046.png",
+      "bytes": 805971,
+      "sha256": "9692c0ec6cd30862c1bf7e962c3a2077972ba110e00eabc3e194b4d050f20db4"
+    },
+    {
+      "path": "selected-frames/frame-00048.png",
+      "bytes": 805737,
+      "sha256": "e027aad456b9d7bdbc667cc4bfdf26e08f6cb545d5f70fe2e71875edfe4a837e"
+    },
+    {
+      "path": "selected-frames/frame-00050.png",
+      "bytes": 805901,
+      "sha256": "53645d93a232fbf5059bfbeda549cba410f6fed677e95e8fb8830d120e576223"
+    },
+    {
+      "path": "selected-frames/frame-00051.png",
+      "bytes": 806236,
+      "sha256": "22e5f565c85d6148fbcd0f513688dee7c4b918260f721063c4d4aa93728d3cf3"
+    },
+    {
+      "path": "selected-frames/frame-00053.png",
+      "bytes": 806686,
+      "sha256": "50c31889e6e8fcc89ed8f87fc85a4281c20e100a99e32bc3867db93e36424b80"
+    },
+    {
+      "path": "selected-frames/frame-00056.png",
+      "bytes": 805881,
+      "sha256": "4b8dca7bf44df71e3ad1cec9686e6fe6c78a3a3c2cf043b91956ecbb50b26263"
+    },
+    {
+      "path": "selected-frames/frame-00300.png",
+      "bytes": 848767,
+      "sha256": "c9580526c4fc48afd5177bd90776fe2965e25aeebe523dc9c966be51d4d5c83c"
+    },
+    {
+      "path": "selected-frames/frame-00311.png",
+      "bytes": 848853,
+      "sha256": "3457da60581b333333de90d0a0b3d8a0fb900c837f8db6cc0c01fd3fd9874267"
+    },
+    {
+      "path": "selected-frames/frame-00314.png",
+      "bytes": 845778,
+      "sha256": "8615032d52e23f2c0212839cb96a0de54c7402fb2242115917dfd28dc60ee7d9"
+    },
+    {
+      "path": "selected-frames/frame-00317.png",
+      "bytes": 846456,
+      "sha256": "76d76df010917d1c1456af98b68c3d5f3f02fb40a7156fa298f1055349adc98b"
+    },
+    {
+      "path": "selected-frames/frame-00320.png",
+      "bytes": 853178,
+      "sha256": "b9ec0e21459cba6005624e9483c16b20e37171d06b62eecd94c828c6d6efa386"
+    },
+    {
+      "path": "selected-frames/frame-00323.png",
+      "bytes": 853953,
+      "sha256": "26a8555da38bae5d86415a4563d6dedd834fa0f3e0716ac68bdfa7b64eaf2c50"
+    },
+    {
+      "path": "selected-frames/frame-00326.png",
+      "bytes": 853214,
+      "sha256": "852222e2ada20001c00b8bb703a5f29122cd5308b729229b8e953467ba84eef7"
+    },
+    {
+      "path": "selected-frames/frame-00328.png",
+      "bytes": 853669,
+      "sha256": "9e3cf28c16e383ae450648cb698d447d587030166516bc63257705f52a6867d2"
+    },
+    {
+      "path": "selected-frames/frame-00336.png",
+      "bytes": 852021,
+      "sha256": "453b9141269f97273005982dc21184f7a685c6e1f78ebd92cda7095a84b61dc5"
+    },
+    {
+      "path": "selected-frames/frame-00343.png",
+      "bytes": 853537,
+      "sha256": "e061479b19a50f9b62c700a464e77e6f28a0a018f1e25059274233413eb7de17"
+    },
+    {
+      "path": "selected-frames/frame-00347.png",
+      "bytes": 847484,
+      "sha256": "83ea548b4606f887d6219d10eb7af44dea12fe5be3b44414c3aee511290e92f7"
+    },
+    {
+      "path": "selected-frames/frame-00348.png",
+      "bytes": 841271,
+      "sha256": "8ff83a2f062565793d1eaa3d7047fe751456a047ce9293acabf1baca6cf3ae90"
+    },
+    {
+      "path": "selected-frames/frame-00351.png",
+      "bytes": 841956,
+      "sha256": "b6c796ccc16e1fcd97fd436546c0bfc9b08ff9efb9cc547c38cdb29b82c0b3c2"
+    },
+    {
+      "path": "selected-frames/frame-00600.png",
+      "bytes": 827336,
+      "sha256": "8493f1ff586934fe7345fcae646d3b1720789715f1fd1f65a806f3dcf622ec1b"
+    },
+    {
+      "path": "selected-frames/frame-00791.png",
+      "bytes": 837058,
+      "sha256": "694d34462384df583db7f229ccec966401be593ac934acb2ce33a8cb771d914e"
+    },
+    {
+      "path": "selected-frames/frame-00900.png",
+      "bytes": 827117,
+      "sha256": "b80cb4bde87084c2e4f6153c3257a03845ea9ba54096a48ea1a233459d84c4a2"
+    },
+    {
+      "path": "selected-frames/frame-01200.png",
+      "bytes": 823837,
+      "sha256": "e593e30998760340c18df5713b9674e1802b15bd3cfe5376a1033cafdd7ab2a6"
+    },
+    {
+      "path": "selected-frames/frame-01280.png",
+      "bytes": 819807,
+      "sha256": "e6b895362661289ab2b7335820992c8fe642edc4e604b6dd7d42d57ee2ca202d"
+    },
+    {
+      "path": "selected-frames/frame-01500.png",
+      "bytes": 801882,
+      "sha256": "b88aa40c87c53bea3b7b8adf5dc5d0ef1299919f9ef820d81d8cd0c011dc6e4d"
+    },
+    {
+      "path": "selected-frames/frame-01800.png",
+      "bytes": 810178,
+      "sha256": "7f9e5a1cb4f7302ac13c4be6356fd774b3336a27989c168c571e54dd8b573183"
+    },
+    {
+      "path": "viewport-video-only.mp4",
+      "bytes": 12582960,
+      "sha256": "b753b992eb0e9187ff875dbf7f57df80dd695957e18f696f2a858dd0e581efed"
+    }
+  ],
+  "scope": "Engine and ffmpeg vanished during environment/tool rebound before victory, full mux, media decode and original wait receipts. Stale running statuses remain original; no complete expedition or accepted full video claimed."
+}

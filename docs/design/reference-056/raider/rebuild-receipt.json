@@ -1,0 +1,10 @@
+{
+  "actual_build_exit": 0,
+  "body_bitidentical": true,
+  "body_sha256": "8a89cbeb87691222f80a522145e7203139483adba17cd85edd0adff369da59b4",
+  "profile_values_identical": true,
+  "profile_changed_fields": {},
+  "body_triangles": 18560,
+  "weapon_triangles": 1098,
+  "visible_triangles": 19658
+}

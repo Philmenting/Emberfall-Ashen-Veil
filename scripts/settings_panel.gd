@@ -4,6 +4,7 @@ var game: Control
 var help_open := false
 var backup_open := false
 var online_open := false
+var beta_open := false
 var confirm_cloud_restore := false
 var confirm_cloud_overwrite := false
 
@@ -21,10 +22,11 @@ func _build() -> void:
 	add_child(shade)
 	var panel: PanelContainer=game._panel(game.PANEL,game.GOLD,14)
 	panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	panel.offset_left=100
-	panel.offset_right=-100
-	panel.offset_top=28
-	panel.offset_bottom=-28
+	var insets: Dictionary=game._mobile_insets()
+	panel.offset_left=60+int(insets.left)
+	panel.offset_right=-60-int(insets.right)
+	panel.offset_top=28+int(insets.top)
+	panel.offset_bottom=-28-int(insets.bottom)
 	add_child(panel)
 	var stack:=VBoxContainer.new()
 	stack.add_theme_constant_override("separation",10)
@@ -45,6 +47,9 @@ func _build() -> void:
 	var help_tab: Button=game._button("HOW TO PLAY",game.PANEL_LIGHT,12,func(): _select_tab("help"))
 	help_tab.name="HowToPlayTab"
 	tabs.add_child(help_tab)
+	var beta_tab: Button=game._button("BETA / PRIVACY",game.PANEL_LIGHT,11,func(): _select_tab("beta"))
+	beta_tab.name="BetaInfoTab"
+	tabs.add_child(beta_tab)
 	var scroll:=ScrollContainer.new()
 	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
@@ -53,7 +58,8 @@ func _build() -> void:
 	content.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	content.add_theme_constant_override("separation",10)
 	scroll.add_child(content)
-	if online_open: _online(content)
+	if beta_open: _beta(content)
+	elif online_open: _online(content)
 	elif backup_open: _backup(content)
 	elif help_open: _help(content)
 	else: _options(content)
@@ -70,6 +76,7 @@ func _select_tab(tab: String) -> void:
 	backup_open=tab=="backup"
 	help_open=tab=="help"
 	online_open=tab=="online"
+	beta_open=tab=="beta"
 	confirm_cloud_restore=false
 	confirm_cloud_overwrite=false
 	_build()
@@ -671,11 +678,11 @@ func _options(parent: VBoxContainer) -> void:
 	var modes:=HBoxContainer.new()
 	parent.add_child(modes)
 	for battery in [false,true]:
-		var label: String="BATTERY  /  30 FPS" if battery else "BALANCED  /  60 FPS"
+		var label: String="BATTERY  /  30 FPS" if battery else "BALANCED  /  UP TO 60 FPS"
 		var button: Button=game._button(label,Color("31443a") if game.preferences.battery==battery else game.PANEL_LIGHT,11,func(): game._change_preference("battery",battery); _build())
 		button.name="BatteryMode" if battery else "BalancedMode"
 		modes.add_child(button)
-	parent.add_child(game._paragraph_label("Battery mode reduces 3D resolution and disables shadows. Combat and offline rewards are unchanged. Frame rates are targets, not guarantees.",11,game.MUTED))
+	parent.add_child(game._paragraph_label("Balanced mode adjusts 3D resolution after sustained slow frames and restores detail after sustained recovery. Battery mode caps at 30 FPS and disables shadows. Frame rates are targets; combat and rewards remain unchanged.",11,game.MUTED))
 	var numbers: Button=game._button("DAMAGE NUMBERS: "+("ON" if game.preferences.numbers else "OFF"),game.PANEL_LIGHT,11,func(): game._change_preference("numbers",not game.preferences.numbers); _build())
 	numbers.name="DamageNumbers"
 	parent.add_child(numbers)
@@ -686,7 +693,11 @@ func _options(parent: VBoxContainer) -> void:
 	var reduced_motion: Button=game._button("REDUCED MOTION: "+("ON" if game.preferences.reduced_motion else "OFF"),Color("31443a") if game.preferences.reduced_motion else game.PANEL_LIGHT,11,func(): game._change_preference("reduced_motion",not game.preferences.reduced_motion); _build())
 	reduced_motion.name="ReducedMotion"
 	parent.add_child(reduced_motion)
-	parent.add_child(game._paragraph_label("Reduces boss camera zoom and impact shake. Auto-follow and essential combat animation remain active.",11,game.MUTED))
+	parent.add_child(game._paragraph_label("Reduces idle movement and ambient effects. Essential combat animation and danger warnings remain active.",11,game.MUTED))
+	var haptics: Button=game._button("HAPTICS: "+("ON" if game.preferences.haptics else "OFF"),game.PANEL_LIGHT,11,func(): game._change_preference("haptics",not game.preferences.haptics); _build())
+	haptics.name="Haptics"
+	parent.add_child(haptics)
+	parent.add_child(game._paragraph_label("Brief vibration for warnings, received damage and critical hits. Off by default; available on Android devices with vibration support.",11,game.MUTED))
 
 func _help(parent: VBoxContainer) -> void:
 	for entry in [
@@ -694,7 +705,7 @@ func _help(parent: VBoxContainer) -> void:
 		["AUTOMATIC TECHNIQUES","Open Gear > Skills to equip two techniques for each class. Your signature remains equipped. Protection responds to danger; attack techniques fire when their conditions fit, with a seeded choice if both are ready. Each technique spends Mana and starts its cooldown on casting. Dodging can interrupt a cast without a refund. Ground bursts strike their marked position. You can change loadouts between expeditions."],
 		["HUNTS AND ASH TRIALS","After clearing campaign floor 1, open World > Hunts to choose one gear slot. Hunts repeat and apply to AFK, with tougher enemies and focused Rare-or-better boss loot. World > Ash Trials offers a separate 150-second challenge with a once-only Epic first-clear reward. Trials never repeat or advance the campaign; after an offline trial, your chosen farm resumes."],
 		["DUNGEON JOURNEYS","Each expedition varies its connected passages, enemy lineups and spawn positions. The hero picks between similarly important enemies when an attack is ready, then stays focused during its cooldown. During attack cooldowns, Nyra also makes short, seed-bound combat steps: the Vowkeeper circles close in, while Arcanist and Ranger vary their firing position. She checks telegraphed danger before moving. A run seed keeps route, movement, combat and technique choices identical when watched, skipped, resumed or calculated offline. The map follows Nyra as she clears packs, uses a healing well, breaks a guarded seal and opens the guardian reliquary automatically. The well restores up to 18% of maximum Life once per expedition."],
-		["BOSS WARNINGS","Each guardian has two ground-attack forms: Bell Warden uses a ring or full blast; Silt Abbot aims a tide lane or cross-current; Mourning Queen places three circles side by side or in a line; Cinder Sovereign casts a straight or diagonal fire cross. The seed selects the first, then they alternate. Telegraphs show the danger; Nyra dodges when her cooldown is ready. Below half Life, both forms grow wider and resolve faster. Skip and offline use the same rules."],
+		["BOSS WARNINGS","New expeditions have three guardian phases, changing at two-thirds and one-third Life. Bell Warden adds cleaves and split rings; Silt Abbot splits its currents, then adds a drowning ring; Mourning Queen spreads graves into a triangle, then a ring and eruption; Cinder Sovereign adds central fire, then a ring and narrow cleaves. Each phase alternates two forms. A phase break cancels the old warning. Telegraphs show the actual danger; Nyra dodges when her cooldown is ready. Skip and offline use the same rules. Older saved expeditions keep their original attacks and half-Life awakening."],
 		["CHOOSE A BUILD","Strength powers Vowkeeper, Intellect powers Arcanist and Dexterity powers Ranger. Vitality increases Life; Spirit improves Mana and its recovery on hits. Compare the six stat changes before equipping. Class changes refund spent points."],
 		["CLASS-ATTUNED LOOT","New finds carry an attunement for the class that earned them and always include its primary attribute. Other affixes vary. All classes can equip every item; attunement is a recommendation, not a restriction. Existing equipment keeps its stats. Compare actual changes before replacing tempered gear."],
 		["ARCANIST: MANA WARD","Mana Ward absorbs up to 35% of damage after armor at a cost of 2 Mana per damage absorbed. It always reserves enough Mana for one Nova. When the reserve is reached, incoming hits deal full damage. Nova refunds 25% of its cost. Mana and Spirit therefore support both offense and survival."],
@@ -705,3 +716,47 @@ func _help(parent: VBoxContainer) -> void:
 	]:
 		parent.add_child(game._label(entry[0],12,game.GOLD,true))
 		parent.add_child(game._paragraph_label(entry[1],12,game.PALE))
+
+func _beta(parent: VBoxContainer) -> void:
+	var release = preload("res://scripts/release_info.gd")
+	parent.add_child(game._label("CLOSED BETA  /  "+release.VERSION,15,game.GOLD,true))
+	parent.add_child(game._paragraph_label("Explore four regions, prepare an automatic combat build and recover up to 24 hours of AFK rewards. This beta is a solo experience. Progress is stored on this device; keep a recovery code under Save Backup before reinstalling or changing devices.",12,game.PALE))
+	parent.add_child(game._label("PRIVACY",12,game.GOLD,true))
+	parent.add_child(game._paragraph_label("The offline beta contains no advertising, analytics, purchases or account registration. Your character, equipment, preferences and expedition checkpoints are saved locally. The game does not upload this progress. A recovery code contains your save: share it privately. Android manages app data and uninstalling removes it.",12,game.PALE))
+	parent.add_child(game._paragraph_label("Feedback is optional. Opening the issue tracker launches your browser; GitHub's own privacy policy applies there. Review the copied report before posting. It contains game and display settings, but no recovery code or account key.",11,game.MUTED))
+	var notes: Button=game._button("LOCAL PLAYTEST NOTES: "+("ON" if game.preferences.playtest else "OFF"),game.PANEL_LIGHT,11,func():
+		game._change_preference("playtest",not game.preferences.playtest)
+		if not game.preferences.playtest: game.playtest_notes.clear(); game._save_progress()
+		_build()
+	)
+	notes.name="LocalPlaytestNotes"
+	parent.add_child(notes)
+	parent.add_child(game._paragraph_label("Optional notes record your first fight, signature, clear, relic equip and return after a day. Kept on this device, added only to a report you copy yourself. Turning this off deletes the notes.",11,game.MUTED))
+	var status: Label=game._paragraph_label("Tell us the steps that caused a problem, your device model and what you expected.",11,game.MUTED)
+	parent.add_child(status)
+	var copy: Button=game._button("COPY FEEDBACK TEMPLATE",game.PANEL_LIGHT,11,func():
+		DisplayServer.clipboard_set(release.feedback(game))
+		status.text="Feedback template copied. Review it before sending."
+	)
+	copy.name="CopyBetaFeedback"
+	parent.add_child(copy)
+	parent.add_child(game._label("DEVICE PERFORMANCE",12,game.GOLD,true))
+	var performance: Label=game._paragraph_label(game.frame_metrics.summary(),11,game.PALE)
+	performance.name="DevicePerformanceSummary"
+	parent.add_child(performance)
+	parent.add_child(game._paragraph_label("Frame measurements stay in memory on this device. Copy them to compare Balanced and Battery mode; nothing is uploaded automatically.",11,game.MUTED))
+	var copy_performance:Button=game._button("COPY PERFORMANCE REPORT",game.PANEL_LIGHT,11,func():
+		var report:Dictionary=game.frame_metrics.report()
+		report.version=release.VERSION
+		report.version_code=release.VERSION_CODE
+		DisplayServer.clipboard_set(JSON.stringify(report,"  "))
+		status.text="Performance report copied. Review it before sharing."
+	)
+	copy_performance.name="CopyPerformanceReport"
+	copy_performance.disabled=game.frame_metrics.rows().is_empty()
+	parent.add_child(copy_performance)
+	var tracker: Button=game._button("OPEN ISSUE TRACKER",game.PANEL_LIGHT,11,func():
+		if OS.shell_open(release.FEEDBACK_URL)!=OK: status.text="Open github.com/Philmenting/Emberfall-Ashen-Veil/issues in your browser."
+	)
+	tracker.name="OpenBetaFeedback"
+	parent.add_child(tracker)

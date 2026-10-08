@@ -1,0 +1,65 @@
+# Qualitätsüberarbeitung 056
+
+Stand vom 7. Oktober 2026: Arcanists Angriffe belasten den ganzen Körper, der gewöhnliche Raider verwendet einen bekleideten nativen Charakter und eine ursprüngliche Quaternius-Axt, alle drei Spielerklassen besitzen einen gerichteten niedrigen Ausweichschritt, und Bossverdeckung erhält einen separaten Sichtbarkeitsakzent ohne Rasterlöcher. Die gemeinsame lokale Prüfung und der exportierte Ressourcencheck sind erfolgreich; der geprüfte Source-Commit ist auf GitHub hochgeladen.
+
+**Finaler 056-Source-SHA: [`5e72fc6fad38f7dc829d313d8df0de8289f52573`](https://github.com/Philmenting/Emberfall-Ashen-Veil/commit/5e72fc6fad38f7dc829d313d8df0de8289f52573).** Die frühen lokalen Receipts binden jeweils ihre eigenen geprüften Dateien und ursprünglichen Logs. Die nachfolgende gemeinsame Prüfung ist an die endgültige Quelle gebunden. „056“ bezeichnet diesen Arbeits- und Nachweisstand; Paketversion `0.48.0-beta.1` und Android-Version-Code `54` bleiben erhalten.
+
+## 1. Arcanist belastet Hüfte, Knie und Schultern
+
+Basiszauber, Signatur und Starfall senken die echte native Hüfte in ihre Lastpose, übertragen Gewicht seitlich und drehen Brust und Schultern in den frühen Catch. Gegen dieselben unveränderten Künstlerclips beträgt die gemessene Hüftsenkung 4,41 / 6,46 / 9,47 cm im nativen Rigraum. Die zusätzliche mittlere Kniebeugung beträgt 18,84° / 25,52° / 34,45°. Der Kopf kontert Hüfte und Brust gemeinsam; die kompakte, hohe und niedrige Vorbereitung der freien Hand bleibt unterscheidbar.
+
+Alle 65 ursprünglichen Knochen, Resttransforms, Segmentlängen, Skinweights und der angepasste Stabgriff bleiben erhalten. Die tatsächlichen gewichteten Boots werden mit ihren Original-Calfanteilen geprüft; feste Knöchel allein gelten nicht als Sohlenbeleg. Schaden, Cooldowns, bestätigter Release und 0,34 Sekunden Recovery bleiben bei ihren bisherigen Zeiten.
+
+Die [Angriffsbelege](design/reference-056/attacks/README.md) enthalten **172 Attack-Checks**, **295 zusätzliche Kontaktchecks an 39 Posen** und **296 bestehende Griffchecks an 40 Posen**, jeweils null Fehler und tatsächlichen Prozess-Exit 0. Der zusätzliche native Lauf besteht mit **49 Checks, sechs originalen 1200×1200-PNGs und null Fehlern**. Die Einzelbilder zeigen Kniebeugung, Lasttransfer und stärkeren Durchschwung ohne sichtbar invertiertes Knie oder gestrecktes Glied an diesen Posen. Alle tatsächlichen Hauptskin-, Mantel- und Stabvertices wurden zusätzlich gegen Boden und Kamera geprüft.
+
+Die sechs Studioposen bestätigen einzelne Last-/Catchformen. Der [gewöhnliche Kampfclip samt Sichtprüfung](design/reference-056/gameplay/MOTION_REVIEW.md) ergänzt tatsächlich gespielte Bildfolgen: tiefere und breitere Basis-/Starfall-Last, plausible Hand-/Stabführung und Rückkehr. Bei der kleinen Spielfigur bleibt die Signatur kurz und kompakt, Starfall moderat. Kantige Ärmel-/Mantelteilformen und statisches Haar bleiben sichtbar.
+
+## 2. Bekleideter nativer Raider mit ursprünglicher Axt
+
+Der gewöhnliche Raider verwendet das vollständige originale Male-Peasant-Outfit mit nativen Händen und Boots sowie einen kompatiblen erwachsenen männlichen Kopf mit Augen, Brauen und Bart. Sein ursprüngliches 65-Knochen-Skelett, indizierte Quellvertices, UVs, vier Skinweights und Bindmatrizen bleiben erhalten. Gehen, Schlagen, Trefferreaktion und Tod verwenden retargetete originale Quaternius-Clips; die Simulation bestimmt weiterhin Wegbewegung, Angriff und Schaden.
+
+Die gehaltene kurze Axt stammt aus Quaternius' ursprünglichem **Axe Small**. Schneide, Fasen, harte Normalen und vier Materialteile bleiben unter der dokumentierten starren Normalisierung erhalten. Nur der hölzerne Griff wird im tatsächlichen Handband angepasst. Der Kontakt wird an den original gewichteten Handdreiecken und den real importierten Holzfacetten geprüft, einschließlich Daumen, mindestens drei Fingern und gegenüberliegenden Kontaktflächen.
+
+Das aktuelle Geometriebudget umfasst **18.560 Körperdreiecke plus 1.098 Axtdreiecke, insgesamt 19.658 sichtbare Dreiecke**. Der Körper bleibt während der letzten Griffkorrektur unverändert. [Herkunft, CC0-Nachweise und Wiederaufbau](../assets/models/raider056/README.md) dokumentieren die Quellen und den gemessenen ursprünglichen Kopf-/Kragenübergang.
+
+Der finale Native-Smoke besteht mit **324 Prüfungen, 15 Posen, null Fehlern und tatsächlichem Exit 0**. Die realen Hand-/Holzflächen besitzen maximal 1,209 mm Fingerabstand und 2,825 mm Daumenabstand; die konservativ gemessene Durchdringung beträgt maximal 0,769 mm. Ein tatsächlicher Daumenpatch steht mindestens drei tatsächlichen Fingerpatches gegenüber. Eine unabhängige Offline-Prüfung bestätigt die Kontakte. Vier originale Axtmaterialien folgen der normalen Gegner-/Leichen-Absenkung und werden korrekt wiederhergestellt. Sechs originale native Bilder wurden ohne sichtbare neue Verformung geprüft. Der [Raider-Beleg](design/reference-056/raider/README.md) enthält die Quellenbindung. Diese Überarbeitung ersetzt den gewöhnlichen Raider; die weiteren sieben Gegner-/Wächtertypen behalten ihre vorhandenen Modelle.
+
+## 3. Gerichteter niedriger Ausweichschritt für drei Klassen
+
+Arcanist, Ranger und Vowkeeper folgen beim Ausweichen der tatsächlich simulierten Richtung und Strecke mit einem eigenen niedrigen Schritt. Hüfte und Knie senken den Schwerpunkt um etwa **22,5–23,0 cm in der Spielwelt**, der Oberkörper folgt der Fluchtrichtung, und danach kehrt die Pose in die ursprüngliche Haltung zurück. Ein neuer echter Angriff und Tod übernehmen unmittelbar. Es handelt sich um eine anatomisch gelöste prozedurale Bewegung; sie wird nicht als vorhandener Künstler-Dodge-Clip bezeichnet.
+
+Die [Ausweichbelege](design/reference-056/evade/README.md) enthalten **1.729 Checks, null Fehler und tatsächlichen Exit 0**: drei Produktionsklassen, acht Weltrichtungen, sieben Phasen, 168 native Poseproben und 24 Audits wirklich gewichteter Handdreiecke. Anatomische Knieebenen, originale Gliedmaßenlängen, vollständige Kleidung, Waffen, Rückkehr, Wiederholung und gespeicherte Bewegung sind geprüft. Ein tatsächliches Warnungsereignis in einer normalen begrenzten World-Probe bestätigt, dass Darstellung die simulierten HP, Bewegung, ausstehenden Angriffe, RNG und Belohnungen nicht verändert. Auch eine übersetzte und gedrehte World bleibt korrekt.
+
+Sechs originale 960×720-Studiobilder zeigen die drei Ausgangshaltungen und niedrigen Schritte mit vollständigen Körpern und Waffen. Sie sind keine durchgehende Kampfwiedergabe. Die akzeptierten Receipts unterscheiden die endgültigen Läufe von früheren Parser-, Griff-, Knie- und Bildausschnittfehlern.
+
+## 4. Bossverdeckung ohne Ditherlöcher
+
+Der frühere Bayer-Cutaway ist entfernt. Gegner, Wächter und ihre Waffen bleiben opak und behalten ihre ursprünglichen vollständigen Schatten. Ein zusätzlicher schwacher, warmer Rand samt geringer innerer Füllung zeigt tatsächlich verdeckte Fragmente von Nyras originalem Körper, Kleidung und Stab. Der Pass nutzt die Szenentiefe und projizierte Bone-/Propbounds; er verändert keine Kamera, Warngeometrie, Gegnerposition oder Simulation.
+
+Die [Verdeckungsbelege](design/reference-056/combat-readability/README.md) enthalten **25 gezielte Checks, null Fehler**, einen sauberen nativen Exit-0-Lauf und vier unveränderte 1200×536-PNGs mit ursprünglicher UI. Sie vergleichen natürliche und absichtlich erzeugte Renderer-Überlappung mit deaktiviertem/aktiviertem Akzent. Die Guardian-Inspektion verwendet zusätzliche Life; sie ist keine Balanceprüfung. Die konservative Tiefenabgrenzung schützt vor Nyras eigener Vorderseite und kann kleine Restverdeckungen stehen lassen. Die zusätzliche Darstellung besitzt Renderkosten; physische Telefon-Frametimes wurden hier nicht gemessen.
+
+## Prüfstand der gemeinsamen Quelle
+
+Die frühere lokale Restprüfung mit Godot 4.7.2 besteht mit **45 Suiten, 7.093 Prüfungen und null Fehlern**. Drei migrierte Suiten bestanden separat mit **317 Prüfungen und null Fehlern**; ihr [Originalbeleg](design/reference-056/integration/focused-tests-receipt.json) liegt vor der letzten Raider-Axtgriffkorrektur. Danach wurden **alle vier betroffenen Suiten erneut mit 641 Prüfungen und null Fehlern** ausgeführt. Ein frischer Editorimport und das aus einem leeren externen Verzeichnis gestartete exportierte Figurenpaket bestehen ebenfalls: **32 Paketprüfungen, null Fehler**, tatsächliche Prozessexitcodes 0, keine Script-, Shader- oder Parserfehler. Die **48 Python-Verträge** bestehen. [Unveränderte lokale Logs und Receipt](design/reference-056/local-verification/local-receipt.json) dokumentieren die Grenzen; Geräteszenarien in den Python-Unit-Tests verwenden simulierte Geräte. Die Teilprüfungen werden nicht als einzelner vollständiger finaler 49-Suiten-Lauf ausgegeben.
+
+| Nachweis | Stand |
+| --- | --- |
+| Arcanist-Körpergewicht, originale Stabkontakte und sechs native Posen | Lokale Teilprüfungen bestanden; [Receipt](design/reference-056/attacks/receipt.json) |
+| Bekleideter nativer Raider und Source-Axt | **324/0**, 15 native Posen, echte Flächenkontakte und sechs originale Bilder |
+| Gerichteter niedriger Schritt aller drei Klassen | **1.729/0**, tatsächlicher Exit 0 und sechs native Bilder; [Receipt](design/reference-056/evade/evade-proof-receipt.json) |
+| Opake Bossdarstellung und separater Hero-Sichtbarkeitsakzent | **25/0**, akzeptierte originale Rendererbilder; [Receipt](design/reference-056/combat-readability/receipt.json) |
+| Lokale Restprüfung | **45 Suiten / 7.093 Prüfungen / 0 Fehler**, noch vor finaler gemeinsamer Source-Freigabe |
+| Drei migrierte Integrationssuiten | **317/0**, ausdrücklich vor letzter Axtgriffkorrektur |
+| Python-Verträge | **48/0**, lokale Prüfung |
+| Exakter finaler 056-Source-SHA | **5e72fc6fad38f7dc829d313d8df0de8289f52573**, auf GitHub bestätigt |
+| Vollständige Gameplay-CI auf diesem finalen Source-SHA | **49 Suiten / 7.734 Prüfungen / 0 Fehler**, Python **48/0**, exportiertes Paket **32/0** |
+| Exportiertes Figurenpaket aus leerem externen Verzeichnis | **32/0**, tatsächlicher Exit 0 |
+| Gewöhnliches 30-Sekunden-Präfix mit ursprünglicher Kamera/HUD, Ton und Bildprüfung | **900 Frames**, tatsächlicher Exit 0, voller A/V-Decode, Sourcebindung und unabhängige Sichtung |
+
+Die [beiden Vergleichsfilme](design/reference-056/gameplay/README.md) zeigen tatsächlich die ersten 30 Sekunden derselben gewöhnlichen Expedition in ursprünglicher Reihenfolge, mit normaler Ausrüstung, Simulation, Kamera und HUD. Alle 188 Nachher-Eingaben entsprechen bytegenau dem finalen Git-Source-SHA; die 168 ursprünglichen Baseline-Eingaben entsprechen dem Source-Commit `ad4d50bb9dbdc07cea42e2306a79fc65bb642489`. Für alle 900 Frames sind autoritativer Spielablauf und Kameratransforms identisch. Die native Tonspur ist sogar bitgleich; Sample-/Cue-/EOF-Daten stimmen überein. Unterschiedliche Prozess-Wandzeitstempel werden separat offengelegt, die Original-JSONLs bleiben erhalten.
+
+Der Recorder beendet sich tatsächlich mit Exit 0 und `complete_prefix`; der Spielstand bleibt nach 30 Sekunden unvollendet und `won=false`. Der Ausschnitt enthält alle drei Arcanist-Phrasen, zwei echte Ausweichereignisse und einen echten frühen Skillabbruch, jedoch keinen Guardian-Kampf oder Beuteabschluss. 32 unveränderte native Nachher-PNGs und vier ausdrücklich als H.264-Decodes bezeichnete Vorher-Vergleichsbilder sind erhalten. Der [unabhängige Sichtbericht](design/reference-056/gameplay/MOTION_REVIEW.md) beurteilt ausgewählte Last-/Release-/Catch-/Ausweichfolgen und legt die begrenzte Amplitude offen. Renderer-Wartezeit und fixe Aufnahmerate sind keine Telefon-FPS-Messung.
+
+Alle drei aktuellen CI-Läufe sind erfolgreich: [Gameplay Quality](https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37576383396), [Android Debug APK](https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37576383412) und [Android Beta Runtime](https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37576383459). Android Debug prüft **28 Suiten / 3.298 Prüfungen / 0 Fehler** und **34 Python-Verträge**; APK-Signaturen und AAB-Struktur/-Signatur sind validiert. Android Runtime besteht ebenfalls mit **34 Python-Verträgen** und fünf bestätigten Android-16-x86_64-Markern: exakte AFK-Abrechnung, kalter Neustart, erster Erfolgsablauf, dessen Neustart und vier Grafikregionen. Der tatsächliche gemeinsame PR-Merge-Checkout `750cb2e6660623a60fc436ec732ce046b211253e` besitzt exakt denselben Git-Tree wie die finale Source. [Original-Joblogs, Receipts und Git-Treebindung](design/reference-056/ci/README.md) sind erhalten. Die anschließende Dokumentation verändert keine geprüften Produktions-, Test-, Tool- oder Workflowdateien.
+
+Die [056-Nachweisübersicht](design/reference-056/README.md) bündelt die Einzelbelege. Es gibt für 056 keine physische Android-Messung von Frametimes, Wärme, Akku oder Touch-/Lebenszyklusbedienung. Die vorliegenden Geometrieprüfungen und Studiobilder sind begrenzte technische und visuelle Belege; sie ergeben keine allgemeine Veröffentlichungsfreigabe.

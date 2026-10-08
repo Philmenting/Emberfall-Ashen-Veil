@@ -1,0 +1,161 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 112646109906,
+      "run_id": 37576383459,
+      "workflow_name": "Android Beta Runtime",
+      "head_branch": "improve/animation-craft",
+      "run_url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/actions/runs/37576383459",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUp1_Uc8AAAAaOjs60g",
+      "head_sha": "5e72fc6fad38f7dc829d313d8df0de8289f52573",
+      "url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/actions/jobs/112646109906",
+      "html_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37576383459/job/112646109906",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-07T05:27:22Z",
+      "started_at": "2026-10-07T05:28:32Z",
+      "completed_at": "2026-10-07T05:57:53Z",
+      "name": "offline-runtime",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-07T05:28:33Z",
+          "completed_at": "2026-10-07T05:28:35Z"
+        },
+        {
+          "name": "Check out repository",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-07T05:28:35Z",
+          "completed_at": "2026-10-07T05:30:09Z"
+        },
+        {
+          "name": "Install Java 17",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-07T05:30:09Z",
+          "completed_at": "2026-10-07T05:30:10Z"
+        },
+        {
+          "name": "Install Android SDK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-07T05:30:10Z",
+          "completed_at": "2026-10-07T05:30:16Z"
+        },
+        {
+          "name": "Install Android export packages",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-07T05:30:16Z",
+          "completed_at": "2026-10-07T05:30:18Z"
+        },
+        {
+          "name": "Download Godot 4.7.2 and Android templates",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-07T05:30:18Z",
+          "completed_at": "2026-10-07T05:30:41Z"
+        },
+        {
+          "name": "Configure Godot Android paths and debug key",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-07T05:30:41Z",
+          "completed_at": "2026-10-07T05:30:44Z"
+        },
+        {
+          "name": "Check isolated QA export contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-07T05:30:44Z",
+          "completed_at": "2026-10-07T05:30:44Z"
+        },
+        {
+          "name": "Import once and build isolated offline QA packages",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-07T05:30:44Z",
+          "completed_at": "2026-10-07T05:32:24Z"
+        },
+        {
+          "name": "Enable emulator hardware acceleration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-07T05:32:24Z",
+          "completed_at": "2026-10-07T05:32:24Z"
+        },
+        {
+          "name": "Verify AFK recovery and restart on Android 16",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-07T05:32:24Z",
+          "completed_at": "2026-10-07T05:57:30Z"
+        },
+        {
+          "name": "Upload QA evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-07T05:57:30Z",
+          "completed_at": "2026-10-07T05:57:33Z"
+        },
+        {
+          "name": "Upload isolated QA packages",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-07T05:57:33Z",
+          "completed_at": "2026-10-07T05:57:50Z"
+        },
+        {
+          "name": "Post Install Java 17",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-07T05:57:50Z",
+          "completed_at": "2026-10-07T05:57:50Z"
+        },
+        {
+          "name": "Post Check out repository",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-07T05:57:50Z",
+          "completed_at": "2026-10-07T05:57:50Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-10-07T05:57:50Z",
+          "completed_at": "2026-10-07T05:57:50Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Philmenting/Emberfall-Ashen-Veil/check-runs/112646109906",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000001613,
+      "runner_name": "GitHub Actions 1000001613",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

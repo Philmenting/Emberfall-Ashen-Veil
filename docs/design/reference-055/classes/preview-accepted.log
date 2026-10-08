@@ -1,0 +1,20 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+CLASS_NATIVE_CAPTURE Vowkeeper guard
+CLASS_NATIVE_CAPTURE Vowkeeper basic-load
+CLASS_NATIVE_CAPTURE Vowkeeper basic-release
+CLASS_NATIVE_CAPTURE Vowkeeper signature-load
+CLASS_NATIVE_CAPTURE Vowkeeper heavy-release
+CLASS_NATIVE_CAPTURE Vowkeeper recovery
+CLASS_NATIVE_CAPTURE Vowkeeper grip-closeup
+CLASS_NATIVE_CAPTURE Ranger guard
+CLASS_NATIVE_CAPTURE Ranger basic-load
+CLASS_NATIVE_CAPTURE Ranger basic-release
+CLASS_NATIVE_CAPTURE Ranger signature-load
+CLASS_NATIVE_CAPTURE Ranger heavy-release
+CLASS_NATIVE_CAPTURE Ranger recovery
+CLASS_NATIVE_CAPTURE Ranger grip-closeup
+CLASS_QUALITY_NATIVE_PASS 14 original runtime images; studio inspection only

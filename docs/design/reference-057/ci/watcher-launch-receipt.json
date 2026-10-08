@@ -1,0 +1,19 @@
+{
+  "observed_at": "2026-10-07T21:06:49.485322+00:00",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "pid": 66226,
+  "start_new_session": true,
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/emberfall-quality-057/ci/watch_exact_source_ci.py",
+    "--source",
+    "1cc13152a83c6631590d4df32ca298700a417df7",
+    "--directory",
+    "/workspace/scratch/emberfall-quality-057/ci/final-evade-1cc1315",
+    "--interval-seconds",
+    "120"
+  ],
+  "actual_process_exit_unknown_until_watcher_completion": true,
+  "engine_used": false,
+  "binary_artifacts_downloaded": false
+}

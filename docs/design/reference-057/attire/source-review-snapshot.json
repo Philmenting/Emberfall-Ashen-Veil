@@ -1,0 +1,54 @@
+{
+  "scope": "Files read during independent static source review. These hashes identify review snapshots only, not source identity of preceding Engine runs or future production commit.",
+  "files": [
+    {
+      "path": "scripts/avatar_attire_motion.gd",
+      "sha256": "238a4728aa811e2fda7ab425694b1adef7ad615e3b1a3fe0cdb42a6e16accf24"
+    },
+    {
+      "path": "scripts/source_avatar_style.gd",
+      "sha256": "ed4d3898a700e93eb51677ffa6348cb8c85b3fa90c5a4d84289b620deff88d67"
+    },
+    {
+      "path": "scripts/class_avatar_style.gd",
+      "sha256": "5630d91c2033644b436dc5a65eaaa1f66e4154a46844ed6a44a66c78a27c5e9a"
+    },
+    {
+      "path": "scripts/native_hostile_rig.gd",
+      "sha256": "b8380a3f9ddb42bbd5fec75150aaee09fc3c05f503a7093542a16034859e6a1b"
+    },
+    {
+      "path": "scripts/native_hostile_style.gd",
+      "sha256": "0058557203f51f17a166ee93b108c8abf703de80a79b3d1e15aefee388bdeeb4"
+    },
+    {
+      "path": "scripts/raider_avatar_rig.gd",
+      "sha256": "da1588acadbc7b911eaad4bc7afbe301129c05e90c0c80f745921f5bff21ec49"
+    },
+    {
+      "path": "scripts/source_avatar_rig.gd",
+      "sha256": "d4bcc615f82c9e34f442d9ab2a822e70cd4012778c73343bdce321b25857215e"
+    },
+    {
+      "path": "scripts/class_avatar_rig.gd",
+      "sha256": "31da98e76f554dbd671f170d3996e503f7608dd37164a1876e4588ebbd56ef5c"
+    },
+    {
+      "path": "scripts/native_mesh_lods.gd",
+      "sha256": "574eb071327fd2cb479ea5770cd0c6b5105595578ad5abd7f880f995a0a6680e"
+    },
+    {
+      "path": "scripts/combat_readability.gd",
+      "sha256": "7dfa1431ab6bfe2b97e17c6a326239786e4196bf2ec3ec0c68a55de5c8f7bc0a"
+    },
+    {
+      "path": "scripts/dungeon_actor.gd",
+      "sha256": "0dba757c30de4794b9e03d67eca12f74cfb75a0216976726d04a553b34b4bf65"
+    },
+    {
+      "path": "scripts/hero_art.gd",
+      "sha256": "c264ee1882ca86da552eafafdf1a1ad64a98a5395341d34de478eb57b0d628d4"
+    }
+  ],
+  "actionable_regressions_identified": []
+}

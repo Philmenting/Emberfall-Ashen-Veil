@@ -1,0 +1,39 @@
+{
+  "command": [
+    "env",
+    "DISPLAY=:107",
+    "XDG_DATA_HOME=/workspace/scratch/emberfall-authored-avatar-052/userdata",
+    "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+    "--path",
+    "/workspace/Emberfall-Ashen-Veil",
+    "--audio-driver",
+    "Dummy",
+    "--script",
+    "res://tests/source_avatar_studio_preview.gd",
+    "--",
+    "--capture-dir=/workspace/scratch/emberfall-authored-avatar-052/studio-001/captures"
+  ],
+  "started_utc": "2026-10-05T19:56:45Z",
+  "inputs_before": {
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/arcanist.glb": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/death-grounding.json": "f69e8b6b62387fc4743cbbfb3ab4d4e06581ec4442bf203e49f238ef0a2b6435",
+    "/workspace/Emberfall-Ashen-Veil/scripts/dungeon_actor.gd": "371eac851948d14fbb5156f16d42352af36487416ff9c3ae3359fd546058448c",
+    "/workspace/Emberfall-Ashen-Veil/scripts/source_avatar_rig.gd": "8b01384604d52e575b042321fa58407b134cb699cc292741b724c19faa319e14",
+    "/workspace/Emberfall-Ashen-Veil/tests/source_avatar_studio_preview.gd": "5c0829ca2ffc03bec565c84b37c86d7d7011c60779fa181a9f36b6ae5d909f0e"
+  },
+  "appearance_accepted": false,
+  "pid": 92968,
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_seconds": 7.075,
+  "inputs_after": {
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/arcanist.glb": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "/workspace/Emberfall-Ashen-Veil/assets/models/nyra052/death-grounding.json": "f69e8b6b62387fc4743cbbfb3ab4d4e06581ec4442bf203e49f238ef0a2b6435",
+    "/workspace/Emberfall-Ashen-Veil/scripts/dungeon_actor.gd": "371eac851948d14fbb5156f16d42352af36487416ff9c3ae3359fd546058448c",
+    "/workspace/Emberfall-Ashen-Veil/scripts/source_avatar_rig.gd": "8b01384604d52e575b042321fa58407b134cb699cc292741b724c19faa319e14",
+    "/workspace/Emberfall-Ashen-Veil/tests/source_avatar_studio_preview.gd": "5c0829ca2ffc03bec565c84b37c86d7d7011c60779fa181a9f36b6ae5d909f0e"
+  },
+  "inputs_unchanged": true,
+  "log_sha256": "04f2a1f2e4562217de3f398af192be334e219600b5f984bd29f901bcb43618f2",
+  "finished_utc": "2026-10-05T19:56:52Z"
+}

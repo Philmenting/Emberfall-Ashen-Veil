@@ -1,0 +1,12 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+ATTACK_NATIVE_CAPTURE basic-load.png: skin/garment floor 0.00348648708314; actual prop floor 1.0015059709549
+ATTACK_NATIVE_CAPTURE basic-catch.png: skin/garment floor 0.00348648708314; actual prop floor 1.00993156433105
+ATTACK_NATIVE_CAPTURE skill-load.png: skin/garment floor 0.00348648708314; actual prop floor 0.97567403316498
+ATTACK_NATIVE_CAPTURE skill-catch.png: skin/garment floor 0.00348648708314; actual prop floor 0.99021887779236
+ATTACK_NATIVE_CAPTURE heavy-load.png: skin/garment floor 0.00348648708314; actual prop floor 0.93861603736877
+ATTACK_NATIVE_CAPTURE heavy-catch.png: skin/garment floor 0.00348648708314; actual prop floor 0.9400936961174
+SOURCE AVATAR ATTACK PREVIEW: 49 checks, 6 original native stills, 0 failures; diagnostic only

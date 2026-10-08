@@ -1,0 +1,129 @@
+{
+  "version": "0.39.0-beta.3",
+  "version_code": 45,
+  "godot": "4.7.2",
+  "suites": {
+    "BETA FLOW SMOKE": {
+      "checks": 46,
+      "failures": 0
+    },
+    "COMBAT STANCES SMOKE": {
+      "checks": 140,
+      "failures": 0
+    },
+    "COMBAT MOVEMENT SMOKE": {
+      "checks": 8,
+      "failures": 0
+    },
+    "JOURNEY SMOKE": {
+      "checks": 413,
+      "failures": 0
+    },
+    "DUNGEON SMOKE": {
+      "checks": 55,
+      "failures": 0
+    },
+    "PERSISTENCE SMOKE": {
+      "checks": 89,
+      "failures": 0
+    },
+    "ARCANE TACTICS SMOKE": {
+      "checks": 29,
+      "failures": 0
+    },
+    "BOSS PATTERNS SMOKE": {
+      "checks": 114,
+      "failures": 0
+    },
+    "CLASS LOOT SMOKE": {
+      "checks": 29,
+      "failures": 0
+    },
+    "CONTRACTS SMOKE": {
+      "checks": 68,
+      "failures": 0
+    },
+    "GEAR / FORECAST SMOKE": {
+      "checks": 38,
+      "failures": 0
+    },
+    "REGIONS SMOKE": {
+      "checks": 36,
+      "failures": 0
+    },
+    "ONBOARDING SMOKE": {
+      "checks": 19,
+      "failures": 0
+    },
+    "SUCCESS LOOP SMOKE": {
+      "checks": 86,
+      "failures": 0
+    },
+    "RECOVERY SMOKE": {
+      "checks": 48,
+      "failures": 0
+    },
+    "OPTIONS SMOKE": {
+      "checks": 77,
+      "failures": 0
+    },
+    "SKILL ROTATION SMOKE": {
+      "checks": 135,
+      "failures": 0
+    },
+    "VISUALS SMOKE": {
+      "checks": 69,
+      "failures": 0
+    },
+    "AUTHORED ART SMOKE": {
+      "checks": 56,
+      "failures": 0
+    },
+    "PRESENTATION SMOKE": {
+      "checks": 51,
+      "failures": 0
+    },
+    "FELLOWSHIP UI SMOKE": {
+      "checks": 11,
+      "failures": 0
+    },
+    "CLOUD IDENTITY SMOKE": {
+      "checks": 14,
+      "failures": 0
+    },
+    "MANA WARD SMOKE": {
+      "checks": 27,
+      "failures": 0
+    }
+  },
+  "unique_checks": 1658,
+  "full_run": {
+    "suites": 23,
+    "checks": 1656,
+    "failures": 0
+  },
+  "final_targeted_run": {
+    "suites": [
+      "RECOVERY SMOKE",
+      "PERSISTENCE SMOKE"
+    ],
+    "checks": 137,
+    "failures": 0
+  },
+  "online_integration": {
+    "server": "Nakama 3.41.0 / PostgreSQL 16",
+    "checks": 36,
+    "failures": 0,
+    "network_time": "wall clock"
+  },
+  "android_release_unit_tests": 5,
+  "visual_capture_sizes": [
+    "1200x535",
+    "1040x1080",
+    "854x480"
+  ],
+  "visual_large_text": true,
+  "native_android_ci": "pending at local report creation; see PR for latest run",
+  "physical_pixel_test": "not performed",
+  "human_playtest": "not performed"
+}

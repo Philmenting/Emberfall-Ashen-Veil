@@ -1,0 +1,47 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: camp renders the real hero model
+PASS: camp model uses the actual equipped gear
+PASS: forge, table and portal use visible 3D geometry at real station anchors
+PASS: camp stations have physical depth rather than camera-facing cutouts
+PASS: hero's physical platform uses the weathered stone material
+PASS: unearned guardians have no camp trophies
+PASS: forge opens actual equipment controls in one tap
+PASS: forge preview matches the equipped combat model
+PASS: each equipment slot uses its authored bronze line glyph
+PASS: forge tempering spends real Gold and improves the equipped weapon
+PASS: camp reflects the actual tempered weapon
+PASS: hero station opens class and attribute preparation
+PASS: training spends actual attribute points
+PASS: an actual first clear creates its earned camp seal
+PASS: expedition table exposes real farming and oaths
+PASS: two selected oaths prevent a third risk from being added
+PASS: table starts the real combined oath expedition
+PASS: battle information starts collapsed
+PASS: Details reveals oath, technique and route information
+PASS: Back closes details while preserving the fight and camera
+PASS: Auto resumes the paused simulation
+PASS: Auto pauses the simulation
+PASS: Repeat enables actual repeated expeditions
+PASS: 2424x1080 battle controls fit with standard text and at least 48-unit targets
+PASS: 2424x1080 phase and play-state text have opaque ink grounds with at least 4.5:1 contrast
+PASS: 2424x1080 battle controls fit with large text and at least 48-unit targets
+PASS: 2424x1080 phase and play-state text have opaque ink grounds with at least 4.5:1 contrast
+PASS: 2424x1080 spatial camp stations fit and do not overlap
+PASS: 2424x1080 Nyra's station label sits below her feet
+PASS: 1040x1080 battle controls fit with standard text and at least 48-unit targets
+PASS: 1040x1080 phase and play-state text have opaque ink grounds with at least 4.5:1 contrast
+PASS: 1040x1080 battle controls fit with large text and at least 48-unit targets
+PASS: 1040x1080 phase and play-state text have opaque ink grounds with at least 4.5:1 contrast
+PASS: 1040x1080 spatial camp stations fit and do not overlap
+PASS: 1040x1080 Nyra's station label sits below her feet
+PASS: 854x480 battle controls fit with standard text and at least 48-unit targets
+PASS: 854x480 phase and play-state text have opaque ink grounds with at least 4.5:1 contrast
+PASS: 854x480 battle controls fit with large text and at least 48-unit targets
+PASS: 854x480 phase and play-state text have opaque ink grounds with at least 4.5:1 contrast
+PASS: 854x480 spatial camp stations fit and do not overlap
+PASS: 854x480 Nyra's station label sits below her feet
+PASS: camp exposes an offline setback even when no currency was earned
+PASS: offline setback report can be acknowledged
+PASS: reduced motion stops ambient animation while the spatial portal and stations stay visible
+CAMP HUD SMOKE: 44 checks, 0 failures

@@ -1,0 +1,1328 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-06T14:42:35.184193+00:00",
+  "captured_source_commit": "c788464aa95ae91c29ffcf13e60deba319889335",
+  "capture_directory": "/workspace/scratch/emberfall-quality-054/complete-gameplay",
+  "capture_receipt_sha256": "80c76f02fc4ace50e7544efd14bfd81ffdc414ca3f0b1f5f746d18cbc9aa2b9e",
+  "recording": {
+    "status": "complete",
+    "frames": 2496,
+    "playback_fps": 30,
+    "playback_seconds": 83.2,
+    "resolution": [
+      1200,
+      536
+    ],
+    "original_simulation_step_seconds": 0.03333333333333333,
+    "advancing_simulation_frames": 2406,
+    "ending_settle_frames": 90,
+    "chronological_indices_verified": true,
+    "simulation_elapsed_plus_accumulator_continuity_verified": true,
+    "source_inputs_unchanged": true,
+    "all_hashed_inputs_match_published_commit": true,
+    "decoded_frame_count_matches": true,
+    "full_decode_verified_by_launcher": true,
+    "mp4_sha256": "c5b054415c95ef001aef7d74f8ce3fc5b83395ffde39ab7a0a8b2a73bfc76412",
+    "frame_log_sha256": "ef485a98a5e91cdc83627ab2fcc36c7de7bd8b54154d69378a37f044f2a704c3",
+    "decoded_video": {
+      "width": 1200,
+      "height": 536,
+      "r_frame_rate": "30/1",
+      "duration": "83.200000",
+      "nb_read_frames": "2496"
+    }
+  },
+  "ordinary_setup": {
+    "world_seed": 1979,
+    "run_seed": 95635017,
+    "class": "Arcanist",
+    "floor": 1,
+    "selected_player_techniques": [
+      "chain",
+      "starfall"
+    ],
+    "initial_stats": {
+      "max_hp": 380,
+      "max_mana": 300,
+      "attack": 216,
+      "ability_damage": 660,
+      "armor": 104,
+      "mana_cost": 25
+    },
+    "stats_and_gear_overrides": false,
+    "loadout_scope": "Player-selectable Chain and Starfall equipped through the ordinary Armory action; unchanged starting gear and combat formulas."
+  },
+  "six_stations": [
+    {
+      "station": 1,
+      "simulation_stage": 0,
+      "first": {
+        "frame": 0,
+        "simulation_seconds": 0.0,
+        "playback_seconds": 0.0
+      },
+      "last": {
+        "frame": 88,
+        "simulation_seconds": 2.9,
+        "playback_seconds": 2.93333333333333
+      },
+      "frames": 89,
+      "phase_frame_counts": {
+        "combat": 56,
+        "interact": 3,
+        "loot": 30
+      },
+      "first_combat": {
+        "frame": 0,
+        "simulation_seconds": 0.0,
+        "playback_seconds": 0.0
+      },
+      "last_combat": {
+        "frame": 55,
+        "simulation_seconds": 1.8,
+        "playback_seconds": 1.83333333333333
+      },
+      "actual_event_counts": {
+        "hero_attack": 2,
+        "hero_release": 2,
+        "nova": 1,
+        "hit": 5,
+        "interrupt": 1,
+        "reinforcement_spawn": 1
+      },
+      "dead_target_hit_events": 5,
+      "settled_combat_camera_exact_static_tail": {
+        "start": {
+          "frame": 0,
+          "simulation_seconds": 0.0,
+          "playback_seconds": 0.0
+        },
+        "end": {
+          "frame": 55,
+          "simulation_seconds": 1.8,
+          "playback_seconds": 1.83333333333333
+        },
+        "frames": 56,
+        "camera": {
+          "basis": [
+            [
+              0.860291481018066,
+              0.0,
+              -0.509802460670471
+            ],
+            [
+              -0.235732093453407,
+              0.886672019958496,
+              -0.397797822952271
+            ],
+            [
+              0.452027589082718,
+              0.462398886680603,
+              0.762796401977539
+            ]
+          ],
+          "origin": [
+            7.82675933837891,
+            8.27328681945801,
+            10.1538534164429
+          ]
+        },
+        "event_counts": {
+          "hero_attack": 2,
+          "hero_release": 2,
+          "nova": 1,
+          "hit": 5,
+          "interrupt": 1,
+          "reinforcement_spawn": 1
+        },
+        "exact_float_json_equality": true
+      }
+    },
+    {
+      "station": 2,
+      "simulation_stage": 1,
+      "first": {
+        "frame": 89,
+        "simulation_seconds": 3.0,
+        "playback_seconds": 2.96666666666667
+      },
+      "last": {
+        "frame": 508,
+        "simulation_seconds": 16.9,
+        "playback_seconds": 16.9333333333333
+      },
+      "frames": 420,
+      "phase_frame_counts": {
+        "travel": 180,
+        "combat": 81,
+        "interact": 129,
+        "loot": 30
+      },
+      "first_combat": {
+        "frame": 269,
+        "simulation_seconds": 8.99999999999998,
+        "playback_seconds": 8.96666666666667
+      },
+      "last_combat": {
+        "frame": 349,
+        "simulation_seconds": 11.6,
+        "playback_seconds": 11.6333333333333
+      },
+      "actual_event_counts": {
+        "engage": 1,
+        "hero_attack": 2,
+        "hero_release": 2,
+        "nova": 1,
+        "hit": 4,
+        "warning": 1,
+        "evade": 1,
+        "technique_cast": 1,
+        "miss": 1,
+        "impact": 1,
+        "technique": 1,
+        "well": 1,
+        "objective": 1
+      },
+      "dead_target_hit_events": 4,
+      "settled_combat_camera_exact_static_tail": {
+        "start": {
+          "frame": 326,
+          "simulation_seconds": 10.9,
+          "playback_seconds": 10.8666666666667
+        },
+        "end": {
+          "frame": 349,
+          "simulation_seconds": 11.6,
+          "playback_seconds": 11.6333333333333
+        },
+        "frames": 24,
+        "camera": {
+          "basis": [
+            [
+              0.860291540622711,
+              0.0,
+              -0.509802401065826
+            ],
+            [
+              -0.238696485757828,
+              0.883615255355835,
+              -0.402800321578979
+            ],
+            [
+              0.450469136238098,
+              0.468213737010956,
+              0.760166704654694
+            ]
+          ],
+          "origin": [
+            8.11273956298828,
+            9.76403617858887,
+            0.381290435791016
+          ]
+        },
+        "event_counts": {
+          "miss": 1,
+          "impact": 1,
+          "hit": 2,
+          "technique": 1,
+          "hero_release": 1
+        },
+        "exact_float_json_equality": true
+      }
+    },
+    {
+      "station": 3,
+      "simulation_stage": 2,
+      "first": {
+        "frame": 509,
+        "simulation_seconds": 17.0,
+        "playback_seconds": 16.9666666666667
+      },
+      "last": {
+        "frame": 919,
+        "simulation_seconds": 30.6000000000002,
+        "playback_seconds": 30.6333333333333
+      },
+      "frames": 411,
+      "phase_frame_counts": {
+        "travel": 237,
+        "combat": 141,
+        "interact": 3,
+        "loot": 30
+      },
+      "first_combat": {
+        "frame": 746,
+        "simulation_seconds": 24.9000000000001,
+        "playback_seconds": 24.8666666666667
+      },
+      "last_combat": {
+        "frame": 886,
+        "simulation_seconds": 29.5000000000001,
+        "playback_seconds": 29.5333333333333
+      },
+      "actual_event_counts": {
+        "engage": 1,
+        "hero_attack": 4,
+        "hero_release": 3,
+        "nova": 1,
+        "hit": 5,
+        "interrupt": 1,
+        "warning": 2,
+        "technique_cast": 1,
+        "evade": 1,
+        "miss": 1,
+        "impact": 1
+      },
+      "dead_target_hit_events": 5,
+      "settled_combat_camera_exact_static_tail": {
+        "start": {
+          "frame": 803,
+          "simulation_seconds": 26.8000000000001,
+          "playback_seconds": 26.7666666666667
+        },
+        "end": {
+          "frame": 886,
+          "simulation_seconds": 29.5000000000001,
+          "playback_seconds": 29.5333333333333
+        },
+        "frames": 84,
+        "camera": {
+          "basis": [
+            [
+              0.860291540622711,
+              0.0,
+              -0.509802401065826
+            ],
+            [
+              -0.237389355897903,
+              0.884969115257263,
+              -0.400594532489777
+            ],
+            [
+              0.45115938782692,
+              0.465649753808975,
+              0.76133143901825
+            ]
+          ],
+          "origin": [
+            0.252512454986572,
+            9.05334377288818,
+            -12.8078470230103
+          ]
+        },
+        "event_counts": {
+          "miss": 1,
+          "impact": 1,
+          "hero_attack": 2,
+          "hero_release": 2,
+          "hit": 2,
+          "warning": 1
+        },
+        "exact_float_json_equality": true
+      }
+    },
+    {
+      "station": 4,
+      "simulation_stage": 3,
+      "first": {
+        "frame": 920,
+        "simulation_seconds": 30.7000000000002,
+        "playback_seconds": 30.6666666666667
+      },
+      "last": {
+        "frame": 1504,
+        "simulation_seconds": 50.1000000000004,
+        "playback_seconds": 50.1333333333333
+      },
+      "frames": 585,
+      "phase_frame_counts": {
+        "travel": 345,
+        "combat": 99,
+        "interact": 111,
+        "loot": 30
+      },
+      "first_combat": {
+        "frame": 1265,
+        "simulation_seconds": 42.2000000000003,
+        "playback_seconds": 42.1666666666667
+      },
+      "last_combat": {
+        "frame": 1363,
+        "simulation_seconds": 45.4000000000004,
+        "playback_seconds": 45.4333333333333
+      },
+      "actual_event_counts": {
+        "engage": 1,
+        "technique_cast": 1,
+        "hero_attack": 3,
+        "hit": 5,
+        "technique": 1,
+        "hero_release": 3,
+        "nova": 1,
+        "reinforcement_spawn": 1,
+        "objective": 1
+      },
+      "dead_target_hit_events": 4,
+      "settled_combat_camera_exact_static_tail": {
+        "start": {
+          "frame": 1323,
+          "simulation_seconds": 44.1000000000004,
+          "playback_seconds": 44.1
+        },
+        "end": {
+          "frame": 1363,
+          "simulation_seconds": 45.4000000000004,
+          "playback_seconds": 45.4333333333333
+        },
+        "frames": 41,
+        "camera": {
+          "basis": [
+            [
+              0.860291540622711,
+              0.0,
+              -0.509802401065826
+            ],
+            [
+              -0.236282259225845,
+              0.8861083984375,
+              -0.398726314306259
+            ],
+            [
+              0.451740205287933,
+              0.463478118181229,
+              0.762311577796936
+            ]
+          ],
+          "origin": [
+            13.8808746337891,
+            8.48356819152832,
+            -27.9517459869385
+          ]
+        },
+        "event_counts": {
+          "hero_attack": 1,
+          "hero_release": 1,
+          "hit": 1
+        },
+        "exact_float_json_equality": true
+      }
+    },
+    {
+      "station": 5,
+      "simulation_stage": 4,
+      "first": {
+        "frame": 1505,
+        "simulation_seconds": 50.2000000000004,
+        "playback_seconds": 50.1666666666667
+      },
+      "last": {
+        "frame": 1789,
+        "simulation_seconds": 59.6000000000006,
+        "playback_seconds": 59.6333333333333
+      },
+      "frames": 285,
+      "phase_frame_counts": {
+        "travel": 195,
+        "combat": 57,
+        "interact": 3,
+        "loot": 30
+      },
+      "first_combat": {
+        "frame": 1700,
+        "simulation_seconds": 56.7000000000005,
+        "playback_seconds": 56.6666666666667
+      },
+      "last_combat": {
+        "frame": 1756,
+        "simulation_seconds": 58.5000000000006,
+        "playback_seconds": 58.5333333333333
+      },
+      "actual_event_counts": {
+        "engage": 1,
+        "hero_attack": 2,
+        "hero_release": 2,
+        "nova": 1,
+        "hit": 5,
+        "interrupt": 2
+      },
+      "dead_target_hit_events": 5,
+      "settled_combat_camera_exact_static_tail": {
+        "start": {
+          "frame": 1756,
+          "simulation_seconds": 58.5000000000006,
+          "playback_seconds": 58.5333333333333
+        },
+        "end": {
+          "frame": 1756,
+          "simulation_seconds": 58.5000000000006,
+          "playback_seconds": 58.5333333333333
+        },
+        "frames": 1,
+        "camera": {
+          "basis": [
+            [
+              0.860291540622711,
+              0.0,
+              -0.509802401065826
+            ],
+            [
+              -0.237389385700226,
+              0.884969115257263,
+              -0.400594592094421
+            ],
+            [
+              0.451159358024597,
+              0.465649783611298,
+              0.761331379413605
+            ]
+          ],
+          "origin": [
+            15.6301555633545,
+            9.04577255249023,
+            -40.3069496154785
+          ]
+        },
+        "event_counts": {},
+        "exact_float_json_equality": true
+      }
+    },
+    {
+      "station": 6,
+      "simulation_stage": 5,
+      "first": {
+        "frame": 1790,
+        "simulation_seconds": 59.7000000000006,
+        "playback_seconds": 59.6666666666667
+      },
+      "last": {
+        "frame": 2404,
+        "simulation_seconds": 80.0999999999997,
+        "playback_seconds": 80.1333333333333
+      },
+      "frames": 615,
+      "phase_frame_counts": {
+        "travel": 249,
+        "combat": 225,
+        "interact": 111,
+        "loot": 30
+      },
+      "first_combat": {
+        "frame": 2039,
+        "simulation_seconds": 68.0000000000004,
+        "playback_seconds": 67.9666666666667
+      },
+      "last_combat": {
+        "frame": 2263,
+        "simulation_seconds": 75.4,
+        "playback_seconds": 75.4333333333333
+      },
+      "actual_event_counts": {
+        "engage": 1,
+        "hero_attack": 6,
+        "hero_release": 6,
+        "nova": 2,
+        "hit": 8,
+        "interrupt": 2,
+        "technique_cast": 2,
+        "boss_phase": 2,
+        "technique": 2,
+        "warning": 2,
+        "evade": 1,
+        "miss": 1,
+        "impact": 2,
+        "ward": 1,
+        "hero_hit": 1,
+        "objective": 1
+      },
+      "dead_target_hit_events": 3,
+      "settled_combat_camera_exact_static_tail": {
+        "start": {
+          "frame": 2156,
+          "simulation_seconds": 71.9000000000002,
+          "playback_seconds": 71.8666666666667
+        },
+        "end": {
+          "frame": 2263,
+          "simulation_seconds": 75.4,
+          "playback_seconds": 75.4333333333333
+        },
+        "frames": 108,
+        "camera": {
+          "basis": [
+            [
+              0.860291600227356,
+              0.0,
+              -0.509802401065826
+            ],
+            [
+              -0.240947261452675,
+              0.881261646747589,
+              -0.406598538160324
+            ],
+            [
+              0.449269264936447,
+              0.472628772258759,
+              0.758141934871674
+            ]
+          ],
+          "origin": [
+            12.5480175018311,
+            15.0359039306641,
+            -47.7488822937012
+          ]
+        },
+        "event_counts": {
+          "warning": 1,
+          "hero_attack": 3,
+          "hero_release": 3,
+          "hit": 3,
+          "ward": 1,
+          "hero_hit": 1,
+          "impact": 1,
+          "nova": 1
+        },
+        "exact_float_json_equality": true
+      }
+    }
+  ],
+  "three_attack_phrases": [
+    {
+      "canonical_phrase": "basic",
+      "windup_clip": "windup_basic",
+      "windup_frames": 49,
+      "recovery_clip": "recover_basic",
+      "recovery_frames": 77,
+      "actual_commits": 7,
+      "actual_releases": 7,
+      "commit_examples": [
+        {
+          "frame": 44,
+          "simulation_seconds": 1.5,
+          "event": {
+            "name": "Arcane Bolt",
+            "skill": false,
+            "target": 2,
+            "type": "hero_attack"
+          }
+        },
+        {
+          "frame": 833,
+          "simulation_seconds": 27.8000000000001,
+          "event": {
+            "name": "Arcane Bolt",
+            "skill": false,
+            "target": 24,
+            "type": "hero_attack"
+          }
+        }
+      ],
+      "release_examples": [
+        {
+          "frame": 51,
+          "simulation_seconds": 1.7,
+          "event": {
+            "skill": false,
+            "target": 2,
+            "type": "hero_release"
+          }
+        },
+        {
+          "frame": 840,
+          "simulation_seconds": 28.0000000000001,
+          "event": {
+            "skill": false,
+            "target": 24,
+            "type": "hero_release"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_phrase": "skill",
+      "windup_clip": "windup_skill",
+      "windup_frames": 76,
+      "recovery_clip": "recover_skill",
+      "recovery_frames": 97,
+      "actual_commits": 10,
+      "actual_releases": 9,
+      "commit_examples": [
+        {
+          "frame": 2,
+          "simulation_seconds": 0.1,
+          "event": {
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 0,
+            "type": "hero_attack"
+          }
+        },
+        {
+          "frame": 272,
+          "simulation_seconds": 9.09999999999998,
+          "event": {
+            "name": "Veil Nova",
+            "skill": true,
+            "target": 12,
+            "type": "hero_attack"
+          }
+        }
+      ],
+      "release_examples": [
+        {
+          "frame": 9,
+          "simulation_seconds": 0.3,
+          "event": {
+            "skill": true,
+            "target": 0,
+            "type": "hero_release"
+          }
+        },
+        {
+          "frame": 279,
+          "simulation_seconds": 9.29999999999998,
+          "event": {
+            "skill": true,
+            "target": 12,
+            "type": "hero_release"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_phrase": "heavy",
+      "windup_clip": "windup_heavy",
+      "windup_frames": 54,
+      "recovery_clip": "recover_heavy",
+      "recovery_frames": 20,
+      "actual_commits": 2,
+      "actual_releases": 2,
+      "commit_examples": [
+        {
+          "frame": 320,
+          "simulation_seconds": 10.7,
+          "event": {
+            "ability_id": "starfall",
+            "name": "Ashen Starfall",
+            "skill": true,
+            "target": 10,
+            "type": "hero_attack"
+          }
+        },
+        {
+          "frame": 2126,
+          "simulation_seconds": 70.9000000000002,
+          "event": {
+            "ability_id": "starfall",
+            "name": "Ashen Starfall",
+            "skill": true,
+            "target": 50,
+            "type": "hero_attack"
+          }
+        }
+      ],
+      "release_examples": [
+        {
+          "frame": 347,
+          "simulation_seconds": 11.6,
+          "event": {
+            "ability_id": "starfall",
+            "skill": true,
+            "type": "hero_release"
+          }
+        },
+        {
+          "frame": 2153,
+          "simulation_seconds": 71.8000000000002,
+          "event": {
+            "ability_id": "starfall",
+            "skill": true,
+            "type": "hero_release"
+          }
+        }
+      ]
+    }
+  ],
+  "all_clip_frame_counts": {
+    "idle": 472,
+    "windup_skill": 76,
+    "recover_skill": 97,
+    "windup_basic": 49,
+    "recover_basic": 77,
+    "walk": 1626,
+    "windup_heavy": 54,
+    "recover_heavy": 20,
+    "arena_absent": 25
+  },
+  "all_actual_event_counts": {
+    "hero_attack": 19,
+    "hero_release": 18,
+    "nova": 7,
+    "hit": 32,
+    "interrupt": 6,
+    "reinforcement_spawn": 2,
+    "engage": 5,
+    "warning": 5,
+    "evade": 3,
+    "technique_cast": 5,
+    "miss": 3,
+    "impact": 4,
+    "technique": 4,
+    "well": 1,
+    "objective": 3,
+    "boss_phase": 2,
+    "ward": 1,
+    "hero_hit": 1,
+    "finished": 1
+  },
+  "cancelled_cast": {
+    "commit_frame": 791,
+    "commit_simulation_seconds": 26.4,
+    "ability": "chain",
+    "actual_evade_frame": 794,
+    "actual_evade_simulation_seconds": 26.5,
+    "pending_attack_cleared": true,
+    "pose_after_cancel": "walk",
+    "matching_release_or_hit_before_next_commit": false,
+    "scope": "One legitimate Chain preparation is cancelled by the actual evade. Its absence from release count is correct; capture does not manufacture a discharge or hit.",
+    "cancelled_interval_first_frame": 794,
+    "cancelled_interval_last_frame": 832,
+    "interval_event_types": [
+      "evade",
+      "impact",
+      "miss"
+    ]
+  },
+  "guardian": {
+    "first_actual_combat": {
+      "frame": 2039,
+      "simulation_seconds": 68.0000000000004,
+      "playback_seconds": 67.9666666666667
+    },
+    "initial_maximum_hp": 2400,
+    "actual_death": {
+      "frame": 2261,
+      "simulation_seconds": 75.4,
+      "playback_seconds": 75.3666666666667
+    },
+    "phase_events": [
+      {
+        "frame": 2096,
+        "simulation_seconds": 69.9000000000003,
+        "event": {
+          "description": "The crown shatters. A cleaving lane now cuts through the ring's safe center.",
+          "from_phase": 0,
+          "name": "The Bell Warden",
+          "phase": 1,
+          "phase_name": "Crown Break",
+          "position": [
+            0.00866597890853882,
+            -67.7920761108398
+          ],
+          "region": 0,
+          "source": 50,
+          "type": "boss_phase"
+        }
+      },
+      {
+        "frame": 2153,
+        "simulation_seconds": 71.8000000000002,
+        "event": {
+          "description": "Split bell rings overlap a final cleaving lane. Escape between their edges.",
+          "from_phase": 1,
+          "name": "The Bell Warden",
+          "phase": 2,
+          "phase_name": "Final Toll",
+          "position": [
+            0.00866597890853882,
+            -67.7920761108398
+          ],
+          "region": 0,
+          "source": 50,
+          "type": "boss_phase"
+        }
+      }
+    ],
+    "warning_events": [
+      {
+        "frame": 2099,
+        "simulation_seconds": 70.0000000000003,
+        "event": {
+          "aim_target": [
+            0.0,
+            -64.5999984741211
+          ],
+          "awakened": true,
+          "center": [
+            0.0,
+            -64.5999984741211
+          ],
+          "duration": 1.45,
+          "geometry_version": 2,
+          "left": 1.45,
+          "multiplier": 2.592,
+          "name": "Bell Requiem",
+          "origin": [
+            0.00866597890853882,
+            -67.7920761108398
+          ],
+          "pattern": 0,
+          "phase": 1,
+          "phase_name": "Crown Break",
+          "position": [
+            0.0,
+            -64.5999984741211
+          ],
+          "radius": 5.5,
+          "source": 50,
+          "total": 1.45,
+          "type": "warning",
+          "variant": 1,
+          "zones": [
+            {
+              "center": [
+                0.00866597890853882,
+                -67.7920761108398
+              ],
+              "inner": 1.65,
+              "radius": 4.8,
+              "shape": "annulus"
+            },
+            {
+              "center": [
+                0.00866597890853882,
+                -67.7920761108398
+              ],
+              "direction": [
+                -0.999996244907379,
+                -0.00271482951939106
+              ],
+              "length": 5.2,
+              "radius": 0.65,
+              "shape": "beam"
+            }
+          ]
+        }
+      },
+      {
+        "frame": 2156,
+        "simulation_seconds": 71.9000000000002,
+        "event": {
+          "aim_target": [
+            1.31803767899896e-08,
+            -66.3850021362305
+          ],
+          "awakened": true,
+          "center": [
+            1.31803767899896e-08,
+            -66.3850021362305
+          ],
+          "duration": 1.3,
+          "geometry_version": 2,
+          "left": 1.3,
+          "multiplier": 2.832,
+          "name": "Bell Requiem",
+          "origin": [
+            0.00866597890853882,
+            -67.7920761108398
+          ],
+          "pattern": 0,
+          "phase": 2,
+          "phase_name": "Final Toll",
+          "position": [
+            1.31803767899896e-08,
+            -66.3850021362305
+          ],
+          "radius": 5.5,
+          "source": 50,
+          "total": 1.3,
+          "type": "warning",
+          "variant": 0,
+          "zones": [
+            {
+              "center": [
+                1.45863842964172,
+                -67.7831497192383
+              ],
+              "inner": 1.2,
+              "radius": 3.3,
+              "shape": "annulus"
+            },
+            {
+              "center": [
+                -1.44130659103394,
+                -67.8010025024414
+              ],
+              "inner": 1.2,
+              "radius": 3.3,
+              "shape": "annulus"
+            },
+            {
+              "center": [
+                0.00866597890853882,
+                -67.7920761108398
+              ],
+              "direction": [
+                -0.00615873886272311,
+                0.999981045722961
+              ],
+              "length": 5.4,
+              "radius": 0.55,
+              "shape": "beam"
+            }
+          ]
+        }
+      }
+    ],
+    "actual_hit_received": [
+      {
+        "frame": 2198,
+        "simulation_seconds": 73.3000000000001,
+        "event": {
+          "damage": 23,
+          "source": 50,
+          "type": "hero_hit"
+        }
+      }
+    ],
+    "final_hero_hp": 357,
+    "actual_commits": 6,
+    "actual_releases": 6,
+    "actual_target_hit_events": 8,
+    "settled_combat_camera_exact_static_tail": {
+      "start": {
+        "frame": 2156,
+        "simulation_seconds": 71.9000000000002,
+        "playback_seconds": 71.8666666666667
+      },
+      "end": {
+        "frame": 2263,
+        "simulation_seconds": 75.4,
+        "playback_seconds": 75.4333333333333
+      },
+      "frames": 108,
+      "camera": {
+        "basis": [
+          [
+            0.860291600227356,
+            0.0,
+            -0.509802401065826
+          ],
+          [
+            -0.240947261452675,
+            0.881261646747589,
+            -0.406598538160324
+          ],
+          [
+            0.449269264936447,
+            0.472628772258759,
+            0.758141934871674
+          ]
+        ],
+        "origin": [
+          12.5480175018311,
+          15.0359039306641,
+          -47.7488822937012
+        ]
+      },
+      "event_counts": {
+        "warning": 1,
+        "hero_attack": 3,
+        "hero_release": 3,
+        "hit": 3,
+        "ward": 1,
+        "hero_hit": 1,
+        "impact": 1,
+        "nova": 1
+      },
+      "exact_float_json_equality": true
+    }
+  },
+  "outcome": {
+    "won": true,
+    "simulation_finished": true,
+    "simulation_elapsed_seconds": 80.1999999999997,
+    "first_finished_record": {
+      "frame": 2405,
+      "simulation_seconds": 80.1999999999997,
+      "playback_seconds": 80.1666666666667
+    },
+    "final_hero_hp": 357,
+    "result_ui_reached": true,
+    "first_result_ui_record": {
+      "frame": 2471,
+      "simulation_seconds": 80.1999999999997,
+      "playback_seconds": 82.3666666666667
+    },
+    "result_ui_evidence": "page=loot and the original Main result builder has removed run_arena/hero/camera; all last25 frame records retain that result scene. Pixel content is visible in the decoded MP4, not a retained original result PNG.",
+    "result_ui_frames": 25,
+    "final_frame": {
+      "frame": 2495,
+      "simulation_seconds": 80.1999999999997,
+      "playback_seconds": 83.1666666666667
+    }
+  },
+  "conservative_projection_audit": {
+    "frames_with_real_source_hero_record": 2471,
+    "all_source_skeletons_65_bones": true,
+    "issues": {
+      "behind_camera": 0,
+      "no_viewport_intersection": 0,
+      "not_fully_inside_viewport": 0,
+      "actor_not_visible_in_tree": 0
+    },
+    "scope": "Camera subviewport coordinates; current conservative actor pose bounds, including source joint influence envelopes and actual staff geometry. Rectangle overlap is a visibility proxy, not a rendered-pixel occlusion measurement.",
+    "pixel_occlusion_measurement": false
+  },
+  "visual_inspection": {
+    "inspected_untouched_original_pngs": [
+      {
+        "file": "frame-00009.png",
+        "sha256": "a3529dfcfe904243d65d517ef7d411b71f3e703d6550d7000bc22aea17f550b4"
+      },
+      {
+        "file": "frame-00051.png",
+        "sha256": "a759386014268529072ad550123f39f711bbfa7f1d9c3e6f0405f9404facd0ab"
+      },
+      {
+        "file": "frame-00320.png",
+        "sha256": "d9ab6f7050c292c44ef1ccaea3c7bd78003d553551123d139245c292f8b8c262"
+      },
+      {
+        "file": "frame-00347.png",
+        "sha256": "826d40645344e95677992b94d770bbbb246c46425e44561c66c18a2e89c28bbf"
+      },
+      {
+        "file": "frame-02039.png",
+        "sha256": "c44884652a541f5e808bc8628d9ecb08ec4c0d864d2454ce98666a8f261a73f1"
+      },
+      {
+        "file": "frame-02099.png",
+        "sha256": "4b4c9b1367d88bd0dac09551f81fd45797915be323128b7097a843f167d1c158"
+      },
+      {
+        "file": "frame-02153.png",
+        "sha256": "9ab92f7eaf378ec5bccfdb86ca17ecc24cfeb60ded86e9f2d7a7b9c19a4d992f"
+      }
+    ],
+    "observations": "Actual Nyra and held staff remain visible in inspected basic, signature, heavy and Guardian warning/phase frames. Warning footprints and HUD fit the inspected Guardian shots. This is a limited visual review, not a complete image-by-image quality acceptance.",
+    "original_selected_png_count": 22,
+    "original_result_ui_png_retained": false,
+    "first_finished_png_scope": "selected-frames/frame-02405.png still shows the world collecting loot; use a labeled decoded MP4 frame for the later result UI."
+  },
+  "source_input_sha256_before": {
+    "Main.tscn": "e2c97bd36e4f81713f36208f513abc7cef049282dd8861b721a5b5217d2df56b",
+    "assets/models/nyra052/ANIMATION-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/nyra052/BASE-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/nyra052/MANUFACTURER-OUTFIT-README.txt": "2f87579c277cde1e1ddbd4b8d823bed618728781cb6597b4dee3978c589ff5c4",
+    "assets/models/nyra052/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/nyra052/README.md": "80cd7f90cbd14e9b2331e00d4bdefd4ed64eeff3f4afebdd73c1b84c3268163e",
+    "assets/models/nyra052/arcanist.glb": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "assets/models/nyra052/assembly-report.json": "0010a84fdf4170fc15167f4da38d5771d3bf7b90b99caed8186eed21d8dbe4c7",
+    "assets/models/nyra052/death-grounding.json": "f69e8b6b62387fc4743cbbfb3ab4d4e06581ec4442bf203e49f238ef0a2b6435",
+    "assets/models/nyra052/staff-grip053.glb": "98bd5832256f9a2fdbb68198d1dbf0d2db0b87c9c4d9d28b136cdfe54db0f11c",
+    "assets/models/nyra052/staff-grip053.json": "fa80f22d398ee8d8947a2be4e6b8c8bb64a7d71a1b41b3489171257ea35735dc",
+    "assets/models/nyra054/QUATERNIUS-CC0-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/nyra054/README.md": "e07de588afae90929fb65e5e933fccfc5f916457187fb2afa9910e818a568c45",
+    "assets/models/nyra054/nyra-attire054.glb": "8a96a9bac63a934213ddea77020d1b50dfd57e5270842ada69355925a5e906f1",
+    "assets/models/nyra054/nyra-attire054.json": "9a9c0e980173aa1da03081b97b61c34a9ae2a4ca3469ba79a9df0cf1a4ec63a5",
+    "assets/shaders/aged_stone.gdshader": "81a6675a552598a4735072a0e713ae17494e6603db0e93b5f216d863b1e48041",
+    "assets/shaders/camp_matte.gdshader": "543c89236729d0596031f60144efac898ed596196b383949596b353b7240f338",
+    "assets/shaders/camp_paving.gdshader": "fb4d21ce1f2aade7f3fdd1962130aed60490712105eb2b78119371e0f3c8e7c7",
+    "assets/shaders/character_surface.gdshader": "d57b02bdbe94cc590b624829fd3489126c18d3163e5551a65931041d0056102d",
+    "assets/shaders/combat_telegraph.gdshader": "444b2ebb46ee39a6130babeacdc5401ad6e33039f1c14ea78542ce901501f601",
+    "assets/shaders/crafted_surface.gdshader": "fabbfddacac14fd5b243c189da50601374ebb462ca2d493aa93660b359b7a99b",
+    "assets/shaders/crypt_mist.gdshader": "4d7523594f8499015b843e9b5c122bcbf90357a1b6796f620b418501d458a728",
+    "assets/shaders/dungeon_atmosphere.gdshader": "b99a857627f57e4a68d7b56e18c42f39cee5b4b058fef3eaa82679f6d6211ca3",
+    "assets/shaders/dungeon_court.gdshader": "9b621f1d77ed363979dc4d2b6d9b75160c5488d422b93493a54040aedf450bcc",
+    "assets/shaders/dungeon_water.gdshader": "3beefed1c6f9e8fd557eba31d3a826d033475d5af25b34e9295b6753adcf2e9b",
+    "assets/shaders/ember_flame.gdshader": "90ceceebe9b628e347b8b191e60f587be490784c8f230aeabf58aa8f660c8d0e",
+    "assets/shaders/environment_basin.gdshader": "d3b3d42bbc5eed526317cafee7ce22be0b93879c7542374c68e56dffddf46fbf",
+    "assets/shaders/forged_surface.gdshader": "08a29ecba1e8185c4060a3f94978e686cff85ace623b23afa3fabca422f842c6",
+    "assets/shaders/ground_grime.gdshader": "cfdf0f549359c652c1affff94ea5bb2029aec3f12f5e9a81bde3ba3f90a058c8",
+    "assets/shaders/magic_volume.gdshader": "8203ade68c3e85a3f02da2ab22ac1771179a8aa1eeab6166a6acc37cc9d6c82c",
+    "assets/shaders/masonry_surface.gdshader": "d73e6e2cd3fcc94ecaaf8899afafcfb3f42301162df985e5054b212173165b13",
+    "assets/shaders/painted_actor.gdshader": "6a26a281e7c2018bc51180275230380ca842aeb264a08d3eec5f372b4f9f4f65",
+    "assets/shaders/painted_stone.gdshader": "6bfa423bf4b4dceee12bffce2964d955a42e6eca0464fca104c070fd22945eef",
+    "assets/shaders/region_matte.gdshader": "d3977211bc2e5a96d894a23d9d803789a3779152b1a8c7f6237b12b5ca2fff4a",
+    "assets/shaders/ruin_deposit.gdshader": "aeacef77c5a3165038c0ab4c647a97afd31cfc649495e69e517497f9ada1d513",
+    "assets/shaders/ruin_floor.gdshader": "1f26defac45ef200fef39a32896188b475f832705b2fb46a2dc658ada233d102",
+    "assets/shaders/sanctuary_beam.gdshader": "dace078f60919fc5e396d44e7cbd7c842c0f6734bf2417d38e2052d0532014ff",
+    "assets/shaders/sanctuary_glass.gdshader": "7e5eddfb48c07d23008852e0f08b1083271673193aebc1ed03d25c319c79060a",
+    "assets/shaders/veil_gate.gdshader": "41ed87f890fa53e214914abe57b2959157d212d1d1882abc5b8ac7e49319068b",
+    "assets/shaders/ward_surface.gdshader": "5a42adf6e77e88142c5fab64bf07a412226368f96adff302f2ba7a15d2524480",
+    "assets/shaders/weathered_stone.gdshader": "a05dd8129d9b51b95d944c3af2766494bab25c75336f3d13573a6febb805fed9",
+    "project.godot": "06443ae1339db92383984483104457c9b085bd80a8772d0b3ce9b923a9c906f1",
+    "scripts/audio_director.gd": "476432c1261da36d8a7c0eeaca9c53de0712188dcf91ad3496fb54352ba6c962",
+    "scripts/authored_architecture.gd": "e68d8d835cafe1f3b0e24e46060a5ce4add3d9cf9ddeef5e5bce4a934529d899",
+    "scripts/authored_characters.gd": "530d0f0a3c5b84eb4dcd40f60f3fadaa9be89d1bee4c8201f1420d3d2d9247d8",
+    "scripts/battle_art.gd": "7d54a95db37801ee603e4aa5be5cde221cba908e23884edd134b0cf46aa74830",
+    "scripts/boss_patterns.gd": "8a808f6fc59ae0619b19488d2fe4753f0f19ea6b6d0dc31bf98dbd58be87d4bb",
+    "scripts/camp_scene.gd": "30ede3a1073e9605bcf1308096adf01005ac83e16da554c0437d9768686f52ff",
+    "scripts/character_animation.gd": "7f58864865e7a3459be394b86bf3900db409d29a54fa6b6ad90996b204e5c2c8",
+    "scripts/character_rig.gd": "53d0100fe61edb238926a71ace86963eee20f2851858e2439ded2ccfd0f1ff23",
+    "scripts/class_loot.gd": "a8d593dc6af163e92298ad8fc627e5004b43646ea99c674c601c119c106e4b76",
+    "scripts/class_relics.gd": "18c540965b7e4f80a0e45ad7d01dfe28d376702d1f3d53b9775b85f9972821e9",
+    "scripts/class_skills.gd": "25e37394f53126478b955108f9d604505e83a8c7fff7e50ef446b34407f06898",
+    "scripts/cloud_save.gd": "50b796e146d93404031828592ce4de5a836b54e48e40ab0241466be2715fea23",
+    "scripts/combat_health_bar.gd": "86cf42d3009ce34ca94059a61d654b09c2b2435b8820c23ce73d50be83726f75",
+    "scripts/combat_readout.gd": "8c3563909c6100ccb034cef1c61589a218e71bf4d9b36424de2de5e68e466a55",
+    "scripts/combat_stances.gd": "d3f7d2a7d16574681ef40bd2bf763595bef7fb3532dbb2cd3c753ddee2855371",
+    "scripts/dungeon_actor.gd": "fc76fa5ee47215b5eb75a276d566065f084b2104f38655729382065ee26ba370",
+    "scripts/dungeon_layout.gd": "fd66656086e248dd8c42d345351e2a1e22f58ddc6cef4dbfea177d5b70332df7",
+    "scripts/dungeon_lighting.gd": "995b2d8dfcfd0875a94f6f08ce5f06cbcd9b9bb2a5e9315cf62e4f4da6caa563",
+    "scripts/dungeon_theme.gd": "55232beaa65ccaad0da265d78f0506a00c4451a9be0b622627bf6bfe4d96d91b",
+    "scripts/dungeon_world.gd": "034069069275b529c1bed532de73c11e464e18fbc2d3f68b812344731d71ba76",
+    "scripts/expedition_contract.gd": "05db36bebc7e0231b977ca0b0f33b2cd4967683913479fcfc3a6c2fc86adf837",
+    "scripts/expedition_map.gd": "f2f5febcddc6bb6d06f746c4b803a797b8d8386af8b4ee3ec66cc3caf034a9bf",
+    "scripts/expedition_simulation.gd": "ed4cabb75e65486aa277632ad2d25700bfca4d60e79b7e7fc0a28bbffe6c649b",
+    "scripts/farm_forecast.gd": "a1506505e3da2195d58026ef59fba30a8fe0aaa130cd5de5647fbf5802a8b083",
+    "scripts/fellowship_service.gd": "c8f33d6bf1cb39cd82ac8d2551132e7851e1906b92f699dd7e7dffd2a411601b",
+    "scripts/frame_metrics.gd": "20e0aa3a71a218957dbee8161e4706cebeffdee49d35bb86bc6dedddafb7555d",
+    "scripts/game_preferences.gd": "a7179eea97cb59cb689bdda398a7b8cc712a1cff3296a52533b2000341027cbf",
+    "scripts/gear_advisor.gd": "6dea2eae02252c95fd57b73711e2ae86bf4bf26f5a304f4149d29110cdde2e24",
+    "scripts/hero_art.gd": "ce7a6c4ef5cb52ce870440d0b0494264c4f4091c57608b063eee19a1c0acfcdd",
+    "scripts/main.gd": "805ad431d458de242e97edc835d3e2a8df6b4b4aa6087fda77e2651cd5aca216",
+    "scripts/mobile_safe_area.gd": "6fc90d1a94100fdde4b8ab06928b92a729069394ce7d80b172bfe733e7e75df3",
+    "scripts/oath_combat_rules.gd": "c0b5f85c487237963cdff96b5f2002f03eac65c17dbda483c3393a402c4fd1b2",
+    "scripts/offline_farm.gd": "ee3930fffd691813a7094e1f820cf9e1b0a3d2bd08d0e7a896b2817640844548",
+    "scripts/painted_action_craft.gd": "495f16b7bf9c4a27e31913ac5580856f7f49e0a85d811f0a4aadb17bcdd82c28",
+    "scripts/painted_motion_layers.gd": "4d1cd31ef3b926044fd5a89e72efa5435b385e7601cfbec6918fc6a3d4688282",
+    "scripts/painted_motion_rig.gd": "d8e177331ddfdd0630b8ada2f9558f9895d23342455f65eb3aa4cb9ca22a4138",
+    "scripts/playtest_notes.gd": "9c3a611afdbf524ff2271892985d7c6bc1afdd70ae5fd0ad73db4ea0c734ac44",
+    "scripts/progression_service.gd": "0c3e7387579a3d90077cd1042595ed939487b7cd3524e5b92869e4f4e7f841f4",
+    "scripts/regional_sets.gd": "32236ab325cab5d7ab11dd5b45dfca25cc4b56cd7d5b6dbb3986f3f96bfcbb22",
+    "scripts/regional_stage.gd": "c68d128bed523b771bdde459cf12db91bdde665a5af27d0cc0581ad0f4a61669",
+    "scripts/release_info.gd": "b8723513c5434fae9b587cec073d0dd20d7ba77f99cfe5ebe8d162cd1d2bd3ce",
+    "scripts/render_budget.gd": "99a1f816371991937dabf4cc5830d9cc90990f20214736da218f4921899ac09b",
+    "scripts/room_ground.gd": "2a4b3b1ef37064d0932aed30feb7eddf362a3030b6ba52bfb8ca39702c8a0c93",
+    "scripts/ruin_architecture.gd": "3a77f958110aacaa9c19fb6a8184fe117fa2c793222a1fd17a91dff4639d60a7",
+    "scripts/save_store.gd": "97f5c641866ba935a3467495531008da7459665798867f7c22c11db4121aabfa",
+    "scripts/sculpted_mesh.gd": "57df0f7444b2bd930031069efc7d83edb20750f058f628f7535e7d1a0dc283a1",
+    "scripts/settings_panel.gd": "6d3d5cf798a442893eaeca9494305faebd0fe4a3c5dcf8a8b986bc6a019fe9b5",
+    "scripts/skill_glyph.gd": "0df2f5cdd5ae234ef593ad42f57266c292dddd95da7be3f1b3f1b73064f8d7be",
+    "scripts/source_avatar_combat.gd": "9066888875cec7671593c158473ec8343b51fad0ace58c89046bee92cb3e4e18",
+    "scripts/source_avatar_rig.gd": "1d5de716e8deac1ddeffd4e293b497de5f2884aebc0469578073b81277cf261d",
+    "scripts/source_avatar_style.gd": "54ae9ef1b1d12d8379d106797141302be873b58717ab223fb499333f330c6ccc",
+    "scripts/ui_glyph.gd": "e24e98966ab6050a5dcac576a05096c41f8fe6ad671e74253263a9cbc439d406",
+    "tests/arcanist_quality_gameplay_preview.gd": "0185f78aa421b27da5f5f9a718259fdbb673f5201e2d591ea4fe9850c7e5dbc4",
+    "tests/arcanist_quality_gameplay_preview.tscn": "50c6bb5b1508d0662c09348a38f7fbf373145dc23def11d8fa0bb57639aa7023",
+    "tests/attack_gameplay_preview.gd": "12333afd1d7694b13939e48ac67c095f6f832d4eb959d5ef74bf230988748fdc",
+    "tools/capture_arcanist_quality.py": "29e05eb4f9643df8ae29a03ece3962db810209f5ca552b84391558a7caab7ff4"
+  },
+  "source_input_sha256_after": {
+    "Main.tscn": "e2c97bd36e4f81713f36208f513abc7cef049282dd8861b721a5b5217d2df56b",
+    "assets/models/nyra052/ANIMATION-LICENSE.txt": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+    "assets/models/nyra052/BASE-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/nyra052/MANUFACTURER-OUTFIT-README.txt": "2f87579c277cde1e1ddbd4b8d823bed618728781cb6597b4dee3978c589ff5c4",
+    "assets/models/nyra052/OUTFIT-LICENSE.txt": "2202cc2f608c4210790b112e5f121bc2e7f8dced7b5b1c7f4be6203461bdebbb",
+    "assets/models/nyra052/README.md": "80cd7f90cbd14e9b2331e00d4bdefd4ed64eeff3f4afebdd73c1b84c3268163e",
+    "assets/models/nyra052/arcanist.glb": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+    "assets/models/nyra052/assembly-report.json": "0010a84fdf4170fc15167f4da38d5771d3bf7b90b99caed8186eed21d8dbe4c7",
+    "assets/models/nyra052/death-grounding.json": "f69e8b6b62387fc4743cbbfb3ab4d4e06581ec4442bf203e49f238ef0a2b6435",
+    "assets/models/nyra052/staff-grip053.glb": "98bd5832256f9a2fdbb68198d1dbf0d2db0b87c9c4d9d28b136cdfe54db0f11c",
+    "assets/models/nyra052/staff-grip053.json": "fa80f22d398ee8d8947a2be4e6b8c8bb64a7d71a1b41b3489171257ea35735dc",
+    "assets/models/nyra054/QUATERNIUS-CC0-LICENSE.txt": "0f4beaf0fe360a7732e58bbe3dbf60a2422367fbea60cb9ea4add968f383268e",
+    "assets/models/nyra054/README.md": "e07de588afae90929fb65e5e933fccfc5f916457187fb2afa9910e818a568c45",
+    "assets/models/nyra054/nyra-attire054.glb": "8a96a9bac63a934213ddea77020d1b50dfd57e5270842ada69355925a5e906f1",
+    "assets/models/nyra054/nyra-attire054.json": "9a9c0e980173aa1da03081b97b61c34a9ae2a4ca3469ba79a9df0cf1a4ec63a5",
+    "assets/shaders/aged_stone.gdshader": "81a6675a552598a4735072a0e713ae17494e6603db0e93b5f216d863b1e48041",
+    "assets/shaders/camp_matte.gdshader": "543c89236729d0596031f60144efac898ed596196b383949596b353b7240f338",
+    "assets/shaders/camp_paving.gdshader": "fb4d21ce1f2aade7f3fdd1962130aed60490712105eb2b78119371e0f3c8e7c7",
+    "assets/shaders/character_surface.gdshader": "d57b02bdbe94cc590b624829fd3489126c18d3163e5551a65931041d0056102d",
+    "assets/shaders/combat_telegraph.gdshader": "444b2ebb46ee39a6130babeacdc5401ad6e33039f1c14ea78542ce901501f601",
+    "assets/shaders/crafted_surface.gdshader": "fabbfddacac14fd5b243c189da50601374ebb462ca2d493aa93660b359b7a99b",
+    "assets/shaders/crypt_mist.gdshader": "4d7523594f8499015b843e9b5c122bcbf90357a1b6796f620b418501d458a728",
+    "assets/shaders/dungeon_atmosphere.gdshader": "b99a857627f57e4a68d7b56e18c42f39cee5b4b058fef3eaa82679f6d6211ca3",
+    "assets/shaders/dungeon_court.gdshader": "9b621f1d77ed363979dc4d2b6d9b75160c5488d422b93493a54040aedf450bcc",
+    "assets/shaders/dungeon_water.gdshader": "3beefed1c6f9e8fd557eba31d3a826d033475d5af25b34e9295b6753adcf2e9b",
+    "assets/shaders/ember_flame.gdshader": "90ceceebe9b628e347b8b191e60f587be490784c8f230aeabf58aa8f660c8d0e",
+    "assets/shaders/environment_basin.gdshader": "d3b3d42bbc5eed526317cafee7ce22be0b93879c7542374c68e56dffddf46fbf",
+    "assets/shaders/forged_surface.gdshader": "08a29ecba1e8185c4060a3f94978e686cff85ace623b23afa3fabca422f842c6",
+    "assets/shaders/ground_grime.gdshader": "cfdf0f549359c652c1affff94ea5bb2029aec3f12f5e9a81bde3ba3f90a058c8",
+    "assets/shaders/magic_volume.gdshader": "8203ade68c3e85a3f02da2ab22ac1771179a8aa1eeab6166a6acc37cc9d6c82c",
+    "assets/shaders/masonry_surface.gdshader": "d73e6e2cd3fcc94ecaaf8899afafcfb3f42301162df985e5054b212173165b13",
+    "assets/shaders/painted_actor.gdshader": "6a26a281e7c2018bc51180275230380ca842aeb264a08d3eec5f372b4f9f4f65",
+    "assets/shaders/painted_stone.gdshader": "6bfa423bf4b4dceee12bffce2964d955a42e6eca0464fca104c070fd22945eef",
+    "assets/shaders/region_matte.gdshader": "d3977211bc2e5a96d894a23d9d803789a3779152b1a8c7f6237b12b5ca2fff4a",
+    "assets/shaders/ruin_deposit.gdshader": "aeacef77c5a3165038c0ab4c647a97afd31cfc649495e69e517497f9ada1d513",
+    "assets/shaders/ruin_floor.gdshader": "1f26defac45ef200fef39a32896188b475f832705b2fb46a2dc658ada233d102",
+    "assets/shaders/sanctuary_beam.gdshader": "dace078f60919fc5e396d44e7cbd7c842c0f6734bf2417d38e2052d0532014ff",
+    "assets/shaders/sanctuary_glass.gdshader": "7e5eddfb48c07d23008852e0f08b1083271673193aebc1ed03d25c319c79060a",
+    "assets/shaders/veil_gate.gdshader": "41ed87f890fa53e214914abe57b2959157d212d1d1882abc5b8ac7e49319068b",
+    "assets/shaders/ward_surface.gdshader": "5a42adf6e77e88142c5fab64bf07a412226368f96adff302f2ba7a15d2524480",
+    "assets/shaders/weathered_stone.gdshader": "a05dd8129d9b51b95d944c3af2766494bab25c75336f3d13573a6febb805fed9",
+    "project.godot": "06443ae1339db92383984483104457c9b085bd80a8772d0b3ce9b923a9c906f1",
+    "scripts/audio_director.gd": "476432c1261da36d8a7c0eeaca9c53de0712188dcf91ad3496fb54352ba6c962",
+    "scripts/authored_architecture.gd": "e68d8d835cafe1f3b0e24e46060a5ce4add3d9cf9ddeef5e5bce4a934529d899",
+    "scripts/authored_characters.gd": "530d0f0a3c5b84eb4dcd40f60f3fadaa9be89d1bee4c8201f1420d3d2d9247d8",
+    "scripts/battle_art.gd": "7d54a95db37801ee603e4aa5be5cde221cba908e23884edd134b0cf46aa74830",
+    "scripts/boss_patterns.gd": "8a808f6fc59ae0619b19488d2fe4753f0f19ea6b6d0dc31bf98dbd58be87d4bb",
+    "scripts/camp_scene.gd": "30ede3a1073e9605bcf1308096adf01005ac83e16da554c0437d9768686f52ff",
+    "scripts/character_animation.gd": "7f58864865e7a3459be394b86bf3900db409d29a54fa6b6ad90996b204e5c2c8",
+    "scripts/character_rig.gd": "53d0100fe61edb238926a71ace86963eee20f2851858e2439ded2ccfd0f1ff23",
+    "scripts/class_loot.gd": "a8d593dc6af163e92298ad8fc627e5004b43646ea99c674c601c119c106e4b76",
+    "scripts/class_relics.gd": "18c540965b7e4f80a0e45ad7d01dfe28d376702d1f3d53b9775b85f9972821e9",
+    "scripts/class_skills.gd": "25e37394f53126478b955108f9d604505e83a8c7fff7e50ef446b34407f06898",
+    "scripts/cloud_save.gd": "50b796e146d93404031828592ce4de5a836b54e48e40ab0241466be2715fea23",
+    "scripts/combat_health_bar.gd": "86cf42d3009ce34ca94059a61d654b09c2b2435b8820c23ce73d50be83726f75",
+    "scripts/combat_readout.gd": "8c3563909c6100ccb034cef1c61589a218e71bf4d9b36424de2de5e68e466a55",
+    "scripts/combat_stances.gd": "d3f7d2a7d16574681ef40bd2bf763595bef7fb3532dbb2cd3c753ddee2855371",
+    "scripts/dungeon_actor.gd": "fc76fa5ee47215b5eb75a276d566065f084b2104f38655729382065ee26ba370",
+    "scripts/dungeon_layout.gd": "fd66656086e248dd8c42d345351e2a1e22f58ddc6cef4dbfea177d5b70332df7",
+    "scripts/dungeon_lighting.gd": "995b2d8dfcfd0875a94f6f08ce5f06cbcd9b9bb2a5e9315cf62e4f4da6caa563",
+    "scripts/dungeon_theme.gd": "55232beaa65ccaad0da265d78f0506a00c4451a9be0b622627bf6bfe4d96d91b",
+    "scripts/dungeon_world.gd": "034069069275b529c1bed532de73c11e464e18fbc2d3f68b812344731d71ba76",
+    "scripts/expedition_contract.gd": "05db36bebc7e0231b977ca0b0f33b2cd4967683913479fcfc3a6c2fc86adf837",
+    "scripts/expedition_map.gd": "f2f5febcddc6bb6d06f746c4b803a797b8d8386af8b4ee3ec66cc3caf034a9bf",
+    "scripts/expedition_simulation.gd": "ed4cabb75e65486aa277632ad2d25700bfca4d60e79b7e7fc0a28bbffe6c649b",
+    "scripts/farm_forecast.gd": "a1506505e3da2195d58026ef59fba30a8fe0aaa130cd5de5647fbf5802a8b083",
+    "scripts/fellowship_service.gd": "c8f33d6bf1cb39cd82ac8d2551132e7851e1906b92f699dd7e7dffd2a411601b",
+    "scripts/frame_metrics.gd": "20e0aa3a71a218957dbee8161e4706cebeffdee49d35bb86bc6dedddafb7555d",
+    "scripts/game_preferences.gd": "a7179eea97cb59cb689bdda398a7b8cc712a1cff3296a52533b2000341027cbf",
+    "scripts/gear_advisor.gd": "6dea2eae02252c95fd57b73711e2ae86bf4bf26f5a304f4149d29110cdde2e24",
+    "scripts/hero_art.gd": "ce7a6c4ef5cb52ce870440d0b0494264c4f4091c57608b063eee19a1c0acfcdd",
+    "scripts/main.gd": "805ad431d458de242e97edc835d3e2a8df6b4b4aa6087fda77e2651cd5aca216",
+    "scripts/mobile_safe_area.gd": "6fc90d1a94100fdde4b8ab06928b92a729069394ce7d80b172bfe733e7e75df3",
+    "scripts/oath_combat_rules.gd": "c0b5f85c487237963cdff96b5f2002f03eac65c17dbda483c3393a402c4fd1b2",
+    "scripts/offline_farm.gd": "ee3930fffd691813a7094e1f820cf9e1b0a3d2bd08d0e7a896b2817640844548",
+    "scripts/painted_action_craft.gd": "495f16b7bf9c4a27e31913ac5580856f7f49e0a85d811f0a4aadb17bcdd82c28",
+    "scripts/painted_motion_layers.gd": "4d1cd31ef3b926044fd5a89e72efa5435b385e7601cfbec6918fc6a3d4688282",
+    "scripts/painted_motion_rig.gd": "d8e177331ddfdd0630b8ada2f9558f9895d23342455f65eb3aa4cb9ca22a4138",
+    "scripts/playtest_notes.gd": "9c3a611afdbf524ff2271892985d7c6bc1afdd70ae5fd0ad73db4ea0c734ac44",
+    "scripts/progression_service.gd": "0c3e7387579a3d90077cd1042595ed939487b7cd3524e5b92869e4f4e7f841f4",
+    "scripts/regional_sets.gd": "32236ab325cab5d7ab11dd5b45dfca25cc4b56cd7d5b6dbb3986f3f96bfcbb22",
+    "scripts/regional_stage.gd": "c68d128bed523b771bdde459cf12db91bdde665a5af27d0cc0581ad0f4a61669",
+    "scripts/release_info.gd": "b8723513c5434fae9b587cec073d0dd20d7ba77f99cfe5ebe8d162cd1d2bd3ce",
+    "scripts/render_budget.gd": "99a1f816371991937dabf4cc5830d9cc90990f20214736da218f4921899ac09b",
+    "scripts/room_ground.gd": "2a4b3b1ef37064d0932aed30feb7eddf362a3030b6ba52bfb8ca39702c8a0c93",
+    "scripts/ruin_architecture.gd": "3a77f958110aacaa9c19fb6a8184fe117fa2c793222a1fd17a91dff4639d60a7",
+    "scripts/save_store.gd": "97f5c641866ba935a3467495531008da7459665798867f7c22c11db4121aabfa",
+    "scripts/sculpted_mesh.gd": "57df0f7444b2bd930031069efc7d83edb20750f058f628f7535e7d1a0dc283a1",
+    "scripts/settings_panel.gd": "6d3d5cf798a442893eaeca9494305faebd0fe4a3c5dcf8a8b986bc6a019fe9b5",
+    "scripts/skill_glyph.gd": "0df2f5cdd5ae234ef593ad42f57266c292dddd95da7be3f1b3f1b73064f8d7be",
+    "scripts/source_avatar_combat.gd": "9066888875cec7671593c158473ec8343b51fad0ace58c89046bee92cb3e4e18",
+    "scripts/source_avatar_rig.gd": "1d5de716e8deac1ddeffd4e293b497de5f2884aebc0469578073b81277cf261d",
+    "scripts/source_avatar_style.gd": "54ae9ef1b1d12d8379d106797141302be873b58717ab223fb499333f330c6ccc",
+    "scripts/ui_glyph.gd": "e24e98966ab6050a5dcac576a05096c41f8fe6ad671e74253263a9cbc439d406",
+    "tests/arcanist_quality_gameplay_preview.gd": "0185f78aa421b27da5f5f9a718259fdbb673f5201e2d591ea4fe9850c7e5dbc4",
+    "tests/arcanist_quality_gameplay_preview.tscn": "50c6bb5b1508d0662c09348a38f7fbf373145dc23def11d8fa0bb57639aa7023",
+    "tests/attack_gameplay_preview.gd": "12333afd1d7694b13939e48ac67c095f6f832d4eb959d5ef74bf230988748fdc",
+    "tools/capture_arcanist_quality.py": "29e05eb4f9643df8ae29a03ece3962db810209f5ca552b84391558a7caab7ff4"
+  },
+  "checked_scopes": {
+    "platform": "Linux",
+    "renderer": "gl_compatibility",
+    "video_adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "manual_render_driver": "Capture fixture disables automatic rendering after normal scene warmup. Two SceneTree ticks flush deferred scene changes; force_sync and force_draw render exactly one original viewport per recorded simulation step. TCP polling can yield without redundant GPU draws. Production quality, camera and runtime assets are unchanged.",
+    "result_ui_timer": "The original Main result UI builder is held until 66 recorded ending frames, preserving its normal 2.2-second delay in fixed-step playback despite slow capture transport.",
+    "captured_audio": false,
+    "audio_scope": "Viewport-only capture; no captured combat audio.",
+    "physical_device_performance": false,
+    "android_runtime_measurement": false,
+    "gameplay_fps_claim": false,
+    "pixel_occlusion_claim": false,
+    "visual_beta_or_release_approval": false,
+    "capture_wall_time_scope": "Capture intervals include viewport readback, PNG encoding and encoder acknowledgements. They are not normal gameplay frame-rate measurements.",
+    "ordinary_statistics_scope": "Player-selectable Chain/Starfall techniques differ from the default loadout; starting gear, health, damage, armor and combat formulas remain ordinary. Full travel and all six stations are recorded."
+  }
+}

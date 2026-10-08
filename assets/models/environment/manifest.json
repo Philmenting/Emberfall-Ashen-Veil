@@ -1,0 +1,602 @@
+{
+  "origin": "Original code-authored Blender geometry",
+  "version": "0.49",
+  "generator": "tools/art/build_ruin_environment.py",
+  "generator_sha256": "a9de6294895724628fe5b648920e68794f520b21f317ad3e1c6a54f1de3b13f5",
+  "authoring_tool": "Blender 4.3.2",
+  "rebuild_command": "blender -b -t 2 --python tools/art/build_ruin_environment.py",
+  "source_license_record": "assets/models/environment/LICENSE-SOURCE.txt",
+  "runtime_construction": "scripts/ruin_architecture.gd",
+  "runtime_construction_sha256": "3a77f958110aacaa9c19fb6a8184fe117fa2c793222a1fd17a91dff4639d60a7",
+  "runtime_contract": "Per-part authoritative passage clearance before batching. Union-only stepped ground joins, paired internal end profiles removed, open basin cuts. Guardian room 5 has no camera-near return in any region, reserving the full danger envelope without dynamic culling.",
+  "coordinates": "Godot Y-up metres; front +Z; depth -Z. UVMetres uses signed dominant planar axes in local metres, with glTF TANGENT exported.",
+  "materials": "Separate masonry and dressed_stone use the shared three-sampler UV shader; paving uses the identical court material. Existing documented CC0 and original textures, no new raster or third-party model.",
+  "models": {
+    "spire_bay": {
+      "file": "assets/models/environment/spire_bay.glb",
+      "triangles_by_surface": {
+        "paving": 4,
+        "masonry": 1644,
+        "dressed_stone": 3268,
+        "iron": 80,
+        "bronze": 188
+      },
+      "triangles": 5184,
+      "material_meshes": 5,
+      "surfaces": [
+        "paving",
+        "masonry",
+        "dressed_stone",
+        "iron",
+        "bronze"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "90c5bd64f62ef94ffefd182a2e09d6a7b77d7cf050ecfdb5a9eaf2a4dce7837f",
+      "bounds_min": [
+        -2.3299999237060547,
+        -1.8700000047683716,
+        -3.8625340461730957
+      ],
+      "bounds_max": [
+        2.3299999237060547,
+        6.920000076293945,
+        0.5799999833106995
+      ]
+    },
+    "spire_bay_broken": {
+      "file": "assets/models/environment/spire_bay_broken.glb",
+      "triangles_by_surface": {
+        "paving": 4,
+        "masonry": 1644,
+        "dressed_stone": 3268
+      },
+      "triangles": 4916,
+      "material_meshes": 3,
+      "surfaces": [
+        "paving",
+        "masonry",
+        "dressed_stone"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "43a378cc206a540c31a152ed66f074139463b14c70f8753216933393345f06ff",
+      "bounds_min": [
+        -2.3299999237060547,
+        -1.8700000047683716,
+        -3.8616960048675537
+      ],
+      "bounds_max": [
+        2.3299999237060547,
+        6.920000076293945,
+        0.5799999833106995
+      ]
+    },
+    "spire_solid": {
+      "file": "assets/models/environment/spire_solid.glb",
+      "triangles_by_surface": {
+        "masonry": 32,
+        "dressed_stone": 300,
+        "paving": 2
+      },
+      "triangles": 334,
+      "material_meshes": 3,
+      "surfaces": [
+        "masonry",
+        "dressed_stone",
+        "paving"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "d45c918d7e607babfbb258d79024469caed0a045700faeb6a19691e58b73d186",
+      "bounds_min": [
+        -2.0999999046325684,
+        -0.019999999552965164,
+        -0.7200000286102295
+      ],
+      "bounds_max": [
+        2.1427996158599854,
+        4.579999923706055,
+        0.5600000023841858
+      ]
+    },
+    "spire_return": {
+      "file": "assets/models/environment/spire_return.glb",
+      "triangles_by_surface": {
+        "paving": 2,
+        "masonry": 320,
+        "dressed_stone": 420,
+        "iron": 120
+      },
+      "triangles": 862,
+      "material_meshes": 4,
+      "surfaces": [
+        "paving",
+        "masonry",
+        "dressed_stone",
+        "iron"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "a16efb4941fb2cb4651ea04ded7466e2a745075aac21de031552e8de31fe3621",
+      "bounds_min": [
+        -2.1329524517059326,
+        -1.5800000429153442,
+        -1.0344926118850708
+      ],
+      "bounds_max": [
+        2.124412775039673,
+        1.2780851125717163,
+        0.5799999833106995
+      ]
+    },
+    "spire_end": {
+      "file": "assets/models/environment/spire_end.glb",
+      "triangles_by_surface": {
+        "masonry": 372,
+        "dressed_stone": 528,
+        "paving": 2
+      },
+      "triangles": 902,
+      "material_meshes": 3,
+      "surfaces": [
+        "masonry",
+        "dressed_stone",
+        "paving"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "5e726668d4dc0b241d2e860aa7813a1249da4108bc732314ba90d285cfcaa60e",
+      "bounds_min": [
+        -0.5299999713897705,
+        -1.4700000286102295,
+        -3.4002926349639893
+      ],
+      "bounds_max": [
+        0.4291251599788666,
+        4.610282897949219,
+        0.38999998569488525
+      ]
+    },
+    "archive_bay": {
+      "file": "assets/models/environment/archive_bay.glb",
+      "triangles_by_surface": {
+        "paving": 10,
+        "masonry": 760,
+        "dressed_stone": 2484,
+        "oak": 1272,
+        "iron": 140
+      },
+      "triangles": 4666,
+      "material_meshes": 5,
+      "surfaces": [
+        "paving",
+        "masonry",
+        "dressed_stone",
+        "oak",
+        "iron"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "e82bb2c42c24f35d4764b1b87d0aafcd99b74fdf84bf8b741326062e19ab9e5f",
+      "bounds_min": [
+        -2.319999933242798,
+        -1.100000023841858,
+        -5.009999752044678
+      ],
+      "bounds_max": [
+        2.319999933242798,
+        5.349999904632568,
+        0.6000000238418579
+      ]
+    },
+    "archive_bay_broken": {
+      "file": "assets/models/environment/archive_bay_broken.glb",
+      "triangles_by_surface": {
+        "paving": 10,
+        "masonry": 664,
+        "dressed_stone": 2484,
+        "oak": 1272,
+        "iron": 140
+      },
+      "triangles": 4570,
+      "material_meshes": 5,
+      "surfaces": [
+        "paving",
+        "masonry",
+        "dressed_stone",
+        "oak",
+        "iron"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "82935fd751a35b3bd1c20e136eab564a8450aa204b7d08bbae1c1698eb961479",
+      "bounds_min": [
+        -2.319999933242798,
+        -1.100000023841858,
+        -5.009999752044678
+      ],
+      "bounds_max": [
+        2.319999933242798,
+        5.349999904632568,
+        0.6000000238418579
+      ]
+    },
+    "archive_solid": {
+      "file": "assets/models/environment/archive_solid.glb",
+      "triangles_by_surface": {
+        "masonry": 32,
+        "dressed_stone": 300,
+        "paving": 2
+      },
+      "triangles": 334,
+      "material_meshes": 3,
+      "surfaces": [
+        "masonry",
+        "dressed_stone",
+        "paving"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "938ae77771a5a0546dd5a180c1772db580d01ba0cd0562ad3b069cf9956c387f",
+      "bounds_min": [
+        -2.0999999046325684,
+        -0.019999999552965164,
+        -0.7200000286102295
+      ],
+      "bounds_max": [
+        2.1427996158599854,
+        3.4800000190734863,
+        0.5600000023841858
+      ]
+    },
+    "archive_return": {
+      "file": "assets/models/environment/archive_return.glb",
+      "triangles_by_surface": {
+        "paving": 2,
+        "masonry": 420,
+        "dressed_stone": 540,
+        "iron": 200
+      },
+      "triangles": 1162,
+      "material_meshes": 4,
+      "surfaces": [
+        "paving",
+        "masonry",
+        "dressed_stone",
+        "iron"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "82a9011de1af7db800bb19635daacd82258b67855c9a26d343885ad024bc3864",
+      "bounds_min": [
+        -2.2165637016296387,
+        -1.5800000429153442,
+        -1.0344926118850708
+      ],
+      "bounds_max": [
+        2.124412775039673,
+        0.7793930768966675,
+        0.5799999833106995
+      ]
+    },
+    "archive_end": {
+      "file": "assets/models/environment/archive_end.glb",
+      "triangles_by_surface": {
+        "masonry": 372,
+        "dressed_stone": 528,
+        "paving": 4
+      },
+      "triangles": 904,
+      "material_meshes": 3,
+      "surfaces": [
+        "masonry",
+        "dressed_stone",
+        "paving"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "beae16988dae51f5b08bbfeda89d77721bdf86829632c4d92b1f51bf229d1421",
+      "bounds_min": [
+        -0.1683274805545807,
+        -1.4700000286102295,
+        -4.594658851623535
+      ],
+      "bounds_max": [
+        0.16984616219997406,
+        3.1306121349334717,
+        0.38999998569488525
+      ]
+    },
+    "ossuary_bay": {
+      "file": "assets/models/environment/ossuary_bay.glb",
+      "triangles_by_surface": {
+        "paving": 2,
+        "masonry": 2164,
+        "dressed_stone": 3808
+      },
+      "triangles": 5974,
+      "material_meshes": 3,
+      "surfaces": [
+        "paving",
+        "masonry",
+        "dressed_stone"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "b091b4b91cf01508de2486ef3b211fdadc4745fd52f53948ec86c5738b59b19a",
+      "bounds_min": [
+        -2.2734997272491455,
+        -1.8700000047683716,
+        -4.320000171661377
+      ],
+      "bounds_max": [
+        2.273834466934204,
+        5.101914405822754,
+        0.5799999833106995
+      ]
+    },
+    "ossuary_bay_broken": {
+      "file": "assets/models/environment/ossuary_bay_broken.glb",
+      "triangles_by_surface": {
+        "paving": 2,
+        "masonry": 2128,
+        "dressed_stone": 3808
+      },
+      "triangles": 5938,
+      "material_meshes": 3,
+      "surfaces": [
+        "paving",
+        "masonry",
+        "dressed_stone"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "372a8b993fa239a8b63add20ca89817ba47286b2eafb164cbd86096047dafe4b",
+      "bounds_min": [
+        -2.2734997272491455,
+        -1.8700000047683716,
+        -4.320000171661377
+      ],
+      "bounds_max": [
+        2.273834466934204,
+        4.679999828338623,
+        0.5799999833106995
+      ]
+    },
+    "ossuary_solid": {
+      "file": "assets/models/environment/ossuary_solid.glb",
+      "triangles_by_surface": {
+        "masonry": 32,
+        "dressed_stone": 300,
+        "paving": 2
+      },
+      "triangles": 334,
+      "material_meshes": 3,
+      "surfaces": [
+        "masonry",
+        "dressed_stone",
+        "paving"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "6571a7b8a66f3d468ba2e19abe4aa95268627c97f07ad8224c4d65786bc416af",
+      "bounds_min": [
+        -2.0999999046325684,
+        -0.019999999552965164,
+        -0.7200000286102295
+      ],
+      "bounds_max": [
+        2.1427996158599854,
+        3.930000066757202,
+        0.5600000023841858
+      ]
+    },
+    "ossuary_return": {
+      "file": "assets/models/environment/ossuary_return.glb",
+      "triangles_by_surface": {
+        "paving": 2,
+        "masonry": 376,
+        "dressed_stone": 564
+      },
+      "triangles": 942,
+      "material_meshes": 3,
+      "surfaces": [
+        "paving",
+        "masonry",
+        "dressed_stone"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "dd0c7e7483d8bf6525fcfacefa90fd53b1c4424ea5cd9ce6d33a8e68970658f1",
+      "bounds_min": [
+        -2.1245803833007812,
+        -1.5800000429153442,
+        -1.0344926118850708
+      ],
+      "bounds_max": [
+        2.124412775039673,
+        1.2799999713897705,
+        0.5799999833106995
+      ]
+    },
+    "ossuary_end": {
+      "file": "assets/models/environment/ossuary_end.glb",
+      "triangles_by_surface": {
+        "masonry": 372,
+        "dressed_stone": 528,
+        "paving": 2
+      },
+      "triangles": 902,
+      "material_meshes": 3,
+      "surfaces": [
+        "masonry",
+        "dressed_stone",
+        "paving"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "2ced27ec37cab75c45901ed586446710747f0165660d1587f2738fcedfd49224",
+      "bounds_min": [
+        -0.5299999713897705,
+        -1.4700000286102295,
+        -3.850292682647705
+      ],
+      "bounds_max": [
+        0.4291251301765442,
+        3.5802829265594482,
+        0.38999998569488525
+      ]
+    },
+    "citadel_bay": {
+      "file": "assets/models/environment/citadel_bay.glb",
+      "triangles_by_surface": {
+        "paving": 2,
+        "masonry": 1920,
+        "dressed_stone": 1668,
+        "iron": 780,
+        "ember": 360
+      },
+      "triangles": 4730,
+      "material_meshes": 5,
+      "surfaces": [
+        "paving",
+        "masonry",
+        "dressed_stone",
+        "iron",
+        "ember"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "7222cab9685ce9db3509acc0fcc52d44ade9f059c8e3557c073285f601c8baa4",
+      "bounds_min": [
+        -2.2734997272491455,
+        -1.8700000047683716,
+        -4.727635383605957
+      ],
+      "bounds_max": [
+        2.273834466934204,
+        6.219533443450928,
+        0.5799999833106995
+      ]
+    },
+    "citadel_bay_broken": {
+      "file": "assets/models/environment/citadel_bay_broken.glb",
+      "triangles_by_surface": {
+        "paving": 2,
+        "masonry": 1920,
+        "dressed_stone": 1668,
+        "iron": 780,
+        "ember": 360
+      },
+      "triangles": 4730,
+      "material_meshes": 5,
+      "surfaces": [
+        "paving",
+        "masonry",
+        "dressed_stone",
+        "iron",
+        "ember"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "e6da4e15770bcb4b0e0e8730363f6fd6adf6bb720be1c01214b75b629b109a86",
+      "bounds_min": [
+        -2.2734997272491455,
+        -1.8700000047683716,
+        -4.727635383605957
+      ],
+      "bounds_max": [
+        2.273834466934204,
+        6.399533271789551,
+        0.5799999833106995
+      ]
+    },
+    "citadel_solid": {
+      "file": "assets/models/environment/citadel_solid.glb",
+      "triangles_by_surface": {
+        "masonry": 32,
+        "dressed_stone": 300,
+        "paving": 2
+      },
+      "triangles": 334,
+      "material_meshes": 3,
+      "surfaces": [
+        "masonry",
+        "dressed_stone",
+        "paving"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "c6e6f002d3fc263b7a531d20cf54db5a20354b775e7baf02bc46af116335b334",
+      "bounds_min": [
+        -2.0999999046325684,
+        -0.019999999552965164,
+        -0.7200000286102295
+      ],
+      "bounds_max": [
+        2.1427996158599854,
+        4.329999923706055,
+        0.5600000023841858
+      ]
+    },
+    "citadel_return": {
+      "file": "assets/models/environment/citadel_return.glb",
+      "triangles_by_surface": {
+        "paving": 2,
+        "masonry": 240,
+        "dressed_stone": 240,
+        "iron": 956
+      },
+      "triangles": 1438,
+      "material_meshes": 4,
+      "surfaces": [
+        "paving",
+        "masonry",
+        "dressed_stone",
+        "iron"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "5caf6c72e90262bf704f39e77727a1fabac2f1e8d7a6e45cb04c81b2c57e373e",
+      "bounds_min": [
+        -2.1245803833007812,
+        -1.5800000429153442,
+        -1.0344926118850708
+      ],
+      "bounds_max": [
+        2.124412775039673,
+        1.1470000743865967,
+        0.5799999833106995
+      ]
+    },
+    "citadel_end": {
+      "file": "assets/models/environment/citadel_end.glb",
+      "triangles_by_surface": {
+        "masonry": 372,
+        "dressed_stone": 528,
+        "paving": 2
+      },
+      "triangles": 902,
+      "material_meshes": 3,
+      "surfaces": [
+        "masonry",
+        "dressed_stone",
+        "paving"
+      ],
+      "uv_units": "local metres",
+      "tangents_exported": true,
+      "sha256": "346079c39da6623e40d558d042e14b6239ada04858356c45329b3245c8ae57ab",
+      "bounds_min": [
+        -0.5299999713897705,
+        -1.4700000286102295,
+        -4.470293045043945
+      ],
+      "bounds_max": [
+        0.4291251003742218,
+        3.0502829551696777,
+        0.38999998569488525
+      ]
+    }
+  }
+}

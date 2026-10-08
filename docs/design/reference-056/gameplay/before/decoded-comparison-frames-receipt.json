@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "source_original_mp4_sha256": "4e3af95ae6bf92a27398cdbd6e6d6f39c45f6297515cd8f076b5492121fffa4e",
+  "source_commit": "ad4d50bb9dbdc07cea42e2306a79fc65bb642489",
+  "decoded_frames": [
+    {
+      "file": "decoded-comparison-frames/baseline-decoded-frame-00004.png",
+      "frame": 4,
+      "sha256": "64842cd5f2bc8133f5af6aa49e4b1dbc32b4144580ca23f79579d63d08b55b49"
+    },
+    {
+      "file": "decoded-comparison-frames/baseline-decoded-frame-00046.png",
+      "frame": 46,
+      "sha256": "edcd8333bb4c650e6b97e484104eeb916c9093199b287fa7e8d8763fc69daa5c"
+    },
+    {
+      "file": "decoded-comparison-frames/baseline-decoded-frame-00317.png",
+      "frame": 317,
+      "sha256": "e1c20ea31a4490fad19a7758d9a683db36386639b7ee1039ece109a2156efc1c"
+    },
+    {
+      "file": "decoded-comparison-frames/baseline-decoded-frame-00328.png",
+      "frame": 328,
+      "sha256": "c19d8545937d2f16f63711b732e860a685943b02aa21dc5408eb7c88244537e3"
+    }
+  ],
+  "command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "error",
+    "-i",
+    "/workspace/Emberfall-Ashen-Veil/docs/design/reference-055/gameplay/after/ordinary-arcanist-complete.mp4",
+    "-vf",
+    "select=eq(n\\,4)+eq(n\\,46)+eq(n\\,317)+eq(n\\,328)",
+    "-vsync",
+    "0",
+    "-frames:v",
+    "4",
+    "-threads",
+    "2",
+    "/workspace/scratch/emberfall-quality-056/before-first30/decoded-comparison-frames/decoded-%02d.png"
+  ],
+  "actual_exit_code": 0,
+  "scope": "Unscaled H264-decodes from the original055nativefullMP4. These images are video-decoded derivatives and are not original nativePNG captures. No image edits or overlays."
+}

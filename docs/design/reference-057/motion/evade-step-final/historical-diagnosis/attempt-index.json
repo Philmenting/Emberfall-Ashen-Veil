@@ -1,0 +1,24 @@
+{
+  "scope": "Original logs and exact preserved helper/fixture bytes. The baseline regression uses the preserved original evade helper via one scratch-only preload substitution; the actor/source anatomy remains the then-current057 production. These are diagnostics, not056 full-game captures or successful final tests.",
+  "original_geometry_audit": {
+    "actual_engine_exit_code": 0,
+    "actual_poses": 2904,
+    "signed_ankle_minimum_m": -0.524776816368103
+  },
+  "original_helper_with_new_choreography_regression": {
+    "actual_engine_exit_code": 1,
+    "summary": "SOURCE AVATAR EVADE SMOKE: 2005 checks, 132 failures",
+    "result": "Expected failing regression, including negative actual native ankle/weighted sole separation."
+  },
+  "half_cycle_stride150_rejected": {
+    "actual_engine_exit_code": 1,
+    "summary": "SOURCE AVATAR EVADE SMOKE: 2005 checks, 32 failures",
+    "result": "Rejected despite positive lateral foot order: existing crouch/knee, outfit and weapon floor requirements fail."
+  },
+  "stride100_provisional": {
+    "actual_engine_exit_code": 0,
+    "summary": "SOURCE AVATAR EVADE SMOKE: 2005 checks, 0 failures",
+    "scope": "Earlier provisional fixture with121 travel samples; final131 travel/recovery and half-cycle outfit/weapon checks are separate accepted execution."
+  },
+  "receipt_timing": "Actual exit codes were recorded from the execution tools; this consolidated index was assembled after those executions. Original logs are retained without rewriting."
+}

@@ -1,0 +1,11 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+NATIVE SWORD SUPPORT: start=(0.015068, 0.003) peak=(0.015652, 0.003) landed=(0.01493, 0.003) max_world_stance_drift=0.29437297582626 actual_world_hip_load=0.07445192337036
+ORIGINAL NATIVE SWORD HOP: start=(0.057219, 0.048703) peak=(0.37292, 0.370671) foot_l travel=0.82457548379898 foot_r travel=0.51019483804703
+ANIMATION CRAFT SMOKE: 57 checks, 1 failures
+ERROR: FAIL: both actual sword feet remain within 8 mm of their world stance throughout preparation and recovery without moving the simulation actor
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/animation_craft_smoke.gd:13)
+       [1] check_native_sword_boot_support (res://tests/animation_craft_smoke.gd:90)
+       [2] run_checks (res://tests/animation_craft_smoke.gd:106)

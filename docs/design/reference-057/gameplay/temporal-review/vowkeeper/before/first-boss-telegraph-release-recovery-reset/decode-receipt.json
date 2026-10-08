@@ -1,0 +1,423 @@
+{
+  "schema": 1,
+  "status": "complete_consecutive_h264_decoded_range",
+  "character_class": "vowkeeper",
+  "side": "before",
+  "label": "first-boss-telegraph-release-recovery-reset",
+  "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "first_frame_zero_based": 2481,
+  "last_frame_zero_based_inclusive": 2718,
+  "every_consecutive_frame_decoded": true,
+  "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+  "exact_semantic_frames_retained": [
+    2482,
+    2483,
+    2485,
+    2486,
+    2492,
+    2493,
+    2494,
+    2495,
+    2500,
+    2501,
+    2522,
+    2523,
+    2528,
+    2529,
+    2530,
+    2531,
+    2543,
+    2544,
+    2546,
+    2547,
+    2560,
+    2561,
+    2562,
+    2569,
+    2570,
+    2575,
+    2576,
+    2579,
+    2580,
+    2591,
+    2592,
+    2602,
+    2603,
+    2609,
+    2610,
+    2611,
+    2612,
+    2621,
+    2622,
+    2623,
+    2624,
+    2625,
+    2629,
+    2630,
+    2639,
+    2640,
+    2644,
+    2645,
+    2646,
+    2653,
+    2654,
+    2656,
+    2657,
+    2663,
+    2664,
+    2683,
+    2684,
+    2690,
+    2691,
+    2692,
+    2693,
+    2696,
+    2697,
+    2698,
+    2699,
+    2702,
+    2703,
+    2705,
+    2706,
+    2714,
+    2715
+  ],
+  "actual_ffmpeg_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-threads",
+    "1",
+    "-filter_threads",
+    "1",
+    "-i",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/ordinary-vowkeeper-complete.mp4",
+    "-map",
+    "0:v:0",
+    "-an",
+    "-vf",
+    "select=between(n\\,2481\\,2718)",
+    "-frames:v",
+    "238",
+    "-fps_mode",
+    "passthrough",
+    "-pix_fmt",
+    "rgb24",
+    "-f",
+    "rawvideo",
+    "pipe:1"
+  ],
+  "actual_ffmpeg_exit_code": 0,
+  "movie_sha256": "e0f3194f1ad288bfa650143fa18d253e5220f09cad22fde5bb90fb494e6095b1",
+  "capture_receipt_sha256": "840e980a74d05da1227173f9e0c3adaadaf532fbebbb88d4a2e9ac2ced795803",
+  "crop_xyxy": [
+    265,
+    115,
+    886,
+    477
+  ],
+  "contact_sheet_pixel_scale": "1:1 original decoded pixels; shared fixed crop for this before/after range",
+  "context_crop_scope": "Full viewport for original ending UI; other context ranges use a shared native-pixel crop around hero and visible Guardian with a minimum620x330 scene margin. Hero ranges keep all sampled conservative actor/weapon projection bounds plus45px horizontal/30px vertical margin and minimum240x220. Off-crop actors/environment cannot be visually judged here; original movies and native PNGs remain full viewport.",
+  "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+  "human_visual_review": "pending; decoding alone is not visual acceptance",
+  "sheets": [
+    {
+      "file": "derived-contact-sheet-00.jpg",
+      "sha256": "d4c0c473819b3310f4c56fafed1c0bb99e5971338ab7c6cc170a0d9dc5b37216",
+      "bytes": 422173,
+      "first_frame": 2481,
+      "last_frame": 2489,
+      "frames": [
+        2481,
+        2482,
+        2483,
+        2485,
+        2486,
+        2489
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-01.jpg",
+      "sha256": "85e0565c2557cb15e114852fe8d8021e58fc870f3fca853f07f870ce26cfd906",
+      "bytes": 475589,
+      "first_frame": 2492,
+      "last_frame": 2500,
+      "frames": [
+        2492,
+        2493,
+        2494,
+        2495,
+        2497,
+        2500
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-02.jpg",
+      "sha256": "a6a1c358e0877378f1835d701901618f6e2f8e89a5b4d5b1d0ea53766d403c2f",
+      "bytes": 485928,
+      "first_frame": 2501,
+      "last_frame": 2521,
+      "frames": [
+        2501,
+        2505,
+        2509,
+        2513,
+        2517,
+        2521
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-03.jpg",
+      "sha256": "dcc50a4da606e8d195c4ac9e4776526fbf0477daa8fced41d7f7d2d3c33c14d4",
+      "bytes": 485301,
+      "first_frame": 2522,
+      "last_frame": 2530,
+      "frames": [
+        2522,
+        2523,
+        2525,
+        2528,
+        2529,
+        2530
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-04.jpg",
+      "sha256": "88ca84908ba5822f88c221f5f342b39a16c5afb8472491be73f1a13e6830eb12",
+      "bytes": 445785,
+      "first_frame": 2531,
+      "last_frame": 2544,
+      "frames": [
+        2531,
+        2533,
+        2537,
+        2541,
+        2543,
+        2544
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-05.jpg",
+      "sha256": "17ede6b1d1bbfd26a385fa7d5600990ab05de60b2309efad428a97385fb1e52b",
+      "bytes": 403266,
+      "first_frame": 2545,
+      "last_frame": 2557,
+      "frames": [
+        2545,
+        2546,
+        2547,
+        2549,
+        2553,
+        2557
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-06.jpg",
+      "sha256": "7988d5af0cd90d8f9018a7c2f7e95aa024d49c50e045ab3961d1c0dd3ffb4ea4",
+      "bytes": 398438,
+      "first_frame": 2560,
+      "last_frame": 2570,
+      "frames": [
+        2560,
+        2561,
+        2562,
+        2565,
+        2569,
+        2570
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-07.jpg",
+      "sha256": "abfec16ea2aac89b7547ce7ff6fedbec503679709d9e4f32e2b78e94d87eb989",
+      "bytes": 409233,
+      "first_frame": 2573,
+      "last_frame": 2580,
+      "frames": [
+        2573,
+        2575,
+        2576,
+        2577,
+        2579,
+        2580
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-08.jpg",
+      "sha256": "a0cbbacc04df8af0f6e6c4163129fdc6b75939608037626737b7d26e523d024d",
+      "bytes": 413646,
+      "first_frame": 2581,
+      "last_frame": 2593,
+      "frames": [
+        2581,
+        2585,
+        2589,
+        2591,
+        2592,
+        2593
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-09.jpg",
+      "sha256": "7256d9c4fd78f1a93b1228cbc53fb50c7ff2a2b8c8a16f83091df5e4cc8e63d3",
+      "bytes": 412550,
+      "first_frame": 2597,
+      "last_frame": 2609,
+      "frames": [
+        2597,
+        2601,
+        2602,
+        2603,
+        2605,
+        2609
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-10.jpg",
+      "sha256": "cea927a7f0a3d709c2d1122fa6517eb6422eec89f54b0eecc160b26ff67b3631",
+      "bytes": 411847,
+      "first_frame": 2610,
+      "last_frame": 2621,
+      "frames": [
+        2610,
+        2611,
+        2612,
+        2613,
+        2617,
+        2621
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-11.jpg",
+      "sha256": "6589c3b2f0f5c02f5ab8c0b16fdfd56056b7c39f52bfefe5c6d15f995235e654",
+      "bytes": 407463,
+      "first_frame": 2622,
+      "last_frame": 2630,
+      "frames": [
+        2622,
+        2623,
+        2624,
+        2625,
+        2629,
+        2630
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-12.jpg",
+      "sha256": "bafcf71da872559327494c44e6bb9e892688deaf52957bcbcbb2ab683d8f28b8",
+      "bytes": 402565,
+      "first_frame": 2633,
+      "last_frame": 2644,
+      "frames": [
+        2633,
+        2637,
+        2639,
+        2640,
+        2641,
+        2644
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-13.jpg",
+      "sha256": "469854508bbe4ef8f0937251049341adf6a3990cb7792d6bc216dd130a64363f",
+      "bytes": 403798,
+      "first_frame": 2645,
+      "last_frame": 2656,
+      "frames": [
+        2645,
+        2646,
+        2649,
+        2653,
+        2654,
+        2656
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-14.jpg",
+      "sha256": "33ca6ecd8137e77fda5a62c518a1970c2b9a0fb735c28e527a977590ff041433",
+      "bytes": 468578,
+      "first_frame": 2657,
+      "last_frame": 2669,
+      "frames": [
+        2657,
+        2661,
+        2663,
+        2664,
+        2665,
+        2669
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-15.jpg",
+      "sha256": "013680070be777f65b1debe0a0d0241e6b7a835948f85caa2ac67e4f9900a49f",
+      "bytes": 470022,
+      "first_frame": 2673,
+      "last_frame": 2685,
+      "frames": [
+        2673,
+        2677,
+        2681,
+        2683,
+        2684,
+        2685
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-16.jpg",
+      "sha256": "15f619294f847a4ab40220aa2f8c212b623d22cc87e64fb9558d79a40fe5ae01",
+      "bytes": 470551,
+      "first_frame": 2689,
+      "last_frame": 2696,
+      "frames": [
+        2689,
+        2690,
+        2691,
+        2692,
+        2693,
+        2696
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-17.jpg",
+      "sha256": "7fa5fff934c70f70b523318b69b31bf80efbe12acc5652de5961edf1fb0ff53d",
+      "bytes": 461927,
+      "first_frame": 2697,
+      "last_frame": 2703,
+      "frames": [
+        2697,
+        2698,
+        2699,
+        2701,
+        2702,
+        2703
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-18.jpg",
+      "sha256": "8d016a633a07d10efff0ccbd3f279bfb459e2756079e9809393b3318df671c15",
+      "bytes": 431766,
+      "first_frame": 2705,
+      "last_frame": 2715,
+      "frames": [
+        2705,
+        2706,
+        2709,
+        2713,
+        2714,
+        2715
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-19.jpg",
+      "sha256": "67f6b870d7988dedbc83a3ce76c248503ddc80b3e313c24893ce3695f2b3322b",
+      "bytes": 137825,
+      "first_frame": 2717,
+      "last_frame": 2718,
+      "frames": [
+        2717,
+        2718
+      ]
+    }
+  ],
+  "review_tool_sha256": "83bff1cabc3e915bbcf857bc5f628e159f82088cff10090c5ab0cbb223d9987d"
+}

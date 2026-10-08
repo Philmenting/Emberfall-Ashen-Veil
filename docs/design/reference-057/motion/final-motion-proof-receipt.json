@@ -1,0 +1,269 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-10-07T20:15:23.531610+00:00",
+  "scope": "Fresh final original18-image preview on exact final source; five current affected motion suites reused from the accepted final integration execution, plus actual Character3D and three-phrase AnimationCraft support coverage. Earlier motion artifacts remain unchanged and are explicitly historical.",
+  "source_commit": "02a3fc905e55a4e64cbece4eb6b07c65c1bf4afb",
+  "source_tree": "ae378f958570263701f4b80a048766c7723ec882",
+  "exact_source_files": 905,
+  "all_905_match_exact_source_commit_blobs_before_preview": true,
+  "all_905_source_files_unchanged_during_preview": true,
+  "actual_engine_exit_code": 0,
+  "actual_native_runner_exit_code": 0,
+  "native_images": 18,
+  "native_image_resolution": [
+    1000,
+    1000
+  ],
+  "native_seconds": 9.232,
+  "native_renderer": "Godot4.7.2 OpenGL Compatibility / Mesa llvmpipe / Xvfb:108; LP_NUM_THREADS=4",
+  "audio_driver": "Dummy; no audio claim for this diagnostic preview",
+  "engine_error_diagnostics": [],
+  "native_warnings": [
+    "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  ],
+  "five_final_motion_suites_checks": 3300,
+  "five_final_motion_suites_failures": 0,
+  "character_3d_checks": 168,
+  "animation_craft_checks": 74,
+  "maximum_actual_cancel_ankle_world_jump_m": 5.20954927196726e-07,
+  "maximum_actual_native_walk_world_stance_drift_m": 0.001614766079,
+  "minimum_actual_native_walk_world_boot_y_m": 0.00348626682535,
+  "actual_sword_world_stance_drift_m_by_phrase": {
+    "basic": 1.06626635e-06,
+    "skill": 1.42173394e-06,
+    "heavy": 1.30897183e-06
+  },
+  "historical_original_proof_receipt_sha256": "576c991534087bcb8ace15eebd2b9906a82c4f50a19b5434dd274ec5aff6fa52",
+  "historical_original_artifacts_retained": true,
+  "visual_review": "final-native-visual-review.json",
+  "original_artifacts": [
+    {
+      "file": "historical-before-walk-recovery-README.md",
+      "bytes": 7331,
+      "sha256": "c59777ed76b876a0ab117bc9d9f4670c89e3826cac9b4145d8ee8273976211ac",
+      "provenance": "Byte-identical snapshot of the previous leaf README before this final document update; the current README is deliberately updated separately."
+    },
+    {
+      "file": "native-final/arcanist-cancel-departure.png",
+      "bytes": 125958,
+      "sha256": "c96ac884bf990b29f706328606eb8d988fa66b5aa8c2458d4efe560f0b40826f",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/arcanist-cancel-departure.png"
+    },
+    {
+      "file": "native-final/arcanist-cancel-entry.png",
+      "bytes": 126011,
+      "sha256": "f5e3ca6e4aab6b0450926b32fd45ca6dcc04e72ec99f7c0034f9168c8c282944",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/arcanist-cancel-entry.png"
+    },
+    {
+      "file": "native-final/arcanist-evade-low-step.png",
+      "bytes": 125815,
+      "sha256": "e28d4e9938a4d27d6dac4d416d477f96df8f72acb131b6d21d273620b82bc686",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/arcanist-evade-low-step.png"
+    },
+    {
+      "file": "native-final/arcanist-signature-follow.png",
+      "bytes": 124429,
+      "sha256": "3e397f4f112add1607ae69cb51b20b65322bf7f2ea524a12696f39436aaa804c",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/arcanist-signature-follow.png"
+    },
+    {
+      "file": "native-final/arcanist-signature-load.png",
+      "bytes": 125165,
+      "sha256": "a6817d5bf35ce78fba2a718f544be92d07be91bfebca392429a6fe3b4e3f4068",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/arcanist-signature-load.png"
+    },
+    {
+      "file": "native-final/arcanist-signature-release.png",
+      "bytes": 125134,
+      "sha256": "0e72b4b6d94ce28623d241e5ad4b43895a959fccd772e0fb9c669a78115e9f4c",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/arcanist-signature-release.png"
+    },
+    {
+      "file": "native-final/ranger-cancel-departure.png",
+      "bytes": 102160,
+      "sha256": "ad7b4b079004681b627913c752826bfbda7f251dee9de631414737552014060a",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/ranger-cancel-departure.png"
+    },
+    {
+      "file": "native-final/ranger-cancel-entry.png",
+      "bytes": 101863,
+      "sha256": "ba09e9704a8a9694197b81c084b4ff3d4bb0191d1445f353b8d17c725044b670",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/ranger-cancel-entry.png"
+    },
+    {
+      "file": "native-final/ranger-evade-low-step.png",
+      "bytes": 93949,
+      "sha256": "31cffccd0221b124020c7a00ad6623c6ade286291ce22f4f38dc1db4b536fe7e",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/ranger-evade-low-step.png"
+    },
+    {
+      "file": "native-final/ranger-signature-follow.png",
+      "bytes": 100881,
+      "sha256": "f5b0a2d4ea0c79ae908fd395ce1f8a6dd9cdf805cab767898c3cee5013df871a",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/ranger-signature-follow.png"
+    },
+    {
+      "file": "native-final/ranger-signature-load.png",
+      "bytes": 101604,
+      "sha256": "6a758af6b0a058ad6b7f8231c00ca6bb889107be764bba393c80757e2509babb",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/ranger-signature-load.png"
+    },
+    {
+      "file": "native-final/ranger-signature-release.png",
+      "bytes": 102716,
+      "sha256": "0e23e8819959801b2f4e2abd65243e9ab174bbbba81ee3e7dfb8ec737e8d7c8b",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/ranger-signature-release.png"
+    },
+    {
+      "file": "native-final/vowkeeper-cancel-departure.png",
+      "bytes": 102437,
+      "sha256": "d271f0b3be030f4ed66d3d42266db8307acdb859aacd7e8b01137a3f05310c7e",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/vowkeeper-cancel-departure.png"
+    },
+    {
+      "file": "native-final/vowkeeper-cancel-entry.png",
+      "bytes": 102650,
+      "sha256": "9995a0221ad97c9166d2eaccd99d4cf42000007ccc9e6a44dbee86384f59d2b9",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/vowkeeper-cancel-entry.png"
+    },
+    {
+      "file": "native-final/vowkeeper-evade-low-step.png",
+      "bytes": 105944,
+      "sha256": "a49b56980490c6cf1b93bc1ccb3ed94c20711b5477f192a26fb11558fc2cb8c9",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/vowkeeper-evade-low-step.png"
+    },
+    {
+      "file": "native-final/vowkeeper-signature-follow.png",
+      "bytes": 109396,
+      "sha256": "1d63aab99cd3af80fdf6f58eb74f17d05e91a2f2cf08a4d179fdd04f22fa0364",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/vowkeeper-signature-follow.png"
+    },
+    {
+      "file": "native-final/vowkeeper-signature-load.png",
+      "bytes": 98569,
+      "sha256": "ba8eaac935633a78015065fb4ae2c5238807a354fb37d5ffc34fde9645490bd7",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/vowkeeper-signature-load.png"
+    },
+    {
+      "file": "native-final/vowkeeper-signature-release.png",
+      "bytes": 108497,
+      "sha256": "73e8784c9ec95fd94f2ef957827b830232975c4ce3b1e196020f651db39523d4",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/vowkeeper-signature-release.png"
+    },
+    {
+      "file": "native-final/native-motion-poses.json",
+      "bytes": 15442,
+      "sha256": "ecadfd699a34f38566b4085b77ff08d37744cd0c6bbf6042b79a5b4d5d3b9a4a",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native/native-motion-poses.json"
+    },
+    {
+      "file": "native-final/native-preview.log",
+      "bytes": 1420,
+      "sha256": "3cb9f13969a2a9903828312e24ba7db9d53198327007cac25c30ac3b12b1a5ac",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/native-preview.log"
+    },
+    {
+      "file": "native-final/execution.json",
+      "bytes": 4819,
+      "sha256": "c01591f2ccd5719a9a0990ec29de6c97b7e629262fcfdf6fd66a54399df6d3a8",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/execution.json"
+    },
+    {
+      "file": "native-final/final-source-binding.json",
+      "bytes": 210159,
+      "sha256": "0dcf8c1ba4c03c7ddfb90fbb2c39b77685d13d84a3d32fdb55bd442e326e1bf0",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-post-walk-recovery-01/final-source-binding.json"
+    },
+    {
+      "file": "focused-final/focused-native_motion_transition.log",
+      "bytes": 3516,
+      "sha256": "20e0bb3fe51658fb3f9cc4666ee6df9b9ab2e6a05da39edafa3188b6c54059a5",
+      "original_file": "/workspace/scratch/emberfall-quality-057/integration/final-affected-and-continuation3/focused-native_motion_transition.log"
+    },
+    {
+      "file": "focused-final/focused-source_avatar_attack.log",
+      "bytes": 2281,
+      "sha256": "3ffe40458f21caa96e16c8ff6cf9d105dab1899e80cbac7cad54e57649be1ae1",
+      "original_file": "/workspace/scratch/emberfall-quality-057/integration/final-affected-and-continuation3/focused-source_avatar_attack.log"
+    },
+    {
+      "file": "focused-final/focused-source_avatar_attack_contact.log",
+      "bytes": 246,
+      "sha256": "c512f87353c60bf929c9b27a2337bd360841442d5909db1480009c490b47ecf6",
+      "original_file": "/workspace/scratch/emberfall-quality-057/integration/final-affected-and-continuation3/focused-source_avatar_attack_contact.log"
+    },
+    {
+      "file": "focused-final/focused-class_avatar_quality.log",
+      "bytes": 1371,
+      "sha256": "2b0e02a8362cbabe5e998890a15507b315448a2048237e31a6806b79e3342f5c",
+      "original_file": "/workspace/scratch/emberfall-quality-057/integration/final-affected-and-continuation3/focused-class_avatar_quality.log"
+    },
+    {
+      "file": "focused-final/focused-source_avatar_evade.log",
+      "bytes": 2624,
+      "sha256": "feec0d11344ef8cd55c2ae3a6865ff99becd96c0673f5003ae88f2f483f030c5",
+      "original_file": "/workspace/scratch/emberfall-quality-057/integration/final-affected-and-continuation3/focused-source_avatar_evade.log"
+    },
+    {
+      "file": "focused-final/focused-character_3d.log",
+      "bytes": 43646,
+      "sha256": "31e42905be555fab085d7b4e849a79dda589a734d38ace2df03afdbd75a2e104",
+      "original_file": "/workspace/scratch/emberfall-quality-057/integration/final-affected-and-continuation3/focused-character_3d.log"
+    },
+    {
+      "file": "focused-final/focused-animation_craft.log",
+      "bytes": 3015,
+      "sha256": "9f780b6cce546815c6725b95e4d902697c0cc76b4f7be1973159ac895cb4f8f7",
+      "original_file": "/workspace/scratch/emberfall-quality-057/integration/final-affected-and-continuation3/focused-animation_craft.log"
+    },
+    {
+      "file": "focused-final/execution.json",
+      "bytes": 217249,
+      "sha256": "485335816514e0ec68fc174e9d7103364a84532eb641ac9df7d55186bd065804",
+      "original_file": "/workspace/scratch/emberfall-quality-057/integration/final-affected-and-continuation3/receipt.json"
+    },
+    {
+      "file": "rejected-sword-recovery/class_avatar_rig_before_recovery_order_fix.gd",
+      "bytes": 17216,
+      "sha256": "31da98e76f554dbd671f170d3996e503f7608dd37164a1876e4588ebbd56ef5c",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/sword-recovery-rejected-original/class_avatar_rig_before_recovery_order_fix.gd"
+    },
+    {
+      "file": "rejected-sword-recovery/source-copy-receipt.json",
+      "bytes": 464,
+      "sha256": "ecbaa7efd3409190f22d570e50dfaadaa54997575a1560d63c7ca9221a43b1fd",
+      "original_file": "/workspace/scratch/emberfall-quality-057/motion/sword-recovery-rejected-original/source-copy-receipt.json"
+    },
+    {
+      "file": "rejected-sword-recovery/focused-animation_craft.log",
+      "bytes": 895,
+      "sha256": "dbaa67a2934f30d1622f5f02593b7f1581f6a08cc1535912a4417675e82cdef0",
+      "original_file": "/workspace/scratch/emberfall-quality-057/integration/final-continuation2/focused-animation_craft.log"
+    },
+    {
+      "file": "rejected-sword-recovery/sword-world-diagnostic.log",
+      "bytes": 12152,
+      "sha256": "befa434c6df4ec1cb699f6c679db7c08f4d9ffde97dba727bfc28955804b91ce",
+      "original_file": "/workspace/scratch/emberfall-quality-057/integration/sword-world-diagnostic/sword-world-diagnostic.log"
+    },
+    {
+      "file": "final-transition-metrics.json",
+      "bytes": 4012,
+      "sha256": "696e1998e601a8b78b432377b0c112f686c648b03b95758389ac8f98e81d377d",
+      "provenance": "Structured extraction of the copied unchanged actual final native-motion/Character3D/AnimationCraft logs"
+    },
+    {
+      "file": "final-foot-support-metrics.json",
+      "bytes": 5813,
+      "sha256": "8cb23e4a61079de1660951b83532b4445841501d2065b5e3aa34faf859e6d2e8",
+      "provenance": "Structured extraction of the copied unchanged actual final native-motion/Character3D/AnimationCraft logs"
+    },
+    {
+      "file": "final-native-visual-review.json",
+      "bytes": 2059,
+      "sha256": "fac4f791a1d1d0363cb8882952a65f588d93680554d56800aac28a96efb8113c",
+      "provenance": "Independent read-only view_image review of all18 unchanged final PNGs"
+    }
+  ]
+}

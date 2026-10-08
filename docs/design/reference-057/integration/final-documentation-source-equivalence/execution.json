@@ -1,0 +1,10 @@
+{
+  "actual_process_exit": 0,
+  "command": [
+    "python3",
+    "/workspace/scratch/emberfall-quality-057/verify_final_documentation_source.py"
+  ],
+  "working_directory": "/workspace/Emberfall-Ashen-Veil",
+  "log_sha256": "4c6b598dd49e8e7367a42d9fde58ecb93d017de9a765c6ac85d82114f1410cad",
+  "scope": "Source equivalence audit only; no new Engine or test execution."
+}

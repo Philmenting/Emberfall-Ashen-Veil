@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "observed_at": "2026-10-07T20:54:22.702517+00:00",
+  "historical_only": true,
+  "scope": "Original completion states and literal termination/runtime marker lines. No canceled or failed run contributes to final current-source success.",
+  "runs": [
+    {
+      "workflow": "Gameplay Quality",
+      "run": 37680231176,
+      "conclusion": "cancelled",
+      "source_commit": "02a3fc905e55a4e64cbece4eb6b07c65c1bf4afb",
+      "log_sha256": "ea2682739b9cbd2863217a02eff2e6b494a263c77761454c7bff9c5673de3af6",
+      "matching_process_termination_lines": [
+        "##[error]The operation was canceled."
+      ],
+      "beta_summary": [],
+      "runtime_markers": []
+    },
+    {
+      "workflow": "Android Debug APK",
+      "run": 37680231278,
+      "conclusion": "failure",
+      "source_commit": "02a3fc905e55a4e64cbece4eb6b07c65c1bf4afb",
+      "log_sha256": "4b786c7fbe08b2bb202ee19fcf4e3e7ddd7f148dc22788d2056fb1dec776b2f4",
+      "matching_process_termination_lines": [
+        "##[error]Process completed with exit code 124."
+      ],
+      "beta_summary": [],
+      "runtime_markers": [],
+      "original_failed_log_is_byte_identical_to_earlier_connector_save": true
+    },
+    {
+      "workflow": "Android Beta Runtime",
+      "run": 37680231428,
+      "conclusion": "success",
+      "source_commit": "02a3fc905e55a4e64cbece4eb6b07c65c1bf4afb",
+      "log_sha256": "06b9f898f72979a47004d9be7aa99d460f28533a68ff7570a24de589ac6ae010",
+      "matching_process_termination_lines": [],
+      "beta_summary": [],
+      "runtime_markers": [
+        "ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=684.572 pids=[2934] marker=ANDROID_BETA_PASS exact AFK ledger",
+        "ANDROID_RUNTIME_MARKER verified launch=2 elapsed_seconds=13.341 pids=[6707] marker=ANDROID_BETA_PASS restart does not repeat",
+        "ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=67.884 pids=[6930] marker=ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI",
+        "ANDROID_RUNTIME_MARKER verified launch=2 elapsed_seconds=12.776 pids=[7186] marker=ANDROID_SUCCESS_PASS restart preserves combined oaths",
+        "ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=437.152 pids=[7339] marker=ANDROID_ART_PASS all four regions rendered"
+      ],
+      "parsed_python_test_runs": [
+        39
+      ],
+      "parsed_verified_markers": [
+        {
+          "launch": 1,
+          "elapsed_seconds": 684.572,
+          "pids": [
+            2934
+          ],
+          "marker": "ANDROID_BETA_PASS exact AFK ledger",
+          "original_line": "2026-10-07T20:30:00.8851625Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=684.572 pids=[2934] marker=ANDROID_BETA_PASS exact AFK ledger"
+        },
+        {
+          "launch": 2,
+          "elapsed_seconds": 13.341,
+          "pids": [
+            6707
+          ],
+          "marker": "ANDROID_BETA_PASS restart does not repeat",
+          "original_line": "2026-10-07T20:30:15.3454947Z ANDROID_RUNTIME_MARKER verified launch=2 elapsed_seconds=13.341 pids=[6707] marker=ANDROID_BETA_PASS restart does not repeat"
+        },
+        {
+          "launch": 1,
+          "elapsed_seconds": 67.884,
+          "pids": [
+            6930
+          ],
+          "marker": "ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI",
+          "original_line": "2026-10-07T20:31:30.4861899Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=67.884 pids=[6930] marker=ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI"
+        },
+        {
+          "launch": 2,
+          "elapsed_seconds": 12.776,
+          "pids": [
+            7186
+          ],
+          "marker": "ANDROID_SUCCESS_PASS restart preserves combined oaths",
+          "original_line": "2026-10-07T20:31:44.4519009Z ANDROID_RUNTIME_MARKER verified launch=2 elapsed_seconds=12.776 pids=[7186] marker=ANDROID_SUCCESS_PASS restart preserves combined oaths"
+        },
+        {
+          "launch": 1,
+          "elapsed_seconds": 437.152,
+          "pids": [
+            7339
+          ],
+          "marker": "ANDROID_ART_PASS all four regions rendered",
+          "original_line": "2026-10-07T20:39:06.5083737Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=437.152 pids=[7339] marker=ANDROID_ART_PASS all four regions rendered"
+        }
+      ],
+      "parsed_diagnostic_lines": []
+    }
+  ]
+}

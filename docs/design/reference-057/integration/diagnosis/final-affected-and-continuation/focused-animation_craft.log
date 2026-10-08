@@ -1,0 +1,45 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+NATIVE SWORD SUPPORT basic: start=(0.015068, 0.003) peak=(0.015652, 0.003) landed=(0.014932, 0.003) max_world_stance_drift=0.00000106626635 actual_world_hip_load=0.07445192337036
+ORIGINAL NATIVE SWORD SOURCE basic: start=(0.057219, 0.048703) peak=(0.37292, 0.370671) foot_l travel=0.82457548379898 foot_r travel=0.51019483804703
+NATIVE SWORD SUPPORT skill: start=(0.014695, 0.003) peak=(0.014695, 0.003) landed=(0.014932, 0.003) max_world_stance_drift=0.00079063815065 actual_world_hip_load=0.00000005960464
+ORIGINAL NATIVE SWORD SOURCE skill: start=(0.351143, 0.349708) peak=(0.470311, 0.49654) foot_l travel=0.20773833990097 foot_r travel=0.10796035826206
+NATIVE SWORD SUPPORT heavy: start=(0.014695, 0.003) peak=(0.014695, 0.003) landed=(0.014932, 0.003) max_world_stance_drift=0.00079058296978 actual_world_hip_load=0.00000005960464
+ORIGINAL NATIVE SWORD SOURCE heavy: start=(0.391821, 0.428586) peak=(0.423885, 0.428586) foot_l travel=1.05802023410797 foot_r travel=0.3705208003521
+ANIMATION CRAFT SMOKE: 74 checks, 6 failures
+ERROR: FAIL: the production sword preparation holds both actual native SwordIdle Foot transforms while the original source supplies the upper-body cut
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/animation_craft_smoke.gd:13)
+       [1] check_native_sword_boot_support (res://tests/animation_craft_smoke.gd:75)
+       [2] run_checks (res://tests/animation_craft_smoke.gd:117)
+ERROR: FAIL: the production sword preparation loads the actual pelvis by over 5 mm above its planted support instead of remaining rigid
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/animation_craft_smoke.gd:13)
+       [1] check_native_sword_boot_support (res://tests/animation_craft_smoke.gd:76)
+       [2] run_checks (res://tests/animation_craft_smoke.gd:117)
+ERROR: FAIL: simulation release preserves both exact native boot transforms into sword recovery
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/animation_craft_smoke.gd:13)
+       [1] check_native_sword_boot_support (res://tests/animation_craft_smoke.gd:83)
+       [2] run_checks (res://tests/animation_craft_smoke.gd:117)
+ERROR: FAIL: the production sword preparation holds both actual native SwordIdle Foot transforms while the original source supplies the upper-body cut
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/animation_craft_smoke.gd:13)
+       [1] check_native_sword_boot_support (res://tests/animation_craft_smoke.gd:75)
+       [2] run_checks (res://tests/animation_craft_smoke.gd:117)
+ERROR: FAIL: the production sword preparation loads the actual pelvis by over 5 mm above its planted support instead of remaining rigid
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/animation_craft_smoke.gd:13)
+       [1] check_native_sword_boot_support (res://tests/animation_craft_smoke.gd:76)
+       [2] run_checks (res://tests/animation_craft_smoke.gd:117)
+ERROR: FAIL: simulation release preserves both exact native boot transforms into sword recovery
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/animation_craft_smoke.gd:13)
+       [1] check_native_sword_boot_support (res://tests/animation_craft_smoke.gd:83)
+       [2] run_checks (res://tests/animation_craft_smoke.gd:117)

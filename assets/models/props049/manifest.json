@@ -1,0 +1,132 @@
+{
+  "origin": "Original code-authored Blender geometry; no third-party 3D asset or new raster input",
+  "version": "0.49",
+  "generator": "tools/art/build_reliquaries_049.py",
+  "generator_sha256": "b47bbf252ccffea9cd02d11f018b8e436102bcb7c4ec5ee7468d011d5ecc0657",
+  "authoring_tool": "Blender 4.3.2",
+  "rebuild_command": "blender -b -t 2 --python tools/art/build_reliquaries_049.py",
+  "source_license_record": "assets/models/props049/LICENSE-SOURCE.txt",
+  "geometry_library": "tools/art/build_ruin_environment.py",
+  "geometry_library_sha256": "a9de6294895724628fe5b648920e68794f520b21f317ad3e1c6a54f1de3b13f5",
+  "coordinates": "Godot Y-up metres; front +Z; Body at origin, ChestLid hinge at (0,0.68,-0.43). UVMetres local metre projection, glTF tangents exported.",
+  "materials": "Existing oak/iron/bronze/dressed_stone runtime families and their documented textures; no new texture source or license claim.",
+  "models": {
+    "spire": {
+      "file": "assets/models/props049/spire_reliquary.glb",
+      "triangles": 3276,
+      "body_surfaces": {
+        "oak": 1020,
+        "iron": 1512,
+        "bronze": 60
+      },
+      "lid_surfaces": {
+        "oak": 96,
+        "iron": 588
+      },
+      "hinge_local_metres": [
+        0,
+        0.68,
+        -0.43
+      ],
+      "open_rotation_x_radians": -1.1,
+      "bounds_min": [
+        -0.7488044500350952,
+        -0.01600000075995922,
+        -0.47565072774887085
+      ],
+      "bounds_max": [
+        0.7488044500350952,
+        1.0130000042915346,
+        0.49817290902137756
+      ],
+      "sha256": "7c1ba0bf29ae2d4fdd1c9eee014687ea5beff5a26f7e52222417a5ea469e00e2"
+    },
+    "archive": {
+      "file": "assets/models/props049/archive_reliquary.glb",
+      "triangles": 3516,
+      "body_surfaces": {
+        "oak": 1020,
+        "bronze": 1632,
+        "dressed_stone": 120
+      },
+      "lid_surfaces": {
+        "oak": 96,
+        "bronze": 648
+      },
+      "hinge_local_metres": [
+        0,
+        0.68,
+        -0.43
+      ],
+      "open_rotation_x_radians": -1.1,
+      "bounds_min": [
+        -0.7488044500350952,
+        -0.02500000037252903,
+        -0.47565072774887085
+      ],
+      "bounds_max": [
+        0.7488044500350952,
+        0.9230000007152558,
+        0.496760196685791
+      ],
+      "sha256": "c34e9953d6cd4473cd3151bbe831cbf410e22b77024b1a0c4de62b9a6b7f93f1"
+    },
+    "ossuary": {
+      "file": "assets/models/props049/ossuary_reliquary.glb",
+      "triangles": 1948,
+      "body_surfaces": {
+        "dressed_stone": 600,
+        "iron": 748
+      },
+      "lid_surfaces": {
+        "dressed_stone": 156,
+        "iron": 444
+      },
+      "hinge_local_metres": [
+        0,
+        0.68,
+        -0.43
+      ],
+      "open_rotation_x_radians": -1.1,
+      "bounds_min": [
+        -0.7488044500350952,
+        -0.019999999552965164,
+        -0.47819262742996216
+      ],
+      "bounds_max": [
+        0.7488044500350952,
+        0.9629999923706055,
+        0.496760196685791
+      ],
+      "sha256": "a59dfdbfc8570c6792bc07b4d6536c09945d3911844da3ce08ac7ec7cf5a99d4"
+    },
+    "citadel": {
+      "file": "assets/models/props049/citadel_reliquary.glb",
+      "triangles": 2676,
+      "body_surfaces": {
+        "iron": 1648,
+        "bronze": 344
+      },
+      "lid_surfaces": {
+        "iron": 684
+      },
+      "hinge_local_metres": [
+        0,
+        0.68,
+        -0.43
+      ],
+      "open_rotation_x_radians": -1.1,
+      "bounds_min": [
+        -0.7488044500350952,
+        -0.019999999552965164,
+        -0.47565072774887085
+      ],
+      "bounds_max": [
+        0.7488044500350952,
+        0.9730000126361847,
+        0.5054255723953247
+      ],
+      "sha256": "0ccde9aa297ee2294b48b134b6cab5846e048d4ccfdedac022bc3f6a259cfb8d"
+    }
+  }
+}

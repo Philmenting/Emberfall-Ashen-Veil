@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "observed_at": "2026-10-07T05:59:43.444417+00:00",
+  "source_commit": "5e72fc6fad38f7dc829d313d8df0de8289f52573",
+  "actual_checkout_commit": "750cb2e6660623a60fc436ec732ce046b211253e",
+  "workflow": "Android Beta Runtime",
+  "workflow_run": 37576383459,
+  "job_id": 112646109906,
+  "run_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37576383459",
+  "job_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37576383459/job/112646109906",
+  "run_conclusion": "success",
+  "job_conclusion": "success",
+  "python_test_runs": [
+    34
+  ],
+  "suites": [],
+  "exported_pck_results": [],
+  "verified_android_markers": [
+    {
+      "launch": 1,
+      "elapsed_seconds": 712.161,
+      "pids": [
+        2869
+      ],
+      "marker": "ANDROID_BETA_PASS exact AFK ledger",
+      "original_line": "2026-10-07T05:46:39.2991550Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=712.161 pids=[2869] marker=ANDROID_BETA_PASS exact AFK ledger"
+    },
+    {
+      "launch": 2,
+      "elapsed_seconds": 13.177,
+      "pids": [
+        6760
+      ],
+      "marker": "ANDROID_BETA_PASS restart does not repeat",
+      "original_line": "2026-10-07T05:46:53.0119480Z ANDROID_RUNTIME_MARKER verified launch=2 elapsed_seconds=13.177 pids=[6760] marker=ANDROID_BETA_PASS restart does not repeat"
+    },
+    {
+      "launch": 1,
+      "elapsed_seconds": 68.159,
+      "pids": [
+        6951
+      ],
+      "marker": "ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI",
+      "original_line": "2026-10-07T05:48:08.9642055Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=68.159 pids=[6951] marker=ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI"
+    },
+    {
+      "launch": 2,
+      "elapsed_seconds": 12.831,
+      "pids": [
+        7209
+      ],
+      "marker": "ANDROID_SUCCESS_PASS restart preserves combined oaths",
+      "original_line": "2026-10-07T05:48:22.7835907Z ANDROID_RUNTIME_MARKER verified launch=2 elapsed_seconds=12.831 pids=[7209] marker=ANDROID_SUCCESS_PASS restart preserves combined oaths"
+    },
+    {
+      "launch": 1,
+      "elapsed_seconds": 539.137,
+      "pids": [
+        7356
+      ],
+      "marker": "ANDROID_ART_PASS all four regions rendered",
+      "original_line": "2026-10-07T05:57:26.2355486Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=539.137 pids=[7356] marker=ANDROID_ART_PASS all four regions rendered"
+    }
+  ],
+  "diagnostic_lines": [],
+  "original_log_sha256": "6d0c3fd3fe9dffac242db1e0bdb63cb7e432dc0052d9ef33f53839f7d7617909",
+  "original_log_bytes": 330094,
+  "summary_sha256": "0912e4e15ffd96393c675ad94d2cb3a04e8d91f8dff8b98d773b8831abff3956",
+  "scope": "Actual current-source hosted CI source-tree, resource/package, and Android emulator checks only. No physical phone frame-time, thermals, battery, touch or beta-readiness assertion."
+}

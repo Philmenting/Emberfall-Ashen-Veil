@@ -1,0 +1,12 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ATTACK PATH basic: largest step frame 14 from (-0.224903, 1.129708, -0.1268) to (-0.222651, 1.153374, -0.138948); load (-0.221775, 1.298379, -0.207266); release (-0.165571, 1.406417, -0.47122)
+ATTACK BODY basic: load { "pelvis": (0.024248, -0.044122, 0.009143), "chest": (-0.037697, -0.130905, -0.030947, 0.990194), "knee": 0.32884310185909, "body_rms": 0.0608228444539 }; catch { "pelvis": (-0.033832, -0.029872, -0.029558), "chest": (0.076066, 0.206042, 0.029299, 0.975142), "knee": 0.21579183638096, "body_rms": 0.09438092518622 }; boot center 0.00119703196073; boot vertex 0.01125883031636; body RMS step 0.01036651795308
+ATTACK PASSING basic: approach 0.40685254498385, key 0.4241595743224, depart 0.45460113324225
+ATTACK PATH skill: largest step frame 8 from (-0.288315, 1.060075, -0.037853) to (-0.300598, 1.106081, -0.031221); load (-0.422001, 1.590684, -0.125031); release (-0.179065, 1.502496, -0.469985)
+ATTACK BODY skill: load { "pelvis": (0.03912, -0.06456, 0.019059), "chest": (-0.064792, -0.206831, -0.074255, 0.973401), "knee": 0.44544936716557, "body_rms": 0.09408596670298 }; catch { "pelvis": (-0.033686, -0.044719, -0.028179), "chest": (0.110001, 0.291389, 0.040292, 0.949404), "knee": 0.30449251830578, "body_rms": 0.12194859786379 }; boot center 0.00170734524727; boot vertex 0.01550681516528; body RMS step 0.01267067537624
+ATTACK PASSING skill: approach 0.94508705660701, key 0.92470570234582, depart 1.00733060389757
+ATTACK PATH heavy: largest step frame 52 from (-0.296056, 1.223061, -0.315513) to (-0.276717, 1.238616, -0.346022); load (-0.369023, 0.993145, 0.012322); release (-0.172972, 1.323063, -0.515068)
+ATTACK BODY heavy: load { "pelvis": (0.039729, -0.09468, 0.024507), "chest": (-0.100968, -0.245986, -0.087501, 0.960021), "knee": 0.60119999945164, "body_rms": 0.13161906693594 }; catch { "pelvis": (-0.031806, -0.083891, -0.023225), "chest": (0.162037, 0.314745, 0.044514, 0.934183), "knee": 0.50990729033947, "body_rms": 0.16306115581308 }; boot center 0.00209143808049; boot vertex 0.01813985407352; body RMS step 0.01846282393274
+ATTACK PASSING heavy: approach 0.80353353405371, key 0.84954936755821, depart 0.981550430879
+SOURCE AVATAR ATTACK: 172 checks, 0 failures

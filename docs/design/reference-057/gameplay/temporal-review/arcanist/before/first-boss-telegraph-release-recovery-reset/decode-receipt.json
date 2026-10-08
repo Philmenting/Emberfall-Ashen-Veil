@@ -1,0 +1,198 @@
+{
+  "schema": 1,
+  "status": "complete_consecutive_h264_decoded_range",
+  "character_class": "arcanist",
+  "side": "before",
+  "label": "first-boss-telegraph-release-recovery-reset",
+  "source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "first_frame_zero_based": 2094,
+  "last_frame_zero_based_inclusive": 2217,
+  "every_consecutive_frame_decoded": true,
+  "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+  "exact_semantic_frames_retained": [
+    2096,
+    2098,
+    2099,
+    2105,
+    2106,
+    2126,
+    2143,
+    2144,
+    2153,
+    2155,
+    2156,
+    2162,
+    2163,
+    2168,
+    2175,
+    2185,
+    2186,
+    2195,
+    2196,
+    2198,
+    2210,
+    2213,
+    2214,
+    2217
+  ],
+  "actual_ffmpeg_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-threads",
+    "1",
+    "-filter_threads",
+    "1",
+    "-i",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/ordinary-arcanist-complete.mp4",
+    "-map",
+    "0:v:0",
+    "-an",
+    "-vf",
+    "select=between(n\\,2094\\,2217)",
+    "-frames:v",
+    "124",
+    "-fps_mode",
+    "passthrough",
+    "-pix_fmt",
+    "rgb24",
+    "-f",
+    "rawvideo",
+    "pipe:1"
+  ],
+  "actual_ffmpeg_exit_code": 0,
+  "movie_sha256": "eaa5c56c8cb4994d515271cc6e97f7e1ef2d26658cdad05aadeeba575355021c",
+  "capture_receipt_sha256": "2509f93366faedc6ab083678d8f0c24126beb703624176ca1f9174c90839289a",
+  "crop_xyxy": [
+    0,
+    0,
+    1200,
+    536
+  ],
+  "contact_sheet_pixel_scale": "1:1 original decoded pixels; shared fixed crop for this before/after range",
+  "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+  "human_visual_review": "pending; decoding alone is not visual acceptance",
+  "sheets": [
+    {
+      "file": "derived-contact-sheet-00.jpg",
+      "sha256": "a504e7287cc79e48384b6dff56bb4f0d7db99f0dc5cad3ff827aa8cb0b0e58d8",
+      "bytes": 1070783,
+      "first_frame": 2094,
+      "last_frame": 2105,
+      "frames": [
+        2094,
+        2096,
+        2098,
+        2099,
+        2102,
+        2105
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-01.jpg",
+      "sha256": "2fcf9004206793de24d1ea17a59e6bf95292dddaee7c32080146c79c99fdb1b9",
+      "bytes": 1108460,
+      "first_frame": 2106,
+      "last_frame": 2126,
+      "frames": [
+        2106,
+        2110,
+        2114,
+        2118,
+        2122,
+        2126
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-02.jpg",
+      "sha256": "e938fd6c7b1de0e4ea4da11a9c6680fbf2dba36ef9585f246d2b3abd35a331ca",
+      "bytes": 1108372,
+      "first_frame": 2130,
+      "last_frame": 2144,
+      "frames": [
+        2130,
+        2134,
+        2138,
+        2142,
+        2143,
+        2144
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-03.jpg",
+      "sha256": "0f23471763dd14482792fdedc78076ac7348e8dfa047a3d145b1fdba8ea8df9e",
+      "bytes": 1081195,
+      "first_frame": 2146,
+      "last_frame": 2156,
+      "frames": [
+        2146,
+        2150,
+        2153,
+        2154,
+        2155,
+        2156
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-04.jpg",
+      "sha256": "ac100da58da23a66d05f331750ab661e0ac4af151b619545e62bb73a039b0fbe",
+      "bytes": 1107840,
+      "first_frame": 2158,
+      "last_frame": 2170,
+      "frames": [
+        2158,
+        2162,
+        2163,
+        2166,
+        2168,
+        2170
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-05.jpg",
+      "sha256": "5d11b974eec7733c79edc9d443e36e9bf48c64a3fd30bbca661d3034d04bb68f",
+      "bytes": 1105656,
+      "first_frame": 2174,
+      "last_frame": 2186,
+      "frames": [
+        2174,
+        2175,
+        2178,
+        2182,
+        2185,
+        2186
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-06.jpg",
+      "sha256": "0e87badcc240af7a7083e8c8dab38e1cd3a48fb717771c4fa2bbda87e8b94fd5",
+      "bytes": 1096057,
+      "first_frame": 2190,
+      "last_frame": 2202,
+      "frames": [
+        2190,
+        2194,
+        2195,
+        2196,
+        2198,
+        2202
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-07.jpg",
+      "sha256": "5286959497c7eae6fabf0a1fcaacf816317d50d0ff435639c109a295eaedf35c",
+      "bytes": 891652,
+      "first_frame": 2206,
+      "last_frame": 2217,
+      "frames": [
+        2206,
+        2210,
+        2213,
+        2214,
+        2217
+      ]
+    }
+  ],
+  "review_tool_sha256": "afd4ff67403623b767fa30b3a18431a2cefb7cfb374c9b572b1b7e938416a8bf"
+}

@@ -1,0 +1,128 @@
+{
+  "source_files_sha256": {
+    "scripts/native_motion_transition.gd": "4e254bb59b8df2cef2f4a04e4c23fbf3d534de1840cd17d286d19cdf269f7f21",
+    "scripts/class_avatar_pose.gd": "45e492ed13082a754fc320c4f06bb1684fd69528c30b11cd3c9f6a38502e4980",
+    "scripts/class_avatar_rig.gd": "31da98e76f554dbd671f170d3996e503f7608dd37164a1876e4588ebbd56ef5c",
+    "scripts/source_avatar_combat.gd": "1873aca0e735a0530f8f3e2b6a931d4b080d2889538863a73454c8c74a78df43",
+    "scripts/source_avatar_rig.gd": "d4bcc615f82c9e34f442d9ab2a822e70cd4012778c73343bdce321b25857215e",
+    "scripts/dungeon_actor.gd": "0dba757c30de4794b9e03d67eca12f74cfb75a0216976726d04a553b34b4bf65",
+    "tests/native_motion_transition_smoke.gd": "b2d50aba17038cee9120ca021cdcc3b272ec0ba36d5fa4cf45e760384d81d0d4",
+    "tests/native_motion_transition_preview.gd": "3b39c9530c4b048c2a4389a95d08cd2ce79ed38bd7d16e5a0c65e7e5937bee5b"
+  },
+  "records": [
+    {
+      "label": "native-preview",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--rendering-method",
+        "gl_compatibility",
+        "--audio-driver",
+        "Dummy",
+        "--script",
+        "res://tests/native_motion_transition_preview.gd",
+        "--",
+        "--capture-dir=/workspace/scratch/emberfall-quality-057/motion/final-native-01/native"
+      ],
+      "actual_exit_code": 0,
+      "elapsed_seconds": 8.571,
+      "log": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native-preview.log",
+      "engine_diagnostics": [],
+      "summaries": []
+    }
+  ],
+  "scope": "Focused actual production tests; native previews are diagnostic images, not ordinary expedition movies or phone performance measurements.",
+  "native_images": [
+    {
+      "image": "arcanist-cancel-departure.png",
+      "bytes": 125958,
+      "sha256": "c96ac884bf990b29f706328606eb8d988fa66b5aa8c2458d4efe560f0b40826f"
+    },
+    {
+      "image": "arcanist-cancel-entry.png",
+      "bytes": 126011,
+      "sha256": "f5e3ca6e4aab6b0450926b32fd45ca6dcc04e72ec99f7c0034f9168c8c282944"
+    },
+    {
+      "image": "arcanist-evade-low-step.png",
+      "bytes": 125815,
+      "sha256": "e28d4e9938a4d27d6dac4d416d477f96df8f72acb131b6d21d273620b82bc686"
+    },
+    {
+      "image": "arcanist-signature-follow.png",
+      "bytes": 124429,
+      "sha256": "3e397f4f112add1607ae69cb51b20b65322bf7f2ea524a12696f39436aaa804c"
+    },
+    {
+      "image": "arcanist-signature-load.png",
+      "bytes": 125165,
+      "sha256": "a6817d5bf35ce78fba2a718f544be92d07be91bfebca392429a6fe3b4e3f4068"
+    },
+    {
+      "image": "arcanist-signature-release.png",
+      "bytes": 125134,
+      "sha256": "0e72b4b6d94ce28623d241e5ad4b43895a959fccd772e0fb9c669a78115e9f4c"
+    },
+    {
+      "image": "ranger-cancel-departure.png",
+      "bytes": 102160,
+      "sha256": "ad7b4b079004681b627913c752826bfbda7f251dee9de631414737552014060a"
+    },
+    {
+      "image": "ranger-cancel-entry.png",
+      "bytes": 101863,
+      "sha256": "ba09e9704a8a9694197b81c084b4ff3d4bb0191d1445f353b8d17c725044b670"
+    },
+    {
+      "image": "ranger-evade-low-step.png",
+      "bytes": 93949,
+      "sha256": "31cffccd0221b124020c7a00ad6623c6ade286291ce22f4f38dc1db4b536fe7e"
+    },
+    {
+      "image": "ranger-signature-follow.png",
+      "bytes": 99753,
+      "sha256": "5762c7363c69f80ff023b3a3bd6e59f906f5a524f3863801cf7335110c34c248"
+    },
+    {
+      "image": "ranger-signature-load.png",
+      "bytes": 101604,
+      "sha256": "6a758af6b0a058ad6b7f8231c00ca6bb889107be764bba393c80757e2509babb"
+    },
+    {
+      "image": "ranger-signature-release.png",
+      "bytes": 102716,
+      "sha256": "0e23e8819959801b2f4e2abd65243e9ab174bbbba81ee3e7dfb8ec737e8d7c8b"
+    },
+    {
+      "image": "vowkeeper-cancel-departure.png",
+      "bytes": 102437,
+      "sha256": "d271f0b3be030f4ed66d3d42266db8307acdb859aacd7e8b01137a3f05310c7e"
+    },
+    {
+      "image": "vowkeeper-cancel-entry.png",
+      "bytes": 102650,
+      "sha256": "9995a0221ad97c9166d2eaccd99d4cf42000007ccc9e6a44dbee86384f59d2b9"
+    },
+    {
+      "image": "vowkeeper-evade-low-step.png",
+      "bytes": 105944,
+      "sha256": "a49b56980490c6cf1b93bc1ccb3ed94c20711b5477f192a26fb11558fc2cb8c9"
+    },
+    {
+      "image": "vowkeeper-signature-follow.png",
+      "bytes": 109397,
+      "sha256": "8d31d4b713e64b57ce59d42d2b55d3bfaf42f3171719686b6d7f2e23874241c2"
+    },
+    {
+      "image": "vowkeeper-signature-load.png",
+      "bytes": 98569,
+      "sha256": "ba8eaac935633a78015065fb4ae2c5238807a354fb37d5ffc34fde9645490bd7"
+    },
+    {
+      "image": "vowkeeper-signature-release.png",
+      "bytes": 108497,
+      "sha256": "73e8784c9ec95fd94f2ef957827b830232975c4ce3b1e196020f651db39523d4"
+    }
+  ]
+}

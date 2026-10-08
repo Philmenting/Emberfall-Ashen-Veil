@@ -1,0 +1,120 @@
+{
+  "elite": {
+    "triangles": 24488,
+    "baseline_triangles": 24496,
+    "mesh_count": 29,
+    "materials_unchanged": true,
+    "origins_unchanged": true
+  },
+  "bulwark": {
+    "triangles": 25968,
+    "baseline_triangles": 25976,
+    "mesh_count": 31,
+    "materials_unchanged": true,
+    "origins_unchanged": true
+  },
+  "hexer": {
+    "triangles": 37408,
+    "baseline_triangles": 39056,
+    "mesh_count": 32,
+    "materials_unchanged": true,
+    "origins_unchanged": true
+  },
+  "raider": {
+    "triangles": 20380,
+    "baseline_triangles": 19812,
+    "mesh_count": 18,
+    "materials_unchanged": true,
+    "origins_unchanged": true
+  },
+  "guardian_3": {
+    "triangles": 29100,
+    "baseline_triangles": 28836,
+    "mesh_count": 31,
+    "materials_unchanged": true,
+    "origins_unchanged": true
+  },
+  "guardian_2": {
+    "triangles": 39178,
+    "baseline_triangles": 39176,
+    "mesh_count": 30,
+    "materials_unchanged": true,
+    "origins_unchanged": true
+  },
+  "guardian_1": {
+    "triangles": 39184,
+    "baseline_triangles": 39178,
+    "mesh_count": 34,
+    "materials_unchanged": true,
+    "origins_unchanged": true
+  },
+  "guardian_0": {
+    "triangles": 38084,
+    "baseline_triangles": 39108,
+    "mesh_count": 28,
+    "materials_unchanged": true,
+    "origins_unchanged": true
+  },
+  "ranger": {
+    "triangles": 39182,
+    "baseline_triangles": 39184,
+    "mesh_count": 49,
+    "materials_unchanged": true,
+    "origins_unchanged": true,
+    "identity_mesh_positions_normals_identical": {
+      "Body_skin": true,
+      "Body_lip": true,
+      "Body_lip_shadow": true,
+      "Body_eye": true,
+      "Body_iris": true,
+      "Body_hair": true,
+      "Body_hair_shadow": true,
+      "Body_dark": true,
+      "HairL_hair": true,
+      "HairR_hair": true
+    }
+  },
+  "arcanist": {
+    "triangles": 39184,
+    "baseline_triangles": 39180,
+    "mesh_count": 43,
+    "materials_unchanged": true,
+    "origins_unchanged": true,
+    "identity_mesh_positions_normals_identical": {
+      "Body_skin": true,
+      "Body_lip": true,
+      "Body_lip_shadow": true,
+      "Body_eye": true,
+      "Body_iris": true,
+      "Body_hair": true,
+      "Body_hair_shadow": true,
+      "Body_dark": true,
+      "HairL_hair": true,
+      "HairR_hair": true
+    }
+  },
+  "vowkeeper": {
+    "triangles": 39172,
+    "baseline_triangles": 39182,
+    "mesh_count": 46,
+    "materials_unchanged": true,
+    "origins_unchanged": true,
+    "identity_mesh_positions_normals_identical": {
+      "Body_skin": true,
+      "Body_lip": true,
+      "Body_lip_shadow": true,
+      "Body_eye": true,
+      "Body_iris": true,
+      "Body_hair": true,
+      "Body_hair_shadow": true,
+      "Body_dark": true,
+      "HairL_hair": true,
+      "HairR_hair": true
+    }
+  },
+  "runtime_contract": {
+    "bones": 29,
+    "clips": 9,
+    "runtime_sources_changed_by_asset_work": false
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/Emberfall-Ashen-Veil/tools/analyze_combat_quality.py",
+    "--before",
+    "/workspace/Emberfall-Ashen-Veil/docs/design/reference-057/gameplay/ranger/before",
+    "--after",
+    "/workspace/Emberfall-Ashen-Veil/docs/design/reference-057/gameplay/ranger/after",
+    "--output",
+    "/workspace/Emberfall-Ashen-Veil/docs/design/reference-057/gameplay/ranger/comparison-reproduced-after-hardlink.json",
+    "--repo",
+    "/workspace/Emberfall-Ashen-Veil",
+    "--source-commit",
+    "1cc13152a83c6631590d4df32ca298700a417df7",
+    "--before-source-commit",
+    "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+    "--before-fixture-source-commit",
+    "1cc13152a83c6631590d4df32ca298700a417df7"
+  ],
+  "actual_process_exit": 0,
+  "stdout": "COMBAT_FULL_ANALYSIS_VERIFIED 2559 frames; 3761730 native stereo sample frames\n",
+  "stderr": "",
+  "result_sha256": "34a416600608a2984faead0847c1f7306d300d3f1082f89a53ef3403fd1ea827"
+}

@@ -1,0 +1,64 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: arcane_gather: actual PCM has useful bandwidth, audible energy and bounded peaks
+PASS: arcane_gather: attack and tail have quiet edges
+PASS: arcane_gather: actual cue has sustained audible content beyond its initial impulse
+PASS: arcane_gather: gather, basic release, Nova, heavy descent and contact have distinct PCM
+PASS: arcane_gather_power: actual PCM has useful bandwidth, audible energy and bounded peaks
+PASS: arcane_gather_power: attack and tail have quiet edges
+PASS: arcane_gather_power: actual cue has sustained audible content beyond its initial impulse
+PASS: arcane_gather_power: gather, basic release, Nova, heavy descent and contact have distinct PCM
+PASS: arcane_gather_heavy: actual PCM has useful bandwidth, audible energy and bounded peaks
+PASS: arcane_gather_heavy: attack and tail have quiet edges
+PASS: arcane_gather_heavy: actual cue has sustained audible content beyond its initial impulse
+PASS: arcane_gather_heavy: gather, basic release, Nova, heavy descent and contact have distinct PCM
+PASS: arcane_release: actual PCM has useful bandwidth, audible energy and bounded peaks
+PASS: arcane_release: attack and tail have quiet edges
+PASS: arcane_release: actual cue has sustained audible content beyond its initial impulse
+PASS: arcane_release: gather, basic release, Nova, heavy descent and contact have distinct PCM
+PASS: arcane_contact: actual PCM has useful bandwidth, audible energy and bounded peaks
+PASS: arcane_contact: attack and tail have quiet edges
+PASS: arcane_contact: actual cue has sustained audible content beyond its initial impulse
+PASS: arcane_contact: gather, basic release, Nova, heavy descent and contact have distinct PCM
+PASS: arcane_critical: actual PCM has useful bandwidth, audible energy and bounded peaks
+PASS: arcane_critical: attack and tail have quiet edges
+PASS: arcane_critical: actual cue has sustained audible content beyond its initial impulse
+PASS: arcane_critical: gather, basic release, Nova, heavy descent and contact have distinct PCM
+PASS: nova: actual PCM has useful bandwidth, audible energy and bounded peaks
+PASS: nova: attack and tail have quiet edges
+PASS: nova: actual cue has sustained audible content beyond its initial impulse
+PASS: nova: gather, basic release, Nova, heavy descent and contact have distinct PCM
+PASS: starfall: actual PCM has useful bandwidth, audible energy and bounded peaks
+PASS: starfall: attack and tail have quiet edges
+PASS: starfall: actual cue has sustained audible content beyond its initial impulse
+PASS: starfall: gather, basic release, Nova, heavy descent and contact have distinct PCM
+PASS: bow_draw: actual PCM has useful bandwidth, audible energy and bounded peaks
+PASS: bow_draw: attack and tail have quiet edges
+PASS: bow_draw: actual cue has sustained audible content beyond its initial impulse
+PASS: bow_draw: gather, basic release, Nova, heavy descent and contact have distinct PCM
+PASS: impact_critical: actual PCM has useful bandwidth, audible energy and bounded peaks
+PASS: impact_critical: attack and tail have quiet edges
+PASS: impact_critical: actual cue has sustained audible content beyond its initial impulse
+PASS: impact_critical: gather, basic release, Nova, heavy descent and contact have distinct PCM
+PASS: basic anticipation rises toward the visible release
+PASS: body contact loses energy promptly instead of becoming a sustained alarm
+PASS: camp: native inclusive loop endpoint is inside the actual PCM allocation
+PASS: camp: native mixing returns every requested output frame across both wraps
+PASS: camp: native loop output stays finite and audibly nonzero in both channels
+PASS: camp: native decoder wraps twice and remains active without replacing or muting the stream
+PASS: dungeon: native inclusive loop endpoint is inside the actual PCM allocation
+PASS: dungeon: native mixing returns every requested output frame across both wraps
+PASS: dungeon: native loop output stays finite and audibly nonzero in both channels
+PASS: dungeon: native decoder wraps twice and remains active without replacing or muting the stream
+PASS: committing a basic cast starts anticipation alone
+PASS: the actual palm/projectile release starts the basic discharge
+PASS: signature release uses the radial Nova phrase
+PASS: committed heavy descent uses its separate low mineral phrase
+PASS: long committed heavy cast has its own rising anticipation phrase
+PASS: mixed multi-target hits produce one strongest contact rather than stacked peaks
+PASS: duplicate warnings and wards share one cue per batch
+PASS: six live effects plus a bounded music bed retain mix headroom at full preferences
+PASS: actual live multi-target batch allocates exactly one contact voice
+PASS: the existing wall-clock throttle also rejects duplicate deliveries
+PASS: master mute rejects new discharge voices
+COMBAT AUDIO SMOKE: 61 checks, 0 failures

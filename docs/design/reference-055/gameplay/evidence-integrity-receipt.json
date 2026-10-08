@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "checked_utc": "2026-10-06T21:06:37.241928+00:00",
+  "source_commit": "ad4d50bb9dbdc07cea42e2306a79fc65bb642489",
+  "capture_inputs_verified_against_git": true,
+  "captures": {
+    "before": {
+      "status": "complete",
+      "actual_capture_launcher_exit": 0,
+      "frames": 2496,
+      "selected_native_pngs_hash_verified": 22,
+      "mp4_sha256": "a7377a8c9b55d9c242d85e4942bf125a73f23bed42d6a724611950325565a16b",
+      "frame_log_sha256": "1d944402c3fb71fc9d3e5876ae7de2195cd904cd91596c97d4f882e2fb26bbe2",
+      "pcm_archive_and_restored_hash_verified": true,
+      "pcm_sha256": "ae1553e7bb746cff82181785597ef5c7246900008be5f93d2f11cccf67c21316",
+      "decoded_ending_frame_hash_verified": true,
+      "source_audit_status": "matched_with_disclosed_overlays",
+      "source_inputs_unchanged": true,
+      "full_audio_video_decode_reported": true
+    },
+    "after": {
+      "status": "complete",
+      "actual_capture_launcher_exit": 0,
+      "frames": 2496,
+      "selected_native_pngs_hash_verified": 22,
+      "mp4_sha256": "4e3af95ae6bf92a27398cdbd6e6d6f39c45f6297515cd8f076b5492121fffa4e",
+      "frame_log_sha256": "7827333decafbb893be0eca815cbcde73d24ca0b09f13fe57be025a0b87fac39",
+      "pcm_archive_and_restored_hash_verified": true,
+      "pcm_sha256": "ae1553e7bb746cff82181785597ef5c7246900008be5f93d2f11cccf67c21316",
+      "decoded_ending_frame_hash_verified": true,
+      "source_audit_status": "matched",
+      "source_inputs_unchanged": true,
+      "full_audio_video_decode_reported": true
+    }
+  },
+  "comparison": {
+    "all_setup_fields_equal": true,
+    "authoritative_full_trace_identical": true,
+    "guardian_camera_analysis_identical": true,
+    "original_pcm_bytes_identical": true
+  },
+  "limitations": [
+    "Hash/state and targeted frame review do not certify general visual beta readiness.",
+    "Fixed-step software-rendered capture is not a physical phone performance or touch measurement.",
+    "Final ending PNGs are unscaled H264-decoded images, not original native capture PNGs."
+  ]
+}

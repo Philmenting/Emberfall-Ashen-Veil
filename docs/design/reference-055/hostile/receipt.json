@@ -1,0 +1,88 @@
+{
+  "fixture": "native_hostile_quality_055",
+  "base_commit": "4b152d0fc8b99cf51569585af2695bf3554416ed",
+  "source_status": "working tree implementation; hashes collected after native capture",
+  "engine": "Godot 4.7.2.stable.official.ed1daf0bf",
+  "renderer": "Mesa 25.0.7 llvmpipe LLVM 19.1.7; OpenGL compatibility",
+  "display": ":107",
+  "dimensions": [
+    1200,
+    675
+  ],
+  "original_png_count": 5,
+  "image_edits": false,
+  "native_engine_exit_code": 0,
+  "headless_checks": {
+    "hostile_quality": {
+      "checks": 81,
+      "failures": 0,
+      "exit_code": 0
+    },
+    "character_3d": {
+      "checks": 164,
+      "failures": 0,
+      "exit_code": 0,
+      "scope": "before 055 class factory migration; hostiles and legacy hero factory regression"
+    }
+  },
+  "captures_ordinary_gameplay": false,
+  "captures_audio": false,
+  "physical_android_device": false,
+  "source_geometry_changes": false,
+  "limitations": [
+    "Frozen native studio fixtures do not prove ordinary combat quality or device frame rate.",
+    "All eight hostile appearances retain the original authored modular 29-bone sources.",
+    "No anatomical remapping or new hostile body meshes are introduced."
+  ],
+  "owned_source_sha256_at_collection": {
+    "scripts/character_animation.gd": "0a462dc83fa4cb8d7643e8e46bfacd88be6c093e2982acf24a532dcf23c76237",
+    "scripts/character_rig.gd": "dae43c6e1a23a2abfa0c19a9990b8783083f7055ccd15638ce6b3007c05bc483",
+    "scripts/hostile_style.gd": "5c63582259c0031559a3ae65fcd9724d8c4962e90c7290dd5da46efa6f0f8020",
+    "tests/hostile_quality_smoke.gd": "d5283239aef423005b8f0a48663b7f693ba7449ff21d037f781a4dae180a3e95",
+    "tests/hostile_quality_preview.gd": "d2cea6fecf26f1ea227959c2b1a0e5a56b9ed95b916aefd55908d181ef8f3c53"
+  },
+  "original_hostile_model_sha256": {
+    "raider": "3279fd8ed48228e55dbf406f362e82aa59b0b9e6ada2214446de4f22e6159d4e",
+    "hexer": "c48900e153631c55625dcfabf9f372e8c9cc228c84b5b35a256694a2d1769d9c",
+    "bulwark": "ff786ffdbf7778baf360e0f8e0f5f5ee33bb9381fdb8426b8ec6cdc15808fcd7",
+    "elite": "7b141bbda58a091cb93e25a33a8d747e63a6aaedc82897fe42699cb64914e31d",
+    "guardian_0": "7de00eef14fe8d0fae29b6e970246bca11c12a3bf06e994d2ef76982d58896ee",
+    "guardian_1": "1daa250cc71f41b8247546ad26ae71b42d09a4810efe776a2680961269b183af",
+    "guardian_2": "d4bb78e8232e072b29aa86150d79dcbae0072d9d2fa58f9513b5cdac9576d150",
+    "guardian_3": "a2c8758fd2746d009acd1daeb433988781c1959391c39bccc7e5e4cd5bce590e"
+  },
+  "artifacts": {
+    "bell-heavy-catch.png": {
+      "bytes": 96063,
+      "sha256": "f66cd7c508121633f30fe0a327e4faa16d0f3a41eaeefdf5372f7dd5700f5883"
+    },
+    "bell-heavy-contact.png": {
+      "bytes": 89384,
+      "sha256": "fdd80f3b4d7dccfd39a97029969a0cd1da06166bfc0788f28465604f8156f559"
+    },
+    "bell-warning-chamber.png": {
+      "bytes": 105966,
+      "sha256": "5e88030a97206324941c86f8a1243381cdb1d5b3206728f4de10dc607d9b065c"
+    },
+    "character-3d-legacy-factory.log": {
+      "bytes": 121,
+      "sha256": "2c5161278f3836b0d8a1a4be57dd46de304910c7ebdece6c35268da87c0b0a1f"
+    },
+    "hostile-quality-smoke.log": {
+      "bytes": 1036,
+      "sha256": "2cbdcb90ccee5311922afb7b51b690cc8639e036c67b4d1723a7b7e155c197d7"
+    },
+    "hostile-role-guards.png": {
+      "bytes": 111226,
+      "sha256": "0d26c9e4d3745df01f997c4ed0971f88df72ba73600c383475a50ef27e0f690c"
+    },
+    "hostile-role-preparations.png": {
+      "bytes": 111989,
+      "sha256": "49dab94862ce06cffc3612c9a2c56e3f1345a9b02d584c3903ef2446d55f5eb3"
+    },
+    "native-capture.log": {
+      "bytes": 655,
+      "sha256": "ae254bae092625610d060319781c6a5b48651ab184fcdccd85e3ac634b2f8e3e"
+    }
+  }
+}

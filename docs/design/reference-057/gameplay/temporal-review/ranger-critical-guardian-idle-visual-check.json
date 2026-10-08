@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "status": "completed_exact_four_frame_pair_ai_visual_check; no_gross_pose_regression_demonstrated",
+  "created_utc": "2026-10-07T23:05:20.696307+00:00",
+  "reviewer_type": "AI visual inspection; no human signoff",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "decode_receipt_sha256": "62b1557ac08968a0ad69683d887356dfd96cf6e63adf5ecf4813c5f8396a281d",
+  "viewed_files": [
+    {
+      "file": "ranger-critical-guardian-idle/before-critical-2280-2283.png",
+      "sha256": "8ee040f7c0c3758c762474e3b8a45f72c47ca0058d2b61cf27ae42160cf827b2",
+      "frames": [
+        2280,
+        2281,
+        2282,
+        2283
+      ]
+    },
+    {
+      "file": "ranger-critical-guardian-idle/after-critical-2280-2283.png",
+      "sha256": "58d3d99920ad70f19b202fdb4b4528aab451ab722846146a1dac3703811b2fa5",
+      "frames": [
+        2280,
+        2281,
+        2282,
+        2283
+      ]
+    }
+  ],
+  "actual_frame_clip_labels": {
+    "2280": "recover_heavy",
+    "2281": "idle",
+    "2282": "recover_heavy"
+  },
+  "pixel_finding": "The AFTER2281 torso remains forward inclined and feet remain in the same local stance. Bell/arm shifts modestly upward/inward, then lowers into the visible impact at2282. No clear one-frame stand-up teleport, detached weapon or gross anatomy collapse is visible in these bounded pixels. The transient idle label remains recorded; this finding does not certify detailed bones or every unviewed frame.",
+  "independent_review": "Root and the delegated context reviewer separately inspected both sheets and agreed with this bounded pixel finding.",
+  "limits": [
+    "H264-decoded lossy pixels stored in lossless cropped PNG sheets; not original Godot PNGs.",
+    "Only these four consecutive frames per side were inspected in this check.",
+    "No actual ankle/bone transform measurement, physical phone result or universal animation approval inferred.",
+    "Guardian low-held/quiet preparation remains a separate recorded presentation limit."
+  ]
+}

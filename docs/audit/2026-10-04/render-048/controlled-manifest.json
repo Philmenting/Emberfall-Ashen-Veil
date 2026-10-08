@@ -1,0 +1,22 @@
+{
+  "scope": "Sequential same-host frozen guardian workload, Linux Xvfb/Mesa software renderer; not real-phone frame pacing. No competing capture or test renderer ran during either case.",
+  "engine": "Godot4.7.2 stable",
+  "baseline_source": "5fe18facda9a8a8dcbd0b86e8e7eb605ce748154",
+  "candidate_source": "850721fd010dd62ddbf1a6c681f73955ffddc8b3",
+  "cases": [
+    {
+      "name": "baseline-047-controlled",
+      "seconds": 194.5,
+      "report": "baseline-047-controlled.json",
+      "sha256": "d5228551b8dda8009178a2f241c37b82a19dba30f82be4e54b0edfc842bdf481",
+      "log": "baseline-047-controlled.log"
+    },
+    {
+      "name": "candidate-048-controlled",
+      "seconds": 118.71,
+      "report": "candidate-048-controlled.json",
+      "sha256": "8d216298f038ee14fcf687a8c2d79fb7d35d2c6aff26b3f618266c3d88633987",
+      "log": "candidate-048-controlled.log"
+    }
+  ]
+}

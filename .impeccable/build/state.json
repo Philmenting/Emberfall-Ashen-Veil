@@ -1,0 +1,52 @@
+{
+  "buildPath": "comp-led",
+  "approvedReference": "docs/design/approved-spire.png",
+  "artifact": "Main.tscn",
+  "spec": "DESIGN.md",
+  "nativeRenderer": "Godot 4.7.2 GL Compatibility",
+  "fidelityConstraint": "Approved painterly identity with continuously articulated 2.5D painted layers, event-driven contacts and original authoritative simulation.",
+  "captures": ".impeccable/review",
+  "status": "manual-motion-layout-review-completed-limited-scope",
+  "detector": "not applicable to native Godot",
+  "initialReview": ".impeccable/review/finish-review.md",
+  "sidecar": ".impeccable/design.json",
+  "documentationUpdatedAt": "2026-10-02T22:48:20.822743+00:00",
+  "finalReview": ".impeccable/review/animation-finish-041.md",
+  "finalVerdict": null,
+  "reviewDisposition": {
+    "scope": "One native animation pass, one anatomy/collapse correction batch, one targeted six-frame confirmation; all 21 class/contact layout captures opened.",
+    "limitations": "Manual assessment; no independent reviewer, official gate, numerical score, physical Pixel performance or release approval."
+  },
+  "officialCompGates": {
+    "status": "not established",
+    "reason": "Official launcher/role definitions, QUALITY BAR, measured comp spec and closed comp/plates/hero/diff gate evidence unavailable."
+  },
+  "captureEvidence": {
+    "motionStageFrames": 720,
+    "layoutFrames": 33,
+    "openedLayoutFrames": 21,
+    "closedFoldPhysical": [
+      2424,
+      1080
+    ],
+    "nearSquarePhysical": [
+      1040,
+      1080
+    ],
+    "compactLargeTextPhysical": [
+      854,
+      480
+    ],
+    "lateGuardianFixtureLife": 100000,
+    "physicalPixelCapture": false
+  },
+  "verification": "docs/audit/2026-10-02/animation-verification.json",
+  "poseMapping": "docs/audit/2026-10-02/pose-source-mapping.json",
+  "unmeasured": [
+    "physical Pixel sustained performance, heat and battery",
+    "physical Android touch/dp/system inset behavior",
+    "human comprehension and retention"
+  ],
+  "androidGraphicsVerification": "docs/audit/2026-10-02/animation-android-graphics.json",
+  "androidCurrentHeadCI": "Current-head results are recorded in draft PR #3 / Actions. Committed Android graphics evidence identifies its exact animation source head; later edits are CI harness and documentation only."
+}

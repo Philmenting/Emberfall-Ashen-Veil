@@ -1,0 +1,6 @@
+Actual filtered success lines from Android runtime run 37214680237, attempt 2.
+Source: 850721fd010dd62ddbf1a6c681f73955ffddc8b3
+Software emulator; not physical-phone performance.
+
+ANDROID SUCCESS LOOP VERIFIED: first fight, skill inspection and resume, one-time relic, gear protection, bag filters, combined oaths and cold restart
+ANDROID ART VERIFIED: four guardian scenes, native 29-bone 3D skins, lit materials and moving screenshots

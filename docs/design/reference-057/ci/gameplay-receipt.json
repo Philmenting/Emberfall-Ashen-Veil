@@ -1,0 +1,311 @@
+{
+  "schema": 2,
+  "observed_at": "2026-10-07T21:36:30.431886+00:00",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "workflow": "Gameplay Quality",
+  "workflow_run": 37686979998,
+  "run_attempt": 1,
+  "job_id": 113017205608,
+  "run_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37686979998",
+  "job_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37686979998/job/113017205608",
+  "run_conclusion": "success",
+  "job_conclusion": "success",
+  "actual_current_source_success": true,
+  "summary_sha256": "299cbae686766b85139b0646d645a43a451d6ff8279f69afc12283e5a2e80df1",
+  "scope": "Exact-source hosted CI, source/resource packaging, CI-only APK/AAB signature and manifest checks, and Android16 x86_64 emulator correctness. ARM64 probe packaging is separate from execution. No physical-phone frame-time, thermals, battery, touch or beta-readiness measurement.",
+  "actual_checkout_commit": "46ba36f6cd0871ae469cdb4ce9c04f32b479f0f5",
+  "python_test_runs": [
+    59
+  ],
+  "suites": [
+    {
+      "suite": "BETA FLOW SMOKE",
+      "checks": 46,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT STANCES SMOKE",
+      "checks": 140,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT MOVEMENT SMOKE",
+      "checks": 8,
+      "failures": 0
+    },
+    {
+      "suite": "JOURNEY SMOKE",
+      "checks": 413,
+      "failures": 0
+    },
+    {
+      "suite": "DUNGEON SMOKE",
+      "checks": 55,
+      "failures": 0
+    },
+    {
+      "suite": "PERSISTENCE SMOKE",
+      "checks": 89,
+      "failures": 0
+    },
+    {
+      "suite": "ARCANE TACTICS SMOKE",
+      "checks": 29,
+      "failures": 0
+    },
+    {
+      "suite": "BOSS PATTERNS SMOKE",
+      "checks": 122,
+      "failures": 0
+    },
+    {
+      "suite": "CLASS LOOT SMOKE",
+      "checks": 29,
+      "failures": 0
+    },
+    {
+      "suite": "CONTRACTS SMOKE",
+      "checks": 68,
+      "failures": 0
+    },
+    {
+      "suite": "COMBINED OATHS / PHASES SMOKE",
+      "checks": 338,
+      "failures": 0
+    },
+    {
+      "suite": "MAIN COMBINED RULES SMOKE",
+      "checks": 156,
+      "failures": 0
+    },
+    {
+      "suite": "GEAR / FORECAST SMOKE",
+      "checks": 38,
+      "failures": 0
+    },
+    {
+      "suite": "GEAR GOALS SMOKE",
+      "checks": 114,
+      "failures": 0
+    },
+    {
+      "suite": "REGIONS SMOKE",
+      "checks": 36,
+      "failures": 0
+    },
+    {
+      "suite": "ONBOARDING SMOKE",
+      "checks": 19,
+      "failures": 0
+    },
+    {
+      "suite": "SUCCESS LOOP SMOKE",
+      "checks": 87,
+      "failures": 0
+    },
+    {
+      "suite": "RECOVERY SMOKE",
+      "checks": 48,
+      "failures": 0
+    },
+    {
+      "suite": "OPTIONS SMOKE",
+      "checks": 82,
+      "failures": 0
+    },
+    {
+      "suite": "SKILL ROTATION SMOKE",
+      "checks": 135,
+      "failures": 0
+    },
+    {
+      "suite": "VISUALS SMOKE",
+      "checks": 73,
+      "failures": 0
+    },
+    {
+      "suite": "WORLD FRAMING SMOKE",
+      "checks": 900,
+      "failures": 0
+    },
+    {
+      "suite": "AUTHORED ART SMOKE",
+      "checks": 105,
+      "failures": 0
+    },
+    {
+      "suite": "CHARACTER EQUIPMENT SMOKE",
+      "checks": 48,
+      "failures": 0
+    },
+    {
+      "suite": "NATIVE EQUIPMENT FINISH SMOKE",
+      "checks": 129,
+      "failures": 0
+    },
+    {
+      "suite": "PRESENTATION SMOKE",
+      "checks": 188,
+      "failures": 0
+    },
+    {
+      "suite": "FRAME METRICS SMOKE",
+      "checks": 10,
+      "failures": 0
+    },
+    {
+      "suite": "ROOM GROUND SMOKE",
+      "checks": 19,
+      "failures": 0
+    },
+    {
+      "suite": "CHARACTER THREE D SMOKE",
+      "checks": 168,
+      "failures": 0
+    },
+    {
+      "suite": "SOURCE AVATAR",
+      "checks": 39,
+      "failures": 0
+    },
+    {
+      "suite": "SOURCE AVATAR GRIP",
+      "checks": 296,
+      "failures": 0
+    },
+    {
+      "suite": "SOURCE AVATAR ATTACK",
+      "checks": 172,
+      "failures": 0
+    },
+    {
+      "suite": "SOURCE AVATAR ATTACK CONTACT SMOKE",
+      "checks": 295,
+      "failures": 0
+    },
+    {
+      "suite": "SOURCE AVATAR EVADE SMOKE",
+      "checks": 2173,
+      "failures": 0
+    },
+    {
+      "suite": "NATIVE MOTION TRANSITION SMOKE",
+      "checks": 706,
+      "failures": 0
+    },
+    {
+      "suite": "RAIDER NATIVE SMOKE",
+      "checks": 324,
+      "failures": 0
+    },
+    {
+      "suite": "NATIVE HOSTILE SMOKE",
+      "checks": 3775,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT OCCLUSION SMOKE",
+      "checks": 25,
+      "failures": 0
+    },
+    {
+      "suite": "RENDER BUDGET SMOKE",
+      "checks": 287,
+      "failures": 0
+    },
+    {
+      "suite": "SOURCE AVATAR STYLE SMOKE",
+      "checks": 135,
+      "failures": 0
+    },
+    {
+      "suite": "AVATAR ATTIRE QUALITY SMOKE",
+      "checks": 306,
+      "failures": 0
+    },
+    {
+      "suite": "CLASS AVATAR QUALITY SMOKE",
+      "checks": 398,
+      "failures": 0
+    },
+    {
+      "suite": "GUARDIAN PRESENTATION SMOKE",
+      "checks": 278,
+      "failures": 0
+    },
+    {
+      "suite": "HOSTILE QUALITY SMOKE",
+      "checks": 96,
+      "failures": 0
+    },
+    {
+      "suite": "DUNGEON LIGHTING SMOKE",
+      "checks": 60,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT AUDIO SMOKE",
+      "checks": 61,
+      "failures": 0
+    },
+    {
+      "suite": "NATIVE CAPTURE AUDIO SMOKE",
+      "checks": 79,
+      "failures": 0
+    },
+    {
+      "suite": "ANIMATION CRAFT SMOKE",
+      "checks": 74,
+      "failures": 0
+    },
+    {
+      "suite": "CAMP HUD SMOKE",
+      "checks": 44,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT READABILITY SMOKE",
+      "checks": 57,
+      "failures": 0
+    },
+    {
+      "suite": "FELLOWSHIP UI SMOKE",
+      "checks": 11,
+      "failures": 0
+    },
+    {
+      "suite": "CLOUD IDENTITY SMOKE",
+      "checks": 14,
+      "failures": 0
+    },
+    {
+      "suite": "MANA WARD SMOKE",
+      "checks": 27,
+      "failures": 0
+    }
+  ],
+  "integration_summaries": [],
+  "exported_pck_results": [
+    {
+      "suite": "EXPORTED AVATAR SMOKE",
+      "checks": 60,
+      "failures": 0
+    }
+  ],
+  "verified_android_markers": [],
+  "apk_signature_verifications": [],
+  "isolated_qa_package_builds": [],
+  "aab_verified": false,
+  "bundle_identity_lines": [
+    "Version: 20261002.596",
+    "Version: 20261004.327.1"
+  ],
+  "server_progression_passed": true,
+  "diagnostic_lines": [],
+  "intentional_persistence_diagnostics": [],
+  "original_log_sha256": "0ba80302fed7701b7f451c8e3dd736ded9b260242063d8bbbd65e11169b8ca84",
+  "original_log_bytes": 201568,
+  "godot_suites": 53,
+  "godot_checks": 13424,
+  "godot_failures": 0
+}

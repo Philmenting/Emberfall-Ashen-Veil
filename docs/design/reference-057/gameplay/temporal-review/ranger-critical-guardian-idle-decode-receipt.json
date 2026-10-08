@@ -1,0 +1,104 @@
+{
+  "status": "complete_exact_four_frame_pair_decodes",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "files": [
+    {
+      "side": "before",
+      "file": "ranger-critical-guardian-idle/before-critical-2280-2283.png",
+      "sha256": "8ee040f7c0c3758c762474e3b8a45f72c47ca0058d2b61cf27ae42160cf827b2",
+      "bytes": 281178,
+      "actual_decoder_exit": 0,
+      "command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "warning",
+        "-threads",
+        "1",
+        "-filter_threads",
+        "1",
+        "-i",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/ordinary-ranger-complete.mp4",
+        "-map",
+        "0:v:0",
+        "-an",
+        "-vf",
+        "select=between(n\\,2280\\,2283)",
+        "-frames:v",
+        "4",
+        "-fps_mode",
+        "passthrough",
+        "-pix_fmt",
+        "rgb24",
+        "-f",
+        "rawvideo",
+        "pipe:1"
+      ],
+      "frames": [
+        2280,
+        2281,
+        2282,
+        2283
+      ],
+      "crop_xyxy": [
+        380,
+        125,
+        700,
+        425
+      ],
+      "image_origin": "Actual H264-decoded lossy movie pixels, cropped only with external labels, lossless PNG sheet. Not original Godot PNGs.",
+      "movie_sha256": "8c01eef238de70c33dad7ff99abb8812c2a75ebee485e0feb71c7d32244d5b72",
+      "capture_receipt_sha256": "d70f6f723fa8999e58f330689002b04e52a80530bff8aa81b953246067c87373"
+    },
+    {
+      "side": "after",
+      "file": "ranger-critical-guardian-idle/after-critical-2280-2283.png",
+      "sha256": "58d3d99920ad70f19b202fdb4b4528aab451ab722846146a1dac3703811b2fa5",
+      "bytes": 288602,
+      "actual_decoder_exit": 0,
+      "command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "warning",
+        "-threads",
+        "1",
+        "-filter_threads",
+        "1",
+        "-i",
+        "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/ordinary-ranger-complete.mp4",
+        "-map",
+        "0:v:0",
+        "-an",
+        "-vf",
+        "select=between(n\\,2280\\,2283)",
+        "-frames:v",
+        "4",
+        "-fps_mode",
+        "passthrough",
+        "-pix_fmt",
+        "rgb24",
+        "-f",
+        "rawvideo",
+        "pipe:1"
+      ],
+      "frames": [
+        2280,
+        2281,
+        2282,
+        2283
+      ],
+      "crop_xyxy": [
+        380,
+        125,
+        700,
+        425
+      ],
+      "image_origin": "Actual H264-decoded lossy movie pixels, cropped only with external labels, lossless PNG sheet. Not original Godot PNGs.",
+      "movie_sha256": "008b0c71db628429e3c826fb2de2beeb8510d8b04496333e0e7952f42d7e2948",
+      "capture_receipt_sha256": "beb108b23ef0c16081c0d58642d77158aaf2dbc1265686d4e2578b982728c6b4"
+    }
+  ],
+  "ai_visual_review": "pending"
+}

@@ -40,7 +40,7 @@ func run_checks() -> void:
 		var snapshot: Dictionary=model.snapshot()
 		var serial: int=game.expedition_serial
 		var report:=Forecast.new()
-		report.setup(selected,game._combat_stats(),1,"Guardian")
+		report.setup(selected,game._expedition_stats(1),1,"Guardian")
 		check(report.summary().is_empty(),selected+": incomplete assessment cannot present a clear rate")
 		report.step(3)
 		check(report.processed==3 and not report.complete(),selected+": assessment can yield after a bounded batch")
@@ -91,7 +91,8 @@ func run_checks() -> void:
 	await process_frame
 	check(game.ui_revision>old_revision and game.page=="gear","navigating cancels assessments tied to old UI")
 	game._navigate("camp")
-	for i in range(180): await process_frame
+	var deadline := Time.get_ticks_msec()+20000
+	while game.forecast_cache.is_empty() and Time.get_ticks_msec()<deadline: await process_frame
 	check(not game.forecast_cache.is_empty(),"cooperative assessment completes and caches results in the camp")
 	game.free()
 	await process_frame

@@ -1,0 +1,12 @@
+2026-10-07T20:23:07.4391567Z Version: 20261002.596
+2026-10-07T20:23:07.4398925Z Version: 20261004.327.1
+2026-10-07T20:25:41.8104293Z Ran 39 tests in 4.347s
+2026-10-07T20:26:25.3178969Z Exporting res://tests/android_beta_flow.tscn (x86_64) to /home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-afk-qa.apk
+2026-10-07T20:26:42.5722739Z Exporting res://tests/android_success_flow.tscn (x86_64) to /home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-success-qa.apk
+2026-10-07T20:26:54.1984652Z Exporting res://tests/android_art_flow.tscn (x86_64) to /home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-art-qa.apk
+2026-10-07T20:27:05.6378175Z Exporting res://tests/android_device_probe.tscn (arm64-v8a) to /home/runner/work/Emberfall-Ashen-Veil/Emberfall-Ashen-Veil/build/emberfall-pixel-probe.apk
+2026-10-07T20:35:26.7552851Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=358.878 pids=[2938] marker=ANDROID_BETA_PASS exact AFK ledger
+2026-10-07T20:35:40.6618770Z ANDROID_RUNTIME_MARKER verified launch=2 elapsed_seconds=13.324 pids=[6163] marker=ANDROID_BETA_PASS restart does not repeat
+2026-10-07T20:36:42.8714855Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=55.126 pids=[6379] marker=ANDROID_SUCCESS_PASS first descent, class relic and combined oath UI
+2026-10-07T20:36:56.1633165Z ANDROID_RUNTIME_MARKER verified launch=2 elapsed_seconds=12.526 pids=[6603] marker=ANDROID_SUCCESS_PASS restart preserves combined oaths
+2026-10-07T20:42:00.3513058Z ANDROID_RUNTIME_MARKER verified launch=1 elapsed_seconds=299.72 pids=[6763] marker=ANDROID_ART_PASS all four regions rendered

@@ -1,0 +1,33 @@
+{
+  "model_sha256": "d489ad6a55510a5bd36f0215fcb3be1a596cab6094500f19476e3fc172e7e4e1",
+  "images": {
+    "cast-contact.png": "be37789957d48970243eba2973185f25d37689ce84e98df685e9a0349b708261",
+    "cast-recovery.png": "2cd7b6e6e400a6c6a559570c9ae8d407d551079ec4b72ca7fa60f8c51fdd5fdd",
+    "cast-windup.png": "d17e9eb26643797510f2c8d7bce10cdff5cbecaaf418e5a13dd9fcb470e01359",
+    "death.png": "27b495be93d41fd75f61d1570c23985d6b7c38250a65795ea593018e07deb128",
+    "face.png": "7f8a4a91c55c5ec43246c00954f423a0570118a09353b889e1b3adbfb9516ace",
+    "gameplay-frame-0009.png": "241971a50c946d2d274d36857ea702b0db23b80c094ef4ff200266d0333378fc",
+    "gameplay-frame-0051.png": "fa319f475c265b6e3ed8f815961108b73c57c5b4f032fb1896624ba3510a6a3d",
+    "gameplay-frame-0156.png": "65fd65e7e89d7cddb7bcb4fe6c1069a13ad1b9438e55cfb9161636d99554b292",
+    "gameplay-frame-0198.png": "85afeff929b050bc2c30e5faa293a86b1cccea823149f994b97307c781416580",
+    "idle-front.png": "0ace6f38f875539c168354d83002ec65e18aba0cc83667b0a482c376af6df841",
+    "idle-threequarter.png": "22b68b51533ee25fbd7cdbbc5dff4c1efa434a41a7ed51a4b1326746c4d54d44",
+    "walk.png": "3518ce87193a81d009402da564b3b790e9ca131c5f9554e23c81c9728392d9a2"
+  },
+  "video": {
+    "path": "/workspace/scratch/emberfall-authored-avatar-052/gameplay-001/nyra052-gameplay.mp4",
+    "sha256": "18a7d021d204d1039b0ce6e02660f9002b04f9691c111d13ac9a1d40a370ed91",
+    "encoded_frames": 240,
+    "fps": 30,
+    "width": 1200,
+    "height": 536,
+    "continuous_visual_playback_review": false
+  },
+  "converted_blend": {
+    "path": "art-source/nyra052/nyra052-editable-conversion.blend",
+    "sha256": "ee28bd677cc6f6f004a85e7e6f7f46b52c0c9a0e638ebd5567b74b24170f0b64",
+    "original_artist_blend": false
+  },
+  "notes": "Original engine PNGs copied byte-for-byte; no regeneration or image editing. Studio stills are diagnostic fixtures; gameplay is ordinary Main gear/camera/HUD/VFX with a documented cut before the first guardian.",
+  "studio_capture": "studio-003; same production model/renderer; camera includes full staff and floor"
+}

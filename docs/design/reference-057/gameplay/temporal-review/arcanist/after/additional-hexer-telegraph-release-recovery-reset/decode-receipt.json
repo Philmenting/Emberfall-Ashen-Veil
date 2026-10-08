@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "status": "complete_consecutive_h264_decoded_range",
+  "character_class": "arcanist",
+  "side": "after",
+  "label": "additional-hexer-telegraph-release-recovery-reset",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "first_frame_zero_based": 783,
+  "last_frame_zero_based_inclusive": 834,
+  "every_consecutive_frame_decoded": true,
+  "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+  "exact_semantic_frames_retained": [
+    784,
+    785,
+    791,
+    793,
+    794,
+    816,
+    817,
+    818,
+    830,
+    831,
+    833
+  ],
+  "actual_ffmpeg_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-threads",
+    "1",
+    "-filter_threads",
+    "1",
+    "-i",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/ordinary-arcanist-complete.mp4",
+    "-map",
+    "0:v:0",
+    "-an",
+    "-vf",
+    "select=between(n\\,783\\,834)",
+    "-frames:v",
+    "52",
+    "-fps_mode",
+    "passthrough",
+    "-pix_fmt",
+    "rgb24",
+    "-f",
+    "rawvideo",
+    "pipe:1"
+  ],
+  "actual_ffmpeg_exit_code": 0,
+  "movie_sha256": "27f282aa3ab14069b88eb079795c44a7331cd24ca43c9ad7cd1d2e47ab655d35",
+  "capture_receipt_sha256": "a41907dbda10bdce78730d8a58a099264e418c148e7bb3c9bd427de3be4667c9",
+  "crop_xyxy": [
+    0,
+    0,
+    1200,
+    536
+  ],
+  "contact_sheet_pixel_scale": "1:1 original decoded pixels; shared fixed crop for this before/after range",
+  "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+  "human_visual_review": "pending; decoding alone is not visual acceptance",
+  "sheets": [
+    {
+      "file": "derived-contact-sheet-00.jpg",
+      "sha256": "cc9499d3de43c5dde6561a324a02ad0a62de2326b7800bd63b91e52e747c6f21",
+      "bytes": 979555,
+      "first_frame": 783,
+      "last_frame": 793,
+      "frames": [
+        783,
+        784,
+        785,
+        787,
+        791,
+        793
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-01.jpg",
+      "sha256": "8e92269142d278a6b247c70907500bc535f7a07c5835b1f6c4c0630b8272c46e",
+      "bytes": 997557,
+      "first_frame": 794,
+      "last_frame": 811,
+      "frames": [
+        794,
+        795,
+        799,
+        803,
+        807,
+        811
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-02.jpg",
+      "sha256": "7cb19a55ed19513ef01f36690d2398870e5e254aa498f17d22c4149f5a97a398",
+      "bytes": 1001967,
+      "first_frame": 815,
+      "last_frame": 823,
+      "frames": [
+        815,
+        816,
+        817,
+        818,
+        819,
+        823
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-03.jpg",
+      "sha256": "cfbfcf134287a5a80b90566f557582a7126e5f689ffbd8143b9a5ca125fbe4e0",
+      "bytes": 847606,
+      "first_frame": 827,
+      "last_frame": 834,
+      "frames": [
+        827,
+        830,
+        831,
+        833,
+        834
+      ]
+    }
+  ],
+  "review_tool_sha256": "afd4ff67403623b767fa30b3a18431a2cefb7cfb374c9b572b1b7e938416a8bf"
+}

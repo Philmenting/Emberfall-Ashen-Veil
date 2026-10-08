@@ -1,0 +1,1192 @@
+{
+  "schema": 1,
+  "status": "complete_consecutive_journal_audit",
+  "created_utc": "2026-10-07T23:00:45.218881+00:00",
+  "character_class": "ranger",
+  "side": "after",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "frames": 2559,
+  "movie_sha256": "008b0c71db628429e3c826fb2de2beeb8510d8b04496333e0e7952f42d7e2948",
+  "journal_sha256": "fe460d2d028dbd84b71b58b1a7524eaf9367efb8fa971a7d4ba40283985064ce",
+  "receipt_sha256": "beb108b23ef0c16081c0d58642d77158aaf2dbc1265686d4e2578b982728c6b4",
+  "events": {
+    "hero_attack": 26,
+    "hero_release": 24,
+    "hit": 39,
+    "interrupt": 7,
+    "reinforcement_spawn": 2,
+    "technique_cast": 6,
+    "hero_hit": 6,
+    "technique": 4,
+    "engage": 5,
+    "warning": 5,
+    "evade": 4,
+    "miss": 4,
+    "impact": 5,
+    "well": 1,
+    "objective": 3,
+    "backstep": 1,
+    "boss_phase": 2,
+    "finished": 1
+  },
+  "hero_clip_counts": {
+    "idle": 476,
+    "walk": 1520,
+    "windup_skill": 126,
+    "recover_skill": 106,
+    "windup_basic": 98,
+    "recover_basic": 154,
+    "evade": 54,
+    "scene_removed_for_result_ui": 25
+  },
+  "actual_result_ui_rows_without_hero_scene": [
+    2534,
+    2535,
+    2536,
+    2537,
+    2538,
+    2539,
+    2540,
+    2541,
+    2542,
+    2543,
+    2544,
+    2545,
+    2546,
+    2547,
+    2548,
+    2549,
+    2550,
+    2551,
+    2552,
+    2553,
+    2554,
+    2555,
+    2556,
+    2557,
+    2558
+  ],
+  "attacks": [
+    {
+      "start": 5,
+      "last_attack_pose": 22,
+      "first_complete_reset": 23,
+      "style": "signature",
+      "event": {
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 4,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        12
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 38,
+      "last_attack_pose": 55,
+      "first_complete_reset": 56,
+      "style": "basic",
+      "event": {
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 2,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        45
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 71,
+      "last_attack_pose": 95,
+      "first_complete_reset": 96,
+      "style": "marked",
+      "event": {
+        "ability_id": "marked",
+        "name": "Marked Shot",
+        "skill": true,
+        "target": 2,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        86
+      ],
+      "recovery_relative_intervals": [
+        [
+          15,
+          24
+        ]
+      ]
+    },
+    {
+      "start": 305,
+      "last_attack_pose": 322,
+      "first_complete_reset": 323,
+      "style": "signature",
+      "event": {
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 10,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        312
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 338,
+      "last_attack_pose": 343,
+      "first_complete_reset": 344,
+      "style": "marked",
+      "event": {
+        "ability_id": "marked",
+        "name": "Marked Shot",
+        "skill": true,
+        "target": 11,
+        "type": "hero_attack"
+      },
+      "release_frames": [],
+      "recovery_relative_intervals": []
+    },
+    {
+      "start": 371,
+      "last_attack_pose": 388,
+      "first_complete_reset": 389,
+      "style": "basic",
+      "event": {
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 11,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        378
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 761,
+      "last_attack_pose": 778,
+      "first_complete_reset": 779,
+      "style": "signature",
+      "event": {
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 23,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        768
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 794,
+      "last_attack_pose": 808,
+      "first_complete_reset": 809,
+      "style": "marked",
+      "event": {
+        "ability_id": "marked",
+        "name": "Marked Shot",
+        "skill": true,
+        "target": 21,
+        "type": "hero_attack"
+      },
+      "release_frames": [],
+      "recovery_relative_intervals": []
+    },
+    {
+      "start": 827,
+      "last_attack_pose": 844,
+      "first_complete_reset": 845,
+      "style": "basic",
+      "event": {
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 21,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        834
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 860,
+      "last_attack_pose": 877,
+      "first_complete_reset": 878,
+      "style": "basic",
+      "event": {
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 20,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        867
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 1247,
+      "last_attack_pose": 1264,
+      "first_complete_reset": 1265,
+      "style": "signature",
+      "event": {
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 32,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1254
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 1280,
+      "last_attack_pose": 1304,
+      "first_complete_reset": 1305,
+      "style": "marked",
+      "event": {
+        "ability_id": "marked",
+        "name": "Marked Shot",
+        "skill": true,
+        "target": 31,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1295
+      ],
+      "recovery_relative_intervals": [
+        [
+          15,
+          24
+        ]
+      ]
+    },
+    {
+      "start": 1313,
+      "last_attack_pose": 1340,
+      "first_complete_reset": 1341,
+      "style": "rain",
+      "event": {
+        "ability_id": "rain",
+        "name": "Thornfall",
+        "skill": true,
+        "target": 31,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1331
+      ],
+      "recovery_relative_intervals": [
+        [
+          18,
+          27
+        ]
+      ]
+    },
+    {
+      "start": 1346,
+      "last_attack_pose": 1363,
+      "first_complete_reset": 1364,
+      "style": "basic",
+      "event": {
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 30,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1353
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 1379,
+      "last_attack_pose": 1396,
+      "first_complete_reset": 1397,
+      "style": "basic",
+      "event": {
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 30,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1386
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 1721,
+      "last_attack_pose": 1738,
+      "first_complete_reset": 1739,
+      "style": "signature",
+      "event": {
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 42,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1728
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 1754,
+      "last_attack_pose": 1771,
+      "first_complete_reset": 1772,
+      "style": "basic",
+      "event": {
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 40,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1761
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 2051,
+      "last_attack_pose": 2068,
+      "first_complete_reset": 2069,
+      "style": "signature",
+      "event": {
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 52,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2058
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 2084,
+      "last_attack_pose": 2101,
+      "first_complete_reset": 2102,
+      "style": "basic",
+      "event": {
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2091
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 2117,
+      "last_attack_pose": 2134,
+      "first_complete_reset": 2135,
+      "style": "basic",
+      "event": {
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2124
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 2162,
+      "last_attack_pose": 2186,
+      "first_complete_reset": 2187,
+      "style": "marked",
+      "event": {
+        "ability_id": "marked",
+        "name": "Marked Shot",
+        "skill": true,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2177
+      ],
+      "recovery_relative_intervals": [
+        [
+          15,
+          24
+        ]
+      ]
+    },
+    {
+      "start": 2195,
+      "last_attack_pose": 2212,
+      "first_complete_reset": 2213,
+      "style": "basic",
+      "event": {
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2202
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 2228,
+      "last_attack_pose": 2245,
+      "first_complete_reset": 2246,
+      "style": "basic",
+      "event": {
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2235
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 2261,
+      "last_attack_pose": 2278,
+      "first_complete_reset": 2279,
+      "style": "basic",
+      "event": {
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2268
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 2294,
+      "last_attack_pose": 2311,
+      "first_complete_reset": 2312,
+      "style": "basic",
+      "event": {
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2301
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 2327,
+      "last_attack_pose": 2344,
+      "first_complete_reset": 2345,
+      "style": "basic",
+      "event": {
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2334
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    }
+  ],
+  "evades": [
+    {
+      "start": 344,
+      "last_native_evade": 353,
+      "event": {
+        "goal": [
+          0.778300106525421,
+          -12.5283145904541
+        ],
+        "position": [
+          -0.901863157749176,
+          -12.5283145904541
+        ],
+        "type": "evade"
+      },
+      "previous_clip": "windup_skill",
+      "previous_attack_time": 0.166666666666667,
+      "previous_release_time": -1.0,
+      "native_basis_direction": [
+        -0.9744404495633338,
+        0.0,
+        -0.2246459664779403
+      ],
+      "predominantly_lateral": true,
+      "root_distance_between_observed_samples_m": 1.3952705020715521,
+      "scope": "Root and original model basis only; bone-detail-none journal cannot establish ankle overlap."
+    },
+    {
+      "start": 809,
+      "last_native_evade": 818,
+      "event": {
+        "goal": [
+          -6.54595756530762,
+          -25.0541095733643
+        ],
+        "position": [
+          -8.22642803192139,
+          -25.0541095733643
+        ],
+        "type": "evade"
+      },
+      "previous_clip": "windup_skill",
+      "previous_attack_time": 0.4,
+      "previous_release_time": -1.0,
+      "native_basis_direction": [
+        -0.9999015217380892,
+        0.0,
+        0.014033774469251753
+      ],
+      "predominantly_lateral": true,
+      "root_distance_between_observed_samples_m": 1.3984538737609489,
+      "scope": "Root and original model basis only; bone-detail-none journal cannot establish ankle overlap."
+    },
+    {
+      "start": 1235,
+      "last_native_evade": 1246,
+      "event": {
+        "goal": [
+          3.92939615249634,
+          -37.6002426147461
+        ],
+        "position": [
+          5.75247859954834,
+          -37.9002418518066
+        ],
+        "type": "backstep"
+      },
+      "previous_clip": "walk",
+      "previous_attack_time": -1.0,
+      "previous_release_time": -1.0,
+      "native_basis_direction": [
+        0.7977163073381599,
+        0.0,
+        0.6030329120427594
+      ],
+      "predominantly_lateral": true,
+      "root_distance_between_observed_samples_m": 1.8182702638814592,
+      "scope": "Root and original model basis only; bone-detail-none journal cannot establish ankle overlap."
+    },
+    {
+      "start": 2144,
+      "last_native_evade": 2161,
+      "event": {
+        "goal": [
+          -4.60610866546631,
+          -64.5152816772461
+        ],
+        "position": [
+          -0.606108784675598,
+          -64.5152816772461
+        ],
+        "type": "evade"
+      },
+      "previous_clip": "idle",
+      "previous_attack_time": -1.0,
+      "previous_release_time": -1.0,
+      "native_basis_direction": [
+        0.9460393489409971,
+        0.0,
+        -0.32405177094917154
+      ],
+      "predominantly_lateral": true,
+      "root_distance_between_observed_samples_m": 3.5506242513656696,
+      "scope": "Root and original model basis only; bone-detail-none journal cannot establish ankle overlap."
+    },
+    {
+      "start": 2252,
+      "last_native_evade": 2255,
+      "event": {
+        "goal": [
+          -5.34521245956421,
+          -64.3000030517578
+        ],
+        "position": [
+          -4.60610866546631,
+          -64.5152816772461
+        ],
+        "type": "evade"
+      },
+      "previous_clip": "idle",
+      "previous_attack_time": -1.0,
+      "previous_release_time": -1.0,
+      "native_basis_direction": [
+        0.10903659987741182,
+        0.0,
+        -0.9940377356454698
+      ],
+      "predominantly_lateral": false,
+      "root_distance_between_observed_samples_m": 0.25459230181324694,
+      "scope": "Root and original model basis only; bone-detail-none journal cannot establish ankle overlap."
+    }
+  ],
+  "death_events": [
+    {
+      "frame": 14,
+      "target": 0,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 0,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 14,
+      "target": 1,
+      "kind": "raider",
+      "event": {
+        "critical": true,
+        "damage": 216,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 1,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 14,
+      "target": 3,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 3,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 14,
+      "target": 4,
+      "kind": "hexer",
+      "event": {
+        "critical": true,
+        "damage": 187,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 4,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 86,
+      "target": 2,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 5,
+        "dead": true,
+        "name": "Marked Shot",
+        "skill": true,
+        "target": 2,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 314,
+      "target": 10,
+      "kind": "hexer",
+      "event": {
+        "critical": true,
+        "damage": 187,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 10,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 314,
+      "target": 12,
+      "kind": "raider",
+      "event": {
+        "critical": true,
+        "damage": 216,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 12,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 314,
+      "target": 13,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 13,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 380,
+      "target": 11,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 11,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 770,
+      "target": 22,
+      "kind": "raider",
+      "event": {
+        "critical": true,
+        "damage": 216,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 22,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 770,
+      "target": 23,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 23,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 770,
+      "target": 24,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 24,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 836,
+      "target": 21,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 21,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 869,
+      "target": 20,
+      "kind": "bulwark",
+      "event": {
+        "critical": false,
+        "damage": 121,
+        "dead": true,
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 20,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1256,
+      "target": 32,
+      "kind": "raider",
+      "event": {
+        "critical": true,
+        "damage": 216,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 32,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1256,
+      "target": 33,
+      "kind": "raider",
+      "event": {
+        "critical": true,
+        "damage": 216,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 33,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1331,
+      "target": 31,
+      "kind": "elite",
+      "event": {
+        "critical": false,
+        "damage": 83,
+        "dead": true,
+        "name": "Thornfall",
+        "skill": true,
+        "target": 31,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1388,
+      "target": 30,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 5,
+        "dead": true,
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 30,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1730,
+      "target": 41,
+      "kind": "raider",
+      "event": {
+        "critical": true,
+        "damage": 216,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 41,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1730,
+      "target": 42,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 42,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1730,
+      "target": 43,
+      "kind": "hexer",
+      "event": {
+        "critical": true,
+        "damage": 187,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 43,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1730,
+      "target": 44,
+      "kind": "raider",
+      "event": {
+        "critical": true,
+        "damage": 216,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 44,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1763,
+      "target": 40,
+      "kind": "raider",
+      "event": {
+        "critical": true,
+        "damage": 216,
+        "dead": true,
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 40,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 2060,
+      "target": 51,
+      "kind": "hexer",
+      "event": {
+        "critical": true,
+        "damage": 187,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 51,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 2060,
+      "target": 52,
+      "kind": "hexer",
+      "event": {
+        "critical": true,
+        "damage": 187,
+        "dead": true,
+        "name": "Cinder Volley",
+        "skill": true,
+        "target": 52,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 2336,
+      "target": 50,
+      "kind": "boss",
+      "event": {
+        "critical": true,
+        "damage": 269,
+        "dead": true,
+        "name": "Piercing Shot",
+        "skill": false,
+        "target": 50,
+        "type": "hit"
+      }
+    }
+  ],
+  "walk_intervals": [
+    [
+      2,
+      4
+    ],
+    [
+      65,
+      70
+    ],
+    [
+      125,
+      304
+    ],
+    [
+      323,
+      337
+    ],
+    [
+      354,
+      370
+    ],
+    [
+      389,
+      467
+    ],
+    [
+      524,
+      760
+    ],
+    [
+      779,
+      793
+    ],
+    [
+      819,
+      826
+    ],
+    [
+      908,
+      1234
+    ],
+    [
+      1265,
+      1270
+    ],
+    [
+      1305,
+      1312
+    ],
+    [
+      1397,
+      1469
+    ],
+    [
+      1526,
+      1720
+    ],
+    [
+      1739,
+      1751
+    ],
+    [
+      1802,
+      2050
+    ],
+    [
+      2111,
+      2116
+    ],
+    [
+      2256,
+      2260
+    ],
+    [
+      2318,
+      2326
+    ],
+    [
+      2345,
+      2413
+    ]
+  ],
+  "human_visual_review": "pending; journal parsing is not visual acceptance",
+  "review_tool_sha256": "f4f2ad49dd62a6dd220410f3ae56029352b71c9c07c2926927487730bd554a96",
+  "scope": "Actual consecutive journal. No native bone positions, GPU pixel occlusion, physical phone FPS or whole-movie human review inferred."
+}

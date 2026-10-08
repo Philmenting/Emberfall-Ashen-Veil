@@ -1,0 +1,61 @@
+{
+  "source_files_sha256": {
+    "scripts/native_motion_transition.gd": "ab4023c520c0ce56f674007833eaef26407d7e7f8b34ce86238154c45dd57dd2",
+    "scripts/class_avatar_pose.gd": "45e492ed13082a754fc320c4f06bb1684fd69528c30b11cd3c9f6a38502e4980",
+    "scripts/class_avatar_rig.gd": "31da98e76f554dbd671f170d3996e503f7608dd37164a1876e4588ebbd56ef5c",
+    "scripts/source_avatar_combat.gd": "1873aca0e735a0530f8f3e2b6a931d4b080d2889538863a73454c8c74a78df43",
+    "scripts/source_avatar_rig.gd": "d4bcc615f82c9e34f442d9ab2a822e70cd4012778c73343bdce321b25857215e",
+    "scripts/dungeon_actor.gd": "0dba757c30de4794b9e03d67eca12f74cfb75a0216976726d04a553b34b4bf65",
+    "tests/native_motion_transition_smoke.gd": "b2d50aba17038cee9120ca021cdcc3b272ec0ba36d5fa4cf45e760384d81d0d4",
+    "tests/native_motion_transition_preview.gd": "3b39c9530c4b048c2a4389a95d08cd2ce79ed38bd7d16e5a0c65e7e5937bee5b"
+  },
+  "records": [
+    {
+      "label": "editor-import",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "actual_exit_code": 0,
+      "elapsed_seconds": 5.787,
+      "log": "/workspace/scratch/emberfall-quality-057/motion/final-retest-01/editor-import.log",
+      "engine_diagnostics": [],
+      "summaries": []
+    },
+    {
+      "label": "native_motion_transition",
+      "command": [
+        "/workspace/scratch/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--path",
+        "/workspace/Emberfall-Ashen-Veil",
+        "--audio-driver",
+        "Dummy",
+        "--script",
+        "res://tests/native_motion_transition_smoke.gd"
+      ],
+      "actual_exit_code": 1,
+      "elapsed_seconds": 6.99,
+      "log": "/workspace/scratch/emberfall-quality-057/motion/final-retest-01/native_motion_transition.log",
+      "engine_diagnostics": [
+        "ERROR: Arcanist real cancelled entry 0.32: held real transition/recoil is bit-identical and never compounds",
+        "ERROR: Arcanist real cancelled entry 0.67: held real transition/recoil is bit-identical and never compounds",
+        "ERROR: Arcanist real cancelled entry 0.93: held real transition/recoil is bit-identical and never compounds",
+        "ERROR: Ranger real cancelled entry 0.32: held real transition/recoil is bit-identical and never compounds",
+        "ERROR: Ranger real cancelled entry 0.67: held real transition/recoil is bit-identical and never compounds",
+        "ERROR: Vowkeeper real cancelled entry 0.32: held real transition/recoil is bit-identical and never compounds",
+        "ERROR: Vowkeeper real cancelled entry 0.67: held real transition/recoil is bit-identical and never compounds",
+        "ERROR: Vowkeeper real cancelled entry 0.93: held real transition/recoil is bit-identical and never compounds"
+      ],
+      "summaries": [
+        "NATIVE MOTION TRANSITION SMOKE: 706 checks, 8 failures"
+      ]
+    }
+  ],
+  "scope": "Focused actual production tests; native previews are diagnostic images, not ordinary expedition movies or phone performance measurements."
+}

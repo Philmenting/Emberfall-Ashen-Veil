@@ -1,0 +1,6 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+CLASS ACTUAL GRIP: max gap=0.00264402478933 max penetration=0.00082330033183; poses=50
+CLASS NATIVE INVENTORY: {"Ranger":{"actual_arrow_rest_height_m":0.0607721385955811,"actual_source_surfaces":12,"actually_visible_guard_triangles":32884,"armor_surfaces":0,"maximum_rendered_triangles":33294,"measured_handle_maximum_radius_m":0.018349677324295,"native_bones":65,"source_triangles":32222},"Vowkeeper":{"actual_source_surfaces":10,"actually_visible_guard_triangles":31440,"armor_surfaces":3,"maximum_rendered_triangles":31440,"measured_handle_maximum_radius_m":0.0178434997797012,"native_bones":65,"source_triangles":33370}}
+CLASS PRODUCTION RELEASE: {"basic":{"actual_arrow_tip_contact_jump_m":0.000000266560078898692,"hidden_arrow_tip_projectile_origin_error_m":0.0,"hidden_arrow_tip_socket_error_m":0.0,"maximum_bone_position_jump_m":0.0,"maximum_bone_rotation_jump_rad":0.0,"maximum_bone_scale_jump":0.0,"native_bones":65},"signature":{"actual_arrow_tip_contact_jump_m":0.000000119209289550781,"hidden_arrow_tip_projectile_origin_error_m":0.000000238418579101562,"hidden_arrow_tip_socket_error_m":0.000000238418579101562,"maximum_bone_position_jump_m":0.0,"maximum_bone_rotation_jump_rad":0.0,"maximum_bone_scale_jump":0.0,"native_bones":65}}
+CLASS AVATAR QUALITY SMOKE: 398 checks, 0 failures

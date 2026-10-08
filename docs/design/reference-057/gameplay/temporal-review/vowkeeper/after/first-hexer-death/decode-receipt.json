@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "status": "complete_consecutive_h264_decoded_range",
+  "character_class": "vowkeeper",
+  "side": "after",
+  "label": "first-hexer-death",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "first_frame_zero_based": 72,
+  "last_frame_zero_based_inclusive": 102,
+  "every_consecutive_frame_decoded": true,
+  "retained_frame_sampling": "Every fourth frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+  "exact_semantic_frames_retained": [
+    73,
+    74,
+    83,
+    84,
+    91,
+    92
+  ],
+  "actual_ffmpeg_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-threads",
+    "1",
+    "-filter_threads",
+    "1",
+    "-i",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/ordinary-vowkeeper-complete.mp4",
+    "-map",
+    "0:v:0",
+    "-an",
+    "-vf",
+    "select=between(n\\,72\\,102)",
+    "-frames:v",
+    "31",
+    "-fps_mode",
+    "passthrough",
+    "-pix_fmt",
+    "rgb24",
+    "-f",
+    "rawvideo",
+    "pipe:1"
+  ],
+  "actual_ffmpeg_exit_code": 0,
+  "movie_sha256": "56f5a3cceeb8f10c8df035e1cc570ee3680fa7d7ecd5a0bd8e888f044a67b7d8",
+  "capture_receipt_sha256": "94f51f08ec795e87281c15b521513cf5717623de124cddd51a341589fbdd0561",
+  "crop_xyxy": [
+    188,
+    27,
+    809,
+    358
+  ],
+  "contact_sheet_pixel_scale": "1:1 original decoded pixels; shared fixed crop for this before/after range",
+  "context_crop_scope": "Full viewport for original ending UI; other context ranges use a shared native-pixel crop around hero and visible Guardian with a minimum620x330 scene margin. Hero ranges keep all sampled conservative actor/weapon projection bounds plus45px horizontal/30px vertical margin and minimum240x220. Off-crop actors/environment cannot be visually judged here; original movies and native PNGs remain full viewport.",
+  "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+  "human_visual_review": "pending; decoding alone is not visual acceptance",
+  "sheets": [
+    {
+      "file": "derived-contact-sheet-00.jpg",
+      "sha256": "e131cba4f6945e968e2592197e7bb8323384191c1c75a17ae6e2237df90de786",
+      "bytes": 290926,
+      "first_frame": 72,
+      "last_frame": 83,
+      "frames": [
+        72,
+        73,
+        74,
+        76,
+        80,
+        83
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-01.jpg",
+      "sha256": "12452690f74afb63565f9b489be917ea480820bb369fb58c7e9c23bf036355dd",
+      "bytes": 298494,
+      "first_frame": 84,
+      "last_frame": 100,
+      "frames": [
+        84,
+        88,
+        91,
+        92,
+        96,
+        100
+      ]
+    },
+    {
+      "file": "derived-contact-sheet-02.jpg",
+      "sha256": "2247f62dde3ac540b73601a787d758ee204656d9ba6b07a268a29aa3ca875db2",
+      "bytes": 55291,
+      "first_frame": 102,
+      "last_frame": 102,
+      "frames": [
+        102
+      ]
+    }
+  ],
+  "review_tool_sha256": "83bff1cabc3e915bbcf857bc5f628e159f82088cff10090c5ab0cbb223d9987d"
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/verify_review.py", line 135, in <module>
+    result = verify(args.character_class)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/emberfall-quality-057/temporal-review-resumed-02/verify_review.py", line 77, in verify
+    for item in review["viewed_files"]:
+                ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'viewed_files'

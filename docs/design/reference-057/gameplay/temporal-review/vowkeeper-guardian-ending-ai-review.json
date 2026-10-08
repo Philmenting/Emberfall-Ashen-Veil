@@ -1,0 +1,1777 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-10-08T00:24:46.611265+00:00",
+  "reviewer": "/root/temporal_review_resume_057/review_scope_audit_057",
+  "reviewer_type": "AI visual inspection through tools.view_image; no separate human signoff claimed",
+  "human_signoff": false,
+  "character_class": "vowkeeper",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "review_tool_sha256": "83bff1cabc3e915bbcf857bc5f628e159f82088cff10090c5ab0cbb223d9987d",
+  "plan_sha256": "a8e1ba5f9721e00c8c8349131398cf6e0bfce04fe16ec2895bfea5a21a635301",
+  "comparison_sha256": "4b59eefbe7166104f0dc93e96dc9bd5895284fbdc30bf2da7150c292e23d20a8",
+  "provenance_binding": {
+    "before": {
+      "capture_receipt_file": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/receipt.json",
+      "capture_receipt_sha256": "840e980a74d05da1227173f9e0c3adaadaf532fbebbb88d4a2e9ac2ced795803",
+      "movie_sha256_from_finalized_capture_receipt": "e0f3194f1ad288bfa650143fa18d253e5220f09cad22fde5bb90fb494e6095b1",
+      "journal_sha256": "6015c7d0c261abe1b70275ae2837ba7fb839b0110448ccc4042d7a47d63910a5",
+      "frames": 3099,
+      "movie_duration_seconds": 103.3
+    },
+    "after": {
+      "capture_receipt_file": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/receipt.json",
+      "capture_receipt_sha256": "94f51f08ec795e87281c15b521513cf5717623de124cddd51a341589fbdd0561",
+      "movie_sha256_from_finalized_capture_receipt": "56f5a3cceeb8f10c8df035e1cc570ee3680fa7d7ecd5a0bd8e888f044a67b7d8",
+      "journal_sha256": "48783f98c3e6df6c61815aea7d8c6791755757f7fa837e560928dae8c9f4c042",
+      "frames": 3099,
+      "movie_duration_seconds": 103.3
+    }
+  },
+  "status": "all52_planned_guardian_and_ending_contact_sheet_files_actually_ai_visually_inspected_with_presentation_limits",
+  "scope": "This reviewer personally inspected all52 planned Guardian0 initial-death, phase0 ordinary-melee, complete phase1+2 floor-warning/recovery/reset and static ending UI sheet files,292 retained panels. Only retained panels were viewed; no whole-movie watching or human signoff claimed.",
+  "image_origin": "Lossy H264-decoded frames assembled as JPEG92 4:4:4 contact sheets at original 1:1 decoded pixel scale with external labels. Shared context crop coordinates are recorded per range; ending UI uses the full 1200x536 viewport. These are derived images, not original Godot PNG captures. Each actual visual inspection requested original detail.",
+  "viewed_file_count": 52,
+  "viewed_retained_panel_count": 292,
+  "all_viewed_sheet_hashes_and_byte_counts_match_decode_receipts": true,
+  "paired_visual_observations": {
+    "first-boss-death": [
+      "BEFORE f2820-2824 shows a ribbed bell/cylinder Guardian upright. It lowers and tilts through2828-2836, then the bell-body tumbles forward/down into a horizontal floor silhouette by2840-2850.",
+      "AFTER f2820-2822 shows a bareheaded armored humanoid holding a pale bell on a long handle. The bell and torso lower at2824-2831; the actor rolls/reclines backward around2832-2836 and remains in an extended fallen silhouette with the pale bell down/left through2840-2850. Hero overlap obscures some legs and torso, so full floor contact and fine attachments are not established.",
+      "Actual source50 lethal hit is2822 in both journals. Visible bottom UI changes from2 foes remain to1 foe remains; a standing caster remains behind the hero. This Guardian death does not mean all foes are dead. No obvious new gross mesh breakup or disappearance is visible in the retained crops; only the initial roughly0.97s response is covered."
+    ],
+    "first-boss-phase0-ordinary-melee": [
+      "Actual Guardian actor50 is region0. The retained phase0 phrase has native windup_heavy2441-2446, source50 hero_hit5/recover_heavy2447-2462, and real idle2463. There is no Guardian floor-warning event in this phase0 phrase.",
+      "BEFORE raises its side bell above the ribbed body during2441-2446, swings it down/front at2447 and brings it back toward its shoulder by2462-2463.",
+      "AFTER leans its bareheaded torso and moves the bell down/out during2441-2446, shows a down/front bell strike at2447, then progressively straightens and returns the bell to a sideways ready position by2462-2463. This is a distinct articulated ordinary-melee motion with coherent gross retained silhouettes; simultaneous hero/shield/body overlap limits hand, leg and floor-contact judgments. Clearer human articulation does not imply a baseline attachment defect."
+    ],
+    "first-boss-telegraph-release-recovery-reset": [
+      "Actual Guardian actor50 region0 changes to phase1 Crown Break at2483 and phase2 Final Toll at2654. Retained floating CROWN BREAK and FINAL TOLL text supports those moments; the main boss HUD lies outside the crop.",
+      "Both pairs show phase1 annulus plus cleaving lane warning2486 and solid pale-orange floor impact2531. AFTER has broad torso/free-arm/bell sweeps at2486-2513, including an overhead bell at2509, then holds a leaned low-bell pose through much of2517-2529. BEFORE holds its raised bell for much of the warning and brings it down near the end. Exact impact timing is particularly legible in the matching floor fill.",
+      "The true native labels2529/2530/2531 are windup_heavy/idle/recover_heavy in both journals. Actual AFTER2530 pixels show a modest torso and bell/arm adjustment from2529 before2531 returns to the lowered strike and the floor flashes. This recorded idle is not a completed recovery/reset. No gross body teleport or detached bell is demonstrated in these bounded JPEG92 pixels.",
+      "Phase1 recovery continues through2546; real walk reset2547 is retained. AFTER rises toward a ready stance and the warning fill disappears by2545. Included ordinary Guardian melees start2570 and2624, hit/recover at2576 and2630, and return to idle2592 and2646. The retained bell/torso motions show down/front strikes and upright returns.",
+      "Secondary caster source51 warnings/impacts also appear in this range: its small floor circle impacts2531,2612 and2693. These are not additional Guardian phases. The small circle turning into a pale ring around2612 is separately visible while Guardian50 remains in its ready stance.",
+      "Both pairs show phase2 split overlapping annuli plus transverse lane warning2657, with the same outlined safe holes/zone placement, then solid floor fill at2699. AFTER again makes broad bell/free-arm sweeps, including raised bell2677, then holds a forward-inclined low bell by2683-2696. This repeats the late low-held preparation concern.",
+      "The true native labels2696/2697/2698/2699 are windup_heavy/idle/idle/recover_heavy. AFTER2697 adjusts the bell toward front/down;2698 visibly straightens the torso and raises/shifts the bell to the side;2699 leans back into the lowered strike while the split zones flash. This is a visible brief pose excursion across the two real idle frames. Baseline also raises the side bell at2698. The retained crops do not demonstrate gross body teleport or a detached weapon, but they do not certify fine continuity.",
+      "The actual final phase2 recovery runs through2714 and real walk reset2715. AFTER progressively rises into a connected ready/walk silhouette; filled floor zones disappear before the final boundary. Both2714/2715 and continuation2717/2718 were actually inspected.",
+      "AFTER has a clearer human body/bell silhouette than the baseline bell cylinder; broad sweeps and upright returns are visible. Ground geometry/flash carries the most distinct exact warning/impact cue, so strong late skeletal preparation readability is not claimed."
+    ],
+    "original-ending-loot-ui": [
+      "Both full-viewport derived ending sheets show DUNGEON CLEARED, CAMPAIGN +428 XP +190 GOLD,790 GOLD,100.3s,26 foes defeated,13 skills cast,4 evasions, the EQUIP BELLWARDEN'S MEMORY button and matching navigation/upgrade buttons at retained3093,3097,3098.",
+      "The visible static final viewport is readable and matches before/after. The label original-ending-loot-ui means the original movie ending range; the actual viewed sheets are derived H264+JPEG92 images. Oathguard Gauntlets and the complete lower reward inventory are not visible in this viewport, so metadata about the two loot items is not presented as a pixel observation."
+    ]
+  },
+  "decode_receipts": [
+    {
+      "file": "vowkeeper/before/first-boss-death/decode-receipt.json",
+      "sha256": "dd1768b90a96b03fc82b36c2bfa3f5795e8e53a15aae25c17f1885d75957b781",
+      "side": "before",
+      "label": "first-boss-death",
+      "actual_ffmpeg_exit_code": 0,
+      "every_consecutive_frame_decoded": true,
+      "range": [
+        2820,
+        2850
+      ],
+      "crop_xyxy": [
+        289,
+        166,
+        910,
+        497
+      ],
+      "movie_sha256": "e0f3194f1ad288bfa650143fa18d253e5220f09cad22fde5bb90fb494e6095b1",
+      "capture_receipt_sha256": "840e980a74d05da1227173f9e0c3adaadaf532fbebbb88d4a2e9ac2ced795803",
+      "exact_semantic_frames_retained": [
+        2821,
+        2822,
+        2831,
+        2832
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-death/decode-receipt.json",
+      "sha256": "296267952a4ca687b07109c477faa945ad674570970fef699b8e8b41e61f40ef",
+      "side": "after",
+      "label": "first-boss-death",
+      "actual_ffmpeg_exit_code": 0,
+      "every_consecutive_frame_decoded": true,
+      "range": [
+        2820,
+        2850
+      ],
+      "crop_xyxy": [
+        289,
+        166,
+        910,
+        497
+      ],
+      "movie_sha256": "56f5a3cceeb8f10c8df035e1cc570ee3680fa7d7ecd5a0bd8e888f044a67b7d8",
+      "capture_receipt_sha256": "94f51f08ec795e87281c15b521513cf5717623de124cddd51a341589fbdd0561",
+      "exact_semantic_frames_retained": [
+        2821,
+        2822,
+        2831,
+        2832
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-phase0-ordinary-melee/decode-receipt.json",
+      "sha256": "632a5d91ac323f644dfb994c5bb03c48913419a85745e82bd3650680d9f5135f",
+      "side": "before",
+      "label": "first-boss-phase0-ordinary-melee",
+      "actual_ffmpeg_exit_code": 0,
+      "every_consecutive_frame_decoded": true,
+      "range": [
+        2439,
+        2466
+      ],
+      "crop_xyxy": [
+        282,
+        106,
+        903,
+        437
+      ],
+      "movie_sha256": "e0f3194f1ad288bfa650143fa18d253e5220f09cad22fde5bb90fb494e6095b1",
+      "capture_receipt_sha256": "840e980a74d05da1227173f9e0c3adaadaf532fbebbb88d4a2e9ac2ced795803",
+      "exact_semantic_frames_retained": [
+        2440,
+        2441,
+        2442,
+        2446,
+        2447,
+        2462,
+        2463,
+        2464,
+        2465
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-phase0-ordinary-melee/decode-receipt.json",
+      "sha256": "4eb30b1b83a2612abae4baa455a3b159a2d4a7ba9f4eacb6a04459bfe30a5344",
+      "side": "after",
+      "label": "first-boss-phase0-ordinary-melee",
+      "actual_ffmpeg_exit_code": 0,
+      "every_consecutive_frame_decoded": true,
+      "range": [
+        2439,
+        2466
+      ],
+      "crop_xyxy": [
+        282,
+        106,
+        903,
+        437
+      ],
+      "movie_sha256": "56f5a3cceeb8f10c8df035e1cc570ee3680fa7d7ecd5a0bd8e888f044a67b7d8",
+      "capture_receipt_sha256": "94f51f08ec795e87281c15b521513cf5717623de124cddd51a341589fbdd0561",
+      "exact_semantic_frames_retained": [
+        2440,
+        2441,
+        2442,
+        2446,
+        2447,
+        2462,
+        2463,
+        2464,
+        2465
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "c53d39329c78116e07ffcf7fcc6653c9e8e6c3241baf129ce429bc575ce37279",
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "actual_ffmpeg_exit_code": 0,
+      "every_consecutive_frame_decoded": true,
+      "range": [
+        2481,
+        2718
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "movie_sha256": "e0f3194f1ad288bfa650143fa18d253e5220f09cad22fde5bb90fb494e6095b1",
+      "capture_receipt_sha256": "840e980a74d05da1227173f9e0c3adaadaf532fbebbb88d4a2e9ac2ced795803",
+      "exact_semantic_frames_retained": [
+        2482,
+        2483,
+        2485,
+        2486,
+        2492,
+        2493,
+        2494,
+        2495,
+        2500,
+        2501,
+        2522,
+        2523,
+        2528,
+        2529,
+        2530,
+        2531,
+        2543,
+        2544,
+        2546,
+        2547,
+        2560,
+        2561,
+        2562,
+        2569,
+        2570,
+        2575,
+        2576,
+        2579,
+        2580,
+        2591,
+        2592,
+        2602,
+        2603,
+        2609,
+        2610,
+        2611,
+        2612,
+        2621,
+        2622,
+        2623,
+        2624,
+        2625,
+        2629,
+        2630,
+        2639,
+        2640,
+        2644,
+        2645,
+        2646,
+        2653,
+        2654,
+        2656,
+        2657,
+        2663,
+        2664,
+        2683,
+        2684,
+        2690,
+        2691,
+        2692,
+        2693,
+        2696,
+        2697,
+        2698,
+        2699,
+        2702,
+        2703,
+        2705,
+        2706,
+        2714,
+        2715
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/decode-receipt.json",
+      "sha256": "d44e9f4b603ce9b8d3190bdd17232046188426fb205e7973ca12df36208fd7a8",
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "actual_ffmpeg_exit_code": 0,
+      "every_consecutive_frame_decoded": true,
+      "range": [
+        2481,
+        2718
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "movie_sha256": "56f5a3cceeb8f10c8df035e1cc570ee3680fa7d7ecd5a0bd8e888f044a67b7d8",
+      "capture_receipt_sha256": "94f51f08ec795e87281c15b521513cf5717623de124cddd51a341589fbdd0561",
+      "exact_semantic_frames_retained": [
+        2482,
+        2483,
+        2485,
+        2486,
+        2492,
+        2493,
+        2494,
+        2495,
+        2500,
+        2501,
+        2522,
+        2523,
+        2528,
+        2529,
+        2530,
+        2531,
+        2543,
+        2544,
+        2546,
+        2547,
+        2560,
+        2561,
+        2562,
+        2569,
+        2570,
+        2575,
+        2576,
+        2579,
+        2580,
+        2591,
+        2592,
+        2602,
+        2603,
+        2609,
+        2610,
+        2611,
+        2612,
+        2621,
+        2622,
+        2623,
+        2624,
+        2625,
+        2629,
+        2630,
+        2639,
+        2640,
+        2644,
+        2645,
+        2646,
+        2653,
+        2654,
+        2656,
+        2657,
+        2663,
+        2664,
+        2683,
+        2684,
+        2690,
+        2691,
+        2692,
+        2693,
+        2696,
+        2697,
+        2698,
+        2699,
+        2702,
+        2703,
+        2705,
+        2706,
+        2714,
+        2715
+      ]
+    },
+    {
+      "file": "vowkeeper/before/original-ending-loot-ui/decode-receipt.json",
+      "sha256": "6c2255ff09c7433ea6136a2ae912905301a616848eb0069137502c75b307e8d1",
+      "side": "before",
+      "label": "original-ending-loot-ui",
+      "actual_ffmpeg_exit_code": 0,
+      "every_consecutive_frame_decoded": true,
+      "range": [
+        3093,
+        3098
+      ],
+      "crop_xyxy": [
+        0,
+        0,
+        1200,
+        536
+      ],
+      "movie_sha256": "e0f3194f1ad288bfa650143fa18d253e5220f09cad22fde5bb90fb494e6095b1",
+      "capture_receipt_sha256": "840e980a74d05da1227173f9e0c3adaadaf532fbebbb88d4a2e9ac2ced795803",
+      "exact_semantic_frames_retained": []
+    },
+    {
+      "file": "vowkeeper/after/original-ending-loot-ui/decode-receipt.json",
+      "sha256": "ca9ac17597a849c333617e8be32849c2e87b8840ed4ca34a1719edef389cfce7",
+      "side": "after",
+      "label": "original-ending-loot-ui",
+      "actual_ffmpeg_exit_code": 0,
+      "every_consecutive_frame_decoded": true,
+      "range": [
+        3093,
+        3098
+      ],
+      "crop_xyxy": [
+        0,
+        0,
+        1200,
+        536
+      ],
+      "movie_sha256": "56f5a3cceeb8f10c8df035e1cc570ee3680fa7d7ecd5a0bd8e888f044a67b7d8",
+      "capture_receipt_sha256": "94f51f08ec795e87281c15b521513cf5717623de124cddd51a341589fbdd0561",
+      "exact_semantic_frames_retained": []
+    }
+  ],
+  "viewed_files": [
+    {
+      "file": "vowkeeper/before/first-boss-death/derived-contact-sheet-00.jpg",
+      "sha256": "3bcdcde9962963bcf1fdec155dd7b02cfb5b07926968d390d615f71ee3bf8355",
+      "bytes": 380873,
+      "side": "before",
+      "label": "first-boss-death",
+      "frames": [
+        2820,
+        2821,
+        2822,
+        2824,
+        2828,
+        2831
+      ],
+      "crop_xyxy": [
+        289,
+        166,
+        910,
+        497
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "BEFORE f2820-2824 shows a ribbed bell/cylinder Guardian upright. It lowers and tilts through2828-2836, then the bell-body tumbles forward/down into a horizontal floor silhouette by2840-2850.",
+        "AFTER f2820-2822 shows a bareheaded armored humanoid holding a pale bell on a long handle. The bell and torso lower at2824-2831; the actor rolls/reclines backward around2832-2836 and remains in an extended fallen silhouette with the pale bell down/left through2840-2850. Hero overlap obscures some legs and torso, so full floor contact and fine attachments are not established.",
+        "Actual source50 lethal hit is2822 in both journals. Visible bottom UI changes from2 foes remain to1 foe remains; a standing caster remains behind the hero. This Guardian death does not mean all foes are dead. No obvious new gross mesh breakup or disappearance is visible in the retained crops; only the initial roughly0.97s response is covered."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-death/derived-contact-sheet-01.jpg",
+      "sha256": "dc9de05365f7fefd63ebf9a174802fca9ae7f98633166a30b9f7864bc3a50e06",
+      "bytes": 380492,
+      "side": "before",
+      "label": "first-boss-death",
+      "frames": [
+        2832,
+        2836,
+        2840,
+        2844,
+        2848,
+        2850
+      ],
+      "crop_xyxy": [
+        289,
+        166,
+        910,
+        497
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "BEFORE f2820-2824 shows a ribbed bell/cylinder Guardian upright. It lowers and tilts through2828-2836, then the bell-body tumbles forward/down into a horizontal floor silhouette by2840-2850.",
+        "AFTER f2820-2822 shows a bareheaded armored humanoid holding a pale bell on a long handle. The bell and torso lower at2824-2831; the actor rolls/reclines backward around2832-2836 and remains in an extended fallen silhouette with the pale bell down/left through2840-2850. Hero overlap obscures some legs and torso, so full floor contact and fine attachments are not established.",
+        "Actual source50 lethal hit is2822 in both journals. Visible bottom UI changes from2 foes remain to1 foe remains; a standing caster remains behind the hero. This Guardian death does not mean all foes are dead. No obvious new gross mesh breakup or disappearance is visible in the retained crops; only the initial roughly0.97s response is covered."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-death/derived-contact-sheet-00.jpg",
+      "sha256": "3306a3513087dee1e2d3c499fdd73e9ad637dd62ea9841b5469c6a8d76699953",
+      "bytes": 381637,
+      "side": "after",
+      "label": "first-boss-death",
+      "frames": [
+        2820,
+        2821,
+        2822,
+        2824,
+        2828,
+        2831
+      ],
+      "crop_xyxy": [
+        289,
+        166,
+        910,
+        497
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "BEFORE f2820-2824 shows a ribbed bell/cylinder Guardian upright. It lowers and tilts through2828-2836, then the bell-body tumbles forward/down into a horizontal floor silhouette by2840-2850.",
+        "AFTER f2820-2822 shows a bareheaded armored humanoid holding a pale bell on a long handle. The bell and torso lower at2824-2831; the actor rolls/reclines backward around2832-2836 and remains in an extended fallen silhouette with the pale bell down/left through2840-2850. Hero overlap obscures some legs and torso, so full floor contact and fine attachments are not established.",
+        "Actual source50 lethal hit is2822 in both journals. Visible bottom UI changes from2 foes remain to1 foe remains; a standing caster remains behind the hero. This Guardian death does not mean all foes are dead. No obvious new gross mesh breakup or disappearance is visible in the retained crops; only the initial roughly0.97s response is covered."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-death/derived-contact-sheet-01.jpg",
+      "sha256": "f5dce36a585a3f547c4cb4de68bb6acf161bbefe3d5f225f7d0597dd3a5b320b",
+      "bytes": 383138,
+      "side": "after",
+      "label": "first-boss-death",
+      "frames": [
+        2832,
+        2836,
+        2840,
+        2844,
+        2848,
+        2850
+      ],
+      "crop_xyxy": [
+        289,
+        166,
+        910,
+        497
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "BEFORE f2820-2824 shows a ribbed bell/cylinder Guardian upright. It lowers and tilts through2828-2836, then the bell-body tumbles forward/down into a horizontal floor silhouette by2840-2850.",
+        "AFTER f2820-2822 shows a bareheaded armored humanoid holding a pale bell on a long handle. The bell and torso lower at2824-2831; the actor rolls/reclines backward around2832-2836 and remains in an extended fallen silhouette with the pale bell down/left through2840-2850. Hero overlap obscures some legs and torso, so full floor contact and fine attachments are not established.",
+        "Actual source50 lethal hit is2822 in both journals. Visible bottom UI changes from2 foes remain to1 foe remains; a standing caster remains behind the hero. This Guardian death does not mean all foes are dead. No obvious new gross mesh breakup or disappearance is visible in the retained crops; only the initial roughly0.97s response is covered."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-phase0-ordinary-melee/derived-contact-sheet-00.jpg",
+      "sha256": "bd1572496682ead3de1b12bf91581190472b536cba5417a7ca3764463d073152",
+      "bytes": 331825,
+      "side": "before",
+      "label": "first-boss-phase0-ordinary-melee",
+      "frames": [
+        2439,
+        2440,
+        2441,
+        2442,
+        2443,
+        2446
+      ],
+      "crop_xyxy": [
+        282,
+        106,
+        903,
+        437
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Actual Guardian actor50 is region0. The retained phase0 phrase has native windup_heavy2441-2446, source50 hero_hit5/recover_heavy2447-2462, and real idle2463. There is no Guardian floor-warning event in this phase0 phrase.",
+        "BEFORE raises its side bell above the ribbed body during2441-2446, swings it down/front at2447 and brings it back toward its shoulder by2462-2463.",
+        "AFTER leans its bareheaded torso and moves the bell down/out during2441-2446, shows a down/front bell strike at2447, then progressively straightens and returns the bell to a sideways ready position by2462-2463. This is a distinct articulated ordinary-melee motion with coherent gross retained silhouettes; simultaneous hero/shield/body overlap limits hand, leg and floor-contact judgments. Clearer human articulation does not imply a baseline attachment defect."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-phase0-ordinary-melee/derived-contact-sheet-01.jpg",
+      "sha256": "657d2c6f0f4605344c3403a2b806bb8edd939c1953ca57fb624131eca76031eb",
+      "bytes": 345582,
+      "side": "before",
+      "label": "first-boss-phase0-ordinary-melee",
+      "frames": [
+        2447,
+        2451,
+        2455,
+        2459,
+        2462,
+        2463
+      ],
+      "crop_xyxy": [
+        282,
+        106,
+        903,
+        437
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Actual Guardian actor50 is region0. The retained phase0 phrase has native windup_heavy2441-2446, source50 hero_hit5/recover_heavy2447-2462, and real idle2463. There is no Guardian floor-warning event in this phase0 phrase.",
+        "BEFORE raises its side bell above the ribbed body during2441-2446, swings it down/front at2447 and brings it back toward its shoulder by2462-2463.",
+        "AFTER leans its bareheaded torso and moves the bell down/out during2441-2446, shows a down/front bell strike at2447, then progressively straightens and returns the bell to a sideways ready position by2462-2463. This is a distinct articulated ordinary-melee motion with coherent gross retained silhouettes; simultaneous hero/shield/body overlap limits hand, leg and floor-contact judgments. Clearer human articulation does not imply a baseline attachment defect."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-phase0-ordinary-melee/derived-contact-sheet-02.jpg",
+      "sha256": "e854964f47bc808831b1d1d1a0aa963d58b32b103f71bc613b0bf8f2e1557bba",
+      "bytes": 183123,
+      "side": "before",
+      "label": "first-boss-phase0-ordinary-melee",
+      "frames": [
+        2464,
+        2465,
+        2466
+      ],
+      "crop_xyxy": [
+        282,
+        106,
+        903,
+        437
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Actual Guardian actor50 is region0. The retained phase0 phrase has native windup_heavy2441-2446, source50 hero_hit5/recover_heavy2447-2462, and real idle2463. There is no Guardian floor-warning event in this phase0 phrase.",
+        "BEFORE raises its side bell above the ribbed body during2441-2446, swings it down/front at2447 and brings it back toward its shoulder by2462-2463.",
+        "AFTER leans its bareheaded torso and moves the bell down/out during2441-2446, shows a down/front bell strike at2447, then progressively straightens and returns the bell to a sideways ready position by2462-2463. This is a distinct articulated ordinary-melee motion with coherent gross retained silhouettes; simultaneous hero/shield/body overlap limits hand, leg and floor-contact judgments. Clearer human articulation does not imply a baseline attachment defect."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-phase0-ordinary-melee/derived-contact-sheet-00.jpg",
+      "sha256": "3a9ef1a3be928d480fb4ef5d3494e88ecc40cd7b7d231a241a73bafbd89a024b",
+      "bytes": 334652,
+      "side": "after",
+      "label": "first-boss-phase0-ordinary-melee",
+      "frames": [
+        2439,
+        2440,
+        2441,
+        2442,
+        2443,
+        2446
+      ],
+      "crop_xyxy": [
+        282,
+        106,
+        903,
+        437
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Actual Guardian actor50 is region0. The retained phase0 phrase has native windup_heavy2441-2446, source50 hero_hit5/recover_heavy2447-2462, and real idle2463. There is no Guardian floor-warning event in this phase0 phrase.",
+        "BEFORE raises its side bell above the ribbed body during2441-2446, swings it down/front at2447 and brings it back toward its shoulder by2462-2463.",
+        "AFTER leans its bareheaded torso and moves the bell down/out during2441-2446, shows a down/front bell strike at2447, then progressively straightens and returns the bell to a sideways ready position by2462-2463. This is a distinct articulated ordinary-melee motion with coherent gross retained silhouettes; simultaneous hero/shield/body overlap limits hand, leg and floor-contact judgments. Clearer human articulation does not imply a baseline attachment defect."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-phase0-ordinary-melee/derived-contact-sheet-01.jpg",
+      "sha256": "0d63d903e2448c910615a449a3f361b915f55acb99b9006bdf572ad8546556d1",
+      "bytes": 350501,
+      "side": "after",
+      "label": "first-boss-phase0-ordinary-melee",
+      "frames": [
+        2447,
+        2451,
+        2455,
+        2459,
+        2462,
+        2463
+      ],
+      "crop_xyxy": [
+        282,
+        106,
+        903,
+        437
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Actual Guardian actor50 is region0. The retained phase0 phrase has native windup_heavy2441-2446, source50 hero_hit5/recover_heavy2447-2462, and real idle2463. There is no Guardian floor-warning event in this phase0 phrase.",
+        "BEFORE raises its side bell above the ribbed body during2441-2446, swings it down/front at2447 and brings it back toward its shoulder by2462-2463.",
+        "AFTER leans its bareheaded torso and moves the bell down/out during2441-2446, shows a down/front bell strike at2447, then progressively straightens and returns the bell to a sideways ready position by2462-2463. This is a distinct articulated ordinary-melee motion with coherent gross retained silhouettes; simultaneous hero/shield/body overlap limits hand, leg and floor-contact judgments. Clearer human articulation does not imply a baseline attachment defect."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-phase0-ordinary-melee/derived-contact-sheet-02.jpg",
+      "sha256": "33955c5592eea5009cfc4cd0bf96ef9e1430314cdc000aeb12f6e2d2881632d6",
+      "bytes": 183525,
+      "side": "after",
+      "label": "first-boss-phase0-ordinary-melee",
+      "frames": [
+        2464,
+        2465,
+        2466
+      ],
+      "crop_xyxy": [
+        282,
+        106,
+        903,
+        437
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Actual Guardian actor50 is region0. The retained phase0 phrase has native windup_heavy2441-2446, source50 hero_hit5/recover_heavy2447-2462, and real idle2463. There is no Guardian floor-warning event in this phase0 phrase.",
+        "BEFORE raises its side bell above the ribbed body during2441-2446, swings it down/front at2447 and brings it back toward its shoulder by2462-2463.",
+        "AFTER leans its bareheaded torso and moves the bell down/out during2441-2446, shows a down/front bell strike at2447, then progressively straightens and returns the bell to a sideways ready position by2462-2463. This is a distinct articulated ordinary-melee motion with coherent gross retained silhouettes; simultaneous hero/shield/body overlap limits hand, leg and floor-contact judgments. Clearer human articulation does not imply a baseline attachment defect."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+      "sha256": "d4c0c473819b3310f4c56fafed1c0bb99e5971338ab7c6cc170a0d9dc5b37216",
+      "bytes": 422173,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2481,
+        2482,
+        2483,
+        2485,
+        2486,
+        2489
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both pairs show phase1 annulus plus cleaving lane warning2486 and solid pale-orange floor impact2531. AFTER has broad torso/free-arm/bell sweeps at2486-2513, including an overhead bell at2509, then holds a leaned low-bell pose through much of2517-2529. BEFORE holds its raised bell for much of the warning and brings it down near the end. Exact impact timing is particularly legible in the matching floor fill."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+      "sha256": "85e0565c2557cb15e114852fe8d8021e58fc870f3fca853f07f870ce26cfd906",
+      "bytes": 475589,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2492,
+        2493,
+        2494,
+        2495,
+        2497,
+        2500
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both pairs show phase1 annulus plus cleaving lane warning2486 and solid pale-orange floor impact2531. AFTER has broad torso/free-arm/bell sweeps at2486-2513, including an overhead bell at2509, then holds a leaned low-bell pose through much of2517-2529. BEFORE holds its raised bell for much of the warning and brings it down near the end. Exact impact timing is particularly legible in the matching floor fill."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+      "sha256": "a6a1c358e0877378f1835d701901618f6e2f8e89a5b4d5b1d0ea53766d403c2f",
+      "bytes": 485928,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2501,
+        2505,
+        2509,
+        2513,
+        2517,
+        2521
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both pairs show phase1 annulus plus cleaving lane warning2486 and solid pale-orange floor impact2531. AFTER has broad torso/free-arm/bell sweeps at2486-2513, including an overhead bell at2509, then holds a leaned low-bell pose through much of2517-2529. BEFORE holds its raised bell for much of the warning and brings it down near the end. Exact impact timing is particularly legible in the matching floor fill."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+      "sha256": "dcc50a4da606e8d195c4ac9e4776526fbf0477daa8fced41d7f7d2d3c33c14d4",
+      "bytes": 485301,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2522,
+        2523,
+        2525,
+        2528,
+        2529,
+        2530
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "The true native labels2529/2530/2531 are windup_heavy/idle/recover_heavy in both journals. Actual AFTER2530 pixels show a modest torso and bell/arm adjustment from2529 before2531 returns to the lowered strike and the floor flashes. This recorded idle is not a completed recovery/reset. No gross body teleport or detached bell is demonstrated in these bounded JPEG92 pixels."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-04.jpg",
+      "sha256": "88ca84908ba5822f88c221f5f342b39a16c5afb8472491be73f1a13e6830eb12",
+      "bytes": 445785,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2531,
+        2533,
+        2537,
+        2541,
+        2543,
+        2544
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both pairs show phase1 annulus plus cleaving lane warning2486 and solid pale-orange floor impact2531. AFTER has broad torso/free-arm/bell sweeps at2486-2513, including an overhead bell at2509, then holds a leaned low-bell pose through much of2517-2529. BEFORE holds its raised bell for much of the warning and brings it down near the end. Exact impact timing is particularly legible in the matching floor fill."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-05.jpg",
+      "sha256": "17ede6b1d1bbfd26a385fa7d5600990ab05de60b2309efad428a97385fb1e52b",
+      "bytes": 403266,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2545,
+        2546,
+        2547,
+        2549,
+        2553,
+        2557
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Phase1 recovery continues through2546; real walk reset2547 is retained. AFTER rises toward a ready stance and the warning fill disappears by2545. Included ordinary Guardian melees start2570 and2624, hit/recover at2576 and2630, and return to idle2592 and2646. The retained bell/torso motions show down/front strikes and upright returns."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-06.jpg",
+      "sha256": "7988d5af0cd90d8f9018a7c2f7e95aa024d49c50e045ab3961d1c0dd3ffb4ea4",
+      "bytes": 398438,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2560,
+        2561,
+        2562,
+        2565,
+        2569,
+        2570
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Phase1 recovery continues through2546; real walk reset2547 is retained. AFTER rises toward a ready stance and the warning fill disappears by2545. Included ordinary Guardian melees start2570 and2624, hit/recover at2576 and2630, and return to idle2592 and2646. The retained bell/torso motions show down/front strikes and upright returns."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-07.jpg",
+      "sha256": "abfec16ea2aac89b7547ce7ff6fedbec503679709d9e4f32e2b78e94d87eb989",
+      "bytes": 409233,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2573,
+        2575,
+        2576,
+        2577,
+        2579,
+        2580
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Phase1 recovery continues through2546; real walk reset2547 is retained. AFTER rises toward a ready stance and the warning fill disappears by2545. Included ordinary Guardian melees start2570 and2624, hit/recover at2576 and2630, and return to idle2592 and2646. The retained bell/torso motions show down/front strikes and upright returns."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-08.jpg",
+      "sha256": "a0cbbacc04df8af0f6e6c4163129fdc6b75939608037626737b7d26e523d024d",
+      "bytes": 413646,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2581,
+        2585,
+        2589,
+        2591,
+        2592,
+        2593
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Phase1 recovery continues through2546; real walk reset2547 is retained. AFTER rises toward a ready stance and the warning fill disappears by2545. Included ordinary Guardian melees start2570 and2624, hit/recover at2576 and2630, and return to idle2592 and2646. The retained bell/torso motions show down/front strikes and upright returns."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-09.jpg",
+      "sha256": "7256d9c4fd78f1a93b1228cbc53fb50c7ff2a2b8c8a16f83091df5e4cc8e63d3",
+      "bytes": 412550,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2597,
+        2601,
+        2602,
+        2603,
+        2605,
+        2609
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Secondary caster source51 warnings/impacts also appear in this range: its small floor circle impacts2531,2612 and2693. These are not additional Guardian phases. The small circle turning into a pale ring around2612 is separately visible while Guardian50 remains in its ready stance."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-10.jpg",
+      "sha256": "cea927a7f0a3d709c2d1122fa6517eb6422eec89f54b0eecc160b26ff67b3631",
+      "bytes": 411847,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2610,
+        2611,
+        2612,
+        2613,
+        2617,
+        2621
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Secondary caster source51 warnings/impacts also appear in this range: its small floor circle impacts2531,2612 and2693. These are not additional Guardian phases. The small circle turning into a pale ring around2612 is separately visible while Guardian50 remains in its ready stance."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-11.jpg",
+      "sha256": "6589c3b2f0f5c02f5ab8c0b16fdfd56056b7c39f52bfefe5c6d15f995235e654",
+      "bytes": 407463,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2622,
+        2623,
+        2624,
+        2625,
+        2629,
+        2630
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Secondary caster source51 warnings/impacts also appear in this range: its small floor circle impacts2531,2612 and2693. These are not additional Guardian phases. The small circle turning into a pale ring around2612 is separately visible while Guardian50 remains in its ready stance."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-12.jpg",
+      "sha256": "bafcf71da872559327494c44e6bb9e892688deaf52957bcbcbb2ab683d8f28b8",
+      "bytes": 402565,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2633,
+        2637,
+        2639,
+        2640,
+        2641,
+        2644
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Secondary caster source51 warnings/impacts also appear in this range: its small floor circle impacts2531,2612 and2693. These are not additional Guardian phases. The small circle turning into a pale ring around2612 is separately visible while Guardian50 remains in its ready stance."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-13.jpg",
+      "sha256": "469854508bbe4ef8f0937251049341adf6a3990cb7792d6bc216dd130a64363f",
+      "bytes": 403798,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2645,
+        2646,
+        2649,
+        2653,
+        2654,
+        2656
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Actual Guardian actor50 region0 changes to phase1 Crown Break at2483 and phase2 Final Toll at2654. Retained floating CROWN BREAK and FINAL TOLL text supports those moments; the main boss HUD lies outside the crop."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-14.jpg",
+      "sha256": "33ca6ecd8137e77fda5a62c518a1970c2b9a0fb735c28e527a977590ff041433",
+      "bytes": 468578,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2657,
+        2661,
+        2663,
+        2664,
+        2665,
+        2669
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both pairs show phase2 split overlapping annuli plus transverse lane warning2657, with the same outlined safe holes/zone placement, then solid floor fill at2699. AFTER again makes broad bell/free-arm sweeps, including raised bell2677, then holds a forward-inclined low bell by2683-2696. This repeats the late low-held preparation concern."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-15.jpg",
+      "sha256": "013680070be777f65b1debe0a0d0241e6b7a835948f85caa2ac67e4f9900a49f",
+      "bytes": 470022,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2673,
+        2677,
+        2681,
+        2683,
+        2684,
+        2685
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both pairs show phase2 split overlapping annuli plus transverse lane warning2657, with the same outlined safe holes/zone placement, then solid floor fill at2699. AFTER again makes broad bell/free-arm sweeps, including raised bell2677, then holds a forward-inclined low bell by2683-2696. This repeats the late low-held preparation concern."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-16.jpg",
+      "sha256": "15f619294f847a4ab40220aa2f8c212b623d22cc87e64fb9558d79a40fe5ae01",
+      "bytes": 470551,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2689,
+        2690,
+        2691,
+        2692,
+        2693,
+        2696
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both pairs show phase2 split overlapping annuli plus transverse lane warning2657, with the same outlined safe holes/zone placement, then solid floor fill at2699. AFTER again makes broad bell/free-arm sweeps, including raised bell2677, then holds a forward-inclined low bell by2683-2696. This repeats the late low-held preparation concern."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-17.jpg",
+      "sha256": "7fa5fff934c70f70b523318b69b31bf80efbe12acc5652de5961edf1fb0ff53d",
+      "bytes": 461927,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2697,
+        2698,
+        2699,
+        2701,
+        2702,
+        2703
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "The true native labels2696/2697/2698/2699 are windup_heavy/idle/idle/recover_heavy. AFTER2697 adjusts the bell toward front/down;2698 visibly straightens the torso and raises/shifts the bell to the side;2699 leans back into the lowered strike while the split zones flash. This is a visible brief pose excursion across the two real idle frames. Baseline also raises the side bell at2698. The retained crops do not demonstrate gross body teleport or a detached weapon, but they do not certify fine continuity."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-18.jpg",
+      "sha256": "8d016a633a07d10efff0ccbd3f279bfb459e2756079e9809393b3318df671c15",
+      "bytes": 431766,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2705,
+        2706,
+        2709,
+        2713,
+        2714,
+        2715
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "The actual final phase2 recovery runs through2714 and real walk reset2715. AFTER progressively rises into a connected ready/walk silhouette; filled floor zones disappear before the final boundary. Both2714/2715 and continuation2717/2718 were actually inspected."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-19.jpg",
+      "sha256": "67f6b870d7988dedbc83a3ce76c248503ddc80b3e313c24893ce3695f2b3322b",
+      "bytes": 137825,
+      "side": "before",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2717,
+        2718
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "The actual final phase2 recovery runs through2714 and real walk reset2715. AFTER progressively rises into a connected ready/walk silhouette; filled floor zones disappear before the final boundary. Both2714/2715 and continuation2717/2718 were actually inspected."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-00.jpg",
+      "sha256": "18311d2ae72d50998c9d5f0fd2109f2ebfa95dab629a16ab0280cfe97af33a87",
+      "bytes": 421669,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2481,
+        2482,
+        2483,
+        2485,
+        2486,
+        2489
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both pairs show phase1 annulus plus cleaving lane warning2486 and solid pale-orange floor impact2531. AFTER has broad torso/free-arm/bell sweeps at2486-2513, including an overhead bell at2509, then holds a leaned low-bell pose through much of2517-2529. BEFORE holds its raised bell for much of the warning and brings it down near the end. Exact impact timing is particularly legible in the matching floor fill."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-01.jpg",
+      "sha256": "b6c29c9850fe237496cb536484e312fb9584a9004388dfaa9c7a41fc887f2803",
+      "bytes": 476413,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2492,
+        2493,
+        2494,
+        2495,
+        2497,
+        2500
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both pairs show phase1 annulus plus cleaving lane warning2486 and solid pale-orange floor impact2531. AFTER has broad torso/free-arm/bell sweeps at2486-2513, including an overhead bell at2509, then holds a leaned low-bell pose through much of2517-2529. BEFORE holds its raised bell for much of the warning and brings it down near the end. Exact impact timing is particularly legible in the matching floor fill."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-02.jpg",
+      "sha256": "47161e83a56991cf03c3b624a6c05eff467ce12dd26f0ce3719400b43890da37",
+      "bytes": 484820,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2501,
+        2505,
+        2509,
+        2513,
+        2517,
+        2521
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both pairs show phase1 annulus plus cleaving lane warning2486 and solid pale-orange floor impact2531. AFTER has broad torso/free-arm/bell sweeps at2486-2513, including an overhead bell at2509, then holds a leaned low-bell pose through much of2517-2529. BEFORE holds its raised bell for much of the warning and brings it down near the end. Exact impact timing is particularly legible in the matching floor fill."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-03.jpg",
+      "sha256": "6b0dc55906d2195ae1f9b42e440260d24a5f22a905c6ecd2dabada1bcb6c94fd",
+      "bytes": 484710,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2522,
+        2523,
+        2525,
+        2528,
+        2529,
+        2530
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "The true native labels2529/2530/2531 are windup_heavy/idle/recover_heavy in both journals. Actual AFTER2530 pixels show a modest torso and bell/arm adjustment from2529 before2531 returns to the lowered strike and the floor flashes. This recorded idle is not a completed recovery/reset. No gross body teleport or detached bell is demonstrated in these bounded JPEG92 pixels."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-04.jpg",
+      "sha256": "a5ebaf2647506f81f252da09f8cf28e0744c1268dccbc085e429d56b80afd196",
+      "bytes": 448973,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2531,
+        2533,
+        2537,
+        2541,
+        2543,
+        2544
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both pairs show phase1 annulus plus cleaving lane warning2486 and solid pale-orange floor impact2531. AFTER has broad torso/free-arm/bell sweeps at2486-2513, including an overhead bell at2509, then holds a leaned low-bell pose through much of2517-2529. BEFORE holds its raised bell for much of the warning and brings it down near the end. Exact impact timing is particularly legible in the matching floor fill."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-05.jpg",
+      "sha256": "7da0a3bb6b0ca54b0bf65ad36506811ec9e46f81b9e174d07f381c9ce63d0d6f",
+      "bytes": 406745,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2545,
+        2546,
+        2547,
+        2549,
+        2553,
+        2557
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Phase1 recovery continues through2546; real walk reset2547 is retained. AFTER rises toward a ready stance and the warning fill disappears by2545. Included ordinary Guardian melees start2570 and2624, hit/recover at2576 and2630, and return to idle2592 and2646. The retained bell/torso motions show down/front strikes and upright returns."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-06.jpg",
+      "sha256": "a05aa744dc847da98d4c3b9e295327d3d9760fa26a750c7b5afc06145a18ce1e",
+      "bytes": 400419,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2560,
+        2561,
+        2562,
+        2565,
+        2569,
+        2570
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Phase1 recovery continues through2546; real walk reset2547 is retained. AFTER rises toward a ready stance and the warning fill disappears by2545. Included ordinary Guardian melees start2570 and2624, hit/recover at2576 and2630, and return to idle2592 and2646. The retained bell/torso motions show down/front strikes and upright returns."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-07.jpg",
+      "sha256": "d3a1c7cfd159db4e0db1185b6a7e2d2c7fa69a644fe7184da3ff2bf5183e54c0",
+      "bytes": 409530,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2573,
+        2575,
+        2576,
+        2577,
+        2579,
+        2580
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Phase1 recovery continues through2546; real walk reset2547 is retained. AFTER rises toward a ready stance and the warning fill disappears by2545. Included ordinary Guardian melees start2570 and2624, hit/recover at2576 and2630, and return to idle2592 and2646. The retained bell/torso motions show down/front strikes and upright returns."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-08.jpg",
+      "sha256": "1d7435d8c83f3c27820336a4a429635621a1de524d6a3113d90a2fbde2f10616",
+      "bytes": 416085,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2581,
+        2585,
+        2589,
+        2591,
+        2592,
+        2593
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Phase1 recovery continues through2546; real walk reset2547 is retained. AFTER rises toward a ready stance and the warning fill disappears by2545. Included ordinary Guardian melees start2570 and2624, hit/recover at2576 and2630, and return to idle2592 and2646. The retained bell/torso motions show down/front strikes and upright returns."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-09.jpg",
+      "sha256": "36743006da82be73ad823afb2ed26966155f1ab61f5c72071e440b61cafdbb7b",
+      "bytes": 414450,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2597,
+        2601,
+        2602,
+        2603,
+        2605,
+        2609
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Secondary caster source51 warnings/impacts also appear in this range: its small floor circle impacts2531,2612 and2693. These are not additional Guardian phases. The small circle turning into a pale ring around2612 is separately visible while Guardian50 remains in its ready stance."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-10.jpg",
+      "sha256": "aed582b96c893a4a467e04d196504a73c702cb4b9931ab40d7526aeb4b787fad",
+      "bytes": 415469,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2610,
+        2611,
+        2612,
+        2613,
+        2617,
+        2621
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Secondary caster source51 warnings/impacts also appear in this range: its small floor circle impacts2531,2612 and2693. These are not additional Guardian phases. The small circle turning into a pale ring around2612 is separately visible while Guardian50 remains in its ready stance."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-11.jpg",
+      "sha256": "f8a992596b0ad5c892b673b6623f94398fc966dbcdc485aa2a3c37fe69cbc872",
+      "bytes": 408228,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2622,
+        2623,
+        2624,
+        2625,
+        2629,
+        2630
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Secondary caster source51 warnings/impacts also appear in this range: its small floor circle impacts2531,2612 and2693. These are not additional Guardian phases. The small circle turning into a pale ring around2612 is separately visible while Guardian50 remains in its ready stance."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-12.jpg",
+      "sha256": "4d075a6b9cdf43aca020ca5db526d7b4845ec594706c3337626156e23fda69c5",
+      "bytes": 404760,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2633,
+        2637,
+        2639,
+        2640,
+        2641,
+        2644
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Secondary caster source51 warnings/impacts also appear in this range: its small floor circle impacts2531,2612 and2693. These are not additional Guardian phases. The small circle turning into a pale ring around2612 is separately visible while Guardian50 remains in its ready stance."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-13.jpg",
+      "sha256": "d52b36b5a03975d95d315d886905095f80ca94be0b6aefeaed37f9f0b70b166f",
+      "bytes": 403932,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2645,
+        2646,
+        2649,
+        2653,
+        2654,
+        2656
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Actual Guardian actor50 region0 changes to phase1 Crown Break at2483 and phase2 Final Toll at2654. Retained floating CROWN BREAK and FINAL TOLL text supports those moments; the main boss HUD lies outside the crop."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-14.jpg",
+      "sha256": "e063e4620e9d5b3e0641d361a236e54905aaa27134d5f9b8b9934c82f6fa1705",
+      "bytes": 466761,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2657,
+        2661,
+        2663,
+        2664,
+        2665,
+        2669
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both pairs show phase2 split overlapping annuli plus transverse lane warning2657, with the same outlined safe holes/zone placement, then solid floor fill at2699. AFTER again makes broad bell/free-arm sweeps, including raised bell2677, then holds a forward-inclined low bell by2683-2696. This repeats the late low-held preparation concern."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-15.jpg",
+      "sha256": "ede27e66b7c1a653948f7e839f85b7238b079f6342ca91e66186c98e7c6973ba",
+      "bytes": 473050,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2673,
+        2677,
+        2681,
+        2683,
+        2684,
+        2685
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both pairs show phase2 split overlapping annuli plus transverse lane warning2657, with the same outlined safe holes/zone placement, then solid floor fill at2699. AFTER again makes broad bell/free-arm sweeps, including raised bell2677, then holds a forward-inclined low bell by2683-2696. This repeats the late low-held preparation concern."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-16.jpg",
+      "sha256": "9c4bbce0353508c0e41a8c410e5692c43f56b6c59c7bbbbe9a271e487657e1ed",
+      "bytes": 475520,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2689,
+        2690,
+        2691,
+        2692,
+        2693,
+        2696
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both pairs show phase2 split overlapping annuli plus transverse lane warning2657, with the same outlined safe holes/zone placement, then solid floor fill at2699. AFTER again makes broad bell/free-arm sweeps, including raised bell2677, then holds a forward-inclined low bell by2683-2696. This repeats the late low-held preparation concern."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-17.jpg",
+      "sha256": "3e03a48bb4c1a76246ee2ce3a7ae3346a24089c91202e78a720d35e2f5683d99",
+      "bytes": 469856,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2697,
+        2698,
+        2699,
+        2701,
+        2702,
+        2703
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "The true native labels2696/2697/2698/2699 are windup_heavy/idle/idle/recover_heavy. AFTER2697 adjusts the bell toward front/down;2698 visibly straightens the torso and raises/shifts the bell to the side;2699 leans back into the lowered strike while the split zones flash. This is a visible brief pose excursion across the two real idle frames. Baseline also raises the side bell at2698. The retained crops do not demonstrate gross body teleport or a detached weapon, but they do not certify fine continuity."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-18.jpg",
+      "sha256": "f52fdde392838c4c6b37cea34ab775bda90f04ec8b79de0e81d9b95ce31d8815",
+      "bytes": 439836,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2705,
+        2706,
+        2709,
+        2713,
+        2714,
+        2715
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "The actual final phase2 recovery runs through2714 and real walk reset2715. AFTER progressively rises into a connected ready/walk silhouette; filled floor zones disappear before the final boundary. Both2714/2715 and continuation2717/2718 were actually inspected."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/first-boss-telegraph-release-recovery-reset/derived-contact-sheet-19.jpg",
+      "sha256": "5bb39979875f0494aa2b7ad7b08a7aa91dd910da62c0e03034fc40f1262e3d0c",
+      "bytes": 139970,
+      "side": "after",
+      "label": "first-boss-telegraph-release-recovery-reset",
+      "frames": [
+        2717,
+        2718
+      ],
+      "crop_xyxy": [
+        265,
+        115,
+        886,
+        477
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "The actual final phase2 recovery runs through2714 and real walk reset2715. AFTER progressively rises into a connected ready/walk silhouette; filled floor zones disappear before the final boundary. Both2714/2715 and continuation2717/2718 were actually inspected."
+      ]
+    },
+    {
+      "file": "vowkeeper/before/original-ending-loot-ui/derived-contact-sheet-00.jpg",
+      "sha256": "15bacc2c0000e436582c24883130939e06c92e2ffd552dc85aebf69a9f6241c1",
+      "bytes": 325640,
+      "side": "before",
+      "label": "original-ending-loot-ui",
+      "frames": [
+        3093,
+        3097,
+        3098
+      ],
+      "crop_xyxy": [
+        0,
+        0,
+        1200,
+        536
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both full-viewport derived ending sheets show DUNGEON CLEARED, CAMPAIGN +428 XP +190 GOLD,790 GOLD,100.3s,26 foes defeated,13 skills cast,4 evasions, the EQUIP BELLWARDEN'S MEMORY button and matching navigation/upgrade buttons at retained3093,3097,3098.",
+        "The visible static final viewport is readable and matches before/after. The label original-ending-loot-ui means the original movie ending range; the actual viewed sheets are derived H264+JPEG92 images. Oathguard Gauntlets and the complete lower reward inventory are not visible in this viewport, so metadata about the two loot items is not presented as a pixel observation."
+      ]
+    },
+    {
+      "file": "vowkeeper/after/original-ending-loot-ui/derived-contact-sheet-00.jpg",
+      "sha256": "4fd5bd4b6f9400353dde1e18f4b6f2dccaca1c594da8dc74a086ea8421fb9ed5",
+      "bytes": 324935,
+      "side": "after",
+      "label": "original-ending-loot-ui",
+      "frames": [
+        3093,
+        3097,
+        3098
+      ],
+      "crop_xyxy": [
+        0,
+        0,
+        1200,
+        536
+      ],
+      "actually_viewed_by": "/root/temporal_review_resume_057/review_scope_audit_057",
+      "view_tool": "tools.view_image(detail=original)",
+      "observations": [
+        "Both full-viewport derived ending sheets show DUNGEON CLEARED, CAMPAIGN +428 XP +190 GOLD,790 GOLD,100.3s,26 foes defeated,13 skills cast,4 evasions, the EQUIP BELLWARDEN'S MEMORY button and matching navigation/upgrade buttons at retained3093,3097,3098.",
+        "The visible static final viewport is readable and matches before/after. The label original-ending-loot-ui means the original movie ending range; the actual viewed sheets are derived H264+JPEG92 images. Oathguard Gauntlets and the complete lower reward inventory are not visible in this viewport, so metadata about the two loot items is not presented as a pixel observation."
+      ]
+    }
+  ],
+  "additional_visual_checks": [],
+  "limits": [
+    "AI visual inspection through tools.view_image only; no separate human signoff, whole-movie viewing, real-time playback or every-decoded-frame visual inspection claimed.",
+    "Only the retained panels were visually inspected. Consecutive decoding of bounded ranges does not imply those intervening frames were visually watched. Context stride is four frames plus exact semantic boundaries and range end; temporal gaps remain unjudged.",
+    "Shared context crops preserve original decoded pixels and are at least620x330; exact xyxy varies by range. The floor-cycle crop is621x362, phase0/death crops include their own exact receipt coordinates, and ending UI is full viewport. Off-crop actors/environment and most Guardian HUD content cannot be visually judged.",
+    "The H264 movie and JPEG92 sheet encoding are lossy. Original-detail viewing does not turn these sheets into original Godot PNG evidence, and the display may scale a contact sheet.",
+    "Small/dark/overlapping silhouettes limit limb, foot, hand and weapon attachment judgments. No absence of fine clipping, occlusion, ankle/shin/nock errors or one-frame defects outside the retained samples is certified.",
+    "Guardian initial death coverage is only the first roughly0.97s death response. Complete skeletal death, corpse settling, eventual disappearance and floor-contact correctness remain unjudged.",
+    "Bone-detail-none journals provide generic clip/root/timer labels and bone counts, not sampled bone transforms or precise attachment geometry. They bind action timing; they cannot establish fine skeletal motion or pixel visibility.",
+    "Phase0 coverage is ordinary melee with no Guardian floor warning in that phrase; phases1+2 provide the full floor-warning/impact/recovery/reset sequence. Later unplanned Guardian melee phrases and the secondary actor51 complete lifecycle are outside this visual review.",
+    "Visible ending UI is the static final viewport only. Reward content below the viewport is unjudged, although finalized receipt/journal metadata records two loot items.",
+    "Low-held late Guardian preparation and quiet Hexer staff release/recovery are presentation limits. A coherent retained silhouette and aligned floor timing do not establish strong skeletal warning/release readability or physical-device performance."
+  ]
+}

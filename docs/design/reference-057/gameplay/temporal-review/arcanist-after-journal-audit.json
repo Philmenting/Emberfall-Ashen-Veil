@@ -1,0 +1,990 @@
+{
+  "schema": 1,
+  "status": "complete_consecutive_journal_audit",
+  "created_utc": "2026-10-07T22:19:53.416850+00:00",
+  "character_class": "arcanist",
+  "side": "after",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "frames": 2496,
+  "movie_sha256": "27f282aa3ab14069b88eb079795c44a7331cd24ca43c9ad7cd1d2e47ab655d35",
+  "journal_sha256": "1dd986edc302190ea26df14080627d8d62fabfcf4a297feb078b5a11bef07f29",
+  "receipt_sha256": "a41907dbda10bdce78730d8a58a099264e418c148e7bb3c9bd427de3be4667c9",
+  "events": {
+    "hero_attack": 19,
+    "hero_release": 18,
+    "nova": 7,
+    "hit": 32,
+    "interrupt": 6,
+    "reinforcement_spawn": 2,
+    "engage": 5,
+    "warning": 5,
+    "evade": 3,
+    "technique_cast": 5,
+    "miss": 3,
+    "impact": 4,
+    "technique": 4,
+    "well": 1,
+    "objective": 3,
+    "boss_phase": 2,
+    "ward": 1,
+    "hero_hit": 1,
+    "finished": 1
+  },
+  "hero_clip_counts": {
+    "idle": 472,
+    "windup_skill": 76,
+    "recover_skill": 97,
+    "windup_basic": 49,
+    "recover_basic": 77,
+    "walk": 1597,
+    "evade": 29,
+    "windup_heavy": 54,
+    "recover_heavy": 20,
+    "scene_removed_for_result_ui": 25
+  },
+  "actual_result_ui_rows_without_hero_scene": [
+    2471,
+    2472,
+    2473,
+    2474,
+    2475,
+    2476,
+    2477,
+    2478,
+    2479,
+    2480,
+    2481,
+    2482,
+    2483,
+    2484,
+    2485,
+    2486,
+    2487,
+    2488,
+    2489,
+    2490,
+    2491,
+    2492,
+    2493,
+    2494,
+    2495
+  ],
+  "attacks": [
+    {
+      "start": 2,
+      "last_attack_pose": 19,
+      "first_complete_reset": 20,
+      "style": "signature",
+      "event": {
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 0,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        9
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 44,
+      "last_attack_pose": 61,
+      "first_complete_reset": 62,
+      "style": "basic",
+      "event": {
+        "name": "Arcane Bolt",
+        "skill": false,
+        "target": 2,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        51
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 272,
+      "last_attack_pose": 289,
+      "first_complete_reset": 290,
+      "style": "signature",
+      "event": {
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 12,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        279
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 320,
+      "last_attack_pose": 356,
+      "first_complete_reset": 357,
+      "style": "starfall",
+      "event": {
+        "ability_id": "starfall",
+        "name": "Ashen Starfall",
+        "skill": true,
+        "target": 10,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        347
+      ],
+      "recovery_relative_intervals": [
+        [
+          27,
+          36
+        ]
+      ]
+    },
+    {
+      "start": 749,
+      "last_attack_pose": 766,
+      "first_complete_reset": 767,
+      "style": "signature",
+      "event": {
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 20,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        756
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 791,
+      "last_attack_pose": 793,
+      "first_complete_reset": 794,
+      "style": "chain",
+      "event": {
+        "ability_id": "chain",
+        "name": "Veil Lightning",
+        "skill": true,
+        "target": 24,
+        "type": "hero_attack"
+      },
+      "release_frames": [],
+      "recovery_relative_intervals": []
+    },
+    {
+      "start": 833,
+      "last_attack_pose": 850,
+      "first_complete_reset": 851,
+      "style": "basic",
+      "event": {
+        "name": "Arcane Bolt",
+        "skill": false,
+        "target": 24,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        840
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 875,
+      "last_attack_pose": 892,
+      "first_complete_reset": 893,
+      "style": "basic",
+      "event": {
+        "name": "Arcane Bolt",
+        "skill": false,
+        "target": 21,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        882
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 1268,
+      "last_attack_pose": 1289,
+      "first_complete_reset": 1290,
+      "style": "chain",
+      "event": {
+        "ability_id": "chain",
+        "name": "Veil Lightning",
+        "skill": true,
+        "target": 32,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1280
+      ],
+      "recovery_relative_intervals": [
+        [
+          12,
+          21
+        ]
+      ]
+    },
+    {
+      "start": 1310,
+      "last_attack_pose": 1327,
+      "first_complete_reset": 1328,
+      "style": "signature",
+      "event": {
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 31,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1317
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 1352,
+      "last_attack_pose": 1369,
+      "first_complete_reset": 1370,
+      "style": "basic",
+      "event": {
+        "name": "Arcane Bolt",
+        "skill": false,
+        "target": 30,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1359
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 1703,
+      "last_attack_pose": 1720,
+      "first_complete_reset": 1721,
+      "style": "signature",
+      "event": {
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 44,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1710
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 1745,
+      "last_attack_pose": 1762,
+      "first_complete_reset": 1763,
+      "style": "basic",
+      "event": {
+        "name": "Arcane Bolt",
+        "skill": false,
+        "target": 40,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        1752
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 2042,
+      "last_attack_pose": 2059,
+      "first_complete_reset": 2060,
+      "style": "signature",
+      "event": {
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 52,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2049
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 2084,
+      "last_attack_pose": 2105,
+      "first_complete_reset": 2106,
+      "style": "chain",
+      "event": {
+        "ability_id": "chain",
+        "name": "Veil Lightning",
+        "skill": true,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2096
+      ],
+      "recovery_relative_intervals": [
+        [
+          12,
+          21
+        ]
+      ]
+    },
+    {
+      "start": 2126,
+      "last_attack_pose": 2162,
+      "first_complete_reset": 2163,
+      "style": "starfall",
+      "event": {
+        "ability_id": "starfall",
+        "name": "Ashen Starfall",
+        "skill": true,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2153
+      ],
+      "recovery_relative_intervals": [
+        [
+          27,
+          36
+        ]
+      ]
+    },
+    {
+      "start": 2168,
+      "last_attack_pose": 2185,
+      "first_complete_reset": 2186,
+      "style": "basic",
+      "event": {
+        "name": "Arcane Bolt",
+        "skill": false,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2175
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 2210,
+      "last_attack_pose": 2227,
+      "first_complete_reset": 2228,
+      "style": "basic",
+      "event": {
+        "name": "Arcane Bolt",
+        "skill": false,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2217
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    },
+    {
+      "start": 2252,
+      "last_attack_pose": 2269,
+      "first_complete_reset": 2270,
+      "style": "signature",
+      "event": {
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 50,
+        "type": "hero_attack"
+      },
+      "release_frames": [
+        2259
+      ],
+      "recovery_relative_intervals": [
+        [
+          7,
+          17
+        ]
+      ]
+    }
+  ],
+  "evades": [
+    {
+      "start": 311,
+      "last_native_evade": 319,
+      "event": {
+        "goal": [
+          1.30911636352539,
+          -11.2871417999268
+        ],
+        "position": [
+          -0.734322547912598,
+          -11.2871417999268
+        ],
+        "type": "evade"
+      },
+      "previous_clip": "idle",
+      "previous_attack_time": -1.0,
+      "previous_release_time": -1.0,
+      "native_basis_direction": [
+        -0.9757213985429404,
+        0.0,
+        0.21901541595378307
+      ],
+      "predominantly_lateral": true,
+      "root_distance_between_observed_samples_m": 1.58551642298698,
+      "scope": "Root and original model basis only; bone-detail-none journal cannot establish ankle overlap."
+    },
+    {
+      "start": 794,
+      "last_native_evade": 803,
+      "event": {
+        "goal": [
+          -6.46468544006348,
+          -23.5010433197021
+        ],
+        "position": [
+          -8.14515590667725,
+          -23.5010433197021
+        ],
+        "type": "evade"
+      },
+      "previous_clip": "windup_skill",
+      "previous_attack_time": 0.0666666666666667,
+      "previous_release_time": -1.0,
+      "native_basis_direction": [
+        -0.9291760656265567,
+        0.0,
+        0.36963744272834775
+      ],
+      "predominantly_lateral": true,
+      "root_distance_between_observed_samples_m": 1.4079201169915383,
+      "scope": "Root and original model basis only; bone-detail-none journal cannot establish ankle overlap."
+    },
+    {
+      "start": 2114,
+      "last_native_evade": 2123,
+      "event": {
+        "goal": [
+          2.50422473868639e-08,
+          -66.6999969482422
+        ],
+        "position": [
+          0.0,
+          -64.5999984741211
+        ],
+        "type": "evade"
+      },
+      "previous_clip": "idle",
+      "previous_attack_time": -1.0,
+      "previous_release_time": -1.0,
+      "native_basis_direction": [
+        0.0028278433187898565,
+        0.0,
+        0.999996001643089
+      ],
+      "predominantly_lateral": false,
+      "root_distance_between_observed_samples_m": 1.7106246948241053,
+      "scope": "Root and original model basis only; bone-detail-none journal cannot establish ankle overlap."
+    }
+  ],
+  "death_events": [
+    {
+      "frame": 11,
+      "target": 0,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 0,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 11,
+      "target": 1,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 1,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 11,
+      "target": 3,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 3,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 11,
+      "target": 4,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 4,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 53,
+      "target": 2,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Arcane Bolt",
+        "skill": false,
+        "target": 2,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 281,
+      "target": 12,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 12,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 281,
+      "target": 13,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 13,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 347,
+      "target": 10,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Ashen Starfall",
+        "skill": true,
+        "target": 10,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 347,
+      "target": 11,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Ashen Starfall",
+        "skill": true,
+        "target": 11,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 758,
+      "target": 20,
+      "kind": "bulwark",
+      "event": {
+        "critical": false,
+        "damage": 374,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 20,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 758,
+      "target": 22,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 22,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 758,
+      "target": 23,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 23,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 842,
+      "target": 24,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Arcane Bolt",
+        "skill": false,
+        "target": 24,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 884,
+      "target": 21,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Arcane Bolt",
+        "skill": false,
+        "target": 21,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1280,
+      "target": 32,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Veil Lightning",
+        "skill": true,
+        "target": 32,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1280,
+      "target": 33,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Veil Lightning",
+        "skill": true,
+        "target": 33,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1319,
+      "target": 31,
+      "kind": "elite",
+      "event": {
+        "critical": false,
+        "damage": 375,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 31,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1361,
+      "target": 30,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Arcane Bolt",
+        "skill": false,
+        "target": 30,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1712,
+      "target": 41,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 41,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1712,
+      "target": 42,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 42,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1712,
+      "target": 43,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 43,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1712,
+      "target": 44,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 44,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 1754,
+      "target": 40,
+      "kind": "raider",
+      "event": {
+        "critical": false,
+        "damage": 216,
+        "dead": true,
+        "name": "Arcane Bolt",
+        "skill": false,
+        "target": 40,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 2051,
+      "target": 51,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 51,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 2051,
+      "target": 52,
+      "kind": "hexer",
+      "event": {
+        "critical": false,
+        "damage": 187,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 52,
+        "type": "hit"
+      }
+    },
+    {
+      "frame": 2261,
+      "target": 50,
+      "kind": "boss",
+      "event": {
+        "critical": false,
+        "damage": 107,
+        "dead": true,
+        "name": "Veil Nova",
+        "skill": true,
+        "target": 50,
+        "type": "hit"
+      }
+    }
+  ],
+  "walk_intervals": [
+    [
+      92,
+      271
+    ],
+    [
+      290,
+      298
+    ],
+    [
+      357,
+      455
+    ],
+    [
+      512,
+      748
+    ],
+    [
+      767,
+      772
+    ],
+    [
+      804,
+      832
+    ],
+    [
+      851,
+      874
+    ],
+    [
+      923,
+      1267
+    ],
+    [
+      1328,
+      1336
+    ],
+    [
+      1370,
+      1451
+    ],
+    [
+      1508,
+      1702
+    ],
+    [
+      1721,
+      1733
+    ],
+    [
+      1793,
+      2041
+    ],
+    [
+      2124,
+      2125
+    ],
+    [
+      2198,
+      2209
+    ],
+    [
+      2228,
+      2251
+    ],
+    [
+      2270,
+      2351
+    ]
+  ],
+  "human_visual_review": "pending; journal parsing is not visual acceptance",
+  "review_tool_sha256": "afd4ff67403623b767fa30b3a18431a2cefb7cfb374c9b572b1b7e938416a8bf",
+  "scope": "Actual consecutive journal. No native bone positions, GPU pixel occlusion, physical phone FPS or whole-movie human review inferred."
+}

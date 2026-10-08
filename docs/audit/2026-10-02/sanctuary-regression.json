@@ -1,0 +1,43 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "base_commit": "fdc33d60a6a2af322bb1b411d62fb952dd9eead8",
+  "suites": {
+    "BETA FLOW SMOKE": 46,
+    "COMBAT STANCES SMOKE": 140,
+    "COMBAT MOVEMENT SMOKE": 8,
+    "JOURNEY SMOKE": 413,
+    "DUNGEON SMOKE": 55,
+    "PERSISTENCE SMOKE": 89,
+    "ARCANE TACTICS SMOKE": 29,
+    "BOSS PATTERNS SMOKE": 114,
+    "CLASS LOOT SMOKE": 29,
+    "CONTRACTS SMOKE": 68,
+    "GEAR / FORECAST SMOKE": 38,
+    "REGIONS SMOKE": 36,
+    "ONBOARDING SMOKE": 19,
+    "OPTIONS SMOKE": 73,
+    "SKILL ROTATION SMOKE": 135,
+    "AUTHORED ART SMOKE": 52,
+    "FELLOWSHIP UI SMOKE": 11,
+    "CLOUD IDENTITY SMOKE": 14,
+    "MANA WARD SMOKE": 27,
+    "VISUALS SMOKE": 69
+  },
+  "total_checks": 1465,
+  "all_suites_passed": true,
+  "method": "19 suites passed in the full run; after repairing beam batching, visuals, authored_art and options were rerun successfully. Latest passing result for each suite is listed.",
+  "python_release_checks": 5,
+  "server_runtime_checks": "passed",
+  "gpu_renderer": "GL Compatibility / Mesa llvmpipe",
+  "gpu_capture_resolutions": [
+    [
+      1280,
+      720
+    ],
+    [
+      854,
+      480
+    ]
+  ],
+  "physical_android_test": false
+}

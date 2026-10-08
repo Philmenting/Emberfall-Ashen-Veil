@@ -1,0 +1,203 @@
+{
+  "actual_exit_code": 0,
+  "samples": 2904,
+  "paths": [
+    {
+      "class": "Arcanist",
+      "direction": 0,
+      "min_ankle_m": -0.49649903178215,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.413407266139984,
+      "min_projection_gap_m": -0.621848464012146
+    },
+    {
+      "class": "Arcanist",
+      "direction": 1,
+      "min_ankle_m": -0.213401690125465,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.131367653608322,
+      "min_projection_gap_m": -0.347046077251434
+    },
+    {
+      "class": "Arcanist",
+      "direction": 2,
+      "min_ankle_m": 0.47005632519722,
+      "progress": 0.3,
+      "min_sole_center_m": 0.553535401821136,
+      "min_projection_gap_m": 0.341542750597
+    },
+    {
+      "class": "Arcanist",
+      "direction": 3,
+      "min_ankle_m": -0.213401705026627,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.130816757678986,
+      "min_projection_gap_m": -0.336210548877716
+    },
+    {
+      "class": "Arcanist",
+      "direction": 4,
+      "min_ankle_m": -0.496499001979828,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.413580149412155,
+      "min_projection_gap_m": -0.625827372074127
+    },
+    {
+      "class": "Arcanist",
+      "direction": 5,
+      "min_ankle_m": -0.213401794433594,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.131562307476997,
+      "min_projection_gap_m": -0.352231740951538
+    },
+    {
+      "class": "Arcanist",
+      "direction": 6,
+      "min_ankle_m": 0.470056116580963,
+      "progress": 0.833333333333333,
+      "min_sole_center_m": 0.553535401821136,
+      "min_projection_gap_m": 0.341542750597
+    },
+    {
+      "class": "Arcanist",
+      "direction": 7,
+      "min_ankle_m": -0.21340149641037,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.129827469587326,
+      "min_projection_gap_m": -0.331887990236282
+    },
+    {
+      "class": "Ranger",
+      "direction": 0,
+      "min_ankle_m": -0.496498972177505,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.372051030397415,
+      "min_projection_gap_m": -0.617184042930603
+    },
+    {
+      "class": "Ranger",
+      "direction": 1,
+      "min_ankle_m": -0.213401600718498,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.0902726799249649,
+      "min_projection_gap_m": -0.3427774310112
+    },
+    {
+      "class": "Ranger",
+      "direction": 2,
+      "min_ankle_m": 0.470056265592575,
+      "progress": 0.3,
+      "min_sole_center_m": 0.592078447341919,
+      "min_projection_gap_m": 0.349652498960495
+    },
+    {
+      "class": "Ranger",
+      "direction": 3,
+      "min_ankle_m": -0.213401436805725,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.0899646282196045,
+      "min_projection_gap_m": -0.332059383392334
+    },
+    {
+      "class": "Ranger",
+      "direction": 4,
+      "min_ankle_m": -0.496499061584473,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.372114896774292,
+      "min_projection_gap_m": -0.622490346431732
+    },
+    {
+      "class": "Ranger",
+      "direction": 5,
+      "min_ankle_m": -0.213401719927788,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.0903743281960487,
+      "min_projection_gap_m": -0.347841799259186
+    },
+    {
+      "class": "Ranger",
+      "direction": 6,
+      "min_ankle_m": 0.470056414604187,
+      "progress": 0.975,
+      "min_sole_center_m": 0.592078447341919,
+      "min_projection_gap_m": 0.349652498960495
+    },
+    {
+      "class": "Ranger",
+      "direction": 7,
+      "min_ankle_m": -0.213401556015015,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.0894383788108826,
+      "min_projection_gap_m": -0.327966272830963
+    },
+    {
+      "class": "Vowkeeper",
+      "direction": 0,
+      "min_ankle_m": -0.524776816368103,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.399494975805283,
+      "min_projection_gap_m": -0.652487576007843
+    },
+    {
+      "class": "Vowkeeper",
+      "direction": 1,
+      "min_ankle_m": -0.241679042577744,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.117538563907146,
+      "min_projection_gap_m": -0.37785941362381
+    },
+    {
+      "class": "Vowkeeper",
+      "direction": 2,
+      "min_ankle_m": 0.441778957843781,
+      "progress": 0.208333333333333,
+      "min_sole_center_m": 0.562866032123566,
+      "min_projection_gap_m": 0.303307414054871
+    },
+    {
+      "class": "Vowkeeper",
+      "direction": 3,
+      "min_ankle_m": -0.241679698228836,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.117590665817261,
+      "min_projection_gap_m": -0.37090066075325
+    },
+    {
+      "class": "Vowkeeper",
+      "direction": 4,
+      "min_ankle_m": -0.524776637554169,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.398974180221558,
+      "min_projection_gap_m": -0.653096914291382
+    },
+    {
+      "class": "Vowkeeper",
+      "direction": 5,
+      "min_ankle_m": -0.241679117083549,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.117236420512199,
+      "min_projection_gap_m": -0.37775981426239
+    },
+    {
+      "class": "Vowkeeper",
+      "direction": 6,
+      "min_ankle_m": 0.441778719425201,
+      "progress": 0.916666666666667,
+      "min_sole_center_m": 0.563690483570099,
+      "min_projection_gap_m": 0.307967513799667
+    },
+    {
+      "class": "Vowkeeper",
+      "direction": 7,
+      "min_ankle_m": -0.241679251194,
+      "progress": 0.266666666666667,
+      "min_sole_center_m": -0.118023812770844,
+      "min_projection_gap_m": -0.368919610977173
+    }
+  ],
+  "source_head": "f8b99a84b4c96a87c4ecedf42217f448a2988d81",
+  "source_files": {
+    "source_avatar_evade.original.gd": "ee8421c7ed9199ba2fece7989ac2e37be615d1feb2f151e273cfdb7419eb9fd2",
+    "source_avatar_evade_smoke.original.gd": "d87ef2eeba7eee139e732a6dfdef021789869b468906a9dbadd0b7bbd3b0dbfa"
+  }
+}

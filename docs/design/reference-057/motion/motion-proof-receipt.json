@@ -1,0 +1,248 @@
+{
+  "scope": "Five actual production actor suites and 18 original diagnostic native images; full expedition gameplay, hardware performance and release readiness are separate.",
+  "godot_version": "4.7.2.stable.official.ed1daf0bf",
+  "focused_checks": 3300,
+  "focused_failures": 0,
+  "all_accepted_actual_process_exit_codes": 0,
+  "error_diagnostics": [],
+  "native_images": 18,
+  "native_renderer": "Mesa llvmpipe OpenGL Compatibility under Xvfb :108",
+  "audio_driver": "Dummy; no diagnostic-preview audio claim",
+  "maximum_actual_cancel_ankle_world_jump_m": 5.20954927196726e-07,
+  "maximum_class_actual_indexed_hand_handle_penetration_m": 0.00082330033183,
+  "maximum_class_actual_indexed_finger_handle_gap_m": 0.00264402478933,
+  "maximum_arcanist_actual_indexed_arm_shaft_penetration_m": 0.00047286118567,
+  "maximum_arcanist_actual_indexed_finger_handle_gap_m": 0.00246476118267,
+  "reviewed_original_images": [
+    "arcanist-cancel-departure.png",
+    "arcanist-cancel-entry.png",
+    "arcanist-evade-low-step.png",
+    "arcanist-signature-follow.png",
+    "arcanist-signature-load.png",
+    "arcanist-signature-release.png",
+    "ranger-cancel-departure.png",
+    "ranger-cancel-entry.png",
+    "ranger-evade-low-step.png",
+    "ranger-signature-follow.png",
+    "ranger-signature-load.png",
+    "ranger-signature-release.png",
+    "vowkeeper-cancel-departure.png",
+    "vowkeeper-cancel-entry.png",
+    "vowkeeper-evade-low-step.png",
+    "vowkeeper-signature-follow.png",
+    "vowkeeper-signature-load.png",
+    "vowkeeper-signature-release.png"
+  ],
+  "rejected_held_entry_attempt": {
+    "focused_checks": 706,
+    "failures": 8,
+    "actual_test_exit_code": 1,
+    "reason": "Held phase0 foot-anchor conversion fed the prior grounding correction back into the inverse each redraw; event-fixed rig baseline corrected actual production code. Physical thresholds were not weakened."
+  },
+  "original_artifacts": [
+    {
+      "file": "focused-accepted/class_avatar_quality.log",
+      "bytes": 1371,
+      "sha256": "2b0e02a8362cbabe5e998890a15507b315448a2048237e31a6806b79e3342f5c",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-retest-02/class_avatar_quality.log"
+    },
+    {
+      "file": "focused-accepted/editor-import.log",
+      "bytes": 1065,
+      "sha256": "401b37fc5223bf108aa68163de7feae8073a148bdf29dd418816660bfac8a66b",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-retest-02/editor-import.log"
+    },
+    {
+      "file": "focused-accepted/execution.json",
+      "bytes": 4828,
+      "sha256": "446634a94d5cd5b6b82d278b30fe6a98d780c6c9b86a7da8804abc6a11a1bc74",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-retest-02/execution.json"
+    },
+    {
+      "file": "focused-accepted/native_motion_transition.log",
+      "bytes": 3516,
+      "sha256": "20e0bb3fe51658fb3f9cc4666ee6df9b9ab2e6a05da39edafa3188b6c54059a5",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-retest-02/native_motion_transition.log"
+    },
+    {
+      "file": "focused-accepted/source_avatar_attack.log",
+      "bytes": 2281,
+      "sha256": "3ffe40458f21caa96e16c8ff6cf9d105dab1899e80cbac7cad54e57649be1ae1",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-retest-02/source_avatar_attack.log"
+    },
+    {
+      "file": "focused-accepted/source_avatar_attack_contact.log",
+      "bytes": 246,
+      "sha256": "c512f87353c60bf929c9b27a2337bd360841442d5909db1480009c490b47ecf6",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-retest-02/source_avatar_attack_contact.log"
+    },
+    {
+      "file": "focused-accepted/source_avatar_evade.log",
+      "bytes": 2624,
+      "sha256": "feec0d11344ef8cd55c2ae3a6865ff99becd96c0673f5003ae88f2f483f030c5",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-retest-02/source_avatar_evade.log"
+    },
+    {
+      "file": "native-accepted/execution.json",
+      "bytes": 4780,
+      "sha256": "59f422e6897f0d8b6a10563a6055bcf217cdaa7820fbce9243953da58baf6a26",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/execution.json"
+    },
+    {
+      "file": "native-accepted/native-preview.log",
+      "bytes": 1420,
+      "sha256": "3cb9f13969a2a9903828312e24ba7db9d53198327007cac25c30ac3b12b1a5ac",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native-preview.log"
+    },
+    {
+      "file": "native-accepted/arcanist-cancel-departure.png",
+      "bytes": 125958,
+      "sha256": "c96ac884bf990b29f706328606eb8d988fa66b5aa8c2458d4efe560f0b40826f",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/arcanist-cancel-departure.png"
+    },
+    {
+      "file": "native-accepted/arcanist-cancel-entry.png",
+      "bytes": 126011,
+      "sha256": "f5e3ca6e4aab6b0450926b32fd45ca6dcc04e72ec99f7c0034f9168c8c282944",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/arcanist-cancel-entry.png"
+    },
+    {
+      "file": "native-accepted/arcanist-evade-low-step.png",
+      "bytes": 125815,
+      "sha256": "e28d4e9938a4d27d6dac4d416d477f96df8f72acb131b6d21d273620b82bc686",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/arcanist-evade-low-step.png"
+    },
+    {
+      "file": "native-accepted/arcanist-signature-follow.png",
+      "bytes": 124429,
+      "sha256": "3e397f4f112add1607ae69cb51b20b65322bf7f2ea524a12696f39436aaa804c",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/arcanist-signature-follow.png"
+    },
+    {
+      "file": "native-accepted/arcanist-signature-load.png",
+      "bytes": 125165,
+      "sha256": "a6817d5bf35ce78fba2a718f544be92d07be91bfebca392429a6fe3b4e3f4068",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/arcanist-signature-load.png"
+    },
+    {
+      "file": "native-accepted/arcanist-signature-release.png",
+      "bytes": 125134,
+      "sha256": "0e72b4b6d94ce28623d241e5ad4b43895a959fccd772e0fb9c669a78115e9f4c",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/arcanist-signature-release.png"
+    },
+    {
+      "file": "native-accepted/native-motion-poses.json",
+      "bytes": 15438,
+      "sha256": "5f868c36950fa2740eb69735bb889c3db4bec85830e56fa289c5e5f10b74e4d9",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/native-motion-poses.json"
+    },
+    {
+      "file": "native-accepted/ranger-cancel-departure.png",
+      "bytes": 102160,
+      "sha256": "ad7b4b079004681b627913c752826bfbda7f251dee9de631414737552014060a",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/ranger-cancel-departure.png"
+    },
+    {
+      "file": "native-accepted/ranger-cancel-entry.png",
+      "bytes": 101863,
+      "sha256": "ba09e9704a8a9694197b81c084b4ff3d4bb0191d1445f353b8d17c725044b670",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/ranger-cancel-entry.png"
+    },
+    {
+      "file": "native-accepted/ranger-evade-low-step.png",
+      "bytes": 93949,
+      "sha256": "31cffccd0221b124020c7a00ad6623c6ade286291ce22f4f38dc1db4b536fe7e",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/ranger-evade-low-step.png"
+    },
+    {
+      "file": "native-accepted/ranger-signature-follow.png",
+      "bytes": 99753,
+      "sha256": "5762c7363c69f80ff023b3a3bd6e59f906f5a524f3863801cf7335110c34c248",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/ranger-signature-follow.png"
+    },
+    {
+      "file": "native-accepted/ranger-signature-load.png",
+      "bytes": 101604,
+      "sha256": "6a758af6b0a058ad6b7f8231c00ca6bb889107be764bba393c80757e2509babb",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/ranger-signature-load.png"
+    },
+    {
+      "file": "native-accepted/ranger-signature-release.png",
+      "bytes": 102716,
+      "sha256": "0e23e8819959801b2f4e2abd65243e9ab174bbbba81ee3e7dfb8ec737e8d7c8b",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/ranger-signature-release.png"
+    },
+    {
+      "file": "native-accepted/vowkeeper-cancel-departure.png",
+      "bytes": 102437,
+      "sha256": "d271f0b3be030f4ed66d3d42266db8307acdb859aacd7e8b01137a3f05310c7e",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/vowkeeper-cancel-departure.png"
+    },
+    {
+      "file": "native-accepted/vowkeeper-cancel-entry.png",
+      "bytes": 102650,
+      "sha256": "9995a0221ad97c9166d2eaccd99d4cf42000007ccc9e6a44dbee86384f59d2b9",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/vowkeeper-cancel-entry.png"
+    },
+    {
+      "file": "native-accepted/vowkeeper-evade-low-step.png",
+      "bytes": 105944,
+      "sha256": "a49b56980490c6cf1b93bc1ccb3ed94c20711b5477f192a26fb11558fc2cb8c9",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/vowkeeper-evade-low-step.png"
+    },
+    {
+      "file": "native-accepted/vowkeeper-signature-follow.png",
+      "bytes": 109397,
+      "sha256": "8d31d4b713e64b57ce59d42d2b55d3bfaf42f3171719686b6d7f2e23874241c2",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/vowkeeper-signature-follow.png"
+    },
+    {
+      "file": "native-accepted/vowkeeper-signature-load.png",
+      "bytes": 98569,
+      "sha256": "ba8eaac935633a78015065fb4ae2c5238807a354fb37d5ffc34fde9645490bd7",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/vowkeeper-signature-load.png"
+    },
+    {
+      "file": "native-accepted/vowkeeper-signature-release.png",
+      "bytes": 108497,
+      "sha256": "73e8784c9ec95fd94f2ef957827b830232975c4ce3b1e196020f651db39523d4",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-native-01/native/vowkeeper-signature-release.png"
+    },
+    {
+      "file": "rejected-held-entry/editor-import.log",
+      "bytes": 1065,
+      "sha256": "401b37fc5223bf108aa68163de7feae8073a148bdf29dd418816660bfac8a66b",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-retest-01/editor-import.log"
+    },
+    {
+      "file": "rejected-held-entry/execution.json",
+      "bytes": 3180,
+      "sha256": "1fa2434908331238b9d65814b1507ddce4a247c0ca909a373b8d2bad6cb4f0a0",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-retest-01/execution.json"
+    },
+    {
+      "file": "rejected-held-entry/native_motion_transition.log",
+      "bytes": 7579,
+      "sha256": "3b76ab5252c515456e59e07ea6406bc9cd7e55c173e3bc0f8cf67d80d118030c",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/final-retest-01/native_motion_transition.log"
+    },
+    {
+      "file": "rejected-held-entry/trace-final-anchors-beforefix.log",
+      "bytes": 8167,
+      "sha256": "9db4ad1eee892ac0c3b5deac2ae422e8b018bc20e74c0da308bcf5996071b46a",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/trace-final-anchors-beforefix.log"
+    },
+    {
+      "file": "rejected-held-entry/trace_final_anchors.gd",
+      "bytes": 1191,
+      "sha256": "7ded6152b2eb617a6a1fa795f612ebf7a72f6ff49da25ed21cc614243d2668e6",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/trace_final_anchors.gd"
+    },
+    {
+      "file": "run_final_checks.py",
+      "bytes": 3508,
+      "sha256": "2115a44bf8c4044a14f619c8182dd2fe09d70315d7f7462175e82b4273ee9826",
+      "original_capture_file": "/workspace/scratch/emberfall-quality-057/motion/run_final_checks.py"
+    }
+  ]
+}

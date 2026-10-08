@@ -1,0 +1,393 @@
+{
+  "schema": 1,
+  "status": "sampled_game_scale_hero_visual_review_complete",
+  "created_utc": "2026-10-08T00:22:41.752881+00:00",
+  "reviewer": "Codex AI visual reviewer /root/temporal_review_resume_057",
+  "reviewer_type": "AI visual inspection of actual tool-rendered image sequences; no human signoff claimed",
+  "character_class": "vowkeeper",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "actual_decoder_chain_exit": 0,
+  "review_tool_sha256": "83bff1cabc3e915bbcf857bc5f628e159f82088cff10090c5ab0cbb223d9987d",
+  "plan_sha256": "a8e1ba5f9721e00c8c8349131398cf6e0bfce04fe16ec2895bfea5a21a635301",
+  "scope": {
+    "range_labels": [
+      "additional-evade-2501",
+      "additional-evade-2684",
+      "first-attack-to-evade",
+      "first-basic-full-released-phrase",
+      "first-judgment-full-released-phrase",
+      "first-lateral-evade",
+      "first-recovery-to-evade",
+      "first-signature-full-released-phrase",
+      "first-sunder-full-released-phrase",
+      "ordinary-travel-gait"
+    ],
+    "actual_retained_sheet_files_inspected": 34,
+    "actual_retained_panels_inspected": 408,
+    "separately_inspected_original_native_pngs": 16
+  },
+  "observations": [
+    {
+      "area": "released_attacks",
+      "ranges": [
+        "Signature 1\u201324: same-attack melee hit/recovery onset 11, last recovery 20, walk reset 21",
+        "Basic 64\u201387: same-attack melee hit/recovery onset 74, last recovery 83, walk reset 84",
+        "Judgment 1621\u20131653: actual hero_release 1640, last recovery 1649, reset 1650",
+        "Sunder 961\u2013990: actual hero_release 977, last recovery 986, reset 987"
+      ],
+      "finding": "The sword, carrying arm, shield and torso remain coherent through the retained preparations, releases and exact late recovery/reset boundaries. The AFTER red/metal material silhouette is clearer. No gross detached sword/shield or torn hero mesh is visible in these sampled pixels; exact hand contact is too small or overlapped to certify. These shared heavy gestures do not demonstrate bespoke cinematic polish."
+    },
+    {
+      "area": "released_basic_recovery_interruption",
+      "ranges": [
+        "412\u2013439"
+      ],
+      "finding": "The Basic attack starts 413, releases through its matching hit/recovery onset 422, and recovery 422\u2013424 is interrupted by the actual evade 425\u2013434. This is an already released attack with interrupted recovery, not a windup cancellation. All consecutive retained frames show coherent sword/shield carry and return upright. Outside-opening boot remains separate from the following leg in the visible samples."
+    },
+    {
+      "area": "judgment_windup_cancellation",
+      "ranges": [
+        "918\u2013937"
+      ],
+      "finding": "Judgment windup 920\u2013922 has no corresponding release before evade 923\u2013932. Every consecutive cancellation/escape frame is retained; AFTER preparation is brief and relatively quiet in these three windup frames. No gross body/weapon jump is demonstrated as the lateral bound opens and returns to a ready silhouette. It cannot be judged as a complete released Judgment phrase."
+    },
+    {
+      "area": "all_four_actual_evades",
+      "ranges": [
+        "423\u2013439 with actual evade 425\u2013434",
+        "918\u2013937 with actual evade 923\u2013932",
+        "2499\u20132527 with actual evade 2501\u20132522",
+        "2682\u20132707 with actual evade 2684\u20132702"
+      ],
+      "finding": "All actual escape frames and exact ends are retained. The first two outside-opening bounds separate the boots instead of the old narrow/crossed silhouette, with coherent torso lean and return upright. The two Guardian escapes move away and return to a coherent sword/shield silhouette; the hero is small, partly covered by effects or scenery, and these pixels cannot certify every ankle/knee or precise grip. The final split-pattern escape also has separately inspected original native frame 2700."
+    },
+    {
+      "area": "travel",
+      "ranges": [
+        "24\u201344"
+      ],
+      "finding": "The visible short gait, torso and carried sword/shield remain coherent in the retained travel samples. Game-scale foot contact is too small to measure or certify naturalistic motion."
+    },
+    {
+      "area": "guardian_transition_visible_in_escape_crops",
+      "ranges": [
+        "2696\u20132699"
+      ],
+      "finding": "The real idle frames 2697\u20132698 produce a visible bell/arm adjustment and straighter torso at 2698 before the lowered impact 2699. Baseline also visibly raises the side bell at 2698. No gross body teleport, torn limb or detached prop is demonstrated here, but this brief pose excursion remains a concrete presentation defect/limit; Guardian transitions are not fully polished."
+    }
+  ],
+  "blockers_found_in_reviewed_hero_pixels": [],
+  "viewed_files": [
+    {
+      "original_native_png": "gameplay-final-evade/before-vowkeeper/selected-frames/frame-00008.png",
+      "bytes": 809170,
+      "sha256": "d3342eb09666c815ffcaa33f84d36a8fc82bb94fc7c4b53ad9e264ca6b59c529",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:11:52.185602+00:00"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-vowkeeper/selected-frames/frame-00008.png",
+      "bytes": 808462,
+      "sha256": "4b2134f6c9a3b7f52e39dd484a68aa3190e6e48685b9fafe61f254a11a342d6b",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:11:52.187178+00:00"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/before-vowkeeper/selected-frames/frame-00011.png",
+      "bytes": 808859,
+      "sha256": "60168e06e8b11b322edd94d767f9ad881484d9d1f89e4a91786246968840d265",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:12:08.580868+00:00"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-vowkeeper/selected-frames/frame-00011.png",
+      "bytes": 808627,
+      "sha256": "cd55ff1aa764bfb7f3bc565fd2fb40d65062b3aea2fbef5204be6a105df9807d",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:12:08.581616+00:00"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/before-vowkeeper/selected-frames/frame-00074.png",
+      "bytes": 794755,
+      "sha256": "16e3f82f6c48bc3915638f7b5ed2e95da824def7b0f72c53fee54e07f3ff5145",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:12:22.759971+00:00"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-vowkeeper/selected-frames/frame-00074.png",
+      "bytes": 794393,
+      "sha256": "2581619822a9a250d9ad4a9e3a2829ade5a4cb2ba759ae0ad6ec2ef6c0aef765",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:12:22.760820+00:00"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/before-vowkeeper/selected-frames/frame-00425.png",
+      "bytes": 843291,
+      "sha256": "fd9999b45ff19c12f3edaa922aa2dec0092b0550ff875bfecf31a55cf0be8ebe",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:12:36.783315+00:00"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-vowkeeper/selected-frames/frame-00425.png",
+      "bytes": 843138,
+      "sha256": "74720bb3e4fc01c50170efaa01138f2e65df62a314dc12caf4b92a7e357319ad",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:12:36.784107+00:00"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/before-vowkeeper/selected-frames/frame-00428.png",
+      "bytes": 842806,
+      "sha256": "955e2552fad150c488ed076e5f303ce0475cd7a7affd36fc8a2a69962f063800",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:13:04.695360+00:00"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-vowkeeper/selected-frames/frame-00428.png",
+      "bytes": 842997,
+      "sha256": "e48e61df94c1f3270e52cd9b7681e8e13c8412da9763f4a4fa4b7bb856bb8a00",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:13:04.696148+00:00"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/before-vowkeeper/selected-frames/frame-00431.png",
+      "bytes": 843664,
+      "sha256": "28c4a0b907d5c7845cb8c93161f0aead1a80682bc7b8d601e54955c04df5bb16",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:13:18.126419+00:00"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-vowkeeper/selected-frames/frame-00431.png",
+      "bytes": 844345,
+      "sha256": "0e72aae73916b3d6a39d3eec9cf47e3fb0ee39ed367236a9296e313ebeca99d5",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:13:18.127387+00:00"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/before-vowkeeper/selected-frames/frame-00434.png",
+      "bytes": 843562,
+      "sha256": "b8a5fcfab7b79f1d6707fe9656a6093465a08c4e90256878f7a11655a1306936",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:13:32.618947+00:00"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-vowkeeper/selected-frames/frame-00434.png",
+      "bytes": 843827,
+      "sha256": "a0cbde5ddb9f5ac5ff10c1579438e12431c271c1d335cba78a2b3cff3f5d506b",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:13:32.619801+00:00"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/before-vowkeeper/selected-frames/frame-02700.png",
+      "bytes": 863441,
+      "sha256": "275e04ecd51dcb44ffd7859f0f74dd8ce0af5b544c048dc684ed7e45aae73b62",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:13:50.821072+00:00"
+    },
+    {
+      "original_native_png": "gameplay-final-evade/after-vowkeeper/selected-frames/frame-02700.png",
+      "bytes": 864210,
+      "sha256": "994adc073234952e8113cd209010c416ec78b2bfe3f2c7ec8b2bba469701e06e",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:13:50.822064+00:00"
+    },
+    {
+      "file": "vowkeeper/before/first-signature-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 308537,
+      "sha256": "5552b26bee1156158f047c41d835ef3cc9dddd1779995f107edb55f7d3e78194",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:14:27.890055+00:00"
+    },
+    {
+      "file": "vowkeeper/after/first-signature-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 309503,
+      "sha256": "5e380cf82a5afe0ba763c984d5b05b8557f8d2d9a428e4e5f7137ff880f98059",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:14:27.890469+00:00"
+    },
+    {
+      "file": "vowkeeper/before/first-basic-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 293129,
+      "sha256": "cc5e4560ef6559916f63c1086fdd8bd48302b6c3f8d1c20d455a294c1e2d03c1",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:14:45.890686+00:00"
+    },
+    {
+      "file": "vowkeeper/after/first-basic-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 291146,
+      "sha256": "14cda56533e1cce68f6118fa4624f559c8c803882d671df8f7482fda673cbd88",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:14:45.891069+00:00"
+    },
+    {
+      "file": "vowkeeper/before/first-judgment-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 265569,
+      "sha256": "85a9d467e15834402b039f2759ab78730bdc5b8cd4c260bce96787c1cec374c7",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:15:05.480014+00:00"
+    },
+    {
+      "file": "vowkeeper/after/first-judgment-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 271583,
+      "sha256": "7722ef85191b1e6994a77bd3f34b8d4173c31ba4361b16c478eaf19d65cd7e43",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:15:05.480418+00:00"
+    },
+    {
+      "file": "vowkeeper/before/first-judgment-full-released-phrase/derived-contact-sheet-01.jpg",
+      "bytes": 85582,
+      "sha256": "3a39ce04cfea4dec0f4c8db087875ac54c485ae033c4c05810d542a1a52539df",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:15:37.841261+00:00"
+    },
+    {
+      "file": "vowkeeper/after/first-judgment-full-released-phrase/derived-contact-sheet-01.jpg",
+      "bytes": 87617,
+      "sha256": "f055c08e8a60594c0b00158df00a1639cdd26869c4b82ea59b72f93d4c285ce4",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:15:37.841427+00:00"
+    },
+    {
+      "file": "vowkeeper/before/first-sunder-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 350332,
+      "sha256": "40304e0a37ef04db949bc22e3a3b46908d86ec158cf7e53f2d0875e6391e5796",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:16:00.695406+00:00"
+    },
+    {
+      "file": "vowkeeper/after/first-sunder-full-released-phrase/derived-contact-sheet-00.jpg",
+      "bytes": 361396,
+      "sha256": "97528118734a65530d2fa01c722abbaafb40eb19726b7713f7ccf6f1798d03e6",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:16:00.695883+00:00"
+    },
+    {
+      "file": "vowkeeper/before/first-sunder-full-released-phrase/derived-contact-sheet-01.jpg",
+      "bytes": 81044,
+      "sha256": "31480b32e11151597a1aa5938de309cec317e304847db2063144ef707a38d9de",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:16:17.767585+00:00"
+    },
+    {
+      "file": "vowkeeper/after/first-sunder-full-released-phrase/derived-contact-sheet-01.jpg",
+      "bytes": 85433,
+      "sha256": "cab5838debc90e84fce1727d1d34fb0a249edff4697720ee68d98c0e19b2b5d2",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:16:17.767756+00:00"
+    },
+    {
+      "file": "vowkeeper/before/first-lateral-evade/derived-contact-sheet-00.png",
+      "bytes": 605008,
+      "sha256": "3781b0564888003b24b43c46687bb3c1d28f00e4afa9890d3226528cd42ee958",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:16:35.118478+00:00"
+    },
+    {
+      "file": "vowkeeper/after/first-lateral-evade/derived-contact-sheet-00.png",
+      "bytes": 605258,
+      "sha256": "4a5e3d211067953beae181bc58a69ce7614429ee5f2778950589cb7e83a6f924",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:16:35.119213+00:00"
+    },
+    {
+      "file": "vowkeeper/before/first-lateral-evade/derived-contact-sheet-01.png",
+      "bytes": 76926,
+      "sha256": "39a667d44529f8e6b55c1ac3883905176b2913d046a0fe598dde41d35258d22d",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:19:52.772539+00:00"
+    },
+    {
+      "file": "vowkeeper/after/first-lateral-evade/derived-contact-sheet-01.png",
+      "bytes": 78035,
+      "sha256": "c64b5be7195719bce3843d2203927493e5d15cce37bd661f629fd2cb2b335600",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:19:52.772712+00:00"
+    },
+    {
+      "file": "vowkeeper/before/first-recovery-to-evade/derived-contact-sheet-00.png",
+      "bytes": 600454,
+      "sha256": "1a1f817bb739ce8a4869735cefe5687d3ef214ca02b087214db3ab8cd19d8013",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:20:08.684779+00:00"
+    },
+    {
+      "file": "vowkeeper/after/first-recovery-to-evade/derived-contact-sheet-00.png",
+      "bytes": 591898,
+      "sha256": "c2478168bf19fd01bb30ce3e8afe3a95864ffdaacb5e3529ac0f523fce69e983",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:20:08.685478+00:00"
+    },
+    {
+      "file": "vowkeeper/before/first-recovery-to-evade/derived-contact-sheet-01.png",
+      "bytes": 449509,
+      "sha256": "fc01edead51893f2822f89f85f7aa421e94c507f72aef3315fcfd94d25885346",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:20:20.922929+00:00"
+    },
+    {
+      "file": "vowkeeper/after/first-recovery-to-evade/derived-contact-sheet-01.png",
+      "bytes": 455169,
+      "sha256": "6cb5c6eae110400fbd73baead47a8b6266826ab7358789fcb9d96cb3ddca41b9",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:20:20.923491+00:00"
+    },
+    {
+      "file": "vowkeeper/before/first-attack-to-evade/derived-contact-sheet-00.png",
+      "bytes": 810737,
+      "sha256": "412eedc398c211344c75d5380799686a201a26a18cfc13c80962ee8081cab760",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:20:34.697975+00:00"
+    },
+    {
+      "file": "vowkeeper/after/first-attack-to-evade/derived-contact-sheet-00.png",
+      "bytes": 858062,
+      "sha256": "fb7487697d5973f1c60789aff025b9004241779aedd491e29ac233ca2447e1b1",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:20:34.698961+00:00"
+    },
+    {
+      "file": "vowkeeper/before/first-attack-to-evade/derived-contact-sheet-01.png",
+      "bytes": 230346,
+      "sha256": "54afeb35e5e40e28540353e751a00e02c5ba4f3aaca107b88b680eac793a434c",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:20:44.566927+00:00"
+    },
+    {
+      "file": "vowkeeper/after/first-attack-to-evade/derived-contact-sheet-01.png",
+      "bytes": 227704,
+      "sha256": "aeb41d7a043fdab15e32d376339d08d355f67365db0a6532eaf7e77813bb85ee",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:20:44.567357+00:00"
+    },
+    {
+      "file": "vowkeeper/before/additional-evade-2501/derived-contact-sheet-00.png",
+      "bytes": 777558,
+      "sha256": "8ab3d804f8bc555fbaf23554db4f937fbae6eb20b5968ed4bd7c9ca7f86eeb0e",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:20:56.641312+00:00"
+    },
+    {
+      "file": "vowkeeper/after/additional-evade-2501/derived-contact-sheet-00.png",
+      "bytes": 827497,
+      "sha256": "c2cca29f31f97041dc75c5a7d9a7c1e38a4382f273347addab34a993f732d293",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:20:56.642567+00:00"
+    },
+    {
+      "file": "vowkeeper/before/additional-evade-2501/derived-contact-sheet-01.png",
+      "bytes": 751404,
+      "sha256": "edd018c217e14c89389e9e2933cf4d10e5eb80bbf06ecb819d92c388550e7749",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:21:11.102298+00:00"
+    },
+    {
+      "file": "vowkeeper/after/additional-evade-2501/derived-contact-sheet-01.png",
+      "bytes": 763261,
+      "sha256": "dc13c230bdbfef09ba59dcb9502be47a7153ccb15c90b0ab4f3c7b404130a0e8",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:21:11.103173+00:00"
+    },
+    {
+      "file": "vowkeeper/before/additional-evade-2684/derived-contact-sheet-00.png",
+      "bytes": 731798,
+      "sha256": "0f8c4c22290494ecd0a0812996afed2366e5f9c79f79ccb36ccc7e71cfabd904",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:21:22.504856+00:00"
+    },
+    {
+      "file": "vowkeeper/after/additional-evade-2684/derived-contact-sheet-00.png",
+      "bytes": 764817,
+      "sha256": "e26d0d598f1094d4caedc395b55cb42aea8f103003efbb1df4170aa73a776587",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:21:22.505717+00:00"
+    },
+    {
+      "file": "vowkeeper/before/additional-evade-2684/derived-contact-sheet-01.png",
+      "bytes": 431895,
+      "sha256": "c882603e5adc87af8185a0adb6b8ed46bc1f9164e10d88d323b1f4a6007c0a81",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:21:36.355048+00:00"
+    },
+    {
+      "file": "vowkeeper/after/additional-evade-2684/derived-contact-sheet-01.png",
+      "bytes": 443446,
+      "sha256": "c4a5f985824a63a4fb45eb4b376bec7ece521abefa29e6f253c72cab25d6f831",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:21:36.355639+00:00"
+    },
+    {
+      "file": "vowkeeper/before/ordinary-travel-gait/derived-contact-sheet-00.jpg",
+      "bytes": 204504,
+      "sha256": "e7dc3efc07353121a83f5acce02031805df964c86fd53e0da875548430076498",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:21:47.582473+00:00"
+    },
+    {
+      "file": "vowkeeper/after/ordinary-travel-gait/derived-contact-sheet-00.jpg",
+      "bytes": 203858,
+      "sha256": "7242e7d4b5594fda3d10cb4c3971c4909a89387f64af1d8b42adca6ccd906a7d",
+      "actual_ai_inspection_recorded_utc": "2026-10-08T00:21:47.582805+00:00"
+    }
+  ],
+  "additional_visual_checks": [],
+  "scope_limits": [
+    "Every listed image was actually inspected by this AI reviewer; no whole-movie watching or human signoff is claimed.",
+    "Contact sheets use lossy H264-decoded pixels; JPEG92 4:4:4 adds documented compression to non-escape sheets. PNG sheets do not restore original render detail.",
+    "Sixteen native Godot PNGs were separately inspected: paired frames 8/11/74/425/428/431/434/2700. Frame 2700 is original native evidence for the last Guardian escape; cancellation 923 and escape 2501 have H264-derived fine-detail evidence only.",
+    "The Ranger/Vowkeeper hero crops preserve sampled conservative actor/weapon bounds and a scene margin, but exclude off-crop context; original PNGs and movies remain full viewport.",
+    "Bone-detail-none journal labels do not prove bone geometry, occlusion, sole clearance or physical phone performance.",
+    "Common-role initial deaths, the interrupted Elite warning, Hexer, Guardian0 ordinary phase0 melee, both floor-pattern phases and ending UI are reviewed in separate AI context receipts.",
+    "Quiet low-staff Hexer release, held-low Guardian preparation and the real 2697\u20132698 idle excursion remain presentation limits. No release or beta readiness is claimed."
+  ]
+}

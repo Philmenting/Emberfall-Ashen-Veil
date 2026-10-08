@@ -1,0 +1,262 @@
+{
+  "schema": 1,
+  "godot": "4.7.2-stable",
+  "baseline": {
+    "suites": [
+      {
+        "suite": "beta_flow",
+        "checks": 46
+      },
+      {
+        "suite": "combat_stances",
+        "checks": 140
+      },
+      {
+        "suite": "combat_movement",
+        "checks": 8
+      },
+      {
+        "suite": "journey",
+        "checks": 413
+      },
+      {
+        "suite": "dungeon",
+        "checks": 55
+      },
+      {
+        "suite": "persistence",
+        "checks": 89
+      },
+      {
+        "suite": "arcane_tactics",
+        "checks": 29
+      },
+      {
+        "suite": "boss_patterns",
+        "checks": 114
+      },
+      {
+        "suite": "class_loot",
+        "checks": 29
+      },
+      {
+        "suite": "contracts",
+        "checks": 68
+      },
+      {
+        "suite": "combined_oaths_/_phases",
+        "checks": 338
+      },
+      {
+        "suite": "main_combined_rules",
+        "checks": 156
+      },
+      {
+        "suite": "gear_/_forecast",
+        "checks": 38
+      },
+      {
+        "suite": "regions",
+        "checks": 36
+      },
+      {
+        "suite": "onboarding",
+        "checks": 19
+      },
+      {
+        "suite": "success_loop",
+        "checks": 87
+      },
+      {
+        "suite": "recovery",
+        "checks": 48
+      },
+      {
+        "suite": "options",
+        "checks": 77
+      },
+      {
+        "suite": "skill_rotation",
+        "checks": 135
+      },
+      {
+        "suite": "visuals",
+        "checks": 69
+      },
+      {
+        "suite": "world_framing",
+        "checks": 156
+      },
+      {
+        "suite": "authored_art",
+        "checks": 56
+      },
+      {
+        "suite": "character_equipment",
+        "checks": 27
+      },
+      {
+        "suite": "presentation",
+        "checks": 67
+      },
+      {
+        "suite": "camp_hud",
+        "checks": 44
+      },
+      {
+        "suite": "fellowship_ui",
+        "checks": 11
+      },
+      {
+        "suite": "cloud_identity",
+        "checks": 14
+      },
+      {
+        "suite": "mana_ward",
+        "checks": 27
+      }
+    ],
+    "total_suites": 28,
+    "checks": 2396,
+    "failures": 0
+  },
+  "bounded_graphics_confirmation": {
+    "suites": [
+      {
+        "suite": "visuals",
+        "checks": 69
+      },
+      {
+        "suite": "world_framing",
+        "checks": 228
+      },
+      {
+        "suite": "authored_art",
+        "checks": 56
+      },
+      {
+        "suite": "character_equipment",
+        "checks": 27
+      },
+      {
+        "suite": "presentation",
+        "checks": 67
+      },
+      {
+        "suite": "camp_hud",
+        "checks": 44
+      }
+    ],
+    "total_suites": 6,
+    "checks": 491,
+    "failures": 0
+  },
+  "server_progression": "passed",
+  "android_release_unit_tests": 5,
+  "source_listing_check": "passed",
+  "native_capture_matrix": {
+    "views": 21,
+    "sizes": [
+      [
+        1200,
+        535
+      ],
+      [
+        1040,
+        1080
+      ],
+      [
+        854,
+        480
+      ]
+    ],
+    "large_text_at": [
+      854,
+      480
+    ],
+    "renderer": "GL Compatibility llvmpipe",
+    "device_hardware_measurement": false,
+    "late_region_fixture_extra_life": true,
+    "files": {
+      ".impeccable/review/oaths-1200x535.png": "20f8c003006ea8bca882764ddcec05d41876e2e424021b032525d8e70478f25e",
+      ".impeccable/review/boss-0-1040x1080.png": "d268f7b511b62748a64b116210914c713f3c73ee46e1cc80a04597926430a05c",
+      ".impeccable/review/boss-3-1040x1080.png": "b3e8178e7de55712a6c90af924a832b4b86bcec2d74b53a886d3fc161150ac4d",
+      ".impeccable/review/gear-854x480.png": "0e8c48da1dad06ba6e3b978b5d5cb044f1e96178bd0ea377c5142afbbcd1ff8c",
+      ".impeccable/review/boss-1-1040x1080.png": "dc2bf40b6c21a1247748e80a32ba084c9c48fd9ea836ff317395a32c34d825db",
+      ".impeccable/review/boss-0-1200x535.png": "7bbe6ac4d08f9fc066318893e995f895e4e1bd3ea926f3c08c7c0d683a5d2f47",
+      ".impeccable/review/gear-1040x1080.png": "f13e6146a83c6175bf4d5c437a83f9060215ec16b23bd49a18eb9c14a073c683",
+      ".impeccable/review/boss-3-1200x535.png": "ea3a9939df48e2eacccf9d401f08a0036fe606a6255e73b06b52a2d8333220d0",
+      ".impeccable/review/camp-1040x1080.png": "ccca72810cd812d0c5902bf8097ccf601dfdfcde7217c4a413bc10f3bdf4024f",
+      ".impeccable/review/camp-1200x535.png": "9a51eb537ad2a84f27bcf58c89db4bc414a028c04acfa734e2e628a0651a513d",
+      ".impeccable/review/boss-1-854x480.png": "5b3ff3ae4079f4d47ce37006b90462a17691fc64c06d8bb9cd31870f6066e231",
+      ".impeccable/review/oaths-1040x1080.png": "9f59b0de39a8d89ef8415886c86bd0d7c02ff47dbf92ef3f3501d942a87da9d1",
+      ".impeccable/review/gear-1200x535.png": "05c267237977bba23b5a2e676276958c14bb7dd38fb618b713c2c54adb7ee1c1",
+      ".impeccable/review/boss-1-1200x535.png": "64d2afbd8511bc26f9bcc2005eb982a51b624e48973926e2c4b8619bfc2845a7",
+      ".impeccable/review/oaths-854x480.png": "4e0213c643f58624f0146c4b4536ca62939333bcf96fa5b5efc3502e38b497f4",
+      ".impeccable/review/boss-3-854x480.png": "a80974e3ef0c9d96e8a7b60a4d9ddb8ba9fb77ddd65fc2e07337f85c756827ba",
+      ".impeccable/review/boss-0-854x480.png": "56c76dfeed85c059c5b6815a433eff8de74ac1c89d653b43aad7a5420cbec048",
+      ".impeccable/review/camp-854x480.png": "e5a69e4d0af333ef574e9f9c8768b9696bb358ed4696ced299ad45f331046a47",
+      ".impeccable/review/boss-2-854x480.png": "119c0ce9c2dfc29c9f116278f068a99fa36b8a1639b5ac4c5bc616ca27c9c913",
+      ".impeccable/review/boss-2-1040x1080.png": "d6aafbfaf677225e8fcdbab895c28858b4a1302ff31252f04d5e2e0d1ad6e224",
+      ".impeccable/review/boss-2-1200x535.png": "36dad187f549b457ad4fc7e87d58b1399cf5bdd33b90b76c04c0822ffe45d509"
+    }
+  },
+  "normal_gear_gameplay": {
+    "frames": 384,
+    "export_fps": 24,
+    "seconds": 16,
+    "file": "docs/previews/success-loop/emberfall-gameplay-040.mp4",
+    "sha256": "dd86142494dd30446371e78c32df21e8a5476f996e10bd7ed8427d65581f58aa",
+    "source_capture_pass": "GAMEPLAY_CLIP_PASS 384 frames / 24 FPS / ordinary gear"
+  },
+  "human_test_results": false,
+  "pixel_performance_measured": false,
+  "warning_fix_confirmation": {
+    "suites": [
+      {
+        "suite": "visuals",
+        "checks": 69
+      },
+      {
+        "suite": "presentation",
+        "checks": 67
+      },
+      {
+        "suite": "options",
+        "checks": 77
+      }
+    ],
+    "total_suites": 3,
+    "checks": 213,
+    "failures": 0
+  },
+  "restored_warning_confirmation": {
+    "suite": "boss_patterns",
+    "checks": 122,
+    "failures": 0,
+    "scope": "Saved warnings retain fill, broader dark backing, orange contour, countdown and deterministic legacy combat. The pre-existing two-mesh assertion was updated for the reviewed three-layer warning."
+  },
+  "visual_review": {
+    "full_review": ".impeccable/review/finish-review-040.md",
+    "full_disposition": "fix",
+    "material_findings": 1,
+    "verdict": ".impeccable/review/finish-verdict-040.md",
+    "fix_score": "resolved",
+    "final_disposition": "ship",
+    "scope": "one warning-readability correction scored after fresh full static review",
+    "official_impeccable_gate_pass": false
+  },
+  "store_assets": {
+    "docs/play/assets/feature-graphic.png": "eb68eec24a0e60ab82aff1fe09d484977f197fab651a1e717dcbc287c0ce6a53",
+    "docs/play/assets/screen-03-guardian.png": "2e22d76fbff6c420e046ff26017a53567a56b9b1a9e0fc529d9e48586081e6f6",
+    "docs/play/assets/icon-512.png": "24ae0f88ad8274a7ef0a2eac977b765b1000a9b592b2b5fac3878cb5fd327991",
+    "docs/play/assets/screen-04-loot.png": "372b00bcc9952957cf5e022b932f7704b9be31409a6b228bddb508764dd7fdf7",
+    "docs/play/assets/screen-01-classes.png": "d5b9004ab9df7d71054b8a5f7f357a8f964c4aa7726226508b17418a2b1267b0",
+    "docs/play/assets/screen-02-expedition.png": "e12f7daa51b5264cc50efd19ce0c36095c81939583a22c96ca9e64e8331a34c2"
+  },
+  "preexisting_icons": {
+    "origin_commit": "f751f9296e625374f89c1e5981a8227fc44c2c8f",
+    "original_prompt_archived": false,
+    "pixel_idat_chunks_unchanged": true
+  }
+}

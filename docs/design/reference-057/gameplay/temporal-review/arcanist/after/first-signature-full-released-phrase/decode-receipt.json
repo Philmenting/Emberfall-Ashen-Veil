@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "status": "complete_consecutive_h264_decoded_range",
+  "character_class": "arcanist",
+  "side": "after",
+  "label": "first-signature-full-released-phrase",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "first_frame_zero_based": 1,
+  "last_frame_zero_based_inclusive": 23,
+  "every_consecutive_frame_decoded": true,
+  "retained_frame_sampling": "Every second frame plus range end, exact hero releases/enemy impacts and hero attack/recovery/reset boundaries",
+  "exact_semantic_frames_retained": [
+    2,
+    9,
+    11,
+    19,
+    20
+  ],
+  "actual_ffmpeg_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-threads",
+    "1",
+    "-filter_threads",
+    "1",
+    "-i",
+    "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/ordinary-arcanist-complete.mp4",
+    "-map",
+    "0:v:0",
+    "-an",
+    "-vf",
+    "select=between(n\\,1\\,23)",
+    "-frames:v",
+    "23",
+    "-fps_mode",
+    "passthrough",
+    "-pix_fmt",
+    "rgb24",
+    "-f",
+    "rawvideo",
+    "pipe:1"
+  ],
+  "actual_ffmpeg_exit_code": 0,
+  "movie_sha256": "27f282aa3ab14069b88eb079795c44a7331cd24ca43c9ad7cd1d2e47ab655d35",
+  "capture_receipt_sha256": "a41907dbda10bdce78730d8a58a099264e418c148e7bb3c9bd427de3be4667c9",
+  "crop_xyxy": [
+    340,
+    156,
+    661,
+    417
+  ],
+  "contact_sheet_pixel_scale": "1:1 original decoded pixels; shared fixed crop for this before/after range",
+  "image_origin": "H264-decoded lossy movie frames, JPEG92 4:4:4 contact sheets, cropped only with external labels. Not original Godot PNGs.",
+  "human_visual_review": "pending; decoding alone is not visual acceptance",
+  "sheets": [
+    {
+      "file": "derived-contact-sheet-00.jpg",
+      "sha256": "c2af6ff4c9952df01da7d54641edcb7e9cd55b7bd5efea81416039cbddc09746",
+      "bytes": 395734,
+      "first_frame": 1,
+      "last_frame": 23,
+      "frames": [
+        1,
+        2,
+        3,
+        5,
+        7,
+        9,
+        11,
+        13,
+        15,
+        17,
+        19,
+        20,
+        21,
+        23
+      ]
+    }
+  ],
+  "review_tool_sha256": "afd4ff67403623b767fa30b3a18431a2cefb7cfb374c9b572b1b7e938416a8bf"
+}

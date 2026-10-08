@@ -1,0 +1,102 @@
+{
+  "device": "GenericDevice",
+  "measurements": [
+    {
+      "frames": 90,
+      "median_draw_calls": 364.0,
+      "median_frame_ms": 618.487,
+      "p95_frame_ms": 707.138,
+      "quality": "balanced",
+      "region": 0,
+      "render_height": 540,
+      "render_width": 960,
+      "target_fps": 60
+    },
+    {
+      "frames": 90,
+      "median_draw_calls": 203.0,
+      "median_frame_ms": 74.102,
+      "p95_frame_ms": 102.159,
+      "quality": "battery",
+      "region": 0,
+      "render_height": 270,
+      "render_width": 480,
+      "target_fps": 30
+    },
+    {
+      "frames": 90,
+      "median_draw_calls": 820.0,
+      "median_frame_ms": 704.294,
+      "p95_frame_ms": 876.018,
+      "quality": "balanced",
+      "region": 1,
+      "render_height": 540,
+      "render_width": 960,
+      "target_fps": 60
+    },
+    {
+      "frames": 90,
+      "median_draw_calls": 433.0,
+      "median_frame_ms": 72.697,
+      "p95_frame_ms": 88.757,
+      "quality": "battery",
+      "region": 1,
+      "render_height": 270,
+      "render_width": 480,
+      "target_fps": 30
+    },
+    {
+      "frames": 90,
+      "median_draw_calls": 387.0,
+      "median_frame_ms": 521.778,
+      "p95_frame_ms": 602.781,
+      "quality": "balanced",
+      "region": 2,
+      "render_height": 540,
+      "render_width": 960,
+      "target_fps": 60
+    },
+    {
+      "frames": 90,
+      "median_draw_calls": 212.0,
+      "median_frame_ms": 63.17,
+      "p95_frame_ms": 77.993,
+      "quality": "battery",
+      "region": 2,
+      "render_height": 270,
+      "render_width": 480,
+      "target_fps": 30
+    },
+    {
+      "frames": 90,
+      "median_draw_calls": 407.0,
+      "median_frame_ms": 566.737,
+      "p95_frame_ms": 797.166,
+      "quality": "balanced",
+      "region": 3,
+      "render_height": 540,
+      "render_width": 960,
+      "target_fps": 60
+    },
+    {
+      "frames": 90,
+      "median_draw_calls": 226.0,
+      "median_frame_ms": 53.92,
+      "p95_frame_ms": 61.552,
+      "quality": "battery",
+      "region": 3,
+      "render_height": 270,
+      "render_width": 480,
+      "target_fps": 30
+    }
+  ],
+  "platform": "Linux",
+  "renderer": "gl_compatibility",
+  "resolution": {
+    "height": 540.0,
+    "width": 960.0
+  },
+  "scenario": "frozen guardian render workload",
+  "schema": 1,
+  "evidence_note": "Linux Mesa llvmpipe software rendering alongside regression tasks; not a physical Android, Pixel, GPU or thermal benchmark."
+}

@@ -1,0 +1,2496 @@
+{
+  "schema": 1,
+  "status": "all_original_proof_paths_hardlinked_without_pixel_or_byte_changes",
+  "source_commit": "1cc13152a83c6631590d4df32ca298700a417df7",
+  "baseline_source_commit": "86cb1b8ec878b4ae06daba5e6c5a4fa583865dc5",
+  "files": [
+    {
+      "path": "detached-execution/detached-launch-request.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/detached-launch-request.json",
+      "bytes": 1516,
+      "sha256": "6274259ba1f2088312616015864297d808f66064948b263e52ae8b52b1515e3c",
+      "same_inode": true
+    },
+    {
+      "path": "detached-execution/detached-launch-receipt.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/detached-launch-receipt.json",
+      "bytes": 590,
+      "sha256": "c0c705ad192d9a11eb49b5b660839ad02fd11eed229324968ceb331e959c3650",
+      "same_inode": true
+    },
+    {
+      "path": "detached-execution/detached-supervisor-receipt.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/detached-supervisor-receipt.json",
+      "bytes": 1484,
+      "sha256": "9e1ab37fa3d89ca6044679b7593aaa0ce0f6e59aa7e5887582574c5251cb83fb",
+      "same_inode": true
+    },
+    {
+      "path": "detached-execution/detached-supervisor-console.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/detached-supervisor-console.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "same_inode": true
+    },
+    {
+      "path": "detached-execution/detached-orchestrator-console.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/detached-orchestrator-console.log",
+      "bytes": 51849,
+      "sha256": "ec9f6d1fcbfeac78f7606d45208cd7971cfd68432aa0aef00c5684e4cda65326",
+      "same_inode": true
+    },
+    {
+      "path": "detached-execution/launch_detached_full_captures.py",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/launch_detached_full_captures.py",
+      "bytes": 8510,
+      "sha256": "3413d4c1dbbd9ab930a81eb4d2c6ea9fa858d4ef393a2661f15e021bed425f71",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/receipt.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/receipt.json",
+      "bytes": 63504,
+      "sha256": "2509f93366faedc6ab083678d8f0c24126beb703624176ca1f9174c90839289a",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/capture-summary.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/capture-summary.json",
+      "bytes": 3715,
+      "sha256": "805932e8c88a9b61ead8f05f2546899e386e144e89ba2ba88e65a7ae51ea852e",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/capture-metadata.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/capture-metadata.json",
+      "bytes": 5746,
+      "sha256": "cbec71aeb1bf5e3df0386ebceb33c3cd66d0e59a9880a041ff757c582561a890",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/frames.jsonl",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/frames.jsonl",
+      "bytes": 28701822,
+      "sha256": "d3e491487f5174209bbbe61ca35b1d379ccd63cabef4f8852743b4a9ee262f7b",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/godot.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/godot.log",
+      "bytes": 3698,
+      "sha256": "9409d44394d1bcbda4fd2513981b615caf1ffc9e2a156904936e8cfa526eaf61",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/ffmpeg.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/ffmpeg.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/ffmpeg-mux.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/ffmpeg-mux.log",
+      "bytes": 151,
+      "sha256": "40921d53344fac544cad1371557ae0e42916c7d288767e1843248830b03ee5c1",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/native-game-audio.f32le.gz",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/native-game-audio.f32le.gz",
+      "bytes": 12716386,
+      "sha256": "aa55acb12001cd9115a952dc14a21fd23a504810c66efea293d2a9139a7121df",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/ordinary-arcanist-complete.mp4",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/ordinary-arcanist-complete.mp4",
+      "bytes": 15223524,
+      "sha256": "eaa5c56c8cb4994d515271cc6e97f7e1ef2d26658cdad05aadeeba575355021c",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00000.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00000.png",
+      "bytes": 815430,
+      "sha256": "7518218a41bf6d8d4a6e3cc6e223e9b0aa7c47573c5136551ad66ef9a91d1d98",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00002.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00002.png",
+      "bytes": 818856,
+      "sha256": "8183894460f9403cd67436cdcb8170c36d5c903aa328ab9cf0584eae33d9d0a8",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00004.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00004.png",
+      "bytes": 818636,
+      "sha256": "a9d63a322d12fa6eb8e63297c017d8d433a3f23af36eb37c32fdc0e104425ca9",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00006.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00006.png",
+      "bytes": 819229,
+      "sha256": "3cdf3595afe59f72d523e8b2888743bdab2a24c11a732dd41b4e450e866c76c6",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00008.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00008.png",
+      "bytes": 818701,
+      "sha256": "70bcc3539a60ebde64dd9c6ab6a0a74e6ad89b8df7f2043f95b37abba94f8b52",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00009.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00009.png",
+      "bytes": 818881,
+      "sha256": "7dbc41b58021d5ea365d7aacba4a5cb07863888bc521327f6ce4f26748c9de30",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00011.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00011.png",
+      "bytes": 819098,
+      "sha256": "3b15a5090e52a7f388674fee072ea47e033c7c8d73f695667e65c155e872bf05",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00014.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00014.png",
+      "bytes": 825184,
+      "sha256": "74e4c06dafb61b3cf8a542a19f6b02594638fdb2f7b6c6865ee19b6349b95323",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00015.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00015.png",
+      "bytes": 825155,
+      "sha256": "84b6ad372739379ad1cebacb817dc1c38345530d14a91542c1cac6ce12f107f2",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00019.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00019.png",
+      "bytes": 829405,
+      "sha256": "4d616f98e58b7b271b3894215fcd354c397e7512a3603717a661c988fdbe5744",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00044.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00044.png",
+      "bytes": 804707,
+      "sha256": "26caba91369c5f4df13c63520ca158a2cf320afb3e06f997fd09cc367389141e",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00046.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00046.png",
+      "bytes": 805796,
+      "sha256": "588bd9e85e9ee5700786bebd8db99212946a5729d7564e0bab8812c739634897",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00048.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00048.png",
+      "bytes": 805841,
+      "sha256": "5ce4f6a1736fe6859190fc6df672e95891d9a7e1070b8e2060c51f1512da2670",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00050.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00050.png",
+      "bytes": 805840,
+      "sha256": "4860ba39c6492780fb15a19f2a4ea59752e7ce61d28f031bfbaf039ffe80db55",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00051.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00051.png",
+      "bytes": 806112,
+      "sha256": "fedaaec80383261a59ea3c5fb5a28835a902d39ad8132a720979c352477b4af4",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00053.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00053.png",
+      "bytes": 806487,
+      "sha256": "835a3175f3abf394d53dae8e85587e1f81004ae1bc18391e7a21ccfbe06f48ca",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00056.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00056.png",
+      "bytes": 805981,
+      "sha256": "fa59bf08ec9abcde95fd023d6772a484e3ab9a3891acb3f43b1a70cabde6b21a",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00300.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00300.png",
+      "bytes": 848637,
+      "sha256": "bcb732645820cc106d9b422c918824317d66b47cdd654df91b0c88a692432bfe",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00311.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00311.png",
+      "bytes": 848596,
+      "sha256": "583e8f30fc62a0cb1171cd8f636fa8369946550d392d9c69ccc44e9f93b5f3ac",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00314.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00314.png",
+      "bytes": 845671,
+      "sha256": "2670d864e32497e7be5d13471016d85757632c41bc8ee19a92add163b62bfab3",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00317.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00317.png",
+      "bytes": 846112,
+      "sha256": "81e98dd35944e84579ca5d61d37229b132bed7917feac9174052164b4a27ef59",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00320.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00320.png",
+      "bytes": 853114,
+      "sha256": "c74cddd946731c63227db0c0ac74c71b9d90622fb465d807d0009cbab1e6e35a",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00323.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00323.png",
+      "bytes": 854065,
+      "sha256": "dd0f92a8c8f658b27d73a7ffa22d9b5bb3033313ebc0c84c7c35d59fbcac9449",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00326.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00326.png",
+      "bytes": 853214,
+      "sha256": "0b84a889f1a81820bac8cd731f1b63cc270415fcb5f0cf669b3f385339e4ad84",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00328.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00328.png",
+      "bytes": 853622,
+      "sha256": "22b7c3505987537c77b155d871f0cb4c9b86ce1ab185122e54139fa6f8b679b5",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00336.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00336.png",
+      "bytes": 852018,
+      "sha256": "88bb86f25e89a7cddb0f3bd622b0db4fd2dc82507bc891c95d71d35ce9ba5c86",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00343.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00343.png",
+      "bytes": 853442,
+      "sha256": "d15ea7ee5a98c5d5a5612dba0a19310a4270ac988ddae45f1b3d95619c4b0929",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00347.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00347.png",
+      "bytes": 847310,
+      "sha256": "b73c85ddd0b4daa0ace6c3e71f288e5c7505c7a0790111b426e0074bda07c40a",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00348.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00348.png",
+      "bytes": 841259,
+      "sha256": "cc67271bbce6fda7d4a4046ca31f25f6bb128acd5c28f21a596f9d76f62360cd",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00351.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00351.png",
+      "bytes": 841640,
+      "sha256": "3310cacf38d86f85ebc3e9f4f21e59a1580114567846489d9eac752e99a64afe",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00600.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00600.png",
+      "bytes": 827235,
+      "sha256": "07839c1d452f41f38de4301f332fad9e76499ce23405a534c66732c371fb7e31",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00791.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00791.png",
+      "bytes": 836753,
+      "sha256": "7eb269bf9c4a0b85a77f091b82b014083cba628c4b2f62749287671a20cb792d",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-00900.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-00900.png",
+      "bytes": 826887,
+      "sha256": "d93c993ef9ea7a06a1306298ac17948637f8859c9951db64b04b95e9cea14b36",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-01200.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-01200.png",
+      "bytes": 823642,
+      "sha256": "2c487505d780c7929a707e922a10ec636b2b35e929461e8b71e53c83d64ea0e3",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-01280.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-01280.png",
+      "bytes": 819126,
+      "sha256": "9c582a8d1ce6ab53079ed4842e5b9bd8bc58b7573059256460e3ed2c96207ae1",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-01500.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-01500.png",
+      "bytes": 802127,
+      "sha256": "95642a620be900e2bab15a5e69f12d73cb63c86a5c5a0dbd60ed482cb455bc25",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-01800.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-01800.png",
+      "bytes": 809959,
+      "sha256": "9cd3278a24761c18a2417146791c2782caa10087c4cb01a345005af2c2db3d72",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-02039.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-02039.png",
+      "bytes": 823109,
+      "sha256": "83d9bea76bfa5c1de95b69ef859b9a01d14bfe1bce4801c497b6b75e6820d44d",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-02096.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-02096.png",
+      "bytes": 846547,
+      "sha256": "439aea81b02341d47fb9149c675614cc1a3153a72c923f671abaecf5b0556e06",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-02099.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-02099.png",
+      "bytes": 868382,
+      "sha256": "5af9d64c187e3d0610e75f43c8eb622cf6065db1ebf9c4ddb72f9cee08d649a8",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-02100.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-02100.png",
+      "bytes": 868283,
+      "sha256": "f8020ef78fedd5ba01e4c1e18f97d19f3761213ecc993adec281bd0a3716b31e",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-02153.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-02153.png",
+      "bytes": 855470,
+      "sha256": "caeb72ccf61c32e27ad82540e2d2855a02c2c84b43e6d6b4c91bb6c3eef83f26",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-02400.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-02400.png",
+      "bytes": 864361,
+      "sha256": "6e0a73b1cfca82e2fce57f52c827da511ec0e7b5072c3b3c087e69a440d2d16c",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/before/selected-frames/frame-02405.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-arcanist/selected-frames/frame-02405.png",
+      "bytes": 865851,
+      "sha256": "09bbe3d8e1c7fb3e401bc0ad43a9055fc80b16777d39aeecb6b47669b4f9c60a",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/receipt.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/receipt.json",
+      "bytes": 68163,
+      "sha256": "a41907dbda10bdce78730d8a58a099264e418c148e7bb3c9bd427de3be4667c9",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/capture-summary.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/capture-summary.json",
+      "bytes": 3715,
+      "sha256": "805932e8c88a9b61ead8f05f2546899e386e144e89ba2ba88e65a7ae51ea852e",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/capture-metadata.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/capture-metadata.json",
+      "bytes": 5746,
+      "sha256": "1e56ae4c05a5d7271aaa78124429f08ff81e36425a7fb61f02873f88523437c3",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/frames.jsonl",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/frames.jsonl",
+      "bytes": 32645607,
+      "sha256": "1dd986edc302190ea26df14080627d8d62fabfcf4a297feb078b5a11bef07f29",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/godot.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/godot.log",
+      "bytes": 3698,
+      "sha256": "9409d44394d1bcbda4fd2513981b615caf1ffc9e2a156904936e8cfa526eaf61",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/ffmpeg.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/ffmpeg.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/ffmpeg-mux.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/ffmpeg-mux.log",
+      "bytes": 151,
+      "sha256": "7b85dd0044e2da53191e0f26879641bb72b7c6658d2e1534312a72d66039abb6",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/native-game-audio.f32le.gz",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/native-game-audio.f32le.gz",
+      "bytes": 12716386,
+      "sha256": "aa55acb12001cd9115a952dc14a21fd23a504810c66efea293d2a9139a7121df",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/ordinary-arcanist-complete.mp4",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/ordinary-arcanist-complete.mp4",
+      "bytes": 15279600,
+      "sha256": "27f282aa3ab14069b88eb079795c44a7331cd24ca43c9ad7cd1d2e47ab655d35",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00000.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00000.png",
+      "bytes": 814515,
+      "sha256": "dd5b209b65e23609562fa992764ef21e22a822b0124de17913f8b5c4593012c8",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00002.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00002.png",
+      "bytes": 817948,
+      "sha256": "674358d2b5922119b3fb4475bfad53eb691c0e6212e782f5a7b15790d67ebb5d",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00004.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00004.png",
+      "bytes": 818403,
+      "sha256": "ad8dcfe419f61ba55afe6910dee29893cfa49be9735d83d8f0121ae2c810d27f",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00006.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00006.png",
+      "bytes": 818767,
+      "sha256": "ea8c4dc91f694981b6da80795ee20a0142ed97084c77cab812745cac5db1bf58",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00008.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00008.png",
+      "bytes": 818174,
+      "sha256": "a81e5f678f5186124d1bfc7fcb0a4ea94f30cc6f31f268cfc8c68d675d630f16",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00009.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00009.png",
+      "bytes": 818513,
+      "sha256": "54a9d170139fa505a07dd29751db1944277c3ff17317519ad8a0ae8ccb01d81c",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00011.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00011.png",
+      "bytes": 819219,
+      "sha256": "a5f41b6e542427209846a788b78af45a6094d69394efc056d1d1f94da676ac9f",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00014.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00014.png",
+      "bytes": 825139,
+      "sha256": "da4d58af90b33aeb244e7d0340ba2b96e41a5e840e4cbeb4c3cc5a99ab5a00b1",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00015.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00015.png",
+      "bytes": 825547,
+      "sha256": "d088daa8c757b033cbc7d5870334cfdb6ffdb944dbd0f72ec56620c2abe742ab",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00019.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00019.png",
+      "bytes": 830431,
+      "sha256": "da16fb6f7d62c73f1a14c6544b1430036c00843a0197966e3ee08f321a07096e",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00044.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00044.png",
+      "bytes": 805167,
+      "sha256": "1cc651eb42a10fe72cd545514a07f2d20b3e31a8251206dbb61ccbb2afa6de12",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00046.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00046.png",
+      "bytes": 805921,
+      "sha256": "47529d58d0d73bfce4a16f73a11f9b21c00be625747e44bef96e3c050babce61",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00048.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00048.png",
+      "bytes": 805691,
+      "sha256": "e9ca6df282c47d190cd8684e5156f49c7a3031be3158864a826826f65aef55e5",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00050.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00050.png",
+      "bytes": 805699,
+      "sha256": "2a3554e62fc65912ba93890418feee588b4860601947e62c11c3a8deb6ba8292",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00051.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00051.png",
+      "bytes": 805707,
+      "sha256": "54d2244e8cd61b7a7bd27266455399b3dea22976e1e07d9c635a480081638d6a",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00053.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00053.png",
+      "bytes": 806429,
+      "sha256": "3d19d07934609ec67fffde4a077e26201a32a87983e45f31317d76aee1f22837",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00056.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00056.png",
+      "bytes": 805581,
+      "sha256": "0b50dcf3ad7517f8ef71798630ceac8c690858dbeaab77fef7d466b738a1e096",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00300.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00300.png",
+      "bytes": 847769,
+      "sha256": "bfb3e97ed31a6df7d89f4af348c562d242e3f9018befd70435b073fbff3284d9",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00311.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00311.png",
+      "bytes": 848119,
+      "sha256": "d92b8242d7639981f4a4c256e63ea31ac8f17f73b5a58bffde84b432796cef2f",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00314.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00314.png",
+      "bytes": 845210,
+      "sha256": "4ef063e140655a9306565d5788ba3e2f99b66a908b294f70f1b994b341c24c51",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00317.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00317.png",
+      "bytes": 845500,
+      "sha256": "e87bbd2650c20e00543c76fe71d71b5121294cb5a7e50cb14ce414fc198ac5c3",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00320.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00320.png",
+      "bytes": 852547,
+      "sha256": "29833c7e92bf66d61a75cf1290342a906b6f6417bada5c24a423dd46cbd09ccc",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00323.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00323.png",
+      "bytes": 853572,
+      "sha256": "685e362cdc940224099542bc8bbf05a424eeee94f327d59b2348c6213ffee34a",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00326.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00326.png",
+      "bytes": 853171,
+      "sha256": "1cba968ff7f3f605fa0f8d78c8f976669abe1d800e2057d677be92d824824996",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00328.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00328.png",
+      "bytes": 853235,
+      "sha256": "2602d4ca5b71d9ebd8aeee90f20bf5a364baac2cd46d7a0628382ab04e826035",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00336.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00336.png",
+      "bytes": 852221,
+      "sha256": "871a7144b6f0ddacf4c1288f90fc1093b95df0639769e9f15d4c5656237dba2e",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00343.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00343.png",
+      "bytes": 853346,
+      "sha256": "f0126bcf1eaa2159625fe25e47efbc84eff5617108e2a6c1f6733d8267459446",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00347.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00347.png",
+      "bytes": 846252,
+      "sha256": "7260dce2c2e68c421d92c8dfe7dd61459e56cade78633f9e54803ec49eddd682",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00348.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00348.png",
+      "bytes": 841282,
+      "sha256": "9f5370bae977610995e4dcc328ef5fea934bdc2f0200d7d1d2b3c20f51319e57",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00351.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00351.png",
+      "bytes": 841243,
+      "sha256": "d76761aed55760ab3129b6ab26cd51ddf649cffa796ec7826bfbf43a15b79516",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00600.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00600.png",
+      "bytes": 826936,
+      "sha256": "690fdbaaa64e78b20b8596a3ffc689e3fc1c53c7a75f6014a6da69eeebf82874",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00791.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00791.png",
+      "bytes": 836170,
+      "sha256": "3554f5987580851c2345b06fc3b8c1ff7b73d90733845e3038a454b4d9690140",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-00900.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-00900.png",
+      "bytes": 827289,
+      "sha256": "bf0e2a509b946783a114d83fa5c20b915f18d9e34662afeedede3aca40f72681",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-01200.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-01200.png",
+      "bytes": 824286,
+      "sha256": "69b3266d9b34fa559eea2b861381a6b66402aeea4b7e4ebdfd27932d9ec96ff7",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-01280.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-01280.png",
+      "bytes": 819515,
+      "sha256": "99c9ecaca84d3dc9361e0392c76ec4ca7a955ac0362f809e9887ea2cee7eed31",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-01500.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-01500.png",
+      "bytes": 802528,
+      "sha256": "7b98b8f75f030dcd53827a45fec3b25d064dce8f8d1e4b7d62a71434a0a3ee7d",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-01800.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-01800.png",
+      "bytes": 809960,
+      "sha256": "3110d792c1f659c0226472d5a86eb948a2ae96fe6a576b70841ca41cbb8b4496",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-02039.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-02039.png",
+      "bytes": 825077,
+      "sha256": "1f4b6621e5e24a8e3d5e6e9db6baae8d7f98a4eaaa30780f3ac1b23360a84605",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-02096.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-02096.png",
+      "bytes": 846884,
+      "sha256": "c6203cae74d660e9908eddbea0b548c1fc845c6f9059c8da84051eecdb294108",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-02099.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-02099.png",
+      "bytes": 867852,
+      "sha256": "a9deafb0e9c1a1b29dc49e3c1659b1f7ca1c2fd3c3d9114030eeef9638eba4d7",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-02100.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-02100.png",
+      "bytes": 867315,
+      "sha256": "db6823e44072fbe22723e302b67a1f614ca8555809e448eb5d52e1b57191ef2d",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-02153.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-02153.png",
+      "bytes": 855602,
+      "sha256": "22a8642228d8f5fa83393e2db1e4cad428363ad144e957827a2d1eb3f54836fe",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-02400.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-02400.png",
+      "bytes": 865025,
+      "sha256": "58c86eee3317a68656bc2ab6b2d59520e47d0cc3215ad56853dc0c626e21aaf7",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/after/selected-frames/frame-02405.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-arcanist/selected-frames/frame-02405.png",
+      "bytes": 866307,
+      "sha256": "bb46450ba3e88d0c15654dda40d1cd5fd849ec5d17bf6839de5bdc95ceffaed6",
+      "same_inode": true
+    },
+    {
+      "path": "arcanist/comparison.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/arcanist-comparison.json",
+      "bytes": 37927,
+      "sha256": "89cb54bb8b6cc0cb3057a277a1475a915f786ef963b82aeed01f07ad4cb1262c",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/receipt.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/receipt.json",
+      "bytes": 64307,
+      "sha256": "d70f6f723fa8999e58f330689002b04e52a80530bff8aa81b953246067c87373",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/capture-summary.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/capture-summary.json",
+      "bytes": 3351,
+      "sha256": "8333e50a4818e334b6f5797076c2f271c0988036ddf5b58a9549f422057479e3",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/capture-metadata.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/capture-metadata.json",
+      "bytes": 5670,
+      "sha256": "9036d6fb800107482077f612de76a129df018227ffdabb401a877bb3f7f3acd9",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/frames.jsonl",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/frames.jsonl",
+      "bytes": 29338168,
+      "sha256": "20ef6994781678d3708f4bb27b839ac0df765b730d39595fb0f035f910b2f410",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/godot.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/godot.log",
+      "bytes": 3354,
+      "sha256": "8cb148e4b72410c522d178e4945b7965def488812cc5dab4ed02bcc6bafe9448",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/ffmpeg.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/ffmpeg.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/ffmpeg-mux.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/ffmpeg-mux.log",
+      "bytes": 151,
+      "sha256": "0aa8de9aaa7dea449f9f312e5b9df462b06e687502051b320ac31ee385bdd72c",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/native-game-audio.f32le.gz",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/native-game-audio.f32le.gz",
+      "bytes": 13114008,
+      "sha256": "ed85c281706f09b8d06182a4cfb9cac7d2b0cfae3fdc69b9cf451d75efd7b04f",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/ordinary-ranger-complete.mp4",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/ordinary-ranger-complete.mp4",
+      "bytes": 14865143,
+      "sha256": "8c01eef238de70c33dad7ff99abb8812c2a75ebee485e0feb71c7d32244d5b72",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00000.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00000.png",
+      "bytes": 812557,
+      "sha256": "787e8179e444bc97d4fd41184af1c30a331aa0fdc8a776dd89a7943d80aead6c",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00005.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00005.png",
+      "bytes": 817474,
+      "sha256": "9d2b1f72bcaf4aefa921c470bd6248e8272527243928a8d067cc0d530eae5133",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00007.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00007.png",
+      "bytes": 815584,
+      "sha256": "c1cced9c88515210f1bb2481eda2ad1124179aa5e2a452d49a26d225139d66e7",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00009.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00009.png",
+      "bytes": 815669,
+      "sha256": "593e4207deafabc0ad1f85ba02b190945c8db3f9033f81729faa9bd185da45b1",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00011.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00011.png",
+      "bytes": 815395,
+      "sha256": "6eee95d7748128fe3d2e594590a35dd29609b2c55a8a9bcc1b14119f3cbcfb87",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00012.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00012.png",
+      "bytes": 814833,
+      "sha256": "853392a3ff58215c06cf737fe327b0cb65296d4914847a4c27fe896927451927",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00014.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00014.png",
+      "bytes": 816760,
+      "sha256": "fec29aa38ad5373a5d0559a39f0dadab3c7d9cbbb2e6cdcf0131d6d757d3591b",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00017.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00017.png",
+      "bytes": 821915,
+      "sha256": "bf685bfca6619b33bd185ee86768dfbda8210b4ecad44fda47832c93cde29813",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00018.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00018.png",
+      "bytes": 820817,
+      "sha256": "fa77fa2ec78f61829b6e35b5b486a98ddad91d90ea98b44bfae085c679ec6b64",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00022.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00022.png",
+      "bytes": 821529,
+      "sha256": "9f226941c037390d396fa78fd04bc16f2932dc00c8b2df583f6f9f0da060f5db",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00038.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00038.png",
+      "bytes": 810929,
+      "sha256": "6045346f8fb71102583edb114dfa7fddbb99ce1914d6344f976fe107e3bcb094",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00040.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00040.png",
+      "bytes": 810407,
+      "sha256": "e6d4bec14cce248a05317fc55d6383f57bcd63d5b8b06e9855a749ee4676314b",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00042.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00042.png",
+      "bytes": 810244,
+      "sha256": "169b3bbd86c6e23961c46b4043eb595757b2cf316a5b0f581e978d799a9be8ad",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00044.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00044.png",
+      "bytes": 809897,
+      "sha256": "877d3bfe86bd4eb962bf09ba147e4d8d683560278519f18382dffd41c91f8015",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00045.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00045.png",
+      "bytes": 809790,
+      "sha256": "9a215f734a01717f8733700ba993ec9d1ef87aa04c22d3506a01fd5a1aac0363",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00047.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00047.png",
+      "bytes": 803355,
+      "sha256": "28ef870f501687de8a060a04996cd049ab3fdcea2975e0dfe0a56dccf5d2ed77",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00050.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00050.png",
+      "bytes": 804090,
+      "sha256": "468a682ff37ddfa843d996d041682feeda836fc3d47ddc60460163c46fbde400",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00071.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00071.png",
+      "bytes": 801559,
+      "sha256": "2199b8f48720140d661cbdb3e45681679c17f32d3fccb9c10de10add90150a4b",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00075.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00075.png",
+      "bytes": 801578,
+      "sha256": "d0778186c18657f6c022a6271022c6359fdfa69ec1d2ce4f78024eab9b43e74f",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00079.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00079.png",
+      "bytes": 803773,
+      "sha256": "c3d4accc9500be2705af8f15361658b5ba6aac4464fcd111c09738520d8df59b",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00082.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00082.png",
+      "bytes": 803099,
+      "sha256": "2892ecc10f70c6b91e5f096b6f5278092c4c90983b03978d1dddd67ebcd9aaef",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00086.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00086.png",
+      "bytes": 804782,
+      "sha256": "4a01d695e06da9a0b8c545e70bea25ad086659e9f6e51561d086a2c81762b6ad",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00087.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00087.png",
+      "bytes": 805924,
+      "sha256": "7d65b4472b4d23d978668ee7782d78d16bee75f1545aa43e5c1be5658eb3b75d",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00090.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00090.png",
+      "bytes": 803576,
+      "sha256": "5b81126c17ea04d781d88d298ddcb2b9849af15c22bda1d790743625d661d5f6",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00300.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00300.png",
+      "bytes": 829955,
+      "sha256": "765d60c2678d6af360845f494e1af63e9f8a66494614d5753d1bb45361c28ee0",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00344.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00344.png",
+      "bytes": 840745,
+      "sha256": "144d23cbbe2e05025b35b369243584808e4b465392c8287a608e4d987a8f8a18",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00347.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00347.png",
+      "bytes": 838707,
+      "sha256": "49a19c3c9f39899724a42b46f75e2608b818ce5293fd9a02a8df6ab109bda0ae",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00350.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00350.png",
+      "bytes": 839637,
+      "sha256": "f620a2e7c31df1b1f69ba0f58c76824145035ad00061bfa3f039a5ff3848a2da",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00353.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00353.png",
+      "bytes": 839384,
+      "sha256": "89788ba49834a984ea3c89f3836950e98b63327d45d0b42f6fbe09cfe394d641",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00356.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00356.png",
+      "bytes": 839051,
+      "sha256": "c7bde4494398f3febb547026774c2f47b72566648345bc9aabde7466d28703dd",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00359.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00359.png",
+      "bytes": 838323,
+      "sha256": "6a1c336c9cde75c09bb02c3a12bbadfec4ac3916075340c5bbbbc8e8cd4b1c62",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00600.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00600.png",
+      "bytes": 826191,
+      "sha256": "e1741ec1c8766ed80852ce5c1ae233e013f788ee642311c6e37a5ed8151832f6",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-00900.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-00900.png",
+      "bytes": 821187,
+      "sha256": "06c68f0a6bccad5f173cced10654541c9c02fa473350f43077189def9805ce23",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-01200.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-01200.png",
+      "bytes": 825435,
+      "sha256": "cb900b411bd7d275d1843fcdd738e6f6a6244412780a5c72b8f4182eaee1d807",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-01313.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-01313.png",
+      "bytes": 816001,
+      "sha256": "55b9d3f1f5532ef14373556328ddc0d6437543ebb4979ab37e18264c7145f881",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-01318.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-01318.png",
+      "bytes": 815704,
+      "sha256": "f602f3caafcbaf6385aa789a20ca265ef49a8eeacfc5b1e6abb9e1dd20c0135d",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-01324.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-01324.png",
+      "bytes": 815016,
+      "sha256": "e2304214a99231e721a283da05a5b7941ac3a146c17e2869c502041fb897e873",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-01329.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-01329.png",
+      "bytes": 817354,
+      "sha256": "0b5ef96077112970238fe9658ac8411398a66e82f6b2050fc7db3bb9b1268819",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-01331.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-01331.png",
+      "bytes": 816203,
+      "sha256": "84cf1cb622c2a4f3de41ef993507ef4c6f05d6e587aa85afd926b82238adacc4",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-01332.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-01332.png",
+      "bytes": 806128,
+      "sha256": "b0588137fd56643d625ce75bac0b6116fcc7e0ee654e92b9be910815c9091c3e",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-01335.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-01335.png",
+      "bytes": 811664,
+      "sha256": "cc400c903908132df770577820dc804e4d4e809e1b4c9812b909481bdda90692",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-01500.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-01500.png",
+      "bytes": 802316,
+      "sha256": "b91d525287d79a0bd7ddd193a78e2800b3289263b10380a99e2134e6e0974c01",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-01800.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-01800.png",
+      "bytes": 812358,
+      "sha256": "980b1215c2fba12dbceee17ab7f251353fdc7e4b88a7c430f845a43412d2801b",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-02048.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-02048.png",
+      "bytes": 822266,
+      "sha256": "8af5dbd4aebe11c6a3ed14bfacfd88a8a1d42bc45fd6c92f22b0447e72ff3332",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-02100.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-02100.png",
+      "bytes": 843492,
+      "sha256": "453ed1f4cb51d091f0a141f5c9880404750baf00b818549740a36ddce0ae4a5b",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-02123.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-02123.png",
+      "bytes": 857456,
+      "sha256": "79b6c04a2388d3025cd8b0b071861d166687e582fc1191ff84353d823a5bf1f8",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-02177.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-02177.png",
+      "bytes": 852355,
+      "sha256": "38e68bd1d3e592079b5efe077b72c96a100511ce5dc958188c2af5c1c95587b9",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-02237.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-02237.png",
+      "bytes": 851637,
+      "sha256": "3d0d7755d443e50f57461525658619921e534648c20c0fb0afd7acbf40ec857c",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-02400.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-02400.png",
+      "bytes": 862607,
+      "sha256": "5b0cfbf24125f9ef979c510912bf7ee1fdd81b31d9ba0e38a4ea6e386a1bf50d",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/before/selected-frames/frame-02468.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-ranger/selected-frames/frame-02468.png",
+      "bytes": 865729,
+      "sha256": "30f3ee00c4478eb14f73776b85d9098c0bf9cb33cee5e42c8f7f3940f72bb384",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/receipt.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/receipt.json",
+      "bytes": 68965,
+      "sha256": "beb108b23ef0c16081c0d58642d77158aaf2dbc1265686d4e2578b982728c6b4",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/capture-summary.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/capture-summary.json",
+      "bytes": 3351,
+      "sha256": "8333e50a4818e334b6f5797076c2f271c0988036ddf5b58a9549f422057479e3",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/capture-metadata.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/capture-metadata.json",
+      "bytes": 5670,
+      "sha256": "5328414cc0fc980a80f79eb03c0081bd9a1be151db2db883228cf38790e3003b",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/frames.jsonl",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/frames.jsonl",
+      "bytes": 32450902,
+      "sha256": "fe460d2d028dbd84b71b58b1a7524eaf9367efb8fa971a7d4ba40283985064ce",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/godot.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/godot.log",
+      "bytes": 3354,
+      "sha256": "8cb148e4b72410c522d178e4945b7965def488812cc5dab4ed02bcc6bafe9448",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/ffmpeg.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/ffmpeg.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/ffmpeg-mux.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/ffmpeg-mux.log",
+      "bytes": 151,
+      "sha256": "fd5eb14eb0feb9b8134c8c7e41eb8ffbe772822a48f6e6b3cca8b4f4e0f9a7a2",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/native-game-audio.f32le.gz",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/native-game-audio.f32le.gz",
+      "bytes": 13114008,
+      "sha256": "ed85c281706f09b8d06182a4cfb9cac7d2b0cfae3fdc69b9cf451d75efd7b04f",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/ordinary-ranger-complete.mp4",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/ordinary-ranger-complete.mp4",
+      "bytes": 14955276,
+      "sha256": "008b0c71db628429e3c826fb2de2beeb8510d8b04496333e0e7952f42d7e2948",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00000.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00000.png",
+      "bytes": 811254,
+      "sha256": "d887b118b213f256c9c40154d0f4852e85f310e42f7c6113754fdcc5494ac0f1",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00005.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00005.png",
+      "bytes": 816026,
+      "sha256": "d3e2fe630517f1bc328e9b497a8be3ffe89cca0b40bebec1449f427e33f0147f",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00007.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00007.png",
+      "bytes": 815022,
+      "sha256": "b58a80c020a5acfadae52f109cb90e633ad995a6ad1c68b9c925f55b91ffc6db",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00009.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00009.png",
+      "bytes": 814770,
+      "sha256": "8756deb8d47efd6e7027ed78487093d74cd0f1c0c9c15e8b481c578051585b1a",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00011.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00011.png",
+      "bytes": 814579,
+      "sha256": "b615786debb8e4f5b0a2a36567eaac40dd961376d7569da6298d9bc7ec6f2ae0",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00012.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00012.png",
+      "bytes": 814694,
+      "sha256": "ec478416464f45b8c6fe8749710e64c17374d10b7ce779cf2eecfdd556712ec2",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00014.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00014.png",
+      "bytes": 815944,
+      "sha256": "7aed42954acededf3e4b8c683074612139a4101bafa26e07e7e3742c8f12cff8",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00017.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00017.png",
+      "bytes": 821428,
+      "sha256": "9ed5c949b79f383380512dbc1a26d165aed03a89d1bf43582d211334d9002128",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00018.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00018.png",
+      "bytes": 820448,
+      "sha256": "5367e2f95b9fb5b5daca3eb00309f4b44143ed72553d272b636442735e93211d",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00022.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00022.png",
+      "bytes": 821302,
+      "sha256": "453fb23c4ff3b9e015fb42ad7704da6307c6d92cbd65a3cfa553e6f37367383b",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00038.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00038.png",
+      "bytes": 811789,
+      "sha256": "95052eab3e29cea7ae663117f14744f5c59ddb2b2cf899654dcb1dbbad2722ea",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00040.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00040.png",
+      "bytes": 811204,
+      "sha256": "1ae85d735b076999e2b8b99dd15347f1e6de9f8e919345f53e8902854f9352af",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00042.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00042.png",
+      "bytes": 811111,
+      "sha256": "ddb363e1b099ba8a60aad8b7eea6a9838732699fb98519d23dc3743cf79836b9",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00044.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00044.png",
+      "bytes": 810617,
+      "sha256": "ee456ecffd569edcd5279b1f434c29f44ff3eef885ca41839a9edc5021000fa0",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00045.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00045.png",
+      "bytes": 810146,
+      "sha256": "c1fce751e7c8c87a05251760adc06d5335a9cf1a6e1d445c907951a149469b5f",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00047.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00047.png",
+      "bytes": 802963,
+      "sha256": "31bfc7c2c09e9dcad7d6e30d94cd3d1145f4f1589bbccc28c35f59aba190486b",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00050.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00050.png",
+      "bytes": 803908,
+      "sha256": "8ea67013709a6e8399acefaf0a348de701926871842809d071044224d08d103d",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00071.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00071.png",
+      "bytes": 801056,
+      "sha256": "600283e7b267fb8436c2329200c366dd01ca4bac54209b37fcc506eaa9647ed8",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00075.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00075.png",
+      "bytes": 802415,
+      "sha256": "2db1f2879eb538836feef403b6a1797f535518bd476f2c05d1966b4232079362",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00079.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00079.png",
+      "bytes": 803731,
+      "sha256": "29801ef3a0e9d3ce1b0631c5a34861828b8dcb4a22a35598c778f90707acbbb5",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00082.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00082.png",
+      "bytes": 802573,
+      "sha256": "f68daa1a137832dbfda960ba771a714adf1ad54bed1566234eebcb1265a45be3",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00086.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00086.png",
+      "bytes": 803987,
+      "sha256": "908995ef2274f20fcb4bc8522fce52c14feff6542b06dc1e3748e879defb2993",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00087.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00087.png",
+      "bytes": 805173,
+      "sha256": "796cd4dc76aa9730b893fe51acaa4c1180682534b3257d2aed72c79781cc7a0c",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00090.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00090.png",
+      "bytes": 803707,
+      "sha256": "3213793c6dc94f2d27b86d8b2a1d0869ee9918f6321b0a37421d1cc60a003a06",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00300.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00300.png",
+      "bytes": 828780,
+      "sha256": "442c603cbb93c857691ce579bc56b23daa7d14a61720ca536c68aa6fa5770e07",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00344.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00344.png",
+      "bytes": 841629,
+      "sha256": "69c6e47aa37bb382c61bdebba3e4e070d0a2db60964688c7667d021627c63f01",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00347.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00347.png",
+      "bytes": 838235,
+      "sha256": "c09ee3fc787b36f8c168272ea0c96fe309d1511a557d152b781847014581e180",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00350.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00350.png",
+      "bytes": 838517,
+      "sha256": "f3ee8873406f066f3c7e885eb6c3f7b3328b13e7825a3131a6149e7ce81df60c",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00353.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00353.png",
+      "bytes": 837890,
+      "sha256": "bf7c20d32b0d9d52791b20969d8a205292fc4a4f32def52b480ae18df2a49840",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00356.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00356.png",
+      "bytes": 837846,
+      "sha256": "a650e90d81ac56c1fc053ef53854337a9123d0935195dc22aa5cf503dcd2a699",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00359.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00359.png",
+      "bytes": 837550,
+      "sha256": "6b8feb367d59c86c2232db62bc75ea3a2cb3a68fb35b05c233c43ab55850be73",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00600.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00600.png",
+      "bytes": 825529,
+      "sha256": "244413c0adf6f98360f97b5da604ad729c444abe31ba709b5d256238e124923c",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-00900.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-00900.png",
+      "bytes": 823295,
+      "sha256": "1326e53a1284f96c5f9d16dadd9ebdbd92864d622992d3583444d228100154f9",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-01200.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-01200.png",
+      "bytes": 826183,
+      "sha256": "bb38cc4d0bfdd80767f899eb5f62c8b74e8ef22ae45d9109086dd939347b0e53",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-01313.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-01313.png",
+      "bytes": 816357,
+      "sha256": "559c96b8b46a6169b76484d2709d949c79a7f95e0c910595420abd50f201e5ae",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-01318.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-01318.png",
+      "bytes": 816537,
+      "sha256": "ee3f0533d148101e3a34976165b4da6f60b460671c5d29a26f59c3c999d464d8",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-01324.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-01324.png",
+      "bytes": 817265,
+      "sha256": "ea5f1df8984fa68252d2047312743ce1dbf4341bf09a51e0cf96913a26378325",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-01329.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-01329.png",
+      "bytes": 818412,
+      "sha256": "4c7fa0e6d2fd6e7ee32db8ef7e31baa2daddf3686981c93b04c10e59a518c65c",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-01331.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-01331.png",
+      "bytes": 817263,
+      "sha256": "bb4e062ebe96491ac682784c4304090c3a4877fdb7edb7faf9b5e069772d543a",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-01332.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-01332.png",
+      "bytes": 808053,
+      "sha256": "6ae4782791124965dbcc00226d2cfd2bf73390ab102f846cedcfefee2013bc61",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-01335.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-01335.png",
+      "bytes": 812484,
+      "sha256": "590e87c5830cb3b0d752b3797a24dee59fe98e34e9da70525cd1bcf367caaf20",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-01500.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-01500.png",
+      "bytes": 802290,
+      "sha256": "854e3c4f9b102bbb7a096ac719304b15dd19fc2032a773d84e9a1d7e1255ea3d",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-01800.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-01800.png",
+      "bytes": 811636,
+      "sha256": "ed16a5d48de69052bab0e722de4496b9221d9b58ee8e2d1421525e5138c91453",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-02048.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-02048.png",
+      "bytes": 823570,
+      "sha256": "429a573270a7c9bf346302025fecb69773d919a372aeddd5cc62963c7da0bbf4",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-02100.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-02100.png",
+      "bytes": 844642,
+      "sha256": "a0a5a9ce7b2ed4c565757426e8573b0d6b7e9b865fba2865d6252948ee4e4457",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-02123.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-02123.png",
+      "bytes": 857834,
+      "sha256": "0a95643e8167bb8143c4531659f030b736195f5ab10aff1f3321a3ad7c600a9a",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-02177.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-02177.png",
+      "bytes": 854064,
+      "sha256": "df8500a0ce019bbf203e0bc8991ca914e31bf45b45997072c81ecdf26d296f6c",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-02237.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-02237.png",
+      "bytes": 852363,
+      "sha256": "648742017deb58dfa43556e987eac4381743aaff755935b4b1e730020680c374",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-02400.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-02400.png",
+      "bytes": 863441,
+      "sha256": "ec626185ace5fe72e7a1bc55e11984fed28611b03a80b61e9a9e8253927d83bf",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/after/selected-frames/frame-02468.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-ranger/selected-frames/frame-02468.png",
+      "bytes": 866524,
+      "sha256": "3e18b570a7a23f666035172e4ca793add2e171dc56bea66ae25c47d57eec41b4",
+      "same_inode": true
+    },
+    {
+      "path": "ranger/comparison.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/ranger-comparison.json",
+      "bytes": 39463,
+      "sha256": "34a416600608a2984faead0847c1f7306d300d3f1082f89a53ef3403fd1ea827",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/receipt.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/receipt.json",
+      "bytes": 63197,
+      "sha256": "840e980a74d05da1227173f9e0c3adaadaf532fbebbb88d4a2e9ac2ced795803",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/capture-summary.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/capture-summary.json",
+      "bytes": 3270,
+      "sha256": "1b5b038189e50e2cd1466128b1ab6b6e32ab36ca8306f3a871101cfdc48942b5",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/capture-metadata.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/capture-metadata.json",
+      "bytes": 5685,
+      "sha256": "b4bb28a77d5deba4b95c314993fe107e054cc1e9934d73009bd922ac4df50eb2",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/frames.jsonl",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/frames.jsonl",
+      "bytes": 35464081,
+      "sha256": "6015c7d0c261abe1b70275ae2837ba7fb839b0110448ccc4042d7a47d63910a5",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/godot.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/godot.log",
+      "bytes": 3278,
+      "sha256": "c981c17f56b06b4d53002c63a8231a7eed248fb04a8a51039159b315eb0c4e94",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/ffmpeg.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/ffmpeg.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/ffmpeg-mux.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/ffmpeg-mux.log",
+      "bytes": 151,
+      "sha256": "d8b86e2757e2a6b52be90e29f4cccecbd2aa607bcbba1a498c1963e2716c2431",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/native-game-audio.f32le.gz",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/native-game-audio.f32le.gz",
+      "bytes": 15936760,
+      "sha256": "060f7ebb3b44f37fbedfbd259f2e3ed2ffa544e7517f43157f15983fe32b74a3",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/ordinary-vowkeeper-complete.mp4",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/ordinary-vowkeeper-complete.mp4",
+      "bytes": 16918850,
+      "sha256": "e0f3194f1ad288bfa650143fa18d253e5220f09cad22fde5bb90fb494e6095b1",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00000.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00000.png",
+      "bytes": 809880,
+      "sha256": "eee2922f9664ac7842ed00a766efbd2f0c8b0e2ccc22ff45fcb4cb5aec076577",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00002.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00002.png",
+      "bytes": 810716,
+      "sha256": "53b91e16912e6bf209788c79b786b5cd2af3d948730ded87ece7c24799fca211",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00004.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00004.png",
+      "bytes": 810366,
+      "sha256": "58930e404d981a7ca88d1cd5fbd2251e818d73c4c499bff04778f3873b9979c3",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00006.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00006.png",
+      "bytes": 809221,
+      "sha256": "45f40a98b7aa80a7ba73e7bc7f7bd14cd36f0009874b0b3bb9cd68c66403ceaf",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00008.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00008.png",
+      "bytes": 809170,
+      "sha256": "d3342eb09666c815ffcaa33f84d36a8fc82bb94fc7c4b53ad9e264ca6b59c529",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00011.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00011.png",
+      "bytes": 808859,
+      "sha256": "60168e06e8b11b322edd94d767f9ad881484d9d1f89e4a91786246968840d265",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00012.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00012.png",
+      "bytes": 809691,
+      "sha256": "0acc700970339bdf7585e2d991af432670b97444e238782650120bc8141c0ced",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00015.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00015.png",
+      "bytes": 809681,
+      "sha256": "97ba83bb159aef809e6e06dfb755ed4b66c1c5dac5bfd2581f94e86b5f3d07c6",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00019.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00019.png",
+      "bytes": 811499,
+      "sha256": "6f96518edbb08cd2510cc4b18b99f23b7b18533cef42efd5820ec34252209c4e",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00065.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00065.png",
+      "bytes": 794422,
+      "sha256": "c0f53d0fab0d29ef632a08a6371f8eda0f4fefea4757450ac22c7b1ce3640429",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00067.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00067.png",
+      "bytes": 794275,
+      "sha256": "5583b68358cc5f687eb8fb2fe87588790d650db7d5eba007062ed9b3d2dc59b8",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00069.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00069.png",
+      "bytes": 794045,
+      "sha256": "cf1a5dfaa895a90d5e4acdf277f34765728b0534e944d3a17ccd66ff6e2b6236",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00071.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00071.png",
+      "bytes": 793785,
+      "sha256": "909a4323720f8d855b0558175a291921ac6fd5edde63793fbfe7016237c76af3",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00074.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00074.png",
+      "bytes": 794755,
+      "sha256": "16e3f82f6c48bc3915638f7b5ed2e95da824def7b0f72c53fee54e07f3ff5145",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00075.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00075.png",
+      "bytes": 794972,
+      "sha256": "5c095d820a6f968c4165386726e7e309dd55b0dd8ba29bfcd383eef50ef4b82c",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00078.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00078.png",
+      "bytes": 803163,
+      "sha256": "c0bac65f043317cea3b4740714397b5aef862d844ab86a0c6d3e684c9f6d996c",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00300.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00300.png",
+      "bytes": 821409,
+      "sha256": "9e2b69be3cb808ea884bf40cd4620b5394805d9035271607a205d67d60ef27e0",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00425.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00425.png",
+      "bytes": 843291,
+      "sha256": "fd9999b45ff19c12f3edaa922aa2dec0092b0550ff875bfecf31a55cf0be8ebe",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00428.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00428.png",
+      "bytes": 842806,
+      "sha256": "955e2552fad150c488ed076e5f303ce0475cd7a7affd36fc8a2a69962f063800",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00431.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00431.png",
+      "bytes": 843664,
+      "sha256": "28c4a0b907d5c7845cb8c93161f0aead1a80682bc7b8d601e54955c04df5bb16",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00434.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00434.png",
+      "bytes": 843562,
+      "sha256": "b8a5fcfab7b79f1d6707fe9656a6093465a08c4e90256878f7a11655a1306936",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00437.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00437.png",
+      "bytes": 843217,
+      "sha256": "0935cfb02247abbfd56b415f8f6e94514ce903220a9f74536307bf861704d454",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00440.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00440.png",
+      "bytes": 843025,
+      "sha256": "a798a9d67ef6f93cd3ef1915f5befe7a0958f193408f5b6b69607509276ab431",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00600.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00600.png",
+      "bytes": 834954,
+      "sha256": "89ba293f42e980bd1476aeb8e198219a420fa2a3de71927877aaa97cb4c959fe",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00900.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00900.png",
+      "bytes": 837537,
+      "sha256": "49a5c5ba240eccacf022963e3c2ed493d033b67c588373783a932466a8ee3700",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00920.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00920.png",
+      "bytes": 835639,
+      "sha256": "467f15e46a5b104a37ea8cf07645f7dcea361590ae0cc164e53a99082c1ab1e3",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00962.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00962.png",
+      "bytes": 839539,
+      "sha256": "e864e53950e298be370297c8c42a97333c7360c4e8e25ff5a097eab13d1eba9e",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00966.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00966.png",
+      "bytes": 837618,
+      "sha256": "1c77a659f6912a8e98874f20374a798ec81e61042c4928574e9b5aafe96e27f8",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00970.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00970.png",
+      "bytes": 839041,
+      "sha256": "fa8d6d405f152b950387382a0252664305429ded3ef0acfc16437280edcf1ac4",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00973.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00973.png",
+      "bytes": 838042,
+      "sha256": "081263919c9792b501cb25066f7f27c6626834204474b8ba332b5861719c9cfe",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00977.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00977.png",
+      "bytes": 832448,
+      "sha256": "978111d13b9e953b0fb1a881ad8357e38a92fa5a41fdecafffdd532a6e90d72e",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00978.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00978.png",
+      "bytes": 834068,
+      "sha256": "a63e62caff902ef294b55699792aa10943e755d7b3f5e3921be61d1576e90273",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-00981.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-00981.png",
+      "bytes": 834450,
+      "sha256": "57a70cc84e3698add0cf9a894cf5ec5c8182311167236404aa09e2dc4950d202",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-01200.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-01200.png",
+      "bytes": 793214,
+      "sha256": "0e82f31f94ac8a94d202abb5b4fd3e7ec9018b8dcb04385cce732e1adff26958",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-01500.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-01500.png",
+      "bytes": 823035,
+      "sha256": "e178cbfdb6c2f4813079a7748a7b6b30a35b0c995e3beb3b72847b3db2d834c7",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-01640.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-01640.png",
+      "bytes": 810991,
+      "sha256": "257afdfdc29bfdbb6ca116370afacb539c4c14874446a64fd80f4f367183722d",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-01800.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-01800.png",
+      "bytes": 823148,
+      "sha256": "718cf67a7c2c74bd7409113074130def0c38a1868a33dc9f816c60617f688d3d",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-02100.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-02100.png",
+      "bytes": 821432,
+      "sha256": "f482d66855409a52a2cb0273a11bd3a55b3457dec1dfe159e7fce0d0471ec6aa",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-02400.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-02400.png",
+      "bytes": 817901,
+      "sha256": "da7289a24354d927a2bce777171c230170f33376eddb11a45ecbbdce6a843b3a",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-02420.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-02420.png",
+      "bytes": 827765,
+      "sha256": "6f6d85baaa1bab2a363ddb77864afd1dad482aea73620a0616ca2428c0c4fb73",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-02483.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-02483.png",
+      "bytes": 843490,
+      "sha256": "bbbc365533ebaaec6639a889de157adec769bfffd618a5c3710b24bcdadd8940",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-02486.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-02486.png",
+      "bytes": 865900,
+      "sha256": "c3d822820e72da23880eaf4b990f573e1d9c198c883bfbe04171bbaa5fe36dcc",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-02654.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-02654.png",
+      "bytes": 843192,
+      "sha256": "d1b22e33e13208bc134f77f8f2864945be95442243621a83daa32ec59f9631e6",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-02700.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-02700.png",
+      "bytes": 863441,
+      "sha256": "275e04ecd51dcb44ffd7859f0f74dd8ce0af5b544c048dc684ed7e45aae73b62",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-03000.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-03000.png",
+      "bytes": 866597,
+      "sha256": "fd7f4e26d63efd277c57dd2d261b011159fb7d697d70c74ac0f0a03c5f091fbd",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/before/selected-frames/frame-03008.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/before-vowkeeper/selected-frames/frame-03008.png",
+      "bytes": 869768,
+      "sha256": "d89fc56f4c2dc95e92bcd401d3c37998da5124f28735f85552c3e9a4ace14da6",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/receipt.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/receipt.json",
+      "bytes": 67856,
+      "sha256": "94f51f08ec795e87281c15b521513cf5717623de124cddd51a341589fbdd0561",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/capture-summary.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/capture-summary.json",
+      "bytes": 3270,
+      "sha256": "1b5b038189e50e2cd1466128b1ab6b6e32ab36ca8306f3a871101cfdc48942b5",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/capture-metadata.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/capture-metadata.json",
+      "bytes": 5685,
+      "sha256": "1b4ea61d41438eb0f133cc7b0fa8a5b4bbbea8c456c1b73767e6ca5f0ee87af5",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/frames.jsonl",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/frames.jsonl",
+      "bytes": 39232520,
+      "sha256": "48783f98c3e6df6c61815aea7d8c6791755757f7fa837e560928dae8c9f4c042",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/godot.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/godot.log",
+      "bytes": 3278,
+      "sha256": "c981c17f56b06b4d53002c63a8231a7eed248fb04a8a51039159b315eb0c4e94",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/ffmpeg.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/ffmpeg.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/ffmpeg-mux.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/ffmpeg-mux.log",
+      "bytes": 151,
+      "sha256": "eae645870f7f93d4cd54003a0a0a96d080876abd2e4c4d22c310ea2c766fa735",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/native-game-audio.f32le.gz",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/native-game-audio.f32le.gz",
+      "bytes": 15936760,
+      "sha256": "060f7ebb3b44f37fbedfbd259f2e3ed2ffa544e7517f43157f15983fe32b74a3",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/ordinary-vowkeeper-complete.mp4",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/ordinary-vowkeeper-complete.mp4",
+      "bytes": 16957439,
+      "sha256": "56f5a3cceeb8f10c8df035e1cc570ee3680fa7d7ecd5a0bd8e888f044a67b7d8",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00000.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00000.png",
+      "bytes": 809351,
+      "sha256": "fe62538e623edfc8695b525b6a99dc2377a4f6950f8674a1d44635713eedae90",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00002.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00002.png",
+      "bytes": 810427,
+      "sha256": "5ea2ed5372b4fda97720fa845f5d2e52eb82bb5acbbec29858a426cc7ec0bf9f",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00004.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00004.png",
+      "bytes": 809741,
+      "sha256": "11a48800adf48f3ff9bc10b990a29c8c2ef73088185aefd253a698b5ac3ba5eb",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00006.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00006.png",
+      "bytes": 808880,
+      "sha256": "5318087244878a00b449fe3dffbb94024fcaf1489a9511dff5e5d27a418ccbce",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00008.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00008.png",
+      "bytes": 808462,
+      "sha256": "4b2134f6c9a3b7f52e39dd484a68aa3190e6e48685b9fafe61f254a11a342d6b",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00011.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00011.png",
+      "bytes": 808627,
+      "sha256": "cd55ff1aa764bfb7f3bc565fd2fb40d65062b3aea2fbef5204be6a105df9807d",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00012.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00012.png",
+      "bytes": 809208,
+      "sha256": "ff3fceb2693324c70483ddece8ab84c12fd3325603f329dcca5d5d9b2bd422b7",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00015.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00015.png",
+      "bytes": 809403,
+      "sha256": "aedebd33a5fee9f5a8524bd3e8738aa35049701d260f773493f252df85771224",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00019.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00019.png",
+      "bytes": 810674,
+      "sha256": "eba2258b16e5fb680e455e7ae315872b410fc49cdf3d7ba30d84c43bd1d017f1",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00065.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00065.png",
+      "bytes": 794257,
+      "sha256": "0a2698899d0abbfda647367f51d178c8d9f004b41a9a439191a4016d5e1da540",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00067.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00067.png",
+      "bytes": 793384,
+      "sha256": "2a18d8726c4d4a24caea40e355df9a0f27498c537b97a5be89e060115f98fe3f",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00069.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00069.png",
+      "bytes": 793824,
+      "sha256": "d369a667c17656a47e2b99853f6b67e1e0062684e555ea0ef0d620b9a401133c",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00071.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00071.png",
+      "bytes": 793800,
+      "sha256": "f62c8ad32c6cea7b5ebae7cbae1409e2908c1607a936345c93ceb6e7a58138bc",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00074.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00074.png",
+      "bytes": 794393,
+      "sha256": "2581619822a9a250d9ad4a9e3a2829ade5a4cb2ba759ae0ad6ec2ef6c0aef765",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00075.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00075.png",
+      "bytes": 794470,
+      "sha256": "b63b06e95ce60b3315e2ae9942714d094a623bcaf18139ad39b8c901a6b69630",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00078.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00078.png",
+      "bytes": 801650,
+      "sha256": "7fff4792dcbfc9e2f48fd03b0ebee7161f9c1db050dc9089e776d616bd45cd71",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00300.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00300.png",
+      "bytes": 820620,
+      "sha256": "84ea67a0ffaf89b9ecf95ad21dfd43545ae79b7a828e8315e56e97badfe3e69e",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00425.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00425.png",
+      "bytes": 843138,
+      "sha256": "74720bb3e4fc01c50170efaa01138f2e65df62a314dc12caf4b92a7e357319ad",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00428.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00428.png",
+      "bytes": 842997,
+      "sha256": "e48e61df94c1f3270e52cd9b7681e8e13c8412da9763f4a4fa4b7bb856bb8a00",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00431.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00431.png",
+      "bytes": 844345,
+      "sha256": "0e72aae73916b3d6a39d3eec9cf47e3fb0ee39ed367236a9296e313ebeca99d5",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00434.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00434.png",
+      "bytes": 843827,
+      "sha256": "a0cbde5ddb9f5ac5ff10c1579438e12431c271c1d335cba78a2b3cff3f5d506b",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00437.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00437.png",
+      "bytes": 843349,
+      "sha256": "3221f8d365051d9e241ec813273c8f5365285c83a95b452c7d341dbd7a2e442b",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00440.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00440.png",
+      "bytes": 843172,
+      "sha256": "c8f0989c3a78527dada14d0df6c942455a3ad4d06534cec6402dfe9c6cff270f",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00600.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00600.png",
+      "bytes": 834441,
+      "sha256": "65cbc52c0242f8b340214235d1253ab956d87e90625dd3ada593afadac22bcd7",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00900.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00900.png",
+      "bytes": 836224,
+      "sha256": "ba2bcec071752e062bd1eac912bf1a997b9494fa3365970a1b39dbfed9719ccd",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00920.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00920.png",
+      "bytes": 834962,
+      "sha256": "4c4a89d651fb3ae22b3a9ecb64d195f1751e41352a7bd4da6dbca891f03ad9bc",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00962.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00962.png",
+      "bytes": 839161,
+      "sha256": "d3b05cb51fc9c3c92e7621b1e4b275a707c075afda09934e807b8092fb790f3f",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00966.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00966.png",
+      "bytes": 837712,
+      "sha256": "53f71a6c8a02ec2f00c8a8a7f9e224e36480d6511c224bc1888eb6a34e38ee3c",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00970.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00970.png",
+      "bytes": 838687,
+      "sha256": "085492fdc0074867bde0b39180d5bb0fdcc49e7a88d90977d1582680167371d9",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00973.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00973.png",
+      "bytes": 838017,
+      "sha256": "8663b66c28edc699d8805652cc7d29b644a9a1d61a4318b5eae53edfdef77b9d",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00977.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00977.png",
+      "bytes": 832106,
+      "sha256": "6a23cbf1a27bdfd63dbcee047fbc3be41cf53c16ddb602ba99593852849c1396",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00978.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00978.png",
+      "bytes": 833606,
+      "sha256": "6a4a22ba9ef3b99ae95a7c7f10dc3c689e88a1f609a74358314cb50bc50264da",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-00981.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-00981.png",
+      "bytes": 834276,
+      "sha256": "f24645534bd64ca04872ac1bb44fa08e7b87e1df0329182811aaebb61569320c",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-01200.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-01200.png",
+      "bytes": 792578,
+      "sha256": "b000e11fd09997ebd0c79078a7e7c900f1e0b2a655b7d2409b09e721f166219f",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-01500.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-01500.png",
+      "bytes": 823073,
+      "sha256": "ee8b53adb4b8a4541c2462e328a7c12cb7873662926439633168ff9bb1f123d4",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-01640.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-01640.png",
+      "bytes": 811762,
+      "sha256": "2e6b9de890fbd29e8655abc956b9f3c1738a243d79ecd8f349df6967c09a44c9",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-01800.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-01800.png",
+      "bytes": 822707,
+      "sha256": "2062eb49b045af0de265c9733b1a3f60e8c31bb27d3fa8a8b5a0bd8f2b8a2a8d",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-02100.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-02100.png",
+      "bytes": 820924,
+      "sha256": "3f4fa2ec2eb5b78c19bc36dacc445573b84dee4596fdf2e716c159e7a7e844b5",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-02400.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-02400.png",
+      "bytes": 819207,
+      "sha256": "682721d7451455d65be2c1f72e8123d2a2072e0d1ff3b9497dc7474c6cc5377b",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-02420.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-02420.png",
+      "bytes": 828836,
+      "sha256": "8e722cd881a68a414b81f518a8015f65ea5fabf5355156e0add7d4bee2cedbf0",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-02483.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-02483.png",
+      "bytes": 842469,
+      "sha256": "9eb9980bfa45b70caf162f379a429575fb737a07d6c4f0ff5309a8d66add63fd",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-02486.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-02486.png",
+      "bytes": 865323,
+      "sha256": "98e2512833f3b5c6832527886337d889e79ded16ee2662ad0a3891fea92a222b",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-02654.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-02654.png",
+      "bytes": 842667,
+      "sha256": "3df44fb3770e95f9012490f00205f81eb01d622f96936b44b6b1892265789a22",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-02700.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-02700.png",
+      "bytes": 864210,
+      "sha256": "994adc073234952e8113cd209010c416ec78b2bfe3f2c7ec8b2bba469701e06e",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-03000.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-03000.png",
+      "bytes": 867312,
+      "sha256": "95b6ba5c38e5717fc4644001d1de0429f0ccf572d4cf1213edd837a09c8aca91",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/after/selected-frames/frame-03008.png",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/after-vowkeeper/selected-frames/frame-03008.png",
+      "bytes": 870268,
+      "sha256": "04215088fc55803197c77baad29490ffc8af1001793d2bc4e41604ecc5418ec0",
+      "same_inode": true
+    },
+    {
+      "path": "vowkeeper/comparison.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/vowkeeper-comparison.json",
+      "bytes": 38736,
+      "sha256": "4b59eefbe7166104f0dc93e96dc9bd5895284fbdc30bf2da7150c292e23d20a8",
+      "same_inode": true
+    },
+    {
+      "path": "capture-session-receipt.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/session-receipt.json",
+      "bytes": 18734,
+      "sha256": "fcddbbf9072dbcf16b56fa34c27af60afe60a3f895125fd04f7fc9617eddd64b",
+      "same_inode": true
+    },
+    {
+      "path": "baseline-fixture-overlay-receipt-v2.json",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/baseline-fixture-overlay-receipt-v2.json",
+      "bytes": 2555,
+      "sha256": "bd3aab2149a9322b056261205cfb34b8febe2abfa9ce0ee3aac94ba108ff7f29",
+      "same_inode": true
+    },
+    {
+      "path": "run_six_full_captures.py",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/run_six_full_captures.py",
+      "bytes": 12420,
+      "sha256": "f168a58413a5ccdc35db5699cbe1afc1658007bb6e194ea154ed0916ffba044c",
+      "same_inode": true
+    },
+    {
+      "path": "execution-logs/before-arcanist.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/before-arcanist.log",
+      "bytes": 734,
+      "sha256": "c795658673fd3ec34959057bdc61c7825b41d654ebee4c573e279fdb6b9dace2",
+      "same_inode": true
+    },
+    {
+      "path": "execution-logs/after-arcanist.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/after-arcanist.log",
+      "bytes": 732,
+      "sha256": "2a80693ae053ed7f88160f8ee2a6006fa18853c2563596123041797c63a924cf",
+      "same_inode": true
+    },
+    {
+      "path": "execution-logs/arcanist-analysis.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/arcanist-analysis.log",
+      "bytes": 79,
+      "sha256": "dcf9738ba9558368d281b73497447654fd43fda6444c0b7aaa0fa3a280b36af6",
+      "same_inode": true
+    },
+    {
+      "path": "execution-logs/before-ranger.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/before-ranger.log",
+      "bytes": 730,
+      "sha256": "22bcbde070337fa146a34f486431dd4a4af3d3a34fe0ef9c014baef1a12ec998",
+      "same_inode": true
+    },
+    {
+      "path": "execution-logs/after-ranger.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/after-ranger.log",
+      "bytes": 729,
+      "sha256": "2489feef718419503aafd28d432ec4608ff5e5d93dc627f95d7c17ea6b258ce2",
+      "same_inode": true
+    },
+    {
+      "path": "execution-logs/ranger-analysis.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/ranger-analysis.log",
+      "bytes": 79,
+      "sha256": "1a87d1eb0a0ec65fc906331d34ba96384bab99bd5157c0917cfbd7cbd2c315e2",
+      "same_inode": true
+    },
+    {
+      "path": "execution-logs/before-vowkeeper.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/before-vowkeeper.log",
+      "bytes": 866,
+      "sha256": "df2f5e69a94f2b92d23e40fd55a440de2968c44a7320758aba7e5c8bca0fecbe",
+      "same_inode": true
+    },
+    {
+      "path": "execution-logs/after-vowkeeper.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/after-vowkeeper.log",
+      "bytes": 864,
+      "sha256": "d76dbe07262bcd08ba1a10f0643c8b93180fb66ef98e64602a3b6b8ffe165929",
+      "same_inode": true
+    },
+    {
+      "path": "execution-logs/vowkeeper-analysis.log",
+      "source": "/workspace/scratch/emberfall-quality-057/gameplay-final-evade/native-session-final/vowkeeper-analysis.log",
+      "bytes": 79,
+      "sha256": "8677ca7ff2bd8c1df3550ea1c729fb1e19a37316bb3ab859fe253a0fef610c17",
+      "same_inode": true
+    }
+  ],
+  "sum_original_logical_bytes": 607570867,
+  "additional_proof_data_bytes": 0,
+  "scope": "Local inode identity and SHA-256 for immutable original proof; Git stores these ordinary files normally."
+}

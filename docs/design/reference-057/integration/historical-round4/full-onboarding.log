@@ -1,0 +1,22 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: new save opens class selection
+PASS: ChooseVowkeeper fits within landscape viewport
+PASS: ChooseArcanist fits within landscape viewport
+PASS: ChooseRanger fits within landscape viewport
+PASS: ReviewGear fits within landscape viewport
+PASS: BeginExpedition fits within landscape viewport
+PASS: class choice updates selection and keeps the introduction open
+PASS: unfinished selection survives closing the game
+PASS: first expedition uses selected class and closes introduction
+PASS: returning to a saved expedition never reopens onboarding
+PASS: preparation opens class and attribute editor
+PASS: spending a point updates the build
+PASS: switching classes refunds allocated points exactly
+PASS: repeated class changes cannot create attribute points
+PASS: manual refund is idempotent
+PASS: equipment tab is available without scrolling past the class editor
+PASS: equipment swap returns old item to bag with actionable status
+PASS: bag tab opens directly
+PASS: finished introduction and refunded points persist
+ONBOARDING SMOKE: 19 checks, 0 failures

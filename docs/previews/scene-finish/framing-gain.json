@@ -1,0 +1,290 @@
+[
+	{
+		"after": {
+			"body_height_fraction": 0.0800196965535482,
+			"body_height_pixels": 86.421272277832,
+			"scale": 1.34091796875
+		},
+		"before": {
+			"body_height_fraction": 0.0650095974957502,
+			"body_height_pixels": 70.2103652954102,
+			"scale": 1.54995444692098
+		},
+		"class": "Vowkeeper",
+		"guardian": false,
+		"height_gain": 1.2308905090326,
+		"resolution": "(2424, 1080)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.0574772552207664,
+			"body_height_pixels": 62.0754356384277,
+			"scale": 1.56280517578125
+		},
+		"before": {
+			"body_height_fraction": 0.0364246792263455,
+			"body_height_pixels": 39.3386535644531,
+			"scale": 2.63706469363029
+		},
+		"class": "Vowkeeper",
+		"guardian": true,
+		"height_gain": 1.57797560449603,
+		"resolution": "(2424, 1080)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.0800196965535482,
+			"body_height_pixels": 86.421272277832,
+			"scale": 1.34091796875
+		},
+		"before": {
+			"body_height_fraction": 0.0650095974957502,
+			"body_height_pixels": 70.2103652954102,
+			"scale": 1.54995444692098
+		},
+		"class": "Arcanist",
+		"guardian": false,
+		"height_gain": 1.2308905090326,
+		"resolution": "(2424, 1080)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.0584286477830675,
+			"body_height_pixels": 63.1029396057129,
+			"scale": 1.6563720703125
+		},
+		"before": {
+			"body_height_fraction": 0.0376913635819047,
+			"body_height_pixels": 40.706672668457,
+			"scale": 2.63706469363029
+		},
+		"class": "Arcanist",
+		"guardian": true,
+		"height_gain": 1.55018662713276,
+		"resolution": "(2424, 1080)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.0800196965535482,
+			"body_height_pixels": 86.421272277832,
+			"scale": 1.34091796875
+		},
+		"before": {
+			"body_height_fraction": 0.0650095974957502,
+			"body_height_pixels": 70.2103652954102,
+			"scale": 1.54995444692098
+		},
+		"class": "Ranger",
+		"guardian": false,
+		"height_gain": 1.2308905090326,
+		"resolution": "(2424, 1080)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.0566364500257704,
+			"body_height_pixels": 61.167366027832,
+			"scale": 1.6813232421875
+		},
+		"before": {
+			"body_height_fraction": 0.0372728983561198,
+			"body_height_pixels": 40.2547302246094,
+			"scale": 2.63706469363029
+		},
+		"class": "Ranger",
+		"guardian": true,
+		"height_gain": 1.51950753828274,
+		"resolution": "(2424, 1080)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.146138071130823,
+			"body_height_pixels": 157.829116821289,
+			"scale": 1.3712158203125
+		},
+		"before": {
+			"body_height_fraction": 0.0831302289609556,
+			"body_height_pixels": 89.780647277832,
+			"scale": 1.41502115798551
+		},
+		"class": "Vowkeeper",
+		"guardian": false,
+		"height_gain": 1.757941400588,
+		"resolution": "(1040, 1080)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.128722861961082,
+			"body_height_pixels": 139.020690917969,
+			"scale": 1.323095703125
+		},
+		"before": {
+			"body_height_fraction": 0.0975660253454138,
+			"body_height_pixels": 105.371307373047,
+			"scale": 1.23009106218815
+		},
+		"class": "Vowkeeper",
+		"guardian": true,
+		"height_gain": 1.31934104628495,
+		"resolution": "(1040, 1080)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.146138071130823,
+			"body_height_pixels": 157.829116821289,
+			"scale": 1.3712158203125
+		},
+		"before": {
+			"body_height_fraction": 0.0831302289609556,
+			"body_height_pixels": 89.780647277832,
+			"scale": 1.41502115798551
+		},
+		"class": "Arcanist",
+		"guardian": false,
+		"height_gain": 1.757941400588,
+		"resolution": "(1040, 1080)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.13329630251284,
+			"body_height_pixels": 143.960006713867,
+			"scale": 1.4032958984375
+		},
+		"before": {
+			"body_height_fraction": 0.10277859016701,
+			"body_height_pixels": 111.000877380371,
+			"scale": 1.23009106218815
+		},
+		"class": "Arcanist",
+		"guardian": true,
+		"height_gain": 1.29692674608826,
+		"resolution": "(1040, 1080)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.146138071130823,
+			"body_height_pixels": 157.829116821289,
+			"scale": 1.3712158203125
+		},
+		"before": {
+			"body_height_fraction": 0.0831302289609556,
+			"body_height_pixels": 89.780647277832,
+			"scale": 1.41502115798551
+		},
+		"class": "Ranger",
+		"guardian": false,
+		"height_gain": 1.757941400588,
+		"resolution": "(1040, 1080)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.128573749683521,
+			"body_height_pixels": 138.859649658203,
+			"scale": 1.4246826171875
+		},
+		"before": {
+			"body_height_fraction": 0.101075320773655,
+			"body_height_pixels": 109.161346435547,
+			"scale": 1.23009106218815
+		},
+		"class": "Ranger",
+		"guardian": true,
+		"height_gain": 1.27205878447268,
+		"resolution": "(1040, 1080)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.132633892695109,
+			"body_height_pixels": 63.6642684936523,
+			"scale": 1.73389892578125
+		},
+		"before": {
+			"body_height_fraction": 0.0934827168782552,
+			"body_height_pixels": 44.8717041015625,
+			"scale": 2.27638757670615
+		},
+		"class": "Vowkeeper",
+		"guardian": false,
+		"height_gain": 1.41880656793321,
+		"resolution": "(854, 480)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.0972198724746704,
+			"body_height_pixels": 46.6655387878418,
+			"scale": 2.1161865234375
+		},
+		"before": {
+			"body_height_fraction": 0.0819555282592773,
+			"body_height_pixels": 39.3386535644531,
+			"scale": 2.63706469363029
+		},
+		"class": "Vowkeeper",
+		"guardian": true,
+		"height_gain": 1.18625155056169,
+		"resolution": "(854, 480)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.132633892695109,
+			"body_height_pixels": 63.6642684936523,
+			"scale": 1.73389892578125
+		},
+		"before": {
+			"body_height_fraction": 0.0934827168782552,
+			"body_height_pixels": 44.8717041015625,
+			"scale": 2.27638757670615
+		},
+		"class": "Arcanist",
+		"guardian": false,
+		"height_gain": 1.41880656793321,
+		"resolution": "(854, 480)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.0975843747456868,
+			"body_height_pixels": 46.8404998779297,
+			"scale": 2.2302490234375
+		},
+		"before": {
+			"body_height_fraction": 0.0848055680592855,
+			"body_height_pixels": 40.706672668457,
+			"scale": 2.63706469363029
+		},
+		"class": "Arcanist",
+		"guardian": true,
+		"height_gain": 1.15068358102935,
+		"resolution": "(854, 480)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.132633892695109,
+			"body_height_pixels": 63.6642684936523,
+			"scale": 1.73389892578125
+		},
+		"before": {
+			"body_height_fraction": 0.0934827168782552,
+			"body_height_pixels": 44.8717041015625,
+			"scale": 2.27638757670615
+		},
+		"class": "Ranger",
+		"guardian": false,
+		"height_gain": 1.41880656793321,
+		"resolution": "(854, 480)"
+	},
+	{
+		"after": {
+			"body_height_fraction": 0.0951305150985718,
+			"body_height_pixels": 45.6626472473145,
+			"scale": 2.25965576171875
+		},
+		"before": {
+			"body_height_fraction": 0.0838640292485555,
+			"body_height_pixels": 40.2547340393066,
+			"scale": 2.63706469363029
+		},
+		"class": "Ranger",
+		"guardian": true,
+		"height_gain": 1.13434229133714,
+		"resolution": "(854, 480)"
+	}
+]

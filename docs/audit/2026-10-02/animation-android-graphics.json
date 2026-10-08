@@ -1,0 +1,318 @@
+{
+  "scope": "Android 16 native moving graphics and first-session cold restart, not full AFK or physical-device performance",
+  "verified_head_sha": "2280dc10d665d4ad58a6197d3efb1a9411cb8c9b",
+  "run_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37076932054",
+  "artifact_id": 11257014622,
+  "artifact_zip_sha256": "7dd40640f12ccf359bc76730523df53b55482d4c566ecf0f18e0db0fcc5affa2",
+  "motion": [
+    {
+      "bone_changes": 20,
+      "captures": [
+        0,
+        5,
+        11,
+        17
+      ],
+      "frames": 20,
+      "passed": true,
+      "physical_device_performance": false,
+      "region": 0,
+      "simulation_step_seconds": 0.05,
+      "unique_rendered_frames": 4
+    },
+    {
+      "bone_changes": 20,
+      "captures": [
+        0,
+        5,
+        11,
+        17
+      ],
+      "frames": 20,
+      "passed": true,
+      "physical_device_performance": false,
+      "region": 1,
+      "simulation_step_seconds": 0.05,
+      "unique_rendered_frames": 4
+    },
+    {
+      "bone_changes": 20,
+      "captures": [
+        0,
+        5,
+        11,
+        17
+      ],
+      "frames": 20,
+      "passed": true,
+      "physical_device_performance": false,
+      "region": 2,
+      "simulation_step_seconds": 0.05,
+      "unique_rendered_frames": 4
+    },
+    {
+      "bone_changes": 20,
+      "captures": [
+        0,
+        5,
+        11,
+        17
+      ],
+      "frames": 20,
+      "passed": true,
+      "physical_device_performance": false,
+      "region": 3,
+      "simulation_step_seconds": 0.05,
+      "unique_rendered_frames": 4
+    }
+  ],
+  "native_images": [
+    {
+      "file": "android-art-runtime/android-motion-region-0-00.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "b58fc1d43da01ea59c08bdb65282555f1a24ae161d12c76b8f15e90dd8f4702b"
+    },
+    {
+      "file": "android-art-runtime/android-motion-region-0-05.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "a2c89a0cea657ecfeea6cb7d186607caa2c131b9534eb1a6b166594946bfde41"
+    },
+    {
+      "file": "android-art-runtime/android-motion-region-0-11.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "ef473b6b3a9197bd2107ac1f996d7bef61d2ce49148a2653a349a44512a246ab"
+    },
+    {
+      "file": "android-art-runtime/android-motion-region-0-17.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "71513917598cf6918073f5a269ee27dbf193ae72bf0db95c50db97ea83a423cb"
+    },
+    {
+      "file": "android-art-runtime/android-motion-region-1-00.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "127a18b15fb3e1fc024e377bc0536bcffe0422b16af56b7d42e069f1a9ac6678"
+    },
+    {
+      "file": "android-art-runtime/android-motion-region-1-05.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "32a4d7ad37777773459d051e494737c410379aedb4ed29ba6e6faf9113ab930e"
+    },
+    {
+      "file": "android-art-runtime/android-motion-region-1-11.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "ea03f1747bec82f2593b4874ce5db4e8982e82548a132226288bac014b8debdb"
+    },
+    {
+      "file": "android-art-runtime/android-motion-region-1-17.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "f50a44e5684436c58dd72c9e88d6850c8402a8ea1722e2d94dc2b4e8eed284e1"
+    },
+    {
+      "file": "android-art-runtime/android-motion-region-2-00.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "6e4d557aae34b38d634f66d2324d1973bdad26137b2dc6a34f6341da57614778"
+    },
+    {
+      "file": "android-art-runtime/android-motion-region-2-05.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "9827b551f4165a3be274b19ec38193f42456dce455495af25f692c13a714181d"
+    },
+    {
+      "file": "android-art-runtime/android-motion-region-2-11.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "d748ddae914911f162f605bdff86726ee2e4ea9dc63ef02a050acf8eb82f6780"
+    },
+    {
+      "file": "android-art-runtime/android-motion-region-2-17.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "ed6c9f1bff8b27bbac70376d21d3d024ffa07db19eb576cdb0f6465fbd3b32b1"
+    },
+    {
+      "file": "android-art-runtime/android-motion-region-3-00.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "54e20804722ffe3d5005e3d3bd435cbbe375a1699c2c5e68e327bc446db228ca"
+    },
+    {
+      "file": "android-art-runtime/android-motion-region-3-05.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "955545ab87eba7437afbfb94470a300b75d568e519d8b3e2a5b4a5b671ba0f1a"
+    },
+    {
+      "file": "android-art-runtime/android-motion-region-3-11.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "11c66147723351fd5e25bd7cb4832a10d98fdd2c217230bc9012785016c88ea3"
+    },
+    {
+      "file": "android-art-runtime/android-motion-region-3-17.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "437238894b8d7bf8c553f74a4ccdbeef377fe4eb440d03a707c01ebc72ba6731"
+    },
+    {
+      "file": "android-art-runtime/android-region-0.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "ec15478013743feebbdb7fb6051c57756f8c0cb01e10bae4002024ce8792ac01"
+    },
+    {
+      "file": "android-art-runtime/android-region-1.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "66478b81085aef56900b5f7d699cecef09f24ed1f59efab68a143f1fc81376c7"
+    },
+    {
+      "file": "android-art-runtime/android-region-2.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "4d248b14b19602a7fdc885128b026203ea41a51574042cfc4d6b003d5ef2f79d"
+    },
+    {
+      "file": "android-art-runtime/android-region-3.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "c9b1d9d027c0883fcc08970aa17afa4c555215e942885de42fd42c38341684d2"
+    },
+    {
+      "file": "android-success-runtime/android-success-filtered-bag.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "011d11a30285e1925d5aff5b2f310d2f297dacb5e7a587630f952fc980227ba5"
+    },
+    {
+      "file": "android-success-runtime/android-success-first-fight.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "e632cdfa6265c9a4049c989a0db39c66253b95265f83f2962be7629e10c9b3e0"
+    },
+    {
+      "file": "android-success-runtime/android-success-first-relic.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "ea3b3a536d396e9698067ae164f1e35e79d0dbfa54a57457458419b167254037"
+    },
+    {
+      "file": "android-success-runtime/android-success-oath-run.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "d59af0ecb61865d516bea3693f885c92c5199bf8178da3e757a088742bcdd916"
+    },
+    {
+      "file": "android-success-runtime/android-success-oaths.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "2ff14c4d84bf7352dd141d4f10dc334acf97a8d7614201558691ac086ff78c6e"
+    },
+    {
+      "file": "android-success-runtime/android-success-protected-gear.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "f255aa4c19f78ed9f7acda8706fbaa5b181cbd9b9836c1a1530791289283569a"
+    },
+    {
+      "file": "android-success-runtime/android-success-welcome.png",
+      "physical_size": [
+        2424,
+        1080
+      ],
+      "sha256": "76095ea723793a380c2a175d5b354b613a4fe4f4bd4d007bcfcd2fec18467223"
+    }
+  ],
+  "manual_android_inspection": {
+    "opened_frames": [
+      "android-motion-region-0-00.png",
+      "android-motion-region-0-17.png",
+      "android-motion-region-1-00.png",
+      "android-motion-region-1-17.png",
+      "android-motion-region-2-00.png",
+      "android-motion-region-2-17.png",
+      "android-motion-region-3-00.png",
+      "android-motion-region-3-17.png"
+    ],
+    "assessment": "All four native skins visibly advance; anatomy/weapon connections and painted rendering preserved",
+    "cosmetic_changes_after_confirmation": 0
+  },
+  "current_motion_source_sha256": {
+    "scripts/dungeon_actor.gd": "d5926a37a241123954e95a63b950424ef792de7724d6ad64507e53f7c4abdbb2",
+    "scripts/dungeon_world.gd": "3c33cea421ecfcafe6b636daef15ed31193318ce2ee8d069aae5628de6c03200",
+    "scripts/painted_motion_rig.gd": "9cc6a104bc6cf5cd6ec54003b7e4aec0e8eba2418444d663287eb296cf3ee72c",
+    "scripts/painted_motion_layers.gd": "4d1cd31ef3b926044fd5a89e72efa5435b385e7601cfbec6918fc6a3d4688282",
+    "assets/shaders/painted_actor.gdshader": "9ee4fd4b77fcb7b7a51cc387e991b8a5b53f17c574a055cdcbb76d74a8c206ff",
+    "tests/android_art_flow.gd": "5a584ae3f3b313ed6241f3adc30aa2623ddaf1c3225e39d4e7c031f8c69e49bc",
+    "scripts/expedition_simulation.gd": "ed4cabb75e65486aa277632ad2d25700bfca4d60e79b7e7fc0a28bbffe6c649b"
+  },
+  "full_afk_deadline_diagnosis": {
+    "run_url": "https://github.com/Philmenting/Emberfall-Ashen-Veil/actions/runs/37077148884",
+    "artifact_id": 11257770487,
+    "failure_screen_sha256": "42012be44c423afb522b6afd1a91e7f9c87ba7a65f5b3d234642a452614682b8",
+    "observed": "App resumed with window focus; exact AFK progress about 90% at 300-second deadline; no Godot script/shader error logged",
+    "ci_only_deadline_seconds": 900,
+    "unchanged_assertions": "one-hour exact ledger, cooperative execution and no duplicate rewards after cold restart"
+  }
+}

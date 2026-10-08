@@ -1,10 +1,18 @@
 extends RefCounted
 ## Original art direction shared by the world and its inhabitants.
 const THEMES := [
-	{"id":"spire", "stone":"636970", "edge":"727777", "dark":"252933", "metal":"65533a", "cloth":"392c35", "fire":"f37825", "light":"ffab60", "moon":"a8c9ee", "ambient":"8c9eb8", "fog":"111b25", "background":"070c12", "roughness":0.84, "density":0.020, "enemy":"943b30", "skin":"7e8075", "glow":"ff7433"},
-	{"id":"archive", "stone":"4e7470", "edge":"78928a", "dark":"1d383b", "metal":"6d866d", "cloth":"31565a", "fire":"54dcd5", "light":"72ead9", "moon":"82bfc9", "ambient":"79a6a0", "fog":"153839", "background":"071a21", "roughness":0.42, "density":0.024, "enemy":"459a94", "skin":"80afa6", "glow":"71ffdb"},
-	{"id":"ossuary", "stone":"555162", "edge":"89848c", "dark":"252333", "metal":"a39476", "cloth":"4b284e", "fire":"b396f0", "light":"c0a4f2", "moon":"bdb1de", "ambient":"9f94ac", "fog":"292337", "background":"161222", "roughness":0.68, "density":0.018, "enemy":"976caf", "skin":"c3bca5", "glow":"da96ff"},
-	{"id":"citadel", "stone":"61514c", "edge":"847164", "dark":"302725", "metal":"ac7339", "cloth":"612b24", "fire":"ff6a21", "light":"ff994d", "moon":"e8aa76", "ambient":"b8937b", "fog":"382018", "background":"180c0a", "roughness":0.76, "density":0.021, "enemy":"ce652c", "skin":"827065", "glow":"ffc249"}
+	{"id":"spire", "stone":"747a80", "edge":"9d9990", "dark":"20272d", "metal":"82715a", "cloth":"40262b", "fire":"ec843b", "light":"eaa36c", "moon":"cad4de", "ambient":"9aaeba", "fog":"15212a", "background":"080f15", "roughness":0.86, "density":0.006, "enemy":"943b30", "skin":"7e8075", "glow":"ee853e"},
+	{"id":"archive", "stone":"697f78", "edge":"8e9d92", "dark":"192c2d", "metal":"708276", "cloth":"243d3c", "fire":"6bbfad", "light":"83c8b7", "moon":"abc8c4", "ambient":"72988f", "fog":"122728", "background":"071316", "roughness":0.61, "density":0.007, "enemy":"459a94", "skin":"80afa6", "glow":"75cdb9"},
+	{"id":"ossuary", "stone":"807d7e", "edge":"b5ae9e", "dark":"27242b", "metal":"9b917c", "cloth":"452d3c", "fire":"a99ab9", "light":"c1afcb", "moon":"c8c3d5", "ambient":"958e9d", "fog":"202029", "background":"101017", "roughness":0.84, "density":0.007, "enemy":"976caf", "skin":"c3bca5", "glow":"bb9fc3"},
+	{"id":"citadel", "stone":"666464", "edge":"968576", "dark":"272324", "metal":"88705a", "cloth":"472820", "fire":"e47732", "light":"e89553", "moon":"cdbdae", "ambient":"988f8b", "fog":"251b18", "background":"110d0c", "roughness":0.89, "density":0.008, "enemy":"ce652c", "skin":"827065", "glow":"e89e58"}
+]
+# Lighting distinguishes each region's masonry from the neutral-lit figures.
+# These tune the existing room lights, never add region-specific render passes.
+const LIGHTING := [
+	{"key":"d4dce5", "key_energy":0.94, "rim":"9dc8df", "actor":"eee5d9", "actor_energy":0.80, "fill":"cddce5", "ambient_energy":0.17},
+	{"key":"b2cec7", "key_energy":0.90, "rim":"a7d4dd", "actor":"eee5d8", "actor_energy":0.84, "fill":"d9dce4", "ambient_energy":0.17},
+	{"key":"ccc6d6", "key_energy":0.92, "rim":"bcc8e5", "actor":"efe5d7", "actor_energy":0.82, "fill":"d3dbe7", "ambient_energy":0.17},
+	{"key":"d7c4b1", "key_energy":0.88, "rim":"9ebfd6", "actor":"e0e7ec", "actor_energy":0.84, "fill":"cbdce7", "ambient_energy":0.16}
 ]
 const ENEMY_NAMES := [
 	{"raider":"Hollow Stalker","bulwark":"Ashbound Shieldbearer","hexer":"Grave Hexer","elite":"Cinder Captain"},
@@ -13,6 +21,9 @@ const ENEMY_NAMES := [
 	{"raider":"Ember Thrall","bulwark":"Furnace Guard","hexer":"Cinder Invoker","elite":"Crown Executioner"}
 ]
 static func definition(index: int) -> Dictionary:
-	return THEMES[clampi(index,0,THEMES.size()-1)].duplicate(true)
+	var region:=clampi(index,0,THEMES.size()-1)
+	var theme: Dictionary=THEMES[region].duplicate(true)
+	theme.lighting=LIGHTING[region].duplicate(true)
+	return theme
 static func enemy_name(index: int, role: String) -> String:
 	return ENEMY_NAMES[clampi(index,0,ENEMY_NAMES.size()-1)].get(role,"Guardian")
